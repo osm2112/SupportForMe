@@ -25,6 +25,7 @@ public class MemberController {
 		memberService.updateMember(dto);
 		return "redirect:";
 	}
+	
 	//삭제(회원 탈퇴)
 	@RequestMapping("/deleteMember.do")
 	public String deleteMember(MemberDTO dto) {
@@ -35,15 +36,23 @@ public class MemberController {
 	//단건 조회
 	@RequestMapping("/getMembers.do")
 	public String getMember(Model model, MemberDTO dto) {
-		memberService.getMember(dto);
-		return "member/getMembers.jsp";
+		model.addAttribute("member",memberService.getMember(dto));
+		return "member/getMembers";
 	}
 	
 	//전체 조회
 	@RequestMapping("/getMember.do")
 	public String getMembers(Model model, MemberSerachDTO serachDTO) {
-		memberService.getMembers(serachDTO);
-		return "member/getMember.jsp";
+		model.addAttribute("member",memberService.getMembers(serachDTO));
+		
+		return "member/getMember";
 	}
+	
+	
+	@RequestMapping("/MemberJoinForm.do")
+	public String MemberJoinForm() {
+		return "member/memberJoinForm";
+	}
+	
 	
 }

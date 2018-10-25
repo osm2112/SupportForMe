@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.supportforme.biz.member.MemberDTO;
 import com.supportforme.biz.member.MemberSerachDTO;
 import com.supportforme.biz.test.UserDTO;
 
+
+@Repository
 public class MemberDAO {
 	@Autowired 
 	SqlSessionTemplate mybatis;

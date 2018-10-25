@@ -46,7 +46,7 @@ article {
 <body>
 	<div class="container">
 		<header>
-			<h1>City Gallery</h1>
+			<tiles:insertAttribute name="header" />
 		</header>
 		<nav>
 			
