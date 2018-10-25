@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project">
+	<insert id="insertProject" parameterType="project">
+		<selectKey keyProperty="projectNo" resultType="string" order="BEFORE">
+		  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((PROJECT_SEQ.NEXTVAL),4,0)) FROM DUAL;
+		</selectKey>
+		INSERT INTO PROJECTS
+		(PROJECT_NO, 
+		 PROJECT_NAME, 
+		 IMAGE, 
+		 TARGET_AMOUNT, 
+		 PROJECT_DEADLINE, 
+		 INTRODUCTION_VIDEO, 
+		 STORY,
+		 DEPOSIT_ACCOUNT,
+		 BANK_CODE,
+		 PROGRESS,
+		 USER_ID,
+		 INTRODUCTION_IMAGE,
+		 SUPPORT_PICK_YN,
+		 DELIVERY_DATE,
+		 CATEGORY_CODE)
+		 VALUES 
+		 (#{projectNo}, 
+		 #{projectName}, 
+		 #{image}, 
+		 #{targetAmount}, 
+		 #{projectDeadline}, 
+		 #{introductionVideo}, 
+		 #{story},
+		 #{depositAccount},
+		 #{bankCode},
+		 #{progress},
+		 #{userId},
+		 #{introductionImage},
+		 #{supportPickYn},
+		 #{deliveryDate},
+		 #{categoryCode})
+	</insert>
+	<update id="updateProject" parameterType="project">
+		 UPDATE PROJECTS
+		 SET
+		 PROJECT_NAME = #{projectName}, 
+		 IMAGE #{image}, 
+		 TARGET_AMOUNT = #{targetAmount}, 
+		 PROJECT_DEADLINE = #{projectDeadline},  
+		 INTRODUCTION_VIDEO = #{introductionVideo},  
+		 STORY = #{story},
+		 DEPOSIT_ACCOUNT = #{depositAccount},
+		 BANK_CODE = #{bankCode},
+		 PROGRESS = #{progress},
+		 USER_ID = #{userId},
+		 INTRODUCTION_IMAGE = #{introductionImage},
+		 SUPPORT_PICK_YN = #{supportPickYn},
+		 DELIVERY_DATE = #{deliveryDate},
+		 CATEGORY_CODE = #{categoryCode}
+	</update>
+	
+</mapper> 

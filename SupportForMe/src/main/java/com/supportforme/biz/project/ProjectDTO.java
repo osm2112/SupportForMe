@@ -109,6 +109,15 @@ public class ProjectDTO {
 	public void setCategoryCode(String categoryCode) {
 		this.categoryCode = categoryCode;
 	}
+	@Override
+	public String toString() {
+		return "ProjectDTO [projectNo=" + projectNo + ", projectName=" + projectName + ", image=" + image
+				+ ", targetAmount=" + targetAmount + ", projectDeadline=" + projectDeadline + ", introductionVideo="
+				+ introductionVideo + ", story=" + story + ", depositAccount=" + depositAccount + ", bankCode="
+				+ bankCode + ", progress=" + progress + ", userId=" + userId + ", introductionImage="
+				+ introductionImage + ", supportPickYn=" + supportPickYn + ", deliveryDate=" + deliveryDate
+				+ ", categoryCode=" + categoryCode + "]";
+	}
 	
 	
 }
