@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-	<select id="getUsers" resultType="com.supportforme.biz.test.UserDTO" parameterType="com.supportforme.biz.test.UserSearchDTO">
+	<select id="getMembers" resultType="member" parameterType="com.supportforme.biz.test.UserSearchDTO">
 	SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
 		SELECT * FROM MEMBER 
 		<where>
@@ -40,30 +40,62 @@
 		</where>
 	</select>
 	
-	<select id="getUser" parameterType="com.supportforme.biz.test.UserDTO" resultType="com.supportforme.biz.test.UserDTO">
+	<select id="getMember" parameterType="member" resultType="member">
 		SELECT * FROM MEMBER
-		WHERE  USER_ID = #{id}  
+		WHERE  USER_ID = #{userId}  
 	</select>
 	
-	<insert id="insertUser" parameterType="com.supportforme.biz.test.UserDTO">
-		INSERT INTO USERS(ID, PASSWORD, NAME, ROLE) 
-		VALUES(#{id},#{password},#{name},#{role})
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO MEMBER (
+							USER_ID, 
+							PASSWORD, 
+							NAME,
+							ADDRESS, 
+							PHONE_NUM, 
+							EMAIL, 
+							INTRODUCTION, 
+							POSTCODE,
+ 							ADDR_DETAIL
+  							)
+		VALUES ( 
+				 ${userId}, 
+				 ${password}, 
+				 ${name}, 
+				 ${address}, 
+				 ${phoneNum}, 
+				 ${email}, 
+				 ${introduction}, 
+				 ${postcode},  
+				 ${addrDetail}
+				)
 	</insert>
 	
 	
-	<update id="updateUser" parameterType="com.supportforme.biz.test.UserDTO">
-		UPDATE USERS 
-		SET 
-		PASSWORD = #{password}, 
-		NAME = #{name}, 
-		ROLE = #{role} 
-		WHERE  ID = #{id}
+	<update id="updateMember" parameterType="member">
+	UPDATE MEMBER
+	SET 
+	PASSWORD = ${password},
+	NAME = ${name}, 
+	ADDRESS = ${address}, 
+	PHONE_NUM = ${phoneNum}, 
+	EMAIL = ${email}, 
+	INTRODUCTION = ${introduction}, 
+	POSTCODE = ${postcode},
+	ADDR_DETAIL = ${addrDetail} 
+	WHERE USER_ID = ${userId}
+
 	</update>
 	
-	<delete id="deleteUser" parameterType="com.supportforme.biz.test.UserDTO">
-		DELETE FROM USERS
-		WHERE  ID = #{id}
-	</delete>
-	
-	
+	<update id="deleteMember" parameterType="member">
+	UPDATE MEMBER
+	SET 
+	PASSWORD = null,
+	NAME = null, 
+	ADDRESS = null, 
+	PHONE_NUM = null, 
+	EMAIL = null, 
+	INTRODUCTION = null, 
+	POSTCODE = null,
+	ADDR_DETAIL = null 
+	WHERE USER_ID = ${userId}	</update>
 </mapper> 
