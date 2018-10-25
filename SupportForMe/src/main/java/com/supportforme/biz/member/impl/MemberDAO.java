@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.supportforme.biz.member.MemberDTO;
 import com.supportforme.biz.member.MemberSerachDTO;
 import com.supportforme.biz.test.UserDTO;
-
-
 @Repository
 public class MemberDAO {
 	@Autowired 

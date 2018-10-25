@@ -17,7 +17,7 @@ public interface MemberService {
 	public UserDTO getMember(MemberDTO dto);
 	
 	//전체 조회
-	public List<MemberDTO> getMembers(MemberSerachDTO serachDTO);
+	public List<UserDTO> getMembers(MemberSerachDTO serachDTO);
 	
 	public int getCnt(MemberSerachDTO searchDTO); 
 	
