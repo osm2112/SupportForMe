@@ -7,7 +7,7 @@
 	<select id="getProject" resultType="string" parameterType="project">
 		SELECT * FROM PROJECT WHERE PROJECT_NO = #{projectNo}
 	</select>
-	
+	  
 	<!-- 프로젝트 등록  -->
 	<insert id="insertProject" parameterType="project">
 		<selectKey keyProperty="projectNo" resultType="string" order="BEFORE">
@@ -47,7 +47,7 @@
 		 #{categoryCode})
 	</insert>
 	
-	<!-- 프로젝트 수정   -->
+	<!-- 프로젝트 수정     -->
 	<update id="updateProject" parameterType="project">
 		 UPDATE PROJECT
 		 SET
