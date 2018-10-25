@@ -44,7 +44,6 @@ public class MemberController {
 	@RequestMapping("/getMember.do")
 	public String getMembers(Model model, MemberSerachDTO serachDTO) {
 		model.addAttribute("member",memberService.getMembers(serachDTO));
-		
 		return "member/getMember";
 	}
 	
