@@ -2,35 +2,40 @@ package com.supportforme.biz.member.impl;
 
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.supportforme.biz.member.MemberDTO;
 import com.supportforme.biz.member.MemberSerachDTO;
 import com.supportforme.biz.test.UserDTO;
 
 public class MemberDAO {
+	@Autowired 
+	SqlSessionTemplate mybatis;
+	
 	public int insertMember(MemberDTO dto) {
-		return 0;
+		return mybatis.insert("insertMember", dto);
 	};
 
 	// 수정
 	public int updateMember(MemberDTO dto) {
-		return 0;
+		return mybatis.update("updateMember", dto);
 	};
 
 	// 삭제(회원 탈퇴)
 	public int deleteMember(MemberDTO dto) {
-		return 0;
+		return mybatis.update("deleteMember", dto);
 	};
 
 	// 단건 조회
 	public UserDTO getMember(MemberDTO dto) {
-		return null;
+		return mybatis.selectOne("member.getMember", dto);
 	
 	};
 
 	// 전체 조회
-	public List<UserDTO> getMembers(MemberSerachDTO serachDTO){
-		return null;
-		
+	public List<MemberDTO> getMembers(MemberSerachDTO searchDTO){
+		return mybatis.selectList("member.getMembers", searchDTO);
 	};
 
 	public int getCnt(MemberSerachDTO searchDTO) {

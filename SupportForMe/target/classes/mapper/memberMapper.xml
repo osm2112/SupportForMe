@@ -2,7 +2,81 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
+	<select id="getMembers" resultType="member" parameterType="member">
+	SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
+		SELECT * FROM MEMBER
+		<where>
+			<if test="ids!=null and ids.length > 0">
+				USER_ID IN
+				<foreach collection="ids" open="(" close=")" separator="," item="item">
+					#{item}
+				</foreach>
+			</if>
+			<if test="searchCondition == 'userid'">
+				AND USER_ID LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="searchCondition == 'name'">
+				AND NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+		</where>
+		 ) A )WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="getCnt" parameterType="member" resultType="int">
+	SELECT COUNT(*) FROM MEMBER
+		<where>
+			<if test="ids!=null and ids.length > 0">
+				ID IN
+				<foreach collection="ids" open="(" close=")" separator="," item="item">
+					#{item}
+				</foreach>
+			</if>
+			<if test="searchCondition == 'userid'">
+				AND USER_ID LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="searchCondition == 'name'">
+				AND NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="getMember" parameterType="member" resultType="member">
+	SELECT * FROM MEMBER
+	WHERE USER_ID = #{id}  
+	</select>
+	
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO MEMBER ( USER_ID, PASSWORD, NAME, ADDRESS, PHONE_NUM,
+							EMAIL,INTRODUCTION,POSTCODE,ADDR_DETAIL )
+		VALUES ( #{userId}, #{password}, #{name}, #{address}, #{phoneNum},
+				 #{email}, #{introduction}, #{postcode}, #{addrDetail}  )
+	</insert>
+	
+	
+	<update id="updateMember" parameterType="member">
+		UPDATE MEMBER
+		SET  PASSWORD =  #{password}, 
+		NAME =  #{name}, 
+		ADDRESS = #{address}, 
+		PHONE_NUM = #{phoneNum},
+        EMAIL = #{email}, 
+        INTRODUCTION = #{introduction}, 
+        POSTCODE = #{postcode}, 
+        ADDR_DETAIL = #{addrDetail} 
+		WHERE USER_ID = #{userId}
+	</update>
+	
+	<update id="deleteMember" parameterType="member">
+		UPDATE MEMBER
+		SET  PASSWORD =  null, 
+		NAME =  null, 
+		ADDRESS = null, 
+		PHONE_NUM = null,
+        EMAIL = null, 
+        INTRODUCTION = null, 
+        POSTCODE = null, 
+        ADDR_DETAIL = null 
+		WHERE USER_ID = #{userId}
+	</update>
 
-	
-	
 </mapper> 
