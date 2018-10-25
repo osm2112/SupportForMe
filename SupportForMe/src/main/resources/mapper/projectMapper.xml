@@ -2,11 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project">
+
+	<!-- 프로젝트 단건 조회  -->
+	<select id="getProject" resultType="string" parameterType="project">
+		SELECT * FROM PROJECT WHERE PROJECT_NO = #{projectNo}
+	</select>
+	
+	<!-- 프로젝트 등록  -->
 	<insert id="insertProject" parameterType="project">
 		<selectKey keyProperty="projectNo" resultType="string" order="BEFORE">
 		  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((PROJECT_SEQ.NEXTVAL),4,0)) FROM DUAL;
 		</selectKey>
-		INSERT INTO PROJECTS
+		INSERT INTO PROJECT
 		(PROJECT_NO, 
 		 PROJECT_NAME, 
 		 IMAGE, 
@@ -39,8 +46,10 @@
 		 #{deliveryDate},
 		 #{categoryCode})
 	</insert>
+	
+	<!-- 프로젝트 수정   -->
 	<update id="updateProject" parameterType="project">
-		 UPDATE PROJECTS
+		 UPDATE PROJECT
 		 SET
 		 PROJECT_NAME = #{projectName}, 
 		 IMAGE #{image}, 

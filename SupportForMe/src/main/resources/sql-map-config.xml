@@ -15,7 +15,7 @@
 		<typeAlias alias="hashtag" type="com.supportforme.biz.hashtag.HashtagDTO" />
 		<typeAlias alias="invest" type="com.supportforme.biz.invest.InvestDTO" />
 		<typeAlias alias="present" type="com.supportforme.biz.present.PresentDTO" />
-		<typeAlias alias="member" type="com.supportforme.biz.project.ProjectDTO" />
+		<typeAlias alias="project" type="com.supportforme.biz.project.ProjectDTO" />
 	</typeAliases>
 	
 </configuration>
