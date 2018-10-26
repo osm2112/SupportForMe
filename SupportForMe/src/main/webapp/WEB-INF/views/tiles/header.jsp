@@ -131,17 +131,12 @@ body {
 <div class="bodysize">
     <div></div>
     <div id="head">
+    	<!--  화면줄였을때 보이는 영역 -->
         <div id="search_div1">
-
         <a href=getProjects.do><img src="./images/search.png" class="searchImg"></a>
         <input type="text" name="search_keyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-
         </div>
-		<form action="getProjects.do">
-        <input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-        <input TYPE="image" src="./images/search.png" id="searchImg" name="Submit" value="Submit">
-		</form>
-		</div>
+	
 		
         <div id="site_name" style="">
             SupportForME
@@ -151,17 +146,24 @@ body {
         <input type="button" onclick="go_register" id="make_project" value="프로젝트 만들기">
         </div>
         
+        <!-- 전체화면일때 보이는 영역 -->
         <div id="search_div2">
+        <form action="getProjects.do">
+        <input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+        <input TYPE="image" src="./images/search.png" class="searchImg" name="Submit" value="Submit">
+		</form>
         </div>
         
         <div id="head_font_size">마이 페이지</div>
         <!--<div id="head_font_size">관리 페이지</div>-->
-       <!-- <div id="logout_head_menu">
+       	<!-- <div id="logout_head_menu">
             <div id="head_font_size"> 로그인 </div>
             <div id="head_font_size">회원가입</div>
         </div> -->
+   	</div>
+   	
+    <div>
     </div>
-    <div></div>
 </div>
 </div>
 </body>
