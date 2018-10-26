@@ -8,6 +8,7 @@ public class ProjectDTO {
 	private String image;
 	private String targetAmount;
 	private String projectDeadline;
+	private String scheduledPaymentDate;
 	private String introductionVideo;
 	private String story;
 	private String depositAccount;
@@ -19,6 +20,12 @@ public class ProjectDTO {
 	private String deliveryDate;
 	private String categoryCode;
 	
+	public String getScheduledPaymentDate() {
+		return scheduledPaymentDate;
+	}
+	public void setScheduledPaymentDate(String scheduledPaymentDate) {
+		this.scheduledPaymentDate = scheduledPaymentDate;
+	}
 	public String getProjectNo() {
 		return projectNo;
 	}
@@ -110,14 +117,16 @@ public class ProjectDTO {
 	public void setCategoryCode(String categoryCode) {
 		this.categoryCode = categoryCode;
 	}
+	
 	@Override
 	public String toString() {
 		return "ProjectDTO [projectNo=" + projectNo + ", projectName=" + projectName + ", image=" + image
-				+ ", targetAmount=" + targetAmount + ", projectDeadline=" + projectDeadline + ", introductionVideo="
-				+ introductionVideo + ", story=" + story + ", depositAccount=" + depositAccount + ", bankCode="
-				+ bankCode + ", progress=" + progress + ", userId=" + userId + ", introductionImage="
-				+ Arrays.toString(introductionImage) + ", supportPickYn=" + supportPickYn + ", deliveryDate="
-				+ deliveryDate + ", categoryCode=" + categoryCode + "]";
+				+ ", targetAmount=" + targetAmount + ", projectDeadline=" + projectDeadline + ", scheduledPaymentDate="
+				+ scheduledPaymentDate + ", introductionVideo=" + introductionVideo + ", story=" + story
+				+ ", depositAccount=" + depositAccount + ", bankCode=" + bankCode + ", progress=" + progress
+				+ ", userId=" + userId + ", introductionImage=" + Arrays.toString(introductionImage)
+				+ ", supportPickYn=" + supportPickYn + ", deliveryDate=" + deliveryDate + ", categoryCode="
+				+ categoryCode + "]";
 	}
 	
 	

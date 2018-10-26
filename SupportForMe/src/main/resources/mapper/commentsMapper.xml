@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comments">
+<!-- 댓글입력 -->
+<insert id="insertComments" parameterType="comments">
+	<selectKey keyProperty="commentNo" resultType="string" order="BEFORE">
+		  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((COMMENTS_SEQ.NEXTVAL),4,0)) FROM DUAL
+	</selectKey>
+ 	INSERT INTO COMMENTS (COMMENT_NO,
+ 				 		  COMMENT_CONTENT, 
+ 				 		  COMMENT_DATE, 
+ 				 		  PROJECT_NO, 
+ 				 		  USER_ID)
+ 		    VALUES (#{commentNo},
+ 		    		#{commentContent},
+ 		    		SYSDATE,
+ 		    		#{projectNo},
+ 		    		#{userId})
+</insert>
+	
+<!-- 댓글수정 -->
+<update id="updateComments" parameterType="comments">
+	UPDATE COMMENTS
+	SET COMMENT_CONTENT = #{commentContent},
+		COMMENT_DATE = SYSDATE
+	WHERE COMMENT_NO = #{commentNo}
+</update>
+<!-- 댓글삭제(댓글에 답글이 없을때만 완전히 삭제됨/답글이 달려있는상태) -->
+<!-- 프로시저로 만듦 (프로시저명 : delete_comments) -->
+
+
+
+<!-- 답글입력 -->
+<insert id="insertReplyComments" parameterType="comments">
+	<selectKey keyProperty="commentNo" resultType="string" order="BEFORE">
+		  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((COMMENTS_SEQ.NEXTVAL),4,0)) FROM DUAL
+	</selectKey>
+	INSERT INTO COMMENTS (COMMENT_NO,
+						  COMMENT_CONTENT,
+						  COMMENT_DATE,
+						  TOP_COMMENT_NO,
+						  PROJECT_NO,
+						  USER_ID)
+		  VALUES (#{commentNo},
+		  		  #{commentContent},
+		  		  SYSDATE,
+		  		  #{topCommentNo},
+		  		  #{projectNo},
+		  		  #{userId})
+		  )		
+</insert>
+
+<!-- 답글수정 -->
+<update id="updateReplyComments" parameterType="comments">
+	UPDATE COMMENTS
+	SET COMMENT_CONTENT = #{commentContent},
+		COMMENT_DATE = SYSDATE,
+	WHERE COMMENT_NO = #{commentNo}
+</update>
+
+<!-- 답글삭제 -->
+<delete id="deleteReplyComments" parameterType="comments">
+	DELETE FROM COMMENTS
+	WHERE COMMENT_NO = #{commentNo}
+</delete>
+</mapper>
