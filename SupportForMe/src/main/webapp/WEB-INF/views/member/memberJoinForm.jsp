@@ -56,7 +56,7 @@ caption{
 	<div class="wrapper">
 		<div class="div1">
 			<h1 style="text-align: left;">회원가입</h1>
-			<br> <img src="./webapp/images/회원이미지2.png" width="80%">
+			<br> <img src="./images/회원이미지2.png" width="80%">
 		</div>
 		<div class="div2">
 			<table class="table1">

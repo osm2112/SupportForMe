@@ -133,7 +133,7 @@ body {
         </div>
         <div id="search_div2">
         <input type="text" name="search_keyword" id="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-        <img src="search.png" id="searchImg">
+        <img src="./images/search.png" id="searchImg">
         </div>
         
         <!--<div id="head_font_size">마이 페이지</div>-->
