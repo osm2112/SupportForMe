@@ -13,7 +13,7 @@ import com.supportforme.biz.member.MemberService;
 public class MemberController {
 	@Autowired MemberService memberService;
 	
-	@RequestMapping("/insertMember.do")
+	@RequestMapping("/InsertMember.do")
 	public String insertMember(MemberDTO dto) {
 		memberService.insertMember(dto);
 		return "redirect:";
