@@ -9,7 +9,7 @@
 	</select>
 	  
 	<!-- 프로젝트 등록  -->
-	<insert id="insertProject" parameterType="project">
+<!-- 	<insert id="insertProject" parameterType="project">
 		<selectKey keyProperty="projectNo" resultType="string" order="BEFORE">
 		  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((PROJECT_SEQ.NEXTVAL),4,0)) FROM DUAL;
 		</selectKey>
@@ -45,10 +45,10 @@
 		 #{supportPickYn},
 		 #{deliveryDate},
 		 #{categoryCode})
-	</insert>
+	</insert> -->
 	
 	<!-- 프로젝트 수정     -->
-	<update id="updateProject" parameterType="project">
+<!-- 	<update id="updateProject" parameterType="project">
 		 UPDATE PROJECT
 		 SET
 		 PROJECT_NAME = #{projectName}, 
@@ -70,6 +70,6 @@
 		 SUPPORT_PICK_YN = #{supportPickYn},
 		 DELIVERY_DATE = #{deliveryDate},
 		 CATEGORY_CODE = #{categoryCode}
-	</update>
+	</update> -->
 	
 </mapper> 

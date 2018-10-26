@@ -33,7 +33,7 @@
 		 WHERE  PRESENT_NO = #{presentNo}
 	</update>
 	
-	<delete id="deletePresent" parameterType="present project">
+	<delete id="deletePresent" parameterType="present">
 		DELETE FROM PRESENT
 		WHERE 
 			<if test="presentNo != null and presentNo != ''">
