@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project">
+
+	<!-- 프로젝트별 해시태그 조회  -->
+	<select id="getHashtags" resultType="hashtag" parameterType="hashtag">
+		SELECT * FROM HASHTAG
+		WHERE PROJECT_NO = #{projectNo}
+			  <if test="hashtagName != null and hashtagName != ''">
+	  			AND HASHTAG_NAME = #{hashtagName}
+	  		  </if>
+	</select>
+	
+	<!-- 해시태그 등록  페이지 내에서 press 이벤트 발생하면 ajax로 insert처리 //프로시저 필요할듯 (중복입력 방지) -->  
+	<insert id="insertHashtag" parameterType="hashtag">
+		<selectKey keyProperty="hashtagNo" resultType="string" order="BEFORE">
+		  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((HASHTAG_SEQ.NEXTVAL),4,0)) FROM DUAL;
+		</selectKey>
+		INSERT INTO 
+		HASHTAG (HASHTAG_NO , HASHTAG_NAME, PROJECT_NO)
+		VALUES ( #{hashtagNo}, #{hashtagName}, #{projectNo})
+	</insert>
+	
+	<!-- 해시태그 삭제 (해시태그는 수정은 없음) -->
+	<delete id="deleteHashtag" parameterType="hashtag project">
+		DELETE FROM HASHTAG 
+		WHERE 1=1
+			<if test="hashtagName != null and hashtagName != ''">
+	  			AND HASHTAG_NAME = #{hashtagName}
+	  		</if>
+			<if test="projectNo != null and projectNo != ''">
+	  			AND PROJECT_NO = #{projectNo}
+	  		</if>		
+	</delete>
+</mapper> 

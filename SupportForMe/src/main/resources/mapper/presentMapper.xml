@@ -27,10 +27,21 @@
 	<update id="updatePresent" parameterType="present">
 		 UPDATE PRESENT
 		 SET
-		 PRESENT_NO = #{presentNo},
 		 PRESENT_PRICE = #{presentPrice},
 		 PRESENT_NAME = #{presentName},
 		 PROJECT_NO	= #{projectNo}
+		 WHERE  PRESENT_NO = #{presentNo}
 	</update>
+	
+	<delete id="deletePresent" parameterType="present project">
+		DELETE FROM PRESENT
+		WHERE 
+			<if test="presentNo != null and presentNo != ''">
+	  			PRESENT_NO = #{presentNo}
+	  		</if>
+			<if test="projectNo != null and projectNo != ''">
+	  			PROJECT_NO = #{projectNo}
+	  		</if>
+	</delete>
 	
 </mapper> 

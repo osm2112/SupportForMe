@@ -61,7 +61,12 @@
 		 BANK_CODE = #{bankCode},
 		 PROGRESS = #{progress},
 		 USER_ID = #{userId},
-		 INTRODUCTION_IMAGE = #{introductionImage},
+		 INTRODUCTION_IMAGE = 
+		 <if test="introductionImage != null and introductionImage != ''">
+				<foreach collection="introductionImage" separator=" " item="introImage">			
+					#{introImage}
+				</foreach>
+		</if>,
 		 SUPPORT_PICK_YN = #{supportPickYn},
 		 DELIVERY_DATE = #{deliveryDate},
 		 CATEGORY_CODE = #{categoryCode}

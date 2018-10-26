@@ -1,5 +1,7 @@
 package com.supportforme.biz.project;
 
+import java.util.Arrays;
+
 public class ProjectDTO {
 	private String projectNo;
 	private String projectName;
@@ -12,7 +14,7 @@ public class ProjectDTO {
 	private String bankCode;
 	private String progress;
 	private String userId;
-	private String introductionImage;
+	private String[] introductionImage;
 	private String supportPickYn;
 	private String deliveryDate;
 	private String categoryCode;
@@ -85,10 +87,11 @@ public class ProjectDTO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getIntroductionImage() {
+	
+	public String[] getIntroductionImage() {
 		return introductionImage;
 	}
-	public void setIntroductionImage(String introductionImage) {
+	public void setIntroductionImage(String[] introductionImage) {
 		this.introductionImage = introductionImage;
 	}
 	public String getSupportPickYn() {
@@ -115,8 +118,8 @@ public class ProjectDTO {
 				+ ", targetAmount=" + targetAmount + ", projectDeadline=" + projectDeadline + ", introductionVideo="
 				+ introductionVideo + ", story=" + story + ", depositAccount=" + depositAccount + ", bankCode="
 				+ bankCode + ", progress=" + progress + ", userId=" + userId + ", introductionImage="
-				+ introductionImage + ", supportPickYn=" + supportPickYn + ", deliveryDate=" + deliveryDate
-				+ ", categoryCode=" + categoryCode + "]";
+				+ Arrays.toString(introductionImage) + ", supportPickYn=" + supportPickYn + ", deliveryDate="
+				+ deliveryDate + ", categoryCode=" + categoryCode + "]";
 	}
 	
 	
