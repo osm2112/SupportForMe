@@ -22,7 +22,7 @@ body {
 #head{
   padding : 10px 20px;
   display : grid;
-  grid-template-columns: 2fr 1fr 6fr 2fr;
+  grid-template-columns: 2fr 1fr 6fr 200px;
   grid-template-rows: 50px;    
   grid-gap: 20px;  
    
@@ -54,7 +54,7 @@ body {
     display : flex;
     justify-content : flex-end;
 }
-#searchImg {
+.searchImg {
     height : 25px;
     width : 25px;
     vertical-align: top;
@@ -77,12 +77,7 @@ body {
 #logout_head_menu {
     display:grid;
     grid-template-columns: 80px 80px;
-}   
-@media(max-width:1800px){   
-		#head_font_size {
-   		display:none;
-    }
-}                
+}                 
 @media(max-width:850px){
     .bodysize {
         display:grid;
@@ -91,7 +86,7 @@ body {
     }
     #head {
         display:grid;
-        grid-template-columns : 1.2fr 3fr ;
+        grid-template-columns : 1fr 3fr ;
     }
     #head > #site_name {
      color : rgb(26, 188, 156);
@@ -126,12 +121,22 @@ body {
 }   
 
 </style>
+<script>
+	function go_register() {
+		location.href="insertProject.do"
+	}
+</script>
 <body>
 <div id="headDiv">
 <div class="bodysize">
     <div></div>
     <div id="head">
         <div id="search_div1">
+
+        <a href=getProjects.do><img src="./images/search.png" class="searchImg"></a>
+        <input type="text" name="search_keyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+
+        </div>
 		<form action="getProjects.do">
         <input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
         <input TYPE="image" src="./images/search.png" id="searchImg" name="Submit" value="Submit">
@@ -143,15 +148,10 @@ body {
         </div>
         
         <div>
-        <input type="button" id="make_project" value="프로젝트 만들기">
+        <input type="button" onclick="go_register" id="make_project" value="프로젝트 만들기">
         </div>
         
         <div id="search_div2">
-		<form action="getProjects.do">
-        <input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-        <input TYPE="image" src="./images/search.png" id="searchImg" name="Submit" value="Submit">
-		</form>
-		
         </div>
         
         <div id="head_font_size">마이 페이지</div>
