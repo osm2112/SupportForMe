@@ -1,10 +1,11 @@
 package com.supportforme.biz.web.project;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectRegisterService;
@@ -21,9 +22,10 @@ public class projectRegisterController {
 	}
 	
 	@RequestMapping("/insertProject.do")
-	public String insertProject(Model model, ProjectDTO dto) {
+	public String insertProject(Model model, ProjectDTO dto , HttpSession session) {
+		//session.getAttribute();
 		dto.setUserId("user2");
-		model.addAttribute("project", projectService.insertProject(dto));
+		model.addAttribute("projectNo", projectService.insertProject(dto));
 		return "register/projectRegisterBasic";
 	}
 	

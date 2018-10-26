@@ -12,7 +12,7 @@ body {
 nav {
 	float: left;
 	max-width: 160px;
-	margin: 0;
+	margin: 0; 
 	padding: 1em;
 }
 

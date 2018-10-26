@@ -9,13 +9,9 @@
 	</select>
 	 
 	 <!-- 프로젝트  등록  -->
-	 <insert id="insertProject" parameterType="project">
-	 	<selectKey keyProperty="projectNo" resultType="string" order="BEFORE">
-		  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((PROJECT_SEQ.NEXTVAL),4,0)) as projectNo FROM DUAL
-		</selectKey>
-		INSERT INTO PROJECT (PROJECT_NO,  USER_ID)
-					 VALUES (#{projectNo}, #{userId})
-	 </insert>
+	 <select id="insertProjectProc" statementType="CALLABLE"  parameterType="project">
+	 	{CALL insertProject (#{userId})}
+	 </select>
 	
 	<!-- 프로젝트 수정     -->
 	<update id="updateProject" parameterType="project">
