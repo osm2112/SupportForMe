@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,7 +123,7 @@
         <div class="pjdtl-project-name">${project.projectName}</div>
         <button class="pjdtl-pick-btn" style="width:120px; height:40px; ">PICK</button>
     </div>
-    <div class="pjdtl-center"><!-- 해시태그 -->
+    <div class="pjdtl-center"><!-- 해시태그-->
         <span class="pjdtl-hashtag">#해시태그</span>
         <span class="pjdtl-hashtag">#해시태그2</span>
         <span class="pjdtl-hashtag">#해시태그태그</span>
@@ -130,7 +131,7 @@
     <br>
     <div class="pjdtl-flex-container">
         <!-- 사진/이미지/영상 -->
-        <div class="pjdtl-intro-box">프로젝트 대표 사진 or 영상 나오는 곳</div>
+        <div class="pjdtl-intro-box">${project.introductionVideo}</div>
         <div class="pjdtl-empty-box"></div>
         <!-- 디테일 박스 -->
         <div class="pjdtl-detail-box">
@@ -143,21 +144,21 @@
             </div>
             <div style="background-color: pink;">
                 <button class="pjdtl-invest-btn">투자하기</button>&nbsp;
-                <img src="./img/share-button.png" class="pjdtl-share-btn">
+                <img src="./images/share-button.png" class="pjdtl-share-btn">
             </div><br>
             <div class="pjdtl-status-box">
                 <div class="">
                 <div>
-                    <img src="./img/calendar.png" class="pjdtl-status-img">
-                    <img src="./img/right-arrow.png" class="pjdtl-right-arrow">
-                    <img src="./img/credit-card.png" class="pjdtl-status-img">
-                    <img src="./img/right-arrow.png" class="pjdtl-right-arrow">
-                    <img src="./img/delivery-truck.png" class="pjdtl-status-img">
+                    <img src="./images/calendar.png" class="pjdtl-status-img">
+                    <img src="./images/right-arrow.png" class="pjdtl-right-arrow">
+                    <img src="./images/credit-card.png" class="pjdtl-status-img">
+                    <img src="./images/right-arrow.png" class="pjdtl-right-arrow">
+                    <img src="./images/delivery-truck.png" class="pjdtl-status-img">
                 </div>
                 <div class="pjdtl-flex-container">
-                    <div class="pjdtl-status-font">종료일<br>18.10.10</div>
-                    <div class="pjdtl-status-font">결제 예정일<br>18.10.17</div>
-                    <div class="pjdtl-status-font">예상 배송일<br>18.10.24</div>
+                    <div class="pjdtl-status-font">종료일<br>${project.projectDeadline}</div>
+                    <div class="pjdtl-status-font">결제 예정일<br>${project.scheduledPaymentDate}</div>
+                    <div class="pjdtl-status-font">예상 배송일<br>${project.deliveryDate}</div>
                 </div>
                 </div>
             </div>
@@ -179,7 +180,7 @@
         
         <div class="pjdtl-flex-container">
         <div class="pjdtl-story">
-            프로젝트 스토리@^▽^@
+			${project.story}
         </div>
         <div class="pjdtl-empty-content"></div>
         <div class="pjdtl-reward">

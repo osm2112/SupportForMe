@@ -7,6 +7,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>2018. 10. 26.</title>
 <style>
+/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
+.pjdtl_bodysize {   
+	margin-left: auto;
+	margin-right: auto;
+	width: 1200px;
+    }
+/*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/    
 .wrapper {
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
@@ -83,6 +90,7 @@
 </style> 
 </head>
 <body>
+	<div class="pjdtl_bodysize">
 	<div class="wrapper">
 		<div class="div1">
 			<h1 style="text-align: left;">${count}개의 검색결과</h1>
@@ -134,6 +142,7 @@
 			</div>
  -->                
 		</div>
+	</div>
 	</div> 
 </body>
 </html>
