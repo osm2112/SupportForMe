@@ -6,9 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>header</title>
-</head>
 <style>
-@charset "UTF-8";
 body {
     margin:0px;
 }
@@ -44,6 +42,9 @@ body {
    margin-top : 7px;
    margin-left : 50px;
 }
+#make_project:hover {
+	cursor:pointer;
+}
 #search_div1 {
     display:none;
 }
@@ -74,6 +75,7 @@ body {
     font-size:18px;
     padding-top:15px;
     text-align:center;
+    width : 120px;
 }
 #logout_head_menu {
     display:grid;
@@ -123,10 +125,12 @@ body {
 
 </style>
 <script>
-	function go_register() {
-		location.href="insertProject.do"
-	}
+function go_register() {
+	location.href="registerProject.do"
+}
+
 </script>
+</head>
 <body>
 <script>
 function view() {
@@ -159,7 +163,7 @@ function view() {
         	</div>
         
         	<div>
-        	<input type="button" onclick="go_register" id="make_project" value="프로젝트 만들기">
+        	<input type="button" onclick="go_register()" id="make_project" value="프로젝트 만들기">
         	</div>
         
         	<!-- 전체화면일때 보이는 영역 -->
