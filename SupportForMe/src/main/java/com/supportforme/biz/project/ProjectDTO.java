@@ -19,8 +19,6 @@ public class ProjectDTO {
 	private String deliveryDate;
 	private String categoryCode;
 	
-	
-	
 	public String getProjectNo() {
 		return projectNo;
 	}

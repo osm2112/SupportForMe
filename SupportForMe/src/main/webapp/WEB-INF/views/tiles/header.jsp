@@ -122,7 +122,7 @@ body {
     <div></div>
     <div id="head">
         <div id="search_div1">
-        <img src="search.png" id="searchImg">
+        <a href=getProjects.do><img src="search.png" id="searchImg"></a>
         <input type="text" name="search_keyword" id="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
         </div>
         <div id="site_name" style="">
@@ -133,7 +133,7 @@ body {
         </div>
         <div id="search_div2">
         <input type="text" name="search_keyword" id="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-        <img src="./images/search.png" id="searchImg">
+        <a href=getProjects.do><img src="./images/search.png" id="searchImg"></a>
         </div>
         
         <!--<div id="head_font_size">마이 페이지</div>-->

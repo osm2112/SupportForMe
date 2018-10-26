@@ -2,74 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project">
-
-	<!-- 프로젝트 단건 조회  -->
-	<select id="getProject" resultType="string" parameterType="project">
-		SELECT * FROM PROJECT WHERE PROJECT_NO = #{projectNo}
+<select id="getProjects" resultType="project" parameterType="com.supportforme.biz.project.ProjectSearchDTO">
+	SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
+		 SELECT * FROM project p LEFT OUTER JOIN hashtag h 
+		 		  ON (p.project_no = h.project_no)	 	
+		<where>
+				h.hashtag_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%' or p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'
+		</where>
+				ORDER BY p.project_no
+		 ) A )WHERE rnum BETWEEN #{start} AND #{end}
 	</select>
-	  
-	<!-- 프로젝트 등록  -->
-<!-- 	<insert id="insertProject" parameterType="project">
-		<selectKey keyProperty="projectNo" resultType="string" order="BEFORE">
-		  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((PROJECT_SEQ.NEXTVAL),4,0)) FROM DUAL;
-		</selectKey>
-		INSERT INTO PROJECT
-		(PROJECT_NO, 
-		 PROJECT_NAME, 
-		 IMAGE, 
-		 TARGET_AMOUNT, 
-		 PROJECT_DEADLINE, 
-		 INTRODUCTION_VIDEO, 
-		 STORY,
-		 DEPOSIT_ACCOUNT,
-		 BANK_CODE,
-		 PROGRESS,
-		 USER_ID,
-		 INTRODUCTION_IMAGE,
-		 SUPPORT_PICK_YN,
-		 DELIVERY_DATE,
-		 CATEGORY_CODE)
-		 VALUES 
-		 (#{projectNo}, 
-		 #{projectName}, 
-		 #{image}, 
-		 #{targetAmount}, 
-		 #{projectDeadline}, 
-		 #{introductionVideo}, 
-		 #{story},
-		 #{depositAccount},
-		 #{bankCode},
-		 #{progress},
-		 #{userId},
-		 #{introductionImage},
-		 #{supportPickYn},
-		 #{deliveryDate},
-		 #{categoryCode})
-	</insert> -->
 	
-	<!-- 프로젝트 수정     -->
-<!-- 	<update id="updateProject" parameterType="project">
-		 UPDATE PROJECT
-		 SET
-		 PROJECT_NAME = #{projectName}, 
-		 IMAGE #{image}, 
-		 TARGET_AMOUNT = #{targetAmount}, 
-		 PROJECT_DEADLINE = #{projectDeadline},  
-		 INTRODUCTION_VIDEO = #{introductionVideo},  
-		 STORY = #{story},
-		 DEPOSIT_ACCOUNT = #{depositAccount},
-		 BANK_CODE = #{bankCode},
-		 PROGRESS = #{progress},
-		 USER_ID = #{userId},
-		 INTRODUCTION_IMAGE = 
-		 <if test="introductionImage != null and introductionImage != ''">
-				<foreach collection="introductionImage" separator=" " item="introImage">			
-					#{introImage}
-				</foreach>
-		</if>,
-		 SUPPORT_PICK_YN = #{supportPickYn},
-		 DELIVERY_DATE = #{deliveryDate},
-		 CATEGORY_CODE = #{categoryCode}
-	</update> -->
-	
+	<!-- 프로젝트 건수 조회  -->
+	<select id="getCnt" resultType="int" parameterType="com.supportforme.biz.project.ProjectSearchDTO">
+		SELECT COUNT(*) FROM PROJECT
+		<where>
+				project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'
+		</where>
+	</select>
+
 </mapper> 
