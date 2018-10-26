@@ -54,4 +54,15 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping("/MemberLoginForm.do")
+	public String LoininForm() {
+		return "member/memberLoginForm";
+	}
+	
+	@RequestMapping("/MemberUpdateForm.do")
+	public String MemberUpdateForm() {
+		return "member/memberUpdateForm";
+	}
+	
+	
 }

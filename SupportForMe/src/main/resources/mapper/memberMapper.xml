@@ -41,7 +41,8 @@
 	</select>
 	
 	<select id="getMember" parameterType="member" resultType="member">
-		SELECT * FROM MEMBER
+		SELECT * 
+		FROM MEMBER
 		WHERE  USER_ID = #{userId}  
 	</select>
 	
