@@ -22,6 +22,8 @@
 	<!-- 리소스 경로 지정 하기 안하면 jsp를 제외한 모든파일  읽어 올수 없음  -->
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/images/**" location="/images/" />
+	<resources mapping="/js/**" location="/js/" />
+	<resources mapping="/css/**" location="/css/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
  	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="2">
