@@ -20,8 +20,15 @@
 	WHERE PROJECT_NO = #{projectNo} 
 </select>
 
+<!-- 해시태그 불러오기 -->
+<select id="getProjectHashtags" resultType="hashtag" parameterType="project">
+	SELECT *
+	FROM HASHTAG
+	WHERE PROJECT_NO = #{projectNo}
+</select>
+
 <!-- 프로젝트의 리워드(present) 목록 불러오기(화면 오른쪽) -->
-<select id="getProjectPresents" resultType="present" parameterType="present">
+<select id="getProjectPresents" resultType="present" parameterType="project">
 	SELECT PRESENT_NO,
 		   PRESENT_NAME,
 		   PRESENT_PRICE
@@ -30,7 +37,7 @@
 </select>
 
 <!-- 댓글 불러오기 -->
-<select id="getComments" resultType="comments" parameterType="comments">
+<select id="getComments" resultType="comments" parameterType="project">
 	SELECT *
 	FROM COMMENTS
 	WHERE PROJECT_NO = #{projectNo} 
