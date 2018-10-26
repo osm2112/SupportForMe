@@ -116,7 +116,7 @@ caption{
 				parm.push([ 'userId', userId ]);
 				parm.push([ 'password', password ]);
 				parm.push([ 'name', name ]);
-				parm.push([ 'phoneNum', tel1+tel2+tel3 ]);
+				parm.push([ 'phoneNum', tel1+'-'+tel2+'-'+tel3 ]);
 				parm.push([ 'email', email ]);
 				parm.push([ 'postcode', postcode ]);
 				parm.push([ 'address', address ]);

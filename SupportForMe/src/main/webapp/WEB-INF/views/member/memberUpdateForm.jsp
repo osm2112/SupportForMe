@@ -39,7 +39,7 @@
 <script>
 	function UpdateMember() {
 		var userId = document.getElementById("userId").value;
-		var password = document.getElementById("password1").value;
+		var password = document.getElementById("password").value;
 		var password2 = document.getElementById("password2").value;
 		var name = document.getElementById("name").value;
 		var email = document.getElementById("email").value;
@@ -50,11 +50,12 @@
 		var address = document.getElementById("address").value;
 		var addrDetail = document.getElementById("addrDetail").value;
 		var introduction = document.getElementById("introduction").value;
-
-		if (!password) {
+		
+		if (!password || !password2 ) {
 			alert('비밀번호가 입력되지 않았습니다.');
 			return false;
 		}
+		
 		if (password != password2) {
 			alert('비밀번호가 일치하지 않습니다.');
 			return false;
@@ -93,7 +94,7 @@
 		parm.push([ 'userId', userId ]);
 		parm.push([ 'password', password ]);
 		parm.push([ 'name', name ]);
-		parm.push([ 'phoneNum', tel1 + tel2 + tel3 ]);
+		parm.push([ 'phoneNum', tel1+'-'+tel2+'-'+tel3 ]);
 		parm.push([ 'email', email ]);
 		parm.push([ 'postcode', postcode ]);
 		parm.push([ 'address', address ]);
@@ -134,18 +135,13 @@
 					</tr>
 
 					<tr>
-						<td><span>＊</span>기존 비밀번호</td>
-						<td><input id="password1" type="password" size="10"></td>
-					</tr>
-
-					<tr>
 						<td><span>＊</span>새 비밀번호</td>
-						<td><input id="password2" type="password" size="10"></td>
+						<td><input id="password" type="password" size="10"></td>
 					</tr>
 					
 					<tr>
 						<td><span>＊</span>비밀번호확인</td>
-						<td><input id="password3" type="password" size="10"></td>
+						<td><input id="password2" type="password" size="10"></td>
 					</tr>
 
 					<tr>
@@ -162,8 +158,15 @@
 								<option value="018">018</option>
 								<option value="019">019</option>
 						</select> - <input type="text" id="tel2" size="10"> - <input type="text" id="tel3" size="10"></td>
+			
 					</tr>
-
+					<script>
+					var phoneNum = '${member.phoneNum}';
+					var telArray = phoneNum.split('-');
+					document.getElementById("tel1").value=telArray[0];
+					document.getElementById("tel2").value=telArray[1];
+					document.getElementById("tel3").value=telArray[2];
+					</script>
 					<tr>
 						<td><span>＊</span>주소</td>
 						<td>

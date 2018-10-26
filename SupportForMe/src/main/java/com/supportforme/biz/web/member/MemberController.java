@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.supportforme.biz.member.MemberDTO;
@@ -23,10 +22,14 @@ public class MemberController {
 	}
 	
 	//수정
-	@RequestMapping("/updateMember.do")
-	public String updateMember(MemberDTO dto) {
+	@RequestMapping("/UpdateMember.do")
+	public String updateMember(Model model,MemberDTO dto,HttpSession session) {
 		memberService.updateMember(dto);
-		return "redirect:";
+		session.removeAttribute("LoginInfo");
+		session.setAttribute("LoginInfo", dto);
+		model.addAttribute("msg","ID 또는 비밀번호가 잘못되었습니다.");
+		model.addAttribute("url","./MemberUpdateForm.do");
+		return "commons/alertRedirect";
 	}
 	
 	//삭제(회원 탈퇴)
