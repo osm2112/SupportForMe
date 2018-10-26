@@ -59,7 +59,7 @@ body {
     width : 25px;
     vertical-align: top;
 }
-#search_keyword {
+.search_keyword {
         width :300px;
         height : 25px;
         margin: 0px 10px;
@@ -106,7 +106,7 @@ body {
         padding-top : 15px;
         display:flex;
     }
-    #search_div1 > #search_keyword {
+    #search_div1 > .search_keyword {
         display:none;
     }
     #head > #search_div2 {
@@ -132,8 +132,13 @@ body {
     <div></div>
     <div id="head">
         <div id="search_div1">
+<<<<<<< HEAD
         <a href=getProjects.do><img src="search.png" id="searchImg"></a>
         <input type="text" name="search_keyword" id="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+=======
+        <img src="search.png" id="searchImg">
+        <input type="text" name="search_keyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+>>>>>>> branch 'master' of https://github.com/osm2112/SupportForMe.git
         </div>
         <div id="site_name" style="">
             SupportForME
@@ -142,8 +147,13 @@ body {
         <input type="button" id="make_project" value="프로젝트 만들기">
         </div>
         <div id="search_div2">
+<<<<<<< HEAD
         <input type="text" name="search_keyword" id="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
         <a href=getProjects.do><img src="./images/search.png" id="searchImg"></a>
+=======
+        <input type="text" name="search_keyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+        <img src="./images/search.png" id="searchImg">
+>>>>>>> branch 'master' of https://github.com/osm2112/SupportForMe.git
         </div>
         
         <div id="head_font_size">마이 페이지</div>
