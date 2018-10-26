@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project">
+<select id="getProjects" resultType="project" parameterType="com.supportforme.biz.project.ProjectSearchDTO">
+	SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
+		 SELECT * FROM project p LEFT OUTER JOIN hashtag h 
+		 		  ON (p.project_no = h.project_no)	 	
+		<where>
+				h.hashtag_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%' or p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'
+		</where>
+				ORDER BY p.project_no
+		 ) A )WHERE rnum BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 프로젝트 건수 조회  -->
+	<select id="getCnt" resultType="int" parameterType="com.supportforme.biz.project.ProjectSearchDTO">
+		SELECT COUNT(*) FROM PROJECT
+		<where>
+				project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'
+		</where>
+	</select>
+
+</mapper> 
