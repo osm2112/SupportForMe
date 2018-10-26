@@ -12,6 +12,7 @@ body {
     margin:0px;
 }
 #headDiv {
+	margin:0px;
     border-bottom:1px solid lightgrey;
 }
 .bodysize {
@@ -31,7 +32,7 @@ body {
   font-size : 30px; 
 }
 
- #make_project {
+#make_project {
    font-size : 16px;
    font-weight : 800;
    color: white;
@@ -76,16 +77,21 @@ body {
 #logout_head_menu {
     display:grid;
     grid-template-columns: 80px 80px;
-}                      
+}   
+@media(max-width:1800px){   
+		#head_font_size {
+   		display:none;
+    }
+}                
 @media(max-width:850px){
     .bodysize {
         display:grid;
-        grid-template-columns: 0 1fr 0;
+        grid-template-columns: 0fr 1fr 0fr;
         grid-template-rows:80px;
     }
     #head {
         display:grid;
-        grid-template-columns : 1.5fr 3fr ;
+        grid-template-columns : 1.2fr 3fr ;
     }
     #head > #site_name {
      color : rgb(26, 188, 156);
@@ -113,6 +119,10 @@ body {
     #logout_head_menu{
         display:none;
     }
+    
+    #head_font_size {
+   		display:none;
+    }
 }   
 
 </style>
@@ -136,12 +146,12 @@ body {
         <img src="./images/search.png" id="searchImg">
         </div>
         
-        <!--<div id="head_font_size">마이 페이지</div>-->
+        <div id="head_font_size">마이 페이지</div>
         <!--<div id="head_font_size">관리 페이지</div>-->
-       <div id="logout_head_menu">
+       <!-- <div id="logout_head_menu">
             <div id="head_font_size"> 로그인 </div>
             <div id="head_font_size">회원가입</div>
-        </div>
+        </div> -->
     </div>
     <div></div>
 </div>

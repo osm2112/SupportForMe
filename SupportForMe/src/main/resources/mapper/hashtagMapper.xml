@@ -15,7 +15,7 @@
 	<!-- 해시태그 등록  페이지 내에서 press 이벤트 발생하면 ajax로 insert처리 //프로시저 필요할듯 (중복입력 방지) -->  
 	<insert id="insertHashtag" parameterType="hashtag">
 		<selectKey keyProperty="hashtagNo" resultType="string" order="BEFORE">
-		  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((HASHTAG_SEQ.NEXTVAL),4,0)) FROM DUAL;
+		  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((HASHTAG_SEQ.NEXTVAL),4,0)) FROM DUAL
 		</selectKey>
 		INSERT INTO 
 		HASHTAG (HASHTAG_NO , HASHTAG_NAME, PROJECT_NO)

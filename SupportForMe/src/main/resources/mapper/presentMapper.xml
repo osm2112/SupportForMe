@@ -11,7 +11,7 @@
 	<!-- 선물 등록  -->
 	<insert id="insertPresent" parameterType="present">
 		<selectKey keyProperty="presentNo" resultType="string" order="BEFORE">
-		  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((PRESENT_SEQ.NEXTVAL),4,0)) FROM DUAL;
+		  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((PRESENT_SEQ.NEXTVAL),4,0)) FROM DUAL
 		</selectKey>
 		INSERT INTO PRESENT
 		(PRESENT_NO, PRESENT_PRICE, PRESENT_NAME, PROJECT_NO)
@@ -42,6 +42,7 @@
 			<if test="projectNo != null and projectNo != ''">
 	  			PROJECT_NO = #{projectNo}
 	  		</if>
+	  	WHERE
 	</delete>
 	
 </mapper> 
