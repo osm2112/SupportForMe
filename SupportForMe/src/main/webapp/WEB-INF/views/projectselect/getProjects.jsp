@@ -13,10 +13,10 @@
 	grid-auto-rows: minmax(100px, auto);
 }
 
-.wrapper>div {
+/* .wrapper>div {
 	background-color: orange;
 	border: 1px black solid;
-}
+} */
 
 .div1 {
 	grid-column: 1/5;
@@ -30,17 +30,59 @@
 	grid-template-columns: repeat(4, 1fr);
 	/*grid-template-columns: 25% 25% 25% 25%;*/
 	grid-auto-rows: minmax(300px, auto);
-	text-align: center;
+	/* text-align: center; */
 }
 
-.div2>div {
+/* .div2>div {
 	background-color: blue;
 	border: 1px red solid;
+}  */
+
+
+<!-- -->
+.project_box {
+            width : 100%; 
+            height:400px;
+            border:1px solid lightgrey
+        }
+.project_state {
+            border: 1.5px solid rgb(211, 84, 0);
+            border-radius:5px;
+            color : rgb(211, 84, 0); 
+            padding-top:5px;
+            width : 100px;
+            height: 25px;
+            text-align: center;
+            margin-bottom:5px;
 }
-</style>
+ .mypage_project_content {
+             margin-left : 5px;
+	         width : 100%;
+             height: 200px;
+        }
+ .mypage_project_image {
+             width : 100%;
+             height: 160px;
+             border : 1px solid lightgrey;
+ 	         margin-left: auto;
+             margin-right: auto;
+             /* margin-top : 5px; */
+             margin-bottom : 5px;
+             background-color:#E9E9E9;
+        }
+ .mypage_project_image img {
+    		width: 100%;
+    		height: 100%;
+    		object-fit: mypage_project_image;
+     		}       
+ 		
+ .mypage_project_content ul{
+        list-style-type: none;
+ }
+
+</style> 
 </head>
 <body>
-<%-- ${list} --%>
 	<div class="wrapper">
 		<div class="div1">
 			<h1 style="text-align: left;">${count}개의 검색결과</h1>
@@ -48,35 +90,38 @@
 			<br>
 			<br>
 		</div>
-		<div class="div2">
-			<%-- <div class="card" style="width: 20rem;">
-				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
-				<div class="card-body">
-					<h4 class="card-title">프로젝트상태(진행중, 마감)</h4>
-					<p class="card-text">${list[0].projectName}</p>
-					<p class="card-text">( 모집률을 구하는함수호출값 )</p>
-					<p class="card-text">${list[0].targetAmount}</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div> --%>
-			
-		<c:forEach items="${list}" var="project">
+ 		<div class="div2">
+ 			<c:forEach items="${list}" var="project">
+	 		<div class="project_box" style="">
+              <div class="mypage_project_image"><img src="./images/images.jpg"></div>
+		      	<div class="mypage_project_content">
+                  <div class="project_state">${project.progress}마감</div>
+                    <ul>
+                        <li>창작자 ID : ${project.userId}</li>
+                        <li style="font-size : 18px;">${project.projectName}</li>
+                        <li style="height : 20px"></li>
+                        <li style="display:grid;grid-template-columns: 70% 30%">
+                            <span align="left">모금액 : ${project.totalInvest}</span>
+                            <span>${project.percent}%</span></li> 
+                        <li style="color:rgb(26, 188, 156)">■□□□□□□□□□□□□□</li>
+                        <li>목표금액 : ${project.targetAmount}</li>
+                    </ul>                                       
+               </div>
+ 			</div> 
+ 			</c:forEach>
+ 	
+<%--		<c:forEach items="${list}" var="project">
 			<div class="card" style="width: 20rem;">
-				<img class="card-img-top" src="${project.image}" alt="Card image cap">
+				<img class="card-img-top" src="./images/images.jpg"${project.image} alt="Card image cap">
 				<div class="card-body">
-					<h4 class="card-title">${project.progress}</h4>
+					<h4 class="card-title">${project.progress}프로젝트상태</h4>
 					<p class="card-text">${project.projectName}</p>
-					<p class="card-text">( 모집률을 구하는함수호출값 )</p>
+					<p class="card-text">${project.percent}%</p>
 					<p class="card-text">목표금액 : ${project.targetAmount}</p>
 				</div>
 			</div>
-		</c:forEach>
-		
-	
-	
-
-<!-- 
-
+		</c:forEach> --%>
+		<!--  참고
 			<div class="card" style="width: 20rem;">
 				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
 				<div class="card-body">
@@ -87,9 +132,8 @@
 					<a href="#" class="btn btn-primary">Go somewhere</a>
 				</div>
 			</div>
- -->
+ -->                
 		</div>
-
-	</div>
+	</div> 
 </body>
 </html>

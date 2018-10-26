@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,7 @@ body {
 #head{
   padding : 10px 20px;
   display : grid;
-  grid-template-columns: 2fr 1fr 6fr 200px;
+  grid-template-columns: 2fr 1fr 6fr 2fr;
   grid-template-rows: 50px;    
   grid-gap: 20px;  
    
@@ -127,17 +128,31 @@ body {
 	}
 </script>
 <body>
+<script>
+function view() {
+	var objDiv = document.getElementById("site_name");
+	var objDiv2 = document.getElementById("searchKeyword");
+    if(objDiv.style.display=="block"){ 
+    	objDiv.style.display = "none";
+    	objDiv2.style.display = "block";
+    }
+     else{ 
+    	 objDiv.style.display = "block";
+    	 objDiv2.style.display = "none";  
+     }
+}
+</script>
 <div id="headDiv">
 	<div class="bodysize">
     	<div></div>
     	<div id="head">
 	    	<!--  화면줄였을때 보이는 영역 -->
     	    <div id="search_div1">
-	        <a href=getProjects.do><img src="./images/search.png" class="searchImg"></a>
-    	    <input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+	        <a href="#" onclick="view()"><img src="./images/search.png" class="searchImg"></a>
+    	    <input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
         	</div>
 			
-        	<div id="site_name" style="">
+        	<div id="site_name">
             	SupportForME
         	</div>
         

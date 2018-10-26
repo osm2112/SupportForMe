@@ -4,7 +4,7 @@
 <mapper namespace="project">
 <select id="getProjects" resultType="project" parameterType="com.supportforme.biz.project.ProjectSearchDTO">
 	SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
-		 SELECT * FROM project p LEFT OUTER JOIN hashtag h 
+		 SELECT p.* ,PROJECT_PROGRESS_RATE(p.project_no) "percent", FUNC_TOTAL_INVSET_AMOUNT(p.project_no) "totalInvest" FROM project p LEFT OUTER JOIN hashtag h 
 		 		  ON (p.project_no = h.project_no)	 	
 		<where>
 				h.hashtag_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%' or p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'

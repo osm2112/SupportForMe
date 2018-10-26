@@ -20,6 +20,23 @@ public class ProjectDTO {
 	private String deliveryDate;
 	private String categoryCode;
 	
+	private String percent;
+	private String totalInvest;
+	
+	 
+	
+	public String getTotalInvest() {
+		return totalInvest;
+	}
+	public void setTotalInvest(String totalInvest) {
+		this.totalInvest = totalInvest;
+	}
+	public String getPercent() {
+		return percent;
+	}
+	public void setPercent(String percent) {
+		this.percent = percent;
+	}
 	public String getScheduledPaymentDate() {
 		return scheduledPaymentDate;
 	}
