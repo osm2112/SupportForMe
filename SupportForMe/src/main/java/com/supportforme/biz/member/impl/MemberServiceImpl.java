@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public UserDTO getMember(MemberDTO dto) {
+	public MemberDTO getMember(MemberDTO dto) {
 		return dao.getMember(dto);
 	}
 

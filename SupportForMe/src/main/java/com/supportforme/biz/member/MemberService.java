@@ -14,7 +14,7 @@ public interface MemberService {
 	//삭제(회원 탈퇴)
 	public int deleteMember(MemberDTO dto);
 	//단건 조회
-	public UserDTO getMember(MemberDTO dto);
+	public MemberDTO getMember(MemberDTO dto);
 	
 	//전체 조회
 	public List<MemberDTO> getMembers(MemberSerachDTO serachDTO);

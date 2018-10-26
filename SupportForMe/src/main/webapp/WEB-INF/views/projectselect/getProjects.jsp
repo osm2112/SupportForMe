@@ -40,60 +40,42 @@
 </style>
 </head>
 <body>
-${list}
+<%-- ${list} --%>
 	<div class="wrapper">
-
 		<div class="div1">
 			<h1 style="text-align: left;">${count}개의 검색결과</h1>
-			<p style="text-align: left;">검색어 "${searchDTO}"</p>
+			<p style="text-align: left;">검색어 "${searchDTO.searchKeyword}"</p>
 			<br>
 			<br>
 		</div>
 		<div class="div2">
-			<div class="card" style="width: 20rem;">
+			<%-- <div class="card" style="width: 20rem;">
 				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
 				<div class="card-body">
 					<h4 class="card-title">프로젝트상태(진행중, 마감)</h4>
-					<p class="card-text">(db에서 받아 온 프로젝트제목값)</p>
+					<p class="card-text">${list[0].projectName}</p>
 					<p class="card-text">( 모집률을 구하는함수호출값 )</p>
-					<p class="card-text">(db에서 받아 온 프로젝트의 목표금액)</p>
+					<p class="card-text">${list[0].targetAmount}</p>
 					<a href="#" class="btn btn-primary">Go somewhere</a>
 				</div>
-			</div>
-
+			</div> --%>
+			
+		<c:forEach items="${list}" var="project">
 			<div class="card" style="width: 20rem;">
-				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
+				<img class="card-img-top" src="${project.image}" alt="Card image cap">
 				<div class="card-body">
-					<h4 class="card-title">프로젝트상태(진행중, 마감)</h4>
-					<p class="card-text">(db에서 받아 온 프로젝트제목값)</p>
+					<h4 class="card-title">${project.progress}</h4>
+					<p class="card-text">${project.projectName}</p>
 					<p class="card-text">( 모집률을 구하는함수호출값 )</p>
-					<p class="card-text">(db에서 받아 온 프로젝트의 목표금액)</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
+					<p class="card-text">목표금액 : ${project.targetAmount}</p>
 				</div>
 			</div>
+		</c:forEach>
+		
+	
+	
 
-			<div class="card" style="width: 20rem;">
-				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
-				<div class="card-body">
-					<h4 class="card-title">프로젝트상태(진행중, 마감)</h4>
-					<p class="card-text">(db에서 받아 온 프로젝트제목값)</p>
-					<p class="card-text">( 모집률을 구하는함수호출값 )</p>
-					<p class="card-text">(db에서 받아 온 프로젝트의 목표금액)</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
-
-
-			<div class="card" style="width: 20rem;">
-				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
-				<div class="card-body">
-					<h4 class="card-title">프로젝트상태(진행중, 마감)</h4>
-					<p class="card-text">(db에서 받아 온 프로젝트제목값)</p>
-					<p class="card-text">( 모집률을 구하는함수호출값 )</p>
-					<p class="card-text">(db에서 받아 온 프로젝트의 목표금액)</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
+<!-- 
 
 			<div class="card" style="width: 20rem;">
 				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
@@ -105,43 +87,7 @@ ${list}
 					<a href="#" class="btn btn-primary">Go somewhere</a>
 				</div>
 			</div>
-
-
-			<div class="card" style="width: 20rem;">
-				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
-				<div class="card-body">
-					<h4 class="card-title">프로젝트상태(진행중, 마감)</h4>
-					<p class="card-text">(db에서 받아 온 프로젝트제목값)</p>
-					<p class="card-text">( 모집률을 구하는함수호출값 )</p>
-					<p class="card-text">(db에서 받아 온 프로젝트의 목표금액)</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
-
-
-			<div class="card" style="width: 20rem;">
-				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
-				<div class="card-body">
-					<h4 class="card-title">프로젝트상태(진행중, 마감)</h4>
-					<p class="card-text">(db에서 받아 온 프로젝트제목값)</p>
-					<p class="card-text">( 모집률을 구하는함수호출값 )</p>
-					<p class="card-text">(db에서 받아 온 프로젝트의 목표금액)</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
-
-
-			<div class="card" style="width: 20rem;">
-				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
-				<div class="card-body">
-					<h4 class="card-title">프로젝트상태(진행중, 마감)</h4>
-					<p class="card-text">(db에서 받아 온 프로젝트제목값)</p>
-					<p class="card-text">( 모집률을 구하는함수호출값 )</p>
-					<p class="card-text">(db에서 받아 온 프로젝트의 목표금액)</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
-
+ -->
 		</div>
 
 	</div>

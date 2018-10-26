@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller // 빈 자동등록 서블릿이 호출하도록 설정
 public class LoginController {
-	@Autowired
+/*	@Autowired
 	UserService userService;
 
 	// 로그인 폼
@@ -40,5 +40,5 @@ public class LoginController {
 	public String logoutProc(HttpSession session) {
 		session.invalidate();
 		return "test/login";
-	}
+	}*/
 }

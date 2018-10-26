@@ -132,22 +132,41 @@ body {
     <div></div>
     <div id="head">
         <div id="search_div1">
+<<<<<<< HEAD
 
         <a href=getProjects.do><img src="./images/search.png" class="searchImg"></a>
         <input type="text" name="search_keyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
 
         </div>
+=======
+		<form action="getProjects.do">
+        <input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+        <input TYPE="image" src="./images/search.png" id="searchImg" name="Submit" value="Submit">
+		</form>
+		</div>
+		
+>>>>>>> branch 'master' of https://github.com/osm2112/SupportForMe.git
         <div id="site_name" style="">
             SupportForME
         </div>
+        
         <div>
         <input type="button" onclick="go_register" id="make_project" value="프로젝트 만들기">
         </div>
+        
         <div id="search_div2">
+<<<<<<< HEAD
 
         <input type="text" name="search_keyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
         <a href=getProjects.do><img src="./images/search.png" class="searchImg"></a>
 
+=======
+		<form action="getProjects.do">
+        <input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+        <input TYPE="image" src="./images/search.png" id="searchImg" name="Submit" value="Submit">
+		</form>
+		
+>>>>>>> branch 'master' of https://github.com/osm2112/SupportForMe.git
         </div>
         
         <div id="head_font_size">마이 페이지</div>

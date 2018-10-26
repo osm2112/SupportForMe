@@ -24,14 +24,12 @@ public class ProjectController {
 	public ModelAndView getProjects(ModelAndView mv 
 						  ,ProjectSearchDTO searchDto
 						  ,Paging paging) {
-		
+		System.out.println(searchDto.getSearchKeyword()+ ":               "+ searchDto.getStart());
 		paging.setPageUnit(8);
 		if ( paging.getPage() == null) { 
 			searchDto.setStart(1);
 		}	
-		//전체 건수
-		
-		
+		//전체 건수	
 		int total = projectService.getCnt(searchDto); 
 		paging.setTotalRecord(total);
 		mv.addObject("paging", paging); // 페이징객체를 뷰페이지로 전달

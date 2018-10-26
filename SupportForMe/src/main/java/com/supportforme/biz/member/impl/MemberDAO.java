@@ -29,7 +29,7 @@ public class MemberDAO {
 	};
 
 	// 단건 조회
-	public UserDTO getMember(MemberDTO dto) {
+	public MemberDTO getMember(MemberDTO dto) {
 		return mybatis.selectOne("member.getMember", dto);
 	
 	};
