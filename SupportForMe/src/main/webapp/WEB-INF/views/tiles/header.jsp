@@ -149,7 +149,9 @@ function view() {
 	    	<!--  화면줄였을때 보이는 영역 -->
     	    <div id="search_div1">
 	        <a href="#" onclick="view()"><img src="./images/search.png" class="searchImg"></a>
-    	    <input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+	        <form action="getProjects.do">
+        	<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+			</form> 	    
         	</div>
 			
         	<div id="site_name">
