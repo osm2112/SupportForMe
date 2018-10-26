@@ -36,27 +36,31 @@ public class MemberLoginController {
 		if (memberDTO != null) {
 			if (memberDTO.getUserId() != null) {
 				if (memberDTO.getPassword() == null) {
-					model.addAttribute("msg","");
-					model.addAttribute("url","");
-					out.write("<script>alert('탈퇴한 회원 입니다.')</script>");
-					return "member/memberLoginForm";
+					model.addAttribute("msg","탈퇴한 회원 입니다");
+					model.addAttribute("url","./MemberLoginForm.do");
+					return "commons/alertRedirect";
 				} else {
 					if (!memberDTO.getPassword().equals(dto.getPassword())) {
-						out.write("<script>alert('비밀번호 혹은 ID가 잘못 되었습니다.')</script>");
-						return "member/memberLoginForm";
+						model.addAttribute("msg","ID 또는 비밀번호가 잘못되었습니다.");
+						model.addAttribute("url","./MemberLoginForm.do");
+						return "commons/alertRedirect";
 					} else {
 						session.setAttribute("LoginInfo", memberDTO);
 						MemberDTO memberDTO2 = (MemberDTO) session.getAttribute("LoginInfo");
-						out.write("<script>alert('" + memberDTO2.getName() + "님 로그인을 환영합니다')</script>");
-						return "member/memberJoinForm";
+						model.addAttribute("msg",memberDTO2.getName() + "님 로그인을 환영합니다.");
+						model.addAttribute("url","./MemberLoginForm.do");
+						return "commons/alertRedirect";
 					}
 				}
 			} else {
-				return "member/memberLoginForm";
+				model.addAttribute("msg","ID 또는 비밀번호가 잘못되었습니다.");
+				model.addAttribute("url","./MemberLoginForm.do");
+				return "commons/alertRedirect";
 			}
 		} else {
-			out.write("<script>alert('비밀번호 혹은 ID가 잘못 되었습니다.')</script>");
-			return "member/memberLoginForm";
+			model.addAttribute("msg","ID 또는 비밀번호가 잘못되었습니다.");
+			model.addAttribute("url","./MemberLoginForm.do");
+			return "commons/alertRedirect";
 		}
 	}
 	// 로그아웃처리
