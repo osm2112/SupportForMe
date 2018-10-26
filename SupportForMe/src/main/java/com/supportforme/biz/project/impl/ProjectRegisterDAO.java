@@ -18,7 +18,7 @@ public class ProjectRegisterDAO {
 	
 	//프로젝트 등록
 	public int insertProject(ProjectDTO dto) {
-		return mybatis.insert("project.insertProjectProc", dto);
+		return mybatis.insert("project.insertProjectProc",dto);
 	}
 	
 	//프로젝트 수정

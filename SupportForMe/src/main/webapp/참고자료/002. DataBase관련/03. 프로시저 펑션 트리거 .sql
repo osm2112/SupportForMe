@@ -198,5 +198,16 @@ WHERE project_no = p_projectNo;
 RETURN v_total_invest_amount;
 END;
   
-  
+ 
+create or replace PROCEDURE insertProject
+(p_userId varchar2,
+ p_projectNo out varchar2)
+ IS
+ v_projectNo project.project_no%type;
+ BEGIN
+	 SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((PROJECT_SEQ.NEXTVAL),4,0)) INTO v_projectNo FROM DUAL;
+	 INSERT INTO PROJECT (project_no ,user_id)
+	 			 VALUES (v_projectNo , p_userId);
+	 p_projectNo := v_projectNo;
+ END insertProject;
   
