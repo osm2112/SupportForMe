@@ -21,11 +21,11 @@ public class projectRegisterController {
 		return "register/main/tempMain";
 	}
 	
-	@RequestMapping("/insertProject.do")
+	@RequestMapping("/registerProject.do")
 	public String insertProject(Model model, ProjectDTO dto , HttpSession session) {
-		//session.getAttribute();
+		/*//session.getAttribute();
 		dto.setUserId("user2");
-		model.addAttribute("projectNo", projectService.insertProject(dto));
+		model.addAttribute("projectNo", projectService.insertProject(dto));*/
 		return "register/projectRegisterBasic";
 	}
 	

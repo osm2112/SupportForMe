@@ -10,7 +10,8 @@
 	 
 	 <!-- 프로젝트  등록  -->
 	 <select id="insertProjectProc" statementType="CALLABLE"  parameterType="project">
-	 	{CALL insertProject (#{userId})}
+	 	{CALL insertProject (#{userId},
+	 						 #{projectNo, mode=OUT, jdbcType=VARCHAR, javaType=string})
 	 </select>
 	
 	<!-- 프로젝트 수정     -->
