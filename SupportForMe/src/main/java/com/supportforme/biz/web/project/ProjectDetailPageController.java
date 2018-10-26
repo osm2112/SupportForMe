@@ -22,13 +22,13 @@ public class ProjectDetailPageController {
 									   ProjectDTO pjdto,
 									   CommentsDTO cdto,
 									   HttpSession session) {
-		pjdto.setProjectNo("201810260001");
+		pjdto.setProjectNo("201810310001");
 		cdto.setTopCommentNo("201810260001");	//댓글의 답글조회하려고
 		model.addAttribute("project", projectDetailPageService.getProjectDetail(pjdto));
 		model.addAttribute("hashtag", projectDetailPageService.getProjectHashtags(pjdto));
 		model.addAttribute("present", projectDetailPageService.getProjectPresents(pjdto));
 		model.addAttribute("comments", projectDetailPageService.getComments(pjdto));
-		model.addAttribute("comments", projectDetailPageService.getReplyComments(cdto));
-		return "/projectdetail/projectDetail";
+		model.addAttribute("replyComments", projectDetailPageService.getReplyComments(cdto));
+		return "projectdetail/projectDetail";
 	}
 }

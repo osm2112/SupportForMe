@@ -23,8 +23,6 @@ public class ProjectDTO {
 	private String percent;
 	private String totalInvest;
 	
-	 
-	
 	public String getTotalInvest() {
 		return totalInvest;
 	}

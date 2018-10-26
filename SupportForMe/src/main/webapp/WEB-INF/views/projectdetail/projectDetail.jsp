@@ -97,7 +97,7 @@
     .pjdtl-story {
         width: 800px;
         height: 1000px; /*세로는 임시 사이즈*/
-        border: 1px solid green; /*지워*/
+        border: 1px solid green; /*지워********************************************************************************/
     }
     .pjdtl-empty-content {
         width: 30px;
@@ -143,7 +143,7 @@
                 <div>참여자 n명</div>
             </div>
             <div style="background-color: pink;">
-                <button class="pjdtl-invest-btn">투자하기</button>&nbsp;
+                <button class="pjdtl-invest-btn">투자하기</button>
                 <img src="./images/share-button.png" class="pjdtl-share-btn">
             </div><br>
             <div class="pjdtl-status-box">
@@ -185,10 +185,13 @@
         <div class="pjdtl-empty-content"></div>
         <div class="pjdtl-reward">
             <div style="font-size:30px;">리워드 목록</div>
-            <div class="pjdtl-each-reward">리워드1
+            <c:forEach items="${present}" var="reward">
+            <div class="pjdtl-each-reward">
+            	<span># n명이 선택</span><br>
+            	<span>* ${reward.presentName}</span><br>
+            	<span>* ${reward.presentPrice}원</span>
             </div><br>
-            <div class="pjdtl-each-reward">리워드2
-            </div><br>
+            </c:forEach>
         </div>
         </div>
     </div>
