@@ -23,7 +23,7 @@
 	</insert>
 	
 	<!-- 해시태그 삭제 (해시태그는 수정은 없음) -->
-	<delete id="deleteHashtag" parameterType="hashtag project">
+	<delete id="deleteHashtag" parameterType="hashtag">
 		DELETE FROM HASHTAG 
 		WHERE 1=1
 			<if test="hashtagName != null and hashtagName != ''">
