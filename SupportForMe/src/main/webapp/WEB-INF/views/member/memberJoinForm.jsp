@@ -118,7 +118,7 @@ caption{
 				parm.push([ 'name', name ]);
 				parm.push([ 'phoneNum', tel1+tel2+tel3 ]);
 				parm.push([ 'email', email ]);
-				parm.push([ 'postcode', reserseStoreId ]);
+				parm.push([ 'postcode', postcode ]);
 				parm.push([ 'address', address ]);
 				parm.push([ 'addrDetail', addrDetail ]);
 				parm.push([ 'introduction', introduction ]);
@@ -178,12 +178,12 @@ caption{
 					<tr>
 						<td><span>＊</span>전화번호</td>
 						<td><select id="tel1">
-								<option value="1">010</option>
-								<option value="2">011</option>
-								<option value="2">016</option>
-								<option value="2">017</option>
-								<option value="2">018</option>
-								<option value="2">019</option>
+								<option value="010">010</option>
+								<option value="011">011</option>
+								<option value="016">016</option>
+								<option value="017">017</option>
+								<option value="018">018</option>
+								<option value="019">019</option>
 						</select> - <input type="text" id="tel2" size="10"> - <input type="text" id="tel3" size="10"></td>
 					</tr>
 

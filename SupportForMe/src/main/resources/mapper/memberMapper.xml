@@ -59,15 +59,15 @@
  							ADDR_DETAIL
   							)
 		VALUES ( 
-				 ${userId}, 
-				 ${password}, 
-				 ${name}, 
-				 ${address}, 
-				 ${phoneNum}, 
-				 ${email}, 
-				 ${introduction}, 
-				 ${postcode},  
-				 ${addrDetail}
+				 #{userId}, 
+				 #{password}, 
+				 #{name}, 
+				 #{address}, 
+				 #{phoneNum}, 
+				 #{email}, 
+				 #{introduction}, 
+				 #{postcode},  
+				 #{addrDetail}
 				)
 	</insert>
 	
@@ -75,15 +75,15 @@
 	<update id="updateMember" parameterType="member">
 	UPDATE MEMBER
 	SET 
-	PASSWORD = ${password},
-	NAME = ${name}, 
-	ADDRESS = ${address}, 
-	PHONE_NUM = ${phoneNum}, 
-	EMAIL = ${email}, 
-	INTRODUCTION = ${introduction}, 
-	POSTCODE = ${postcode},
-	ADDR_DETAIL = ${addrDetail} 
-	WHERE USER_ID = ${userId}
+	PASSWORD = #{password},
+	NAME = #{name}, 
+	ADDRESS = #{address}, 
+	PHONE_NUM = #{phoneNum}, 
+	EMAIL = #{email}, 
+	INTRODUCTION = #{introduction}, 
+	POSTCODE = #{postcode},
+	ADDR_DETAIL = #{addrDetail} 
+	WHERE USER_ID = #{userId}
 
 	</update>
 	
@@ -98,5 +98,5 @@
 	INTRODUCTION = null, 
 	POSTCODE = null,
 	ADDR_DETAIL = null 
-	WHERE USER_ID = ${userId}	</update>
+	WHERE USER_ID = #{userId}	</update>
 </mapper> 

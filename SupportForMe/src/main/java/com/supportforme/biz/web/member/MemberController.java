@@ -1,8 +1,11 @@
 package com.supportforme.biz.web.member;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.supportforme.biz.member.MemberDTO;
@@ -60,7 +63,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/MemberUpdateForm.do")
-	public String MemberUpdateForm() {
+	public String MemberUpdateForm(Model model, HttpSession session) {
+		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
+		model.addAttribute("member", dto);
 		return "member/memberUpdateForm";
 	}
 	
