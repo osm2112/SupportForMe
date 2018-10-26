@@ -6,9 +6,20 @@
 <html>
 <head>
 <style>
-body {
-	margin:0px;
+body { margin : 0px;}
+div.container {
+	width: 100%;
+	border: 1px solid gray;
 }
+
+header, footer {
+	padding: 1em;
+	color: white;
+	background-color: white;
+	clear: left;
+	text-align: center;
+}
+
 nav {
 	float: left;
 	max-width: 160px;
@@ -26,7 +37,6 @@ nav ul a {
 }
 
 article {
-	padding: 1em;
 	overflow: hidden;
 }
 </style>
@@ -36,6 +46,9 @@ article {
 		<header>
 			<tiles:insertAttribute name="header" />
 		</header>
+		<nav>
+			<tiles:insertAttribute name="registerNav"/>
+		</nav>
 		<article>
 			<tiles:insertAttribute name="content" />
 		</article>
