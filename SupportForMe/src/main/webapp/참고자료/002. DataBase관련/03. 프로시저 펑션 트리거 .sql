@@ -140,6 +140,26 @@ END project_rank5;
 
 
 
+create or replace procedure delete_comments (p_comment_no varchar2)is
+
+v_comment_no comments.comment_no%type := p_comment_no;
+v_cnt number;
+
+begin
+  select count(*) into v_cnt
+  from comments
+  where top_comment_no = v_comment_no;
+  -- 댓글에 답변이 달린 상태이면 댓글을 삭제하지 않음
+  if v_cnt >= 1 then
+    update comments set comment_content='삭제된 댓글입니다.',
+    					comment_date=null,
+    					user_id=null
+    where comment_no = v_comment_no;
+  else
+    delete from comments where comment_no = v_comment_no;
+  end if;
+end;
+
 
 
 create or replace FUNCTION PROJECT_PROGRESS_RATE (
