@@ -2,34 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="projectDetail">
-
-<!-- 
-<select id="getProjectDetail" resultType="com.supportforme.biz.project.ProjectDTO" parameterType="project">
-	<selectKey keyProperty="introductioniVideo" resultType="string" order="BEFORE">
-		SELECT INTRODUCTION_VIDEO
-		FROM PROJECT
-		WHERE PROJECT_NO = #{projectNo}
-	</selectKey>
-	SELECT PROJECT_NO,
-       		   PROJECT_NAME, 
-       		   IMAGE, 
-       		   TARGET_AMOUNT, 
-       		   PROJECT_DEADLINE, 
-       		   PROJECT_DEADLINE+7 AS SCHEDULED_PAYMENT_DATE, 
-       		   STORY, 
-       		   PROGRESS, 
-       		   INTRODUCTION_VIDEO,
-       		   INTRODUCTION_IMAGE, 
-       		   DELIVERY_DATE,
-       		   CATEGORY_CODE
-		FROM PROJECT
-		WHERE PROJECT_NO=#{projectNo}
-</select>
- -->
-
 <!-- 프로젝트 기본정보 불러오기(상단)-->	
-<select id="getProjectDetail" resultType="com.supportforme.biz.project.ProjectDTO" parameterType="project">
-		
+<select id="getProjectDetail" resultType="project" parameterType="project">
+	SELECT PROJECT_NO,
+       	   PROJECT_NAME, 
+       	   IMAGE, 
+      	   TARGET_AMOUNT, 
+       	   PROJECT_DEADLINE, 
+       	   PROJECT_DEADLINE+7 AS SCHEDULED_PAYMENT_DATE, 
+       	   STORY, 
+       	   PROGRESS, 
+       	   INTRODUCTION_VIDEO,
+       	   INTRODUCTION_IMAGE, 
+       	   DELIVERY_DATE,
+       	   CATEGORY_CODE
+	FROM PROJECT
+	WHERE PROJECT_NO = #{projectNo} 
 </select>
-	
+
+<!-- 프로젝트의 리워드(present) 목록 불러오기(화면 오른쪽) -->
+<select id="getProjectPresents" resultType="present" parameterType="present">
+	SELECT PRESENT_NO,
+		   PRESENT_NAME,
+		   PRESENT_PRICE
+	FROM PRESENT
+	WHERE PROJECT_NO = #{projectNo}
+</select>
+
+<!-- 댓글 불러오기 -->
+<select id="getComments" resultType="comments" parameterType="comments">
+	SELECT *
+	FROM COMMENTS
+	WHERE PROJECT_NO = #{projectNo} 
+</select>
+
+<!-- 답글 불러오기 -->
+<select id="getReplyComments" resultType="comments" parameterType="comments">
+	SELECT *
+	FROM COMMENTS
+	WHERE TOP_COMMENT_NO = #{topCommentNo}
+</select>
 </mapper> 
