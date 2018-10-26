@@ -1,6 +1,6 @@
 package com.supportforme.biz.project;
 
-public class ProjectSearchDTO {
+public class ProjectSearchDTO extends ProjectDTO{
 	private String searchCondition;
 	private String searchKeyword;
 	private Integer start;

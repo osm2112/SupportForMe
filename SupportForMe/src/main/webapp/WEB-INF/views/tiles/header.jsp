@@ -132,22 +132,26 @@ body {
     <div></div>
     <div id="head">
         <div id="search_div1">
-
-        <a href=getProjects.do><img src="search.png" id="searchImg"></a>
-        <input type="text" name="search_keyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-
-        </div>
+		<form action="getProjects.do">
+        <input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+        <input TYPE="image" src="./images/search.png" id="searchImg" name="Submit" value="Submit">
+		</form>
+		</div>
+		
         <div id="site_name" style="">
             SupportForME
         </div>
+        
         <div>
         <input type="button" id="make_project" value="프로젝트 만들기">
         </div>
+        
         <div id="search_div2">
-
-        <input type="text" name="search_keyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-        <a href=getProjects.do><img src="./images/search.png" id="searchImg"></a>
-
+		<form action="getProjects.do">
+        <input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+        <input TYPE="image" src="./images/search.png" id="searchImg" name="Submit" value="Submit">
+		</form>
+		
         </div>
         
         <div id="head_font_size">마이 페이지</div>
