@@ -15,9 +15,10 @@
 	
 	<!-- 프로젝트 건수 조회  -->
 	<select id="getCnt" resultType="int" parameterType="com.supportforme.biz.project.ProjectSearchDTO">
-		SELECT COUNT(*) FROM PROJECT
+		SELECT COUNT(*) FROM PROJECT p LEFT OUTER JOIN hashtag h ON (p.project_no = h.project_no)	
 		<where>
-				project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'
+				p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'
+			 OR h.hashtag_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'
 		</where>
 	</select>
 
