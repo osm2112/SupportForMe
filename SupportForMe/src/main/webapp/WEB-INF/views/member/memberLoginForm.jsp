@@ -54,6 +54,9 @@
 					<td>비밀번호</td>
 					<td colspan="2"><input name="password" class="inputtext" type="password"></td>
 				</tr>
+			</table>
+			</form>
+			<table>
 				<tr>
 					<td></td>
 					<td>아이디 또는 비밀번호를 잊으셨나요?</td>
@@ -65,10 +68,10 @@
 				<tr>
 					<td></td>
 					<td>회원이 아니라면 가입해주세요</td>
-					<td><button class="btn3">회원가입</button></td>
+					<td><button class="btn3" onclick="document.location.href='./MemberTermsConfirmForm.do'">회원가입</button></td>
 				</tr>
+			
 			</table>
-			</form>
 		</div>
 	</div>
 </body>

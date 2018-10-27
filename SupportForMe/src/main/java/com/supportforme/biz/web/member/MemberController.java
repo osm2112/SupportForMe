@@ -27,7 +27,7 @@ public class MemberController {
 		memberService.updateMember(dto);
 		session.removeAttribute("LoginInfo");
 		session.setAttribute("LoginInfo", dto);
-		model.addAttribute("msg","ID 또는 비밀번호가 잘못되었습니다.");
+		model.addAttribute("msg","회원 정보가 정상 수정 되었습니다.");
 		model.addAttribute("url","./MemberUpdateForm.do");
 		return "commons/alertRedirect";
 	}
@@ -64,6 +64,14 @@ public class MemberController {
 	public String LoininForm() {
 		return "member/memberLoginForm";
 	}
+	
+	
+	@RequestMapping("/MemberTermsConfirmForm.do")
+	public String MemberTermsConfirmForm() {
+		return "member/memberTermsConfirmForm";
+	}
+	
+	
 	
 	@RequestMapping("/MemberUpdateForm.do")
 	public String MemberUpdateForm(Model model, HttpSession session) {
