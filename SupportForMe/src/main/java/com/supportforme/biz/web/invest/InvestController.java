@@ -19,7 +19,7 @@ public class InvestController {
 	
 
 
-	@RequestMapping("/getMembers.do")
+	@RequestMapping("/get.do")
 	public String getInvest(Model model, InvestSearchDTO searchDTO) {
 		model.addAttribute("invest", investService.getInvests(searchDTO));
 		return "member/getMembers";

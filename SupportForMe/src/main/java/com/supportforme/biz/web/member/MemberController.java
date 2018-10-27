@@ -42,14 +42,14 @@ public class MemberController {
 */
 	
 	//단건 조회
-	@RequestMapping("/getMembers.do")
+	@RequestMapping("/getMember.do")
 	public String getMember(Model model, MemberDTO dto) {
 		model.addAttribute("member",memberService.getMember(dto));
 		return "member/getMembers";
 	}
 	
 	//전체 조회
-	@RequestMapping("/getMember.do")
+	@RequestMapping("/getMembers.do")
 	public String getMembers(Model model, MemberSerachDTO serachDTO) {
 		model.addAttribute("member",memberService.getMembers(serachDTO));
 		return "member/getMember";
