@@ -2,15 +2,14 @@ package com.supportforme.biz.member.impl;
 
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.supportforme.biz.member.MemberDTO;
 import com.supportforme.biz.member.MemberSerachDTO;
 import com.supportforme.biz.member.MemberService;
-import com.supportforme.biz.test.UserDTO;
-import com.supportforme.biz.test.UserSearchDTO;
+
 
 @Service
 public class MemberServiceImpl implements MemberService {

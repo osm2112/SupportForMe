@@ -2,8 +2,6 @@ package com.supportforme.biz.member;
 
 import java.util.List;
 
-import com.supportforme.biz.test.UserDTO;
-import com.supportforme.biz.test.UserSearchDTO;
 
 public interface MemberService {
 

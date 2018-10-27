@@ -98,5 +98,12 @@
 	INTRODUCTION = null, 
 	POSTCODE = null,
 	ADDR_DETAIL = null 
-	WHERE USER_ID = #{userId}	</update>
+	WHERE USER_ID = #{userId}	
+	</update>
+	
+	<select id="passwordCheck" parameterType="member" resultType="member">
+		SELECT PASSWORD 
+		FROM MEMBER
+		WHERE  USER_ID = #{userId}  
+	</select>
 </mapper> 

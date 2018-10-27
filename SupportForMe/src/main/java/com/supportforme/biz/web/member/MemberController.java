@@ -32,12 +32,14 @@ public class MemberController {
 		return "commons/alertRedirect";
 	}
 	
-	//삭제(회원 탈퇴)
+/*	
+ 	//삭제(회원 탈퇴)
 	@RequestMapping("/deleteMember.do")
 	public String deleteMember(MemberDTO dto) {
 		memberService.deleteMember(dto);
 		return "redirect:";
 	}
+*/
 	
 	//단건 조회
 	@RequestMapping("/getMembers.do")
@@ -96,8 +98,6 @@ public class MemberController {
 		if(memberDTO != null) {
 			pw = memberService.passwordCheck(memberDTO).getPassword();
 		}
-		System.out.println(pw);
-		System.out.println(dto.getPassword());
 		if (pw != null) {
 			if (pw.equals(dto.getPassword())) {
 				model.addAttribute("url", "./MemberUpdateForm.do");
@@ -111,6 +111,31 @@ public class MemberController {
 			model.addAttribute("url", "./MemberUpdateConfirmForm.do");
 			return "commons/alertRedirect";
 		}
-
+	}
+	
+	@RequestMapping("/MemberDeletePassWordCheck.do")
+	public String memberDeletePassWordCheck(Model model,MemberDTO dto, HttpSession session) {
+		String pw =null;
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
+		if(memberDTO != null) {
+			pw = memberService.passwordCheck(memberDTO).getPassword();
+		}
+		if (pw != null) {
+			if (pw.equals(dto.getPassword())) {
+				memberService.deleteMember(memberDTO);
+				session.invalidate();
+				model.addAttribute("msg", "정상 탈퇴 되었습니다.");
+				model.addAttribute("url", "./login.do");
+				return "commons/alertRedirect";
+			} else {
+				model.addAttribute("msg", "비밀번호가 틀렸습니다.");
+				model.addAttribute("url", "./MemberDeleteConfirmForm.do");
+				return "commons/alertRedirect";
+			}
+		} else {
+			model.addAttribute("url", "./MemberDeleteConfirmForm.do");
+			return "commons/alertRedirect";
+		}
 	}
 }
