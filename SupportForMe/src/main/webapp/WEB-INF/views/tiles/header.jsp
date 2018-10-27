@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <title>header</title>
 <style>
 body {
@@ -126,8 +127,19 @@ body {
 </style>
 <script>
 function go_register() {
-	location.href="registerProject.do"
+	var url = window.location.pathname.toString().split('/');
+	var cpath = url[2];
+	if(cpath != 'makeProject.do' && cpath != 'updateProject.do'){
+		 var $form = $('<form></form>');
+	     $form.attr('action', 'registerProject.do');
+	     $form.attr('method', 'post');
+	     $form.appendTo('body');
+		
+	     $form.submit();
+	}
+	
 }
+
 
 </script>
 </head>
