@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="invest">
+	<select id="getInvests" resultType="invest" parameterType="invest">
+
+	</select>
+	<select id="getCnt" parameterType="invest" resultType="int">
+	
+	</select>
+	
+	<select id="getInvest" parameterType="invest" resultType="invest">
+		
+	</select>
+	
+	<insert id="insertInvest" parameterType="invest">
+	
+	</insert>
+	
+	
+	<update id="updateInvest" parameterType="invest">
+
+	</update>
+	
+	<delete id="deleteInvest" parameterType="invest">
+	
+	</delete>
+</mapper> 
