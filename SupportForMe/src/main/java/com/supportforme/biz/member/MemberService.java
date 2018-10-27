@@ -21,4 +21,6 @@ public interface MemberService {
 	
 	public int getCnt(MemberSerachDTO searchDTO); 
 	
+	public MemberDTO passwordCheck(MemberDTO dto);
+	
 }

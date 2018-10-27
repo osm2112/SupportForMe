@@ -43,8 +43,12 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int getCnt(MemberSerachDTO searchDTO) {
-		// TODO Auto-generated method stub
 		return dao.getCnt(searchDTO);
+	}
+
+	@Override
+	public MemberDTO passwordCheck(MemberDTO dto) {
+		return dao.passwordCheck(dto);
 	}
 
 }

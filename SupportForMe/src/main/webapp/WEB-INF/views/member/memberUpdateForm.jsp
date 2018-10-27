@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원정보 수정</title>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
 <style>
 .wrapper {
@@ -186,7 +187,8 @@
 					</tr>
 					<tr style="text-align: right;">
 						<td colspan="2">
-							<input type="button" onclick="UpdateMember()" value="수정하기"> 
+							<input type="button" onclick="UpdateMember()" value="정보수정하기"> 
+							<input type="button" onclick="DeleteMember()" value="회원탈퇴하기"> 
 							<input type="button" value="취소">
 						</td>
 					</tr>

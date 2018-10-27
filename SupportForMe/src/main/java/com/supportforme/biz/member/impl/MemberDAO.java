@@ -42,4 +42,9 @@ public class MemberDAO {
 	public int getCnt(MemberSerachDTO searchDTO) {
 		return 0;
 	}
+	
+	public MemberDTO passwordCheck(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return mybatis.selectOne("passwordCheck", dto);
+	}
 }

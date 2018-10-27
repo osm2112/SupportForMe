@@ -8,9 +8,12 @@
 </head>
 <body>
 	<script type="text/javascript"> 
+	
 	var message = '${msg}'; 
-	var returnUrl = '${url}'; 
-	alert(message); 
+	var returnUrl = '${url}';
+	if(message != ''){
+		alert(message);	
+	}
 	document.location.href = returnUrl; 
 	
 	</script>

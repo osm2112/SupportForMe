@@ -61,24 +61,56 @@ public class MemberController {
 	
 	
 	@RequestMapping("/MemberLoginForm.do")
-	public String LoininForm() {
+	public String loininForm() {
 		return "member/memberLoginForm";
 	}
 	
-	
 	@RequestMapping("/MemberTermsConfirmForm.do")
-	public String MemberTermsConfirmForm() {
+	public String memberTermsConfirmForm() {
 		return "member/memberTermsConfirmForm";
 	}
 	
+	@RequestMapping("/MemberUpdateConfirmForm.do")
+	public String memberUpdateConfirmForm() {
+		return "member/memberUpdateConfirmForm";
+	}
+	
+	@RequestMapping("/MemberDeleteConfirmForm.do")
+	public String memberDeleteConfirmForm() {
+		return "member/memberDeleteConfirmForm";
+	}
 	
 	
 	@RequestMapping("/MemberUpdateForm.do")
-	public String MemberUpdateForm(Model model, HttpSession session) {
+	public String memberUpdateForm(Model model, HttpSession session) {
 		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
 		model.addAttribute("member", dto);
 		return "member/memberUpdateForm";
 	}
 	
-	
+	@RequestMapping("/MemberUpdatePassWordCheck.do")
+	public String memberUpdatePassWordCheck(Model model,MemberDTO dto, HttpSession session) {
+		String pw =null;
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
+		if(memberDTO != null) {
+			pw = memberService.passwordCheck(memberDTO).getPassword();
+		}
+		System.out.println(pw);
+		System.out.println(dto.getPassword());
+		if (pw != null) {
+			if (pw.equals(dto.getPassword())) {
+				model.addAttribute("url", "./MemberUpdateForm.do");
+				return "commons/alertRedirect";
+			} else {
+				model.addAttribute("msg", "비밀번호가 틀렸습니다.");
+				model.addAttribute("url", "./MemberUpdateConfirmForm.do");
+				return "commons/alertRedirect";
+			}
+		} else {
+			model.addAttribute("url", "./MemberUpdateConfirmForm.do");
+			return "commons/alertRedirect";
+		}
+
+	}
 }
