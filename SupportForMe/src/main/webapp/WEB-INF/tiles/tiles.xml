@@ -29,6 +29,11 @@
 			value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
 	</definition>
 	
+	  <definition name="/commons/*" >
+      <put-attribute name="body" value="/WEB-INF/Views/commons/alertRedirect.jsp" />
+    </definition>
+
+	
 	
 	
 	

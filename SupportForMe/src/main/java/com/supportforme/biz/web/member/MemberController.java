@@ -1,5 +1,6 @@
 package com.supportforme.biz.web.member;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,26 +85,55 @@ public class MemberController {
 	
 	
 	@RequestMapping("/MemberUpdateForm.do")
-	public String memberUpdateForm(Model model, HttpSession session) {
+	public String memberUpdateForm(Model model, HttpSession session, HttpServletRequest request) {
 		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
-		model.addAttribute("member", dto);
-		return "member/memberUpdateForm";
+		String ref =null;
+		if(request.getHeader("referer") != null) {
+			ref = request.getHeader("referer");
+		}
+	
+		if (ref != null) {
+			if (ref.equals("http://localhost:8181/SupportForMe/MemberUpdatePassWordCheck.do")) {
+				model.addAttribute("member", dto);
+				return "member/memberUpdateForm";
+			} else {
+				model.addAttribute("url", "./MemberUpdateConfirmForm.do");
+				return "commons/alertRedirect";
+			}
+		} else {
+			model.addAttribute("url", "./MemberUpdateConfirmForm.do");
+			return "commons/alertRedirect";
+		}
 	}
 	
 	@RequestMapping("/MemberUpdatePassWordCheck.do")
-	public String memberUpdatePassWordCheck(Model model,MemberDTO dto, HttpSession session) {
-		String pw =null;
+	public String memberUpdatePassWordCheck(Model model,MemberDTO dto, HttpSession session, HttpServletRequest request) {
+		String pw = null;
+		String ref = null;
+		if (request.getHeader("referer") != null) {
+			ref = request.getHeader("referer");
+		}
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
-		if(memberDTO != null) {
-			pw = memberService.passwordCheck(memberDTO).getPassword();
-		}
-		if (pw != null) {
-			if (pw.equals(dto.getPassword())) {
-				model.addAttribute("url", "./MemberUpdateForm.do");
-				return "commons/alertRedirect";
+		if (ref != null) {
+			if (ref.equals("http://localhost:8181/SupportForMe/MemberUpdateConfirmForm.do")) {
+				if (memberDTO != null) {
+					pw = memberService.passwordCheck(memberDTO).getPassword();
+				}
+				if (pw != null) {
+					if (pw.equals(dto.getPassword())) {
+						model.addAttribute("url", "./MemberUpdateForm.do");
+						return "commons/alertRedirect";
+					} else {
+						model.addAttribute("msg", "비밀번호가 틀렸습니다.");
+						model.addAttribute("url", "./MemberUpdateConfirmForm.do");
+						return "commons/alertRedirect";
+					}
+				} else {
+					model.addAttribute("url", "./MemberUpdateConfirmForm.do");
+					return "commons/alertRedirect";
+				}
 			} else {
-				model.addAttribute("msg", "비밀번호가 틀렸습니다.");
 				model.addAttribute("url", "./MemberUpdateConfirmForm.do");
 				return "commons/alertRedirect";
 			}
@@ -114,22 +144,36 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/MemberDeletePassWordCheck.do")
-	public String memberDeletePassWordCheck(Model model,MemberDTO dto, HttpSession session) {
+	public String memberDeletePassWordCheck(Model model,MemberDTO dto, HttpSession session, HttpServletRequest request) {
 		String pw =null;
+		String ref =null;
+		if (request.getHeader("referer") != null) {
+			ref = request.getHeader("referer");
+		}
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
 		if(memberDTO != null) {
 			pw = memberService.passwordCheck(memberDTO).getPassword();
 		}
-		if (pw != null) {
-			if (pw.equals(dto.getPassword())) {
-				memberService.deleteMember(memberDTO);
-				session.invalidate();
-				model.addAttribute("msg", "정상 탈퇴 되었습니다.");
-				model.addAttribute("url", "./login.do");
-				return "commons/alertRedirect";
+		if (ref != null) {
+			if (ref.equals("http://localhost:8181/SupportForMe/MemberDeleteConfirmForm.do")) {
+				if (pw != null) {
+					if (pw.equals(dto.getPassword())) {
+						memberService.deleteMember(memberDTO);
+						session.invalidate();
+						model.addAttribute("msg", "정상 탈퇴 되었습니다.");
+						model.addAttribute("url", "./login.do");
+						return "commons/alertRedirect";
+					} else {
+						model.addAttribute("msg", "비밀번호가 틀렸습니다.");
+						model.addAttribute("url", "./MemberDeleteConfirmForm.do");
+						return "commons/alertRedirect";
+					}
+				} else {
+					model.addAttribute("url", "./MemberDeleteConfirmForm.do");
+					return "commons/alertRedirect";
+				}
 			} else {
-				model.addAttribute("msg", "비밀번호가 틀렸습니다.");
 				model.addAttribute("url", "./MemberDeleteConfirmForm.do");
 				return "commons/alertRedirect";
 			}

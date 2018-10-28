@@ -188,7 +188,7 @@
 					<tr style="text-align: right;">
 						<td colspan="2">
 							<input type="button" onclick="UpdateMember()" value="정보수정하기"> 
-							<input type="button" onclick="DeleteMember()" value="회원탈퇴하기"> 
+							<input type="button" onclick="location.href='./MemberDeleteConfirmForm.do'" value="회원탈퇴하기"> 
 							<input type="button" value="취소">
 						</td>
 					</tr>
