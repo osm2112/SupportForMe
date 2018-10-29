@@ -21,4 +21,6 @@ public interface MemberService {
 	
 	public MemberDTO passwordCheck(MemberDTO dto);
 	
+	public int CheckId(MemberDTO dto);
+	
 }

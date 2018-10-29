@@ -106,4 +106,15 @@
 		FROM MEMBER
 		WHERE  USER_ID = #{userId}  
 	</select>
+	
+	<select id="checkId" parameterType="member" resultType="int">
+		SELECT COUNT(USER_ID) 
+		FROM MEMBER
+		WHERE  USER_ID = #{userId}  
+	</select>
+	
+	
+	
+	
+	
 </mapper> 

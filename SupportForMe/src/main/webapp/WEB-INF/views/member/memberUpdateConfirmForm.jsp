@@ -9,7 +9,7 @@
 <body>
 <h3>비밀번호를 입력하여 주세요.</h3>
 <hr>
-	<form action="./MemberUpdatePassWordCheck.do" method="post">
+	<form action="../forme/MemberUpdatePassWordCheck" method="post">
 	<input type="password" name="password" id = password><input type="submit" value="확인" >
 	</form>
 </body>

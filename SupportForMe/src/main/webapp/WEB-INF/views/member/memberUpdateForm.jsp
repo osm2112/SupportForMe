@@ -90,7 +90,7 @@
 		var form = document.createElement("form");
 		var parm = new Array();
 		var input = new Array();
-		form.action = "./UpdateMember.do";
+		form.action = "../forme/UpdateMember";
 		form.method = "post";
 		parm.push([ 'userId', userId ]);
 		parm.push([ 'password', password ]);
@@ -122,7 +122,6 @@
 	<div class="wrapper">
 
 		<div class="div2">
-		<form action="./InsertMember.do" method="get">
 			<table class="table1">
 				<tbody>
 					<tr>
@@ -176,7 +175,7 @@
 							<div id="layer"	style="display: none; position: fixed; overflow: hidden; z-index: 1; -webkit-overflow-scrolling: touch;">
 							<img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"	id="btnCloseLayer"	style="cursor: pointer; position: absolute; right: -3px; top: -3px; z-index: 1"	onclick="closeDaumPostcode()" alt="닫기 버튼">
 							</div>
-							<script src="./js/SearchAddr.js"></script>
+							<script src="../js/SearchAddr.js"></script>
 							<input type="text" id="address" size="60" id="address" value="${member.address}" readonly="readonly"> 
 							<input type="text" size="60" id="addrDetail"value="${member.addrDetail}" >
 						</td>
@@ -188,13 +187,12 @@
 					<tr style="text-align: right;">
 						<td colspan="2">
 							<input type="button" onclick="UpdateMember()" value="정보수정하기"> 
-							<input type="button" onclick="location.href='./MemberDeleteConfirmForm.do'" value="회원탈퇴하기"> 
+							<input type="button" onclick="location.href='../forme/MemberDeleteConfirmForm'" value="회원탈퇴하기"> 
 							<input type="button" value="취소">
 						</td>
 					</tr>
 				</tbody>
 			</table>
-		</form>
 		</div>
 	</div>
 </body>

@@ -52,6 +52,28 @@ caption{
 </style>
 </head>
 <script>
+	var idCheck = false;
+	function CheckId(){
+		var  userid = document.getElementById("userId").value;
+		$.ajax({
+			url : "../support/CheckId?userId="+userid,
+			method : "post",
+			type : "text",
+			success : function(data) {
+				console.log(typeof data);
+				if(data == 0){
+					document.getElementById("checkIdResult").innerHTML = '사용할수 있는  ID입니다.';
+					idCheck = true;
+				} else {
+					document.getElementById("checkIdResult").innerHTML = '<font color="red">사용할수 없는 ID입니다.</font>';
+					idCheck = false;
+				}
+			}
+		});
+	}
+
+
+
 	function InsertMember(){
 			var  userId = document.getElementById("userId").value;
 			var  password = document.getElementById("password").value;
@@ -65,7 +87,10 @@ caption{
 			var  address = document.getElementById("address").value;
 			var  addrDetail = document.getElementById("addrDetail").value;
 			var  introduction = document.getElementById("introduction").value;
-				
+				if(idCheck == false){
+					alert('해당 ID는 중복된 ID 입니다.');
+					return false;
+				}
 				if (!userId) {
 					alert('ID가 입력되지 않았습니다.');
 					return false;
@@ -111,7 +136,7 @@ caption{
 				var form = document.createElement("form");
 				var parm = new Array();
 				var input = new Array();
-				form.action = "./InsertMember.do";
+				form.action = "../support/InsertMember";
 				form.method = "post";
 				parm.push([ 'userId', userId ]);
 				parm.push([ 'password', password ]);
@@ -142,7 +167,7 @@ caption{
 			<br> <img src="./images/회원이미지2.png" width="80%">
 		</div>
 		<div class="div2">
-		<form action="./InsertMember.do" method="get">
+	
 			<table class="table1">
 				<caption>
 					<span>*</span> 
@@ -153,7 +178,7 @@ caption{
 
 					<tr>
 						<td><span>＊</span>아이디</td>
-						<td><input id="userId" type="text" size="10"> <input type="button" value="아이디중복확인"></td>
+						<td><input id="userId" type="text" size="10" onkeyup="CheckId()"> <span id="checkIdResult"></span></td>
 					</tr>
 					
 					<tr>
@@ -195,7 +220,7 @@ caption{
 							<div id="layer"	style="display: none; position: fixed; overflow: hidden; z-index: 1; -webkit-overflow-scrolling: touch;">
 							<img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"	id="btnCloseLayer"	style="cursor: pointer; position: absolute; right: -3px; top: -3px; z-index: 1"	onclick="closeDaumPostcode()" alt="닫기 버튼">
 							</div>
-							<script src="./js/SearchAddr.js"></script>
+							<script src="../js/SearchAddr.js"></script>
 							<input type="text" id="address" size="60" id="address"value="" readonly="readonly"> 
 							<input type="text" size="60" id="addrDetail"value="" >
 						</td>
@@ -212,7 +237,6 @@ caption{
 					</tr>
 				</tbody>
 			</table>
-		</form>
 		</div>
 	</div>
 </body>

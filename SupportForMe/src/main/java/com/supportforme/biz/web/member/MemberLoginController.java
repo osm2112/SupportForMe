@@ -22,13 +22,14 @@ public class MemberLoginController {
 	MemberService memberService;
 
 	// 로그인 폼
-	@RequestMapping(value = { "/login.do"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/support/login"}, method = RequestMethod.GET)
 	public String memberLogin(MemberDTO dto, HttpSession session, HttpServletRequest requset) {
 		return "member/memberLoginForm";
 	}
+		
 
 	// 로그인처리
-	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/support/login", method = RequestMethod.POST)
 	public String memberLoginProc(Model model, MemberDTO dto, HttpSession session, HttpServletResponse response) throws IOException {
 		MemberDTO memberDTO = memberService.getMember(dto);
 		PrintWriter out = response.getWriter();
@@ -36,34 +37,34 @@ public class MemberLoginController {
 			if (memberDTO.getUserId() != null) {
 				if (memberDTO.getPassword() == null) {
 					model.addAttribute("msg","탈퇴한 회원 입니다");
-					model.addAttribute("url","./MemberLoginForm.do");
+					model.addAttribute("url","../support/MemberLoginForm");
 					return "commons/alertRedirect";
 				} else {
 					if (!memberDTO.getPassword().equals(dto.getPassword())) {
 						model.addAttribute("msg","ID 또는 비밀번호가 잘못되었습니다.");
-						model.addAttribute("url","./MemberLoginForm.do");
+						model.addAttribute("url","../support/MemberLoginForm");
 						return "commons/alertRedirect";
 					} else {
 						session.setAttribute("LoginInfo", memberDTO);
 						MemberDTO memberDTO2 = (MemberDTO) session.getAttribute("LoginInfo");
 						model.addAttribute("msg",memberDTO2.getName() + "님 로그인을 환영합니다.");
-						model.addAttribute("url","./MemberLoginForm.do");
+						model.addAttribute("url","../main.jsp");
 						return "commons/alertRedirect";
 					}
 				}
 			} else {
 				model.addAttribute("msg","ID 또는 비밀번호가 잘못되었습니다.");
-				model.addAttribute("url","./MemberLoginForm.do");
+				model.addAttribute("url","../support/MemberLoginForm");
 				return "commons/alertRedirect";
 			}
 		} else {
 			model.addAttribute("msg","ID 또는 비밀번호가 잘못되었습니다.");
-			model.addAttribute("url","./MemberLoginForm.do");
+			model.addAttribute("url","../support/MemberLoginForm");
 			return "commons/alertRedirect";
 		}
 	}
 	// 로그아웃처리
-	@RequestMapping(value = "/logout.do")
+	@RequestMapping(value = "/support/logout")
 	public String memberLogoutProc(HttpSession session) {
 		session.invalidate();
 		return "member/memberLoginForm";
