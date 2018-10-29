@@ -5,6 +5,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -24,33 +26,32 @@ public class projectRegisterController {
 		return "register/main/tempMain";
 	}
 	
-	@RequestMapping(value="/registerProject.do", method=RequestMethod.GET )
+	@RequestMapping(value="/registerProject", method=RequestMethod.GET )
 	public String protectInsertProject() {
 		return "register/main/tempMain";
 	}
 	
-	@RequestMapping(value="/registerProject.do", method=RequestMethod.POST )
-	public String insertProject(Model model, ProjectDTO dto , HttpSession session) {
+	@RequestMapping(value="/registerProject", method=RequestMethod.POST )
+	public String insertProject(@ModelAttribute("project") ProjectDTO dto , HttpSession session) {
 //		MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
 //		dto.setUserId(member.getUserId());
 		dto.setUserId("user2");
 		projectService.insertProject(dto);
-		return "redirect:/makeProject.do?projectNo="+dto.getProjectNo();		// 추후 /make/dto.getProjectNo();로 controller 호출할거임
+		return "redirect:/make/"+dto.getProjectNo();	
 	}
 	
-	@RequestMapping("/makeProject.do")			// 추후 /make/* 이름으로 mapping 할거임
-	public String makeProject(Model model, ProjectDTO dto) {
-		model.addAttribute("project",dto);
+	@RequestMapping("/make/{projectNo}")			
+	public String makeProject(@ModelAttribute("project") ProjectDTO dto,@PathVariable String projectNo) {
+		dto.setProjectNo(projectNo);
 		return "register/projectRegisterBasic";
 	}
 	
 	@RequestMapping("/updateProject.do")
-	public String updateProject(Model model,ProjectDTO dto) {
+	public String updateProject(@ModelAttribute("project") ProjectDTO dto) {
 //		MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
 //		dto.setUserId(member.getUserId());
 		dto.setUserId("user2");
 		projectService.updateProject(dto);
-		model.addAttribute("project", dto);
 		return "register/projectRegisterStory";
 	}
 	
