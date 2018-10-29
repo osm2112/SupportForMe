@@ -20,33 +20,33 @@ public class projectRegisterController {
 		
 	@Autowired ProjectRegisterService projectService;
 	
-	//임시 메인 페이지
-	@RequestMapping("/tempMain.do")
-	public String tempMain() {
+	@RequestMapping("/forme/tempMain")
+	public String main() {
 		return "register/main/tempMain";
 	}
 	
-	@RequestMapping(value="/registerProject", method=RequestMethod.GET )
+	
+	@RequestMapping(value="/forme/registerProject", method=RequestMethod.GET )
 	public String protectInsertProject() {
 		return "register/main/tempMain";
 	}
 	
-	@RequestMapping(value="/registerProject", method=RequestMethod.POST )
+	@RequestMapping(value="/forme/registerProject", method=RequestMethod.POST )
 	public String insertProject(@ModelAttribute("project") ProjectDTO dto , HttpSession session) {
 //		MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
 //		dto.setUserId(member.getUserId());
 		dto.setUserId("user2");
 		projectService.insertProject(dto);
-		return "redirect:/make/"+dto.getProjectNo();	
+		return "redirect:/forme/make/"+dto.getProjectNo();	
 	}
 	
-	@RequestMapping("/make/{projectNo}")			
+	@RequestMapping("/forme/make/{projectNo}")			
 	public String makeProject(@ModelAttribute("project") ProjectDTO dto,@PathVariable String projectNo) {
 		dto.setProjectNo(projectNo);
 		return "register/projectRegisterBasic";
 	}
 	
-	@RequestMapping("/updateProject.do")
+	@RequestMapping("/forme/updateProject")
 	public String updateProject(@ModelAttribute("project") ProjectDTO dto) {
 //		MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
 //		dto.setUserId(member.getUserId());

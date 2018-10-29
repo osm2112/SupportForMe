@@ -3,6 +3,7 @@ package com.supportforme.biz.invest;
 public class InvestDTO {
 	private String investNo;
 	private String investmentAmount;
+	private String totalInvestAmount;
 	private String payType;
 	private String presentNo;
 	private String userId;
@@ -20,6 +21,13 @@ public class InvestDTO {
 	}
 	public void setInvestmentAmount(String investmentAmount) {
 		this.investmentAmount = investmentAmount;
+	}
+	
+	public String getTotalInvestAmount() {
+		return totalInvestAmount;
+	}
+	public void setTotalInvestAmount(String totalInvestAmount) {
+		this.totalInvestAmount = totalInvestAmount;
 	}
 	public String getPayType() {
 		return payType;
@@ -51,12 +59,13 @@ public class InvestDTO {
 	public void setPaymentState(String paymentState) {
 		this.paymentState = paymentState;
 	}
-	
 	@Override
 	public String toString() {
-		return "InvestDTO [investNo=" + investNo + ", investmentAmount=" + investmentAmount + ", payType=" + payType
-				+ ", presentNo=" + presentNo + ", userId=" + userId + ", projectNo=" + projectNo + ", paymentState="
-				+ paymentState + "]";
+		return "InvestDTO [investNo=" + investNo + ", investmentAmount=" + investmentAmount + ", totalInvestAmount="
+				+ totalInvestAmount + ", payType=" + payType + ", presentNo=" + presentNo + ", userId=" + userId
+				+ ", projectNo=" + projectNo + ", paymentState=" + paymentState + "]";
 	}
+	
+	
 	
 }

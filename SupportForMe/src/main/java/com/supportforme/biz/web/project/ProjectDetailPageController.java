@@ -22,14 +22,12 @@ public class ProjectDetailPageController {
 	public String getProjectDetailPage(Model model,
 									   ProjectDTO pjdto,
 									   CommentsDTO cdto,
-									   InvestDTO idto,
 									   HttpSession session) {
-		pjdto.setProjectNo("201810310001");
+		pjdto.setProjectNo("201810290024");
 		cdto.setTopCommentNo("201810260001");	//댓글의 답글조회하려고
 		model.addAttribute("project", projectDetailPageService.getProjectDetail(pjdto));
 		model.addAttribute("hashtag", projectDetailPageService.getProjectHashtags(pjdto));
 		model.addAttribute("invest", projectDetailPageService.getProjectTotalInvestAmount(pjdto));
-		System.out.println("!@#$%^&*(&^%$#@!~@#$%*&^%$#@#$%"+idto);
 		model.addAttribute("present", projectDetailPageService.getProjectPresents(pjdto));
 		model.addAttribute("comments", projectDetailPageService.getComments(pjdto));
 		model.addAttribute("replyComments", projectDetailPageService.getReplyComments(cdto));
