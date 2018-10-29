@@ -2,6 +2,8 @@ package com.supportforme.biz.project;
 
 import java.util.Arrays;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProjectDTO {
 	private String projectNo;
 	private String projectName;
@@ -15,10 +17,11 @@ public class ProjectDTO {
 	private String bankCode;
 	private String progress;
 	private String userId;
-	private String[] introductionImage;
+	private String introductionImage;
 	private String supportPickYn;
 	private String deliveryDate;
 	private String categoryCode;
+	private MultipartFile[] uploadFile; 
 	
 	private String percent;
 	private String totalInvest;
@@ -108,11 +111,18 @@ public class ProjectDTO {
 		this.userId = userId;
 	}
 	
-	public String[] getIntroductionImage() {
+	
+	public String getIntroductionImage() {
 		return introductionImage;
 	}
-	public void setIntroductionImage(String[] introductionImage) {
+	public void setIntroductionImage(String introductionImage) {
 		this.introductionImage = introductionImage;
+	}
+	public MultipartFile[] getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile[] uploadFile) {
+		this.uploadFile = uploadFile;
 	}
 	public String getSupportPickYn() {
 		return supportPickYn;
@@ -132,17 +142,18 @@ public class ProjectDTO {
 	public void setCategoryCode(String categoryCode) {
 		this.categoryCode = categoryCode;
 	}
-	
 	@Override
 	public String toString() {
 		return "ProjectDTO [projectNo=" + projectNo + ", projectName=" + projectName + ", image=" + image
 				+ ", targetAmount=" + targetAmount + ", projectDeadline=" + projectDeadline + ", scheduledPaymentDate="
 				+ scheduledPaymentDate + ", introductionVideo=" + introductionVideo + ", story=" + story
 				+ ", depositAccount=" + depositAccount + ", bankCode=" + bankCode + ", progress=" + progress
-				+ ", userId=" + userId + ", introductionImage=" + Arrays.toString(introductionImage)
-				+ ", supportPickYn=" + supportPickYn + ", deliveryDate=" + deliveryDate + ", categoryCode="
-				+ categoryCode + "]";
+				+ ", userId=" + userId + ", introductionImage=" + introductionImage + ", supportPickYn=" + supportPickYn
+				+ ", deliveryDate=" + deliveryDate + ", categoryCode=" + categoryCode + ", uploadFile="
+				+ Arrays.toString(uploadFile) + ", percent=" + percent + ", totalInvest=" + totalInvest + "]";
 	}
+	
+	
 	
 	
 }

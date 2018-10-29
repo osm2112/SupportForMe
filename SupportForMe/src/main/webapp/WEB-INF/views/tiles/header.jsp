@@ -128,10 +128,11 @@ body {
 <script>
 function go_register() {
 	var url = window.location.pathname.toString().split('/');
-	var cpath = url[2];
-	if(cpath != 'makeProject.do' && cpath != 'updateProject.do'){
+	var cpath = "forme/"+url[3];
+	
+	if(cpath != 'forme/make/Project' && cpath != 'forme/updateProject'){
 		 var $form = $('<form></form>');
-	     $form.attr('action', 'registerProject.do');
+	     $form.attr('action', 'registerProject');
 	     $form.attr('method', 'post');
 	     $form.appendTo('body');
 		
@@ -164,7 +165,7 @@ function view() {
     	<div id="head">
 	    	<!--  화면줄였을때 보이는 영역 -->
     	    <div id="search_div1">
-	        <a href="#" onclick="view()"><img src="./images/search.png" class="searchImg"></a>
+	        <a href="#" onclick="view()"><img src="/SupportForMe/images/search.png" class="searchImg"></a>
 	        <form action="getProjects.do">
         	<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
 			</form> 	    
@@ -182,7 +183,7 @@ function view() {
         	<div id="search_div2">
         	<form action="getProjects.do">
         	<input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-        	<input TYPE="image" src="./images/search.png" class="searchImg" name="Submit" value="Submit">
+        	<input TYPE="image" src="/SupportForMe/images/search.png" class="searchImg" name="Submit" value="Submit">
 			</form>
         	</div>
         
