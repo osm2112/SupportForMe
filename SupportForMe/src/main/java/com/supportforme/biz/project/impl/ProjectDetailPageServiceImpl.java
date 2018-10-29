@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.supportforme.biz.comments.CommentsDTO;
 import com.supportforme.biz.hashtag.HashtagDTO;
+import com.supportforme.biz.invest.InvestDTO;
 import com.supportforme.biz.present.PresentDTO;
 import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectDetailPageService;
@@ -27,6 +28,11 @@ public class ProjectDetailPageServiceImpl implements ProjectDetailPageService {
 	}
 
 	@Override
+	public InvestDTO getProjectTotalInvestAmount(ProjectDTO dto) {
+		return projectDetailPageDAO.getProjectTotalInvestAmount(dto);
+	}
+	
+	@Override
 	public List<PresentDTO> getProjectPresents(ProjectDTO dto) {
 		return projectDetailPageDAO.getProjectPresents(dto);
 	}
@@ -41,6 +47,5 @@ public class ProjectDetailPageServiceImpl implements ProjectDetailPageService {
 		return projectDetailPageDAO.getReplyComments(dto);
 	}
 
-	
 	
 }

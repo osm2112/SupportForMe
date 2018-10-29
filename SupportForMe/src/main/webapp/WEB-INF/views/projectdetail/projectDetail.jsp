@@ -135,7 +135,7 @@
         <div class="pjdtl-empty-box"></div>
         <!-- 디테일 박스 -->
         <div class="pjdtl-detail-box">
-            <div class="pjdtl-get-price">700,000원(모인금액)</div>
+            <div class="pjdtl-get-price">${invest.totalInvestAmount}원(모인금액)</div>
             <div class="pjdtl-target-price">목표금액 ${project.targetAmount}원</div>
             <div>■■■■■■■□□□ 70%</div>
             <div>
@@ -144,16 +144,16 @@
             </div>
             <div style="background-color: pink;">
                 <button class="pjdtl-invest-btn">투자하기</button>
-                <img src="./images/share-button.png" class="pjdtl-share-btn">
+                <img src="../images/share-button.png" class="pjdtl-share-btn">
             </div><br>
             <div class="pjdtl-status-box">
                 <div class="">
                 <div>
-                    <img src="./images/calendar.png" class="pjdtl-status-img">
-                    <img src="./images/right-arrow.png" class="pjdtl-right-arrow">
-                    <img src="./images/credit-card.png" class="pjdtl-status-img">
-                    <img src="./images/right-arrow.png" class="pjdtl-right-arrow">
-                    <img src="./images/delivery-truck.png" class="pjdtl-status-img">
+                    <img src="../images/calendar.png" class="pjdtl-status-img">
+                    <img src="../images/right-arrow.png" class="pjdtl-right-arrow">
+                    <img src="../images/credit-card.png" class="pjdtl-status-img">
+                    <img src="../images/right-arrow.png" class="pjdtl-right-arrow">
+                    <img src="../images/delivery-truck.png" class="pjdtl-status-img">
                 </div>
                 <div class="pjdtl-flex-container">
                     <div class="pjdtl-status-font">종료일<br>${project.projectDeadline}</div>

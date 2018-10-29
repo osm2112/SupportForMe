@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.supportforme.biz.comments.CommentsDTO;
 import com.supportforme.biz.hashtag.HashtagDTO;
+import com.supportforme.biz.invest.InvestDTO;
 import com.supportforme.biz.present.PresentDTO;
 import com.supportforme.biz.project.ProjectDTO;
 
@@ -24,6 +25,11 @@ public class ProjectDetailPageDAO {
 	//프토젝트가 포함된 해시태그 조회
 	public List<HashtagDTO> getProjectHashtags(ProjectDTO dto) {
 		return mybatis.selectList("projectDetail.getProjectHashtags", dto);
+	}
+	
+	//프로젝트의 총 모금액
+	public InvestDTO getProjectTotalInvestAmount(ProjectDTO dto) {
+		return mybatis.selectOne("projectDetail.getProjectTotalInvestAmount", dto);
 	}
 	
 	//프로젝트의 리워드 목록 조회
