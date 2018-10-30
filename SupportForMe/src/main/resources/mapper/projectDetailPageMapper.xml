@@ -9,7 +9,8 @@
        	   IMAGE, 
       	   TARGET_AMOUNT, 
        	   PROJECT_DEADLINE, 
-       	   PROJECT_DEADLINE+7 AS SCHEDULED_PAYMENT_DATE, 
+       	   PROJECT_DEADLINE+7 AS SCHEDULED_PAYMENT_DATE,
+       	   PROJECT_PROGRESS_RATE(#{projectNo}) AS PROJECT_PROGRESS_RATE, 
        	   STORY, 
        	   PROGRESS, 
        	   INTRODUCTION_VIDEO,
@@ -37,7 +38,7 @@
 
 <!-- 프로젝트 진행률 불러오기 -->
 <select id="getProjectProgressRate" resultType="string" parameterType="project">
-	SELECT PROJECT_PROGRESS_RATE(#{projectNo}) FROM DUAL
+	SELECT PROJECT_PROGRESS_RATE(#{projectNo}) AS PROJECT_PROGRESS_RATE FROM DUAL
 </select>
 <!-- 
 <select id="getProjectProgressRate" resultType="project" statementType="CALLABLE" parameterType="project">

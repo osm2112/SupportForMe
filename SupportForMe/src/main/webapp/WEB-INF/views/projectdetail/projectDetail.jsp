@@ -54,7 +54,7 @@
         flex-direction: column;
         width: 520px;
         height: 430px;
-        background-color: ghostwhite;
+        background-color: ghostwhite;/*지워********************************************************************************/
     }
     
     .pjdtl-get-price {
@@ -115,7 +115,7 @@
 </head>
     
 <body>
-    
+    <input type="hidden" value="${project.projectNo}">
     <br>
     <div class="pjdtl-bodysize">
     <!-- 프로젝트 이름, 관리자 버튼 -->
@@ -124,23 +124,26 @@
         <button class="pjdtl-pick-btn" style="width:120px; height:40px; ">PICK</button>
     </div>
     <div class="pjdtl-center"><!-- 해시태그-->
-        <span class="pjdtl-hashtag">#해시태그</span>
-        <span class="pjdtl-hashtag">#해시태그2</span>
-        <span class="pjdtl-hashtag">#해시태그태그</span>
+        <c:forEach items="${hashtag}" var="projectTag">
+            <span class="pjdtl-hashtag">#${projectTag.hashtagName}</span>&nbsp;
+        </c:forEach>
     </div>
     <br>
     <div class="pjdtl-flex-container">
-        <!-- 사진/이미지/영상 -->
+        <!-- 사진/이미지/영상/비디오 -->
+	<c:if test="${project.introductionVideo} != null">
+		<div class="pjdtl-intro-box">${project.introductionVideo}</div>
+	</c:if>
         <div class="pjdtl-intro-box">${project.introductionVideo}</div>
         <div class="pjdtl-empty-box"></div>
         <!-- 디테일 박스 -->
         <div class="pjdtl-detail-box">
             <div class="pjdtl-get-price">${invest.totalInvestAmount}원(모인금액)</div>
             <div class="pjdtl-target-price">목표금액 ${project.targetAmount}원</div>
-            <div>■■■■■■■□□□ 70%</div>
+            <div>■■■■■■■□□□ ${project.projectProgressRate}%</div>
             <div>
                 <div>${project.progress}</div>
-                <div>참여자 n명</div>
+                <div>참여자 ${invest.headcount}명</div>
             </div>
             <div style="background-color: pink;">
                 <button class="pjdtl-invest-btn">투자하기</button>
@@ -170,7 +173,7 @@
     <br>
     <hr>
     <div class="pjdtl-bodysize">
-        <!--이거 부트스트랩 네비게이션 쓸거-->
+        <!--이거 네비게이션 쓸거-->
         <li>
             <a class="">스토리</a>
         </li>
