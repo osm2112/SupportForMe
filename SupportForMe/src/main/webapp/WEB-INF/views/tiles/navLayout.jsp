@@ -6,38 +6,33 @@
 <html>
 <head>
 <style>
-body { margin : 0px;}
-div.container {
-	width: 100%;
-	border: 1px solid gray;
+body {
+	margin:0px;
 }
-
-header, footer {
-	padding: 1em;
-	color: white;
-	background-color: white;
-	clear: left;
-	text-align: center;
-}
-
-nav {
+.container > nav {
 	float: left;
-	max-width: 160px;
-	margin: 0;
+	max-width: 550px;
+	margin: 0px 25px 0px 150px; 
 	padding: 1em;
 }
 
-nav ul {
+.container > nav > ul {
 	list-style-type: none;
 	padding: 0;
 }
 
-nav ul a {
+.container > nav > ul > a {
 	text-decoration: none;
 }
-
-article {
+.container > article {
+	padding: 1em;
 	overflow: hidden;
+}
+#active {
+   /* color : rgb(26, 188, 156);
+   border-left : 2px solid rgb(26, 188, 156);*/
+   background-color : rgb(26, 188, 156);
+   color : white;
 }
 </style>
 </head>
@@ -47,7 +42,7 @@ article {
 			<tiles:insertAttribute name="header" />
 		</header>
 		<nav>
-			<tiles:insertAttribute name="registerNav"/>
+			<tiles:insertAttribute name="nav"/>
 		</nav>
 		<article>
 			<tiles:insertAttribute name="content" />

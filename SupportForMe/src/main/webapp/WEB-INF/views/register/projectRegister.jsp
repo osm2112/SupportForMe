@@ -184,7 +184,7 @@ $(function() {
 </head>
 <body>
 	<div id="result">
-	<div style="height: 50px"></div>
+	<div style="height: 40px"></div>
 	<form name="fileUploadFrm" id="fileUploadFrm" method="post">
 		<input type="file" name="uploadFile" id="fileUploadImage" style="display:none">
 	</form>

@@ -12,13 +12,13 @@
         #project_register_menu {
             margin-left : 25px;
         }
-        #project_register_menu div {
+        #project_register_menu > div {
             font-size : 18px;
         }
-        #project_register_menu nav {
+        #project_register_menu > nav {
             margin-left : -10px;
         }
-        #project_register_menu nav ul li{
+        #project_register_menu > nav > ul > li{
             height : 25px;
             padding : 5px 0px 5px 15px;
             margin : 10px 0px 10px -30px;
@@ -29,20 +29,13 @@
         #preview {
             height : 60px;
         }
-        #active {
-           /* color : rgb(26, 188, 156);
-            border-left : 2px solid rgb(26, 188, 156);*/
-            background-color : rgb(26, 188, 156);
-            color : white;
-        }
         #project_register_basic {
             border-left : 1px solid lightgrey;
         }
     </style>
 </head>
 <body>
-<div style="height:50px"></div>
-    <div style="height : 45px; font-size : 25px;font-weight: 800;padding : 25px;color:grey">프로젝트 등록</div>
+    <div style="height : 45px; font-size : 25px;font-weight: 800;padding :20px;color:grey;">프로젝트 등록</div>
     <div id="project_register">
         <div id="project_register_menu">
             <div id="preview">프로젝트 미리보기</div>

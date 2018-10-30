@@ -30,7 +30,7 @@ public class projectRegisterController {
 	
 	@RequestMapping("/forme/tempMain")
 	public String main() {
-		return "register/main/tempMain";
+		return "noNav/register/main/tempMain";
 	}
 	
 	
@@ -71,7 +71,7 @@ public class projectRegisterController {
 	public String makeProject(Model model,ProjectDTO dto,@PathVariable String projectNo) {
 		dto.setProjectNo(projectNo);
 		model.addAttribute("project", projectService.getProject(dto));
-		return "register/projectRegister";
+		return "rgNav/register/projectRegister";
 	}
 	
 	
