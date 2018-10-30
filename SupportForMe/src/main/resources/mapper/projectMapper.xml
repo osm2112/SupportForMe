@@ -7,9 +7,16 @@
 		 SELECT p.* ,PROJECT_PROGRESS_RATE(p.project_no) "percent", FUNC_TOTAL_INVSET_AMOUNT(p.project_no) "totalInvest" FROM project p LEFT OUTER JOIN hashtag h 
 		 		  ON (p.project_no = h.project_no)	 	
 		<where>
-				h.hashtag_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%' or p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'
+				(h.hashtag_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%' 
+				or p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%')
+				<if test="projectNo != null and projectNo != '' ">
+				<![CDATA[ 
+				and p.project_no < #{projectNo}
+				]]>
+				</if>
 		</where>
-				ORDER BY p.project_no
+		
+		ORDER BY p.project_no	
 		 ) A )WHERE rnum BETWEEN #{start} AND #{end}
 	</select>
 	

@@ -166,7 +166,7 @@ function view() {
 	    	<!--  화면줄였을때 보이는 영역 -->
     	    <div id="search_div1">
 	        <a href="#" onclick="view()"><img src="/SupportForMe/images/search.png" class="searchImg"></a>
-	        <form action="getProjects.do">
+	        <form action="./getProjects">
         	<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
 			</form> 	    
         	</div>
@@ -181,7 +181,7 @@ function view() {
         
         	<!-- 전체화면일때 보이는 영역 -->
         	<div id="search_div2">
-        	<form action="getProjects.do">
+        	<form action="./getProjects">
         	<input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
         	<input TYPE="image" src="/SupportForMe/images/search.png" class="searchImg" name="Submit" value="Submit">
 			</form>

@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>2018. 10. 26.</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script> <!--   jQuery  -->
 <style>
 /*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
 .pjdtl_bodysize {   
@@ -88,6 +90,51 @@
  }
 
 </style> 
+<script>
+var lastno = $("div2:last.project_box").attr("id");
+
+console.log(lastno);
+$(document).scroll(function() {
+	    var maxHeight = $(document).height();
+	    var currentScroll = $(window).scrollTop() + $(window).height();   
+	    if (maxHeight <= currentScroll) {
+	    	loadArticle();	    	
+	    }
+	  });
+function loadArticle(){
+    $.ajax({
+		type: "get",
+		url: "./getProjects",
+		data : "projectNo="+lastno+"&searchKeyword=${searchDTO.searchKeyword}",
+		success: function(data){				
+			$(data).each(
+					function() {
+						console.log(lastno);
+						console.log(this);
+						$('.pjdtl_bodysize').append('<div class="div2"> <c:forEach items="${list}" var="project">'
+			 					 +'		<div class="project_box" id='+this.projectNo +'>'
+			 					 +'		<div class="mypage_project_image"><img src="./images/images.jpg"></div>'
+			 					 +'		<div class="mypage_project_content">'
+			 					 +'		<div class="project_state">'+this.progress+'</div>'
+			 					 +'		<ul>'
+			 					 /* +'  <li class="scroll" lastProjectNo='+this.projectNo+'>프로젝트 번호 :'+this.projectNo+ '</li>' */
+			 					 +'  <li>창작자 ID : '+this.userId+'</li>'
+			 					 +'   <li style="font-size : 18px;">'+this.projectName+'</li>'
+			 					 +'   <li style="height : 20px"></li>'
+			 					 +'   <li style="display:grid;grid-template-columns: 70% 30%">'
+			 					 +'       <span align="left">모금액 : '+this.totalInvest+'</span>'
+			 					 +'       <span>'+this.percent+'%</span></li>' 
+			 					 +'  <li style="color:rgb(26, 188, 156)">■□□□□□□□□□□□□□</li>'
+			 					 +'  <li>목표금액 : '+this.targetAmount+'</li>'
+			 					 +'</ul>'                                       
+			 					 +'</div>'
+			 					 +'</div> </c:forEach>'
+			 					 +'</div>');	
+					});		
+		}
+  });
+}
+</script>
 </head>
 <body>
 	<div class="pjdtl_bodysize">
@@ -100,11 +147,12 @@
 		</div>
  		<div class="div2">
  			<c:forEach items="${list}" var="project">
-	 		<div class="project_box" style="">
+	 		<div class="project_box" id="${project.projectNo}">
               <div class="mypage_project_image"><img src="./images/images.jpg"></div>
 		      	<div class="mypage_project_content">
                   <div class="project_state">${project.progress}마감</div>
                     <ul>
+        				<li>프로젝트 번호 : ${project.projectNo}</li>
                         <li>창작자 ID : ${project.userId}</li>
                         <li style="font-size : 18px;">${project.projectName}</li>
                         <li style="height : 20px"></li>
