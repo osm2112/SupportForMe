@@ -10,42 +10,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>프로젝트 등록</title>
 <style>
-#save_button {
-   font-size : 15px;
-   font-weight : 800;
-   color: rgb(26, 188, 156);
-   background-color: white;
-   border-radius: 5px;
-   border : 1px solid rgb(26, 188, 156);
-   padding : 5px 50px; 
-   margin-top : 5px;
-   margin-left : 50px;
-}
-#next_button {
-   font-size : 15px;
-   font-weight : 800;
-   color: white;
-   background-color : rgb(26, 188, 156);
-   border-radius: 5px;
-   border : none;
-   padding : 5px 50px; 
-   margin-top : 5px;
-   margin-left : 50px;
-}
-.inputStyle {
-	text-align:right;
-	padding-right:5px;
-}
 </style>
-<script>
-$(function(){
-	$("save_button").on("click",function(){
-		
-	});
-	
-	
-});
-</script>
 </head>
 <body>
     <div style="height:50px"></div>
@@ -61,9 +26,19 @@ $(function(){
 	</div>
 	<div id="story_image">
 		<div>이미지를 등록해주세요.</div>
+		<div class="fileContainer"> 
+				<div class="introductionImg">
+					<img src="/SupportForMe/images/picture.png" id="default">
+				</div>
+				<div class="introductionImg plus">
+					<img src="/SupportForMe/images/plus1.png" id="default">
+				</div>
+		</div>
     </div>
     <div id="story_contents">
     
     </div>
+   <input type="button" name="save" class="save_button" value="저장하기">
+	<input type="button" name="next" class="next_button story" value="다음 단계">
 </body>
 </html>

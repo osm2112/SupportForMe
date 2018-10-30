@@ -19,7 +19,19 @@
 			value="/WEB-INF/views/tiles/footer.jsp" /> -->
 	</definition>
 	
-
+	<definition name="mainTemplate2"  template="/WEB-INF/views/tiles/registerLayout.jsp">
+ 		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="content"	value="/WEB-INF/views/tiles/content.jsp" />
+		<put-attribute name="registerNav"	value="/WEB-INF/views/tiles/registerNav.jsp" />
+<!-- 		<put-attribute name="footer"
+			value="/WEB-INF/views/tiles/footer.jsp" /> -->
+	</definition>
+	
+	
+	<definition name="ajax/*/*" template="/WEB-INF/views/tiles/blankLayout.jsp">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+	
 	<definition name="*/*" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>

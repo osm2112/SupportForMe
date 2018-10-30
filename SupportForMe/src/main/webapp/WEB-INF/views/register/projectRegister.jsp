@@ -14,7 +14,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>프로젝트 등록</title>
 <style>
-#save_button {
+.save_button {
 	font-size: 15px;
 	font-weight: 800;
 	color: rgb(26, 188, 156);
@@ -26,7 +26,7 @@
 	margin-left: 50px;
 }
 
-#next_button {
+.next_button {
 	font-size: 15px;
 	font-weight: 800;
 	color: white;
@@ -50,36 +50,39 @@
 }
 .fileContainer {
     position: relative;
-   
+    display:flex;
+
 }
-#thumbnailImg{
+#thumbnailImg, .introductionImg{
 	position:relative;
-	width:260px;
-	height:220px;
-	border : 1px solid gray;
+	width:200px;
+	height:170px;
+	border : 1px solid lightgrey;
 	text-align: center;
+	margin-right:10px;
 }
-#thumbnailImg:hover {
+#thumbnailImg:hover, .introductionImg:hover {
 	cursor:pointer;
 }
-#thumbnailImg > img {
+#thumbnailImg > img, .introductionImg > img {
 	position:absolute;
     max-width:100%; max-height:100%;
     margin:auto;
     top:0; bottom:0; left:0; right:0;
+  
 }
 #default {
 	 width:35px;
 	 height:35px;
 }
 #thumb {
-	width:250px;
-	height:210px;
+	width:190px;
+	height:160px;
 }
 </style>
 <script>
 $(function() {
-		$("save_button").on("click", function() {
+		$(".save_button").on("click", function() {
 
 		});
 
@@ -135,18 +138,58 @@ $(function() {
 					}
 			}).submit();
 		}); 
+		
+		$(".next_button").on("click",function() {
+			
+			var page = $(this).attr("class").split(" ")[1];
+			
+			if(page == "basic"){
+					$.ajax({
+					url : "<%=request.getContextPath()%>/forme/updateProject/story",
+					data : $("#registerBasicFrm").serialize(), 
+					method : "post",
+					success : function(result) {
+						$("#result").html(result);
+					}
+				}); 
+			}else if(page == "story") {
+				$.ajax({
+					url : "../updateProject/reward",
+					data : $("#registerStoryFrm").serialize(), 
+					method : "post",
+					success : function(result) {
+						$("#result").html(result);
+					}
+				});	
+			}else if(page == "reward"){
+				$.ajax({
+					url : "../updateProject/pay",
+					data : $("#registerRewardFrm").serialize(), 
+					method : "post",
+					success : function(result) {
+						$("#result").html(result);
+					}
+				});	
+			}else {
+				return;
+			}
+			
+			
+		}); 
+		
+		
 });
 
 </script>
 </head>
 <body>
+	<div id="result">
 	<div style="height: 50px"></div>
 	<form name="fileUploadFrm" id="fileUploadFrm" method="post">
 		<input type="file" name="uploadFile" id="fileUploadImage" style="display:none">
 	</form>
 	
-	<form action="updateProject" method="post" name="registerBasicFrm"
-		id="registerForm">
+	<form name="registerBasicFrm" id="registerBasicFrm">
 		<input type="hidden" name="projectNo" value="${project.projectNo}">
 		<input type="hidden" name="userId" value="${project.userId}">
 		<div id="basic_subject">
@@ -182,8 +225,9 @@ $(function() {
 			<input type="text" name="keyword" style="width: 500px;"
 				placeholder="최대 5개까지 등록 가능합니다. 키워드 입력 후 엔터를 눌러주세요.">
 		</div>
-		<input type="button" name="save" id="save_button" value="저장하기">
-		<input type="submit" name="next" id="next_button" value="다음 단계">
+		<input type="button" name="save" class="save_button" value="저장하기">
+		<input type="button" name="next" class="next_button basic" value="다음 단계">
 	</form>
+	</div>
 </body>
 </html>

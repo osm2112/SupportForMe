@@ -48,17 +48,30 @@ public class projectRegisterController {
 		return "redirect:/forme/make/"+dto.getProjectNo();	
 	}
 	
-	@RequestMapping("/forme/updateProject")
-	public String updateProject(@ModelAttribute("project") ProjectDTO dto) {
+	@RequestMapping(value={"/forme/updateProject/story","/forme/updateProject/reward","/forme/updateProject/pay"})
+	public String updateProject(@ModelAttribute("project") ProjectDTO dto,HttpServletRequest request) {
+		String uri = request.getRequestURI();
+		String com = uri.substring(uri.lastIndexOf("/")+1);
+		System.out.println("==========com "+com);
 		projectService.updateProject(dto);
-		return "register/projectRegisterStory";
+		if(("story").equals(com)) {
+			return "ajax/register/projectRegisterStory";
+		}else if(("reward").equals(com)){
+			return "ajax/register/projectRegisterReward";
+		}else if(("pay").equals(com)) {
+			return "ajax/register/projectRegisterPay";
+		}else {
+			return "";
+		}
+		
+		
 	}
 	
 	@RequestMapping("/forme/make/{projectNo}")			
 	public String makeProject(Model model,ProjectDTO dto,@PathVariable String projectNo) {
 		dto.setProjectNo(projectNo);
 		model.addAttribute("project", projectService.getProject(dto));
-		return "register/projectRegisterBasic";
+		return "register/projectRegister";
 	}
 	
 	
