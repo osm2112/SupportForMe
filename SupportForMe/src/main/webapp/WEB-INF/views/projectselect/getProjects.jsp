@@ -91,49 +91,57 @@
 
 </style> 
 <script>
-var lastno = $("div2:last.project_box").attr("id");
 
+$(document).ready(function() {
+	var lastno = $(".project_box").last().attr("id");
 console.log(lastno);
 $(document).scroll(function() {
 	    var maxHeight = $(document).height();
 	    var currentScroll = $(window).scrollTop() + $(window).height();   
 	    if (maxHeight <= currentScroll) {
-	    	loadArticle();	    	
+	    	loadArticle(lastno);	    	
 	    }
 	  });
-function loadArticle(){
+function loadArticle(lastno){
     $.ajax({
-		type: "get",
+		type: "post",
 		url: "./getProjects",
-		data : "projectNo="+lastno+"&searchKeyword=${searchDTO.searchKeyword}",
-		success: function(data){				
-			$(data).each(
-					function() {
-						console.log(lastno);
-						console.log(this);
-						$('.pjdtl_bodysize').append('<div class="div2"> <c:forEach items="${list}" var="project">'
-			 					 +'		<div class="project_box" id='+this.projectNo +'>'
-			 					 +'		<div class="mypage_project_image"><img src="./images/images.jpg"></div>'
+		data : { "projectNo":lastno,
+			     "searchKeyword":'${searchDTO.searchKeyword}'
+		},
+		dataType : "json",
+		success: function(data){	
+			console.log(data.length);
+			
+			$('.wrapper').append('<br><div class="div2">');
+				for(i=0; i < data.length; i++ ) {
+				
+						$('.wrapper').append(			
+			 					 '		<div class="project_box" id='+data[i].projectNo +'>'
+			 					 +'		<div class="mypage_project_image"><img src="../images/images.jpg"></div>'
 			 					 +'		<div class="mypage_project_content">'
-			 					 +'		<div class="project_state">'+this.progress+'</div>'
+			 					 +'		<div class="project_state">'+data[i].progress+'</div>'
 			 					 +'		<ul>'
-			 					 /* +'  <li class="scroll" lastProjectNo='+this.projectNo+'>프로젝트 번호 :'+this.projectNo+ '</li>' */
-			 					 +'  <li>창작자 ID : '+this.userId+'</li>'
-			 					 +'   <li style="font-size : 18px;">'+this.projectName+'</li>'
+			 					 +'  <li>프로젝트 번호 :'+data[i].projectNo+'</li>' 
+			 					 +'  <li>창작자 ID : '+data[i].userId+'</li>'
+			 					 +'   <li style="font-size : 18px;">'+data[i].projectName+'</li>'
 			 					 +'   <li style="height : 20px"></li>'
 			 					 +'   <li style="display:grid;grid-template-columns: 70% 30%">'
-			 					 +'       <span align="left">모금액 : '+this.totalInvest+'</span>'
-			 					 +'       <span>'+this.percent+'%</span></li>' 
+			 					 +'       <span align="left">모금액 : '+data[i].totalInvest+'</span>'
+			 					 +'       <span>'+data[i].percent+'%</span></li>' 
 			 					 +'  <li style="color:rgb(26, 188, 156)">■□□□□□□□□□□□□□</li>'
-			 					 +'  <li>목표금액 : '+this.targetAmount+'</li>'
+			 					 +'  <li>목표금액 : '+data[i].targetAmount+'</li>'
 			 					 +'</ul>'                                       
 			 					 +'</div>'
-			 					 +'</div> </c:forEach>'
-			 					 +'</div>');	
-					});		
+			 					 +'</div>');
+				}			
+				$('.wrapper').append('</div>');
+				lastno = $(".project_box").last().attr("id");
+				console.log(lastno);
 		}
   });
 }
+});
 </script>
 </head>
 <body>
@@ -148,7 +156,7 @@ function loadArticle(){
  		<div class="div2">
  			<c:forEach items="${list}" var="project">
 	 		<div class="project_box" id="${project.projectNo}">
-              <div class="mypage_project_image"><img src="./images/images.jpg"></div>
+              <div class="mypage_project_image"><img src="../images/images.jpg"></div>
 		      	<div class="mypage_project_content">
                   <div class="project_state">${project.progress}마감</div>
                     <ul>

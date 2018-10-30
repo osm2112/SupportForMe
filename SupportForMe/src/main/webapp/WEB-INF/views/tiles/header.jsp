@@ -8,16 +8,13 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <title>SupportForMe</title>
 <style>
-body {
-    margin:0px;
-}
 #headDiv {
 	margin:0px;
     border-bottom:1px solid lightgrey;
 }
 .bodysize {
   display:grid;
-  grid-template-columns: 2fr 6fr 2fr;
+  grid-template-columns: 1fr 6fr 1fr;
 }
 #head{
   padding : 10px 20px;
@@ -165,7 +162,7 @@ function view() {
     	<div id="head">
 	    	<!--  화면줄였을때 보이는 영역 -->
     	    <div id="search_div1">
-	        <a href="#" onclick="view()"><img src="/SupportForMe/images/search.png" class="searchImg"></a>
+	        <a href="#" onclick="view()"><img src="../images/search.png" class="searchImg"></a>
 	        <form action="./getProjects">
         	<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
 			</form> 	    
@@ -183,7 +180,7 @@ function view() {
         	<div id="search_div2">
         	<form action="./getProjects">
         	<input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-        	<input TYPE="image" src="/SupportForMe/images/search.png" class="searchImg" name="Submit" value="Submit">
+        	<input TYPE="image" src="../images/search.png" class="searchImg" name="Submit" value="Submit">
 			</form>
         	</div>
         

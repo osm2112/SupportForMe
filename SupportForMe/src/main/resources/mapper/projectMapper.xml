@@ -11,7 +11,7 @@
 				or p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%')
 				<if test="projectNo != null and projectNo != '' ">
 				<![CDATA[ 
-				and p.project_no < #{projectNo}
+				and p.project_no > #{projectNo}
 				]]>
 				</if>
 		</where>
