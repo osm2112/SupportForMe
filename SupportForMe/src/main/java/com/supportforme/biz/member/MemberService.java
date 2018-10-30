@@ -23,4 +23,5 @@ public interface MemberService {
 	
 	public int CheckId(MemberDTO dto);
 	
+	public MemberDTO findId(MemberDTO dto);
 }

@@ -54,5 +54,10 @@ public class MemberServiceImpl implements MemberService {
 	public int CheckId(MemberDTO dto) {
 		return dao.checkId(dto);
 	}
+
+	@Override
+	public MemberDTO findId(MemberDTO dto) {
+		return dao.findId(dto);
+	}
 	
 }

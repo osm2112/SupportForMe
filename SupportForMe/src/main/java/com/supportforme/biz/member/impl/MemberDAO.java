@@ -51,4 +51,10 @@ public class MemberDAO {
 	public int checkId(MemberDTO dto) {
 		return mybatis.selectOne("checkId", dto);
 	}
+	
+	public MemberDTO findId(MemberDTO dto) {
+		return mybatis.selectOne("findId", dto);
+	}
+	
+	
 }

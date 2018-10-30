@@ -197,14 +197,20 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
-	
-		<!-- 파일 업로드  -->
+
+		<!-- 파일 업로드 -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.3.2</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-mail -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 
 	</dependencies>
 	<build>

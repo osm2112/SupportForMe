@@ -114,6 +114,15 @@
 	</select>
 	
 	
+	<select id="findId" parameterType="member" resultType="member">
+		SELECT USER_ID, EMAIL 
+		FROM MEMBER
+		WHERE NAME = #{name}
+		AND EMAIL = #{email}
+	</select>
+	
+	
+	
 	
 	
 	
