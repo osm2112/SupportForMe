@@ -4,7 +4,7 @@
 <mapper namespace="project">
 
 	<!-- 프로젝트 단건 조회  -->
-	<select id="getProject" resultType="string" parameterType="project">
+	<select id="getProject" resultType="project" parameterType="project">
 		SELECT * FROM PROJECT WHERE PROJECT_NO = #{projectNo}
 	</select>
 	 
@@ -25,7 +25,7 @@
 		 ,PROJECT_NAME = #{projectName} 
 		 </if>
 		 <if test="image != null and image != ''">
-		 ,IMAGE #{image} 
+		 ,IMAGE = #{image} 
 		  </if>
 		 <if test="targetAmount != null and targetAmount != ''">
 		 ,TARGET_AMOUNT = #{targetAmount} 

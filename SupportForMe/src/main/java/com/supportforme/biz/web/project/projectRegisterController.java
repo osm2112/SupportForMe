@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectRegisterService;
 
 @Controller
+@SessionAttributes("project")
 public class projectRegisterController {
 		
 	@Autowired ProjectRegisterService projectService;
@@ -38,7 +40,7 @@ public class projectRegisterController {
 	}
 	
 	@RequestMapping(value="/forme/registerProject", method=RequestMethod.POST )
-	public String insertProject(@ModelAttribute("project") ProjectDTO dto , HttpSession session) {
+	public String insertProject(ProjectDTO dto , HttpSession session) {
 //		MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
 //		dto.setUserId(member.getUserId());
 		dto.setUserId("user2");
@@ -46,20 +48,20 @@ public class projectRegisterController {
 		return "redirect:/forme/make/"+dto.getProjectNo();	
 	}
 	
-	@RequestMapping("/forme/make/{projectNo}")			
-	public String makeProject(@ModelAttribute("project") ProjectDTO dto,@PathVariable String projectNo) {
-		dto.setProjectNo(projectNo);
-		return "register/projectRegisterBasic";
-	}
-	
 	@RequestMapping("/forme/updateProject")
 	public String updateProject(@ModelAttribute("project") ProjectDTO dto) {
-//		MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
-//		dto.setUserId(member.getUserId());
-		dto.setUserId("user2");
 		projectService.updateProject(dto);
 		return "register/projectRegisterStory";
 	}
+	
+	@RequestMapping("/forme/make/{projectNo}")			
+	public String makeProject(Model model,ProjectDTO dto,@PathVariable String projectNo) {
+		dto.setProjectNo(projectNo);
+		model.addAttribute("project", projectService.getProject(dto));
+		return "register/projectRegisterBasic";
+	}
+	
+	
 	
 	@RequestMapping(value="/forme/make/fileUpload" , method=RequestMethod.POST)
 	@ResponseBody
