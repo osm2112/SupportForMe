@@ -145,7 +145,7 @@ $(function() {
 		<input type="file" name="uploadFile" id="fileUploadImage" style="display:none">
 	</form>
 	
-	<form action="../updateProject" method="post" name="registerBasicFrm"
+	<form action="updateProject" method="post" name="registerBasicFrm"
 		id="registerForm">
 		<input type="hidden" name="projectNo" value="${project.projectNo}">
 		<input type="hidden" name="userId" value="${project.userId}">

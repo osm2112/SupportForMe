@@ -27,6 +27,13 @@
 	WHERE PROJECT_NO = #{projectNo}
 </select>
 
+<!-- 프로젝트별 모인금액 불러오기 -->
+<select id="getProjectTotalInvestAmount" resultType="invest" parameterType="project">
+	SELECT SUM(INVESTMENT_AMOUNT) AS TOTAL_INVEST_AMOUNT
+	FROM INVEST
+	WHERE PROJECT_NO = #{projectNo}
+</select>
+
 <!-- 프로젝트의 리워드(present) 목록 불러오기(화면 오른쪽) -->
 <select id="getProjectPresents" resultType="present" parameterType="project">
 	SELECT PRESENT_NO,

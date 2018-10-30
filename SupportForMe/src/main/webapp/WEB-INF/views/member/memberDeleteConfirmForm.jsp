@@ -16,7 +16,7 @@
 	}
 </script>
 <body>
-	<form id="frm" action="./MemberDeletePassWordCheck.do" method="post">
+	<form id="frm" action="../forme/MemberDeletePassWordCheck" method="post">
 		<input type="password" name="password" id = password><input type="submit" onclick="Confirm()" value="확인" >
 	</form>
 </body>

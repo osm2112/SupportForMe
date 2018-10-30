@@ -50,4 +50,9 @@ public class MemberServiceImpl implements MemberService {
 		return dao.passwordCheck(dto);
 	}
 
+	@Override
+	public int CheckId(MemberDTO dto) {
+		return dao.checkId(dto);
+	}
+	
 }

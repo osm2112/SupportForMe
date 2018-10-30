@@ -47,4 +47,8 @@ public class MemberDAO {
 		// TODO Auto-generated method stub
 		return mybatis.selectOne("passwordCheck", dto);
 	}
+	
+	public int checkId(MemberDTO dto) {
+		return mybatis.selectOne("checkId", dto);
+	}
 }

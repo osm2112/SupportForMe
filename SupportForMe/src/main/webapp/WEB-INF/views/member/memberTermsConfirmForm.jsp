@@ -15,7 +15,7 @@
 			alert('약관에 동의하셔야 합니다.')
 			return false;
 		} else {
-			document.location.href='./MemberJoinForm.do'
+			document.location.href='../support/MemberJoinForm'
 		} 
 	}
 </script>

@@ -43,7 +43,7 @@
 		</div>
 
 		<div class="div2">
-		<form action="./login.do" method="post">
+		<form action="../support/login" method="post">
 			<table class="table1">
 				<tr>
 					<td>아이디</td>
@@ -68,7 +68,7 @@
 				<tr>
 					<td></td>
 					<td>회원이 아니라면 가입해주세요</td>
-					<td><button class="btn3" onclick="document.location.href='./MemberTermsConfirmForm.do'">회원가입</button></td>
+					<td><button class="btn3" onclick="document.location.href='../support/MemberTermsConfirmForm'">회원가입</button></td>
 				</tr>
 			
 			</table>
