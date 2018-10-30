@@ -39,7 +39,7 @@
 	<div>
 		<div class="div1">
 			<h1 class="h1text">로그인</h1>
-			<img src="./images/open-lock.png" width="80px"	height="10%" align="right">
+			<img src="../images/open-lock.png" width="80px"	height="10%" align="right">
 		</div>
 
 		<div class="div2">
@@ -62,7 +62,7 @@
 					<td>아이디 또는 비밀번호를 잊으셨나요?</td>
 					<td>
 						<button class="btn1" onclick="document.location.href='../support/MemberFindIdForm'" >아이디찾기</button>
-						<button class="btn2">비밀번호찾기</button>
+						<button class="btn2" onclick="document.location.href='../support/MemberFindPasswordForm'">비밀번호찾기</button>
 					</td>
 				</tr>
 				<tr>

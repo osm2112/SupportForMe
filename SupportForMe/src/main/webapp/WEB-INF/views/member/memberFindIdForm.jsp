@@ -15,7 +15,6 @@
 	</form>
 	<h5>ID는 가입하실때 입력하신 Email로 발송 됩니다</h5>
 
-
 </div>
 </body>
 </html>

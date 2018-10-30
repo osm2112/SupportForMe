@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원 가입</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 .wrapper {
 	display: grid;
@@ -53,6 +54,7 @@ caption{
 </head>
 <script>
 	var idCheck = false;
+	var emailCheck = false;
 	function CheckId(){
 		var  userid = document.getElementById("userId").value;
 		$.ajax({
@@ -60,7 +62,6 @@ caption{
 			method : "post",
 			type : "text",
 			success : function(data) {
-				console.log(typeof data);
 				if(data == 0){
 					document.getElementById("checkIdResult").innerHTML = '사용할수 있는  ID입니다.';
 					idCheck = true;
@@ -71,8 +72,25 @@ caption{
 			}
 		});
 	}
-
-
+	
+	
+	function CheckEmail(){
+		var  email = document.getElementById("email").value;
+		$.ajax({
+			url : "../support/CheckEmail?email="+email,
+			method : "post",
+			type : "text",
+			success : function(data) {
+				if(data == 0){
+					document.getElementById("checkEmailResult").innerHTML = '사용할수 있는  Email입니다.';
+					emailCheck = true;
+				} else {
+					document.getElementById("checkEmailResult").innerHTML = '<font color="red">사용할수 없는 Email입니다.</font>';
+					emailCheck = false;
+				}
+			}
+		});
+	}
 
 	function InsertMember(){
 			var  userId = document.getElementById("userId").value;
@@ -89,6 +107,10 @@ caption{
 			var  introduction = document.getElementById("introduction").value;
 				if(idCheck == false){
 					alert('해당 ID는 중복된 ID 입니다.');
+					return false;
+				}
+				if(emailCheck == false){
+					alert('해당  Email은 중복된 Email 입니다.');
 					return false;
 				}
 				if (!userId) {
@@ -164,7 +186,7 @@ caption{
 	<div class="wrapper">
 		<div class="div1">
 			<h1 style="text-align: left;">회원가입</h1>
-			<br> <img src="./images/회원이미지2.png" width="80%">
+			<br> <img src="../images/회원이미지2.png" width="80%">
 		</div>
 		<div class="div2">
 	
@@ -178,7 +200,7 @@ caption{
 
 					<tr>
 						<td><span>＊</span>아이디</td>
-						<td><input id="userId" type="text" size="10" onkeyup="CheckId()"> <span id="checkIdResult"></span></td>
+						<td><input id="userId" type="text" size="10" onkeyup="CheckId()"><span id="checkIdResult"></span></td>
 					</tr>
 					
 					<tr>
@@ -198,7 +220,7 @@ caption{
 
 					<tr>
 						<td><span>＊</span>E-mail&nbsp;주소</td>
-						<td><input id="email" type="email" size="20"></td>
+						<td><input id="email" type="email" size="20" onkeyup="CheckEmail()"><span id="checkEmailResult"></span></td>
 					</tr>
 					<tr>
 						<td><span>＊</span>전화번호</td>

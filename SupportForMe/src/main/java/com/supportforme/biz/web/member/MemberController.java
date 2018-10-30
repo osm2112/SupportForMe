@@ -23,6 +23,42 @@ public class MemberController {
 	@Autowired
 	JavaMailSender mailSender;
 
+
+	@RequestMapping("/support/MemberJoinForm")
+	public String MemberJoinForm() {
+		return "member/memberJoinForm";
+	}
+
+	@RequestMapping("/support/MemberLoginForm")
+	public String loininForm() {
+		return "member/memberLoginForm";
+	}
+
+	@RequestMapping("/support/MemberTermsConfirmForm")
+	public String memberTermsConfirmForm() {
+		return "member/memberTermsConfirmForm";
+	}
+
+	@RequestMapping("/forme/MemberUpdateConfirmForm")
+	public String memberUpdateConfirmForm() {
+		return "member/memberUpdateConfirmForm";
+	}
+
+	@RequestMapping("/forme/MemberDeleteConfirmForm")
+	public String memberDeleteConfirmForm() {
+		return "member/memberDeleteConfirmForm";
+	}
+	
+	@RequestMapping("/support/MemberFindIdForm")
+	public String memberFindIdForm() {
+		return "member/memberFindIdForm";
+	}
+	
+	@RequestMapping("/support/MemberFindPasswordForm")
+	public String memberFindPasswordForm() {
+		return "member/memberFindPasswordForm";
+	}
+	
 	@RequestMapping("/support/InsertMember")
 	public String insertMember(MemberDTO dto, Model model) {
 		memberService.insertMember(dto);
@@ -62,29 +98,16 @@ public class MemberController {
 		return "member/getMember";
 	}
 
-	@RequestMapping("/support/MemberJoinForm")
-	public String MemberJoinForm() {
-		return "member/memberJoinForm";
+	@RequestMapping("/support/CheckId")
+	@ResponseBody
+	public int CheckId(Model model, MemberDTO dto) {
+		return memberService.checkId(dto);
 	}
-
-	@RequestMapping("/support/MemberLoginForm")
-	public String loininForm() {
-		return "member/memberLoginForm";
-	}
-
-	@RequestMapping("/support/MemberTermsConfirmForm")
-	public String memberTermsConfirmForm() {
-		return "member/memberTermsConfirmForm";
-	}
-
-	@RequestMapping("/forme/MemberUpdateConfirmForm")
-	public String memberUpdateConfirmForm() {
-		return "member/memberUpdateConfirmForm";
-	}
-
-	@RequestMapping("/forme/MemberDeleteConfirmForm")
-	public String memberDeleteConfirmForm() {
-		return "member/memberDeleteConfirmForm";
+	
+	@RequestMapping("/support/CheckEmail")
+	@ResponseBody
+	public int CheckEmail(Model model, MemberDTO dto) {
+		return memberService.checkEmail(dto);
 	}
 
 	@RequestMapping("/forme/MemberUpdateForm")
@@ -188,12 +211,6 @@ public class MemberController {
 		}
 	}
 
-	@RequestMapping("/support/CheckId")
-	@ResponseBody
-	public int CheckId(Model model, MemberDTO dto) {
-		return memberService.CheckId(dto);
-	}
-
 	@RequestMapping("/support/FindId")
 	public String findId(HttpServletRequest request, Model model, MemberDTO dto) {
 
@@ -229,10 +246,62 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping("/support/MemberFindIdForm")
-	public String memberFindIdForm() {
-		return "member/memberFindIdForm";
+	@RequestMapping("/support/FindPassword")
+	public String findPassword(HttpServletRequest request, Model model, MemberDTO dto) {
+
+		MemberDTO dto2 = new MemberDTO();
+		System.out.println(dto.getUserId()+dto.getEmail()+dto.getName());
+		dto2 = memberService.findPassword(dto);
+
+		if (dto2 != null) {
+			char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
+										  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
+										  'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 
+										  'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 
+										  'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 
+										  'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 
+										  'y', 'z' };
+			
+			int idx = 0; 
+			StringBuffer password = new StringBuffer();
+			for (int i = 0; i < 10; i++) { 
+				idx = (int) (charSet.length * Math.random()); // 36 * 생성된 난수를 Int로 추출 (소숫점제거) 
+				System.out.println("idx :::: "+idx); 
+				password.append(charSet[idx]); 
+			}
+			String pw = password.toString();
+			String email = dto2.getEmail();
+			String userid = dto2.getUserId();
+			
+			MemberDTO dto3 = new MemberDTO();
+			dto3.setUserId(userid);
+			dto3.setPassword(pw);
+			memberService.updateRandomPassword(dto3);
+
+			try {
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+				messageHelper.setFrom("ad20181029@gmail.com"); // 보내는사람 생략하거나 하면 정상작동을 안함
+				messageHelper.setTo(email); // 받는사람 이메일
+				messageHelper.setSubject("[중요] SupportForMe 관리자로부터"); // 메일제목은 생략이 가능하다
+				messageHelper.setText(pw); // 메일 내용
+				mailSender.send(message);
+				model.addAttribute("msg", "메일이 정상적으로 발송되었습니다. 메일을 확인해 주세요 ");
+				model.addAttribute("url", "../support/MemberLoginForm");
+				return "commons/alertRedirect";
+				
+			} catch (Exception e) {
+				System.out.println(e);
+				model.addAttribute("msg", "메일 전송에 실패 하였습니다. 관리자에게 문의해 주세요.");
+				model.addAttribute("url", "../support/MemberFindIdForm");
+				return "commons/alertRedirect";
+			}
+		} else {
+			model.addAttribute("msg", "입력하신 정보가 잘못되었습니다..");
+			model.addAttribute("url", "../support/MemberFindIdForm");
+			return "commons/alertRedirect";
+		}
 	}
 	
-	
+
 }

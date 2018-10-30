@@ -52,8 +52,21 @@ public class MemberDAO {
 		return mybatis.selectOne("checkId", dto);
 	}
 	
+	
+	public int checkEmail(MemberDTO dto) {
+		return mybatis.selectOne("checkEmail", dto);
+	}
+	
 	public MemberDTO findId(MemberDTO dto) {
 		return mybatis.selectOne("findId", dto);
+	}
+	
+	public MemberDTO findPassword(MemberDTO dto) {
+		return mybatis.selectOne("findPassword", dto);
+	}
+	
+	public int updateRandomPassword(MemberDTO dto) {
+		return mybatis.update("updateRandomPassword",dto);
 	}
 	
 	

@@ -113,6 +113,13 @@
 		WHERE  USER_ID = #{userId}  
 	</select>
 	
+	<select id="checkEmail" parameterType="member" resultType="int">
+		SELECT COUNT(USER_ID) 
+		FROM MEMBER
+		WHERE  EMAIL = #{email}  
+	</select>
+	
+	
 	
 	<select id="findId" parameterType="member" resultType="member">
 		SELECT USER_ID, EMAIL 
@@ -121,8 +128,19 @@
 		AND EMAIL = #{email}
 	</select>
 	
+	<select id="findPassword" parameterType="member" resultType="member">
+		SELECT USER_ID,EMAIL, PASSWORD 
+		FROM MEMBER
+		WHERE NAME = #{name}
+		AND EMAIL = #{email}
+		AND USER_ID = #{userId}
+	</select>
 	
-	
+	<select id="updateRandomPassword" parameterType="member" resultType="member">
+		UPDATE MEMBER
+		SET PASSWORD = #{password}
+		WHERE  USER_ID = #{userId}
+	</select>
 	
 	
 	

@@ -21,7 +21,13 @@ public interface MemberService {
 	
 	public MemberDTO passwordCheck(MemberDTO dto);
 	
-	public int CheckId(MemberDTO dto);
+	public int checkId(MemberDTO dto);
+	
+	public int checkEmail(MemberDTO dto);
 	
 	public MemberDTO findId(MemberDTO dto);
+	
+	public MemberDTO findPassword(MemberDTO dto);
+	
+	public int updateRandomPassword(MemberDTO dto);
 }

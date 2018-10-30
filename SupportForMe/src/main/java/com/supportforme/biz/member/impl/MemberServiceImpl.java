@@ -51,13 +51,28 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int CheckId(MemberDTO dto) {
+	public int checkId(MemberDTO dto) {
 		return dao.checkId(dto);
 	}
 
 	@Override
 	public MemberDTO findId(MemberDTO dto) {
 		return dao.findId(dto);
+	}
+
+	@Override
+	public int checkEmail(MemberDTO dto) {
+		return dao.checkEmail(dto);
+	}
+
+	@Override
+	public MemberDTO findPassword(MemberDTO dto) {
+		return dao.findPassword(dto);
+	}
+
+	@Override
+	public int updateRandomPassword(MemberDTO dto) {
+		return dao.updateRandomPassword(dto);
 	}
 	
 }

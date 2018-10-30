@@ -9,11 +9,12 @@
 <body>
 <div>
 	<h5>가입시 정보를 입력하여 주세요</h5>
-	<form>
-		이름 : <input id="name" type="text"><br>
-		EMAIL : <input id="name" type="text" ><input type="submint" value="ID 찾기">
+	<form action="../support/FindPassword" method="post">
+		ID : <input name="userId" type="text"><br>
+		이름 : <input name="name" type="text"><br>
+		EMAIL : <input name="email" type="text" ><input type="submit" value="ID 찾기">
 	</form>
-
+	<h5>비밀번호는 가입하실때 입력하신 Email로 발송 됩니다</h5>
 
 </div>
 </body>
