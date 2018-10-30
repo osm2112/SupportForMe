@@ -4,6 +4,7 @@ public class InvestDTO {
 	private String investNo;
 	private String investmentAmount;
 	private String totalInvestAmount;
+	private String headcount;
 	private String payType;
 	private String presentNo;
 	private String userId;
@@ -28,6 +29,12 @@ public class InvestDTO {
 	}
 	public void setTotalInvestAmount(String totalInvestAmount) {
 		this.totalInvestAmount = totalInvestAmount;
+	}
+	public String getHeadcount() {
+		return headcount;
+	}
+	public void setHeadcount(String headcount) {
+		this.headcount = headcount;
 	}
 	public String getPayType() {
 		return payType;
@@ -59,13 +66,12 @@ public class InvestDTO {
 	public void setPaymentState(String paymentState) {
 		this.paymentState = paymentState;
 	}
+	
 	@Override
 	public String toString() {
 		return "InvestDTO [investNo=" + investNo + ", investmentAmount=" + investmentAmount + ", totalInvestAmount="
-				+ totalInvestAmount + ", payType=" + payType + ", presentNo=" + presentNo + ", userId=" + userId
-				+ ", projectNo=" + projectNo + ", paymentState=" + paymentState + "]";
+				+ totalInvestAmount + ", headcount=" + headcount + ", payType=" + payType + ", presentNo=" + presentNo
+				+ ", userId=" + userId + ", projectNo=" + projectNo + ", paymentState=" + paymentState + "]";
 	}
-	
-	
-	
+
 }

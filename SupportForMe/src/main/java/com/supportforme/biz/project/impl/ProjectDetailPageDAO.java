@@ -27,9 +27,14 @@ public class ProjectDetailPageDAO {
 		return mybatis.selectList("projectDetail.getProjectHashtags", dto);
 	}
 	
-	//프로젝트의 총 모금액
-	public InvestDTO getProjectTotalInvestAmount(ProjectDTO dto) {
-		return mybatis.selectOne("projectDetail.getProjectTotalInvestAmount", dto);
+	//프로젝트의 총 모금액, 투자자 수
+	public InvestDTO getProjectAboutInvest(ProjectDTO dto) {
+		return mybatis.selectOne("projectDetail.getProjectAboutInvest", dto);
+	}
+	
+	//프로젝트의 진행률 조회
+	public String getProjectProgressRate(ProjectDTO dto) {
+		return mybatis.selectOne("projectDetail.getProjectProgressRate", dto);
 	}
 	
 	//프로젝트의 리워드 목록 조회

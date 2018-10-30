@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.supportforme.biz.comments.CommentsDTO;
-import com.supportforme.biz.invest.InvestDTO;
 import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectDetailPageService;
 
@@ -23,11 +22,14 @@ public class ProjectDetailPageController {
 									   ProjectDTO pjdto,
 									   CommentsDTO cdto,
 									   HttpSession session) {
-		pjdto.setProjectNo("201810290024");
+		pjdto.setProjectNo("201810310001");
 		cdto.setTopCommentNo("201810260001");	//댓글의 답글조회하려고
+		
 		model.addAttribute("project", projectDetailPageService.getProjectDetail(pjdto));
 		model.addAttribute("hashtag", projectDetailPageService.getProjectHashtags(pjdto));
-		model.addAttribute("invest", projectDetailPageService.getProjectTotalInvestAmount(pjdto));
+		model.addAttribute("invest", projectDetailPageService.getProjectAboutInvest(pjdto));
+		pjdto.setProjectProgressRate(projectDetailPageService.getProjectProgressRate(pjdto));
+		model.addAttribute("project", projectDetailPageService.getProjectProgressRate(pjdto));
 		model.addAttribute("present", projectDetailPageService.getProjectPresents(pjdto));
 		model.addAttribute("comments", projectDetailPageService.getComments(pjdto));
 		model.addAttribute("replyComments", projectDetailPageService.getReplyComments(cdto));

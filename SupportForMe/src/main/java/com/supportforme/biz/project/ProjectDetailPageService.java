@@ -14,8 +14,11 @@ public interface ProjectDetailPageService {
 	//프토젝트가 포함된 해시태그 조회
 	public List<HashtagDTO> getProjectHashtags(ProjectDTO dto);
 	
-	//프로젝트의 모금액 조회
-	public InvestDTO getProjectTotalInvestAmount(ProjectDTO dto);
+	//프로젝트의 모금액, 투자자수 조회
+	public InvestDTO getProjectAboutInvest(ProjectDTO dto);
+	
+	//프로젝트의 진행률 조회
+	public String getProjectProgressRate(ProjectDTO dto);
 	
 	//프로젝트의 리워드 목록 조회
 	public List<PresentDTO> getProjectPresents(ProjectDTO dto);

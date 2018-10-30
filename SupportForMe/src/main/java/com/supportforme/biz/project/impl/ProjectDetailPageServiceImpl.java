@@ -28,8 +28,13 @@ public class ProjectDetailPageServiceImpl implements ProjectDetailPageService {
 	}
 
 	@Override
-	public InvestDTO getProjectTotalInvestAmount(ProjectDTO dto) {
-		return projectDetailPageDAO.getProjectTotalInvestAmount(dto);
+	public InvestDTO getProjectAboutInvest(ProjectDTO dto) {
+		return projectDetailPageDAO.getProjectAboutInvest(dto);
+	}
+	
+	@Override
+	public String getProjectProgressRate(ProjectDTO dto) {
+		return projectDetailPageDAO.getProjectProgressRate(dto);
 	}
 	
 	@Override

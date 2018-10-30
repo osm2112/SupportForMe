@@ -10,6 +10,7 @@ public class ProjectDTO {
 	private String image;
 	private String targetAmount;
 	private String projectDeadline;
+	private String projectProgressRate;
 	private String scheduledPaymentDate;
 	private String introductionVideo;
 	private String story;
@@ -26,6 +27,12 @@ public class ProjectDTO {
 	private String percent;
 	private String totalInvest;
 	
+	public String getProjectProgressRate() {
+		return projectProgressRate;
+	}
+	public void setProjectProgressRate(String projectProgressRate) {
+		this.projectProgressRate = projectProgressRate;
+	}
 	public String getTotalInvest() {
 		return totalInvest;
 	}
@@ -142,18 +149,17 @@ public class ProjectDTO {
 	public void setCategoryCode(String categoryCode) {
 		this.categoryCode = categoryCode;
 	}
+	
 	@Override
 	public String toString() {
 		return "ProjectDTO [projectNo=" + projectNo + ", projectName=" + projectName + ", image=" + image
-				+ ", targetAmount=" + targetAmount + ", projectDeadline=" + projectDeadline + ", scheduledPaymentDate="
-				+ scheduledPaymentDate + ", introductionVideo=" + introductionVideo + ", story=" + story
-				+ ", depositAccount=" + depositAccount + ", bankCode=" + bankCode + ", progress=" + progress
-				+ ", userId=" + userId + ", introductionImage=" + introductionImage + ", supportPickYn=" + supportPickYn
-				+ ", deliveryDate=" + deliveryDate + ", categoryCode=" + categoryCode + ", uploadFile="
-				+ Arrays.toString(uploadFile) + ", percent=" + percent + ", totalInvest=" + totalInvest + "]";
+				+ ", targetAmount=" + targetAmount + ", projectDeadline=" + projectDeadline + ", projectProgressRate="
+				+ projectProgressRate + ", scheduledPaymentDate=" + scheduledPaymentDate + ", introductionVideo="
+				+ introductionVideo + ", story=" + story + ", depositAccount=" + depositAccount + ", bankCode="
+				+ bankCode + ", progress=" + progress + ", userId=" + userId + ", introductionImage="
+				+ introductionImage + ", supportPickYn=" + supportPickYn + ", deliveryDate=" + deliveryDate
+				+ ", categoryCode=" + categoryCode + ", uploadFile=" + Arrays.toString(uploadFile) + ", percent="
+				+ percent + ", totalInvest=" + totalInvest + "]";
 	}
-	
-	
-	
 	
 }
