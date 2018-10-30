@@ -17,9 +17,6 @@ public interface ProjectDetailPageService {
 	//프로젝트의 모금액, 투자자수 조회
 	public InvestDTO getProjectAboutInvest(ProjectDTO dto);
 	
-	//프로젝트의 진행률 조회
-	public String getProjectProgressRate(ProjectDTO dto);
-	
 	//프로젝트의 리워드 목록 조회
 	public List<PresentDTO> getProjectPresents(ProjectDTO dto);
 

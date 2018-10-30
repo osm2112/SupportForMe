@@ -33,11 +33,6 @@ public class ProjectDetailPageServiceImpl implements ProjectDetailPageService {
 	}
 	
 	@Override
-	public String getProjectProgressRate(ProjectDTO dto) {
-		return projectDetailPageDAO.getProjectProgressRate(dto);
-	}
-	
-	@Override
 	public List<PresentDTO> getProjectPresents(ProjectDTO dto) {
 		return projectDetailPageDAO.getProjectPresents(dto);
 	}
@@ -52,5 +47,4 @@ public class ProjectDetailPageServiceImpl implements ProjectDetailPageService {
 		return projectDetailPageDAO.getReplyComments(dto);
 	}
 
-	
 }

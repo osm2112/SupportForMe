@@ -54,7 +54,7 @@
         flex-direction: column;
         width: 520px;
         height: 430px;
-        background-color: ghostwhite;/*지워********************************************************************************/
+       /* background-color: ghostwhite;지워********************************************************************************/
     }
     
     .pjdtl-get-price {
@@ -67,6 +67,7 @@
     .pjdtl-invest-btn {
         width: 420px;
         height: 50px;
+        margin-right: 20px;
     }
     .pjdtl-share-btn {
         width: 50px;
@@ -90,7 +91,7 @@
         height: 50px;
     }
     .pjdtl-status-font {
-        font-size: 25px;
+        font-size: 23px;
         text-align: center;
     }
     
@@ -106,8 +107,9 @@
         width: 370px;
     }
     .pjdtl-each-reward {
-        width: 370px;
-        height: 300px;
+        width: 350px;
+        height: 250px;
+        padding: 20px;
         border: 1px solid lightgray;
     }
     
@@ -119,7 +121,7 @@
     <br>
     <div class="pjdtl-bodysize">
     <!-- 프로젝트 이름, 관리자 버튼 -->
-    <div class="pjdtl-flex-container" style="background-color: darkseagreen;">
+    <div class="pjdtl-flex-container">
         <div class="pjdtl-project-name">${project.projectName}</div>
         <button class="pjdtl-pick-btn" style="width:120px; height:40px; ">PICK</button>
     </div>
@@ -145,7 +147,7 @@
                 <div>${project.progress}</div>
                 <div>참여자 ${invest.headcount}명</div>
             </div>
-            <div style="background-color: pink;">
+            <div style="display:flex;">
                 <button class="pjdtl-invest-btn">투자하기</button>
                 <img src="../images/share-button.png" class="pjdtl-share-btn">
             </div><br>
@@ -158,7 +160,7 @@
                     <img src="../images/right-arrow.png" class="pjdtl-right-arrow">
                     <img src="../images/delivery-truck.png" class="pjdtl-status-img">
                 </div>
-                <div class="pjdtl-flex-container">
+                <div class="pjdtl-flex-container" >
                     <div class="pjdtl-status-font">종료일<br>${project.projectDeadline}</div>
                     <div class="pjdtl-status-font">결제 예정일<br>${project.scheduledPaymentDate}</div>
                     <div class="pjdtl-status-font">예상 배송일<br>${project.deliveryDate}</div>
@@ -173,7 +175,7 @@
     <br>
     <hr>
     <div class="pjdtl-bodysize">
-        <!--이거 네비게이션 쓸거-->
+        <!--이거 네비게이션 버튼 쓸거-->
         <li>
             <a class="">스토리</a>
         </li>
@@ -190,7 +192,7 @@
             <div style="font-size:30px;">리워드 목록</div>
             <c:forEach items="${present}" var="reward">
             <div class="pjdtl-each-reward">
-            	<span># n명이 선택</span><br>
+            	<img src="../images/check.png" style="width:20px; height:20px"><span style="font-size: 20px;"> n명이 선택</span><br>
             	<span>* ${reward.presentName}</span><br>
             	<span>* ${reward.presentPrice}원</span>
             </div><br>

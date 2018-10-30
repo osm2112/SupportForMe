@@ -26,8 +26,6 @@ public class ProjectDetailPageController {
 		cdto.setTopCommentNo("201810260001");	//댓글의 답글조회하려고
 		
 		model.addAttribute("project", projectDetailPageService.getProjectDetail(pjdto));
-		pjdto.setProjectProgressRate(projectDetailPageService.getProjectProgressRate(pjdto));
-		System.out.println("dkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"+projectDetailPageService.getProjectProgressRate(pjdto));
 		model.addAttribute("hashtag", projectDetailPageService.getProjectHashtags(pjdto));
 		model.addAttribute("invest", projectDetailPageService.getProjectAboutInvest(pjdto));
 		model.addAttribute("present", projectDetailPageService.getProjectPresents(pjdto));

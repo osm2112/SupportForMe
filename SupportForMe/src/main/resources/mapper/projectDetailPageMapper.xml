@@ -36,17 +36,6 @@
 	WHERE PROJECT_NO = #{projectNo}
 </select>
 
-<!-- 프로젝트 진행률 불러오기 -->
-<select id="getProjectProgressRate" resultType="string" parameterType="project">
-	SELECT PROJECT_PROGRESS_RATE(#{projectNo}) AS PROJECT_PROGRESS_RATE FROM DUAL
-</select>
-<!-- 
-<select id="getProjectProgressRate" resultType="project" statementType="CALLABLE" parameterType="project">
-	{CALL PROJECT_PROGRESS_RATE(#{projectNo},
-								#{projectProgressRate, mode=OUT, jdbcType=VARCHAR, javaType=string})}
-</select>
--->
-
 <!-- 프로젝트의 리워드(present) 목록 불러오기(화면 오른쪽) -->
 <select id="getProjectPresents" resultType="present" parameterType="project">
 	SELECT PRESENT_NO,

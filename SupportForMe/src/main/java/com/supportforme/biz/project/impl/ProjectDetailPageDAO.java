@@ -32,11 +32,6 @@ public class ProjectDetailPageDAO {
 		return mybatis.selectOne("projectDetail.getProjectAboutInvest", dto);
 	}
 	
-	//프로젝트의 진행률 조회
-	public String getProjectProgressRate(ProjectDTO dto) {
-		return mybatis.selectOne("projectDetail.getProjectProgressRate", dto);
-	}
-	
 	//프로젝트의 리워드 목록 조회
 	public List<PresentDTO> getProjectPresents(ProjectDTO dto) {
 		return mybatis.selectList("projectDetail.getProjectPresents", dto);
