@@ -8,16 +8,13 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <title>SupportForMe</title>
 <style>
-body {
-    margin:0px;
-}
 #headDiv {
 	margin:0px;
     border-bottom:1px solid lightgrey;
 }
 .bodysize {
   display:grid;
-  grid-template-columns: 2fr 6fr 2fr;
+  grid-template-columns: 1fr 6fr 1fr;
 }
 #head{
   padding : 10px 20px;
