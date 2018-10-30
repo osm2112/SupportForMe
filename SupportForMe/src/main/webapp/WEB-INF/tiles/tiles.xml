@@ -15,8 +15,7 @@
  		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
  		<put-attribute name="nav"	value="/WEB-INF/views/tiles/nav.jsp" />
 		<put-attribute name="content"	value="/WEB-INF/views/tiles/content.jsp" />
-<!-- 		<put-attribute name="footer"
-			value="/WEB-INF/views/tiles/footer.jsp" /> -->
+		<put-attribute name="footer"  value="/WEB-INF/views/tiles/footer.jsp" /> 
 	</definition>
 	
 	<!-- 메인, 검색,로그인, 회원가입 , 프로제트 디테일  layout (네비게이션 없는 페이지) noNav-->
