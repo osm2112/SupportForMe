@@ -22,7 +22,9 @@ public class ProjectDTO {
 	private String supportPickYn;
 	private String deliveryDate;
 	private String categoryCode;
-	private MultipartFile[] uploadFile; 
+	private MultipartFile uploadFile;
+	private String[] arrVideo;
+	private String[] arrImage;
 	
 	private String percent;
 	private String totalInvest;
@@ -125,10 +127,11 @@ public class ProjectDTO {
 	public void setIntroductionImage(String introductionImage) {
 		this.introductionImage = introductionImage;
 	}
-	public MultipartFile[] getUploadFile() {
+	
+	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}
-	public void setUploadFile(MultipartFile[] uploadFile) {
+	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
 	public String getSupportPickYn() {
@@ -150,6 +153,18 @@ public class ProjectDTO {
 		this.categoryCode = categoryCode;
 	}
 	
+	public String[] getArrVideo() {
+		return arrVideo;
+	}
+	public void setArrVideo(String[] arrVideo) {
+		this.arrVideo = arrVideo;
+	}
+	public String[] getArrImage() {
+		return arrImage;
+	}
+	public void setArrImage(String[] arrImage) {
+		this.arrImage = arrImage;
+	}
 	@Override
 	public String toString() {
 		return "ProjectDTO [projectNo=" + projectNo + ", projectName=" + projectName + ", image=" + image
@@ -158,8 +173,9 @@ public class ProjectDTO {
 				+ introductionVideo + ", story=" + story + ", depositAccount=" + depositAccount + ", bankCode="
 				+ bankCode + ", progress=" + progress + ", userId=" + userId + ", introductionImage="
 				+ introductionImage + ", supportPickYn=" + supportPickYn + ", deliveryDate=" + deliveryDate
-				+ ", categoryCode=" + categoryCode + ", uploadFile=" + Arrays.toString(uploadFile) + ", percent="
-				+ percent + ", totalInvest=" + totalInvest + "]";
+				+ ", categoryCode=" + categoryCode + ", uploadFile=" + uploadFile + ", arrVideo="
+				+ Arrays.toString(arrVideo) + ", arrImage=" + Arrays.toString(arrImage) + ", percent=" + percent
+				+ ", totalInvest=" + totalInvest + "]";
 	}
 	
 }

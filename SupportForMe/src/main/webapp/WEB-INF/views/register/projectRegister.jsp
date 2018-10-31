@@ -14,6 +14,9 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>프로젝트 등록</title>
 <style>
+input:focus{
+	outline:none;
+}
 .save_button {
 	font-size: 15px;
 	font-weight: 800;
@@ -85,25 +88,31 @@
     display:flex;
 
 }
-#thumbnailImg, .introductionImg{
+.rg_img {
 	position:relative;
-	width:200px;
-	height:170px;
 	border : 1px solid lightgrey;
 	text-align: center;
 	margin-right:10px;
 }
-#thumbnailImg:hover, .introductionImg:hover {
+.rg_img:hover {
 	cursor:pointer;
 }
-#thumbnailImg > img, .introductionImg > img{
+.thumbnailImg {
+	width:200px;
+	height:170px;
+}
+.introductionImg {
+	width:150px;
+	height:120px;
+}
+.thumbnailImg > img, .introductionImg > img, #soge{
 	position:absolute;
     max-width:100%; max-height:100%;
   	margin:auto;
     top:0; bottom:0; left:0; right:0;
 }
 
-#default {
+#default ,#plus{
 	 width:35px;
 	 height:35px;
 }
@@ -174,26 +183,23 @@ $(function() {
 					buttonText : "Select date"
 		});
 		
-		$("#thumbnailImg").on("click",function(){
+		$(".thumbnailImg").on("click",function(){
 			$("#fileUploadImage").click();
 		});
 		
-		$("input[type=file]").on("change",function() {
-			var path = $(this).val().split('\\')
-			var lg = $(this).val().split('\\').length-1;
-			var fileName = path[lg];
-			
+		$("#fileUploadImage").on("change",function() {
+
 			$("#fileUploadFrm").ajaxForm({
 				dataType:"json",
 				url:'fileUpload',
 				success: 
 					function(result, textStatus){
 						if(result.code = 'success') {
+							var fileName = result.filename;
 							$("#default").hide();
-							console.log(fileName);
 							var img = "<img src='/SupportForMe/upload/"+fileName+"'>";
-							$("#thumbnailImg").append(img); 
-							$("#image").val(fileName);
+							var tn = "<input type='hidden' name='image' id='thumbImage' value='"+fileName+"'>";
+							$(".thumbnailImg").html(img + "<br>" + tn); 
 						}
 					},
 				error: 
@@ -210,7 +216,7 @@ $(function() {
 			
 			if(page == "basic"){
 					$.ajax({
-					url : "<%=request.getContextPath()%>/forme/updateProject/story",
+					url : "../updateProject/story",
 					data : $("#registerBasicFrm").serialize(), 
 					method : "post",
 					success : function(result) {
@@ -257,11 +263,11 @@ $(function() {
 </script>
 </head>
 <body>
-	<div id="result">
-	<div style="height: 40px"></div>
 	<form name="fileUploadFrm" id="fileUploadFrm" method="post">
 		<input type="file" name="uploadFile" id="fileUploadImage" style="display:none">
 	</form>
+	<div id="result">
+	<div style="height: 40px"></div>
 	
 	<form name="registerBasicFrm" id="registerBasicFrm">
 		<input type="hidden" name="projectNo" value="${project.projectNo}">
@@ -289,11 +295,10 @@ $(function() {
 		<div id="basic_">
 			<div>프로젝트 대표 이미지를 등록해주세요</div>
 			<div class="fileContainer"> 
-				<div id="thumbnailImg">
-					<input type="hidden" name="image" id="image" value="">
-						<img src="/SupportForMe/images/picture.png" id="default">
+				<div class="thumbnailImg rg_img">
+					<img src="/SupportForMe/images/picture.png" id="default">
 					<c:if test="${project.image != null}" >
-						<img src="/SupportForMe/upload/${project.image}" id="image">
+						<img src="/SupportForMe/upload/${project.image}">
 					</c:if>
 				</div>
 			</div>
