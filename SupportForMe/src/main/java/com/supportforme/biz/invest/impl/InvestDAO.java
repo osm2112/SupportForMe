@@ -1,6 +1,7 @@
 package com.supportforme.biz.invest.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.supportforme.biz.invest.InvestDTO;
 import com.supportforme.biz.invest.InvestSearchDTO;
-import com.supportforme.biz.member.MemberDTO;
-import com.supportforme.biz.member.MemberSerachDTO;
+
 
 @Repository
 public class InvestDAO {
@@ -43,6 +43,11 @@ public class InvestDAO {
 	
 	public int getCnt(InvestSearchDTO searchDTO) {
 		return 0;
-	} 	
+	}
+
+	public List<Map<String, Object>>  getPresentList(InvestDTO dto){
+		return mybatis.selectList("getPresentList", dto);
+		
+	}
 
 }

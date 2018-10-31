@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link type="text/css" rel="stylesheet" href="css/lightslider.css" />                  
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="js/lightslider.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,13 +111,54 @@
         width: 370px;
     }
     .pjdtl-each-reward {
-        width: 350px;
-        height: 250px;
+        width: 330px;
+        height: 170px;
         padding: 20px;
         border: 1px solid lightgray;
     }
     
+    .demo {
+    width:420px;
+	}
+	.intro_ul {
+    list-style: none outside none;
+    padding-left: 0;
+    margin-bottom:0;
+	}
+	.intro_li {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    cursor:pointer;
+	}
+	.intro_size {
+    display: block;
+    height: auto;
+    max-width: 100%;
+	}
 </style>
+
+<script>
+
+	$("imageGallery").lightSlider({
+			gallery : true,
+			item : 1,
+			loop : true,
+			thumbItem : 9,
+			slideMargin : 0,
+			enableDrag : false,
+			currentPagerPosition : 'left',
+			onSliderLoad : function(el) {
+				el.lightGallery({
+					selector : '#imageGallery.lslide'
+				});
+			}
+		});
+	
+</script>
+
+
+
 </head>
     
 <body>
@@ -133,10 +178,17 @@
     <br>
     <div class="pjdtl-flex-container">
         <!-- 사진/이미지/영상/비디오 -->
-	<c:if test="${project.introductionVideo} != null">
-		<div class="pjdtl-intro-box">${project.introductionVideo}</div>
-	</c:if>
-        <div class="pjdtl-intro-box">${project.introductionVideo}</div>
+        <div class="demo">
+        	<ul id="imageGallery" class="intro_ul">
+				<c:forTokens items="${project.introductionImage}" delims="||" var="img">
+					<li class="intro_li" data-thumb="/SupportForMe/upload/${img}">
+						<img class="intro_size" src="/SupportForMe/upload/${img}" />
+					</li>
+				</c:forTokens>
+			</ul>
+        </div>
+        
+        
         <div class="pjdtl-empty-box"></div>
         <!-- 디테일 박스 -->
         <div class="pjdtl-detail-box">
@@ -192,9 +244,9 @@
             <div style="font-size:30px;">리워드 목록</div>
             <c:forEach items="${present}" var="reward">
             <div class="pjdtl-each-reward">
-            	<img src="../images/check.png" style="width:20px; height:20px"><span style="font-size: 20px;"> n명이 선택</span><br>
-            	<span>* ${reward.presentName}</span><br>
-            	<span>* ${reward.presentPrice}원</span>
+            	<img src="../images/check.png" style="width:20px; height:20px"><span style="font-size: 25px;color:#a6a6a6""> n명이 선택</span><br>
+            	<span style="font-size: 20px;">* ${reward.presentName}</span><br>
+            	<span style="font-size: 20px;">* ${reward.presentPrice}원</span>
             </div><br>
             </c:forEach>
         </div>

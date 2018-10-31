@@ -2,6 +2,7 @@ package com.supportforme.biz.invest;
 
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface InvestService {
@@ -20,6 +21,6 @@ public interface InvestService {
 	
 	public int getCnt(InvestSearchDTO searchDTO); 
 	
-
+	public List<Map<String, Object>>  getPresentList(InvestDTO dto);
 	
 }
