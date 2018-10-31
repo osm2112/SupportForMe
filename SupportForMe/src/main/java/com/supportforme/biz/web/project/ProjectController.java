@@ -47,7 +47,7 @@ public class ProjectController {
 		model.addAttribute("searchDTO", searchDto);
 		model.addAttribute("list", projectService.getProjects(searchDto)); // 목록조회해서 그결과를 model에 주고 뷰페이지로 return.
 		
-		return "projectselect/getProjects";				
+		return "noNav/projectselect/getProjects";				
 	}
 	//test용
 	@RequestMapping(value="/support/getProjects" , method=RequestMethod.POST)

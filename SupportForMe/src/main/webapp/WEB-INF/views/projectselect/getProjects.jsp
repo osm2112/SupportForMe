@@ -93,9 +93,10 @@
 <script>
 
 $(document).ready(function() {
-	var lastno = $(".project_box").last().attr("id");
-console.log(lastno);
+
 $(document).scroll(function() {
+	var lastno = $(".project_box").last().attr("id");
+	console.log(lastno);
 	    var maxHeight = $(document).height();
 	    var currentScroll = $(window).scrollTop() + $(window).height();   
 	    if (maxHeight <= currentScroll) {
@@ -103,6 +104,7 @@ $(document).scroll(function() {
 	    }
 	  });
 function loadArticle(lastno){
+	
     $.ajax({
 		type: "post",
 		url: "./getProjects",
@@ -112,8 +114,8 @@ function loadArticle(lastno){
 		dataType : "json",
 		success: function(data){	
 			console.log(data.length);
-			
-			$('.wrapper').append('<br><div class="div2">');
+			if(data.length > 0) {
+			$('.wrapper').append('<div class="div2">');
 				for(i=0; i < data.length; i++ ) {
 				
 						$('.wrapper').append(			
@@ -136,10 +138,12 @@ function loadArticle(lastno){
 			 					 +'</div>');
 				}			
 				$('.wrapper').append('</div>');
-				lastno = $(".project_box").last().attr("id");
-				console.log(lastno);
+				
+			}
 		}
   });
+    lastno = $(".project_box").last().attr("id");
+	console.log(lastno);
 }
 });
 </script>
