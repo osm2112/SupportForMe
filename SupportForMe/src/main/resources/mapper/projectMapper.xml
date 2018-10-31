@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project">
-<select id="getProjects" resultType="project" parameterType="com.supportforme.biz.project.ProjectSearchDTO">
+	<select id="getProjects" resultType="project" parameterType="com.supportforme.biz.project.ProjectSearchDTO">
 	SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
 		 SELECT p.* ,PROJECT_PROGRESS_RATE(p.project_no) "percent", FUNC_TOTAL_INVSET_AMOUNT(p.project_no) "totalInvest" FROM project p LEFT OUTER JOIN hashtag h 
 		 		  ON (p.project_no = h.project_no)	 	
@@ -14,8 +14,7 @@
 				and p.project_no > #{projectNo}
 				]]>
 				</if>
-		</where>
-		
+		</where>	
 		ORDER BY p.project_no	
 		 ) A )WHERE rnum BETWEEN #{start} AND #{end}
 	</select>
@@ -29,4 +28,26 @@
 		</where>
 	</select>
 
+	<!-- 공연 조회 -->
+	<select id="getPerformanceProjects" resultType="project">
+		SELECT p.*, PROJECT_PROGRESS_RATE(p.project_no) "percent", FUNC_TOTAL_INVSET_AMOUNT(p.project_no) "totalInvest" 
+		FROM ( SELECT * FROM project 	
+    		   ORDER BY DBMS_RANDOM.RANDOM ) p
+		<where>
+				<![CDATA[
+				category_code ='d04001' AND rownum < 5
+				]]>		
+		</where>
+	</select>
+	<!-- 미술 조회 -->
+	<select id="getArtProjects" resultType="project">
+		SELECT p.*, PROJECT_PROGRESS_RATE(p.project_no) "percent", FUNC_TOTAL_INVSET_AMOUNT(p.project_no) "totalInvest" 
+		FROM ( SELECT * FROM project 	
+    			ORDER BY DBMS_RANDOM.RANDOM ) p
+		<where>
+				<![CDATA[
+				category_code ='d04003' AND rownum < 5		
+				]]>		
+		</where>
+	</select>
 </mapper> 

@@ -55,7 +55,7 @@
 }
 
 .project_box:hover {
-	border: 4px solid red;
+	border: 4px solid rgb(26, 188, 156);
 	box-shadow: 8px 8px 3px grey;
 }
 
