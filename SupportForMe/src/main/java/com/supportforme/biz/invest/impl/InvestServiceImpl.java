@@ -1,7 +1,7 @@
 package com.supportforme.biz.invest.impl;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 import com.supportforme.biz.invest.InvestDTO;
 import com.supportforme.biz.invest.InvestSearchDTO;
 import com.supportforme.biz.invest.InvestService;
-import com.supportforme.biz.member.MemberDTO;
-import com.supportforme.biz.member.MemberSerachDTO;
-import com.supportforme.biz.member.MemberService;
+
 
 
 @Service
@@ -50,6 +48,8 @@ public class InvestServiceImpl implements InvestService {
 		return dao.getCnt(searchDTO);
 	}
 
-
-
+	@Override
+	public List<Map<String, Object>> getPresentList(InvestDTO dto) {
+		return dao.getPresentList(dto);
+	}
 }
