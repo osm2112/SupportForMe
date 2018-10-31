@@ -227,7 +227,7 @@ public class MemberController {
 				messageHelper.setFrom("ad20181029@gmail.com"); // 보내는사람 생략하거나 하면 정상작동을 안함
 				messageHelper.setTo(email); // 받는사람 이메일
 				messageHelper.setSubject("[중요] SupportForMe 관리자로부터"); // 메일제목은 생략이 가능하다
-				messageHelper.setText(userId); // 메일 내용
+				messageHelper.setText("현재 사용중이신 ID는 "+userId+" 입니다."); // 메일 내용
 				mailSender.send(message);
 				model.addAttribute("msg", "메일이 정상적으로 발송되었습니다. 메일을 확인해 주세요 ");
 				model.addAttribute("url", "../support/MemberLoginForm");
@@ -284,7 +284,7 @@ public class MemberController {
 				messageHelper.setFrom("ad20181029@gmail.com"); // 보내는사람 생략하거나 하면 정상작동을 안함
 				messageHelper.setTo(email); // 받는사람 이메일
 				messageHelper.setSubject("[중요] SupportForMe 관리자로부터"); // 메일제목은 생략이 가능하다
-				messageHelper.setText(pw); // 메일 내용
+				messageHelper.setText("비밀번호가 " + pw + "로 초기화되었습니다."); // 메일 내용
 				mailSender.send(message);
 				model.addAttribute("msg", "메일이 정상적으로 발송되었습니다. 메일을 확인해 주세요 ");
 				model.addAttribute("url", "../support/MemberLoginForm");
