@@ -115,10 +115,9 @@ function loadArticle(lastno){
 		success: function(data){	
 			console.log(data.length);
 			if(data.length > 0) {
-			$('.wrapper').append('<div class="div2">');
 				for(i=0; i < data.length; i++ ) {
 				
-						$('.wrapper').append(			
+						$('.div2').append(			
 			 					 '		<div class="project_box" id='+data[i].projectNo +'>'
 			 					 +'		<div class="mypage_project_image"><img src="../images/images.jpg"></div>'
 			 					 +'		<div class="mypage_project_content">'
@@ -137,7 +136,7 @@ function loadArticle(lastno){
 			 					 +'</div>'
 			 					 +'</div>');
 				}			
-				$('.wrapper').append('</div>');
+			
 				
 			}
 		}
