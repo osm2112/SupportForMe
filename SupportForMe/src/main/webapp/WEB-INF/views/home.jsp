@@ -95,6 +95,7 @@
             height:350px;
             border:1px solid lightgrey
         }
+        
         .main_project_image {
              width : 240px;
              height: 160px;
@@ -110,13 +111,24 @@
 	         width : 230px;
              height: 150px;
         }
-        .main_project_content nav{
+        .main_project_content ul{
             list-style-type: none;
         }
         .category_project_div {
             display : grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
         }
+        
+        .project_box:hover {
+	border: 4px solid rgb(26, 188, 156);
+	box-shadow: 8px 8px 3px grey;
+}
+.main_project_image img {
+	width: 100%;
+	height: 100%;
+	object-fit: .main_project_image;
+}
+
     </style>
 </header>
 <body>
@@ -163,43 +175,52 @@
 	<div style="height:50px"></div>
         <div class="suforme_top_1_text_div">공연 프로젝트</div>
         <div class="category_project_div">
-        <%-- <c:forEach items="${list}" var="project"> --%>
-	       <div class="project_box" style="">
-              <div class="main_project_image">프로젝트 대표 이미지<img src=""></div>
-		      <div class="main_project_content">
-                    <nav>
-                        <li>창작자 이름</li>
-                        <li style="font-size : 18px;">프로젝트 제목프로젝트 제목프로젝트 제목</li>
-                        <li style="height : 20px"></li>
-                        <li><span>000,000,000(모금액)</span> <span>##%</span></li>
-                        <li>====chart==============</li>
-                        <li>참여자 OO명</li>
-                    </nav>
-               </div>
-            </div>  
-       <%--  </c:forEach>  --%>          
-        </div>
+        
+        
+        
+        <c:forEach items="${Performance}" var="project">
+					<div class="project_box" id="${project.projectNo}" style="cursor: pointer;"	onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
+						<div class="main_project_image"><img src="./images/picture.png"></div>
+						<div class="main_project_content">
+							<ul>						
+								<li>창작자 ID : ${project.userId}</li>
+								<li style="font-size: 18px;">${project.projectName}</li>
+								<li style="height: 20px"></li>
+								<li style="display: grid; grid-template-columns: 70% 30%">
+									<span align="left">모금액 : ${project.totalInvest}</span> 
+									<span>${project.percent}%</span>
+								</li>
+								<li style="color: rgb(26, 188, 156);"><progress style="width:80%;" value="${project.percent}" max="100"></progress></li>
+								<li>목표금액 : ${project.targetAmount}</li>
+							</ul>
+						</div>
+					</div>
+		</c:forEach>
+       </div>
         
     <div style="height:50px"></div>
     <!-- 미술 부분  -->
     <div class="suforme_top_1_text_div">미술 프로젝트</div>
 	<div class="art_project_div">
         <div class="category_project_div">
-         <%-- <c:forEach items="${list}" var="project"> --%>
-	       <div class="project_box" style="">
-              <div class="main_project_image">프로젝트 대표 이미지<img src=""></div>
-		      <div class="main_project_content">
-                    <nav>
-                        <li>창작자 이름</li>
-                        <li style="font-size : 18px;">프로젝트 제목프로젝트 제목프로젝트 제목</li>
-                        <li style="height : 20px"></li>
-                        <li><span>000,000,000(모금액)</span> <span>##%</span></li>
-                        <li>====chart==============</li>
-                        <li>참여자 OO명</li>
-                    </nav>
-               </div>
-            </div>   
-         <%-- 	</c:forEach> --%>
+          <c:forEach items="${Art}" var="project">
+					<div class="project_box" id="${project.projectNo}" style="cursor: pointer;"	onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
+						<div class="main_project_image"><img src="./images/picture.png"></div>
+						<div class="main_project_content">
+							<ul>						
+								<li>창작자 ID : ${project.userId}</li>
+								<li style="font-size: 18px;">${project.projectName}</li>
+								<li style="height: 20px"></li>
+								<li style="display: grid; grid-template-columns: 70% 30%">
+									<span align="left">모금액 : ${project.totalInvest}</span> 
+									<span>${project.percent}%</span>
+								</li>
+								<li style="color: rgb(26, 188, 156);"><progress style="width:80%;" value="${project.percent}" max="100"></progress></li>
+								<li>목표금액 : ${project.targetAmount}</li>
+							</ul>
+						</div>
+					</div>
+		</c:forEach>
         
         </div>
     </div>

@@ -18,10 +18,21 @@ public class ProjectDAO {
 		System.out.println("==============프로젝트 목록 조회==========="); 
 		return mybatis.selectList("project.getProjects", searchDto);  
 	}
+	//공연조회
+	public List<ProjectDTO> getPerformanceProjects() {
+		return mybatis.selectList("project.getPerformanceProjects");
+	}
+	//미술조회
+	public List<ProjectDTO> getArtProjects() {
+		// TODO Auto-generated method stub
+		return mybatis.selectList("project.getArtProjects");
+	}
+	
 	//건수 조회
 	public int getCnt(ProjectSearchDTO searchDto) {
 		System.out.println("==============프로젝트 전체 건수 조회==============");
 		return mybatis.selectOne("project.getCnt", searchDto);
 	}
+	
 
 }

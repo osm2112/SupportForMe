@@ -22,10 +22,24 @@ public class ProjectServiceImpl implements ProjectService {
 		System.out.println("프로젝트 목록 조회"); 
 		return dao.getProjects(searchDto); // 핵심관심
 	}
+	//공연조회
+	@Override
+	public List<ProjectDTO> getPerformanceProjects() {
+		// TODO Auto-generated method stub
+		return dao.getPerformanceProjects();
+	}
+	//미술조회 
+	@Override
+	public List<ProjectDTO> getArtProjects() {
+		// TODO Auto-generated method stub
+		return dao.getArtProjects();
+	}
 	//건수조회
 	@Override
 	public int getCnt(ProjectSearchDTO searchDto) {
 		// TODO Auto-generated method stub
 		return dao.getCnt(searchDto);
 	}
+	
+	
 }
