@@ -31,6 +31,6 @@ public class ProjectDetailPageController {
 		model.addAttribute("present", projectDetailPageService.getProjectPresents(pjdto));
 		model.addAttribute("comments", projectDetailPageService.getComments(pjdto));
 		model.addAttribute("replyComments", projectDetailPageService.getReplyComments(cdto));
-		return "projectdetail/projectDetail";
+		return "noNav/projectdetail/projectDetail";
 	}
 }
