@@ -15,7 +15,7 @@
 <style>
 </style>
 </head>
-<script>
+<script>  
 $(function() {
 
 	$(".default").on("click",function(){
