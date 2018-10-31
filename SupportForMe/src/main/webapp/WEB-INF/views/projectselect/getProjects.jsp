@@ -46,14 +46,17 @@
 	background-color: blue;
 	border: 1px red solid;
 }  */
-
-
 <!-- -->
 .project_box {
             width : 100%; 
             height:400px;
-            border:1px solid lightgrey
+            border:1px solid lightgrey; 
         }
+.project_box:hover {
+		border: 4px solid red;
+		box-shadow: 8px 8px 3px grey;
+	}
+
 .project_state {
             border: 1.5px solid rgb(211, 84, 0);
             border-radius:5px;
@@ -103,8 +106,7 @@ $(document).scroll(function() {
 	    	loadArticle(lastno);	    	
 	    }
 	  });
-function loadArticle(lastno){
-	
+function loadArticle(lastno){	
     $.ajax({
 		type: "post",
 		url: "./getProjects",
@@ -115,10 +117,9 @@ function loadArticle(lastno){
 		success: function(data){	
 			console.log(data.length);
 			if(data.length > 0) {
-				for(i=0; i < data.length; i++ ) {
-				
+				for(i=0; i < data.length; i++ ) {				
 						$('.div2').append(			
-			 					 '		<div class="project_box" id='+data[i].projectNo +'>'
+			 					  '		<div class="project_box" id='+data[i].projectNo +' style="cursor:pointer;" onclick="location.href=\'./getProjectDetailPage?projectNo='+data[i].projectNo+'\'\">'  
 			 					 +'		<div class="mypage_project_image"><img src="../images/images.jpg"></div>'
 			 					 +'		<div class="mypage_project_content">'
 			 					 +'		<div class="project_state">'+data[i].progress+'</div>'
@@ -135,9 +136,7 @@ function loadArticle(lastno){
 			 					 +'</ul>'                                       
 			 					 +'</div>'
 			 					 +'</div>');
-				}			
-			
-				
+				}							
 			}
 		}
   });
@@ -158,7 +157,7 @@ function loadArticle(lastno){
 		</div>
  		<div class="div2">
  			<c:forEach items="${list}" var="project">
-	 		<div class="project_box" id="${project.projectNo}">
+	 		<div class="project_box" id="${project.projectNo}" style="cursor:pointer;" onclick="location.href='./getProjectDetailPage?projectNo=${project.projectNo}'">
               <div class="mypage_project_image"><img src="../images/images.jpg"></div>
 		      	<div class="mypage_project_content">
                   <div class="project_state">${project.progress}마감</div>
@@ -176,18 +175,7 @@ function loadArticle(lastno){
                </div>
  			</div> 
  			</c:forEach>
- 	
-<%--		<c:forEach items="${list}" var="project">
-			<div class="card" style="width: 20rem;">
-				<img class="card-img-top" src="./images/images.jpg"${project.image} alt="Card image cap">
-				<div class="card-body">
-					<h4 class="card-title">${project.progress}프로젝트상태</h4>
-					<p class="card-text">${project.projectName}</p>
-					<p class="card-text">${project.percent}%</p>
-					<p class="card-text">목표금액 : ${project.targetAmount}</p>
-				</div>
-			</div>
-		</c:forEach> --%>
+
 		<!--  참고
 			<div class="card" style="width: 20rem;">
 				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
