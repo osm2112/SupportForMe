@@ -131,28 +131,38 @@ input:focus{
 
 #keyword_div {
 	width:700px;
-	height:35px;
+	overflow:hidden;
+	height:auto;
+	min-height:100px;
+/* 	border : 1px solid lightgrey;
+	border-radius : 3.5px; */
+	padding-left:5px;
+}
+.keyText {
 	border : 1px solid lightgrey;
 	border-radius : 3.5px;
-}
-#keyword_div > input {
-	border : none;
 	width : 500px;
 	font-size:15px;
 }
-#keyword {
-	position:relative;
+#keyword_div > .keyword {
 	height:25px;
-	background-color:#4682B4;
-	display:grid;
-	grid-template-columns: 50px 50px;
+	background-color:#EAEAEA;
+	padding:2px 5px;
+	margin:2.5px 2.5px;
+	border-radius : 3.5px;
+	overflow:hidden;
 }
-#keyword > img {
-	position:absolute;
-	width : 20px;
-	height:20px;
-	vertical-align:middle;
+.keyword > label {
+	padding-right:2.5px;
+	margin-right:5px;
 }
+.keyword > img {
+	width : 10px;
+	height:10px;
+	margin-top:7.5px;
+	
+}
+
 </style>
 <script>
 $(function() {
@@ -248,14 +258,21 @@ $(function() {
 			
 		}); 
 		
-		$("input[name=keyword]").on("keypress",function(e) { 
-
-		    if (e.keyCode == 13){
-		    	var keyword = $(this).val();
-		    	/* var spanKeyword = "<span id=" */
-		    	
-
-		    }    
+		$("input[name='keyword']").on("keydown",function(e){
+			
+			if(e.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+	            console.log($(this).val().length);
+				var key = $(this).val();
+				$("#keywordWidth").text(key);
+				console.log($("#keywordWidth").outerWidth());
+	            var k = "<span class='keyword'><label class='keyword_label'>"+key+"</label><img src='/biz/images/remove.png' class='remove'></span>";
+	            /* $(".keyword_div").attr("grid-template-columns",{} */
+	            $("#keyword_div").append(k);
+	            console.log($("#keyword_div").width());
+	            $("input[name='keyword']").val("");
+	            
+	        }
+			
 		});
 		
 });
@@ -306,15 +323,15 @@ $(function() {
 		<div id="basic_keyword">
 			<div>프로젝트 키워드를 적어주세요 (선택사항)</div>
 			<div>제목 외에도 키워드 검색 시 검색 결과에 프로젝트가 나타납니다.</div>
+			<input type="text" name="keyword" class="inputStyle keyText"
+					placeholder="최대 5개까지 등록 가능합니다. 키워드 입력 후 엔터를 눌러주세요.">
 			<div id="keyword_div">
-				<div id="keyword">예술<img src="/SupportForMe/images/remove.png" id="remove"></div>
+				<span id="keywordWidth" style="display:none"></span>
 				<c:if test="${hashtag.hashtagName != null}" >
 					<c:forTokens var="keyword" items="${hashtag.hashtagName}" delims="||">
-		               
+		               <span class="keyword"><label class="keyword_label">${keyword}</label><img src="/biz/images/remove.png" class="remove"></span>
 		          	</c:forTokens>
 	          	</c:if>
-				<input type="text" name="keyword" class="inputStyle"
-					placeholder="최대 5개까지 등록 가능합니다. 키워드 입력 후 엔터를 눌러주세요.">
 			</div>
 		</div>
 		<input type="button" name="save" class="save_button" value="저장하기">
