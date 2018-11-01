@@ -7,7 +7,7 @@
 		<result column="PRESENT_NO" property="presentNo"/>
 		<result column="PRESENT_PRICE" property="presentPrice"/>
 		<result column="PRESENT_NAME" property="presentName"/>
-		<result column="PROJECT_NO" property="prejectNo"/>
+		<result column="PROJECT_NO" property="projectNo"/>
 		<result column="DELIVERY_DATE" property="deliveryDate"/>	
 	</resultMap>
 

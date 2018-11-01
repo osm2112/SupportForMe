@@ -18,6 +18,27 @@
             padding-top: 50px
         }
     </style>
+    <script>
+    
+    var presetNo =null;
+    var projectNo =null;
+    var price = 0;
+    var price2 = 0;
+	function selectPresent(){
+		var presentSelect = document.querySelector("input[name=present]:checked");
+		presetNo = presentSelect.nextSibling.nextSibling.value;
+		projectNo = presentSelect.nextSibling.nextSibling.nextSibling.nextSibling.value;
+		price = presentSelect.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.value;
+		document.querySelector("#allAmount").innerHTML= Number(price) + Number(price2);		
+	}
+	
+	function inputAmount(){
+		price2 = document.querySelector("#inputAmount").value;
+		document.querySelector("#allAmount").innerHTML= Number(price) + Number(price2);
+	}
+	
+	
+	</script>
 <body>
     
     <div style="width: 1200px" class="bodysize">
@@ -34,21 +55,24 @@
         <hr>
     <c:forEach items="${presentList}" var="presentList">
        <div style="background: lightgrey; width: 350px">
-            <input type="radio" name="invest"> 
+            <input type="radio" name="present" onclick="selectPresent()">
+         	<input type="hidden" value="${presentList.presentNo}" readonly="readonly">
+         	<input type="hidden" value="${presentList.projectNo}" readonly="readonly"> 
+         	<input type="hidden" value="${presentList.presentPrice}" readonly="readonly"> 
             ${presentList.presentPrice} 투자<br>
        		${presentList.presentName}<br>
          	발송 예정일  ${presentList.deliveryDate}
         </div>
         <br>
 	</c:forEach>	
-        
+
 
             <hr>
             <h3>추가 투자</h3>
             <font style="color:red">선택사항</font><br>
-            <input type="number" value=0> 원을 추가 투자
+            <input type="number" id="inputAmount" value=0 onkeyup="inputAmount()"> 원을 추가 투자
             <hr>
-            <h3>총 투자 금액 0원</h3>
+            <h3>총 투자 금액 <span id="allAmount">0</span>원</h3>
             <input type="button" value="다음단계" style="background:rgb(26, 188, 156);color:white">
         </div>
     </session>      

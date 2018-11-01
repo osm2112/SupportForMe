@@ -18,14 +18,21 @@ import com.supportforme.biz.invest.InvestService;
 @Controller
 public class InvestController {
 	@Autowired InvestService investService;
-	
+/*	
 	@RequestMapping("/forme/InvestSelectRewardForm")
 	public String investSelectRewardForm() {
 		return "noNav/invest/investSelectRewardForm";
+	}	
+*/	
+	
+	
+	@RequestMapping("/forme/investPaymentInfoForm")
+	public String investPaymentInfoForm() {
+		return "noNav/invest/investPaymentInfoForm";
 	}
 	
 	
-	@RequestMapping("/forme/GetPresentList")
+	@RequestMapping("/forme/InvestSelectReward")
 	public String getPresentList(InvestDTO dto, Model model) {
 		InvestDTO dto2 = new InvestDTO();
 		dto2.setProjectNo("201810310005");
