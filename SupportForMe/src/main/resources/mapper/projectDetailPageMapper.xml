@@ -43,8 +43,14 @@
 		   PRESENT_PRICE
 	FROM PRESENT
 	WHERE PROJECT_NO = #{projectNo}
+	ORDER BY PRESENT_NO
 </select>
-
+<select id="getProjectPresentsCount" resultType="present" parameterType="project">
+	SELECT COUNT(*) AS REWARD_SELECT_COUNT
+	FROM INVEST
+	WHERE PROJECT_NO = #{projectNo}
+	GROUP BY PRESENT_NO
+</select>
 <!-- 댓글 불러오기 -->
 <select id="getComments" resultType="comments" parameterType="project">
 	SELECT *
@@ -58,4 +64,4 @@
 	FROM COMMENTS
 	WHERE TOP_COMMENT_NO = #{topCommentNo}
 </select>
-</mapper> 
+</mapper>

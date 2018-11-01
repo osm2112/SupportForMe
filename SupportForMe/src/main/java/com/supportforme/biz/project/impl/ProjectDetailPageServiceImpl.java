@@ -36,7 +36,11 @@ public class ProjectDetailPageServiceImpl implements ProjectDetailPageService {
 	public List<PresentDTO> getProjectPresents(ProjectDTO dto) {
 		return projectDetailPageDAO.getProjectPresents(dto);
 	}
-
+	@Override
+	public List<PresentDTO> getProjectPresentsCount(ProjectDTO dto) {
+		return projectDetailPageDAO.getProjectPresentsCount(dto);
+	}
+	
 	@Override
 	public List<CommentsDTO> getComments(ProjectDTO dto) {
 		return projectDetailPageDAO.getComments(dto);
@@ -46,5 +50,7 @@ public class ProjectDetailPageServiceImpl implements ProjectDetailPageService {
 	public List<CommentsDTO> getReplyComments(CommentsDTO dto) {
 		return projectDetailPageDAO.getReplyComments(dto);
 	}
+
+	
 
 }

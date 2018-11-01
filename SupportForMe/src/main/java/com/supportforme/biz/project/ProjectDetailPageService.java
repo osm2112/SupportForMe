@@ -19,6 +19,7 @@ public interface ProjectDetailPageService {
 	
 	//프로젝트의 리워드 목록 조회
 	public List<PresentDTO> getProjectPresents(ProjectDTO dto);
+	public List<PresentDTO> getProjectPresentsCount(ProjectDTO dto);
 
 	//프로젝트에 달린 댓글 조회
 	public List<CommentsDTO> getComments(ProjectDTO dto);

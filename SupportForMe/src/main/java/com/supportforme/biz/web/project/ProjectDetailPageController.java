@@ -29,6 +29,7 @@ public class ProjectDetailPageController {
 		model.addAttribute("hashtag", projectDetailPageService.getProjectHashtags(pjdto));
 		model.addAttribute("invest", projectDetailPageService.getProjectAboutInvest(pjdto));
 		model.addAttribute("present", projectDetailPageService.getProjectPresents(pjdto));
+		model.addAttribute("presentCount", projectDetailPageService.getProjectPresentsCount(pjdto));
 		model.addAttribute("comments", projectDetailPageService.getComments(pjdto));
 		model.addAttribute("replyComments", projectDetailPageService.getReplyComments(cdto));
 		return "noNav/projectdetail/projectDetail";

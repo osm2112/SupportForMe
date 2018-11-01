@@ -5,7 +5,14 @@ public class PresentDTO {
 	private String presentPrice;
 	private String presentName;
 	private String projectNo;
+	private String rewardSelectCount;
 	
+	public String getRewardSelectCount() {
+		return rewardSelectCount;
+	}
+	public void setRewardSelectCount(String rewardSelectCount) {
+		this.rewardSelectCount = rewardSelectCount;
+	}
 	public String getPresentNo() {
 		return presentNo;
 	}
@@ -34,7 +41,7 @@ public class PresentDTO {
 	@Override
 	public String toString() {
 		return "PresentDTO [presentNo=" + presentNo + ", presentPrice=" + presentPrice + ", presentName=" + presentName
-				+ ", projectNo=" + projectNo + "]";
+				+ ", projectNo=" + projectNo + ", rewardSelectCount=" + rewardSelectCount + "]";
 	}
 	
 	

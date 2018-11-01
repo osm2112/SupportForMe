@@ -36,6 +36,9 @@ public class ProjectDetailPageDAO {
 	public List<PresentDTO> getProjectPresents(ProjectDTO dto) {
 		return mybatis.selectList("projectDetail.getProjectPresents", dto);
 	}
+	public List<PresentDTO> getProjectPresentsCount(ProjectDTO dto) {
+		return mybatis.selectList("projectDetail.getProjectPresentsCount", dto);
+	}
 	
 	//프로젝트에 달린 댓글 조회
 	public List<CommentsDTO> getComments(ProjectDTO dto) {
