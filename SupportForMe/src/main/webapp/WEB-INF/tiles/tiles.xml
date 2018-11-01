@@ -19,6 +19,10 @@
 	</definition>
 	
 	<!-- 메인, 검색,로그인, 회원가입 , 프로제트 디테일  layout (네비게이션 없는 페이지) noNav-->
+	<definition name="noNav/*" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/{1}.jsp" />
+	</definition>
+	
 	<definition name="noNav/*/*" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>

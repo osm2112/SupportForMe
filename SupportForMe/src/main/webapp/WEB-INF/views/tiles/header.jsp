@@ -12,9 +12,9 @@
 	margin:0px;
     border-bottom:1px solid lightgrey;
 }
-.bodysize {
+.headBodysize {
   display:grid;
-  grid-template-columns: 1fr 6fr 1fr;
+  grid-template-columns: 1fr 7fr 1fr;
 }
 #head{
   padding : 10px 20px;
@@ -157,7 +157,7 @@ function view() {
 }
 </script>
 <div id="headDiv">
-	<div class="bodysize">
+	<div class="headBodysize">
     	<div></div>
     	<div id="head">
 	    	<!--  화면줄였을때 보이는 영역 -->

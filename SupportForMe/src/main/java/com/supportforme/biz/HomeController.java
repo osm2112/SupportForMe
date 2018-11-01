@@ -26,7 +26,7 @@ public class HomeController {
 		model.addAttribute("Performance",projectService.getPerformanceProjects());
 		model.addAttribute("Art",projectService.getArtProjects());
 		model.addAttribute("Rank",projectService.getInvsetTop5());
-		return "home";
+		return "noNav/home";
 	}
 	
 }
