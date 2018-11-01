@@ -16,4 +16,7 @@ public interface ProjectService {
 	//건수조회
 	public int getCnt(ProjectSearchDTO searchDto);
 	
+	//랭크조회
+	public List<ProjectDTO> getInvsetTop5();
+	
 }

@@ -6,7 +6,6 @@
 <html>
 <header>
     <style>
-        
         .bodysize {
            margin-left: auto;
            margin-right: auto;
@@ -132,6 +131,9 @@
     </style>
 </header>
 <body>
+
+
+		
     <div>
     <img src="main.png" class="slide_main_img">
     </div>
@@ -154,18 +156,19 @@
                 </div>
             </div>
         </div>
+       
         <div class="real_time_rank_outer">
             <div class="suforme_top_1_text_div">실시간 랭킹</div>
             <div class="real_time_rank_div">
-                <div class="real_time_image">프로젝트 대표 이미지<img src=""></div>
+                <div class="real_time_image">프로젝트 대표 이미지<img id="RankImg" src=""></div>
 		      <div class="real_time_rank_projects">
                     <nav>
                         <ol>
-                            <li>프로젝트 제목 1</li>
-                            <li>프로젝트 제목 2</li>
-                            <li>프로젝트 제목 3</li>
-                            <li>프로젝트 제목 4</li>
-                            <li>프로젝트 제목 5</li>
+                       
+                         <c:forEach items="${Rank}" var="Rank">
+                            <li>${Rank.projectName}</li>
+                          </c:forEach>
+
                         </ol>
                     </nav>
                </div>

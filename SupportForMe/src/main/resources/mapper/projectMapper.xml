@@ -50,4 +50,18 @@
 				]]>		
 		</where>
 	</select>
+	
+	<!-- 실시간랭킹 조회 -->
+	<select id="getInvsetTop5" resultType="project">
+		<![CDATA[	
+				SELECT project_no, project_name, image
+				FROM (   select i.project_no, count(*) as count ,p.project_name, p.image
+    	  	      	from invest i JOIN project p on( i.PROJECT_NO = p.project_no)
+     		      	  group by i.project_no, p.project_name, p.image
+	      	    	  order by count desc)
+		 		WHERE rownum <=5
+		 		]]> 
+			 	
+	</select>
+	
 </mapper> 

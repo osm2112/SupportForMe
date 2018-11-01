@@ -33,8 +33,6 @@ public class ProjectController {
 	public String getProjects(Model model,
 							ProjectSearchDTO searchDto
 						  ,Paging paging) {
-		System.out.println(searchDto.getSearchKeyword()+ ":               "+ searchDto.getStart());
-
 		//전체 건수	
 		int total = projectService.getCnt(searchDto); 
 		paging.setTotalRecord(total);

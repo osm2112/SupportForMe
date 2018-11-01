@@ -25,6 +25,7 @@ public class HomeController {
 	public String home(Model model) {
 		model.addAttribute("Performance",projectService.getPerformanceProjects());
 		model.addAttribute("Art",projectService.getArtProjects());
+		model.addAttribute("Rank",projectService.getInvsetTop5());
 		return "home";
 	}
 	

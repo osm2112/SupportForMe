@@ -33,6 +33,10 @@ public class ProjectDAO {
 		System.out.println("==============프로젝트 전체 건수 조회==============");
 		return mybatis.selectOne("project.getCnt", searchDto);
 	}
+	//랭킹 조회
+	public List<ProjectDTO> getInvsetTop5(){
+		return mybatis.selectList("project.getInvsetTop5");
+	}
 	
 
 }

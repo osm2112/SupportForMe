@@ -40,6 +40,12 @@ public class ProjectServiceImpl implements ProjectService {
 		// TODO Auto-generated method stub
 		return dao.getCnt(searchDto);
 	}
+	//랭킹조회
+	@Override
+	public List<ProjectDTO> getInvsetTop5() {
+		// TODO Auto-generated method stub
+		return dao.getInvsetTop5();
+	}
 	
 	
 }
