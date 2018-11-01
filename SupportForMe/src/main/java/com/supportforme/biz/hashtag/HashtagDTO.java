@@ -4,6 +4,7 @@ public class HashtagDTO {
 	private String hashtagNo;
 	private String hashtagName;
 	private String projectNo;
+	private String[] arrHashtag;
 	
 	public String getHashtagNo() {
 		return hashtagNo;
@@ -23,7 +24,12 @@ public class HashtagDTO {
 	public void setProjectNo(String projectNo) {
 		this.projectNo = projectNo;
 	}
-	
+	public String[] getArrHashtag() {
+		return arrHashtag;
+	}
+	public void setArrHashtag(String[] arrHashtag) {
+		this.arrHashtag = arrHashtag;
+	}
 	@Override
 	public String toString() {
 		return "HashtagDTO [hashtagNo=" + hashtagNo + ", hashtagName=" + hashtagName + ", projectNo=" + projectNo

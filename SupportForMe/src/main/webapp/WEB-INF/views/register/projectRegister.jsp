@@ -84,9 +84,16 @@ input:focus{
 	padding-right:10px;
 }
 .fileContainer {
+	width: 1000px;
     position: relative;
-    display:flex;
-
+    display: grid;
+	grid-column: 1/5;
+	grid-column-gap: 10px; 
+	grid-row-gap:10px; 
+	grid-template-columns: repeat(5, 200px);
+	/*grid-template-columns: 25% 25% 25% 25%;*/
+	grid-auto-rows: minmax(20px, auto);
+	/* text-align: center; */
 }
 .rg_img {
 	position:relative;
@@ -98,12 +105,12 @@ input:focus{
 	cursor:pointer;
 }
 .thumbnailImg {
-	width:200px;
-	height:170px;
+	width:395px;
+	height:300px;
 }
 .introductionImg {
-	width:150px;
-	height:120px;
+	width:200px;
+	height:150px;
 }
 .thumbnailImg > img, .introductionImg > img, #soge{
 	position:absolute;
@@ -150,7 +157,8 @@ input:focus{
 	padding:2px 5px;
 	margin:2.5px 2.5px;
 	border-radius : 3.5px;
-	overflow:hidden;
+	display : inline-block;
+	float:left;
 }
 .keyword > label {
 	padding-right:2.5px;
@@ -166,10 +174,55 @@ input:focus{
 </style>
 <script>
 $(function() {
+	
+		//////공통 js-------------------------
 		$(".save_button").on("click", function() {
 
 		});
-
+		
+		$(".next_button").on("click",function() {
+					
+					var page = $(this).attr("class").split(" ")[1];
+					
+					switch(page){
+					case "basic" : 
+							$.ajax({
+								url : "../updateProject/story",
+								data : $("#registerBasicFrm").serialize(), 
+								method : "post",
+								success : function(result) {
+									$("#result").html(result);
+								}
+							});
+							break;
+					
+					case "story" : 
+							$.ajax({
+								url : "../updateProject/reward",
+								data : $("#registerStoryFrm").serialize(), 
+								method : "post",
+								success : function(result) {
+									$("#result").html(result);
+								}
+							});	
+							break;
+					case "reward" :
+							$.ajax({
+								url : "../updateProject/pay",
+								data : $("#registerRewardFrm").serialize(), 
+								method : "post",
+								success : function(result) {
+									$("#result").html(result);
+								}
+							});	
+							break;
+					default  : break;
+							}
+					
+				}); 
+		//////공통 js----------------------
+	
+		//////기본정보 js ------------------
 		$("#projectDeadline").datepicker(
 				{
 					dateFormat : "yy-mm-dd",
@@ -198,92 +251,112 @@ $(function() {
 		});
 		
 		$("#fileUploadImage").on("change",function() {
-
-			$("#fileUploadFrm").ajaxForm({
-				dataType:"json",
-				url:'fileUpload',
-				success: 
-					function(result, textStatus){
-						if(result.code = 'success') {
-							var fileName = result.filename;
-							$("#default").hide();
-							var img = "<img src='/SupportForMe/upload/"+fileName+"'>";
-							var tn = "<input type='hidden' name='image' id='thumbImage' value='"+fileName+"'>";
-							$(".thumbnailImg").html(img + "<br>" + tn); 
+		
+			if($(this).val() != "") {
+				$("#fileUploadFrm").ajaxForm({
+					dataType:"json",
+					url:'fileUpload',
+					success: 
+						function(result, textStatus){
+							if(result.code = 'success') {
+								var fileName = result.filename;
+								$("#default").hide();
+								var img = "<img src='/SupportForMe/upload/"+fileName+"'>";
+								var tn = "<input type='hidden' name='image' id='thumbImage' value='"+fileName+"'>";
+								$(".thumbnailImg").html(img + "<br>" + tn); 
+							}
+						},
+					error: 
+						function(){
+							alert("파일업로드 중 오류가 발생하였습니다.");
+							return;
 						}
-					},
-				error: 
-					function(){
-						alert("파일업로드 중 오류가 발생하였습니다.");
-						return;
-					}
-			}).submit();
-		}); 
-		
-		$(".next_button").on("click",function() {
-			
-			var page = $(this).attr("class").split(" ")[1];
-			
-			if(page == "basic"){
-					$.ajax({
-					url : "../updateProject/story",
-					data : $("#registerBasicFrm").serialize(), 
-					method : "post",
-					success : function(result) {
-						$("#result").html(result);
-					}
-				}); 
-			}else if(page == "story") {
-				$.ajax({
-					url : "../updateProject/reward",
-					data : $("#registerStoryFrm").serialize(), 
-					method : "post",
-					success : function(result) {
-						$("#result").html(result);
-					}
-				});	
-			}else if(page == "reward"){
-				$.ajax({
-					url : "../updateProject/pay",
-					data : $("#registerRewardFrm").serialize(), 
-					method : "post",
-					success : function(result) {
-						$("#result").html(result);
-					}
-				});	
-			}else {
-				return;
+				}).submit();
 			}
-			
-			
 		}); 
 		
+		//hashtag 갯수 가져오기
+		function removeNo() {
+			var removeCount = $(".remove").length;
+			if(removeCount > 0){	return removeCount + 1;	}
+			else { return removeCount; }
+		}
 		$("input[name='keyword']").on("keydown",function(e){
 			
 			if(e.keyCode == 13){//키가 13이면 실행 (엔터는 13)
-	            console.log($(this).val().length);
+				
 				var key = $(this).val();
-				$("#keywordWidth").text(key);
-				console.log($("#keywordWidth").outerWidth());
-	            var k = "<span class='keyword'><label class='keyword_label'>"+key+"</label><img src='/biz/images/remove.png' class='remove'></span>";
-	            /* $(".keyword_div").attr("grid-template-columns",{} */
+				var rc = removeNo();
+	            var k = "<span class='keyword'><label class='keyword_label'>"+key
+	            	  +"</label><img src='/SupportForMe/images/remove.png' class='remove " + rc + "'></span>";
 	            $("#keyword_div").append(k);
-	            console.log($("#keyword_div").width());
 	            $("input[name='keyword']").val("");
+	            var hiddenHash = "<input type='hidden' name='arrHashtag' val='"+ key + "'>";
+	            $("#basic_keyword").append(hiddenHash);
 	            
 	        }
 			
 		});
+		//기본정보 js ------------------       
+	   	
+		//story--------------------------------------------------------------
+		//story page img upload---------------
+		$(document).on("click","#storyDefault",function(){
+			$("#fileUploadStory").click();
+		});
+		
+		$(document).on("change","#fileUploadStory",function() {
+			
+			if($(this).val() != "") {
+				$("#fileUploadStoryFrm").ajaxForm({
+					dataType:"json",
+					url:'fileUpload',
+					success: 
+						function(result, textStatus){
+							if(result.code = 'success') {
+								var fileName = result.filename;
+								console.log(fileName);
+								$("#storyDefault").remove();
+								var img = "<div class='introductionImg rg_img soge'>"
+										+ "<img src='/SupportForMe/upload/"+fileName+"' id='soge'></div>";		
+								var tn = "<input type='hidden' name='arrImage' value='"+fileName+"'>";
+								$(".plus").before(img)
+								$("#story_image").append(tn);
+							}
+						},
+					error: 
+						function(){
+							alert("파일업로드 중 오류가 발생하였습니다.");
+							return;
+						}
+				}).submit(); 
+			}
+		}); 
+		
+		$(document).on("click",".plus",function(){
+			
+			if($(this).prev().attr("id") != "storyDefault"){
+				var dfImg = "<div class='introductionImg rg_img' id='storyDefault'>"
+					  + "<img src='/SupportForMe/images/picture.png' id='default'>"	
+					  +	"</div>";
+					$(".plus").before(dfImg);
+			}else { alert("먼저 이미지를 등록해주세요"); return ;}
+			
+		})
+		//story page img upload----------- 
+		//story--------------------------------------------------------------
+		
+		
 		
 });
 
 </script>
 </head>
 <body>
-	<form name="fileUploadFrm" id="fileUploadFrm" method="post">
-		<input type="file" name="uploadFile" id="fileUploadImage" style="display:none">
-	</form>
 	<div id="result">
+	<form name="fileUploadFrm" id="fileUploadFrm" method="post">
+		<input type="file" name="uploadFile" id="fileUploadImage" accept=".gif, .jpg, .png"  style="display:none">
+	</form>
 	<div style="height: 40px"></div>
 	
 	<form name="registerBasicFrm" id="registerBasicFrm">
@@ -323,14 +396,13 @@ $(function() {
 		<div id="basic_keyword">
 			<div>프로젝트 키워드를 적어주세요 (선택사항)</div>
 			<div>제목 외에도 키워드 검색 시 검색 결과에 프로젝트가 나타납니다.</div>
-			<input type="text" name="keyword" class="inputStyle keyText"
+			<input type="text" name="keyword" class="inputStyle keyText" maxlength="10"
 					placeholder="최대 5개까지 등록 가능합니다. 키워드 입력 후 엔터를 눌러주세요.">
 			<div id="keyword_div">
-				<span id="keywordWidth" style="display:none"></span>
-				<c:if test="${hashtag.hashtagName != null}" >
-					<c:forTokens var="keyword" items="${hashtag.hashtagName}" delims="||">
-		               <span class="keyword"><label class="keyword_label">${keyword}</label><img src="/biz/images/remove.png" class="remove"></span>
-		          	</c:forTokens>
+				<c:if test="${hashtag != null}" >
+					<c:forEach items="${hashtag}" var="keyword" >
+						<span class='keyword'><label class='keyword_label'>${keyword.hashtagName}</label><img src='/SupportForMe/images/remove.png' class='remove'></span>
+					</c:forEach>
 	          	</c:if>
 			</div>
 		</div>

@@ -8,51 +8,17 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
-<script src="http://malsup.github.com/jquery.form.js"></script> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>  
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>프로젝트 등록</title>
 <style>
 </style>
 </head>
-<script>  
-$(function() {
-
-	$(".default").on("click",function(){
-		$("#fileUploadStory").click();
-	});
-	
-	$("#fileUploadStory").on("change",function() {
-	
-		$("#fileUploadStoryFrm").ajaxForm({
-			dataType:"json",
-			url:'fileUpload',
-			success: 
-				function(result, textStatus){
-					if(result.code = 'success') {
-						var fileName = result.filename;
-						console.log(fileName);
-						$(".default").hide();
-						var img = "<div class='introductionImg rg_img soge'>"
-								+ "<img src='/SupportForMe/upload/"+fileName+"' id='soge'></div>";		
-						var tn = "<input type='hidden' name='arrImage' value='"+fileName+"'>";
-						$(".plus").before(img)
-						$("#story_image").append(tn);
-					}
-				},
-			error: 
-				function(){
-					alert("파일업로드 중 오류가 발생하였습니다.");
-					return;
-				}
-		}).submit();
-	}); 
-}); 
-</script>
 <body>
-
+	
 	<form name="fileUploadStoryFrm" id="fileUploadStoryFrm" method="post">
-		<input type="file" name="uploadFile" id="fileUploadStory" style="display:none">
+		<input type="file" name="uploadFile" id="fileUploadStory"  accept=".gif, .jpg, .png" style="display:none">
 	</form>
     <div style="height:50px"></div>
     
@@ -77,7 +43,7 @@ $(function() {
 							</div>		             		
 		          		</c:forTokens>	
 				</c:if>
-				<div class="introductionImg rg_img default">
+				<div class="introductionImg rg_img" id="storyDefault">
 					<img src="/SupportForMe/images/picture.png" id="default" class="">	
 				</div>
 				<div class="introductionImg plus rg_img">
@@ -92,5 +58,6 @@ $(function() {
    	<input type="button" name="save" class="save_button" value="저장하기">
 	<input type="button" name="next" class="next_button story" value="다음 단계">
 	</form>
+	
 </body>
 </html>

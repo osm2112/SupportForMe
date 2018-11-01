@@ -92,6 +92,12 @@ public class projectRegisterController {
 	@ResponseBody
 	public Map<String,String> fileUpload(@ModelAttribute("project") ProjectDTO dto, HttpServletRequest request) throws IllegalStateException, IOException {
 		String folder = request.getSession().getServletContext().getRealPath("/upload");
+        
+		File file = new File(folder);
+        //디렉토리 존재하지 않을경우 디렉토리 생성
+        if(!file.exists()) {
+        	file.mkdirs();
+        }
 		System.out.println("=========folder경로" + folder);
 		
 		//첨부파일 처리
