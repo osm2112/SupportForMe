@@ -1,5 +1,7 @@
 package com.supportforme.biz.hashtag;
 
+import java.util.Arrays;
+
 public class HashtagDTO {
 	private String hashtagNo;
 	private String hashtagName;
@@ -33,9 +35,7 @@ public class HashtagDTO {
 	@Override
 	public String toString() {
 		return "HashtagDTO [hashtagNo=" + hashtagNo + ", hashtagName=" + hashtagName + ", projectNo=" + projectNo
-				+ ", getHashtagNo()=" + getHashtagNo() + ", getHashtagName()=" + getHashtagName() + ", getProjectNo()="
-				+ getProjectNo() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ ", arrHashtag=" + Arrays.toString(arrHashtag) + "]";
 	}
 	
 }

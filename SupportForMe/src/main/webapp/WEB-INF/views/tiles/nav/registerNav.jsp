@@ -35,6 +35,7 @@
     </style>
 </head>
 <body>
+	<div style="height:30px"></div>
     <div style="height : 45px; font-size : 25px;font-weight: 800;padding :20px;color:grey;">프로젝트 등록</div>
     <div id="project_register">
         <div id="project_register_menu">

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.supportforme.biz.hashtag.HashtagDTO;
 import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectRegisterService;
 
@@ -50,7 +51,7 @@ public class projectRegisterController {
 	}
 	
 	@RequestMapping(value={"/forme/updateProject/story","/forme/updateProject/reward","/forme/updateProject/pay"})
-	public String updateProject(@ModelAttribute("project") ProjectDTO dto,HttpServletRequest request
+	public String updateProject(@ModelAttribute("project") ProjectDTO dto, HttpServletRequest request
 								,HttpSession session , SessionStatus status) {
 		String uri = request.getRequestURI();
 		String com = uri.substring(uri.lastIndexOf("/")+1);
@@ -62,6 +63,7 @@ public class projectRegisterController {
 			}
 			dto.setIntroductionImage(introductionImg);
 		}
+
 		projectService.updateProject(dto);
 		
 		if(("story").equals(com)) {

@@ -17,6 +17,30 @@
 input:focus{
 	outline:none;
 }
+input:-webkit-autofill {
+   -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+.inputStyle {
+	border : 1px solid lightgrey;
+	border-radius: 3.5px;
+	height:30px;
+	padding: 2px 10px;
+	width : 280px;
+	font-size : 17px;
+	
+}
+.lg {
+	color:#7f7f7f;
+	font-size:15px;
+}
+.bold {
+	color:#5e5e5e;
+	font-weight:600;
+	font-size:17px;
+}
+.inputRight {
+	text-align: right;
+}
 .save_button {
 	font-size: 15px;
 	font-weight: 800;
@@ -46,6 +70,7 @@ input:focus{
 	height: 20px;
 	vertical-align: middle;
 	margin-top:2px;
+	margin-left:-10px;
 }
 #rg_projectPeriodDeadline {
 	display:flex;
@@ -54,34 +79,24 @@ input:focus{
 	margin-right:5px;
 }
 #rg_projectDeadline {
-	width: 175px;
+	width: 200px;
 	height:35px;
 	border : 1px solid lightgrey;
 	border-radius: 3.5px;
 	padding :0px 5px;
 	margin-left : 10px;
 } 
-#projectDeadline {
+#projectDeadline{
 	border :none;
-	width : 145px;
+	width : 165px;
 	margin:0px;
 	font-size:17px;
 }
 #projectDeadline:focus {
 	outline:none;
 }
-.inputStyle {
-	border : 1px solid lightgrey;
-	border-radius: 3.5px;
-	height:30px;
-	padding-left:10px;
-}
-.inputStyle:focus {
-	outline:none;
-}
-.inputRight {
-	text-align: right;
-	padding-right:10px;
+#remainingPeriod {
+	width : 200px;
 }
 .fileContainer {
 	width: 1000px;
@@ -128,11 +143,13 @@ input:focus{
 	height:160px;
 }
 
-#registerBasicFrm > div{
+#registerBasicFrm > div,#basic_keyword>div{
 	margin:10px 0px;
-	font-size:17px;
 }
-#registerBasicFrm > div > input, #registerBasicFrm > div > div{
+#registerStoryFrm > div{
+	margin:15px 0px;
+}
+#registerBasicFrm > div > div ,#registerStoryFrm > div > div{
 	margin:10px 0px;
 }  
 
@@ -168,9 +185,24 @@ input:focus{
 	width : 10px;
 	height:10px;
 	margin-top:7.5px;
-	
+	opacity : 0.2;	
+}
+.keyword > img:hover {
+	cursor:pointer;
+	opacity : 0.8;
 }
 
+/* 
+	story css
+ */
+ .videoInput {
+ 	border : 1px solid lightgrey;
+	border-radius: 3.5px;
+	height:30px;
+	padding: 2px 10px;
+	width : 380px;
+	font-size : 17px;
+ }
 </style>
 <script>
 $(function() {
@@ -186,9 +218,18 @@ $(function() {
 					
 					switch(page){
 					case "basic" : 
+							console.log($("#hashtagFrm").serialize());
+							$.ajax({
+								url : "../insertHashtag",
+								data : $("#hashtagFrm").serialize(),
+								method : "post",
+								success : function(result) {
+									console.log(result.code);
+								}
+							});
 							$.ajax({
 								url : "../updateProject/story",
-								data : $("#registerBasicFrm").serialize(), 
+								data : $("#registerBasicFrm").serialize(),
 								method : "post",
 								success : function(result) {
 									$("#result").html(result);
@@ -275,29 +316,48 @@ $(function() {
 			}
 		}); 
 		
+		//hashtag-----------------------------
 		//hashtag 갯수 가져오기
 		function removeNo() {
 			var removeCount = $(".remove").length;
-			if(removeCount > 0){	return removeCount + 1;	}
-			else { return removeCount; }
+			
+			if(removeCount > 0){
+				var removeEnd = $(".remove").eq(removeCount-1).attr("class").substr(7);
+				return parseInt(removeEnd) + 1;	
+			}
+			else { return removeCount+1; }
 		}
 		$("input[name='keyword']").on("keydown",function(e){
 			
 			if(e.keyCode == 13){//키가 13이면 실행 (엔터는 13)
 				
-				var key = $(this).val();
-				var rc = removeNo();
-	            var k = "<span class='keyword'><label class='keyword_label'>"+key
-	            	  +"</label><img src='/SupportForMe/images/remove.png' class='remove " + rc + "'></span>";
-	            $("#keyword_div").append(k);
-	            $("input[name='keyword']").val("");
-	            var hiddenHash = "<input type='hidden' name='arrHashtag' val='"+ key + "'>";
-	            $("#basic_keyword").append(hiddenHash);
-	            
+				if($(".remove").length < 5){
+					var key = $(this).val();
+					var rc = removeNo();
+		            var k = "<span class='keyword'><label class='keyword_label'>"+key
+		            	  + "</label><img src='/SupportForMe/images/remove.png' class='remove " + rc + "'></span>";
+		           	var keyHidden = "<input type='hidden' name='arrHashtag' class='"+rc+"' value='" + key + "'>";
+		            $("#keyword_div").append(k);
+		            $("input[name='keyword']").val("");
+		            $("#hashtagFrm").append(keyHidden);
+				}else {
+					alert("최대 5개 까지입니다.");
+					$("input[name='keyword']").val("");
+				}
 	        }
 			
 		});
-		//기본정보 js ------------------       
+		
+		$(document).on("click",".remove",function(){
+			var cnt = $(this).attr("class").substr(7);
+			$(this).parent().remove();
+			$("."+cnt).remove();
+			
+			
+		})
+		//hashtag-----------------------------
+		
+		//기본정보 js ---------------------------------------------------------       
 	   	
 		//story--------------------------------------------------------------
 		//story page img upload---------------
@@ -357,33 +417,33 @@ $(function() {
 	<form name="fileUploadFrm" id="fileUploadFrm" method="post">
 		<input type="file" name="uploadFile" id="fileUploadImage" accept=".gif, .jpg, .png"  style="display:none">
 	</form>
-	<div style="height: 40px"></div>
+	<div style="height: 50px"></div>
 	
 	<form name="registerBasicFrm" id="registerBasicFrm">
 		<input type="hidden" name="projectNo" value="${project.projectNo}">
 		<input type="hidden" name="userId" value="${project.userId}">
 		<div id="basic_subject">
-			<div>프로젝트의 제목을 적어주세요</div>
+			<div class="bold">프로젝트의 제목을 적어주세요</div>
 			<input type="text" name="projectName" id="r_projectName" class="inputStyle" value="">
 		</div>
 		<div id="basic_target">
-			<div>목표 금액을 적어주세요</div>
+			<div class="bold">목표 금액을 적어주세요</div>
 			<input type="text" name="targetAmount" id="r_targetAmount"
 				class="inputStyle inputRight" placeholder="0"> 원
 		</div>
 		<div id="basic_">
-			<div>프로젝트의 진행기간을 적어주세요</div>
-			<div>최소 7일부터 최대 50일까지 가능합니다.</div>
+			<div class="bold">프로젝트의 진행기간을 적어주세요</div>
+			<div class="lg">최소 7일부터 최대 50일까지 가능합니다.</div>
 			<div id="rg_projectPeriodDeadline">
 				<input type="text" name="remainingPeriod" id="remainingPeriod"
-					class="inputStyle inputRight" disabled> 일 남음 
+					class="inputStyle inputRight" disabled><label class="lg" style="padding-top:5px">일 남음</label> 
 				 <div id="rg_projectDeadline">
 					<input type="text" name="projectDeadline" id="projectDeadline" class="inputStyle">
 				</div>
 			</div>
 		</div>
 		<div id="basic_">
-			<div>프로젝트 대표 이미지를 등록해주세요</div>
+			<div class="bold">프로젝트 대표 이미지를 등록해주세요</div>
 			<div class="fileContainer"> 
 				<div class="thumbnailImg rg_img">
 					<img src="/SupportForMe/images/picture.png" id="default">
@@ -393,22 +453,33 @@ $(function() {
 				</div>
 			</div>
 		</div>
+		</form>
+		<form name="hashtagFrm" id="hashtagFrm" method="post">
+			<input type="hidden" name="projectNo" value="${project.projectNo}">
+			<c:if test="${hashtag != null}" >
+					<c:forEach items="${hashtag}" var="i" begin="0" end="${hashtag.length-1}">
+						<input type='hidden' name='arrHashtag' class='${i}' value='${keyword.hashtagName}'>
+					</c:forEach>
+	        </c:if>		
+		</form>
+
 		<div id="basic_keyword">
-			<div>프로젝트 키워드를 적어주세요 (선택사항)</div>
-			<div>제목 외에도 키워드 검색 시 검색 결과에 프로젝트가 나타납니다.</div>
+			<div class="bold">프로젝트 키워드를 적어주세요 <span style="color:#e74c3c">(선택사항)</span></div>
+			<div class="lg">제목 외에도 키워드 검색 시 검색 결과에 프로젝트가 나타납니다.</div>
 			<input type="text" name="keyword" class="inputStyle keyText" maxlength="10"
-					placeholder="최대 5개까지 등록 가능합니다. 키워드 입력 후 엔터를 눌러주세요.">
+					placeholder="최대 5개까지 등록 가능합니다. 키워드 입력 후 엔터를 눌러주세요." autocomplete=off>
 			<div id="keyword_div">
 				<c:if test="${hashtag != null}" >
-					<c:forEach items="${hashtag}" var="keyword" >
-						<span class='keyword'><label class='keyword_label'>${keyword.hashtagName}</label><img src='/SupportForMe/images/remove.png' class='remove'></span>
+					<c:forEach items="${hashtag}" var="i" begin="0" end="${hashtag.length-1}">
+						<span class='keyword'><label class='keyword_label'>${hashtag[i].hashtagName}</label>
+						<img src='/SupportForMe/images/remove.png' class='remove ${i}'></span>
 					</c:forEach>
 	          	</c:if>
 			</div>
 		</div>
 		<input type="button" name="save" class="save_button" value="저장하기">
 		<input type="button" name="next" class="next_button basic" value="다음 단계">
-	</form>
+	
 	</div>
 </body>
 </html>
