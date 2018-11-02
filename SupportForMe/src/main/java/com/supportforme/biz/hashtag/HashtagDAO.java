@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.supportforme.biz.project.ProjectDTO;
+
 @Repository
 public class HashtagDAO {
 		
@@ -15,7 +17,7 @@ public class HashtagDAO {
 			return mybatis.insert("hashtag.insertHashtag", dto);
 		}
 		
-		public List<HashtagDTO> getHashtags(HashtagDTO dto){
+		public List<HashtagDTO> getHashtags(ProjectDTO dto){
 			return mybatis.selectList("hashtag.getHashtags", dto);
 		}
 		

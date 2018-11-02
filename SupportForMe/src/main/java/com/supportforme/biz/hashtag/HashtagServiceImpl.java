@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.supportforme.biz.project.ProjectDTO;
+
 @Service
 public class HashtagServiceImpl implements HashtagService{
 	
@@ -16,7 +18,7 @@ public class HashtagServiceImpl implements HashtagService{
 	}
 
 	@Override
-	public List<HashtagDTO> getHashtags(HashtagDTO dto) {
+	public List<HashtagDTO> getHashtags(ProjectDTO dto) {
 		return hashtagDAO.getHashtags(dto);
 	}
 
