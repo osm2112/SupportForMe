@@ -4,7 +4,8 @@
 <%@ page session="false" %>
 <!doctype html>
 <html>
-<header>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/flexslider.min.css">
     <style>
         .bodysize {
            margin-left: auto;
@@ -15,10 +16,10 @@
             display:grid;
             grid-template-columns: 780px 1fr;
         }
-        .slide_main_img {
+/*         .slide_main_img {
             width : 100%;
             height : 400px;
-        }
+        } */
          .suforme_picks_grid {
             display : grid;
             grid-template-columns: 1fr 300px;
@@ -81,7 +82,7 @@
              background-color:#E9E9E9;
         }
 	   .real_time_rank_projects {
-            width : 230px;
+             width : 250px;
              height: 150px;
         }
 	  .real_time_rank_projects nav ol li {
@@ -122,53 +123,106 @@
 	border: 4px solid rgb(26, 188, 156);
 	box-shadow: 8px 8px 3px grey;
 }
+<!-- -->
 .main_project_image img {
 	width: 100%;
 	height: 100%;
 	object-fit: .main_project_image;
 }
+.real_time_image img {
+	width: 100%;
+	height: 100%;
+	object-fit: .real_time_image;
+}
+.flexslider .slides img {
+    width: 100%;
+    height: 100%;
+    display: block;  
+    -moz-user-select: none;
+} 
+.real_time_rank_projects nav {
+ max-width:100%;
+ width: 100%;
+ height: 100%;
+ object-fit: .real_time_rank_projects;
+}
 
-    </style>
-</header>
+.flexslider2 .slides img {     
+    width: 100%;
+    height : 400px;
+    display: block;  
+    -moz-user-select: none;
+} 
+
+</style>
+<script>
+$(document).ready(function() {
+	  $('.flexslider').flexslider({
+	    	animation: "slide"
+	  });
+	  $('.flexslider2').flexslider({
+		    animation: "slide",
+		    controlNav : false,
+		    customDirectionNav: $(".custom-navigation a")
+	  });	  
+	});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider-min.js"></script>
+</head>
 <body>
-
-
-		
-    <div>
-    <img src="main.png" class="slide_main_img">
+    <div class="flexslider2">
+    	<ol class="slides">
+   	 	<li><img src="./images/main.PNG"></li>
+   	 	<li><img src="./images/picture.png"></li>
+   	 	<li><img src="./images/images.jpg"></li>
+   	 	<li><img src="./images/remove.png"></li>
+   	 	<li><img src="./images/plus1.png"></li>
+    	</ol>
     </div>
+   	<div class="custom-navigation">
+  		<p style="float: left;"><a href="#" class="flex-prev">Prev</a></p>
+  		<p style="float: right;"><a href="#" class="flex-next" style="text-align: right;">Next</a></p>
+	</div>
+	
     <div style="height:50px"></div>
     <div class="bodysize">
         <div class="suforme">
         <div class="suforme_picks_div">
-            <div class="suforme_top_1_text_div">서포미 PICKS</div>
-            <div class="suforme_picks_grid">
-                <div class="suforme_picks_projects">
-                    서포미 pick 슬라이드
-                </div>
+         <div class="suforme_top_1_text_div">서포미 PICKS</div>
+     
+         <div class="flexslider"> 
+         <ul class="slides">
+          <c:forEach items="${Pick}" var="pick">
+         	<li> 
+            <div class="suforme_picks_grid" style="cursor: pointer;" onclick="location.href='support/getProjectDetailPage?projectNo=${pick.projectNo}'">
+                <div class="suforme_picks_projects"><img src="./images/${pick.image}"></div>
                 <div class="suforme_picks_projects_content">
                     <nav>
-                        <ul>
-                            <li>카테고리</li>
-                            <li>프로젝트 제목</li>
-                        </ul>
+                       <ul>
+                       <li>카테고리</li>
+                       <li>${pick.categoryCode}</li>
+                       <li>프로젝트 제목</li>
+                       <li>${pick.projectName}</li>          
+                       </ul>
                     </nav>
                 </div>
             </div>
-        </div>
-       
-        <div class="real_time_rank_outer">
+          	</li>
+          </c:forEach>
+ 		</ul>	           
+         </div>
+	   </div>
+      <div class="real_time_rank_outer">
             <div class="suforme_top_1_text_div">실시간 랭킹</div>
-            <div class="real_time_rank_div">
-                <div class="real_time_image">프로젝트 대표 이미지<img id="RankImg" src=""></div>
+            <div class="real_time_rank_div"> 
+                <div class="real_time_image"><img id="rankImg" src=""></div>
 		      <div class="real_time_rank_projects">
                     <nav>
-                        <ol>
-                       
+                        <ol> 
                          <c:forEach items="${Rank}" var="Rank">
-                            <li>${Rank.projectName}</li>
+                            <li style="font-size: small; cursor: pointer; hover: background-color: yellow;" onclick="location.href='support/getProjectDetailPage?projectNo=${Rank.projectNo}'">${Rank.projectName}</li>
                           </c:forEach>
-
                         </ol>
                     </nav>
                </div>
@@ -178,9 +232,7 @@
 	<div style="height:50px"></div>
         <div class="suforme_top_1_text_div">공연 프로젝트</div>
         <div class="category_project_div">
-        
-        
-        
+
         <c:forEach items="${Performance}" var="project">
 					<div class="project_box" id="${project.projectNo}" style="cursor: pointer;"	onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
 						<div class="main_project_image"><img src="./images/picture.png"></div>

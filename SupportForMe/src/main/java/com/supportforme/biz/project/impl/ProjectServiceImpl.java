@@ -46,6 +46,12 @@ public class ProjectServiceImpl implements ProjectService {
 		// TODO Auto-generated method stub
 		return dao.getInvsetTop5();
 	}
+	//서포미픽 조회
+	@Override
+	public List<ProjectDTO> getSupportForMePicks() {
+		// TODO Auto-generated method stub
+		return dao.getSupportForMePicks();
+	}
 	
 	
 }

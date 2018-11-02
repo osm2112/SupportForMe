@@ -23,6 +23,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
+		model.addAttribute("Pick",projectService.getSupportForMePicks());
 		model.addAttribute("Performance",projectService.getPerformanceProjects());
 		model.addAttribute("Art",projectService.getArtProjects());
 		model.addAttribute("Rank",projectService.getInvsetTop5());

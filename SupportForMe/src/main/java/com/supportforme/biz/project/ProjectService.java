@@ -19,4 +19,6 @@ public interface ProjectService {
 	//랭크조회
 	public List<ProjectDTO> getInvsetTop5();
 	
+	//서포미픽 조회
+	public List<ProjectDTO> getSupportForMePicks();
 }

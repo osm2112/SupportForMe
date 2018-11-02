@@ -37,6 +37,9 @@ public class ProjectDAO {
 	public List<ProjectDTO> getInvsetTop5(){
 		return mybatis.selectList("project.getInvsetTop5");
 	}
-	
+	//서포미픽 조회
+	public List<ProjectDTO> getSupportForMePicks(){
+		return mybatis.selectList("project.getSupportForMePicks");
+	}
 
 }
