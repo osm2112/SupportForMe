@@ -7,13 +7,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>* ${project.projectName} *</title>
-
-<link rel="stylesheet" href="../css/flexslider.css" type="text/css"> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> 
-<script src="../js/jquery.flexslider.js"></script> 
-
+ 
+<link type="text/css" rel="stylesheet" href="../css/lightslider.css" />                  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="../js/lightslider.js"></script> 
 
 <style>
+
 .pjdtl-bodysize {
 	margin-left: auto;
 	margin-right: auto;
@@ -134,18 +134,62 @@
 	border: 1px solid lightgray;
 }
 
+li>img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
+
+ul {
+	list-style: none outside none;
+	padding-left: 0;
+	margin: 0;
+}
+
+.demo .item {
+	margin-bottom: 60px;
+}
+
+.content-slider li {
+	background-color: #ed3020;
+	text-align: center;
+	color: #FFF;
+}
+
+.content-slider h3 {
+	margin: 0;
+	padding: 70px 0;
+}
+
+.demo {
+	width: 660px;
+}
 </style>
 
 <script>
-	$(window).load(function() {
-		$('.flexslider').flexslider({
-			animation : "slide",
-			controlNav : "thumbnails"
-		});
-	});
+$(document).ready(function() {
+	$("#content-slider").lightSlider({
+        loop:true,
+      	auto:true,
+        keyPress:true
+    });
+    $('#image-gallery').lightSlider({
+        gallery:true,
+        item:1,
+        thumbItem:6,
+        slideMargin: 0,
+        speed:500,
+        auto:true,
+        loop:true,
+        onSliderLoad: function() {
+            $('#image-gallery').removeClass('cS-hidden');
+        }  
+    });
+});
 </script>
 
-</head>
+</head> 
     
 <body>
     <input type="hidden" value="${project.projectNo}">
@@ -164,16 +208,26 @@
     <br>
     <div class="pjdtl-flex-container">
         <!-- 사진/이미지/영상/비디오 -->
-        <div class="flexslider">
-        	<ul class="slides">
-				<c:forTokens items="${project.introductionImage}" delims="||" var="img">
-					<li data-thumb="/SupportForMe/upload/${img}">
-						<img src="/SupportForMe/upload/${img}" />
+        <div class="demo">
+        <div class="item">
+        	<div class="clearfix">
+        	<ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+				<c:forTokens items="${project.introductionVideo}" delims="||" var="video">
+					<li data-thumb="${video}">
+						<iframe width="660" height="371" src="${video}"
+							frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					</li>
 				</c:forTokens>
+				<c:forTokens items="${project.introductionImage}" delims="||" var="img">
+					<li data-thumb="/SupportForMe/upload/${img}">
+						<img src="/SupportForMe/upload/${img}"/>
+					</li>
+				</c:forTokens>
+				
 			</ul>
+			</div>
+		</div>
         </div>
-        
         
         <div class="pjdtl-empty-box"></div>
         <!-- 디테일 박스 -->
@@ -182,7 +236,7 @@
             <div class="pjdtl-target-price">목표금액 ${project.targetAmount}원</div>
             <div>
             	<progress style="width:80%; height:27px;" value="${project.projectProgressRate}" max="100"></progress>
-            	<a style="font-size:25px;">${project.projectProgressRate}%</a>
+            	<span style="font-size:25px;">${project.projectProgressRate}%</span>
             </div>
             <div>
                 <div>${project.progress}</div>
@@ -211,10 +265,10 @@
             
         </div>
     </div>
-        
     </div>
-    <br>
-    <hr>
+    
+    <div style="border-bottom:1px solid lightgray;">&nbsp;</div><br>
+    
     <div class="pjdtl-bodysize">
         <!--이거 네비게이션 버튼 쓸거-->
         <li>
