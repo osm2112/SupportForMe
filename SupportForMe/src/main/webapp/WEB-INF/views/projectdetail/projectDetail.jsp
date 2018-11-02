@@ -8,9 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>* ${project.projectName} *</title>
 
-<link rel="stylesheet" href="../css/jquery.bxslider.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="../js/jquery.bxslider.min.js"></script>
+<link rel="stylesheet" href="../css/flexslider.css" type="text/css"> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script> 
+<script src="../js/jquery.flexslider.js"></script> 
+
 
 <style>
 .pjdtl-bodysize {
@@ -133,41 +134,16 @@
 	border: 1px solid lightgray;
 }
 
-.demo {
-	width: 420px;
-}
-
-.ul {
-	list-style: none outside none;
-	padding-left: 0;
-	margin-bottom: 0;
-}
-
-.li {
-	display: block;
-	float: left;
-	margin-right: 6px;
-	cursor: pointer;
-}
-
-.img {
-	display: block;
-	height: auto;
-	max-width: 100%;
-}
 </style>
 
 <script>
-	$(function({
-		$('.slide_gallery').bxSlider({
-			auto:true,
-			autoControls:false,
-			pagerCustom:'.slider-pager'
+	$(window).load(function() {
+		$('.flexslider').flexslider({
+			animation : "slide",
+			controlNav : "thumbnails"
 		});
 	});
 </script>
-
-
 
 </head>
     
@@ -188,23 +164,14 @@
     <br>
     <div class="pjdtl-flex-container">
         <!-- 사진/이미지/영상/비디오 -->
-        <div id="gallery_wrap">
-        	<ul class="slide_gallery">
+        <div class="flexslider">
+        	<ul class="slides">
 				<c:forTokens items="${project.introductionImage}" delims="||" var="img">
-					<li data-thumb="">
+					<li data-thumb="/SupportForMe/upload/${img}">
 						<img src="/SupportForMe/upload/${img}" />
 					</li>
 				</c:forTokens>
 			</ul>
-			<!-- 
-			<ul class="slide-pager">
-				<c:forTokens items="${project.introductionImage}" delims="||" var="img">
-					<li><a href="#" data-slide-index="0">
-						<img src="/SupportForMe/upload/${img}"/>
-					</li>
-				</c:forTokens>
-			</ul>
-			-->
         </div>
         
         
@@ -264,11 +231,14 @@
         <div class="pjdtl-empty-content"></div>
         <div class="pjdtl-reward">
             <div style="font-size:30px;">리워드 목록</div>
-            <c:forEach items="${present}" var="reward">
+            <c:forEach items="${present}" var="reward" varStatus="status">
             <div class="pjdtl-each-reward">
-            	<img src="../images/check.png" style="width:20px; height:20px"><span style="font-size: 25px;color:#BDBDBD;"> n명이 선택</span><br>
-            	<span style="font-size: 20px;">* ${reward.presentName}</span><br>
-            	<span style="font-size: 20px;">* ${reward.presentPrice}원</span>
+            	<img src="../images/check.png" style="width:23px; height:23px">
+            	<span style="font-size:25px; color:#BDBDBD;">${presentCount[status.index].rewardSelectCount}명이 선택</span><br>
+            	<img src="../images/asterisk.png" style="width:18px; height:18px"/>
+            	<span style="font-size: 20px;">${reward.presentName}</span><br>
+            	<img src="../images/asterisk.png" style="width:18px; height:18px"/>
+            	<span style="font-size: 20px;">${reward.presentPrice}원</span>
             </div><br>
             </c:forEach>
         </div>

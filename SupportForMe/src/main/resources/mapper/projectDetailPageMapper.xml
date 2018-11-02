@@ -50,6 +50,7 @@
 	FROM INVEST
 	WHERE PROJECT_NO = #{projectNo}
 	GROUP BY PRESENT_NO
+	ORDER BY PRESENT_NO
 </select>
 <!-- 댓글 불러오기 -->
 <select id="getComments" resultType="comments" parameterType="project">
