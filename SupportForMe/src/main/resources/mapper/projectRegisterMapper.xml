@@ -31,7 +31,7 @@
 		 ,TARGET_AMOUNT = #{targetAmount} 
 		  </if>
 		 <if test="projectDeadline != null and projectDeadline != ''">
-		 ,PROJECT_DEADLINE = #{projectDeadline}  
+		 	,PROJECT_DEADLINE = #{projectDeadline}
 		  </if>
 		 <if test="introductionVideo != null and introductionVideo != ''">
 		 ,INTRODUCTION_VIDEO = #{introductionVideo}

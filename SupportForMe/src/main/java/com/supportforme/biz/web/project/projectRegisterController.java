@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.supportforme.biz.hashtag.HashtagDTO;
+import com.supportforme.biz.hashtag.HashtagService;
 import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectRegisterService;
 
@@ -29,6 +30,7 @@ import com.supportforme.biz.project.ProjectRegisterService;
 public class projectRegisterController {
 		
 	@Autowired ProjectRegisterService projectService;
+	@Autowired HashtagService hashtagService;
 	
 	@RequestMapping("/forme/tempMain")
 	public String main() {
@@ -63,7 +65,7 @@ public class projectRegisterController {
 			}
 			dto.setIntroductionImage(introductionImg);
 		}
-
+		
 		projectService.updateProject(dto);
 		
 		if(("story").equals(com)) {
@@ -84,6 +86,7 @@ public class projectRegisterController {
 	@RequestMapping("/forme/make/{projectNo}")			
 	public String makeProject(Model model,ProjectDTO dto,@PathVariable String projectNo) {
 		dto.setProjectNo(projectNo);
+		model.addAttribute("hashtag", hashtagService.getHashtags(dto));  
 		model.addAttribute("project", projectService.getProject(dto));
 		return "rgNav/register/projectRegister";
 	}
@@ -100,7 +103,6 @@ public class projectRegisterController {
         if(!file.exists()) {
         	file.mkdirs();
         }
-		System.out.println("=========folder경로" + folder);
 		
 		//첨부파일 처리
 		MultipartFile uploadFile = dto.getUploadFile();
@@ -112,7 +114,6 @@ public class projectRegisterController {
 			String extension = "." + tempFn.substring(index+1);
 			filename = realfilename + System.currentTimeMillis() + extension; 
 			uploadFile.transferTo(new File(folder,filename));
-			System.out.println("=========이미지 업로드 파일명 " + filename);
 		}
 		
 
@@ -121,5 +122,18 @@ public class projectRegisterController {
 		map.put("filename", filename);
 		return map;
 	}
+	
+	@RequestMapping(value="/forme/make/deleteIntroductionImg" , method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,String> deleteIntroductionImg(@ModelAttribute("project") ProjectDTO dto,@RequestParam(value="removeIntroductionImg",defaultValue="a.png",required=false)String removeImg,HttpServletRequest request){
+		 String folder =  request.getSession().getServletContext().getRealPath("/upload")+removeImg;// 삭제할 파일의 경로
+		 File file = new File(folder);
+		 if(file.exists() == true){
+			 file.delete();
+		}
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("code", "success");
+		return map;
+	}  
 	
 }

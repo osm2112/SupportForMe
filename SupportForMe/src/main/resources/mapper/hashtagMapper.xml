@@ -4,12 +4,9 @@
 <mapper namespace="hashtag">
 
 	<!-- 프로젝트별 해시태그 조회  -->
-	<select id="getHashtags" resultType="hashtag" parameterType="hashtag">
+	<select id="getHashtags" resultType="hashtag" parameterType="project">
 		SELECT * FROM HASHTAG
 		WHERE PROJECT_NO = #{projectNo}
-			  <if test="hashtagName != null and hashtagName != ''">
-	  			AND HASHTAG_NAME = #{hashtagName}
-	  		  </if>
 	</select>
 	
 	<!-- 해시태그 등록  페이지 내에서 press 이벤트 발생하면 ajax로 insert처리 //프로시저 필요할듯 (중복입력 방지) -->  
@@ -25,12 +22,6 @@
 	<!-- 해시태그 삭제 (해시태그는 수정은 없음) -->
 	<delete id="deleteHashtag" parameterType="hashtag">
 		DELETE FROM HASHTAG 
-		WHERE 1=1
-			<if test="hashtagName != null and hashtagName != ''">
-	  			AND HASHTAG_NAME = #{hashtagName}
-	  		</if>
-			<if test="projectNo != null and projectNo != ''">
-	  			AND PROJECT_NO = #{projectNo}
-	  		</if>		
+		WHERE HASHTAG_NO = #{hashtagNo}
 	</delete>
 </mapper> 

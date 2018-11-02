@@ -29,12 +29,15 @@
 		</div>
 		<div id="story_image">
 			<div class="bold">이미지를 등록해주세요.</div>
-			<div class="fileContainer introImg"> 
+			<div class="fileContainer introImg">
 					<c:if test="${project.introductionImage != null}" >
-							<c:forTokens var="image" items="${project.introductionImage}" delims="||">
+							<c:forTokens var="image" items="${project.introductionImage}" delims="||" varStatus="i">
 								<div class="introductionImg rg_img soge">
 									<img src="/SupportForMe/upload/${image}">	
-								</div>		             		
+									<img src="/SupportForMe/images/cancel1.png" class="sogeRemove ${i.index+1}">
+									<input type='hidden' name='arrImage' value='${image}'>
+								</div>
+									             		
 			          		</c:forTokens>	
 					</c:if>
 					<div class="introductionImg rg_img" id="storyDefault">

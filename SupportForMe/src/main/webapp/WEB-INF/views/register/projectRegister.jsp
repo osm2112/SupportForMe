@@ -14,6 +14,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>프로젝트 등록</title>
 <style>
+/* 공통 css */
 input:focus{
 	outline:none;
 }
@@ -24,11 +25,21 @@ input:-webkit-autofill {
 	border : 1px solid lightgrey;
 	border-radius: 3.5px;
 	height:30px;
-	padding: 2px 10px;
+	padding: 2px 10px 2px 15px;
 	width : 280px;
 	font-size : 17px;
 	
 }
+
+#registerBasicFrm > div,#basic_keyword>div{
+	margin:10px 0px;
+}
+#registerStoryFrm > div{
+	margin:15px 0px;
+}
+#registerBasicFrm > div > div ,#registerStoryFrm > div > div{
+	margin:10px 0px;
+} 
 .lg {
 	color:#7f7f7f;
 	font-size:15px;
@@ -65,6 +76,41 @@ input:-webkit-autofill {
 	margin-left: 50px;
 }
 
+.fileContainer {
+	width: 1000px;
+    position: relative;
+    display: grid;
+	grid-column: 1/5;
+	grid-column-gap: 10px; 
+	grid-row-gap:10px; 
+	grid-template-columns: repeat(5, 200px);
+	/*grid-template-columns: 25% 25% 25% 25%;*/
+	grid-auto-rows: minmax(20px, auto);
+	/* text-align: center; */
+}
+.rg_img {
+	position:relative;
+	border : 1px solid lightgrey;
+	border-radius : 2.5px;
+	text-align: center;
+	margin-right:10px;
+}
+.rg_img:hover {
+	cursor:pointer;
+}
+
+.thumbnailImg > img, .introductionImg > img, #soge{
+	position:absolute;
+    max-width:100%; max-height:100%;
+  	margin:auto;
+    top:0; bottom:0; left:0; right:0;
+}
+
+#default ,#plus{
+	 width:35px;
+	 height:35px;
+}
+/* basic css */
 .ui-datepicker-trigger {
 	width: 20px;
 	height: 20px;
@@ -98,60 +144,17 @@ input:-webkit-autofill {
 #remainingPeriod {
 	width : 200px;
 }
-.fileContainer {
-	width: 1000px;
-    position: relative;
-    display: grid;
-	grid-column: 1/5;
-	grid-column-gap: 10px; 
-	grid-row-gap:10px; 
-	grid-template-columns: repeat(5, 200px);
-	/*grid-template-columns: 25% 25% 25% 25%;*/
-	grid-auto-rows: minmax(20px, auto);
-	/* text-align: center; */
-}
-.rg_img {
-	position:relative;
-	border : 1px solid lightgrey;
-	text-align: center;
-	margin-right:10px;
-}
-.rg_img:hover {
-	cursor:pointer;
-}
+
 .thumbnailImg {
 	width:395px;
 	height:300px;
 }
-.introductionImg {
-	width:200px;
-	height:150px;
-}
-.thumbnailImg > img, .introductionImg > img, #soge{
-	position:absolute;
-    max-width:100%; max-height:100%;
-  	margin:auto;
-    top:0; bottom:0; left:0; right:0;
-}
 
-#default ,#plus{
-	 width:35px;
-	 height:35px;
-}
 #thumb {
 	width:190px;
 	height:160px;
 }
-
-#registerBasicFrm > div,#basic_keyword>div{
-	margin:10px 0px;
-}
-#registerStoryFrm > div{
-	margin:15px 0px;
-}
-#registerBasicFrm > div > div ,#registerStoryFrm > div > div{
-	margin:10px 0px;
-}  
+ 
 
 #keyword_div {
 	width:700px;
@@ -195,7 +198,20 @@ input:-webkit-autofill {
 /* 
 	story css
  */
- .videoInput {
+.introductionImg {
+	width:200px;
+	height:150px;
+} 
+
+.sogeRemove {
+	width:200px;
+	height:150px;
+	opacity:0
+}
+.sogeRemove:hover {
+	opacity:1
+}
+.videoInput {
  	border : 1px solid lightgrey;
 	border-radius: 3.5px;
 	height:30px;
@@ -203,6 +219,7 @@ input:-webkit-autofill {
 	width : 380px;
 	font-size : 17px;
  }
+
 </style>
 <script>
 $(function() {
@@ -218,7 +235,6 @@ $(function() {
 					
 					switch(page){
 					case "basic" : 
-							console.log($("#hashtagFrm").serialize());
 							$.ajax({
 								url : "../insertHashtag",
 								data : $("#hashtagFrm").serialize(),
@@ -279,7 +295,6 @@ $(function() {
 						var remain = dDay2 - now2;
 						remain = Math.floor(remain / (24 * 3600 * 1000)) + 1;
 						$("#remainingPeriod").val(remain);
-						console.log(obj);
 					},
 					showOn : "both",
 					buttonImage : "/SupportForMe/images/calendar.png",
@@ -336,7 +351,7 @@ $(function() {
 					var rc = removeNo();
 		            var k = "<span class='keyword'><label class='keyword_label'>"+key
 		            	  + "</label><img src='/SupportForMe/images/remove.png' class='remove " + rc + "'></span>";
-		           	var keyHidden = "<input type='hidden' name='arrHashtag' class='"+rc+"' value='" + key + "'>";
+		           	var keyHidden = "<input type='hidden' name='arrHashtag' class='hashHidden"+rc+"' value='" + key + "'>";
 		            $("#keyword_div").append(k);
 		            $("input[name='keyword']").val("");
 		            $("#hashtagFrm").append(keyHidden);
@@ -350,17 +365,49 @@ $(function() {
 		
 		$(document).on("click",".remove",function(){
 			var cnt = $(this).attr("class").substr(7);
-			$(this).parent().remove();
-			$("."+cnt).remove();
+			var removeKey = $(this).prev().text();
+			if($(".hashHidden"+cnt).hasClass("db")){
+				var keyNo = $(".hashHidden"+cnt).attr("id");
+				 $.ajax({
+					url : "../deleteHashtag",
+					dataType : {"hashtagNo":keyNo,"hashtagName":removeKey},
+					data : jsonTest,
+					method : "post",
+					success : function(result) {
+						if(result.code = 'success') {
+							$(".hashHidden"+cnt).remove();
+							$(".remove."+cnt).parent().remove();
+						}
+					},
+					error : function() {
+						alert("삭제할 수 없습니다.")
+					} 
+				});
+			}else {
+				$(this).parent().remove();
+				$(".hashHidden"+cnt).remove();
+			}
+			
 			
 			
 		})
-		//hashtag-----------------------------
+		//hashtag 끝-----------------------------
 		
-		//기본정보 js ---------------------------------------------------------       
+		//기본정보 js 끝 ---------------------------------------------------------       
 	   	
 		//story--------------------------------------------------------------
 		//story page img upload---------------
+		function sogeRemoveNo() {
+			var removeCount = $(".sogeRemove").length;
+			
+			if(removeCount > 0){
+				var removeEnd = $(".sogeRemove").eq(removeCount-1).attr("class").substr(11);
+				return parseInt(removeEnd) + 1;	
+			}
+			else { return removeCount+1; }
+		}
+		
+		
 		$(document).on("click","#storyDefault",function(){
 			$("#fileUploadStory").click();
 		});
@@ -375,13 +422,15 @@ $(function() {
 						function(result, textStatus){
 							if(result.code = 'success') {
 								var fileName = result.filename;
-								console.log(fileName);
+								var RemoveNo = sogeRemoveNo();
 								$("#storyDefault").remove();
 								var img = "<div class='introductionImg rg_img soge'>"
-										+ "<img src='/SupportForMe/upload/"+fileName+"' id='soge'></div>";		
-								var tn = "<input type='hidden' name='arrImage' value='"+fileName+"'>";
+										+ "<img src='/SupportForMe/upload/"+fileName+"' id='soge'>"
+										+ "<img src='/SupportForMe/images/slimcancel.png' class='sogeRemove "+RemoveNo+"'>"
+										+ "<input type='hidden' name='arrImage' value='"+fileName+"'>"
+										+ "</div>";	
+										/* "<input type='hidden' name='arrImage' class='sogeHidden"+RemoveNo+"' value='"+fileName+"'>" */
 								$(".plus").before(img)
-								$("#story_image").append(tn);
 							}
 						},
 					error: 
@@ -403,8 +452,36 @@ $(function() {
 			}else { alert("먼저 이미지를 등록해주세요"); return ;}
 			
 		})
+		
+		
+		$(document).on("click",".sogeRemove",function(){
+			var cnt = $(this).attr("class").substr(11);
+			var removeImg = $(this).prev().attr("src").split('/');
+			var projectNo = $("input[name=projectNo]").val();
+			 $.ajax({
+				url : "deleteIntroductionImg",
+				dataType : "JSON",
+				data : {"projectNo":projectNo,"removeIntroductionImg":removeImg[3]},
+				method : "post",
+				success : function(result) {
+					if(result.code = 'success') {
+						$(".sogeRemove."+cnt).parent().remove();
+						
+						if(!$("#storyDefault").is(":visible")){
+							var dfImg = "<div class='introductionImg rg_img' id='storyDefault'>"
+								  	  + "<img src='/SupportForMe/images/picture.png' id='default'>"	
+								  	  +	"</div>";
+							$(".plus").before(dfImg);
+						}		
+					}
+				},
+				error : function() {
+					alert("삭제할 수 없습니다.")
+				} 
+			});   
+		})
 		//story page img upload----------- 
-		//story--------------------------------------------------------------
+		//story 끝--------------------------------------------------------------
 		
 		
 		
@@ -424,12 +501,14 @@ $(function() {
 		<input type="hidden" name="userId" value="${project.userId}">
 		<div id="basic_subject">
 			<div class="bold">프로젝트의 제목을 적어주세요</div>
-			<input type="text" name="projectName" id="r_projectName" class="inputStyle" value="">
+			<input type="text" name="projectName" id="r_projectName" class="inputStyle" value="${project.projectName}">
 		</div>
 		<div id="basic_target">
 			<div class="bold">목표 금액을 적어주세요</div>
-			<input type="text" name="targetAmount" id="r_targetAmount"
-				class="inputStyle inputRight" placeholder="0"> 원
+			<input type="text" name="targetAmount" id="r_targetAmount" 
+				class="inputStyle"
+			 placeholder="<c:if test="${project.targetAmount != null}">${project.targetAmount}</c:if>
+			<c:if test="${project.targetAmount == null}">0</c:if>"> 원
 		</div>
 		<div id="basic_">
 			<div class="bold">프로젝트의 진행기간을 적어주세요</div>
@@ -438,7 +517,7 @@ $(function() {
 				<input type="text" name="remainingPeriod" id="remainingPeriod"
 					class="inputStyle inputRight" disabled><label class="lg" style="padding-top:5px">일 남음</label> 
 				 <div id="rg_projectDeadline">
-					<input type="text" name="projectDeadline" id="projectDeadline" class="inputStyle">
+					<input type="text" name="projectDeadline" id="projectDeadline" class="inputStyle" value="">
 				</div>
 			</div>
 		</div>
@@ -454,13 +533,15 @@ $(function() {
 			</div>
 		</div>
 		</form>
+		
 		<form name="hashtagFrm" id="hashtagFrm" method="post">
 			<input type="hidden" name="projectNo" value="${project.projectNo}">
-			<c:if test="${hashtag != null}" >
-					<c:forEach items="${hashtag}" var="i" begin="0" end="${hashtag.length-1}">
-						<input type='hidden' name='arrHashtag' class='${i}' value='${keyword.hashtagName}'>
+		     <c:if test="${hashtag.size() > 0}" >
+					<c:forEach var="i" begin="0" end="${hashtag.size()-1}">
+						<input type='hidden' name='arrHashtag' class='hashHidden${i} db' id="${hashtag[i].hashtagNo}" 
+								value='${hashtag[i].hashtagName}'>
 					</c:forEach>
-	        </c:if>		
+	         </c:if>
 		</form>
 
 		<div id="basic_keyword">
@@ -469,12 +550,12 @@ $(function() {
 			<input type="text" name="keyword" class="inputStyle keyText" maxlength="10"
 					placeholder="최대 5개까지 등록 가능합니다. 키워드 입력 후 엔터를 눌러주세요." autocomplete=off>
 			<div id="keyword_div">
-				<c:if test="${hashtag != null}" >
-					<c:forEach items="${hashtag}" var="i" begin="0" end="${hashtag.length-1}">
+				<c:if test="${hashtag.size() > 0}" >
+					<c:forEach var="i" begin="0" end="${hashtag.size()-1}">
 						<span class='keyword'><label class='keyword_label'>${hashtag[i].hashtagName}</label>
 						<img src='/SupportForMe/images/remove.png' class='remove ${i}'></span>
-					</c:forEach>
-	          	</c:if>
+					</c:forEach> 
+	          	</c:if> 
 			</div>
 		</div>
 		<input type="button" name="save" class="save_button" value="저장하기">

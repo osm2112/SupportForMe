@@ -11,8 +11,8 @@ body {
 }
 .container > nav {
 	float: left;
-	max-width: 550px;
-	margin: 0px 25px 0px 150px; 
+	max-width: 800px;
+	margin: 0px 50px 0px 150px; 
 	padding: 1em;
 }
 
