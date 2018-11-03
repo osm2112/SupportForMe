@@ -14,6 +14,7 @@ public class InvestDTO {
 	private String addrDetail;
 	private String phoneNum;
 	private String email;
+	private String name;
 	
 	public String getEmail() {
 		return email;
@@ -86,6 +87,12 @@ public class InvestDTO {
 	}
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	

@@ -56,29 +56,43 @@ nav {
 			document.querySelector("#tel3").value =  '';
 		}
 	}
-/* 	let 
+ 	var paymentInfo={
+		    name : '결제테스트',
+		    amount : '',
+		    buyer_email : '',
+		    buyer_name : '',
+		    buyer_tel :  '',
+		    buyer_addr : ''
+ 	}
+ 	console.log(paymentInfo.name);
 	$(document).ready(function() {	
-		IMP.init('imp55982631');	
-		$("#btn").click(function(){
+		IMP.init('imp55982631');
+		$("#payment").click(function(){
 			$.ajax({
-				url : "../forme/CheckEmail",
+				url : "../forme/PaymentInfo",
 				method : "post",
 				type : "json",
+				async   : false,
 				success : function(data) {
-					
+					paymentInfo.amount=data.investmentAmount;
+					paymentInfo.buyer_email=data.email;
+					paymentInfo.buyer_name=data.name;
+					paymentInfo.buyer_tel=data.investmentAmount;
+					paymentInfo.buyer_addr=data.address;
 				}
 			});
-		},function() {	
+		});
+		$("#payment").click(function() {	
 			IMP.request_pay({
 			    pg : 'html5_inicis',
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : '주문명:결제테스트',
-			    amount : amount,
-			    buyer_email : buyer_email,
-			    buyer_name : buyer_name
-			    buyer_tel :  buyer_tel,
-			    buyer_addr : buyer_addr
+			    name : paymentInfo.name,
+			    amount : paymentInfo.amount,
+			    buyer_email : paymentInfo.buyer_email,
+			    buyer_name : paymentInfo.buyer_name,
+			    buyer_tel :  paymentInfo.buyer_tel,
+			    buyer_addr : paymentInfo.buyer_addr
 			   // buyer_postcode : '123-456'
 			}, function(rsp) {
 			    if ( rsp.success ) {
@@ -93,22 +107,8 @@ nav {
 			    alert(msg);
 			});
 		});
-		
-		
 	});
-	 */
-	function PaymentInfo(){
-		 $.ajax({
-				url : "../forme/PaymentInfo",
-				method : "post",
-				type : "json",
-				success : function(data) {
-					
-				}
-			});
 
-		
-	}
 </script>
 <body>
 	<div class="bodysize">
@@ -184,7 +184,7 @@ nav {
 					</tr>	
 					<tr>
 						<td colspan="2">
-							<input type="button" value="결제하기"	style="background: rgb(26, 188, 156); color: white">
+							<input id="payment" type="button" value="결제하기"	style="background: rgb(26, 188, 156); color: white">
 							<input type="button" value="취소"	style="background: rgb(26, 188, 156); color: white">	
 						</td>
 					</tr>

@@ -60,7 +60,8 @@ public class InvestController {
 		investDTO.setAddress(request.getParameter("address"));
 		investDTO.setAddrDetail(request.getParameter("addrDetail"));
 		investDTO.setEmail(request.getParameter("email"));
-		investDTO.setUserId("osm2112");
+		investDTO.setName(request.getParameter("name"));
+		
 		return investDTO;
 	}
 		
