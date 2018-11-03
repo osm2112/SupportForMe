@@ -17,6 +17,9 @@ import com.supportforme.biz.invest.InvestSearchDTO;
 import com.supportforme.biz.invest.InvestService;
 import com.supportforme.biz.member.MemberDTO;
 import com.supportforme.biz.member.MemberService;
+import com.supportforme.biz.project.ProjectDTO;
+import com.supportforme.biz.project.ProjectDetailPageService;
+import com.supportforme.biz.project.ProjectService;
 
 
 @Controller
@@ -52,17 +55,14 @@ public class InvestController {
 		investDTO.setProjectNo(session.getAttribute("projectNo").toString());
 	
 		return investDTO;
-	}
-
-	
+	}	
 	
 	@RequestMapping("/forme/PaymentEndProcess")
 	@ResponseBody
 	public void paymentEndProcess(HttpSession session, HttpServletRequest request) {
 		
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
-		InvestDTO investDTO = new InvestDTO();
-		
+		InvestDTO investDTO = new InvestDTO();	
 		investDTO.setUserId(memberDTO.getUserId());
 		investDTO.setInvestmentAmount(session.getAttribute("allAmount").toString());
 		investDTO.setPostcode(request.getParameter("postcode"));
@@ -74,14 +74,11 @@ public class InvestController {
 		investDTO.setPhoneNum(request.getParameter("tel1")+'-'+request.getParameter("tel2")+'-'+request.getParameter("tel3"));
 		investDTO.setPresentNo(session.getAttribute("presentNo").toString());
 		investDTO.setProjectNo(session.getAttribute("projectNo").toString());
+		investDTO.setUuid(request.getParameter("uuid"));
 		investService.insertInvest(investDTO);
+
 	}
-	
-	
-	
-	
-	
-	
+		
 	@RequestMapping("/forme/InvestPaymentInfoForm")
 	public String investPaymentInfoForm(InvestDTO dto, Model model, HttpSession session, HttpServletRequest request) {
 		
@@ -98,9 +95,13 @@ public class InvestController {
 	
 	@RequestMapping("/forme/InvestSelectReward")
 	public String getPresentList(InvestDTO dto, Model model) {
-		InvestDTO dto2 = new InvestDTO();
-		dto2.setProjectNo("201810310005");
-		List<Map<String,Object>> list = investService.getPresentList(dto2);
+		
+		
+		InvestDTO investDTO = new InvestDTO();
+		investDTO.setProjectNo("201810310005");
+	
+		
+		List<Map<String,Object>> list = investService.getPresentList(investDTO);
 		model.addAttribute("presentList", list);
 		return "noNav/invest/investSelectRewardForm";
 	}

@@ -110,8 +110,6 @@ nav {
 			}, function(rsp) {
 			    if ( rsp.success ) {
 			    	var msg = '결제가 완료되었습니다.' + "\n";
-			        msg += '고유ID : ' + rsp.imp_uid + "\n";
-			        msg += '상점 거래ID : ' + rsp.merchant_uid + "\n";
 			        msg += '결제 금액 : ' + rsp.paid_amount + "\n";
 			        msg += '카드 승인번호 : ' + rsp.apply_num + "\n";
 			    	$.ajax({
@@ -127,15 +125,17 @@ nav {
 							"tel1": document.getElementById("tel1").value,
 							"tel2": document.getElementById("tel2").value,
 							"tel3": document.getElementById("tel3").value,
-							"request": document.getElementById("request").value
+							"request": document.getElementById("request").value,
+							"uuid": rsp.imp_uid
 						}
 					});
+			    	alert(msg);
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;
+			        alert(msg);
 			    }
 
-			    alert(msg);
 			});
 		});
 	});
@@ -147,7 +147,6 @@ nav {
 			<div style="width: 150px">
 				<div>리워드 선택</div>
 				<div style="background: rgb(26, 188, 156)">결제</div>
-				<div>내역 확인</div>
 			</div>
 		</nav>
 		<session style="float: left">

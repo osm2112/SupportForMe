@@ -54,7 +54,8 @@
 		PHONE_NUM,
 		EMAIL,
 		NAME,
-		REQUEST
+		REQUEST,
+		UUID
 	)	VALUES	(
 		TO_CHAR(SYSDATE,'yyyymmdd')||lpad(INVEST_SEQ.NEXTVAL ,8,0),
 		#{investmentAmount},
@@ -69,7 +70,8 @@
 		#{phoneNum},
 		#{email},
 		#{name},
-		#{request}
+		#{request},
+		#{uuid}
 	)
 	
 </insert>

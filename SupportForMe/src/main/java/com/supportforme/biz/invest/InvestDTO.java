@@ -16,9 +16,15 @@ public class InvestDTO {
 	private String email;
 	private String name;
 	private String request;
+	private String uuid;
 	
 	
-	
+	public String getUuid() {
+		return uuid;
+	}
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
 	public String getRequest() {
 		return request;
 	}

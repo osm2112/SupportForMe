@@ -76,7 +76,6 @@
         <div calss="side" style="width:150px">
             <div style="background: rgb(26, 188, 156)">리워드 선택</div>
             <div>결제</div>
-            <div>내역 확인</div>
         </div>
     </nav>
     <session style="float: left">

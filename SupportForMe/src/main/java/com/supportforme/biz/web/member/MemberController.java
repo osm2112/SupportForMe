@@ -62,7 +62,8 @@ public class MemberController {
 	@RequestMapping("/support/InsertMember")
 	public String insertMember(MemberDTO dto, Model model) {
 		memberService.insertMember(dto);
-		model.addAttribute("url", "../main.jsp");
+		model.addAttribute("msg", dto.getName()+"님 회원가입을 축하드립니다.");
+		model.addAttribute("url", "../support/MemberLoginForm");
 		return "commons/alertRedirect";
 	}
 
@@ -77,12 +78,7 @@ public class MemberController {
 		return "commons/alertRedirect";
 	}
 
-	/*
-	 * //삭제(회원 탈퇴)
-	 * 
-	 * @RequestMapping("/deleteMember.do") public String deleteMember(MemberDTO dto)
-	 * { memberService.deleteMember(dto); return "redirect:"; }
-	 */
+
 
 	// 단건 조회
 	@RequestMapping("/forme/getMember")
