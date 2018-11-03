@@ -20,24 +20,54 @@
     </style>
     <script>
     
-    var presetNo =null;
+    var presentNo =null;
     var projectNo =null;
+    var presentName = null;
     var price = 0;
     var price2 = 0;
+    var allAmount = 0;
 	function selectPresent(){
 		var presentSelect = document.querySelector("input[name=present]:checked");
-		presetNo = presentSelect.nextSibling.nextSibling.value;
+		presentNo = presentSelect.nextSibling.nextSibling.value;
 		projectNo = presentSelect.nextSibling.nextSibling.nextSibling.nextSibling.value;
 		price = presentSelect.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.value;
+		presentName = presentSelect.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.value;
+		allAmount = Number(price) + Number(price2);
 		document.querySelector("#allAmount").innerHTML= Number(price) + Number(price2);		
 	}
 	
 	function inputAmount(){
 		price2 = document.querySelector("#inputAmount").value;
-		document.querySelector("#allAmount").innerHTML= Number(price) + Number(price2);
+		allAmount = Number(price) + Number(price2);
+		document.querySelector("#allAmount").innerHTML=allAmount; 
 	}
 	
-	
+	function nextStep(){
+		if(presentNo == null ){
+			alert('리워드를 선택하여 주세요.');
+			return false;
+		}
+				var form = document.createElement("form");
+				var parm = new Array();
+				var input = new Array();
+				form.action = "../forme/InvestPaymentInfoForm";
+				form.method = "post";
+				parm.push([ 'presentNo', presentNo ]);
+				parm.push([ 'projectNo', projectNo ]);
+				parm.push([ 'allAmount', allAmount ]);
+				parm.push([ 'presentName', presentName ]);
+				parm.push([ 'price2', price2]);
+				
+				for (var i = 0; i < parm.length; i++) {
+					input[i] = document.createElement("input");
+					input[i].setAttribute("type", "hidden");
+					input[i].setAttribute('name', parm[i][0]);
+					input[i].setAttribute("value", parm[i][1]);
+					form.appendChild(input[i]);
+				}
+				document.body.appendChild(form);
+				form.submit();
+	}
 	</script>
 <body>
     
@@ -59,6 +89,7 @@
          	<input type="hidden" value="${presentList.presentNo}" readonly="readonly">
          	<input type="hidden" value="${presentList.projectNo}" readonly="readonly"> 
          	<input type="hidden" value="${presentList.presentPrice}" readonly="readonly"> 
+         	<input type="hidden" value="${presentList.presentName}" readonly="readonly"> 
             ${presentList.presentPrice} 투자<br>
        		${presentList.presentName}<br>
          	발송 예정일  ${presentList.deliveryDate}
@@ -73,7 +104,8 @@
             <input type="number" id="inputAmount" value=0 onkeyup="inputAmount()"> 원을 추가 투자
             <hr>
             <h3>총 투자 금액 <span id="allAmount">0</span>원</h3>
-            <input type="button" value="다음단계" style="background:rgb(26, 188, 156);color:white">
+            <input type="button" value="다음단계" onclick="nextStep()" style="background:rgb(26, 188, 156);color:white">
+            <input type="button" value="취소" style="background:rgb(26, 188, 156);color:white">
         </div>
     </session>      
     </div>

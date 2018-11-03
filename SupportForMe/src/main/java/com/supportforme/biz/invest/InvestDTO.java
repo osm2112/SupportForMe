@@ -1,16 +1,26 @@
 package com.supportforme.biz.invest;
 
 public class InvestDTO {
+	
 	private String investNo;
 	private String investmentAmount;
-	private String totalInvestAmount;
-	private String headcount;
 	private String payType;
 	private String presentNo;
 	private String userId;
 	private String projectNo;
 	private String paymentState;
+	private String postcode;
+	private String address;
+	private String addrDetail;
+	private String phoneNum;
+	private String email;
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getInvestNo() {
 		return investNo;
 	}
@@ -22,19 +32,6 @@ public class InvestDTO {
 	}
 	public void setInvestmentAmount(String investmentAmount) {
 		this.investmentAmount = investmentAmount;
-	}
-	
-	public String getTotalInvestAmount() {
-		return totalInvestAmount;
-	}
-	public void setTotalInvestAmount(String totalInvestAmount) {
-		this.totalInvestAmount = totalInvestAmount;
-	}
-	public String getHeadcount() {
-		return headcount;
-	}
-	public void setHeadcount(String headcount) {
-		this.headcount = headcount;
 	}
 	public String getPayType() {
 		return payType;
@@ -66,12 +63,32 @@ public class InvestDTO {
 	public void setPaymentState(String paymentState) {
 		this.paymentState = paymentState;
 	}
-	
-	@Override
-	public String toString() {
-		return "InvestDTO [investNo=" + investNo + ", investmentAmount=" + investmentAmount + ", totalInvestAmount="
-				+ totalInvestAmount + ", headcount=" + headcount + ", payType=" + payType + ", presentNo=" + presentNo
-				+ ", userId=" + userId + ", projectNo=" + projectNo + ", paymentState=" + paymentState + "]";
+	public String getPostcode() {
+		return postcode;
+	}
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getAddrDetail() {
+		return addrDetail;
+	}
+	public void setAddrDetail(String addrDetail) {
+		this.addrDetail = addrDetail;
+	}
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
 	}
 
+	
+	
+	
 }
