@@ -18,7 +18,7 @@ public class InvestDAO {
 	
 	//등록
 	public int insertInvest(InvestDTO dto) {
-		return 0;
+		return mybatis.insert("insertInvest", dto);
 	}
 	
 	//수정

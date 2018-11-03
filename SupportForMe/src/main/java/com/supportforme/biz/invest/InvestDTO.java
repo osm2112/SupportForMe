@@ -15,7 +15,16 @@ public class InvestDTO {
 	private String phoneNum;
 	private String email;
 	private String name;
+	private String request;
 	
+	
+	
+	public String getRequest() {
+		return request;
+	}
+	public void setRequest(String request) {
+		this.request = request;
+	}
 	public String getEmail() {
 		return email;
 	}

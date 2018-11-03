@@ -40,8 +40,39 @@
 	</select>
 
 	<insert id="insertInvest" parameterType="invest">
-
-	</insert>
+	INSERT INTO INVEST	(
+		INVEST_NO,
+		INVESTMENT_AMOUNT,
+		PAY_TYPE,
+		PRESENT_NO,
+		USER_ID,
+		PROJECT_NO,
+		PAYMENT_STATE,
+		POSTCODE,
+		ADDRESS,
+		ADDR_DETAIL,
+		PHONE_NUM,
+		EMAIL,
+		NAME,
+		REQUEST
+	)	VALUES	(
+		TO_CHAR(SYSDATE,'yyyymmdd')||lpad(INVEST_SEQ.NEXTVAL ,8,0),
+		#{investmentAmount},
+		001,
+		#{presentNo},
+		#{userId},
+		#{projectNo},
+		001,
+		#{postcode},
+		#{address},
+		#{addrDetail},
+		#{phoneNum},
+		#{email},
+		#{name},
+		#{request}
+	)
+	
+</insert>
 
 
 	<update id="updateInvest" parameterType="invest">

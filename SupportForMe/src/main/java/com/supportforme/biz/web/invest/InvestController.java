@@ -23,48 +23,65 @@ import com.supportforme.biz.member.MemberService;
 public class InvestController {
 	@Autowired InvestService investService;
 	@Autowired MemberService memberService;
-/*	
-	@RequestMapping("/forme/InvestSelectRewardForm")
-	public String investSelectRewardForm() {
-		return "noNav/invest/investSelectRewardForm";
-	}	
-*/	
+	
 	@RequestMapping("/forme/AddrInput")
 	@ResponseBody
 	public MemberDTO addrInput(HttpSession session) {
-		/*
+		
 		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
-		*/
-		MemberDTO dto = new MemberDTO();
-		dto.setUserId("user2");
-		return memberService.getMember(dto);
+		return dto;
 	}
 	
 	@RequestMapping("/forme/PaymentInfo")
 	@ResponseBody
 	public InvestDTO paymentInfo(HttpSession session, HttpServletRequest request) {
-		/*
+		
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
 		InvestDTO investDTO = new InvestDTO();
-		investDTO.setInvestmentAmount(session.getAttribute("allAmount").toString());
-		investDTO.setPostcode(request.getParameter("postcode"));
-		investDTO.setAddress(request.getParameter("address"));
-		investDTO.setAddrDetail(request.getParameter("addrDetail"));
-		investDTO.setEmail(request.getParameter("email"));
-		investDTO.setUserId(memberDTO.getUserId().toString());
-		*/
 		
-		InvestDTO investDTO = new InvestDTO();
+		investDTO.setUserId(memberDTO.getUserId());
 		investDTO.setInvestmentAmount(session.getAttribute("allAmount").toString());
 		investDTO.setPostcode(request.getParameter("postcode"));
 		investDTO.setAddress(request.getParameter("address"));
 		investDTO.setAddrDetail(request.getParameter("addrDetail"));
 		investDTO.setEmail(request.getParameter("email"));
 		investDTO.setName(request.getParameter("name"));
-		
+		investDTO.setRequest(request.getParameter("request"));
+		investDTO.setPhoneNum(request.getParameter("tel1")+'-'+request.getParameter("tel2")+'-'+request.getParameter("tel3"));
+		investDTO.setPresentNo(session.getAttribute("presentNo").toString());
+		investDTO.setProjectNo(session.getAttribute("projectNo").toString());
+	
 		return investDTO;
 	}
+
+	
+	
+	@RequestMapping("/forme/PaymentEndProcess")
+	@ResponseBody
+	public void paymentEndProcess(HttpSession session, HttpServletRequest request) {
 		
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
+		InvestDTO investDTO = new InvestDTO();
+		
+		investDTO.setUserId(memberDTO.getUserId());
+		investDTO.setInvestmentAmount(session.getAttribute("allAmount").toString());
+		investDTO.setPostcode(request.getParameter("postcode"));
+		investDTO.setAddress(request.getParameter("address"));
+		investDTO.setAddrDetail(request.getParameter("addrDetail"));
+		investDTO.setEmail(request.getParameter("email"));
+		investDTO.setName(request.getParameter("name"));
+		investDTO.setRequest(request.getParameter("request"));
+		investDTO.setPhoneNum(request.getParameter("tel1")+'-'+request.getParameter("tel2")+'-'+request.getParameter("tel3"));
+		investDTO.setPresentNo(session.getAttribute("presentNo").toString());
+		investDTO.setProjectNo(session.getAttribute("projectNo").toString());
+		investService.insertInvest(investDTO);
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/forme/InvestPaymentInfoForm")
 	public String investPaymentInfoForm(InvestDTO dto, Model model, HttpSession session, HttpServletRequest request) {
 		
@@ -78,7 +95,6 @@ public class InvestController {
 		
 		return "noNav/invest/investPaymentInfoForm";
 	}
-	
 	
 	@RequestMapping("/forme/InvestSelectReward")
 	public String getPresentList(InvestDTO dto, Model model) {

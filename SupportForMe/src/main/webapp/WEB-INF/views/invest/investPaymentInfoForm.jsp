@@ -73,12 +73,26 @@ nav {
 				method : "post",
 				type : "json",
 				async   : false,
+				data :{
+					"address": document.getElementById("address").value ,
+					"addrDetail": document.getElementById("addrDetail").value ,
+					"postcode": document.getElementById("postcode").value ,
+					"email": document.getElementById("email").value ,
+					"name": document.getElementById("name").value,
+					"tel1": document.getElementById("tel1").value,
+					"tel2": document.getElementById("tel2").value,
+					"tel3": document.getElementById("tel3").value,
+					"request": document.getElementById("request").value
+					
+					
+				},
 				success : function(data) {
 					paymentInfo.amount=data.investmentAmount;
 					paymentInfo.buyer_email=data.email;
 					paymentInfo.buyer_name=data.name;
-					paymentInfo.buyer_tel=data.investmentAmount;
+					paymentInfo.buyer_tel=data.phoneNum;
 					paymentInfo.buyer_addr=data.address;
+					console.log(data);
 				}
 			});
 		});
@@ -93,12 +107,29 @@ nav {
 			    buyer_name : paymentInfo.buyer_name,
 			    buyer_tel :  paymentInfo.buyer_tel,
 			    buyer_addr : paymentInfo.buyer_addr
-			   // buyer_postcode : '123-456'
 			}, function(rsp) {
 			    if ( rsp.success ) {
-
-			    	
-			    	
+			    	var msg = '결제가 완료되었습니다.' + "\n";
+			        msg += '고유ID : ' + rsp.imp_uid + "\n";
+			        msg += '상점 거래ID : ' + rsp.merchant_uid + "\n";
+			        msg += '결제 금액 : ' + rsp.paid_amount + "\n";
+			        msg += '카드 승인번호 : ' + rsp.apply_num + "\n";
+			    	$.ajax({
+						url : "../forme/PaymentEndProcess",
+						method : "post",
+						async   : false,
+						data :{
+							"address": document.getElementById("address").value ,
+							"addrDetail": document.getElementById("addrDetail").value ,
+							"postcode": document.getElementById("postcode").value ,
+							"email": document.getElementById("email").value ,
+							"name": document.getElementById("name").value,
+							"tel1": document.getElementById("tel1").value,
+							"tel2": document.getElementById("tel2").value,
+							"tel3": document.getElementById("tel3").value,
+							"request": document.getElementById("request").value
+						}
+					});
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;
@@ -168,7 +199,7 @@ nav {
 					</tr>
 					<tr>
 						<td>배송시 요청사항</td>
-						<td><textarea id=""></textarea></td>
+						<td><textarea id="request"></textarea></td>
 					</tr>
 					<tr>
 						<td>선택 리워드</td>
