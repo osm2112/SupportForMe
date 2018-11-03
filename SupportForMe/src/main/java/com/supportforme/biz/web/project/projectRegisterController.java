@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,7 +25,7 @@ import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectRegisterService;
 
 @Controller
-@SessionAttributes("project")
+/*@SessionAttributes("project")*/
 public class projectRegisterController {
 		
 	@Autowired ProjectRegisterService projectService;
@@ -53,7 +52,7 @@ public class projectRegisterController {
 	}
 	
 	@RequestMapping(value={"/forme/updateProject/story","/forme/updateProject/reward","/forme/updateProject/pay"})
-	public String updateProject(@ModelAttribute("project") ProjectDTO dto, HttpServletRequest request
+	public String updateProject(Model model, ProjectDTO dto, HttpServletRequest request
 								,HttpSession session , SessionStatus status) {
 		String uri = request.getRequestURI();
 		String com = uri.substring(uri.lastIndexOf("/")+1);
@@ -67,7 +66,7 @@ public class projectRegisterController {
 		}
 		
 		projectService.updateProject(dto);
-		
+		model.addAttribute("project", projectService.getProject(dto));
 		if(("story").equals(com)) {
 			return "ajax/register/projectRegisterStory";
 		}else if(("reward").equals(com)){
@@ -93,10 +92,11 @@ public class projectRegisterController {
 	
 	
 	
-	@RequestMapping(value="/forme/make/fileUpload" , method=RequestMethod.POST)
+	@RequestMapping(value="/forme/fileUpload" , method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,String> fileUpload(@ModelAttribute("project") ProjectDTO dto, HttpServletRequest request) throws IllegalStateException, IOException {
 		String folder = request.getSession().getServletContext().getRealPath("/upload");
+//		String folder2 = "C:\\Users\\hyeon\\git\\SupportForMe\\SupportForMe\\src\\main\\webapp\\upload";
         
 		File file = new File(folder);
         //디렉토리 존재하지 않을경우 디렉토리 생성
@@ -114,6 +114,7 @@ public class projectRegisterController {
 			String extension = "." + tempFn.substring(index+1);
 			filename = realfilename + System.currentTimeMillis() + extension; 
 			uploadFile.transferTo(new File(folder,filename));
+//			uploadFile.transferTo(new File(folder2,filename));
 		}
 		
 
@@ -123,12 +124,13 @@ public class projectRegisterController {
 		return map;
 	}
 	
-	@RequestMapping(value="/forme/make/deleteIntroductionImg" , method=RequestMethod.POST)
+	@RequestMapping(value="/forme/deleteIntroductionImg")
 	@ResponseBody
-	public Map<String,String> deleteIntroductionImg(@ModelAttribute("project") ProjectDTO dto,@RequestParam(value="removeIntroductionImg",defaultValue="a.png",required=false)String removeImg,HttpServletRequest request){
-		 String folder =  request.getSession().getServletContext().getRealPath("/upload")+removeImg;// 삭제할 파일의 경로
-		 File file = new File(folder);
-		 if(file.exists() == true){
+	public Map<String,String> deleteIntroductionImg(@RequestParam(value="removeIntroductionImg",required=false)String removeImg,HttpServletRequest request){
+		 String folder =  request.getSession().getServletContext().getRealPath("/upload");// 삭제할 파일의 경로
+		 System.out.println("==============================*************"+folder);
+		 File file = new File(folder,removeImg);
+		 if(file.exists()){
 			 file.delete();
 		}
 		Map<String,String> map = new HashMap<String,String>();

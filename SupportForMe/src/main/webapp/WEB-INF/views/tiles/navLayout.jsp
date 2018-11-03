@@ -28,12 +28,13 @@ body {
 	padding: 1em;
 	overflow: hidden;
 }
-#active {
+#active,.active {
    /* color : rgb(26, 188, 156);
    border-left : 2px solid rgb(26, 188, 156);*/
    background-color : rgb(26, 188, 156);
    color : white;
 }
+
 </style>
 </head>
 <body>

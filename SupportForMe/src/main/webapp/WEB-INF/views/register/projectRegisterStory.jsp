@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<script>
+<script>
 $(function() {
 	//전역변수선언
 	var editor_object = [];
@@ -29,13 +29,28 @@ $(function() {
 	        bUseModeChanger : true, 
 	    }
 	});
+	
+	$(".next_button").on("click",function(){
+		
+		//id가 smarteditor인 textarea에 에디터에서 대입
+    	editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
+		$.ajax({
+			url : "../updateProject/reward",
+			data : $("#registerStoryFrm").serialize(), 
+			method : "post",
+			success : function(result) {
+				$("#result").html(result);
+				$(".story").removeClass("active");
+				$(".reward").addClass("active");	
+			}
+		});	
+	});
 });
 </script>
 	<form name="fileUploadStoryFrm" id="fileUploadStoryFrm" method="post">
 		<input type="file" name="uploadFile" id="fileUploadStory"  accept=".gif, .jpg, .png" style="display:none">
 	</form>
     <div style="height:50px"></div>
-    
     <form name="registerStoryFrm" id="registerStoryFrm">
 	    <input type="hidden" name="projectNo" value="${project.projectNo}">
 	    <input type="hidden" name="userId" value="${project.userId}">
@@ -57,7 +72,7 @@ $(function() {
 							<c:forTokens var="image" items="${project.introductionImage}" delims="||" varStatus="i">
 								<div class="introductionImg rg_img soge">
 									<img src="/SupportForMe/upload/${image}">	
-									<img src="/SupportForMe/images/cancel1.png" class="sogeRemove ${i.index+1}">
+									<img src="/SupportForMe/images/slimcancel.png" class="sogeRemove ${i.index+1}">
 									<input type='hidden' name='arrImage' value='${image}'>
 								</div>
 									             		

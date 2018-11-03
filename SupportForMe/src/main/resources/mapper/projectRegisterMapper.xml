@@ -45,9 +45,6 @@
 		 <if test="bankCode != null and bankCode != ''"> 
 		 ,BANK_CODE = #{bankCode}
 		 </if>
-		 <if test="progress != null and progress != ''"> 
-		 ,PROGRESS = #{progress}
-		 </if>
 		 <if test="introductionImage != null and introductionImage != ''">
 		 ,INTRODUCTION_IMAGE = #{introductionImage}
 		 </if>

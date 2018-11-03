@@ -11,16 +11,17 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
 <script src="http://malsup.github.com/jquery.form.js"></script> 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="/SupportForMe/smarteditor/js/HuskyEZCreator.js?ver=1.2"></script>
+
+<script src="/SupportForMe/smarteditor/js/HuskyEZCreator.js?ver=1"></script>
 
 <title>프로젝트 등록</title>
 <style>
 /* 공통 css */
-input:focus {
+input[type=text]:focus {
 	outline: none;
 }
 
-input:-webkit-autofill {
+input[type=text]:-webkit-autofill {
 	-webkit-box-shadow: 0 0 0 1000px white inset;
 }
 
@@ -219,9 +220,9 @@ input:-webkit-autofill {
 	opacity: 0.8;
 }
 
-/* 
-	story css
- */
+/*
+*story style
+*/
 .introductionImg {
 	width: 200px;
 	height: 150px;
@@ -236,9 +237,11 @@ input:-webkit-autofill {
 .sogeRemove:hover {
 	opacity: 1
 }
+
 .story_video {
-	display:grid;
+	display: grid;
 }
+
 .videoInput {
 	border: 1px solid lightgrey;
 	border-radius: 3.5px;
@@ -251,14 +254,16 @@ input:-webkit-autofill {
 .videoSpan {
 	width: 32px;
 	height: 32px;
- 	display:inline-block;
- 	vertical-align:middle;
+	display: inline-block;
+	vertical-align: middle;
 }
- .videoPlus,.videoMinus{
- 	width:20px;
- 	height:20px;
- }
-.videoSpan > .videoPlus,.videoSpan > .videoMinus {
+
+.videoPlus, .videoMinus {
+	width: 20px;
+	height: 20px;
+}
+
+.videoSpan>.videoPlus, .videoSpan>.videoMinus {
 	position: absolute;
 	max-width: 100%;
 	max-height: 100%;
@@ -268,84 +273,133 @@ input:-webkit-autofill {
 	left: 0;
 	right: 0;
 }
+.checks {
+	position: relative;
+	display:inline-block;
+	padding-right:10px;
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #1abc9c;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+/*
+*reward style
+*/
+#reward_box {
+	background-color: rgb(244, 243, 243);
+	width: 580px;
+	height: 250px;
+	padding: 15px
+}
+
+#reward_box div {
+	margin: 10px 5px;
+}
+
+#reward_grid {
+	display: grid;
+	grid-template-columns: 1.5fr 6.5fr 1fr;
+}
+
+.reward_button {
+	font-size: 15px;
+	font-weight: 800;
+	padding: 5px 45px;
+	margin-top: 5px;
+	margin-left: 50px;
+}
+
+.add_button {
+	color: rgb(26, 188, 156);
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid rgb(26, 188, 156);
+}
+
+.reset_button {
+	color: white;
+	background-color: rgb(26, 188, 156);
+	border-radius: 5px;
+	border: none;
+}
 </style>
 <script>
 $(function() {
-		
-	 	/* //전역변수선언
-	    var editor_object = [];
-	     
-	    nhn.husky.EZCreator.createInIFrame({
-	        oAppRef: editor_object,
-	        elPlaceHolder : "smarteditor",
-	        sSkinURI: "/SupportForMe/smarteditor/SmartEditor2Skin.html",
-	        htParams : {
-	            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-	            bUseToolbar : true,             
-	            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-	            bUseVerticalResizer : true,     
-	            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-	            bUseModeChanger : true, 
-	        }
-	    }); */
 		//////공통 js-------------------------
-		$(".save_button").on("click", function() {
+		$(document).on("click",".save_button",function(){
 
 		});
 		
-		$(".next_button").on("click",function() {
-					
-					var page = $(this).attr("class").split(" ")[1];
-					
-					switch(page){
-					case "basic" : 
-							$.ajax({
-								url : "../insertHashtag",
-								data : $("#hashtagFrm").serialize(),
-								method : "post",
-								success : function(result) {
-									console.log(result.code);
-								}
-							});
-							$.ajax({
-								url : "../updateProject/story",
-								data : $("#registerBasicFrm").serialize(),
-								method : "post",
-								success : function(result) {
-									$("#result").html(result);
-								}
-							});
-							break;
-					
-					case "story" : 
-						 	//id가 smarteditor인 textarea에 에디터에서 대입
-				        	editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
-							$.ajax({
-								url : "../updateProject/reward",
-								data : $("#registerStoryFrm").serialize(), 
-								method : "post",
-								success : function(result) {
-									$("#result").html(result);
-								}
-							});	
-							break;
-					case "reward" :
-							$.ajax({
-								url : "../updateProject/pay",
-								data : $("#registerRewardFrm").serialize(), 
-								method : "post",
-								success : function(result) {
-									$("#result").html(result);
-								}
-							});	
-							break;
-					default  : break;
-							}
-					
-				}); 
+		
 		//////공통 js----------------------
 	
 		//////기본정보 js ------------------
+		$(".next_button").on("click",function(){
+				$.ajax({
+					url : "../insertHashtag",
+					data : $("#hashtagFrm").serialize(),
+					method : "post",
+					success : function(result) {}
+				});
+				$.ajax({
+					url : "../updateProject/story",
+					data : $("#registerBasicFrm").serialize(),
+					method : "post",
+					success : function(result) {
+						$("#result").html(result);
+						$(".basic").removeClass("active");
+						$(".story").addClass("active");								}
+				});
+					
+		}); 
+		
 		$("#projectDeadline").datepicker(
 				{
 					dateFormat : "yy-mm-dd",
@@ -377,7 +431,7 @@ $(function() {
 			if($(this).val() != "") {
 				$("#fileUploadFrm").ajaxForm({
 					dataType:"json",
-					url:'fileUpload',
+					url:'../fileUpload',
 					success: 
 						function(result, textStatus){
 							if(result.code = 'success') {
@@ -483,7 +537,7 @@ $(function() {
 			if($(this).val() != "") {
 				$("#fileUploadStoryFrm").ajaxForm({
 					dataType:"json",
-					url:'fileUpload',
+					url:'../fileUpload',
 					success: 
 						function(result, textStatus){
 							if(result.code = 'success') {
@@ -524,16 +578,17 @@ $(function() {
 			var cnt = $(this).attr("class").substr(11);
 			var removeImg = $(this).prev().attr("src").split('/');
 			var projectNo = $("input[name=projectNo]").val();
-			 $.ajax({
-				url : "deleteIntroductionImg",
+			var introImg = removeImg[3];
+			$.ajax({
+				url : '../deleteIntroductionImg',
 				dataType : "JSON",
-				data : {"projectNo":projectNo,"removeIntroductionImg":removeImg[3]},
+				data : {"removeIntroductionImg":introImg},
 				method : "post",
 				success : function(result) {
 					if(result.code = 'success') {
 						$(".sogeRemove."+cnt).parent().remove();
 						
-						if(!$("#storyDefault").is(":visible")){
+						if(!$(".soge").is(":visible")){
 							var dfImg = "<div class='introductionImg rg_img' id='storyDefault'>"
 								  	  + "<img src='/SupportForMe/images/picture.png' id='default'>"	
 								  	  +	"</div>";
@@ -559,79 +614,109 @@ $(function() {
 </head>
 <body>
 	<div id="result">
-	<form name="fileUploadFrm" id="fileUploadFrm" method="post">
-		<input type="file" name="uploadFile" id="fileUploadImage" accept=".gif, .jpg, .png"  style="display:none">
-	</form>
-	<div style="height: 50px"></div>
-	
-	<form name="registerBasicFrm" id="registerBasicFrm">
-		<input type="hidden" name="projectNo" value="${project.projectNo}">
-		<input type="hidden" name="userId" value="${project.userId}">
-		<div id="basic_subject">
-			<div class="bold">프로젝트의 제목을 적어주세요</div>
-			<input type="text" name="projectName" id="r_projectName" class="inputStyle" value="${project.projectName}">
-		</div>
-		<div id="basic_target">
-			<div class="bold">목표 금액을 적어주세요</div>
-			<input type="text" name="targetAmount" id="r_targetAmount" 
-				class="inputStyle inputRight"  placeholder="0"> 원
-			<c:if test="${project.targetAmount != null }">
-				<script>
-					$("input[name=targetAmount]").attr("placeholder","${project.targetAmount}");
-				</script>
-			</c:if>
-		</div>
-		<div id="basic_">
-			<div class="bold">프로젝트의 진행기간을 적어주세요</div>
-			<div class="lg">최소 7일부터 최대 50일까지 가능합니다.</div>
-			<div id="rg_projectPeriodDeadline">
-				<input type="text" name="remainingPeriod" id="remainingPeriod"
-					class="inputStyle inputRight" disabled><label class="lg" style="padding-top:5px">일 남음</label> 
-				 <div id="rg_projectDeadline">
-					<input type="text" name="projectDeadline" id="projectDeadline" class="inputStyle" value="">
-				</div>
-			</div>
-		</div>
-		<div id="basic_">
-			<div class="bold">프로젝트 대표 이미지를 등록해주세요</div>
-			<div class="fileContainer"> 
-				<div class="thumbnailImg rg_img">
-					<img src="/SupportForMe/images/picture.png" id="default">
-					<c:if test="${project.image != null}" >
-						<img src="/SupportForMe/upload/${project.image}">
-					</c:if>
-				</div>
-			</div>
-		</div>
+		<div id="pageInfo" style="display:none">basic</div>
+		<form name="fileUploadFrm" id="fileUploadFrm" method="post">
+			<input type="file" name="uploadFile" id="fileUploadImage" accept=".gif, .jpg, .png"  style="display:none">
 		</form>
+		<div style="height: 50px"></div>
 		
-		<form name="hashtagFrm" id="hashtagFrm" method="post">
+		<form name="registerBasicFrm" id="registerBasicFrm">
 			<input type="hidden" name="projectNo" value="${project.projectNo}">
-		     <c:if test="${hashtag.size() > 0}" >
-					<c:forEach var="i" begin="0" end="${hashtag.size()-1}">
-						<input type='hidden' name='arrHashtag' class='hashHidden${i} db' id="${hashtag[i].hashtagNo}" 
-								value='${hashtag[i].hashtagName}'>
-					</c:forEach>
-	         </c:if>
-		</form>
-
-		<div id="basic_keyword">
-			<div class="bold">프로젝트 키워드를 적어주세요 <span style="color:#e74c3c">(선택사항)</span></div>
-			<div class="lg">제목 외에도 키워드 검색 시 검색 결과에 프로젝트가 나타납니다.</div>
-			<input type="text" name="keyword" class="inputStyle keyText" maxlength="10"
-					placeholder="최대 5개까지 등록 가능합니다. 키워드 입력 후 엔터를 눌러주세요." autocomplete=off>
-			<div id="keyword_div">
-				<c:if test="${hashtag.size() > 0}" >
-					<c:forEach var="i" begin="0" end="${hashtag.size()-1}">
-						<span class='keyword'><label class='keyword_label'>${hashtag[i].hashtagName}</label>
-						<img src='/SupportForMe/images/remove.png' class='remove ${i}'></span>
-					</c:forEach> 
-	          	</c:if> 
+			<input type="hidden" name="userId" value="${project.userId}">
+			<div id="basic_subject">
+				<div class="bold">프로젝트의 제목을 적어주세요</div>
+				<input type="text" name="projectName" id="r_projectName" class="inputStyle" value="${project.projectName}">
 			</div>
-		</div>
-		<input type="button" name="save" class="save_button" value="저장하기">
-		<input type="button" name="next" class="next_button basic" value="다음 단계">
+			<div id="basic_category">
+				<div class="bold">프로젝트 분야를 선택해주세요</div>
+				<div class="checks small">
+					<input type="radio" id="category1" name="categoryCode" value="001">
+					<label for="category1">공연</label>
+				</div>
+				<div class="checks small">
+					<input type="radio" id="category2" name="categoryCode" value="002" >
+					<label for="category2">영화</label>
+				</div>
+				<div class="checks small">
+					<input type="radio" id="category3" name="categoryCode" value="003" >
+					<label for="category3">미술</label>
+				</div>
+				<div class="checks small">
+					<input type="radio" id="category4" name="categoryCode" value="004" >
+					<label for="category4">도서</label>
+				</div>
+				<script>
+					var category = '${project.categoryCode}';
+					
+					switch(category){
+						case "001" : $("#category1").attr("checked",true); break;
+						case "002" : $("#category2").attr("checked",true); break;
+						case "003" : $("#category3").attr("checked",true); break;
+						case "004" : $("#category4").attr("checked",true); break;
+					}
+				</script>
+			</div>
+			<div id="basic_target">
+				<div class="bold">목표 금액을 적어주세요</div>
+				<input type="text" name="targetAmount" id="r_targetAmount" 
+					class="inputStyle inputRight"  placeholder="0"> 원
+				<c:if test="${project.targetAmount != null }">
+					<script>
+						$("input[name=targetAmount]").attr("placeholder","${project.targetAmount}");
+					</script>
+				</c:if>
+			</div>
+			<div id="basic_">
+				<div class="bold">프로젝트의 진행기간을 적어주세요</div>
+				<div class="lg">최소 7일부터 최대 50일까지 가능합니다.</div>
+				<div id="rg_projectPeriodDeadline">
+					<input type="text" name="remainingPeriod" id="remainingPeriod"
+						class="inputStyle inputRight" disabled><label class="lg" style="padding-top:5px">일 남음</label> 
+					 <div id="rg_projectDeadline">
+						<input type="text" name="projectDeadline" id="projectDeadline" class="inputStyle" value="">
+					</div>
+				</div>
+			</div>
+			<div id="basic_">
+				<div class="bold">프로젝트 대표 이미지를 등록해주세요</div>
+				<div class="fileContainer"> 
+					<div class="thumbnailImg rg_img">
+						<img src="/SupportForMe/images/picture.png" id="default">
+						<c:if test="${project.image != null}" >
+							<img src="/SupportForMe/upload/${project.image}">
+						</c:if>
+					</div>
+				</div>
+			</div>
+			</form>
+			
+			<form name="hashtagFrm" id="hashtagFrm" method="post">
+				<input type="hidden" name="projectNo" value="${project.projectNo}">
+			     <c:if test="${hashtag.size() > 0}" >
+						<c:forEach var="i" begin="0" end="${hashtag.size()-1}">
+							<input type='hidden' name='arrHashtag' class='hashHidden${i} db' id="${hashtag[i].hashtagNo}" 
+									value='${hashtag[i].hashtagName}'>
+						</c:forEach>
+		         </c:if>
+			</form>
 	
+			<div id="basic_keyword">
+				<div class="bold">프로젝트 키워드를 적어주세요 <span style="color:#e74c3c">(선택사항)</span></div>
+				<div class="lg">제목 외에도 키워드 검색 시 검색 결과에 프로젝트가 나타납니다.</div>
+				<input type="text" name="keyword" class="inputStyle keyText" maxlength="10"
+						placeholder="최대 5개까지 등록 가능합니다. 키워드 입력 후 엔터를 눌러주세요." autocomplete=off>
+				<div id="keyword_div">
+					<c:if test="${hashtag.size() > 0}" >
+						<c:forEach var="i" begin="0" end="${hashtag.size()-1}">
+							<span class='keyword'><label class='keyword_label'>${hashtag[i].hashtagName}</label>
+							<img src='/SupportForMe/images/remove.png' class='remove ${i}'></span>
+						</c:forEach> 
+		          	</c:if> 
+				</div>
+			</div>
+			<input type="button" name="save" class="save_button" value="저장하기">
+			<input type="button" name="next" class="next_button basic" value="다음 단계">
+		
 	</div>
 </body>
 </html>
