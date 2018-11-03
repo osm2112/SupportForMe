@@ -5,53 +5,61 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
 <script src="http://malsup.github.com/jquery.form.js"></script> 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="/SupportForMe/smarteditor/js/HuskyEZCreator.js?ver=1.2"></script>
+
 <title>프로젝트 등록</title>
 <style>
 /* 공통 css */
-input:focus{
-	outline:none;
-}
-input:-webkit-autofill {
-   -webkit-box-shadow: 0 0 0 1000px white inset;
-}
-.inputStyle {
-	border : 1px solid lightgrey;
-	border-radius: 3.5px;
-	height:30px;
-	padding: 2px 10px 2px 15px;
-	width : 280px;
-	font-size : 17px;
-	
+input:focus {
+	outline: none;
 }
 
-#registerBasicFrm > div,#basic_keyword>div{
-	margin:10px 0px;
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 1000px white inset;
 }
-#registerStoryFrm > div{
-	margin:15px 0px;
+
+.inputStyle {
+	border: 1px solid lightgrey;
+	border-radius: 3.5px;
+	height: 30px;
+	padding: 2px 10px 2px 10px;
+	width: 280px;
+	font-size: 17px;
 }
-#registerBasicFrm > div > div ,#registerStoryFrm > div > div{
-	margin:10px 0px;
-} 
+
+#registerBasicFrm>div, #basic_keyword>div {
+	margin: 10px 0px;
+}
+
+#registerStoryFrm>div {
+	margin: 15px 0px;
+}
+
+#registerBasicFrm>div>div, #registerStoryFrm>div>div {
+	margin: 10px 0px;
+}
+
 .lg {
-	color:#7f7f7f;
-	font-size:15px;
+	color: #7f7f7f;
+	font-size: 15px;
 }
+
 .bold {
-	color:#5e5e5e;
-	font-weight:600;
-	font-size:17px;
+	color: #5e5e5e;
+	font-weight: 600;
+	font-size: 17px;
 }
+
 .inputRight {
 	text-align: right;
 }
+
 .save_button {
 	font-size: 15px;
 	font-weight: 800;
@@ -78,152 +86,208 @@ input:-webkit-autofill {
 
 .fileContainer {
 	width: 1000px;
-    position: relative;
-    display: grid;
+	position: relative;
+	display: grid;
 	grid-column: 1/5;
-	grid-column-gap: 10px; 
-	grid-row-gap:10px; 
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
 	grid-template-columns: repeat(5, 200px);
 	/*grid-template-columns: 25% 25% 25% 25%;*/
 	grid-auto-rows: minmax(20px, auto);
 	/* text-align: center; */
 }
+
 .rg_img {
-	position:relative;
-	border : 1px solid lightgrey;
-	border-radius : 2.5px;
+	position: relative;
+	border: 1px solid lightgrey;
+	border-radius: 2.5px;
 	text-align: center;
-	margin-right:10px;
+	margin-right: 10px;
 }
+
 .rg_img:hover {
-	cursor:pointer;
+	cursor: pointer;
 }
 
-.thumbnailImg > img, .introductionImg > img, #soge{
-	position:absolute;
-    max-width:100%; max-height:100%;
-  	margin:auto;
-    top:0; bottom:0; left:0; right:0;
+.thumbnailImg>img, .introductionImg>img, #soge {
+	position: absolute;
+	max-width: 100%;
+	max-height: 100%;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
-#default ,#plus{
-	 width:35px;
-	 height:35px;
+#default, #plus {
+	width: 35px;
+	height: 35px;
 }
 /* basic css */
 .ui-datepicker-trigger {
 	width: 20px;
 	height: 20px;
 	vertical-align: middle;
-	margin-top:2px;
-	margin-left:-10px;
+	margin-top: 2px;
+	margin-left: -10px;
 }
+
 #rg_projectPeriodDeadline {
-	display:flex;
+	display: flex;
 }
-#rg_projectPeriodDeadline > input {
-	margin-right:5px;
+
+#rg_projectPeriodDeadline>input {
+	margin-right: 5px;
 }
+
 #rg_projectDeadline {
 	width: 200px;
-	height:35px;
-	border : 1px solid lightgrey;
+	height: 35px;
+	border: 1px solid lightgrey;
 	border-radius: 3.5px;
-	padding :0px 5px;
-	margin-left : 10px;
-} 
-#projectDeadline{
-	border :none;
-	width : 165px;
-	margin:0px;
-	font-size:17px;
+	padding: 0px 5px;
+	margin-left: 10px;
 }
+
+#projectDeadline {
+	border: none;
+	width: 165px;
+	margin: 0px;
+	font-size: 17px;
+}
+
 #projectDeadline:focus {
-	outline:none;
+	outline: none;
 }
+
 #remainingPeriod {
-	width : 200px;
+	width: 200px;
 }
 
 .thumbnailImg {
-	width:395px;
-	height:300px;
+	width: 395px;
+	height: 300px;
 }
 
 #thumb {
-	width:190px;
-	height:160px;
+	width: 190px;
+	height: 160px;
 }
- 
 
 #keyword_div {
-	width:700px;
-	overflow:hidden;
-	height:auto;
-	min-height:100px;
-/* 	border : 1px solid lightgrey;
+	width: 700px;
+	overflow: hidden;
+	height: auto;
+	min-height: 100px;
+	/* 	border : 1px solid lightgrey;
 	border-radius : 3.5px; */
-	padding-left:5px;
+	padding-left: 5px;
 }
+
 .keyText {
-	border : 1px solid lightgrey;
-	border-radius : 3.5px;
-	width : 500px;
-	font-size:15px;
+	border: 1px solid lightgrey;
+	border-radius: 3.5px;
+	width: 500px;
+	font-size: 15px;
 }
-#keyword_div > .keyword {
-	height:25px;
-	background-color:#EAEAEA;
-	padding:2px 5px;
-	margin:2.5px 2.5px;
-	border-radius : 3.5px;
-	display : inline-block;
-	float:left;
+
+#keyword_div>.keyword {
+	height: 25px;
+	background-color: #EAEAEA;
+	padding: 2px 5px;
+	margin: 2.5px 2.5px;
+	border-radius: 3.5px;
+	display: inline-block;
+	float: left;
 }
-.keyword > label {
-	padding-right:2.5px;
-	margin-right:5px;
+
+.keyword>label {
+	padding-right: 2.5px;
+	margin-right: 5px;
 }
-.keyword > img {
-	width : 10px;
-	height:10px;
-	margin-top:7.5px;
-	opacity : 0.2;	
+
+.keyword>img {
+	width: 10px;
+	height: 10px;
+	margin-top: 7.5px;
+	opacity: 0.2;
 }
-.keyword > img:hover {
-	cursor:pointer;
-	opacity : 0.8;
+
+.keyword>img:hover {
+	cursor: pointer;
+	opacity: 0.8;
 }
 
 /* 
 	story css
  */
 .introductionImg {
-	width:200px;
-	height:150px;
-} 
+	width: 200px;
+	height: 150px;
+}
 
 .sogeRemove {
-	width:200px;
-	height:150px;
-	opacity:0
+	width: 200px;
+	height: 150px;
+	opacity: 0
 }
+
 .sogeRemove:hover {
-	opacity:1
+	opacity: 1
+}
+.story_video {
+	display:grid;
 }
 .videoInput {
- 	border : 1px solid lightgrey;
+	border: 1px solid lightgrey;
 	border-radius: 3.5px;
-	height:30px;
+	height: 30px;
 	padding: 2px 10px;
-	width : 380px;
-	font-size : 17px;
- }
+	width: 380px;
+	font-size: 17px;
+}
 
+.videoSpan {
+	width: 32px;
+	height: 32px;
+ 	display:inline-block;
+ 	vertical-align:middle;
+}
+ .videoPlus,.videoMinus{
+ 	width:20px;
+ 	height:20px;
+ }
+.videoSpan > .videoPlus,.videoSpan > .videoMinus {
+	position: absolute;
+	max-width: 100%;
+	max-height: 100%;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
 </style>
 <script>
 $(function() {
-	
+		
+	 	/* //전역변수선언
+	    var editor_object = [];
+	     
+	    nhn.husky.EZCreator.createInIFrame({
+	        oAppRef: editor_object,
+	        elPlaceHolder : "smarteditor",
+	        sSkinURI: "/SupportForMe/smarteditor/SmartEditor2Skin.html",
+	        htParams : {
+	            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+	            bUseToolbar : true,             
+	            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+	            bUseVerticalResizer : true,     
+	            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+	            bUseModeChanger : true, 
+	        }
+	    }); */
 		//////공통 js-------------------------
 		$(".save_button").on("click", function() {
 
@@ -254,6 +318,8 @@ $(function() {
 							break;
 					
 					case "story" : 
+						 	//id가 smarteditor인 textarea에 에디터에서 대입
+				        	editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
 							$.ajax({
 								url : "../updateProject/reward",
 								data : $("#registerStoryFrm").serialize(), 
@@ -370,8 +436,8 @@ $(function() {
 				var keyNo = $(".hashHidden"+cnt).attr("id");
 				 $.ajax({
 					url : "../deleteHashtag",
-					dataType : {"hashtagNo":keyNo,"hashtagName":removeKey},
-					data : jsonTest,
+					dataType : "JSON",
+					data : {"hashtagNo":keyNo,"hashtagName":removeKey},
 					method : "post",
 					success : function(result) {
 						if(result.code = 'success') {
@@ -481,13 +547,15 @@ $(function() {
 			});   
 		})
 		//story page img upload----------- 
-		//story 끝--------------------------------------------------------------
 		
 		
+
+		//story 끝--------------------------------------------------------------	
 		
 });
 
 </script>
+
 </head>
 <body>
 	<div id="result">
@@ -506,9 +574,12 @@ $(function() {
 		<div id="basic_target">
 			<div class="bold">목표 금액을 적어주세요</div>
 			<input type="text" name="targetAmount" id="r_targetAmount" 
-				class="inputStyle"
-			 placeholder="<c:if test="${project.targetAmount != null}">${project.targetAmount}</c:if>
-			<c:if test="${project.targetAmount == null}">0</c:if>"> 원
+				class="inputStyle inputRight"  placeholder="0"> 원
+			<c:if test="${project.targetAmount != null }">
+				<script>
+					$("input[name=targetAmount]").attr("placeholder","${project.targetAmount}");
+				</script>
+			</c:if>
 		</div>
 		<div id="basic_">
 			<div class="bold">프로젝트의 진행기간을 적어주세요</div>

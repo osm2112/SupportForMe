@@ -39,23 +39,26 @@ public class HashtagController {
 			set.add(stHash);
 		}
 		Iterator<String> hashIter = set.iterator();
+		
 		if(list.size()>0) {
 			for(HashtagDTO ht : list) {
 				while(hashIter.hasNext()) {
-					
 					String tempHash = hashIter.next().toString();
-					if(!ht.getHashtagName().equals(tempHash)){
-						htdto.setHashtagName(tempHash);
-						service.insertHashtag(htdto);
-					}; 
+					if(tempHash.equals(ht.getHashtagName())) {
+						set.remove(tempHash);
+					}
+					
 				}
-			}
-		}else {
-			while(hashIter.hasNext()) {
-				htdto.setHashtagName(hashIter.next().toString());
-				service.insertHashtag(htdto);
+				hashIter = set.iterator();	
 			}
 		}
+		
+		while(hashIter.hasNext()) {
+			String tempHash = hashIter.next().toString();
+			htdto.setHashtagName(tempHash);
+			service.insertHashtag(htdto);
+		}
+		
 		map.put("code", "success");
 		return map;
 	}

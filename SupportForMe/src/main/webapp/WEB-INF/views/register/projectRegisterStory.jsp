@@ -9,8 +9,28 @@
 <style>
 </style>
 </head>
+
 <body>
-	
+	<script>
+$(function() {
+	//전역변수선언
+	var editor_object = [];
+	 
+	nhn.husky.EZCreator.createInIFrame({
+	    oAppRef: editor_object,
+	    elPlaceHolder : "smarteditor",
+	    sSkinURI: "/SupportForMe/smarteditor/SmartEditor2Skin.html",
+	    htParams : {
+	        // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+	        bUseToolbar : true,             
+	        // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+	        bUseVerticalResizer : true,     
+	        // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+	        bUseModeChanger : true, 
+	    }
+	});
+});
+</script>
 	<form name="fileUploadStoryFrm" id="fileUploadStoryFrm" method="post">
 		<input type="file" name="uploadFile" id="fileUploadStory"  accept=".gif, .jpg, .png" style="display:none">
 	</form>
@@ -25,10 +45,13 @@
 	    </div>
 		<div id="story_video">
 			<div class="bold">동영상 주소를 적어주세요</div>
-	        <input type="text" placeholder="  YouTube URL을 입력해주세요." class="videoInput">
+			<div class="videoUrl">
+		        <input type="text" placeholder="  YouTube URL을 입력해주세요." class="videoInput">
+		        <span class="videoSpan rg_img"><img src="/SupportForMe/images/plus1.png" class="videoPlus"></span>
+	        </div>
 		</div>
 		<div id="story_image">
-			<div class="bold">이미지를 등록해주세요.</div>
+			<div class="bold">이미지를 등록해주세요</div>
 			<div class="fileContainer introImg">
 					<c:if test="${project.introductionImage != null}" >
 							<c:forTokens var="image" items="${project.introductionImage}" delims="||" varStatus="i">
@@ -48,10 +71,11 @@
 					</div>
 			</div>
 	    </div>
-	    <div id="story_contents">
-	    
+	    <div id="story_contents">	
+	    	<div class="bold">프로젝트 스토리를 적어주세요</div>
+			<textarea id="smarteditor" name="story" rows="10" cols="60" style="width: 720px; height: auto; resize: none"></textarea>
 	    </div>
-	    <div style="height:200px"></div>
+	    <div style="height:50px"></div>
 	   	<input type="button" name="save" class="save_button" value="저장하기">
 		<input type="button" name="next" class="next_button story" value="다음 단계">
 	</form>

@@ -10,4 +10,5 @@ public interface ProjectRegisterService {
 	
 	//프로젝트 수정
 	public int updateProject(ProjectDTO dto);
+	
 }
