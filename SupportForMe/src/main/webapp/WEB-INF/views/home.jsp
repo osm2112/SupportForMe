@@ -6,6 +6,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/flexslider.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider-min.js"></script>
+ 
     <style>
         .bodysize {
            margin-left: auto;
@@ -157,6 +160,7 @@
 </style>
 <script>
 $(document).ready(function() {
+	
 	  $('.flexslider').flexslider({
 	    	animation: "slide"
 	  });
@@ -165,12 +169,40 @@ $(document).ready(function() {
 		    controlNav : false,
 		    customDirectionNav: $(".custom-navigation a")
 	  });	  
+	
+	  Rank();
+	  setTimeout("Rank()",5000);
+
+	  
 	});
+	
+function Rank() {
+	$.ajax({	
+				type : "post",
+				url : "./",
+				dataType : "json",
+				success : function(data) {
+					if (data.length > 0) {
+						for (i = 0; i < data.length; i++) {
+							console.log(data[i]);
+							$('.real_time_image').length;
+							$('.real_time_rank_projects nav ol li').length;
+							$('.real_time_rank_projects nav ol li').eq(i).text(data[i].projectName);
+							$('.real_time_rank_projects nav ol li').eq(i).attr("onclick", "location.href='support/getProjectDetailPage?projectNo="+data[i].projectNo+"'");
+				/* 	$('.real_time_rank_projects nav ol').append(	
+					'<li style="font-size: small; cursor: pointer;" id='+ data[i].projectName +' onclick="location.href=\'support/getProjectDetailPage?projectNo=' + data[i].projectNo + '\'\">'+ data[i].projectName+'</li>'
+					); */
+						}
+					}
+			
+				}
+			});
+}
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider-min.js"></script>
+
 </head>
 <body>
+
     <div class="flexslider2">
     	<ol class="slides">
    	 	<li><img src="./images/main.PNG"></li>
@@ -220,9 +252,15 @@ $(document).ready(function() {
 		      <div class="real_time_rank_projects">
                     <nav>
                         <ol> 
-                         <c:forEach items="${Rank}" var="Rank">
+                    <%--      <c:forEach items="${Rank}" var="Rank">
                             <li style="font-size: small; cursor: pointer; hover: background-color: yellow;" onclick="location.href='support/getProjectDetailPage?projectNo=${Rank.projectNo}'">${Rank.projectName}</li>
-                          </c:forEach>
+                            
+                          </c:forEach> --%>
+                          <li style="font-size: small; cursor: pointer;" onclick="1"></li>
+                          <li style="font-size: small; cursor: pointer;" onclick="2"></li>
+                          <li style="font-size: small; cursor: pointer;" onclick="3"></li>
+                          <li style="font-size: small; cursor: pointer;" onclick="4"></li>
+                          <li style="font-size: small; cursor: pointer;" onclick="5"></li>
                         </ol>
                     </nav>
                </div>
