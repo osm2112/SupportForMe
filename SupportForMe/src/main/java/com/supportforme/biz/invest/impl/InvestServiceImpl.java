@@ -34,12 +34,12 @@ public class InvestServiceImpl implements InvestService {
 	}
 
 	@Override
-	public InvestDTO getInvest(InvestDTO dto) {
+	public Map<String, Object> getInvest(InvestDTO dto) {
 		return dao.getInvest(dto);
 	}
 
 	@Override
-	public List<InvestDTO> getInvests(InvestSearchDTO serachDTO) {
+	public List<Map<String, Object>> getInvests(InvestSearchDTO serachDTO) {
 		return dao.getInvests(serachDTO);
 	}
 

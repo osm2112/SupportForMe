@@ -32,21 +32,21 @@ public class InvestDAO {
 	}
 	
 	//단건 조회
-	public InvestDTO getInvest(InvestDTO dto) {
-		return null;
+	public Map<String, Object> getInvest(InvestDTO dto) {
+		return mybatis.selectOne("invest.getInvest", dto);
 	}
 	 
 	//전체 조회
-	public List<InvestDTO> getInvests(InvestSearchDTO serachDTO) {
-		return null;
+	public List<Map<String, Object>> getInvests(InvestSearchDTO serachDTO) {
+		return mybatis.selectList("invest.getInvests", serachDTO);
 	}
 	
 	public int getCnt(InvestSearchDTO searchDTO) {
-		return 0;
+		return  mybatis.selectOne("invest.getCnt", searchDTO);
 	}
 
 	public List<Map<String, Object>>  getPresentList(InvestDTO dto){
-		return mybatis.selectList("getPresentList", dto);
+		return mybatis.selectList("invest.getPresentList", dto);
 		
 	}
 

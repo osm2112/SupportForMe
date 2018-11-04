@@ -14,8 +14,10 @@
 		<typeAlias alias="creditinfo" type="com.supportforme.biz.creditInfo.CreditInfoDTO" />
 		<typeAlias alias="hashtag" type="com.supportforme.biz.hashtag.HashtagDTO" />
 		<typeAlias alias="invest" type="com.supportforme.biz.invest.InvestDTO" />
+		<typeAlias alias="investSearch" type="com.supportforme.biz.invest.InvestSearchDTO"/>
 		<typeAlias alias="present" type="com.supportforme.biz.present.PresentDTO" />
 		<typeAlias alias="project" type="com.supportforme.biz.project.ProjectDTO" />
+		
 	</typeAliases>
 	
 </configuration>

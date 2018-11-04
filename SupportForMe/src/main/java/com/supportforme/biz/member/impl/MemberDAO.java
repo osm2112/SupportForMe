@@ -15,17 +15,17 @@ public class MemberDAO {
 	SqlSessionTemplate mybatis;
 	
 	public int insertMember(MemberDTO dto) {
-		return mybatis.insert("insertMember", dto);
+		return mybatis.insert("member.insertMember", dto);
 	};
 
 	// 수정
 	public int updateMember(MemberDTO dto) {
-		return mybatis.update("updateMember", dto);
+		return mybatis.update("member.updateMember", dto);
 	};
 
 	// 삭제(회원 탈퇴)
 	public int deleteMember(MemberDTO dto) {
-		return mybatis.update("deleteMember", dto);
+		return mybatis.update("member.deleteMember", dto);
 	};
 
 	// 단건 조회
@@ -45,28 +45,28 @@ public class MemberDAO {
 	
 	public MemberDTO passwordCheck(MemberDTO dto) {
 		// TODO Auto-generated method stub
-		return mybatis.selectOne("passwordCheck", dto);
+		return mybatis.selectOne("member.passwordCheck", dto);
 	}
 	
 	public int checkId(MemberDTO dto) {
-		return mybatis.selectOne("checkId", dto);
+		return mybatis.selectOne("member.checkId", dto);
 	}
 	
 	
 	public int checkEmail(MemberDTO dto) {
-		return mybatis.selectOne("checkEmail", dto);
+		return mybatis.selectOne("member.checkEmail", dto);
 	}
 	
 	public MemberDTO findId(MemberDTO dto) {
-		return mybatis.selectOne("findId", dto);
+		return mybatis.selectOne("member.findId", dto);
 	}
 	
 	public MemberDTO findPassword(MemberDTO dto) {
-		return mybatis.selectOne("findPassword", dto);
+		return mybatis.selectOne("member.findPassword", dto);
 	}
 	
 	public int updateRandomPassword(MemberDTO dto) {
-		return mybatis.update("updateRandomPassword",dto);
+		return mybatis.update("member.updateRandomPassword",dto);
 	}
 	
 	

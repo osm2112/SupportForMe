@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.supportforme.biz.common.Paging;
 import com.supportforme.biz.invest.InvestDTO;
 import com.supportforme.biz.invest.InvestSearchDTO;
 import com.supportforme.biz.invest.InvestService;
@@ -20,6 +22,7 @@ import com.supportforme.biz.member.MemberService;
 import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectDetailPageService;
 import com.supportforme.biz.project.ProjectService;
+import com.supportforme.biz.test.UserSearchDTO;
 
 
 @Controller
@@ -34,6 +37,48 @@ public class InvestController {
 		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
 		return dto;
 	}
+	
+	@RequestMapping("/forme/InvestList")	
+	public String getInvests(Model model,InvestSearchDTO searchDTO, Paging paging, HttpSession session,HttpServletRequest request) {
+		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
+		searchDTO.setUserId(memberDTO.getUserId());
+		paging.setPageUnit(5);
+		
+		//현재페이지 번호 파라미터
+		if(paging.getPage() ==null) {
+			paging.setPage(1);
+		}
+		//전체 건수
+		int total = investService.getCnt(searchDTO);
+		paging.setTotalRecord(total);
+		model.addAttribute("paging",paging);
+		
+		//시작 /마지막 레코드 번호
+		searchDTO.setStart(paging.getFirst());
+		searchDTO.setEnd(paging.getLast());
+
+		model.addAttribute("searchCondition",request.getParameter("searchCondition"));
+		model.addAttribute("searchKeyword",request.getParameter("searchKeyword"));
+		model.addAttribute("startdate",request.getParameter("startdate"));
+		model.addAttribute("enddate",request.getParameter("enddate"));
+		model.addAttribute("payType",request.getParameter("payType"));
+		
+		model.addAttribute("list", investService.getInvests(searchDTO));
+		return "invest/investLIstForm";
+	}
+	
+	
+	@RequestMapping("/forme/InvestDetail")	
+	public String getInvest(Model model, InvestDTO dto) {
+		model.addAttribute("invest", investService.getInvest(dto));
+		return "invest/investDetailForm";
+	}
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("/forme/PaymentInfo")
 	@ResponseBody
