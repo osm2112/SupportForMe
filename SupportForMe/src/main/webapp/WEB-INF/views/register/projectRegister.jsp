@@ -132,6 +132,7 @@ input[type=text]:-webkit-autofill {
 	vertical-align: middle;
 	margin-top: 2px;
 	margin-left: -10px;
+	cursor:pointer;
 }
 
 #rg_projectPeriodDeadline {
@@ -238,10 +239,6 @@ input[type=text]:-webkit-autofill {
 	opacity: 1
 }
 
-.story_video {
-	display: grid;
-}
-
 .videoInput {
 	border: 1px solid lightgrey;
 	border-radius: 3.5px;
@@ -252,10 +249,14 @@ input[type=text]:-webkit-autofill {
 }
 
 .videoSpan {
-	width: 32px;
-	height: 32px;
+	width: 34px;
+	height: 34px;
 	display: inline-block;
 	vertical-align: middle;
+	position: relative;
+	border: 1px solid lightgrey;
+	border-radius: 2.5px;
+	text-align: center;
 }
 
 .videoPlus, .videoMinus {
@@ -516,6 +517,22 @@ $(function() {
 		//기본정보 js 끝 ---------------------------------------------------------       
 	   	
 		//story--------------------------------------------------------------
+		
+		//story page video url----------------
+		$(document).on("click",".videoPlus",function(){
+			if($(this).parent().prev().val() != '' && !$(this).parent().parent().next().is(":visible")){
+				var videoDiv = "<div class='videoUrl'>"
+       			 + "<input type='text' placeholder='  YouTube URL을 입력해주세요.' class='videoInput' name='arrVideo'>"
+       			 + " <span class='videoSpan'><img src='/SupportForMe/images/plus1.png' class='videoPlus'></span></div>";
+       			$("#story_video").append(videoDiv);		
+			} else {
+				alert('url을 입력해주세요');
+			}
+		});
+		
+		
+		//story page video url end------------
+		
 		//story page img upload---------------
 		function sogeRemoveNo() {
 			var removeCount = $(".sogeRemove").length;
@@ -585,16 +602,14 @@ $(function() {
 				data : {"removeIntroductionImg":introImg},
 				method : "post",
 				success : function(result) {
-					if(result.code = 'success') {
 						$(".sogeRemove."+cnt).parent().remove();
 						
-						if(!$(".soge").is(":visible")){
+						if(!$(".soge").is(":visible") && !$("#storyDefault").is(":visible")){
 							var dfImg = "<div class='introductionImg rg_img' id='storyDefault'>"
 								  	  + "<img src='/SupportForMe/images/picture.png' id='default'>"	
 								  	  +	"</div>";
 							$(".plus").before(dfImg);
 						}		
-					}
 				},
 				error : function() {
 					alert("삭제할 수 없습니다.")
@@ -662,7 +677,7 @@ $(function() {
 					class="inputStyle inputRight"  placeholder="0"> 원
 				<c:if test="${project.targetAmount != null }">
 					<script>
-						$("input[name=targetAmount]").attr("placeholder","${project.targetAmount}");
+						$("input[name=targetAmount]").val(${project.targetAmount});
 					</script>
 				</c:if>
 			</div>
@@ -675,6 +690,20 @@ $(function() {
 					 <div id="rg_projectDeadline">
 						<input type="text" name="projectDeadline" id="projectDeadline" class="inputStyle" value="">
 					</div>
+					<script>
+						var deadLine = '${project.projectDeadline}';
+						var dl = deadLine.split(".");
+						if(deadLine != null && deadLine != " "){
+							var now = new Date();
+							var dDay = new Date(dl[0],dl[1]-1, dl[2]);
+							var now2 = now.getTime();
+							var dDay2 = dDay.getTime();
+							var remain = dDay2 - now2;
+							remain = Math.floor(remain / (24 * 3600 * 1000)) + 1;
+							$("#remainingPeriod").val(remain);
+							$("#projectDeadline").val(dl[0]+"-"+dl[1]+"-"+dl[2]);
+						}
+					</script>
 				</div>
 			</div>
 			<div id="basic_">

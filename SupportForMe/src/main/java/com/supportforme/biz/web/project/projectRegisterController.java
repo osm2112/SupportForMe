@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.supportforme.biz.hashtag.HashtagService;
@@ -25,7 +24,6 @@ import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectRegisterService;
 
 @Controller
-/*@SessionAttributes("project")*/
 public class projectRegisterController {
 		
 	@Autowired ProjectRegisterService projectService;
@@ -51,34 +49,55 @@ public class projectRegisterController {
 		return "redirect:/forme/make/"+dto.getProjectNo();	
 	}
 	
-	@RequestMapping(value={"/forme/updateProject/story","/forme/updateProject/reward","/forme/updateProject/pay"})
-	public String updateProject(Model model, ProjectDTO dto, HttpServletRequest request
-								,HttpSession session , SessionStatus status) {
-		String uri = request.getRequestURI();
-		String com = uri.substring(uri.lastIndexOf("/")+1);
+	
+	@RequestMapping("/forme/updateProject/story")
+	public String updateProjectBasic(Model model, ProjectDTO dto) {
+		
+		if(dto.getProjectDeadline() != null) {
+			String[] deadLine = dto.getProjectDeadline().split("-");
+			dto.setProjectDeadline(deadLine[0].toString()+"."+deadLine[1].toString()+"."+deadLine[2].toString());
+		}
+		
+		projectService.updateProject(dto);
+		model.addAttribute("project", projectService.getProject(dto));
+		return "ajax/register/projectRegisterStory";
+	}
+	
+	@RequestMapping("/forme/updateProject/reward")
+	public String updateProjectStory(Model model, ProjectDTO dto) {
 		
 		String introductionImg = "";
 		if(dto.getArrImage() != null && dto.getArrImage().length>0) {
 			for(String img : dto.getArrImage()) {
 				introductionImg += (img + "||");
 			}
-			dto.setIntroductionImage(introductionImg);
 		}
+		dto.setIntroductionImage(introductionImg);
+
+		String introductionVideo = "";
+		String youtubePath = "https://www.youtube.com/embed/";
+		if(dto.getArrVideo() != null && dto.getArrVideo().length>0) {
+			for(String video : dto.getArrVideo()) {
+				System.out.println("========================"+video);
+				if(video != null && video != "") {
+					int index = video.lastIndexOf("/");
+					introductionVideo += (youtubePath + video.substring(index+1) + "||");	
+				}
+							
+			}
+		}
+		dto.setIntroductionVideo(introductionVideo);
 		
 		projectService.updateProject(dto);
 		model.addAttribute("project", projectService.getProject(dto));
-		if(("story").equals(com)) {
-			return "ajax/register/projectRegisterStory";
-		}else if(("reward").equals(com)){
-			return "ajax/register/projectRegisterReward";
-		}else if(("pay").equals(com)) {
-			return "ajax/register/projectRegisterPay";
-		}else {
-			status.setComplete();
-			session.removeAttribute("project");
-			return "";
-		}
-		
+		return "ajax/register/projectRegisterReward";
+	}
+	
+	@RequestMapping("/forme/updateProject/pay")
+	public String updateProject(Model model, ProjectDTO dto) {
+		projectService.updateProject(dto);
+		model.addAttribute("project", projectService.getProject(dto));	
+		return "ajax/register/projectRegisterPay";
 		
 	}
 	
@@ -126,16 +145,12 @@ public class projectRegisterController {
 	
 	@RequestMapping(value="/forme/deleteIntroductionImg")
 	@ResponseBody
-	public Map<String,String> deleteIntroductionImg(@RequestParam(value="removeIntroductionImg",required=false)String removeImg,HttpServletRequest request){
+	public void deleteIntroductionImg(@RequestParam(value="removeIntroductionImg",required=false)String removeImg,HttpServletRequest request){
 		 String folder =  request.getSession().getServletContext().getRealPath("/upload");// 삭제할 파일의 경로
-		 System.out.println("==============================*************"+folder);
 		 File file = new File(folder,removeImg);
 		 if(file.exists()){
 			 file.delete();
 		}
-		Map<String,String> map = new HashMap<String,String>();
-		map.put("code", "success");
-		return map;
 	}  
 	
 }

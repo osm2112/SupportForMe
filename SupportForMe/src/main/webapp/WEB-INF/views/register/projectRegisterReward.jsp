@@ -32,6 +32,7 @@ $(function() {
 	배송이 필요한 리워드는 배송비가 포함된 가격을 적어주세요.
 	</p>
 </div>
+<form name="registerRewardFrm" id="registerRewardFrm">
 <div id="reward_box">
     <div id="reward_grid">리워드 금액 <input type="text" name="reward_amount" style="width:400px;height:25px"> 원</div>
     <div id="reward_grid">리워드 구성 <textarea  rows="5" cols="200" style="width:400px; height:100px;resize:none"></textarea></div>
@@ -41,6 +42,8 @@ $(function() {
         <input type="button" class="reward_button reset_button" value='초기화'>
     </div>
 </div>
+</form>
+<div style="height:30px"></div>
 <div id="reward_preview">
 	<div class="bold">리워드 미리보기</div>
 </div>

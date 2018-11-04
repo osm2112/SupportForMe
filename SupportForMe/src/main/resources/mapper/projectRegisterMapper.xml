@@ -33,7 +33,7 @@
 		 <if test="projectDeadline != null and projectDeadline != ''">
 		 	,PROJECT_DEADLINE = #{projectDeadline}
 		  </if>
-		 <if test="introductionVideo != null and introductionVideo != ''">
+		 <if test="introductionVideo != null">
 		 ,INTRODUCTION_VIDEO = #{introductionVideo}
 		  </if>
 		 <if test="story != null and story != ''">  
@@ -45,7 +45,7 @@
 		 <if test="bankCode != null and bankCode != ''"> 
 		 ,BANK_CODE = #{bankCode}
 		 </if>
-		 <if test="introductionImage != null and introductionImage != ''">
+		  <if test="introductionImage != null">  
 		 ,INTRODUCTION_IMAGE = #{introductionImage}
 		 </if>
 		 <if test="supportPickYn != null and supportPickYn != ''">

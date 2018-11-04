@@ -60,10 +60,26 @@ $(function() {
 	    </div>
 		<div id="story_video">
 			<div class="bold">동영상 주소를 적어주세요</div>
+			<c:if test="${project.introductionVideo != null}" >
+				<c:forTokens var="video" items="${project.introductionVideo}" delims="||" varStatus="i">
+					<div class="videoUrl">
+				        <input type="text" placeholder="  YouTube URL을 입력해주세요." class="videoInput ${i.index+1}" name="arrVideo">
+				        <span class="videoSpan"><img src="/SupportForMe/images/plus1.png" class="videoPlus"></span>
+			        </div>
+			        <script>
+			        	var index = "${i.index+1}";
+			 			var video = "${video}";
+			        	var videoUrl = "https://youtu.be/" + video.split("/")[4];
+			        	$(".videoInput."+index).val(videoUrl);
+			        </script>   		
+	    		</c:forTokens>	
+			</c:if>
+			<c:if test="${project.introductionVideo == null}" >
 			<div class="videoUrl">
-		        <input type="text" placeholder="  YouTube URL을 입력해주세요." class="videoInput">
-		        <span class="videoSpan rg_img"><img src="/SupportForMe/images/plus1.png" class="videoPlus"></span>
+		        <input type="text" placeholder="  YouTube URL을 입력해주세요." class="videoInput" name="arrVideo">
+		        <span class="videoSpan"><img src="/SupportForMe/images/plus1.png" class="videoPlus"></span>
 	        </div>
+	        </c:if>
 		</div>
 		<div id="story_image">
 			<div class="bold">이미지를 등록해주세요</div>
@@ -78,9 +94,11 @@ $(function() {
 									             		
 			          		</c:forTokens>	
 					</c:if>
-					<div class="introductionImg rg_img" id="storyDefault">
-						<img src="/SupportForMe/images/picture.png" id="default" class="">	
-					</div>
+					<c:if test="${project.introductionImage == null}">
+						<div class="introductionImg rg_img" id="storyDefault">
+							<img src="/SupportForMe/images/picture.png" id="default" class="">	
+						</div>
+					</c:if>
 					<div class="introductionImg plus rg_img">
 						<img src="/SupportForMe/images/plus1.png" id="plus">
 					</div>

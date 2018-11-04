@@ -125,16 +125,15 @@
 <script>
 function go_register() {
 	var url = window.location.pathname.toString().split('/');
-	var cpath = "forme/"+url[3];
-	
-	if(cpath != 'forme/make/Project' && cpath != 'forme/updateProject'){
+	var cpath = url[3];
+	if(cpath != 'make'){
 		 var $form = $('<form></form>');
 	     $form.attr('action', 'registerProject');
 	     $form.attr('method', 'post');
 	     $form.appendTo('body');
 		
 	     $form.submit();
-	}
+	} 
 	
 }
 
