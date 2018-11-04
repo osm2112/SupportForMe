@@ -29,7 +29,7 @@ public class ProjectController {
 		return "test/main";						
 	}
 	//검색
-	@RequestMapping(value="/support/getProjects", method=RequestMethod.GET) 
+	@RequestMapping(value="/**/getProjects", method=RequestMethod.GET) 
 	public String getProjects(Model model,
 							ProjectSearchDTO searchDto
 						  ,Paging paging) {
@@ -48,7 +48,7 @@ public class ProjectController {
 		return "noNav/projectselect/getProjects";				
 	}
 	//test용
-	@RequestMapping(value="/support/getProjects" , method=RequestMethod.POST)
+	@RequestMapping(value="/**/getProjects" , method=RequestMethod.POST)
 	@ResponseBody
 	public List<ProjectDTO> scrollData(ProjectSearchDTO searchDto){
 		searchDto.setStart(1);
