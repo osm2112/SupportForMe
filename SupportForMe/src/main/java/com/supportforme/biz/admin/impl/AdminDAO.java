@@ -16,12 +16,15 @@ public class AdminDAO {
 	@Autowired 
 	SqlSessionTemplate mybatis;
 	
-	//단건 조회
-	public Map<String, Object> getAdminMembers(AdminDTO dto) {
-		return mybatis.selectOne("admin.getAdmin", dto);
+	
+	public List<Map<String, Object>> getAdminMembers(AdminSearchDTO searchDTO) {
+		return mybatis.selectList("admin.getAdminMembers", searchDTO);
 	}
 
 	
+	public int getCntAdminMember(AdminSearchDTO searchDTO) {
+		return mybatis.selectOne("admin.getCntAdminMembers", searchDTO);
+	}
 
 
 }

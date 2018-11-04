@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+	<select id="getAdminMembers" resultType="member"	parameterType="member">
+		SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
+		SELECT * FROM MEMBER
+		<where>
+			<if test="searchCondition == 'userId'">
+				 USER_ID LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="searchCondition == 'name'">
+				AND NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="searchCondition == 'email'">
+				AND EMAIL LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="searchCondition == 'phoneNum'">
+				AND PHONE_NUM LIKE '%' || #{searchKeyword} || '%'
+			</if>
+		</where>
+		) A )WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+	<select id="getCntAdminMembers" parameterType="member" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		<where>
+			<if test="searchCondition == 'userId'">
+				AND USER_ID LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="searchCondition == 'name'">
+				AND NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="searchCondition == 'email'">
+				AND EMAIL LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="searchCondition == 'phoneNum'">
+				AND PHONE_NUM LIKE '%' || #{searchKeyword} || '%'
+			</if>
+		</where>
+	</select>
+
+</mapper> 

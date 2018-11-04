@@ -17,6 +17,7 @@
 		<typeAlias alias="investSearch" type="com.supportforme.biz.invest.InvestSearchDTO"/>
 		<typeAlias alias="present" type="com.supportforme.biz.present.PresentDTO" />
 		<typeAlias alias="project" type="com.supportforme.biz.project.ProjectDTO" />
+		<typeAlias alias="admin" type="com.supportforme.biz.admin.AdminDTO" />
 		
 	</typeAliases>
 	
