@@ -144,21 +144,18 @@
 	box-shadow: 8px 8px 3px grey;
 }
 
-<!--
--->
+<!-- -->
 .main_project_image img {
 	width: 100%;
 	height: 100%;
 	object-fit: .main_project_image;
 }
-
 .flexslider .slides img {
 	width: 100%;
 	height: 100%;
 	display: block;
 	-moz-user-select: none;
 }
-
 .real_time_rank_projects nav {
 	max-width: 100%;
 	width: 100%;
@@ -177,72 +174,54 @@
 	width: 100%;
 	height: 160px;
 }
-<!----> 
-@keyframes flickerAnimation {
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
+<!--
+-->
+@keyframes flickerAnimation { 
+0%  { opacity: 1;}
+50% { opacity: 0;}
+100%{ opacity: 1;}
 }
-@-o-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
+@-o-keyframes flickerAnimation { 
+0% { opacity: 1;}
+50%{ opacity :0;}
+100%{ opacity : 1; }
 }
-@-moz-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
+@-moz-keyframes flickerAnimation { 
+0% { opacity: 1;}
+50%{ opacity: 0;}
+100%{ opacity: 1;}
 }
-@-webkit-keyframes flickerAnimation{
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
+@-webkit-keyframes flickerAnimation { 
+0% { opacity: 1;}
+50%{ opacity: 0;}
+100%{ opacity: 1;}
 }
 .ranktext {
-   -webkit-animation: flickerAnimation 8s;
-   -moz-animation: flickerAnimation 8s;
-   -o-animation: flickerAnimation 8s;
-    animation: flickerAnimation 8s;
-    
-} 
-
-/* test
- #rank a {
-    color: black; /*글자색
-    text-decoration: none;
+	-webkit-animation: flickerAnimation 6s infinite;
+	-moz-animation: flickerAnimation 6s infinite;
+	-o-animation: flickerAnimation 6s infinite;
+	animation: flickerAnimation 6s infinite;
 }
-#rank a:hover { /*검색어 마우스 올릴시 밑줄 언더라인
-    text-decoration: underline;
+#rank ol {
+	list-style-type: none;
 }
 
-#rank { /*구역 부분 위치조정
-	text-align: center; 
-  	overflow: hidden; 
-    width: 200px;
-    height: 100px; 
-    margin: 0;
+li em {
+	font-style: normal;
+	display: block;
+	float: left;
+	min-width: 13px;
+	width: 13px;
+	height: 12px;
+	margin-right: 9px;
+	border: 1px solid #e0e0e0;
+	color: #666;
+	line-height: 12px;
+	font-size: 11px;
+	text-align: center;
+	font-family: tahoma, sans-serif;
 }
-
-#rank ul {
-    position: relative; 
-    margin: 0;
- 
-}
-
-#rank ol { /* 글자 위치 부분 
-	
-    position: relative;
-    top: 0;
-    left: 0;
-    padding: 0;
-    list-style-type: none;    
-}
-#rank li { /* 순위 문장 사이의 거리
-    height: 100px;
-    line-height: 20px;
-} */
 </style>
-
 <script>
 	$(document).ready(
 			function() {
@@ -252,7 +231,7 @@
 				});
 				$('.flexslider2').flexslider({
 					/* animation: "fade", */
-					slideshowSpeed : 5000,
+					slideshowSpeed : 10000,
 					animation : "slide",
 					controlNav : false,
 					customDirectionNav : $(".custom-navigation a")
@@ -260,7 +239,7 @@
 
 				$('.flexslider3').flexslider(
 						{
-							slideshowSpeed : 4000,
+							slideshowSpeed : 8000,
 							animation : "slide",
 							controlNav : false,
 							start : function(slider) {
@@ -272,25 +251,65 @@
 								$('.real_time_rank_projects li').eq(
 										slider.currentSlide - 1).css('border',
 										"");
+								/* 		$('.real_time_rank_projects li').eq(
+												slider.currentSlide - 1).attr("class","ranktext");										
+										$('.real_time_rank_projects li').eq(
+												slider.currentSlide).attr("class","no");
+								 */
+
 								$('.real_time_rank_projects li').eq(
 										slider.currentSlide).css('border',
 										'2px solid rgb(26, 188, 156)');
-
-								console.log(slider.currentSlide);
-								/* console.log(slider.currentSlide); */
 							}
 						});
 
 				Rank();
-				setTimeout("Rank()", 5000);
-	//			step(0);
-			console.log($('.real_time_rank_projects li').length);
-			// test
-			$('.real_time_rank_projects li').eq(0).addClass("ranktext").delay(10000).queue(function(){ 
-				$(this).removeClass("ranktext").dequeue();
+				Ranking();
+				setInterval("Rank()", 5000);
+
 			});
-	
-			});
+	function Ranking() {
+		$('.real_time_rank_projects li')
+				.eq(0)
+				.attr("class", "ranktext")
+				.delay(800)
+				.queue(
+						function() {
+							$('.real_time_rank_projects li')
+									.eq(1)
+									.attr("class", "ranktext")
+									.delay(800)
+									.queue(
+											function() {
+												$('.real_time_rank_projects li')
+														.eq(2)
+														.attr("class",
+																"ranktext")
+														.delay(800)
+														.queue(
+																function() {
+																	$('.real_time_rank_projects li')
+																			.eq(3)
+																			.attr(	"class",
+																					"ranktext")
+																			.delay(
+																					800)
+																			.queue(
+																					function() {
+																						$(
+																								'.real_time_rank_projects li')
+																								.eq(
+																										4)
+																								.attr(
+																										"class",
+																										"ranktext")
+																								.delay(
+																										800);
+																					});
+																});
+											});
+						});
+	}
 
 	function Rank() {
 		$.ajax({
@@ -303,55 +322,23 @@
 
 						$('.real_time_image ul li img').eq(i).attr("src",
 								"./images/" + data[i].image);
-						$('.real_time_image ul li img').eq(i).attr("onclick",
+						$('.real_time_image ul li img').eq(i).attr(
+								"onclick",
 								"location.href='support/getProjectDetailPage?projectNo="
-								+ data[i].projectNo + "'");
-						
-						$('.real_time_rank_projects nav ol li').eq(i).text(
-								data[i].projectName);
+										+ data[i].projectNo + "'");
+						$('.real_time_rank_projects nav ol li').eq(i).html(
+								"<span><em>" + (i + 1) + "</em>"
+										+ data[i].projectName + "</span>");
 						$('.real_time_rank_projects nav ol li').eq(i).attr(
 								"onclick",
 								"location.href='support/getProjectDetailPage?projectNo="
 										+ data[i].projectNo + "'");
-						/* 	$('.real_time_rank_projects nav ol').append(	
-							'<li style="font-size: small; cursor: pointer;" id='+ data[i].projectName +' onclick="location.href=\'support/getProjectDetailPage?projectNo=' + data[i].projectNo + '\'\">'+ data[i].projectName+'</li>'
-							); */
 					}
 				}
 
 			}
 		});
 	}
-	
-
-	
-
-// test	  
-/* 	
-	    function step(index) {
-	    	  var count = $('#rank li').length;
-	  	    var height = $('#rank li').height();
-	  		console.log(count+" :   " + height);
-	    	
-	        $('#rank ol').delay(2000).animate({top: -height * index }, 500, function() {
-	            step((index + 1 ) % count);
-	        });
-	    }
-	    
-	 */
-	
-	/* function doAnimation(elapsed){
-	 var iterations = $('.real_time_rank_projects li').length;
-	 var current = elapsed+1;
-	 if (current <= iterations){      
-	 setTimeout(function(){
-	 //   console.log($('.real_time_rank_projects li:eq(' + elapsed + ')'));
-	 $('.real_time_rank_projects li:eq(' + elapsed + ')').fadeToggle();
-	 doAnimation(current);
-	 },500);
-
-	 }
-	 } */
 </script>
 </head>
 <body>
@@ -419,20 +406,19 @@
 					</div>
 					<div class="real_time_rank_projects">
 						<nav id="rank">
-						
 							<!-- <marquee behavior=slide loop=30> -->
-								<ol>
-									<li class="ranktext" style="font-size: small; cursor: pointer;"
-										onclick="1"></li>
-									<li class=""
-										style="font-size: small; cursor: pointer;" onclick="2"></li>
-									<li class=""
-										style="font-size: small; cursor: pointer;" onclick="3"></li>
-									<li class=""
-										style="font-size: small; cursor: pointer;" onclick="4"></li>
-									<li class=""
-										style="font-size: small; cursor: pointer;" onclick="5"></li>
-								</ol>
+							<ol>
+								<li class="" style="font-size: small; cursor: pointer;"
+									onclick="1"></li>
+								<li class="" style="font-size: small; cursor: pointer;"
+									onclick="2"><em>2</em></li>
+								<li class="" style="font-size: small; cursor: pointer;"
+									onclick="3"><em>3</em>ds</li>
+								<li class="" style="font-size: small; cursor: pointer;"
+									onclick="4"><em>4</em>ds</li>
+								<li class="" style="font-size: small; cursor: pointer;"
+									onclick="5"><em>5</em>ds</li>
+							</ol>
 							<!-- </marquee> -->
 						</nav>
 					</div>
@@ -494,10 +480,9 @@
 						</div>
 					</div>
 				</c:forEach>
-
 			</div>
 		</div>
-	</div> 
+	</div>
 	<div style="height: 200px"></div>
 </body>
 </html>
