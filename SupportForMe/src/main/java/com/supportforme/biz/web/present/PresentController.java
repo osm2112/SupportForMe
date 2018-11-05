@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.supportforme.biz.present.PresentDTO;
 import com.supportforme.biz.present.PresentService;
@@ -16,6 +17,7 @@ public class PresentController {
 	@Autowired PresentService presentService;
 	
 	@RequestMapping("/forme/insertReward")
+	@ResponseBody
 	public Map<String,String> insertReward(PresentDTO pdto){
 		
 		presentService.insertPresent(pdto);

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html5>
 <html>
 <head>
@@ -44,7 +45,7 @@ $(function() {
 			url : "../insertReward",
 			data : $("#registerRewardFrm").serialize(), 
 			method : "post",
-			/* success : insertReward  */
+			success : insertReward,
 		});	
 	});
 	
@@ -54,11 +55,19 @@ $(function() {
 					  + "<div class='rw_preview_delivery_s'>리워드 구성</div>"
 					  + "<div class='rw_preview_info'>"+result.presentName+"</div>"
 					  + "<div class='rw_preview_delivery_s'>예상배송일</div>"
-					  + "<div class='rw_preview_delivery'>"+result.deliveryDate+"</div>"
+					  + "<div class='rw_preview_delivery'>"+result.presentDeliveryDate+"</div>"
 					  + "<input type='button' name='rewardEdit' class='preview_button rewardEdit' value='수정하기'>"
 					  + "<input type='button' name='rewardDel' class='preview_button rewardDel' value='삭제하기'></div>";	
 		$("#reward_preview").append(rewardBox);	
 	}
+	
+	$(".rewardEdit").on("click",function(){
+		
+	});
+	
+	$(".rewardDel").on("click",function(){
+		
+	})
 });
 </script>
 <form name="tempRegisterFrm" id="tempRegisterFrm">
@@ -94,16 +103,22 @@ $(function() {
 </div>
 </form>
 <div style="height:30px"></div>
-<div id="reward_preview">
+<div id="reward_preview_div">
 	<div class="bold" style="margin-bottom:15px;">리워드 미리보기</div>
-	<div class="reward_preview_box">
-		<div class="rw_preview_amount_div"><span class="rw_preview_amount">5,000</span> <label>원 펀딩</label></div>
-		<div class="rw_preview_delivery_s">리워드 구성</div>
-		<div class="rw_preview_info">연필 50자루</div>
-		<div class="rw_preview_delivery_s">예상배송일</div>
-		<div class="rw_preview_delivery">2018.12.30</div>
-		<input type="button" name="rewardEdit" class="preview_button rewardEdit " value="수정하기">
-		<input type="button" name="rewardDel" class="preview_button rewardDel" value="삭제하기">	
+	<div id="reward_preview">
+	<c:if test="${presentList.size() > 0}">
+		<c:forEach var="present" items="${presentList}">
+			<div class="reward_preview_box">
+			<div class="rw_preview_amount_div"><span class="rw_preview_amount">${present.presentPrice}</span> <label>원 펀딩</label></div>
+			<div class="rw_preview_delivery_s">리워드 구성</div>
+			<div class="rw_preview_info">${present.presentName}</div>
+			<div class="rw_preview_delivery_s">예상배송일</div>
+			<div class="rw_preview_delivery">${present.presentDeliveryDate}</div>
+			<input type="button" name="rewardEdit" class="preview_button rewardEdit " value="수정하기">
+			<input type="button" name="rewardDel" class="preview_button rewardDel" value="삭제하기">	
+	</div>
+		</c:forEach>
+	</c:if>
 	</div>
 </div>
 <div style="height:50px"></div>

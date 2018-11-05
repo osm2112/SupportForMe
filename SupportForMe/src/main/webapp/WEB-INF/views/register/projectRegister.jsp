@@ -220,7 +220,56 @@ input[type=text]:-webkit-autofill {
 	cursor: pointer;
 	opacity: 0.8;
 }
-
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #1abc9c;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
 /*
 *story style
 */
@@ -281,56 +330,7 @@ input[type=text]:-webkit-autofill {
 	padding-right: 10px;
 }
 
-[type="radio"]:checked,
-[type="radio"]:not(:checked) {
-    position: absolute;
-    left: -9999px;
-}
-[type="radio"]:checked + label,
-[type="radio"]:not(:checked) + label
-{
-    position: relative;
-    padding-left: 28px;
-    cursor: pointer;
-    line-height: 20px;
-    display: inline-block;
-    color: #666;
-}
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 18px;
-    height: 18px;
-    border: 1px solid #ddd;
-    border-radius: 100%;
-    background: #fff;
-}
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
-    content: '';
-    width: 12px;
-    height: 12px;
-    background: #1abc9c;
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    border-radius: 100%;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-}
-[type="radio"]:not(:checked) + label:after {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-}
-[type="radio"]:checked + label:after {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-}
+
 /*
 *reward style
 */
@@ -425,7 +425,18 @@ input[type=text]:-webkit-autofill {
 #delivery_date:focus {
 	outline: none;
 }
-
+#reward_preview{
+	width: 1000px;
+	position: relative;
+	display: grid;
+	grid-column: 1/4;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+	grid-template-columns: repeat(4, 220px);
+	/*grid-template-columns: 25% 25% 25% 25%;*/
+	grid-auto-rows: minmax(20px, auto);
+	/* text-align: center; */
+}
 .reward_preview_box {
 	width: 190px;
 	height: 190px;
@@ -458,6 +469,14 @@ $(function() {
 
 		});
 		
+		$( "#dialog-message" ).dialog({
+		      modal: true,
+		      buttons: {
+		        Ok: function() {
+		          $( this ).dialog( "close" );
+		        }
+		      }
+		 });
 		
 		//////공통 js----------------------
 	
@@ -708,6 +727,9 @@ $(function() {
 
 </head>
 <body>
+<div id="dialog-message">
+     저장되었습니다.
+</div>
 	<div id="result">
 		<div id="pageInfo" style="display:none">basic</div>
 		<form name="fileUploadFrm" id="fileUploadFrm" method="post">

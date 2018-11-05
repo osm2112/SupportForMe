@@ -70,8 +70,9 @@ $(function() {
 			        <script>
 			        	var index = "${i.index+1}";
 			 			var video = "${video}";
-			        	var videoUrl = "https://youtu.be/" + video.split("/")[4];
-			        	$(".videoInput."+index).val(videoUrl);
+			 			console.log(video);
+			        	var videoUrl = "https://youtu.be/" + video;
+			        	$(".videoInput."+index).val(videoUrl); 
 			        </script>   		
 	    		</c:forTokens>	
 			</c:if>

@@ -3,9 +3,14 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="present">
 	
+	<!-- 선물 다건 조회  -->
+	<select id="getPresents" resultType="present" parameterType="project">
+		SELECT * FROM PRESENT WHERE PROJECT_NO = #{projectNo}
+	</select>
+	
 	<!-- 선물 단건 조회  -->
-	<select id="getProject" resultType="string" parameterType="present">
-		SELECT * FROM PROJECT WHERE PRESENT_NO = #{presentNo}
+	<select id="getPresent" resultType="string" parameterType="present">
+		SELECT * FROM PRESENT WHERE PRESENT_NO = #{presentNo}
 	</select>
 	
 	<!-- 선물 등록  -->
@@ -14,11 +19,12 @@
 		  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((PRESENT_SEQ.NEXTVAL),4,0)) FROM DUAL
 		</selectKey>
 		INSERT INTO PRESENT
-		(PRESENT_NO, PRESENT_PRICE, PRESENT_NAME, PROJECT_NO)
+		(PRESENT_NO, PRESENT_PRICE, PRESENT_NAME, PRESENT_DELIVERY_DATE, PROJECT_NO)
 		 VALUES 
 		 (#{presentNo},
 		  #{presentPrice},
 		  #{presentName},
+		  #{presentDeliveryDate},
 		  #{projectNo})
 	
 	</insert>
@@ -29,20 +35,14 @@
 		 SET
 		 PRESENT_PRICE = #{presentPrice},
 		 PRESENT_NAME = #{presentName},
-		 PROJECT_NO	= #{projectNo}
+		 PRESENT_DELIVERY_DATE = #{presentDeliveryDate}
 		 WHERE  PRESENT_NO = #{presentNo}
 	</update>
 	
+	<!-- 선물 삭제 -->
 	<delete id="deletePresent" parameterType="present">
 		DELETE FROM PRESENT
-		WHERE 
-			<if test="presentNo != null and presentNo != ''">
-	  			PRESENT_NO = #{presentNo}
-	  		</if>
-			<if test="projectNo != null and projectNo != ''">
-	  			PROJECT_NO = #{projectNo}
-	  		</if>
-	  	WHERE
+		WHERE PRESENT_NO = #{presentNo}
 	</delete>
 	
 </mapper> 

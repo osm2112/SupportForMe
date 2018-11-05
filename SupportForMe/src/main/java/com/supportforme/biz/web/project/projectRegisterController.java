@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.supportforme.biz.hashtag.HashtagService;
+import com.supportforme.biz.present.PresentService;
 import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectRegisterService;
 
@@ -28,6 +29,7 @@ public class projectRegisterController {
 		
 	@Autowired ProjectRegisterService projectService;
 	@Autowired HashtagService hashtagService;
+	@Autowired PresentService presentService;
 	
 	@RequestMapping("/forme/tempMain")
 	public String main() {
@@ -88,6 +90,7 @@ public class projectRegisterController {
 		
 		projectService.updateProject(dto);
 		model.addAttribute("project", projectService.getProject(dto));
+		model.addAttribute("presentList",presentService.getPresents(dto));
 		return "ajax/register/projectRegisterReward";
 	}
 	

@@ -1,10 +1,13 @@
 package com.supportforme.biz.present.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.supportforme.biz.present.PresentDTO;
+import com.supportforme.biz.project.ProjectDTO;
 
 @Repository
 public class PresentDAO {
@@ -28,6 +31,8 @@ public class PresentDAO {
 		return mybatis.delete("present.deletePresent", pdto);
 	}
 	//선물 다건 조회
-	
+	public List<PresentDTO> getPresents(ProjectDTO dto) {
+		return mybatis.selectList("present.getPresents", dto);
+	}
 	
 }
