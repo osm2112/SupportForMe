@@ -4,6 +4,8 @@ public class InvestDTO {
 	
 	private String investNo;
 	private String investmentAmount;
+	private String totalInvestAmount; /*필요해서 추가했습니다^^*/
+	private String headcount; /*필요해서 추가했습니다^^ -김효정*/
 	private String payType;
 	private String presentNo;
 	private String userId;
@@ -18,7 +20,18 @@ public class InvestDTO {
 	private String request;
 	private String uuid;
 	
-	
+	public String getTotalInvestAmount() {
+		return totalInvestAmount;
+	}
+	public void setTotalInvestAmount(String totalInvestAmount) {
+		this.totalInvestAmount = totalInvestAmount;
+	}
+	public String getHeadcount() {
+		return headcount;
+	}
+	public void setHeadcount(String headcount) {
+		this.headcount = headcount;
+	}
 	public String getUuid() {
 		return uuid;
 	}

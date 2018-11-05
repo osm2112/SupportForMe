@@ -38,10 +38,15 @@
 	display: flex;
 	flex: 0 0 auto;
 	margin-left: auto;
-	width: 120px;
+	width: 100px;
 	height: 40px;
-	font-size: 20px;
-	text-align: center;
+	font-size: 15px;
+	font-weight:700;
+	color:rgb(26, 188, 156);
+	background-color:white;
+	border: 1px solid rgb(26, 188, 156);
+	border-radius:7px;
+	padding:5px;
 }
 
 .pjdtl-hashtag {
@@ -73,14 +78,21 @@
 }
 
 .pjdtl-target-price {
-	font-size: 35px;
-	color: #BDBDBD;
+	font-size: 33px;
+	color: #A6A6A6;
 }
 
 .pjdtl-invest-btn {
-	width: 420px;
-	height: 50px;
-	margin-right: 20px;
+	width:420px;
+	height:50px;
+	margin-right:20px;
+	font-size:20px;
+	font-weight:800;
+	color:white;
+	background-color:rgb(26, 188, 156);
+	border: 1px solid rgb(26, 188, 156);
+	border-radius:10px;
+	padding:5px;
 }
 
 .pjdtl-share-btn {
@@ -108,15 +120,12 @@
 }
 
 .pjdtl-status-font {
-	font-size: 23px;
+	font-size: 20px;
 	text-align: center;
 }
 
-.pjdtl-story {
+.pjdtl-content {
 	width: 800px;
-	height: 1000px; /*세로는 임시 사이즈*/
-	border: 1px solid green;
-	/*지워********************************************************************************/
 }
 
 .pjdtl-empty-content {
@@ -129,17 +138,18 @@
 
 .pjdtl-each-reward {
 	width: 330px;
-	height: 170px;
+	/*height: 180px;*****************************************************************************************************/
 	padding: 20px;
+	margin: 10px 0px;
 	border: 1px solid lightgray;
 }
 
 li>img {
-	height: 100%;
-	width: 100%;
-	object-fit: contain;
+	max-width:660px;
+	max-height:375px;
+	width:auto;
+	height:auto;
 }
-
 
 ul {
 	list-style: none outside none;
@@ -165,6 +175,47 @@ ul {
 .demo {
 	width: 660px;
 }
+
+
+
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
 </style>
 
 <script>
@@ -198,7 +249,7 @@ $(document).ready(function() {
     <!-- 프로젝트 이름, 관리자 버튼 -->
     <div class="pjdtl-flex-container">
         <div class="pjdtl-project-name">${project.projectName}</div>
-        <button class="pjdtl-pick-btn" style="width:120px; height:40px; ">PICK</button>
+        <button class="pjdtl-pick-btn" onclick="#">PICK</button>
     </div>
     <div class="pjdtl-center"><!-- 해시태그 -->
         <c:forEach items="${hashtag}" var="projectTag">
@@ -213,8 +264,8 @@ $(document).ready(function() {
         	<div class="clearfix">
         	<ul id="image-gallery" class="gallery list-unstyled cS-hidden">
 				<c:forTokens items="${project.introductionVideo}" delims="||" var="video">
-					<li data-thumb="${video}">
-						<iframe width="660" height="371" src="${video}"
+					<li data-thumb="${video}" class="video-thumb">
+						<iframe width="660" height="371" src="https://www.youtube.com/embed/${video}"
 							frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					</li>
 				</c:forTokens>
@@ -240,10 +291,10 @@ $(document).ready(function() {
             </div>
             <div>
                 <div>${project.progress}</div>
-                <div style="font-size:25px; color:#D5D5D5;">참여자 ${invest.headcount}명</div>
+                <div style="font-size:25px; color:#A6A6A6;">참여자 ${invest.headcount}명</div>
             </div>
             <div style="display:flex;">
-                <button class="pjdtl-invest-btn">투자하기</button>
+                <button class="pjdtl-invest-btn" onclick="#">투자하기</button>
                 <img src="../images/share-button.png" class="pjdtl-share-btn">
             </div><br>
             <div class="pjdtl-status-box">
@@ -267,33 +318,54 @@ $(document).ready(function() {
     </div>
     </div>
     
-    <div style="border-bottom:1px solid lightgray;">&nbsp;</div><br>
+    <div style="border-bottom:1px solid lightgray;"></div><br>
     
     <div class="pjdtl-bodysize">
-        <!--이거 네비게이션 버튼 쓸거-->
-        <li>
-            <a class="">스토리</a>
-        </li>
-        <li>
-            <a class="">댓글</a>
-        </li>
-        
         <div class="pjdtl-flex-container">
-        <div class="pjdtl-story">
-			${project.story}
+        <div class="pjdtl-content">
+	        <!-- Tab links -->
+	    	<div class="tab">
+	  			<button class="tablinks" onclick="openContent(event, 'story')">스토리</button>
+	  			<button class="tablinks" onclick="openContent(event, 'comment')">댓글</button>
+			</div>
+	    	
+	    	<!-- Tab content -->
+			<div id="story" class="tabcontent">
+				${project.story}
+			</div>
+			<div id="comment" class="tabcontent">
+				<p>Paris is the capital of France.</p>
+			</div>
         </div>
+<script>
+	function openContent(evt, btnName) {
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablinks");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(
+					" active", "");
+		}
+		document.getElementById(btnName).style.display = "block";
+		evt.currentTarget.className += " active";
+	}
+</script>
         <div class="pjdtl-empty-content"></div>
         <div class="pjdtl-reward">
             <div style="font-size:30px;">리워드 목록</div>
             <c:forEach items="${present}" var="reward" varStatus="status">
             <div class="pjdtl-each-reward">
-            	<img src="../images/check.png" style="width:23px; height:23px">
-            	<span style="font-size:25px; color:#BDBDBD;">${presentCount[status.index].rewardSelectCount}명이 선택</span><br>
-            	<img src="../images/asterisk.png" style="width:18px; height:18px"/>
-            	<span style="font-size: 20px;">${reward.presentName}</span><br>
-            	<img src="../images/asterisk.png" style="width:18px; height:18px"/>
-            	<span style="font-size: 20px;">${reward.presentPrice}원</span>
-            </div><br>
+            	<img src="../images/check.png" style="width:25px; height:25px">
+            	<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span><br><br>
+            	<span>가격</span><br>
+            	<span style="font-size: 23px;">${reward.presentPrice}원 +</span><br>
+            	<span>배송비 포함</span><br><br>
+            	<span>구성</span><br>
+            	<span style="font-size: 23px;">${reward.presentName}</span>
+            </div>
             </c:forEach>
         </div>
         </div>
