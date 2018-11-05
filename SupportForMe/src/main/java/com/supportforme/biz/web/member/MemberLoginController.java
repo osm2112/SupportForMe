@@ -23,8 +23,9 @@ public class MemberLoginController {
 
 	// 로그인 폼
 	@RequestMapping(value = { "/support/login"}, method = RequestMethod.GET)
-	public String memberLogin(MemberDTO dto, HttpSession session, HttpServletRequest requset) {
-		return "member/memberLoginForm";
+	public String memberLogin(Model model, MemberDTO dto, HttpSession session, HttpServletRequest requset) {
+		model.addAttribute("url","../support/MemberLoginForm");
+		return "commons/alertRedirect";
 	}
 		
 
@@ -48,7 +49,7 @@ public class MemberLoginController {
 						session.setAttribute("LoginInfo", memberDTO);
 						MemberDTO memberDTO2 = (MemberDTO) session.getAttribute("LoginInfo");
 						model.addAttribute("msg",memberDTO2.getName() + "님 로그인을 환영합니다.");
-						model.addAttribute("url","../main.jsp");
+						model.addAttribute("url","../");
 						return "commons/alertRedirect";
 					}
 				}
@@ -65,8 +66,12 @@ public class MemberLoginController {
 	}
 	// 로그아웃처리
 	@RequestMapping(value = "/support/logout")
-	public String memberLogoutProc(HttpSession session) {
-		session.invalidate();
-		return "member/memberLoginForm";
+	public String memberLogoutProc(Model model,HttpSession session) {
+		if(session.getAttribute("LoginInfo")!=null) {
+			session.invalidate();
+			model.addAttribute("msg","로그아웃되셨습니다.");
+		}
+		model.addAttribute("url","../support/MemberLoginForm");
+		return "commons/alertRedirect";
 	}
 }
