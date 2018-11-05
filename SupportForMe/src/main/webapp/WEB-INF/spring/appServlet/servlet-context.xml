@@ -7,7 +7,9 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
@@ -107,13 +109,14 @@
 			<tx:method name="*" />
 		</tx:attributes>
 	</tx:advice>
-	
-	<!-- MultipartResolver 설정-->
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+	<!-- MultipartResolver 설정 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="100000000" />
 		<beans:property name="maxInMemorySize" value="100000" />
 	</beans:bean>
-	
+
 	<aop:config>
 		<aop:pointcut id="allpointcut"
 			expression="execution(* com.company..*Impl.*(..))" />
@@ -122,12 +125,13 @@
 	</aop:config>
 
 	<!-- 메일 설정 -->
- 	
- 	<beans:bean id="mailSender"	class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+
+	<beans:bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<beans:property name="host" value="smtp.gmail.com" />
 		<beans:property name="port" value="587" />
-		<beans:property name="username" value="ad20181029@gmail.com" />
-		<beans:property name="password" value="auljznaybhgjzzzp" />
+		<beans:property name="username"	value="ad20181029@gmail.com" />
+		<beans:property name="password"	value="auljznaybhgjzzzp" />
 		<beans:property name="javaMailProperties">
 			<beans:props>
 				<beans:prop key="mail.transport.protocol">smtp</beans:prop>
@@ -137,4 +141,8 @@
 			</beans:props>
 		</beans:property>
 	</beans:bean>
+	<!-- 해당 태그들은 크론탭을 설정에 필요한 태그들 -->
+	<task:scheduler id="jobScheduler" pool-size="10" />
+	<task:annotation-driven scheduler="jobScheduler" />
+
 </beans:beans>

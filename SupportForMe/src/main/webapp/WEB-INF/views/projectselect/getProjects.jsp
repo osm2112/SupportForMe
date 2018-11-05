@@ -122,8 +122,7 @@ $(document).ready(function() {
 														+ '		<div class="mypage_project_image"><img src="../images/images.jpg"></div>'
 														+ '			<div class="mypage_project_content">'
 														+ '				<div class="project_state">' +data[i].progress+ '</div>'
-														+ '				<ul>'
-														+ '  				<li>프로젝트 번호 :' + data[i].projectNo + '</li>'
+														+ '				<ul>'								
 														+ '  				<li>창작자 ID : ' + data[i].userId	+ '</li>'
 														+ '   				<li style="font-size : 18px;">' + data[i].projectName + '</li>'
 														+ '   				<li style="height : 20px"></li>'
@@ -159,7 +158,6 @@ $(document).ready(function() {
 						<div class="mypage_project_content">
 							<div class="project_state">${project.progress}마감</div>
 							<ul>
-								<li>프로젝트 번호 : ${project.projectNo}</li>
 								<li>창작자 ID : ${project.userId}</li>
 								<li style="font-size: 18px;">${project.projectName}</li>
 								<li style="height: 20px"></li>
@@ -188,5 +186,6 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
+	<div style="height:300px"></div>
 </body>
 </html>
