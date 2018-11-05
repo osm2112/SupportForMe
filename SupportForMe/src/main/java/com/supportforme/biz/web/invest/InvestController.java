@@ -38,6 +38,38 @@ public class InvestController {
 		return dto;
 	}
 	
+	
+	
+	@RequestMapping("/forme/MyInvestList")
+	
+	public String getMyInvestList(Model model, HttpSession session, InvestSearchDTO dto) {
+		
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
+		dto.setUserId(memberDTO.getUserId());
+		dto.setStart(1);
+		dto.setEnd(10);
+		model.addAttribute("list",investService.getMyInvestList(dto));
+		return "myNav/invest/investMyInvestList";
+	}
+	
+	
+	
+	
+	@RequestMapping("/forme/MyInvestListScroll")
+	@ResponseBody
+	public List<Map<String, Object>> getMyInvestListScroll(Model model, HttpSession session, InvestSearchDTO dto) {
+		
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
+		dto.setUserId("osm2112");//memberDTO.getUserId());
+		dto.setStart(1);
+		dto.setEnd(10);
+		investService.getMyInvestList(dto);
+		return investService.getMyInvestList(dto);
+	}
+	
+	
+	
+	
 	@RequestMapping("/forme/InvestList")	
 	public String getInvests(Model model,InvestSearchDTO searchDTO, Paging paging, HttpSession session,HttpServletRequest request) {
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");

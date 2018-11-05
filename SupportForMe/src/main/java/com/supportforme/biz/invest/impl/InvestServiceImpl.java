@@ -52,4 +52,9 @@ public class InvestServiceImpl implements InvestService {
 	public List<Map<String, Object>> getPresentList(InvestDTO dto) {
 		return dao.getPresentList(dto);
 	}
+
+	@Override
+	public List<Map<String, Object>> getMyInvestList(InvestSearchDTO dto) {
+		return dao.getMyInvestList(dto);
+	}
 }

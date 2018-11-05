@@ -49,5 +49,8 @@ public class InvestDAO {
 		return mybatis.selectList("invest.getPresentList", dto);
 		
 	}
+	public List<Map<String, Object>>  getMyInvestList(InvestSearchDTO dto){
+		return mybatis.selectList("invest.getMyInvestList", dto); 
+	}
 
 }

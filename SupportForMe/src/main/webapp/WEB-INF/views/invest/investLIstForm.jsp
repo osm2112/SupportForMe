@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>나의 투자 내역 보기</title>
+<title>나의 결제 내역보기</title>
 </head>
 <script>
 	function go_page(p){

@@ -23,4 +23,7 @@ public interface InvestService {
 	
 	public List<Map<String, Object>>  getPresentList(InvestDTO dto);
 	
+	public List<Map<String, Object>>  getMyInvestList(InvestSearchDTO dto);
+	
+	
 }
