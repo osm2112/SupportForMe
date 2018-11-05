@@ -75,13 +75,11 @@ public class projectRegisterController {
 		dto.setIntroductionImage(introductionImg);
 
 		String introductionVideo = "";
-		String youtubePath = "https://www.youtube.com/embed/";
 		if(dto.getArrVideo() != null && dto.getArrVideo().length>0) {
 			for(String video : dto.getArrVideo()) {
-				System.out.println("========================"+video);
 				if(video != null && video != "") {
 					int index = video.lastIndexOf("/");
-					introductionVideo += (youtubePath + video.substring(index+1) + "||");	
+					introductionVideo += (video.substring(index+1) + "||");	
 				}
 							
 			}
@@ -95,7 +93,6 @@ public class projectRegisterController {
 	
 	@RequestMapping("/forme/updateProject/pay")
 	public String updateProject(Model model, ProjectDTO dto) {
-		projectService.updateProject(dto);
 		model.addAttribute("project", projectService.getProject(dto));	
 		return "ajax/register/projectRegisterPay";
 		

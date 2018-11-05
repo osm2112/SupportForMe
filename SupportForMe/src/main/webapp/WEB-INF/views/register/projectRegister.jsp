@@ -34,7 +34,7 @@ input[type=text]:-webkit-autofill {
 	font-size: 17px;
 }
 
-#registerBasicFrm>div, #basic_keyword>div {
+#registerBasicFrm>div, #basic_keyword>div, #registerRewardFrm>div {
 	margin: 10px 0px;
 }
 
@@ -47,14 +47,14 @@ input[type=text]:-webkit-autofill {
 }
 
 .lg {
-	color: #7f7f7f;
-	font-size: 15px;
+	color: #5e5e5e;
+	font-size: 17px;
 }
 
 .bold {
-	color: #5e5e5e;
+	color: #383737;
 	font-weight: 600;
-	font-size: 17px;
+	font-size: 20px;
 }
 
 .inputRight {
@@ -73,7 +73,7 @@ input[type=text]:-webkit-autofill {
 	margin-left: 50px;
 }
 
-.next_button {
+.next_button  {
 	font-size: 15px;
 	font-weight: 800;
 	color: white;
@@ -132,7 +132,7 @@ input[type=text]:-webkit-autofill {
 	vertical-align: middle;
 	margin-top: 2px;
 	margin-left: -10px;
-	cursor:pointer;
+	cursor: pointer;
 }
 
 #rg_projectPeriodDeadline {
@@ -274,10 +274,11 @@ input[type=text]:-webkit-autofill {
 	left: 0;
 	right: 0;
 }
+
 .checks {
 	position: relative;
-	display:inline-block;
-	padding-right:10px;
+	display: inline-block;
+	padding-right: 10px;
 }
 
 [type="radio"]:checked,
@@ -336,17 +337,43 @@ input[type=text]:-webkit-autofill {
 #reward_box {
 	background-color: rgb(244, 243, 243);
 	width: 580px;
-	height: 250px;
-	padding: 15px
+	height: 300px;
+	padding: 15px;
 }
 
 #reward_box div {
 	margin: 10px 5px;
 }
 
-#reward_grid {
+.reward_grid {
 	display: grid;
-	grid-template-columns: 1.5fr 6.5fr 1fr;
+	grid-template-columns: 100px 5fr 1fr;
+}
+
+.reward_grid>label {
+	
+}
+
+#reward_input {
+	width: 400px;
+	height: 25px;
+	border: 1px solid lightgrey;
+	border-radius: 3.5px;
+	padding-left: 10px;
+}
+
+#reward_input:focus, #reward_textarea:focus {
+	outline: 1px solid rgb(26, 188, 156);
+}
+
+#reward_textarea {
+	width: 400px;
+	height: 100px;
+	resize: none;
+	border-radius: 3.5px;
+	border: 1px solid lightgrey;
+	padding: 10px;
+	font-size:17px;
 }
 
 .reward_button {
@@ -357,18 +384,71 @@ input[type=text]:-webkit-autofill {
 	margin-left: 50px;
 }
 
-.add_button {
+.preview_button {
+	font-size: 15px;
+	font-weight: 800;
+	padding: 2.5px 10px;
+	margin-top: 5px;
+}
+.add_button, .rewardEdit  {
 	color: rgb(26, 188, 156);
 	background-color: white;
 	border-radius: 5px;
 	border: 1px solid rgb(26, 188, 156);
+	margin-right:10px;
 }
 
-.reset_button {
+.reset_button, .rewardDel  {
 	color: white;
 	background-color: rgb(26, 188, 156);
 	border-radius: 5px;
 	border: none;
+}
+
+.rg_delivery {
+	width: 200px;
+	height: 35px;
+	border: 1px solid lightgrey;
+	border-radius: 3.5px;
+	margin-top: -10px;
+	background-color: white;
+	border-radius: 3.5px;
+}
+
+#presentDeliveryDate {
+	border: none;
+	width: 165px;
+	margin: 0px;
+	font-size: 17px;
+}
+
+#delivery_date:focus {
+	outline: none;
+}
+
+.reward_preview_box {
+	width: 190px;
+	height: 190px;
+	padding: 10px 10px 10px 15px;
+	border: 1px solid lightgray;
+}
+
+.rw_preview_amount_div {
+	font-size: 25px;
+	color: #302c2c;
+	font-weight: 700
+}
+
+.rw_preview_info_s, .rw_preview_delivery_s {
+	font-size: 16px;
+	color: #5e5e5e;
+	margin: 5px 0px 2px 0px;
+}
+
+.rw_preview_info, .rw_preview_delivery {
+	font-size: 18px;
+	color: #211f1f;
+	margin: 2px 0px 10px 0px;
 }
 </style>
 <script>
@@ -673,11 +753,12 @@ $(function() {
 			</div>
 			<div id="basic_target">
 				<div class="bold">목표 금액을 적어주세요</div>
+				<div class="lg"><span style="color:#e74c3c" class="bold">최소 100,000원 이상</span>이어야 합니다.</div>
 				<input type="text" name="targetAmount" id="r_targetAmount" 
 					class="inputStyle inputRight"  placeholder="0"> 원
 				<c:if test="${project.targetAmount != null }">
 					<script>
-						$("input[name=targetAmount]").val(${project.targetAmount});
+						$("input[name=targetAmount]").val('${project.targetAmount}');
 					</script>
 				</c:if>
 			</div>

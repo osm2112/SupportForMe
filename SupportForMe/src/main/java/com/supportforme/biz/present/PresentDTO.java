@@ -4,8 +4,9 @@ public class PresentDTO {
 	private String presentNo;
 	private String presentPrice;
 	private String presentName;
+	private String presentDeliveryDate;
 	private String projectNo;
-	private String rewardSelectCount;
+	private String rewardSelectCount;		/* 필요해서 넣었습니다 - 김효정 */
 	
 	public String getRewardSelectCount() {
 		return rewardSelectCount;
@@ -32,6 +33,12 @@ public class PresentDTO {
 		this.presentName = presentName;
 	}
 	
+	public String getPresentDeliveryDate() {
+		return presentDeliveryDate;
+	}
+	public void setPresentDeliveryDate(String presentDeliveryDate) {
+		this.presentDeliveryDate = presentDeliveryDate;
+	}
 	public String getProjectNo() {
 		return projectNo;
 	}

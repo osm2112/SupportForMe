@@ -56,10 +56,11 @@ $(function() {
 	    <input type="hidden" name="userId" value="${project.userId}">
 	    <div id="story_introduction" style="height:50px">
 			<div class="bold">프로젝트 소개 영상과 이미지를 등록해주세요</div>
-	        <div class="lg">소개 영상과 이미지 중 택 1 가능합니다.</div>
+	        <div class="lg">소개영상과 이미지를 함께 등록할 경우, 영상부터 보여지게 됩니다</div>
 	    </div>
 		<div id="story_video">
 			<div class="bold">동영상 주소를 적어주세요</div>
+			<div class="lg">Youtube만 가능합니다.</div>
 			<c:if test="${project.introductionVideo != null}" >
 				<c:forTokens var="video" items="${project.introductionVideo}" delims="||" varStatus="i">
 					<div class="videoUrl">
@@ -106,7 +107,7 @@ $(function() {
 	    </div>
 	    <div id="story_contents">	
 	    	<div class="bold">프로젝트 스토리를 적어주세요</div>
-			<textarea id="smarteditor" name="story" rows="10" cols="60" style="width: 720px; height: auto; resize: none"></textarea>
+			<textarea id="smarteditor" name="story" rows="10" cols="60" style="width: 720px; height: auto; resize: none">${project.story}</textarea>
 	    </div>
 	    <div style="height:50px"></div>
 	   	<input type="button" name="save" class="save_button" value="저장하기">
