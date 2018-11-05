@@ -22,8 +22,8 @@ public class ProjectDetailPageController {
 									   ProjectDTO pjdto,
 									   CommentsDTO cdto,
 									   HttpSession session) {
-		pjdto.setProjectNo("201810310001");
-		cdto.setTopCommentNo("201810260001");	//댓글의 답글조회하려고
+		pjdto.setProjectNo(pjdto.getProjectNo());		//"201810310001"
+		cdto.setTopCommentNo("201810260001");	//댓글의 답글조회하려고   
 		
 		model.addAttribute("project", projectDetailPageService.getProjectDetail(pjdto));
 		model.addAttribute("hashtag", projectDetailPageService.getProjectHashtags(pjdto));

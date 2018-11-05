@@ -9,7 +9,7 @@
        	   IMAGE, 
       	   TARGET_AMOUNT, 
        	   PROJECT_DEADLINE, 
-       	   PROJECT_DEADLINE+7 AS SCHEDULED_PAYMENT_DATE,
+       	   TO_DATE(PROJECT_DEADLINE, 'yyyy.mm.dd')+7 AS SCHEDULED_PAYMENT_DATE,
        	   PROJECT_PROGRESS_RATE(#{projectNo}) AS PROJECT_PROGRESS_RATE, 
        	   STORY, 
        	   PROGRESS, 

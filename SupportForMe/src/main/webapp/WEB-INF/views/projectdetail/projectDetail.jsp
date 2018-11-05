@@ -7,10 +7,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>* ${project.projectName} *</title>
- 
+
+<!-- 이건 슬라이드땜에 가져온거 -->
 <link type="text/css" rel="stylesheet" href="../css/lightslider.css" />                  
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="../js/lightslider.js"></script> 
+
+<!-- 진행상태 그래프 -->
+<!-- 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+-->
 
 <style>
 
@@ -138,7 +146,6 @@
 
 .pjdtl-each-reward {
 	width: 330px;
-	/*height: 180px;*****************************************************************************************************/
 	padding: 20px;
 	margin: 10px 0px;
 	border: 1px solid lightgray;
@@ -215,7 +222,6 @@ ul {
     border: 1px solid #ccc;
     border-top: none;
 }
-
 </style>
 
 <script>
@@ -285,6 +291,12 @@ $(document).ready(function() {
         <div class="pjdtl-detail-box">
             <div class="pjdtl-get-price">${invest.totalInvestAmount}원<a style="font-size:40px;">(모인금액)</a></div>
             <div class="pjdtl-target-price">목표금액 ${project.targetAmount}원</div>
+           	<div class="progress">
+    			<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="${project.projectProgressRate}" aria-valuemin="0" aria-valuemax="100" style="width:200px;">
+      						${project.projectProgressRate}%
+    			</div>
+ 			</div>
+<!-- 진행상황 막대그래프 -->           
             <div>
             	<progress style="width:80%; height:27px;" value="${project.projectProgressRate}" max="100"></progress>
             	<span style="font-size:25px;">${project.projectProgressRate}%</span>
@@ -295,7 +307,7 @@ $(document).ready(function() {
             </div>
             <div style="display:flex;">
                 <button class="pjdtl-invest-btn" onclick="#">투자하기</button>
-                <img src="../images/share-button.png" class="pjdtl-share-btn">
+                <img src="../images/share-button.png" class="pjdtl-share-btn" onclick="#">
             </div><br>
             <div class="pjdtl-status-box">
                 <div class="">
