@@ -355,9 +355,15 @@
                                 v += ((parseInt($children.eq(i).width()) + settings.slideMargin) * settings.slideMove);
                             }
                         }
+                        
                         var thumb = $children.eq(i * settings.slideMove).attr('data-thumb');
-                        if (settings.gallery === true) {
-                            pagers += '<li style="width:100%;' + property + ':' + thumbWidth + 'px;' + gutter + ':' + settings.thumbMargin + 'px"><a href="#"><img src="' + thumb + '"/></a></li>';
+                        var thumbclass = $children.eq(i * settings.slideMove).attr("class");
+                        /***여기***/					
+                        if( $("."+thumbclass).hasClass("video-thumb")) {
+                        pagers += '<li style="width:100%;' + property + ':' + thumbWidth + 'px;' + gutter + ':' + settings.thumbMargin + 'px"><a href="#"><img src="' + thumb + '"/></a></li>';
+                        }
+                        else if ( $("."+thumbclass).hasClass("video-thumb") == false && settings.gallery === true) {
+                        	pagers += '<li style="width:100%;' + property + ':' + thumbWidth + 'px;' + gutter + ':' + settings.thumbMargin + 'px"><a href="#"><img src="https://img.youtube.com/vi/' + thumb+ '/default.jpg"/></a></li>';
                         } else {
                             pagers += '<li><a href="#">' + (i + 1) + '</a></li>';
                         }

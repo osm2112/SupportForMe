@@ -26,37 +26,37 @@ public class MemberController {
 
 	@RequestMapping("/support/MemberJoinForm")
 	public String MemberJoinForm() {
-		return "member/memberJoinForm";
+		return "noNav/member/memberJoinForm";
 	}
 
 	@RequestMapping("/support/MemberLoginForm")
 	public String loininForm() {
-		return "member/memberLoginForm";
+		return "noNav/member/memberLoginForm";
 	}
 
 	@RequestMapping("/support/MemberTermsConfirmForm")
 	public String memberTermsConfirmForm() {
-		return "member/memberTermsConfirmForm";
+		return "noNav/member/memberTermsConfirmForm";
 	}
 
 	@RequestMapping("/forme/MemberUpdateConfirmForm")
 	public String memberUpdateConfirmForm() {
-		return "member/memberUpdateConfirmForm";
+		return "myNav/member/memberUpdateConfirmForm";
 	}
 
 	@RequestMapping("/forme/MemberDeleteConfirmForm")
 	public String memberDeleteConfirmForm() {
-		return "member/memberDeleteConfirmForm";
+		return "myNav/member/memberDeleteConfirmForm";
 	}
 	
 	@RequestMapping("/support/MemberFindIdForm")
 	public String memberFindIdForm() {
-		return "member/memberFindIdForm";
+		return "noNav/member/memberFindIdForm";
 	}
 	
 	@RequestMapping("/support/MemberFindPasswordForm")
 	public String memberFindPasswordForm() {
-		return "member/memberFindPasswordForm";
+		return "noNav/member/memberFindPasswordForm";
 	}
 	
 	@RequestMapping("/support/InsertMember")
@@ -117,7 +117,7 @@ public class MemberController {
 		if (ref != null) {
 			if (ref.equals("http://localhost:8181/SupportForMe/forme/MemberUpdatePassWordCheck")) {
 				model.addAttribute("member", dto);
-				return "/member/memberUpdateForm";
+				return "myNav/member/memberUpdateForm";
 			} else {
 				model.addAttribute("url", "../forme/MemberUpdateConfirmForm");
 				return "commons/alertRedirect";
