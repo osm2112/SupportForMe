@@ -13,12 +13,6 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="../js/lightslider.js"></script> 
 
-<!-- 진행상태 그래프 -->
-<!-- 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
--->
 
 <style>
 
@@ -189,8 +183,8 @@ ul {
 /* Style the tab */
 .tab {
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    /*border: 1px solid #ccc;
+    background-color: #f1f1f1;*/
 }
 
 /* Style the buttons inside the tab */
@@ -201,26 +195,26 @@ ul {
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
+    color: #747474;
+    font-size: 20px;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-    background-color: #ddd;
+    border-bottom: 2px solid rgb(26, 188, 156);
+    color:#4C4C4C;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-    background-color: #ccc;
+    border-bottom: 2px solid rgb(26, 188, 156);
+    color:#4C4C4C;
 }
 
 /* Style the tab content */
 .tabcontent {
     display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
 }
 </style>
 
@@ -276,7 +270,7 @@ $(document).ready(function() {
 					</li>
 				</c:forTokens>
 				<c:forTokens items="${project.introductionImage}" delims="||" var="img">
-					<li data-thumb="/SupportForMe/upload/${img}">
+					<li data-thumb="/SupportForMe/upload/${img}" style="background-color:black; width:660px; height:380px;">
 						<img src="/SupportForMe/upload/${img}"/>
 					</li>
 				</c:forTokens>
@@ -291,11 +285,6 @@ $(document).ready(function() {
         <div class="pjdtl-detail-box">
             <div class="pjdtl-get-price">${invest.totalInvestAmount}원<a style="font-size:40px;">(모인금액)</a></div>
             <div class="pjdtl-target-price">목표금액 ${project.targetAmount}원</div>
-           	<div class="progress">
-    			<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="${project.projectProgressRate}" aria-valuemin="0" aria-valuemax="100" style="width:200px;">
-      						${project.projectProgressRate}%
-    			</div>
- 			</div>
 <!-- 진행상황 막대그래프 -->           
             <div>
             	<progress style="width:80%; height:27px;" value="${project.projectProgressRate}" max="100"></progress>
@@ -370,12 +359,12 @@ $(document).ready(function() {
             <div style="font-size:30px;">리워드 목록</div>
             <c:forEach items="${present}" var="reward" varStatus="status">
             <div class="pjdtl-each-reward">
-            	<img src="../images/check.png" style="width:25px; height:25px">
+            	<img src="../images/checkmark.png" style="width:27px; height:27px">
             	<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span><br><br>
-            	<span>가격</span><br>
-            	<span style="font-size: 23px;">${reward.presentPrice}원 +</span><br>
-            	<span>배송비 포함</span><br><br>
-            	<span>구성</span><br>
+            	<span style="color:#4C4C4C;">가격</span><br>
+            	<span style="font-size:23px; color:#FF007F;">${reward.presentPrice}원 +</span><br>
+            	<span style="color:#4C4C4C;">배송비 포함</span><br><br>
+            	<span style="color:#4C4C4C;">구성</span><br>
             	<span style="font-size: 23px;">${reward.presentName}</span>
             </div>
             </c:forEach>
