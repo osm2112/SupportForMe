@@ -1,7 +1,6 @@
 package com.supportforme.biz.project;
 import java.util.List;
 
-import com.supportforme.biz.comments.CommentsDTO;
 import com.supportforme.biz.hashtag.HashtagDTO;
 import com.supportforme.biz.invest.InvestDTO;
 import com.supportforme.biz.present.PresentDTO;
@@ -20,11 +19,11 @@ public interface ProjectDetailPageService {
 	//프로젝트의 리워드 목록 조회
 	public List<PresentDTO> getProjectPresents(ProjectDTO dto);
 	public List<PresentDTO> getProjectPresentsCount(ProjectDTO dto);
-
+/*
 	//프로젝트에 달린 댓글 조회
 	public List<CommentsDTO> getComments(ProjectDTO dto);
 	
 	//프로젝트 댓글에 달린 답글 조회
 	public List<CommentsDTO> getReplyComments(CommentsDTO dto);
-	
+*/
 }

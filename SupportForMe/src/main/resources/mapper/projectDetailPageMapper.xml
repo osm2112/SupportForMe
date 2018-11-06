@@ -52,6 +52,8 @@
 	GROUP BY PRESENT_NO
 	ORDER BY PRESENT_NO
 </select>
+
+
 <!-- 댓글 불러오기 -->
 <select id="getComments" resultType="comments" parameterType="project">
 	SELECT *
@@ -65,4 +67,8 @@
 	FROM COMMENTS
 	WHERE TOP_COMMENT_NO = #{topCommentNo}
 </select>
+
+
+
+
 </mapper>

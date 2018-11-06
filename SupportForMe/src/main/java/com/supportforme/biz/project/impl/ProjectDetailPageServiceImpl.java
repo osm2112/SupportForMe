@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.supportforme.biz.comments.CommentsDTO;
 import com.supportforme.biz.hashtag.HashtagDTO;
 import com.supportforme.biz.invest.InvestDTO;
 import com.supportforme.biz.present.PresentDTO;
@@ -40,7 +39,7 @@ public class ProjectDetailPageServiceImpl implements ProjectDetailPageService {
 	public List<PresentDTO> getProjectPresentsCount(ProjectDTO dto) {
 		return projectDetailPageDAO.getProjectPresentsCount(dto);
 	}
-	
+	/*
 	@Override
 	public List<CommentsDTO> getComments(ProjectDTO dto) {
 		return projectDetailPageDAO.getComments(dto);
@@ -50,7 +49,7 @@ public class ProjectDetailPageServiceImpl implements ProjectDetailPageService {
 	public List<CommentsDTO> getReplyComments(CommentsDTO dto) {
 		return projectDetailPageDAO.getReplyComments(dto);
 	}
-
+	*/
 	
 
 }

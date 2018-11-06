@@ -6,7 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.supportforme.biz.comments.CommentsDTO;
 import com.supportforme.biz.hashtag.HashtagDTO;
 import com.supportforme.biz.invest.InvestDTO;
 import com.supportforme.biz.present.PresentDTO;
@@ -40,15 +39,5 @@ public class ProjectDetailPageDAO {
 		return mybatis.selectList("projectDetail.getProjectPresentsCount", dto);
 	}
 	
-	//프로젝트에 달린 댓글 조회
-	public List<CommentsDTO> getComments(ProjectDTO dto) {
-		return mybatis.selectList("projectDetail.getComments", dto);
-	}
-	
-	//프로젝트 댓글에 달린 답글 조회
-	public List<CommentsDTO> getReplyComments(CommentsDTO dto) {
-		return mybatis.selectList("projectDetail.getReplyComments", dto);
-		
-	}
 	
 }
