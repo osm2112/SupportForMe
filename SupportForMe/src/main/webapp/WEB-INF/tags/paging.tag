@@ -6,7 +6,18 @@
 	<c:set var="jsFunc" value="go_page"></c:set>
 </c:if>
 <ul>
-<li>이전
+
+
+<c:set var="name" value="홍길동" />
+<c:choose>
+    <c:when test="${paging.page > 1}">
+    <li><a href="#" onclick="${jsFunc}(${paging.page - 1})">이전</a>
+    </c:when>
+    <c:otherwise>
+		<li>이전
+    </c:otherwise>
+</c:choose>
+
 <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i">
 	<c:if test="${i != paging.page}">
 		<li><a href="#" onclick="${jsFunc}(${i})">${i}</a>
@@ -15,5 +26,13 @@
 		<li class="active">${i}
 	</c:if>
 </c:forEach>
-<li>다음
+
+<c:choose>
+    <c:when test="${paging.page < paging.lastPage}">
+    <li><a href="#" onclick="${jsFunc}(${paging.page + 1})">다음</a>
+    </c:when>
+    <c:otherwise>
+		<li>다음
+    </c:otherwise>
+</c:choose>
 </ul>

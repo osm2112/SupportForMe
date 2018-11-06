@@ -27,7 +27,7 @@ public class AdminController {
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		
 		
-		paging.setPageUnit(5);
+		paging.setPageUnit(10);
 		
 		//현재페이지 번호 파라미터
 		if(paging.getPage() ==null) {
@@ -57,9 +57,7 @@ public class AdminController {
 		String[] ids = getIds.split("[|]");
 		System.out.println(ids[0]);
 		adminSearchDTO.setIds(ids);
-		int result = adminService.deleteAdminMembers(adminSearchDTO);
-	
-		
+		int result = adminService.deleteAdminMembers(adminSearchDTO);	
 		if(result > 0) {
 			model.addAttribute("msg", "선택한 회원은 탈퇴 처리 되었습니다.");
 			model.addAttribute("url", "../forme/AdminMemberList");
