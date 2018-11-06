@@ -19,7 +19,14 @@
 	height: 420px;
 	border: 1px solid lightgrey;
 	display: inline-block;
-	margin-top: 5px;
+	margin-top: 20px;
+	margin-left: 10px;
+	margin-right:10px;
+}
+.project_box:hover {
+   /* border: 4px solid rgb(26, 188, 156); */
+
+   box-shadow: 4px 4px 2px lightgrey;
 }
 
 .project_state {
@@ -97,14 +104,6 @@ $(document).ready(function() {
 	}
 });
 
-
-
-
-
-
-
-
-
 </script>
 <body>
 	<div id="myInvestList" >
@@ -121,6 +120,7 @@ $(document).ready(function() {
 					<div style="font-size: 15px;">선택 리워드 : ${list.presentName}(${list.presentPrice}원)</div>
 					<div style="font-size: 15px;">총 투자 금액 : ${list.invenstAmount}원</div>
 					<div style="font-size: 15px;">투자일 : ${list.investDate}</div>
+					<div style="font-size: 15px;">배송예정일 : ${list.investDate}</div>
 					<div style="height: 20px"></div>
 					<div align="right">${list.projectProgressRate}%</div>
 					<progress value="${list.projectProgressRate}" max="100" style="width:235px"></progress>

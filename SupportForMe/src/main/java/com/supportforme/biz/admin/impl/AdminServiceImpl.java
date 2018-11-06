@@ -27,6 +27,11 @@ public class AdminServiceImpl implements AdminService {
 	public int getCntAdminMember(AdminSearchDTO searchDTO) {
 		return dao.getCntAdminMember(searchDTO);
 	}
+
+	@Override
+	public int deleteAdminMembers(AdminSearchDTO searchDTO) {
+		return dao.deleteAdminMembers(searchDTO);
+	}
 	
 	
 }

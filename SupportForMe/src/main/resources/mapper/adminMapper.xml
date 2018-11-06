@@ -6,8 +6,9 @@
 		SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
 		SELECT * FROM MEMBER
 		<where>
+			PASSWORD IS NOT NULL
 			<if test="searchCondition == 'userId'">
-				 USER_ID LIKE '%' || #{searchKeyword} || '%'
+				AND USER_ID LIKE '%' || #{searchKeyword} || '%'
 			</if>
 			<if test="searchCondition == 'name'">
 				AND NAME LIKE '%' || #{searchKeyword} || '%'
@@ -24,6 +25,7 @@
 	<select id="getCntAdminMembers" parameterType="member" resultType="int">
 		SELECT COUNT(*) FROM MEMBER
 		<where>
+			PASSWORD IS NOT NULL
 			<if test="searchCondition == 'userId'">
 				AND USER_ID LIKE '%' || #{searchKeyword} || '%'
 			</if>
@@ -39,4 +41,22 @@
 		</where>
 	</select>
 
+	<update id="deleteAdminMembers" parameterType="adminSearch">
+		UPDATE MEMBER
+		SET 
+		PASSWORD = null,
+		NAME = null, 
+		ADDRESS = null, 
+		PHONE_NUM = null, 
+		EMAIL = null, 
+		INTRODUCTION = null, 
+		POSTCODE = null,
+		ADDR_DETAIL = null 
+		<where>
+			USER_ID IN
+			<foreach collection="ids" open="(" close=")" separator="," item="item">
+				#{item}
+			</foreach>
+		</where>
+	</update>
 </mapper> 

@@ -8,7 +8,14 @@ public class AdminSearchDTO  extends AdminDTO{
 	private Integer end;
 	private String startdate;
 	private String enddate;
+	private String[] ids;
 	
+	public String[] getIds() {
+		return ids;
+	}
+	public void setIds(String[] ids) {
+		this.ids = ids;
+	}
 	public String getStartdate() {
 		return startdate;
 	}

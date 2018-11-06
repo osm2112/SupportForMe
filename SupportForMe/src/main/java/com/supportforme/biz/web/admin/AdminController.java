@@ -50,5 +50,23 @@ public class AdminController {
 	}
 	
 
+	@RequestMapping("/forme/AdminDeleteMembers")
+	public String deleteAdminMembers(Model model,AdminSearchDTO adminSearchDTO, HttpServletRequest request) {
+		String getIds =request.getParameter("ids");
+		System.out.println(getIds);
+		String[] ids = getIds.split("[|]");
+		System.out.println(ids[0]);
+		adminSearchDTO.setIds(ids);
+		int result = adminService.deleteAdminMembers(adminSearchDTO);
+	
+		
+		if(result > 0) {
+			System.out.println("---"+result);
+			return null;
+		} else {
+			System.out.println("---"+result);
+			return null;
+		}	
+	}
 
 }

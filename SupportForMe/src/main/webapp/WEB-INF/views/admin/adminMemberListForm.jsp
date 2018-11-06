@@ -11,7 +11,32 @@
 		document.searchForm.page.value=p;
 		document.searchForm.submit();
 	}
-	
+	function DeleteMembers(){
+		var check= confirm('선택하신 회원을 정말 탈퇴 시키겠습니까?');
+		var ids='';
+		var getIds = document.getElementsByName('ids');
+		for(var i = 0 ; i < getIds.length ; i++ ){
+			if(getIds[i].checked ==true){	
+				ids += getIds[i].value+'|';
+			}
+		}
+		if(check){
+			var form = document.createElement("form");
+			var input = document.createElement("input"); 
+			form.action = "../forme/AdminDeleteMembers";
+			form.method = "post";
+			input.setAttribute("type", "hidden");
+			input.setAttribute('name', "ids");
+			input.setAttribute("value", ids);
+			form.appendChild(input);
+			document.body.appendChild(form);
+			form.submit();
+		}else {
+			return false;
+		}
+		
+		
+	}
 </script>
 </head>
 <body>
@@ -58,7 +83,7 @@
 		</c:forEach>
 		<tr>
 			<td colspan="8">
-				<input type="button" value="회원 탈퇴 처리" onclick="LeaveMember()">
+				<input type="button" value="회원 탈퇴 처리" onclick="DeleteMembers()">
 			</td>
 		</tr>
 	</table>

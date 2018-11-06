@@ -25,6 +25,11 @@ public class AdminDAO {
 	public int getCntAdminMember(AdminSearchDTO searchDTO) {
 		return mybatis.selectOne("admin.getCntAdminMembers", searchDTO);
 	}
+	
+	
+	public int deleteAdminMembers(AdminSearchDTO searchDTO) {
+		return mybatis.delete("admin.deleteAdminMembers", searchDTO);
+	}
 
 
 }

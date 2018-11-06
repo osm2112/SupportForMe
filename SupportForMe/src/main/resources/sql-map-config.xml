@@ -18,7 +18,7 @@
 		<typeAlias alias="present" type="com.supportforme.biz.present.PresentDTO" />
 		<typeAlias alias="project" type="com.supportforme.biz.project.ProjectDTO" />
 		<typeAlias alias="admin" type="com.supportforme.biz.admin.AdminDTO" />
-		
+		<typeAlias alias="adminSearch" type="com.supportforme.biz.admin.AdminSearchDTO"/>
 	</typeAliases>
 	
 </configuration>

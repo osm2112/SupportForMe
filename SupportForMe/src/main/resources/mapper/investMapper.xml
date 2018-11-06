@@ -239,10 +239,11 @@
 			 INVEST.USER_ID = #{userId}
 			<if test="investNo != null and investNo != '' ">
 				<![CDATA[ 
-				AND INVEST.INVEST_NO > #{investNo}
+				AND INVEST.INVEST_NO < #{investNo}
 				]]>
 			</if>
 		</where>
+		ORDER BY INVEST.INVEST_NO DESC
 	) A )WHERE RNUM BETWEEN ${start} AND ${end}
 	</select>
 </mapper> 
