@@ -60,7 +60,7 @@ public class InvestController {
 	public List<Map<String, Object>> getMyInvestListScroll(Model model, HttpSession session, InvestSearchDTO dto) {
 		
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
-		dto.setUserId("osm2112");//memberDTO.getUserId());
+		dto.setUserId(memberDTO.getUserId());
 		dto.setStart(1);
 		dto.setEnd(10);
 		investService.getMyInvestList(dto);
