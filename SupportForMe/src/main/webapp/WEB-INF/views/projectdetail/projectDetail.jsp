@@ -306,7 +306,7 @@ $(document).ready(function() {
                 <div style="font-size:25px; color:#A6A6A6;">참여자 ${invest.headcount}명</div>
             </div>
             <div style="display:flex;">
-                <button class="pjdtl-invest-btn" onclick="#">투자하기</button>
+                <button class="pjdtl-invest-btn" onclick="location.href='../forme/InvestSelectReward?projectNo=${project.projectNo}'">투자하기</button>
                 <img src="../images/share-button.png" class="pjdtl-share-btn" onclick="#">
             </div><br>
             <div class="pjdtl-status-box">
