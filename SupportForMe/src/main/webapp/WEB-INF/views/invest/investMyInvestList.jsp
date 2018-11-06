@@ -84,7 +84,7 @@ $(document).ready(function() {
 										+'			<div style="font-size: 15px;">배송예정일 : '+data[i].investDate+'</div>									'
 										+'			<div style="height: 20px"></div>																	'
 										+'			<div align="right">'+data[i].projectProgressRate+'%</div>											'
-										+'			<div style="color: rgb(26, 188, 156)">■□□□□□□□□□□□□□</div>											'
+										+'			<progress value="'+data[i].projectProgressRate+'" max="100" style="width:235px"/>										'
 										+'		</nav>																									'
 										+'	</div>																										'
 										+'</div>																										'						
@@ -110,7 +110,7 @@ $(document).ready(function() {
 	<div id="myInvestList" >
 		<div style="font-size: 30px; font-weight: 800; margin-bottom: 20px">나의	투자 현황</div>
 		<c:forEach items="${list}" var="list">
-		<div class="project_box" style="" id="${list.investNo}">
+		<div class="project_box" style="" id="${list.investNo}" onclick="location.href='../support/getProjectDetailPage?projectNo=${list.projectNo}'">
 			<div class="mypage_project_image">
 				<img class="mypage_project_image"src="../upload/${list.image}">
 			</div>
@@ -123,7 +123,7 @@ $(document).ready(function() {
 					<div style="font-size: 15px;">투자일 : ${list.investDate}</div>
 					<div style="height: 20px"></div>
 					<div align="right">${list.projectProgressRate}%</div>
-					<div style="color: rgb(26, 188, 156)">■□□□□□□□□□□□□□</div>
+					<progress value="${list.projectProgressRate}" max="100" style="width:235px"></progress>
 				</nav>
 			</div>
 		</div>

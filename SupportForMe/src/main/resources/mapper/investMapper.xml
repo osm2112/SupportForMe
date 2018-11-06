@@ -209,6 +209,7 @@
 		<result column="PROJECT_PROGRESS_RATE" property="projectProgressRate" />
 		<result column="IMAGE" property="image" />
 		<result column="NAME" property="name" />
+		<result column="PROJECT_NO" property="projectNo" />
 	</resultMap>
 
 	<select id="getMyInvestList"	parameterType="com.supportforme.biz.invest.InvestSearchDTO" resultMap="investMyInvestListMap">
@@ -225,7 +226,8 @@
 				COMMON_CODE3.CODE_NAME 								PROJECT_PROGRESS,
 				PROJECT_PROGRESS_RATE(INVEST.PROJECT_NO) 			PROJECT_PROGRESS_RATE,
 				PROJECT.IMAGE 										IMAGE,
-				MEMBER.NAME 										NAME
+				MEMBER.NAME 										NAME,
+				INVEST.PROJECT_NO									PROJECT_NO
 		FROM INVEST
 		JOIN PROJECT ON INVEST.PROJECT_NO = PROJECT.PROJECT_NO
 		JOIN PRESENT ON INVEST.PRESENT_NO = PRESENT.PRESENT_NO

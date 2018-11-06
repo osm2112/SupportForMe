@@ -46,7 +46,7 @@
 		</tr>
 		<c:forEach items="${list}" var="list">
 			<tr>
-				<td><input type="checkbox" name="select"></td>
+				<td><input type="checkbox" name="ids" value="${list.userId}"></td>
 				<td>${list.userId}</td>
 				<td>${list.name}</td>
 				<td>${list.email}</td>
@@ -58,7 +58,7 @@
 		</c:forEach>
 		<tr>
 			<td colspan="8">
-				<input type="button" value="회원 탈퇴 처리">
+				<input type="button" value="회원 탈퇴 처리" onclick="LeaveMember()">
 			</td>
 		</tr>
 	</table>
