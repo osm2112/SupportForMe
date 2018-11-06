@@ -5,13 +5,11 @@
 <!doctype html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/flexslider.min.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider-min.js"></script>
-
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> --> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/flexslider.min.css">
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider-min.js"></script>
 <style>
 .bodysize {
 	margin-left: auto;
@@ -49,7 +47,7 @@
 	height: 350px;
 	background-color: #E9E9E9;
 }
-
+  
 .suforme_picks_projects_content {
 	border: 1px solid lightgrey;
 	border-left: none;
@@ -140,8 +138,8 @@
 }
 
 .project_box:hover {
-	border: 4px solid rgb(26, 188, 156);
-	box-shadow: 8px 8px 3px grey;
+/* 	border: 4px solid rgb(26, 188, 156); */
+	box-shadow: 8px 8px 3px lightgrey;
 }
 
 <!-- -->
@@ -221,11 +219,43 @@ li em {
 	text-align: center;
 	font-family: tahoma, sans-serif;
 }
+
+.flexslider2 .flex-direction-nav .flex-next {
+    right: 5px; /* adjust offset to match the hover style */
+    opacity: .8; /* adjust opacity to match the hover style */
+  
+}
+
+.flexslider2 .flex-direction-nav .flex-prev {
+    left: 5px; /* adjust offset to match the hover style */
+    opacity: .8; /* adjust opacity to match the hover style */
+ 
+}
+
+.flexslider2 .flex-direction-nav a.flex-prev:before {
+    font-family:'FontAwesome';
+    font-size: 20px;
+    display: inline-block;
+     content: "\f191";  
+    color: black; 
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+    line-height: 40px;  
+}  
+ 
+.flexslider2 .flex-direction-nav a.flex-next:before {
+   font-family:'FontAwesome';
+    font-size: 20px;
+    display: inline-block;
+    content: "\f152";
+    color: black; 
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+    line-height: 40px;
+}
+
 </style>
 <script>
 	$(document).ready(
 			function() {
-
 				$('.flexslider').flexslider({
 					animation : "slide"
 				});
@@ -234,7 +264,12 @@ li em {
 					slideshowSpeed : 10000,
 					animation : "slide",
 					controlNav : false,
-					customDirectionNav : $(".custom-navigation a")
+					directionNav : true,
+					prevText : "",
+					nextText : ""
+					
+					/* ,
+					customDirectionNav : $(".custom-navigation2 a")  */
 				});
 
 				$('.flexslider3').flexslider(
@@ -242,6 +277,7 @@ li em {
 							slideshowSpeed : 8000,
 							animation : "slide",
 							controlNav : false,
+							directionNav : false,
 							start : function(slider) {
 								$('.real_time_rank_projects li').eq(0)
 										.css('border',
@@ -342,7 +378,6 @@ li em {
 </script>
 </head>
 <body>
-
 	<div class="flexslider2">
 		<ol class="slides">
 			<li><img src="./images/main.PNG"></li>
@@ -352,20 +387,11 @@ li em {
 			<li><img src="./images/plus1.png"></li>
 		</ol>
 	</div>
-	<div class="custom-navigation">
-		<p style="float: left;">
-			<a href="#" class="flex-prev">Prev</a>
-		</p>
-		<p style="float: right;">
-			<a href="#" class="flex-next" style="text-align: right;">Next</a>
-		</p>
-	</div>
-
 	<div style="height: 50px"></div>
 	<div class="bodysize">
 		<div class="suforme">
-			<div class="suforme_picks_div">
-				<div class="suforme_top_1_text_div">서포미 PICKS</div>
+			<div class="suforme_picks_div"> 
+				<div class="suforme_top_1_text_div"><span><i class="fa fa-heart"></i>&nbsp서포미 PICKS</span></div>
 
 				<div class="flexslider">
 					<ul class="slides">
@@ -393,7 +419,7 @@ li em {
 				</div>
 			</div>
 			<div class="real_time_rank_outer">
-				<div class="suforme_top_1_text_div">실시간 랭킹</div>
+				<div class="suforme_top_1_text_div"><span><i class="fa fa-trophy"></i>&nbsp실시간 랭킹</span></div>
 				<div class="real_time_rank_div">
 					<div class="real_time_image flexslider3">
 						<ul class="slides">
@@ -425,10 +451,9 @@ li em {
 				</div>
 			</div>
 		</div>
-		<div style="height: 50px"></div>
-		<div class="suforme_top_1_text_div">공연 프로젝트</div>
+		<div style="height: 50px"></div> 
+		<div class="suforme_top_1_text_div"><span><i class="fa fa-users"></i>&nbsp공연 프로젝트</span></div> 
 		<div class="category_project_div">
-
 			<c:forEach items="${Performance}" var="project">
 				<div class="project_box" id="${project.projectNo}"
 					style="cursor: pointer;"
@@ -447,15 +472,15 @@ li em {
 							<li style="color: rgb(26, 188, 156);"><progress
 									style="width: 80%;" value="${project.percent}" max="100"></progress></li>
 							<li>목표금액 : ${project.targetAmount}</li>
-						</ul>
+						</ul>						
 					</div>
-				</div>
+				</div>				
 			</c:forEach>
 		</div>
-
+		<div style="text-align: right"><br><a href="#">더보기 </a></div>	
 		<div style="height: 50px"></div>
 		<!-- 미술 부분  -->
-		<div class="suforme_top_1_text_div">미술 프로젝트</div>
+		<div class="suforme_top_1_text_div"><span><i class="fa fa-paint-brush"></i>&nbsp미술 프로젝트</span></div>
 		<div class="art_project_div">
 			<div class="category_project_div">
 				<c:forEach items="${Art}" var="project">
@@ -481,8 +506,10 @@ li em {
 					</div>
 				</c:forEach>
 			</div>
+			<div style="text-align: right"><br><a href="#">더보기 </a></div>	
 		</div>
 	</div>
+	
 	<div style="height: 200px"></div>
 </body>
 </html>
