@@ -30,6 +30,8 @@ public class HomeController {
 		model.addAttribute("Pick",projectService.getSupportForMePicks());
 		model.addAttribute("Performance",projectService.getPerformanceProjects());
 		model.addAttribute("Art",projectService.getArtProjects());
+		model.addAttribute("Book",projectService.getBookProjects());
+		model.addAttribute("Movie",projectService.getMovieProjects());
 		model.addAttribute("Rank",projectService.getInvsetTop5());
 		return "noNav/home";
 	}

@@ -12,6 +12,12 @@ public interface ProjectService {
 
 	//미술조회
 	public List<ProjectDTO> getArtProjects();
+	
+	//도서조회
+	public List<ProjectDTO> getBookProjects();
+		
+	//영화조회
+	public List<ProjectDTO> getMovieProjects();
 
 	//건수조회
 	public int getCnt(ProjectSearchDTO searchDto);

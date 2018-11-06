@@ -27,6 +27,15 @@ public class ProjectDAO {
 		// TODO Auto-generated method stub
 		return mybatis.selectList("project.getArtProjects");
 	}
+	//도서조회
+	public List<ProjectDTO> getBookProjects() {
+		return mybatis.selectList("project.getBookProjects");
+	}
+	//영화조회
+	public List<ProjectDTO> getMovieProjects() {
+		// TODO Auto-generated method stub
+		return mybatis.selectList("project.getMovieProjects");
+	}
 	
 	//건수 조회
 	public int getCnt(ProjectSearchDTO searchDto) {

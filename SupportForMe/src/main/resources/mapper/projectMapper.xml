@@ -63,6 +63,32 @@
 				]]>
 		</where>
 	</select>
+	<!-- 도서 조회 -->
+	<select id="getBookProjects" resultType="project">
+		SELECT p.*, PROJECT_PROGRESS_RATE(p.project_no) "percent",
+		FUNC_TOTAL_INVSET_AMOUNT(p.project_no) "totalInvest"
+		FROM ( SELECT *
+		FROM project
+		ORDER BY DBMS_RANDOM.RANDOM ) p
+		<where>
+				<![CDATA[
+				category_code ='d04004' AND rownum < 5		
+				]]>
+		</where>
+	</select>
+	<!-- 영화 조회 -->
+	<select id="getMovieProjects" resultType="project">
+		SELECT p.*, PROJECT_PROGRESS_RATE(p.project_no) "percent",
+		FUNC_TOTAL_INVSET_AMOUNT(p.project_no) "totalInvest"
+		FROM ( SELECT *
+		FROM project
+		ORDER BY DBMS_RANDOM.RANDOM ) p
+		<where>
+				<![CDATA[
+				category_code ='d04002' AND rownum < 5		
+				]]>
+		</where>
+	</select>
 
 	<!-- 실시간랭킹 조회 -->
 	<select id="getInvsetTop5" resultType="project">

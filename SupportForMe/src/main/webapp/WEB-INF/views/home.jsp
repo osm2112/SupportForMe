@@ -355,10 +355,10 @@ li em {
 			success : function(data) {
 				if (data.length > 0) {
 					for (i = 0; i < data.length; i++) {
-
-						$('.real_time_image ul li img').eq(i).attr("src",
+						
+						$('.real_time_image ul li img').eq(i+1).attr("src",
 								"./images/" + data[i].image);
-						$('.real_time_image ul li img').eq(i).attr(
+						$('.real_time_image ul li img').eq(i+1).attr(
 								"onclick",
 								"location.href='support/getProjectDetailPage?projectNo="
 										+ data[i].projectNo + "'");
@@ -387,7 +387,7 @@ li em {
 			<li><img src="./images/plus1.png"></li>
 		</ol>
 	</div>
-	<div style="height: 50px"></div>
+	<div style="height: 150px"></div>
 	<div class="bodysize">
 		<div class="suforme">
 			<div class="suforme_picks_div"> 
@@ -418,6 +418,7 @@ li em {
 					</ul>
 				</div>
 			</div>
+			
 			<div class="real_time_rank_outer">
 				<div class="suforme_top_1_text_div"><span><i class="fa fa-trophy"></i>&nbsp실시간 랭킹</span></div>
 				<div class="real_time_rank_div">
@@ -451,7 +452,8 @@ li em {
 				</div>
 			</div>
 		</div>
-		<div style="height: 50px"></div> 
+		<div style="height: 100px"></div> 
+	
 		<div class="suforme_top_1_text_div"><span><i class="fa fa-users"></i>&nbsp공연 프로젝트</span></div> 
 		<div class="category_project_div">
 			<c:forEach items="${Performance}" var="project">
@@ -459,7 +461,7 @@ li em {
 					style="cursor: pointer;"
 					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
 					<div class="main_project_image">
-						<img src="./images/picture.png">
+						<img src="./images/${project.image}">
 					</div>
 					<div class="main_project_content">
 						<ul>
@@ -480,15 +482,14 @@ li em {
 		<div style="text-align: right"><br><a href="#">더보기 </a></div>	
 		<div style="height: 50px"></div>
 		<!-- 미술 부분  -->
-		<div class="suforme_top_1_text_div"><span><i class="fa fa-paint-brush"></i>&nbsp미술 프로젝트</span></div>
-		<div class="art_project_div">
+		<div class="suforme_top_1_text_div"><span><i class="fa fa-paint-brush"></i>&nbsp미술 프로젝트</span></div>		
 			<div class="category_project_div">
 				<c:forEach items="${Art}" var="project">
 					<div class="project_box" id="${project.projectNo}"
 						style="cursor: pointer;"
 						onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
 						<div class="main_project_image">
-							<img src="./images/picture.png">
+							<img src="./images/${project.image}">
 						</div>
 						<div class="main_project_content">
 							<ul>
@@ -507,7 +508,63 @@ li em {
 				</c:forEach>
 			</div>
 			<div style="text-align: right"><br><a href="#">더보기 </a></div>	
+			<div style="height: 50px"></div>
+		<!-- 도서 -->
+		<div class="suforme_top_1_text_div"><span><i class="fa fa-users"></i>&nbsp도서 프로젝트</span></div> 
+		<div class="category_project_div">
+			<c:forEach items="${Book}" var="project">
+				<div class="project_box" id="${project.projectNo}"
+					style="cursor: pointer;"
+					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
+					<div class="main_project_image">
+						<img src="./images/${project.image}">
+					</div>
+					<div class="main_project_content">
+						<ul>
+							<li>창작자 ID : ${project.userId}</li>
+							<li style="font-size: 18px;">${project.projectName}</li>
+							<li style="height: 20px"></li>
+							<li style="display: grid; grid-template-columns: 70% 30%"><span
+								align="left">모금액 : ${project.totalInvest}</span> <span>${project.percent}%</span>
+							</li>
+							<li style="color: rgb(26, 188, 156);"><progress
+									style="width: 80%;" value="${project.percent}" max="100"></progress></li>
+							<li>목표금액 : ${project.targetAmount}</li>
+						</ul>						
+					</div>
+				</div>				
+			</c:forEach>
 		</div>
+		<div style="text-align: right"><br><a href="#">더보기 </a></div>
+		<div style="height: 50px"></div>
+		<!-- 영화 -->
+		<div class="suforme_top_1_text_div"><span><i class="fa fa-users"></i>&nbsp영화 프로젝트</span></div> 
+		<div class="category_project_div">
+			<c:forEach items="${Movie}" var="project">
+				<div class="project_box" id="${project.projectNo}"
+					style="cursor: pointer;"
+					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
+					<div class="main_project_image">
+						<img src="./images/${project.image}">
+					</div>
+					<div class="main_project_content">
+						<ul>
+							<li>창작자 ID : ${project.userId}</li>
+							<li style="font-size: 18px;">${project.projectName}</li>
+							<li style="height: 20px"></li>
+							<li style="display: grid; grid-template-columns: 70% 30%"><span
+								align="left">모금액 : ${project.totalInvest}</span> <span>${project.percent}%</span>
+							</li>
+							<li style="color: rgb(26, 188, 156);"><progress
+									style="width: 80%;" value="${project.percent}" max="100"></progress></li>
+							<li>목표금액 : ${project.targetAmount}</li>
+						</ul>						
+					</div>
+				</div>				
+			</c:forEach>
+		</div>
+		<div style="text-align: right"><br><a href="#">더보기 </a></div>	
+		
 	</div>
 	
 	<div style="height: 200px"></div>
