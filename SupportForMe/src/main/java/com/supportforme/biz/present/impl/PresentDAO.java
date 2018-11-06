@@ -31,8 +31,8 @@ public class PresentDAO {
 		return mybatis.delete("present.deletePresent", pdto);
 	}
 	//선물 다건 조회
-	public List<PresentDTO> getPresents(ProjectDTO dto) {
-		return mybatis.selectList("present.getPresents", dto);
+	public List<PresentDTO> getPresents(PresentDTO pdto) {
+		return mybatis.selectList("present.getPresents", pdto);
 	}
 	
 }

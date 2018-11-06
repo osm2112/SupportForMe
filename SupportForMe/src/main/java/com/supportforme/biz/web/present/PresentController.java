@@ -1,6 +1,7 @@
 package com.supportforme.biz.web.present;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +19,30 @@ public class PresentController {
 	
 	@RequestMapping("/forme/insertReward")
 	@ResponseBody
-	public Map<String,String> insertReward(PresentDTO pdto){
+	public PresentDTO insertReward(PresentDTO pdto){
 		
 		presentService.insertPresent(pdto);
-		
-		System.out.println("presentNo=============="+pdto.getPresentNo());
-		Map<String,String> map = new HashMap<String,String>();
-		map.put("presentNo",pdto.getPresentNo());
-		map.put("presentName", pdto.getPresentName());
-		map.put("presentPrice", pdto.getPresentPrice());
-		map.put("presentDeliveryDate", pdto.getPresentDeliveryDate());
-		return map;
+		return presentService.getPresent(pdto);
 	}
+	
+	@RequestMapping("/forme/getRewards")
+	@ResponseBody
+	public List<PresentDTO> getRewards(PresentDTO pdto){
+		return presentService.getPresents(pdto);
+	}
+	
+	@RequestMapping("/forme/deleteReward")
+	@ResponseBody
+	public PresentDTO deleteReward(PresentDTO pdto) {
+		presentService.deletePresent(pdto);
+		return pdto;
+	}
+	
+	@RequestMapping("/forme/updateReward")
+	@ResponseBody
+	public PresentDTO updateReward(PresentDTO pdto) {
+		presentService.updatePresent(pdto);
+		return pdto;
+	}
+
 }

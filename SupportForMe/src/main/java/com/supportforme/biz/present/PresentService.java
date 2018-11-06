@@ -19,5 +19,5 @@ public interface PresentService {
 	public int deletePresent(PresentDTO pdto);
 	
 	//선물 다건 조회
-	public List<PresentDTO> getPresents(ProjectDTO dto);
+	public List<PresentDTO> getPresents(PresentDTO dto);
 }

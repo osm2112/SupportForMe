@@ -206,8 +206,8 @@ create or replace PROCEDURE insertProject
  v_projectNo project.project_no%type;
  BEGIN
  SELECT (TO_CHAR(SYSDATE, 'rrrrMMdd') || LPAD((PROJECT_SEQ.NEXTVAL),4,0)) INTO v_projectNo FROM DUAL;
- INSERT INTO PROJECT (project_no ,user_id,progress)
-  VALUES (v_projectNo , p_userId,'004');
+ INSERT INTO PROJECT (project_no ,user_ids)
+  VALUES (v_projectNo , p_userId);
  p_projectNo := v_projectNo;
  END insertProject;
   

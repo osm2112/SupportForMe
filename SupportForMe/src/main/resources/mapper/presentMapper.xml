@@ -4,12 +4,12 @@
 <mapper namespace="present">
 	
 	<!-- 선물 다건 조회  -->
-	<select id="getPresents" resultType="present" parameterType="project">
-		SELECT * FROM PRESENT WHERE PROJECT_NO = #{projectNo}
+	<select id="getPresents" resultType="present" parameterType="present">
+		SELECT * FROM PRESENT WHERE PROJECT_NO = #{projectNo} ORDER BY PRESENT_NO
 	</select>
 	
 	<!-- 선물 단건 조회  -->
-	<select id="getPresent" resultType="string" parameterType="present">
+	<select id="getPresent" resultType="present" parameterType="present">
 		SELECT * FROM PRESENT WHERE PRESENT_NO = #{presentNo}
 	</select>
 	

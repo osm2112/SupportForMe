@@ -35,7 +35,7 @@ public class PresentServicelImpl implements PresentService {
 	}
 
 	@Override
-	public List<PresentDTO> getPresents(ProjectDTO dto) {
+	public List<PresentDTO> getPresents(PresentDTO dto) {
 		return pdao.getPresents(dto);
 	}
 

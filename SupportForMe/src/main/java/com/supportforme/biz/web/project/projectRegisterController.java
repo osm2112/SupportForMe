@@ -29,7 +29,6 @@ public class projectRegisterController {
 		
 	@Autowired ProjectRegisterService projectService;
 	@Autowired HashtagService hashtagService;
-	@Autowired PresentService presentService;
 	
 	@RequestMapping("/forme/tempMain")
 	public String main() {
@@ -90,14 +89,14 @@ public class projectRegisterController {
 		
 		projectService.updateProject(dto);
 		model.addAttribute("project", projectService.getProject(dto));
-		model.addAttribute("presentList",presentService.getPresents(dto));
 		return "ajax/register/projectRegisterReward";
 	}
 	
-	@RequestMapping("/forme/updateProject/pay")
+	@RequestMapping("/forme/updateProject/account")
 	public String updateProject(Model model, ProjectDTO dto) {
+		projectService.updateProject(dto);
 		model.addAttribute("project", projectService.getProject(dto));	
-		return "ajax/register/projectRegisterPay";
+		return "ajax/register/projectRegisterAccount";
 		
 	}
 	

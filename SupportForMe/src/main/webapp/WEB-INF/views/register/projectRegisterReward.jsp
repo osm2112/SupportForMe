@@ -11,16 +11,19 @@
 <script>
 $(function() {
 	
+	/* var context = '${pageContext.request.contextPath}';	//절대 경로
+	console.log(context); */
+	
 	$(".next_button").on("click",function(){
 		
 		$.ajax({
-			url : "../updateProject/pay",
+			url : "../updateProject/account",  
 			data : $("#tempRegisterFrm").serialize(),
 			method : "post",
 			success : function(result) {
 				$("#result").html(result);
 				$(".reward").removeClass("active");
-				$(".pay").addClass("active");	
+				$(".account").addClass("active");	
 			}
 		});	
 	});
@@ -40,46 +43,110 @@ $(function() {
 				buttonText : "Select date"
 	});
 	
-	$(".add_button").on("click",function(){
-		$.ajax({
-			url : "../insertReward",
-			data : $("#registerRewardFrm").serialize(), 
-			method : "post",
-			success : insertReward,
-		});	
+	$("#registerRewardFrm").on("click",".add_button",function(){
+		var seq = $("#registerRewardFrm [name=presentNo]").val();
+		var params =  $("#registerRewardFrm").serialize();
+		if(seq != ''){
+			var url = "../updateReward";
+			$.getJSON(url, params, function(datas){
+				var newDiv = makeRewardBox(datas);
+				var oldDiv = $("#rw"+datas.presentNo);
+				$(newDiv).replaceAll(oldDiv);
+				$("[name=registerRewardFrm]")[0].reset();
+				$("#registerRewardFrm [name=presentNo]").val('');
+				deliveryDateInput(datas.presentDeliveryDate);
+			});
+		}else {
+			var url = "../insertReward";
+			$.getJSON(url, params, function(datas){
+				$("#reward_preview").append( makeRewardBox(datas));
+				$("[name=registerRewardFrm]")[0].reset();
+				deliveryDateInput(datas.presentDeliveryDate);
+			});	
+		} 	
+		
 	});
 	
-	function insertReward(result) {
-		var rewardBox = "<div class='reward_preview_box' id='"+result.presentNo+"'>"
-					  + "<div class='rw_preview_amount_div'><span class='rw_preview_amount'>"+result.presentPrice+"</span><label>원 펀딩</label></div>"
-					  + "<div class='rw_preview_delivery_s'>리워드 구성</div>"
-					  + "<div class='rw_preview_info'>"+result.presentName+"</div>"
-					  + "<div class='rw_preview_delivery_s'>예상배송일</div>"
-					  + "<div class='rw_preview_delivery'>"+result.presentDeliveryDate+"</div>"
-					  + "<input type='button' name='rewardEdit' class='preview_button rewardEdit' value='수정하기'>"
-					  + "<input type='button' name='rewardDel' class='preview_button rewardDel' value='삭제하기'></div>";	
-		$("#reward_preview").append(rewardBox);	
+	//수정폼 이벤트(수정할 선물을 다시 등록 폼으로 옮김 )
+	$("#reward_preview_div").on("click",".rewardEdit",function(){
+		var reward = $(this).parent().get(0).reward;
+		$("#registerRewardFrm [name=presentNo]").val(reward.presentNo);  
+		$("#registerRewardFrm [name=presentPrice]").val(reward.presentPrice);
+		$("#registerRewardFrm [name=presentName]").val(reward.presentName);
+		$("#registerRewardFrm [name=presentDeliveryDate]").val(reward.presentDeliveryDate);
+	});
+	
+	//선물 삭제 
+	$("#reward_preview_div").on("click",".rewardDel",function(){
+		var seq = $(this).parent().attr("id").substring(2);
+		if(confirm("해당 선물을 삭제하시겠습니까?")){
+			var params = "presentNo=" + seq;
+			var url = "../deleteReward";
+			$.getJSON(url,params,function(datas){
+				$('#rw'+seq).remove();
+			});
+		}
+	});
+	
+	function deliveryDateInput(date) {
+		var dateList = $(".rw_preview_delivery");
+		var tempDate = date;
+		for(var i=0;i<dateList.size();i++){
+			var newDate = dateList.eq(i).text();
+			console.log(newDate);
+			if(newDate < tempDate){
+				tempDate = newDate;
+			}
+		}
+		var d = tempDate.split('-');
+		
+		$("input[name=deliveryDate]").val(d[0]+"."+d[1]+"."+d[2]);
 	}
 	
-	$(".rewardEdit").on("click",function(){
+	//선물 목록 조회 요청
+	function loadRewardList() {
+		var params = {projectNo : '${project.projectNo}'};
+		$.getJSON("../getRewards",params,function(datas){
+			for(i = 0; i<datas.length; i++){
+				$("#reward_preview").append(makeRewardBox(datas[i]));	
+			}
+		});
+	}
+
+	function makeRewardBox(reward) {
+		var div = $("<div>");
+		div.attr("id", "rw"+reward.presentNo);
+		div.addClass('reward_preview_box');
+		div[0].reward=reward;
 		
-	});
+		var rewardBox = "<div class='rw_preview_amount_div'><span class='rw_preview_amount'>"+reward.presentPrice+"</span><label>원 펀딩</label></div>"
+					  + "<div class='rw_preview_delivery_s'>리워드 구성</div>"
+					  + "<div class='rw_preview_info'>"+reward.presentName+"</div>"
+					  + "<div class='rw_preview_delivery_s'>예상배송일</div>"
+					  + "<div class='rw_preview_delivery'>"+reward.presentDeliveryDate+"</div>"
+					  + "<input type='button' name='rewardEdit' class='preview_button rewardEdit' value='수정하기'>"
+					  + "<input type='button' name='rewardDel' class='preview_button rewardDel' value='삭제하기'>";
+		
+		div.html(rewardBox);
+		return div;
+	}
+
+	//목록 조회
+	loadRewardList(); 
 	
-	$(".rewardDel").on("click",function(){
-		
-	})
 });
 </script>
 <form name="tempRegisterFrm" id="tempRegisterFrm">
 	<input type="hidden" name="projectNo" value="${project.projectNo}">
 	<input type="hidden" name="userId" value="${project.userId}">
-	<input type="hidden" name="deliveryDate" value="">
+	<input type="hidden" name="deliveryDate" value="${project.deliveryDate}">
 </form>
 <form name="registerRewardFrm" id="registerRewardFrm">
 <input type="hidden" name="projectNo" value="${project.projectNo}">
+<input type="hidden" name="presentNo" value="">
 <div class="bold">프로젝트 리워드를 구성해주세요</div>
 	<div class="lg">
-	프로젝트 시작을 위해서는 최소 1개 이상의 리워드가 있어야 합니다.<br>
+	프로젝트 시작을 위해서는 <span style="color:#e74c3c" class="bold">최소 1개 이상의 리워드</span>가 있어야 합니다. 
 	배송이 필요한 리워드는 배송비가 포함된 가격을 적어주세요.
 </div>
 <div id="reward_box">
@@ -87,7 +154,7 @@ $(function() {
     <div class="reward_grid">
     	<label>리워드 구성 </label>
     	<textarea  rows="5" cols="200" id="reward_textarea" name="presentName"
-    			  placeholder=" 준비된 리워드를 적어주세요."></textarea>
+    			  placeholder="준비된 리워드를 적어주세요."></textarea>
     </div>
     <div class="reward_grid">
 	    <label>예상 배송일 </label>
@@ -104,24 +171,11 @@ $(function() {
 </form>
 <div style="height:30px"></div>
 <div id="reward_preview_div">
-	<div class="bold" style="margin-bottom:15px;">리워드 미리보기</div>
+	<div class="bold" style="margin-bottom:15px;">등록된 리워드 미리보기</div>
 	<div id="reward_preview">
-	<c:if test="${presentList.size() > 0}">
-		<c:forEach var="present" items="${presentList}">
-			<div class="reward_preview_box">
-			<div class="rw_preview_amount_div"><span class="rw_preview_amount">${present.presentPrice}</span> <label>원 펀딩</label></div>
-			<div class="rw_preview_delivery_s">리워드 구성</div>
-			<div class="rw_preview_info">${present.presentName}</div>
-			<div class="rw_preview_delivery_s">예상배송일</div>
-			<div class="rw_preview_delivery">${present.presentDeliveryDate}</div>
-			<input type="button" name="rewardEdit" class="preview_button rewardEdit " value="수정하기">
-			<input type="button" name="rewardDel" class="preview_button rewardDel" value="삭제하기">	
-	</div>
-		</c:forEach>
-	</c:if>
 	</div>
 </div>
 <div style="height:50px"></div>
-<input type="button" name="next" class="next_button story" style="margin-left:-5px" value="다음 단계">  
+<input type="button" name="next" class="next_button story"  value="다음 단계">  
 </body>
 </html>

@@ -34,7 +34,7 @@ input[type=text]:-webkit-autofill {
 	font-size: 17px;
 }
 
-#registerBasicFrm>div, #basic_keyword>div, #registerRewardFrm>div {
+#registerBasicFrm>div, #basic_keyword>div, #registerRewardFrm>div, #registerAccountFrm >div{
 	margin: 10px 0px;
 }
 
@@ -460,6 +460,48 @@ input[type=text]:-webkit-autofill {
 	font-size: 18px;
 	color: #211f1f;
 	margin: 2px 0px 10px 0px;
+}
+
+/*
+* account page css
+*/
+#depositAccount {
+	width:350px;
+	height:30px;
+	border : 1px solid lightgrey;
+	border-radius:3.5px;
+	padding-left:10px;
+}
+#bankCode {
+	border : 1px solid lightgrey;
+	border-radius:3.5px;
+	width : 200px;
+	height:30px;
+}
+.register_button {
+	font-size: 15px;
+	font-weight: 800;
+	color: rgb(231, 76, 60);
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid rgb(231, 76, 60);
+	padding: 5px 50px;
+	margin-top: 5px;
+	margin-left: 50px;
+}
+#accountNotice {
+	width: 1000px;
+	background-color: #e3f7eb;
+	padding : 15px 10px ;
+	font-size : 18px;
+	vertical-align:middle;
+}
+#notice {
+	width:80px;
+	background-color: #7ebc97;
+	border-radius: 5px;
+	padding : 5px 15px;
+	
 }
 </style>
 <script>

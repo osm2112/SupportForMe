@@ -57,6 +57,7 @@
 		 <if test="categoryCode != null and categoryCode != ''">
 		 ,CATEGORY_CODE = #{categoryCode}
 		  </if>
+		  ,progress = '004'
 		 WHERE PROJECT_NO = #{projectNo}
 	</update>
 	
