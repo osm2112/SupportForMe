@@ -46,7 +46,7 @@ public class AdminController {
 		model.addAttribute("searchKeyword",request.getParameter("searchKeyword"));		
 		model.addAttribute("list", adminService.getAdminMembers(adminSearchDTO));
 		
-		return "admin/adminMemberListForm";
+		return "adminNav/admin/adminMemberListForm";
 	}
 	
 
@@ -61,11 +61,13 @@ public class AdminController {
 	
 		
 		if(result > 0) {
-			System.out.println("---"+result);
-			return null;
+			model.addAttribute("msg", "선택한 회원은 탈퇴 처리 되었습니다.");
+			model.addAttribute("url", "../forme/AdminMemberList");
+			return "commons/alertRedirect";
 		} else {
-			System.out.println("---"+result);
-			return null;
+			model.addAttribute("msg", "선택한 회원이 없습니다.");
+			model.addAttribute("url", "../forme/AdminMemberList");
+			return "commons/alertRedirect";
 		}	
 	}
 
