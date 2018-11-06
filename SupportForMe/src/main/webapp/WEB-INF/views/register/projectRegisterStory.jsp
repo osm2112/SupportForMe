@@ -40,8 +40,8 @@ $(function() {
 			method : "post",
 			success : function(result) {
 				$("#result").html(result);
-				$(".story").removeClass("active");
-				$(".reward").addClass("active");	
+				$("#rn > .story").removeClass("active");
+				$("#rn > .reward").addClass("active");	
 			}
 		});	
 	});
@@ -110,7 +110,7 @@ $(function() {
 			<textarea id="smarteditor" name="story" rows="10" cols="60" style="width: 720px; height: auto; resize: none">${project.story}</textarea>
 	    </div>
 	    <div style="height:50px"></div>
-	   	<input type="button" name="save" class="save_button" value="저장하기">
+	   	<input type="button" name="save" class="save_button story" value="저장하기">
 		<input type="button" name="next" class="next_button story" value="다음 단계">
 	</form>
 	

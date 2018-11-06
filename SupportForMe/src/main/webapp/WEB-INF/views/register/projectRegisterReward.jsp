@@ -18,12 +18,12 @@ $(function() {
 		
 		$.ajax({
 			url : "../updateProject/account",  
-			data : $("#tempRegisterFrm").serialize(),
+			data : $("#rewardRegisterFrm").serialize(),
 			method : "post",
 			success : function(result) {
 				$("#result").html(result);
-				$(".reward").removeClass("active");
-				$(".account").addClass("active");	
+				$("#rn > .reward").removeClass("active");
+				$("#rn > .account").addClass("active");	
 			}
 		});	
 	});
@@ -136,7 +136,7 @@ $(function() {
 	
 });
 </script>
-<form name="tempRegisterFrm" id="tempRegisterFrm">
+<form name="rewardRegisterFrm" id="rewardRegisterFrm">
 	<input type="hidden" name="projectNo" value="${project.projectNo}">
 	<input type="hidden" name="userId" value="${project.userId}">
 	<input type="hidden" name="deliveryDate" value="${project.deliveryDate}">
@@ -176,6 +176,7 @@ $(function() {
 	</div>
 </div>
 <div style="height:50px"></div>
-<input type="button" name="next" class="next_button story"  value="다음 단계">  
+<input type="button" name="save" class="save_button reward" value="저장하기">
+<input type="button" name="next" class="next_button reward" value="다음 단계">
 </body>
 </html>

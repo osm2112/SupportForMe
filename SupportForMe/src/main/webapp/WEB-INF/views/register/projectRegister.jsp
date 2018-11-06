@@ -17,6 +17,67 @@
 <title>프로젝트 등록</title>
 <style>
 /* 공통 css */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+   
+/* Modal Content/Box */
+.modal-content {
+   text-align:center;
+   background-color: #fefefe;
+   margin: 20% auto; /* 15% from the top and centered */
+   padding: 5px 10px 10px 10px;
+   border: 1px solid #888;
+   width: 22.5%; /* Could be more or less, depending on screen size */                      
+}
+
+#alertMessage,#confirmMessage {
+	border-bottom : 1px solid lightgrey;
+	padding-bottom : 15px;
+	margin-bottom : 10px;
+}
+/* The Close Button */
+.close {
+    color: #aaa;
+    text-align:right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+     cursor: pointer;
+}
+
+/* 모달 확인 버튼 */
+#alertModalClose, #confirmModalOk{
+	background-color: #FF007F;
+	border : none;
+	border-radius : 5px;
+	padding : 7px 35px;
+	margin:5px;
+	color:white;
+}
+#confirmModalCel {
+	border : 1px solid #FF007F;
+	border-radius : 5px;
+	padding : 7px 35px;
+	margin:5px;
+	color:#FF007F;
+	background-color:white;
+}
+
 input[type=text]:focus {
 	outline: none;
 }
@@ -508,17 +569,36 @@ input[type=text]:-webkit-autofill {
 $(function() {
 		//////공통 js-------------------------
 		$(document).on("click",".save_button",function(){
-
+			var url = "../saveProject/ex";
+			var saveClass = $(this).attr("class").substring(12);
+			var params ;
+			if(saveClass == 'basic'){
+				url = "../saveProject/basic";
+				params = $("#registerBasicFrm").serialize();
+			}else if(saveClass == 'story'){
+				url = "../saveProject/story";
+				params = $("#registerStoryFrm").serialize();
+			}else if(saveClass == 'reward'){
+				params = $("#rewardRegisterFrm").serialize();
+			}else if(saveClass == 'account'){
+				params = $("#registerAccountFrm").serialize();  
+			}
+			$.getJSON(url,params,function(result){
+				$("#alertModal > #alertMessage").text('저장되었습니다.');
+				$("#alertModal").show();
+				$("#alertModal > .model-content").show("slow");
+			}) 
 		});
 		
-		$( "#dialog-message" ).dialog({
-		      modal: true,
-		      buttons: {
-		        Ok: function() {
-		          $( this ).dialog( "close" );
-		        }
-		      }
-		 });
+		$("#alertModalClose").on("click",function(){
+			$("#alertModal").hide();
+		});
+		$(".close").on("click",function(){
+			$(this).parent().parent().hide();
+		});
+
+		/*  $("#alertModal").css("display","block");  */
+		/* $("#confirmModal").css("display","block"); */
 		
 		//////공통 js----------------------
 	
@@ -536,8 +616,8 @@ $(function() {
 					method : "post",
 					success : function(result) {
 						$("#result").html(result);
-						$(".basic").removeClass("active");
-						$(".story").addClass("active");								}
+						$("#rn > .basic").removeClass("active");
+						$("#rn > .story").addClass("active");								}
 				});
 					
 		}); 
@@ -653,8 +733,8 @@ $(function() {
 			
 			
 		})
-		//hashtag 끝-----------------------------
-		
+		//hashtag 끝-----------------------------		
+
 		//기본정보 js 끝 ---------------------------------------------------------       
 	   	
 		//story--------------------------------------------------------------
@@ -769,9 +849,28 @@ $(function() {
 
 </head>
 <body>
-<div id="dialog-message">
-     저장되었습니다.
-</div>
+ <!-- The Modal -->
+ <div id="alertModal" class="modal">
+   <!-- Modal content -->
+   <div class="modal-content">                                                                   
+    <div class="close">&times;</div>
+  	<div id="alertMessage">
+  		저장되었습니다.
+  	</div>
+  	<button id="alertModalClose">확인</button>
+     </div>
+ </div>
+ <div id="confirmModal" class="modal">
+   <!-- Modal content -->
+   <div class="modal-content">                                                                   
+    <div class="close">&times;</div>
+  	<div id="confirmMessage">
+  		정말 삭제하시겠습니까?
+  	</div>
+  	<button id="confirmModalOk">확인</button> <button id="confirmModalCel">취소</button>
+   </div>
+ </div>
+
 	<div id="result">
 		<div id="pageInfo" style="display:none">basic</div>
 		<form name="fileUploadFrm" id="fileUploadFrm" method="post">
@@ -837,6 +936,7 @@ $(function() {
 					</div>
 					<script>
 						var deadLine = '${project.projectDeadline}';
+						console.log(deadLine);
 						var dl = deadLine.split(".");
 						if(deadLine != null && deadLine != " "){
 							var now = new Date();
@@ -888,7 +988,7 @@ $(function() {
 		          	</c:if> 
 				</div>
 			</div>
-			<input type="button" name="save" class="save_button" value="저장하기">
+			<input type="button" name="save" class="save_button basic" value="저장하기">
 			<input type="button" name="next" class="next_button basic" value="다음 단계">
 		
 	</div>

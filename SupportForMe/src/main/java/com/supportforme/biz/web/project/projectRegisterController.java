@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.supportforme.biz.hashtag.HashtagService;
-import com.supportforme.biz.present.PresentService;
 import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectRegisterService;
 
@@ -108,6 +107,47 @@ public class projectRegisterController {
 		return "rgNav/register/projectRegister";
 	}
 	
+	@RequestMapping(value= {"/forme/saveProject/ex","forme/saveProject/basic","forme/saveProject/story"})
+	@ResponseBody
+	public Map<String,String> saveProject(@ModelAttribute("project") ProjectDTO dto, HttpServletRequest request){
+		String uri = request.getRequestURI();
+		String conPath = request.getContextPath();
+		String[] com = uri.substring(conPath.length()).split("/");
+		
+		if(("basic").equals(com[3])){
+				if(dto.getProjectDeadline() != null) {
+					String[] deadLine = dto.getProjectDeadline().split("-");
+					dto.setProjectDeadline(deadLine[0].toString()+"."+deadLine[1].toString()+"."+deadLine[2].toString());
+				}
+		}else if(("story").equals(com[3])) {
+				String introductionImg = "";
+				if(dto.getArrImage() != null && dto.getArrImage().length>0) {
+					for(String img : dto.getArrImage()) {
+						introductionImg += (img + "||");
+					}
+				}
+				dto.setIntroductionImage(introductionImg);
+
+				String introductionVideo = "";
+				if(dto.getArrVideo() != null && dto.getArrVideo().length>0) {
+					for(String video : dto.getArrVideo()) {
+						if(video != null && video != "") {
+							int index = video.lastIndexOf("/");
+							introductionVideo += (video.substring(index+1) + "||");	
+						}
+									
+					}
+				}
+				dto.setIntroductionVideo(introductionVideo);
+		}
+
+		
+		projectService.updateProject(dto);
+		  
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("code", "success");
+		return map;
+	}
 	
 	
 	@RequestMapping(value="/forme/fileUpload" , method=RequestMethod.POST)
