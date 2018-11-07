@@ -46,7 +46,7 @@
 		ORDER BY DBMS_RANDOM.RANDOM ) p
 		<where>
 				<![CDATA[
-				category_code ='d04001' AND rownum < 5
+				category_code ='001' AND rownum < 5
 				]]>
 		</where>
 	</select>
@@ -59,7 +59,7 @@
 		ORDER BY DBMS_RANDOM.RANDOM ) p
 		<where>
 				<![CDATA[
-				category_code ='d04003' AND rownum < 5		
+				category_code ='003' AND rownum < 5		
 				]]>
 		</where>
 	</select>
@@ -72,7 +72,7 @@
 		ORDER BY DBMS_RANDOM.RANDOM ) p
 		<where>
 				<![CDATA[
-				category_code ='d04004' AND rownum < 5		
+				category_code ='004' AND rownum < 5		
 				]]>
 		</where>
 	</select>
@@ -85,7 +85,7 @@
 		ORDER BY DBMS_RANDOM.RANDOM ) p
 		<where>
 				<![CDATA[
-				category_code ='d04002' AND rownum < 5		
+				category_code ='002' AND rownum < 5		
 				]]>
 		</where>
 	</select>
