@@ -582,6 +582,31 @@ input[type=text]:-webkit-autofill {
 <script>
 $(function() {
 		//////공통 js-------------------------
+		$("#rn > li").on("click",function(){
+			if(!$(this).hasClass("_active")){
+				var navClick = $(this).attr("class").substring(2);
+				$("#confirmMessage").text("작성하신 것을 저장하셨습니까?");
+				$("#confirmModal").show();  
+				pageMove(navClick);
+			}
+		});
+		
+		function pageMove(nav){
+			$("#confirmModalOk").on("click", function(){
+				var url = "../pageMove/${project.projectNo}/"+nav;
+				$.ajax({
+					url : url,
+					method : "post",
+					success : function(result) {
+						$("."+$("._active").attr("class").substr(0,4)).removeClass("_active");
+						$(".rn"+nav).addClass("_active");
+						$("#result").html(result);	
+						$("#confirmModal").hide();
+					}
+				}); 
+			});
+		}
+		
 		$(document).on("click",".save_button",function(){
 			var url = "../saveProject/ex";
 			var saveClass = $(this).attr("class").substring(12);
@@ -631,8 +656,8 @@ $(function() {
 					method : "post",
 					success : function(result) {
 						$("#result").html(result);
-						$("#rn > .basic").removeClass("active");
-						$("#rn > .story").addClass("active");								}
+						$("#rn > .rnbs").removeClass("_active");
+						$("#rn > .rnst").addClass("_active");								}
 				});
 					
 		}); 
@@ -728,8 +753,8 @@ $(function() {
 							if(result.code == "success"){
 								makeHashtagList(result.hashtag);
 							}else if(result.code == "same"){
-								//모달창 할꺼임
-								alert("중복된 키워드입니다.");
+								$("#alertMessage").text("중복된 키워드입니다.");
+								$("#alertModal").show();
 							}
 						}
 					});
@@ -960,7 +985,6 @@ $(function() {
 					</div>
 					<script>
 						var deadLine = '${project.projectDeadline}';
-						console.log(deadLine);
 						var dl = deadLine.split(".");
 						if(deadLine != null && deadLine != " "){
 							var now = new Date();

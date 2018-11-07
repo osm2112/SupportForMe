@@ -79,7 +79,23 @@ public class projectRegisterController {
 		return "ajax/register/projectRegisterAccount";
 		
 	}
-	
+	@RequestMapping("/forme/pageMove/{projectNo}/{page}")
+	public String moveProject(Model model,@PathVariable String projectNo ,@PathVariable String page) {
+		ProjectDTO dto = new ProjectDTO();
+		dto.setProjectNo(projectNo);
+		model.addAttribute("project", projectService.getProject(dto));
+		String path ="";
+		if("bs".equals(page)) {
+			path = "ajax/register/projectRegister";
+		}else if("st".equals(page)) {
+			path = "ajax/register/projectRegisterStory";
+		}else if("rw".equals(page)) {
+			path = "ajax/register/projectRegisterReward";
+		}else if("ac".equals(page)){
+			path = "ajax/register/projectRegisterAccount";
+		}
+		return path;
+	}
 	//저장하기 
 	@RequestMapping(value= {"/forme/saveProject/ex","forme/saveProject/basic","forme/saveProject/story"})
 	@ResponseBody

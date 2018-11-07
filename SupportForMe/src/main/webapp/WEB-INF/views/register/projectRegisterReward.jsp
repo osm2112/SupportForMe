@@ -15,15 +15,14 @@ $(function() {
 	console.log(context); */
 	
 	$(".next_button").on("click",function(){
-		
 		$.ajax({
 			url : "../updateProject/account",  
 			data : $("#rewardRegisterFrm").serialize(),
 			method : "post",
 			success : function(result) {
 				$("#result").html(result);
-				$("#rn > .reward").removeClass("active");
-				$("#rn > .account").addClass("active");	
+				$("#rn > .rnrw").removeClass("_active");
+				$("#rn > .rnac").addClass("_active");	
 			}
 		});	
 	});
@@ -88,7 +87,7 @@ $(function() {
 	
 	function rewardDel (seq){
 		console.log(seq);
-		$("#confirmModalOk").on("click", function(){
+		$("#confirmModalOk").click(function(){
 			var params = "presentNo=" + seq;
 			var url = "../deleteReward";
 			$.getJSON(url,params,function(datas){

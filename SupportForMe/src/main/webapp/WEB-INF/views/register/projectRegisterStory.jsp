@@ -40,8 +40,8 @@ $(function() {
 			method : "post",
 			success : function(result) {
 				$("#result").html(result);
-				$("#rn > .story").removeClass("active");
-				$("#rn > .reward").addClass("active");	
+				$("#rn > .rnst").removeClass("_active");
+				$("#rn > .rnrw").addClass("_active");	
 			}
 		});	
 	});
