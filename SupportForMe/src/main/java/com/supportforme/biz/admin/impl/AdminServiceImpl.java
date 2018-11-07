@@ -47,5 +47,15 @@ public class AdminServiceImpl implements AdminService {
 	public int adminSupportForMePick(AdminSearchDTO searchDTO) {
 		return dao.adminSupportForMePick(searchDTO);
 	}
+
+	@Override
+	public List<Map<String, Object>> getProjectProgressList(AdminSearchDTO searchDTO) {
+		return dao.getProjectProgressList(searchDTO);
+	}
+
+	@Override
+	public int getCntProjectProgressList(AdminSearchDTO searchDTO) {
+		return dao.getCntProjectProgressList(searchDTO);
+	}
 	
 }

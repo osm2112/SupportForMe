@@ -44,7 +44,12 @@ public class AdminDAO {
 		return mybatis.update("admin.adminSupportForMePick", searchDTO);
 	}
 	
-	
+	public List<Map<String, Object>> getProjectProgressList(AdminSearchDTO searchDTO) {
+		return mybatis.selectList("admin.getProjectProgressList", searchDTO);
+	}
+	public int getCntProjectProgressList(AdminSearchDTO searchDTO) {
+		return mybatis.selectOne("admin.ProjectProgressListCount", searchDTO);
+	}
 
 
 }

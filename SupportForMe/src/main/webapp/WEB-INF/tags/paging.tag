@@ -9,7 +9,7 @@
 <ul class="pagination my">
 <c:choose>
     <c:when test="${paging.page > 1}">
-    <li><a href="#" onclick="${jsFunc}(${paging.page - 1})"></a>
+    <li><a href="#" onclick="${jsFunc}(${paging.page - 1})">이전</a>
     </c:when>
     <c:otherwise>
 		<li class="page-item disabled"><a href="#">이전</a>

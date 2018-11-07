@@ -21,4 +21,7 @@ public interface AdminService {
 	
 	public int adminSupportForMePick(AdminSearchDTO searchDTO);
 	
+	public List<Map<String, Object>> getProjectProgressList(AdminSearchDTO searchDTO);
+	
+	public int getCntProjectProgressList(AdminSearchDTO searchDTO);
 }
