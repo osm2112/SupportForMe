@@ -26,8 +26,7 @@ public class AdminController {
 		
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		
-		
-		paging.setPageUnit(10);
+		paging.setPageUnit(5);
 		
 		//현재페이지 번호 파라미터
 		if(paging.getPage() ==null) {
@@ -68,5 +67,53 @@ public class AdminController {
 			return "commons/alertRedirect";
 		}	
 	}
+	
+	@RequestMapping("/forme/AdminSupportForMePickList")	
+	public String getAdminSupportForMePickList(Model model, AdminSearchDTO adminSearchDTO, Paging paging, HttpServletRequest request ) {
+		
+		paging.setPageUnit(5);
+		
+		//현재페이지 번호 파라미터
+		if(paging.getPage() ==null) {
+			paging.setPage(1);
+		}
+		//전체 건수
+		int total = adminService.getCntAdminSupportForMePickUpList(adminSearchDTO);
+		paging.setTotalRecord(total);
+		model.addAttribute("paging",paging);
+		
+		//시작 /마지막 레코드 번호
+		adminSearchDTO.setStart(paging.getFirst());
+		adminSearchDTO.setEnd(paging.getLast());
+
+		model.addAttribute("searchCondition",request.getParameter("searchCondition"));
+		model.addAttribute("searchKeyword",request.getParameter("searchKeyword"));
+		model.addAttribute("supportForMePickUp",request.getParameter("supportForMePickUp"));
+		model.addAttribute("list", adminService.getAdminSupportForMePickUpList(adminSearchDTO));
+		
+		return "adminNav/admin/adminSupportForMePickListForm";
+	}
+	
+	@RequestMapping("/forme/AdminSupportForMePick")
+	public String adminSupportForMePick(Model model,AdminSearchDTO adminSearchDTO, HttpServletRequest request) {
+		String getIds =request.getParameter("ids");
+		String flag =request.getParameter("flag");			
+		String[] ids = getIds.split("[|]");
+		adminSearchDTO.setIds(ids);
+		adminSearchDTO.setFlag(flag);
+		
+		int result = adminService.adminSupportForMePick(adminSearchDTO);	
+		if(result > 0) {
+			model.addAttribute("msg", "정상 처리 되었습니다.");
+			model.addAttribute("url", "../forme/AdminSupportForMePickList");
+			return "commons/alertRedirect";
+		} else {
+			model.addAttribute("msg", "선택한 회원이 없습니다.");
+			model.addAttribute("url", "../forme/AdminSupportForMePickList");
+			return "commons/alertRedirect";
+		}	
+
+	}
+	
 
 }

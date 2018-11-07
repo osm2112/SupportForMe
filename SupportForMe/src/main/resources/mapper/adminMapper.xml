@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
-	<select id="getAdminMembers" resultType="member"	parameterType="member">
+	<select id="getAdminMembers" resultType="member"
+		parameterType="member">
 		SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
 		SELECT * FROM MEMBER
 		<where>
@@ -22,7 +23,8 @@
 		</where>
 		) A )WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
-	<select id="getCntAdminMembers" parameterType="member" resultType="int">
+	<select id="getCntAdminMembers" parameterType="member"
+		resultType="int">
 		SELECT COUNT(*) FROM MEMBER
 		<where>
 			PASSWORD IS NOT NULL
@@ -43,18 +45,116 @@
 
 	<update id="deleteAdminMembers" parameterType="adminSearch">
 		UPDATE MEMBER
-		SET 
+		SET
 		PASSWORD = null,
-		NAME = null, 
-		ADDRESS = null, 
-		PHONE_NUM = null, 
-		EMAIL = null, 
-		INTRODUCTION = null, 
+		NAME = null,
+		ADDRESS = null,
+		PHONE_NUM = null,
+		EMAIL = null,
+		INTRODUCTION = null,
 		POSTCODE = null,
-		ADDR_DETAIL = null 
+		ADDR_DETAIL = null
 		<where>
 			USER_ID IN
-			<foreach collection="ids" open="(" close=")" separator="," item="item">
+			<foreach collection="ids" open="(" close=")" separator=","
+				item="item">
+				#{item}
+			</foreach>
+		</where>
+	</update>
+	
+	<resultMap type="java.util.HashMap" id="supportForMePickUpMap">
+		<result column="PROJECT_NO" property="projectNo" />
+		<result column="PROJECT_NAME" property="projectName" />
+		<result column="NAME" property="name" />
+		<result column="USER_ID" property="userId" />
+		<result column="SUPPORT_PICK_YN" property="supportPickYn" />
+	</resultMap>
+
+	<select id="supportForMePickUpList" parameterType="adminSearch" resultMap="supportForMePickUpMap">
+	
+	SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
+		SELECT
+				PROJECT.PROJECT_NO,
+				PROJECT.PROJECT_NAME ,
+				MEMBER.NAME,
+				PROJECT.USER_ID,
+				PROJECT.SUPPORT_PICK_YN
+		FROM PROJECT
+		JOIN MEMBER ON PROJECT.USER_ID = MEMBER.USER_ID
+		
+		<where>
+		
+			PASSWORD IS NOT NULL
+			<if test="searchCondition == 'projectNo'">
+				AND PROJECT.PROJECT_NO LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="searchCondition == 'projectName'">
+				AND PROJECT.PROJECT_NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="searchCondition == 'name'">
+				AND MEMBER.NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="searchCondition == 'userId'">
+				AND PROJECT.USER_ID LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="supportForMePickUp != '' and supportForMePickUp != null ">
+				AND PROJECT.SUPPORT_PICK_YN = #{supportForMePickUp}
+			</if>
+			
+		</where>
+	) A )WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="supportForMePickUpListCnt" parameterType="adminSearch" resultType="int">
+	
+		SELECT
+				COUNT(PROJECT.PROJECT_NO)
+				
+		FROM PROJECT
+		JOIN MEMBER ON PROJECT.USER_ID = MEMBER.USER_ID
+		
+		<where>
+			PASSWORD IS NOT NULL
+			<if test="searchCondition == 'projectNo'">
+				AND PROJECT.PROJECT_NO LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="searchCondition == 'projectName'">
+				AND PROJECT.PROJECT_NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="searchCondition == 'name'">
+				AND MEMBER.NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="searchCondition == 'userId'">
+				AND PROJECT.USER_ID LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="supportForMePickUp != '' and supportForMePickUp != null ">
+				AND PROJECT.SUPPORT_PICK_YN = #{supportForMePickUp}
+			</if>
+			
+		</where>
+	</select>
+	
+	<update id="adminSupportForMePick" parameterType="adminSearch">
+		UPDATE PROJECT
+		<if test=" flag == 'no'">
+			SET SUPPORT_PICK_YN = 'N'
+		</if>
+		<if test=" flag == 'yes'">
+			SET SUPPORT_PICK_YN = 'Y'
+		</if>
+		<where>
+			PROJECT_NO IN
+			<foreach collection="ids" open="(" close=")" separator=","
+				item="item">
 				#{item}
 			</foreach>
 		</where>

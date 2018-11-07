@@ -4,12 +4,28 @@ public class AdminSearchDTO  extends AdminDTO{
 	
 	private String searchKeyword;
 	private String searchCondition;
+	private String supportForMePickUp;
 	private Integer start;
 	private Integer end;
 	private String startdate;
 	private String enddate;
 	private String[] ids;
+	private String flag;
 	
+	
+	
+	public String getFlag() {
+		return flag;
+	}
+	public void setFlag(String flag) {
+		this.flag = flag;
+	}
+	public String getSupportForMePickUp() {
+		return supportForMePickUp;
+	}
+	public void setSupportForMePickUp(String supportForMePickUp) {
+		this.supportForMePickUp = supportForMePickUp;
+	}
 	public String[] getIds() {
 		return ids;
 	}

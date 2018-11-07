@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -96,14 +97,14 @@ public class InvestController {
 		model.addAttribute("payType",request.getParameter("payType"));
 		
 		model.addAttribute("list", investService.getInvests(searchDTO));
-		return "invest/investLIstForm";
+		return "myNav/invest/investLIstForm";
 	}
 	
 	
 	@RequestMapping("/forme/InvestDetail")	
 	public String getInvest(Model model, InvestDTO dto) {
 		model.addAttribute("invest", investService.getInvest(dto));
-		return "invest/investDetailForm";
+		return "myNav/invest/investDetailForm";
 	}
 	
 	
@@ -171,13 +172,10 @@ public class InvestController {
 	}
 	
 	@RequestMapping("/forme/InvestSelectReward")
-	public String getPresentList(InvestDTO dto, Model model) {
-		
+	public String getPresentList(InvestDTO dto, Model model, HttpServletRequest request) {
 		
 		InvestDTO investDTO = new InvestDTO();
-		investDTO.setProjectNo("201810310005");
-	
-		
+		investDTO.setProjectNo(request.getParameter("projectNo"));
 		List<Map<String,Object>> list = investService.getPresentList(investDTO);
 		model.addAttribute("presentList", list);
 		return "noNav/invest/investSelectRewardForm";

@@ -13,6 +13,12 @@ public interface AdminService {
 	
 	public int getCntAdminMember(AdminSearchDTO searchDTO);
 	
+	public List<Map<String, Object>> getAdminSupportForMePickUpList(AdminSearchDTO searchDTO);
+	
+	public int getCntAdminSupportForMePickUpList(AdminSearchDTO searchDTO);
+	
 	public int deleteAdminMembers(AdminSearchDTO searchDTO);
+	
+	public int adminSupportForMePick(AdminSearchDTO searchDTO);
 	
 }

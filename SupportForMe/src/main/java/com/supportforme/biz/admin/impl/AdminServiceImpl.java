@@ -32,6 +32,20 @@ public class AdminServiceImpl implements AdminService {
 	public int deleteAdminMembers(AdminSearchDTO searchDTO) {
 		return dao.deleteAdminMembers(searchDTO);
 	}
-	
+
+	@Override
+	public List<Map<String, Object>> getAdminSupportForMePickUpList(AdminSearchDTO searchDTO) {
+		return dao.getAdminSupportForMePickUpList(searchDTO);
+	}
+
+	@Override
+	public int getCntAdminSupportForMePickUpList(AdminSearchDTO searchDTO) {
+		return dao.getCntAdminSupportForMePickUpList(searchDTO);
+	}
+
+	@Override
+	public int adminSupportForMePick(AdminSearchDTO searchDTO) {
+		return dao.adminSupportForMePick(searchDTO);
+	}
 	
 }

@@ -30,6 +30,21 @@ public class AdminDAO {
 	public int deleteAdminMembers(AdminSearchDTO searchDTO) {
 		return mybatis.delete("admin.deleteAdminMembers", searchDTO);
 	}
+	
+	
+	public List<Map<String, Object>> getAdminSupportForMePickUpList(AdminSearchDTO searchDTO){
+		return mybatis.selectList("admin.supportForMePickUpList", searchDTO);
+	};
+	
+	public int getCntAdminSupportForMePickUpList(AdminSearchDTO searchDTO) {
+		return mybatis.selectOne("admin.supportForMePickUpListCnt", searchDTO);
+	};
+	
+	public int adminSupportForMePick(AdminSearchDTO searchDTO) {
+		return mybatis.update("admin.adminSupportForMePick", searchDTO);
+	}
+	
+	
 
 
 }
