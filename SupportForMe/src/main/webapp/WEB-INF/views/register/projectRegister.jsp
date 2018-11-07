@@ -444,14 +444,30 @@ input[type=text]:-webkit-autofill {
 	margin-top: 5px;
 	margin-left: 50px;
 }
-
 .preview_button {
+	display:flex;
+	text-align:center;
+	padding-top: 5px;
+	border-top : 1px solid lightgrey;
+	margin-bottom : 0
+}
+.preview_button:hover {
+	cursor:pointer;
+}
+.rewardEdit, .rewardDel{
 	font-size: 15px;
 	font-weight: 800;
-	padding: 2.5px 10px;
-	margin-top: 5px;
+	padding: 2.5px 5px;
+	color: #FF007F;
+	border : none;
+	background-color:white;
 }
-.add_button, .rewardEdit  {
+.rewardImg {
+	height:20px;
+	width:20px;
+	vertical-align : middle;
+}
+.add_button{
 	color: rgb(26, 188, 156);
 	background-color: white;
 	border-radius: 5px;
@@ -459,7 +475,7 @@ input[type=text]:-webkit-autofill {
 	margin-right:10px;
 }
 
-.reset_button, .rewardDel  {
+.reset_button{
 	color: white;
 	background-color: rgb(26, 188, 156);
 	border-radius: 5px;
@@ -500,7 +516,7 @@ input[type=text]:-webkit-autofill {
 }
 .reward_preview_box {
 	width: 190px;
-	height: 190px;
+	height: auto;
 	padding: 10px 10px 10px 15px;
 	border: 1px solid lightgray;
 }
@@ -542,10 +558,10 @@ input[type=text]:-webkit-autofill {
 .register_button {
 	font-size: 15px;
 	font-weight: 800;
-	color: rgb(231, 76, 60);
+	color: #FF007F;
 	background-color: white;
 	border-radius: 5px;
-	border: 1px solid rgb(231, 76, 60);
+	border: 1px solid #FF007F;
 	padding: 5px 50px;
 	margin-top: 5px;
 	margin-left: 50px;
@@ -558,11 +574,9 @@ input[type=text]:-webkit-autofill {
 	vertical-align:middle;
 }
 #notice {
-	width:80px;
-	background-color: #7ebc97;
-	border-radius: 5px;
-	padding : 5px 15px;
-	
+	font-size:20px;
+	font-weight:800;
+	margin: 0px 20px;
 }
 </style>
 <script>
@@ -584,17 +598,24 @@ $(function() {
 				params = $("#registerAccountFrm").serialize();  
 			}
 			$.getJSON(url,params,function(result){
-				$("#alertModal > #alertMessage").text('저장되었습니다.');
+				$("#alertMessage").text('저장되었습니다.');
 				$("#alertModal").show();
-				$("#alertModal > .model-content").show("slow");
 			}) 
 		});
 		
 		$("#alertModalClose").on("click",function(){
 			$("#alertModal").hide();
+			$("#alertMessage").text('');
 		});
+
+		$("#confirmModalCel").on("click",function(){
+			$("#confirmModal").hide()
+			$("#confirmMessage").text('');
+		})
+		
 		$(".close").on("click",function(){
-			$(this).parent().parent().hide();
+			$(this).closest(".modal").hide();
+			$(this).next().text('');
 		});
 
 		/*  $("#alertModal").css("display","block");  */
@@ -604,12 +625,6 @@ $(function() {
 	
 		//////기본정보 js ------------------
 		$(".next_button").on("click",function(){
-				$.ajax({
-					url : "../insertHashtag",
-					data : $("#hashtagFrm").serialize(),
-					method : "post",
-					success : function(result) {}
-				});
 				$.ajax({
 					url : "../updateProject/story",
 					data : $("#registerBasicFrm").serialize(),
@@ -674,67 +689,78 @@ $(function() {
 		}); 
 		
 		//hashtag-----------------------------
-		//hashtag 갯수 가져오기
-		function removeNo() {
-			var removeCount = $(".remove").length;
-			
-			if(removeCount > 0){
-				var removeEnd = $(".remove").eq(removeCount-1).attr("class").substr(7);
-				return parseInt(removeEnd) + 1;	
-			}
-			else { return removeCount+1; }
+		var projectNo = '${project.projectNo}';
+		
+		function loadHashtagList() {
+			var projectNo = '${project.projectNo}';
+			$.ajax({
+				url : '../hashtags/'+projectNo,
+				type:'GET',
+				dataType : 'json',
+				success : function(datas){
+					for(i = 0; i<datas.length; i++){
+						makeHashtagList(datas[i]);
+					}
+				}
+			});
 		}
+		
+		function makeHashtagList(ht){
+			var k = "<span class='keyword' id='"+ ht.hashtagNo + "'><label class='keyword_label'>"+ ht.hashtagName
+	   	 		  + "</label><img src='/SupportForMe/images/remove.png' class='remove'></span>";
+	   	 		$("#keyword_div").append(k);
+		}
+	
 		$("input[name='keyword']").on("keydown",function(e){
 			
 			if(e.keyCode == 13){//키가 13이면 실행 (엔터는 13)
 				
-				if($(".remove").length < 5){
+				if($(".keyword").length < 5){
 					var key = $(this).val();
-					var rc = removeNo();
-		            var k = "<span class='keyword'><label class='keyword_label'>"+key
-		            	  + "</label><img src='/SupportForMe/images/remove.png' class='remove " + rc + "'></span>";
-		           	var keyHidden = "<input type='hidden' name='arrHashtag' class='hashHidden"+rc+"' value='" + key + "'>";
-		            $("#keyword_div").append(k);
-		            $("input[name='keyword']").val("");
-		            $("#hashtagFrm").append(keyHidden);
+					
+					$.ajax({
+						url : '../hashtags',
+						type:'POST',
+						dataType : 'json',
+						data : JSON.stringify({projectNo:projectNo,hashtagName:key}),
+						contentType: 'application/json', 
+						success : function(result){
+							if(result.code == "success"){
+								makeHashtagList(result.hashtag);
+							}else if(result.code == "same"){
+								//모달창 할꺼임
+								alert("중복된 키워드입니다.");
+							}
+						}
+					});
 				}else {
 					alert("최대 5개 까지입니다.");
-					$("input[name='keyword']").val("");
 				}
+				$("input[name='keyword']").val("");
 	        }
 			
 		});
 		
 		$(document).on("click",".remove",function(){
-			var cnt = $(this).attr("class").substr(7);
-			var removeKey = $(this).prev().text();
-			if($(".hashHidden"+cnt).hasClass("db")){
-				var keyNo = $(".hashHidden"+cnt).attr("id");
-				 $.ajax({
-					url : "../deleteHashtag",
-					dataType : "JSON",
-					data : {"hashtagNo":keyNo,"hashtagName":removeKey},
-					method : "post",
-					success : function(result) {
-						if(result.code = 'success') {
-							$(".hashHidden"+cnt).remove();
-							$(".remove."+cnt).parent().remove();
-						}
-					},
-					error : function() {
-						alert("삭제할 수 없습니다.")
-					} 
-				});
-			}else {
-				$(this).parent().remove();
-				$(".hashHidden"+cnt).remove();
-			}
-			
-			
-			
+			var removeKey = $(this).parent().attr("id"); 
+			 $.ajax({
+				url : "../hashtags/"+removeKey,
+				type: 'DELETE',
+				contentType:'application/json;charset=utf-8',
+				dataType : "JSON",
+				success : function(result) {
+					if(result.code = 'success') {
+						$("#"+removeKey).remove();
+					}
+				},
+				error : function() {
+					alert("삭제할 수 없습니다.")
+				} 
+			});	
 		})
 		//hashtag 끝-----------------------------		
-
+		
+		loadHashtagList();
 		//기본정보 js 끝 ---------------------------------------------------------       
 	   	
 		//story--------------------------------------------------------------
@@ -855,7 +881,6 @@ $(function() {
    <div class="modal-content">                                                                   
     <div class="close">&times;</div>
   	<div id="alertMessage">
-  		저장되었습니다.
   	</div>
   	<button id="alertModalClose">확인</button>
      </div>
@@ -865,7 +890,6 @@ $(function() {
    <div class="modal-content">                                                                   
     <div class="close">&times;</div>
   	<div id="confirmMessage">
-  		정말 삭제하시겠습니까?
   	</div>
   	<button id="confirmModalOk">확인</button> <button id="confirmModalCel">취소</button>
    </div>
@@ -916,7 +940,7 @@ $(function() {
 			</div>
 			<div id="basic_target">
 				<div class="bold">목표 금액을 적어주세요</div>
-				<div class="lg"><span style="color:#e74c3c" class="bold">최소 100,000원 이상</span>이어야 합니다.</div>
+				<div class="lg"><span style="color:#FF007F" class="bold">최소 100,000원 이상</span>이어야 합니다.</div>
 				<input type="text" name="targetAmount" id="r_targetAmount" 
 					class="inputStyle inputRight"  placeholder="0"> 원
 				<c:if test="${project.targetAmount != null }">
@@ -963,29 +987,13 @@ $(function() {
 				</div>
 			</div>
 			</form>
-			
-			<form name="hashtagFrm" id="hashtagFrm" method="post">
-				<input type="hidden" name="projectNo" value="${project.projectNo}">
-			     <c:if test="${hashtag.size() > 0}" >
-						<c:forEach var="i" begin="0" end="${hashtag.size()-1}">
-							<input type='hidden' name='arrHashtag' class='hashHidden${i} db' id="${hashtag[i].hashtagNo}" 
-									value='${hashtag[i].hashtagName}'>
-						</c:forEach>
-		         </c:if>
-			</form>
 	
 			<div id="basic_keyword">
-				<div class="bold">프로젝트 키워드를 적어주세요 <span style="color:#e74c3c">(선택사항)</span></div>
+				<div class="bold">프로젝트 키워드를 적어주세요 <span style="color:#FF007F">(선택사항)</span></div>
 				<div class="lg">제목 외에도 키워드 검색 시 검색 결과에 프로젝트가 나타납니다.</div>
 				<input type="text" name="keyword" class="inputStyle keyText" maxlength="10"
 						placeholder="최대 5개까지 등록 가능합니다. 키워드 입력 후 엔터를 눌러주세요." autocomplete=off>
 				<div id="keyword_div">
-					<c:if test="${hashtag.size() > 0}" >
-						<c:forEach var="i" begin="0" end="${hashtag.size()-1}">
-							<span class='keyword'><label class='keyword_label'>${hashtag[i].hashtagName}</label>
-							<img src='/SupportForMe/images/remove.png' class='remove ${i}'></span>
-						</c:forEach> 
-		          	</c:if> 
 				</div>
 			</div>
 			<input type="button" name="save" class="save_button basic" value="저장하기">

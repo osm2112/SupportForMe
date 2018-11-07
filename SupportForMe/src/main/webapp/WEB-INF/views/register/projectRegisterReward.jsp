@@ -55,6 +55,7 @@ $(function() {
 				$("[name=registerRewardFrm]")[0].reset();
 				$("#registerRewardFrm [name=presentNo]").val('');
 				deliveryDateInput(datas.presentDeliveryDate);
+				$("#alertMessage").text("정상적으로 수정되었습니다.");
 			});
 		}else {
 			var url = "../insertReward";
@@ -62,14 +63,15 @@ $(function() {
 				$("#reward_preview").append( makeRewardBox(datas));
 				$("[name=registerRewardFrm]")[0].reset();
 				deliveryDateInput(datas.presentDeliveryDate);
+				$("#alertMessage").text("정상적으로 등록되었습니다.");
 			});	
 		} 	
-		
+		$("#alertModal").show();
 	});
 	
 	//수정폼 이벤트(수정할 선물을 다시 등록 폼으로 옮김 )
 	$("#reward_preview_div").on("click",".rewardEdit",function(){
-		var reward = $(this).parent().get(0).reward;
+		var reward = $(this).closest(".reward_preview_box").get(0).reward;
 		$("#registerRewardFrm [name=presentNo]").val(reward.presentNo);  
 		$("#registerRewardFrm [name=presentPrice]").val(reward.presentPrice);
 		$("#registerRewardFrm [name=presentName]").val(reward.presentName);
@@ -77,23 +79,31 @@ $(function() {
 	});
 	
 	//선물 삭제 
-	$("#reward_preview_div").on("click",".rewardDel",function(){
-		var seq = $(this).parent().attr("id").substring(2);
-		if(confirm("해당 선물을 삭제하시겠습니까?")){
+	$("#reward_preview").on("click",".rewardDel",function(){
+		var seq = $(this).closest(".reward_preview_box").attr("id").substring(2);
+		$("#confirmMessage").text("해당 선물을 삭제하시겠습니까?");
+		$("#confirmModal").show();  
+		rewardDel(seq);
+	});
+	
+	function rewardDel (seq){
+		console.log(seq);
+		$("#confirmModalOk").on("click", function(){
 			var params = "presentNo=" + seq;
 			var url = "../deleteReward";
 			$.getJSON(url,params,function(datas){
 				$('#rw'+seq).remove();
+				$("#confirmModal").hide();	
 			});
-		}
-	});
+		});
+	}
+	
 	
 	function deliveryDateInput(date) {
 		var dateList = $(".rw_preview_delivery");
 		var tempDate = date;
 		for(var i=0;i<dateList.size();i++){
 			var newDate = dateList.eq(i).text();
-			console.log(newDate);
 			if(newDate < tempDate){
 				tempDate = newDate;
 			}
@@ -123,9 +133,10 @@ $(function() {
 					  + "<div class='rw_preview_delivery_s'>리워드 구성</div>"
 					  + "<div class='rw_preview_info'>"+reward.presentName+"</div>"
 					  + "<div class='rw_preview_delivery_s'>예상배송일</div>"
-					  + "<div class='rw_preview_delivery'>"+reward.presentDeliveryDate+"</div>"
-					  + "<input type='button' name='rewardEdit' class='preview_button rewardEdit' value='수정하기'>"
-					  + "<input type='button' name='rewardDel' class='preview_button rewardDel' value='삭제하기'>";
+					  + "<div class='rw_preview_delivery'>"+reward.presentDeliveryDate+"</div><div class='preview_button'>"
+					  + "<button type='button' class='rewardEdit'><img src='/SupportForMe/images/rewardEdit.png' class='rewardImg'>수정하기</button>"
+					  + "<button type='button' class='rewardDel'><img src='/SupportForMe/images/rewardDel.png' class='rewardImg'>삭제하기</button>"
+					  + "</div>";
 		
 		div.html(rewardBox);
 		return div;
@@ -146,7 +157,7 @@ $(function() {
 <input type="hidden" name="presentNo" value="">
 <div class="bold">프로젝트 리워드를 구성해주세요</div>
 	<div class="lg">
-	프로젝트 시작을 위해서는 <span style="color:#e74c3c" class="bold">최소 1개 이상의 리워드</span>가 있어야 합니다. 
+	프로젝트 시작을 위해서는 <span style="color:#FF007F" class="bold">최소 1개 이상의 리워드</span>가 있어야 합니다. 
 	배송이 필요한 리워드는 배송비가 포함된 가격을 적어주세요.
 </div>
 <div id="reward_box">

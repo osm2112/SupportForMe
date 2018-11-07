@@ -16,15 +16,14 @@ public class HashtagServiceImpl implements HashtagService{
 	public int insertHashtag(HashtagDTO dto) {
 		return hashtagDAO.insertHashtag(dto);
 	}
-
 	@Override
-	public List<HashtagDTO> getHashtags(ProjectDTO dto) {
-		return hashtagDAO.getHashtags(dto);
+	public List<HashtagDTO> getHashtags(String projectNo) {
+		return hashtagDAO.getHashtags(projectNo);
 	}
 
 	@Override
-	public int deleteHashtag(HashtagDTO dto) {
-		return hashtagDAO.deleteHashtag(dto);
+	public int deleteHashtag(String hashtagNo) {
+		return hashtagDAO.deleteHashtag(hashtagNo);
 	}
 
 }

@@ -27,4 +27,9 @@ public class ProjectRegisterServiceImpl implements ProjectRegisterService{
 		return projectDAO.updateProject(dto);
 	}
 
+	@Override
+	public int completeProject(ProjectDTO dto) {
+		return projectDAO.completeProject(dto);
+	}
+
 }

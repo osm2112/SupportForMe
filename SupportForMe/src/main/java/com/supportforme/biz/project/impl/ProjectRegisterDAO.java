@@ -26,4 +26,9 @@ public class ProjectRegisterDAO {
 		return mybatis.update("project.updateProject", dto);
 	}
 	
+	//프로젝트 완료
+	public int completeProject(ProjectDTO dto) {
+		return mybatis.update("project.completeProject", dto);
+	}
+	
 }

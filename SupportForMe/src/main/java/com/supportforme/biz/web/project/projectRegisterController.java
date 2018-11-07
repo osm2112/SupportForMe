@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.supportforme.biz.hashtag.HashtagService;
 import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectRegisterService;
 
@@ -27,19 +26,16 @@ import com.supportforme.biz.project.ProjectRegisterService;
 public class projectRegisterController {
 		
 	@Autowired ProjectRegisterService projectService;
-	@Autowired HashtagService hashtagService;
 	
-	@RequestMapping("/forme/tempMain")
-	public String main() {
-		return "noNav/register/main/tempMain";
-	}
-	
-	
+	Map<String,String> map = new HashMap<String,String>();
+	 
+	//url get 방식으로 입력하여 들어오는 것 방지
 	@RequestMapping(value="/forme/registerProject", method=RequestMethod.GET )
 	public String protectInsertProject() {
 		return "register/main/tempMain";
 	}
 	
+	//등록 post 방식
 	@RequestMapping(value="/forme/registerProject", method=RequestMethod.POST )
 	public String insertProject(ProjectDTO dto , HttpSession session) {
 //		MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
@@ -49,48 +45,33 @@ public class projectRegisterController {
 		return "redirect:/forme/make/"+dto.getProjectNo();	
 	}
 	
+	//등록페이지 기본정보 등록 페이지로 forward
+	@RequestMapping("/forme/make/{projectNo}")			
+	public String makeProject(Model model,ProjectDTO dto,@PathVariable String projectNo) {
+		dto.setProjectNo(projectNo);
+		model.addAttribute("project", projectService.getProject(dto));
+		return "rgNav/register/projectRegister";
+	}
 	
+	//기본정보 수정 후 스토리 입력 페이지로 넘어감 
 	@RequestMapping("/forme/updateProject/story")
 	public String updateProjectBasic(Model model, ProjectDTO dto) {
-		
-		if(dto.getProjectDeadline() != null) {
-			String[] deadLine = dto.getProjectDeadline().split("-");
-			dto.setProjectDeadline(deadLine[0].toString()+"."+deadLine[1].toString()+"."+deadLine[2].toString());
-		}
-		
+		deadLine(dto);
 		projectService.updateProject(dto);
 		model.addAttribute("project", projectService.getProject(dto));
 		return "ajax/register/projectRegisterStory";
 	}
 	
+	//스토리 정보 수정 후 선물 등록 페이지로 넘어감 
 	@RequestMapping("/forme/updateProject/reward")
 	public String updateProjectStory(Model model, ProjectDTO dto) {
-		
-		String introductionImg = "";
-		if(dto.getArrImage() != null && dto.getArrImage().length>0) {
-			for(String img : dto.getArrImage()) {
-				introductionImg += (img + "||");
-			}
-		}
-		dto.setIntroductionImage(introductionImg);
-
-		String introductionVideo = "";
-		if(dto.getArrVideo() != null && dto.getArrVideo().length>0) {
-			for(String video : dto.getArrVideo()) {
-				if(video != null && video != "") {
-					int index = video.lastIndexOf("/");
-					introductionVideo += (video.substring(index+1) + "||");	
-				}
-							
-			}
-		}
-		dto.setIntroductionVideo(introductionVideo);
-		
+		storyImageVideo(dto);
 		projectService.updateProject(dto);
 		model.addAttribute("project", projectService.getProject(dto));
 		return "ajax/register/projectRegisterReward";
 	}
 	
+	//선물 등록 수정 후 부가정보 페이지로 넘어감 
 	@RequestMapping("/forme/updateProject/account")
 	public String updateProject(Model model, ProjectDTO dto) {
 		projectService.updateProject(dto);
@@ -99,57 +80,35 @@ public class projectRegisterController {
 		
 	}
 	
-	@RequestMapping("/forme/make/{projectNo}")			
-	public String makeProject(Model model,ProjectDTO dto,@PathVariable String projectNo) {
-		dto.setProjectNo(projectNo);
-		model.addAttribute("hashtag", hashtagService.getHashtags(dto));  
-		model.addAttribute("project", projectService.getProject(dto));
-		return "rgNav/register/projectRegister";
-	}
-	
+	//저장하기 
 	@RequestMapping(value= {"/forme/saveProject/ex","forme/saveProject/basic","forme/saveProject/story"})
 	@ResponseBody
-	public Map<String,String> saveProject(@ModelAttribute("project") ProjectDTO dto, HttpServletRequest request){
+	public Map<String,String> saveProject(ProjectDTO dto, HttpServletRequest request){
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String[] com = uri.substring(conPath.length()).split("/");
 		
 		if(("basic").equals(com[3])){
-				if(dto.getProjectDeadline() != null) {
-					String[] deadLine = dto.getProjectDeadline().split("-");
-					dto.setProjectDeadline(deadLine[0].toString()+"."+deadLine[1].toString()+"."+deadLine[2].toString());
-				}
+			deadLine(dto);
 		}else if(("story").equals(com[3])) {
-				String introductionImg = "";
-				if(dto.getArrImage() != null && dto.getArrImage().length>0) {
-					for(String img : dto.getArrImage()) {
-						introductionImg += (img + "||");
-					}
-				}
-				dto.setIntroductionImage(introductionImg);
-
-				String introductionVideo = "";
-				if(dto.getArrVideo() != null && dto.getArrVideo().length>0) {
-					for(String video : dto.getArrVideo()) {
-						if(video != null && video != "") {
-							int index = video.lastIndexOf("/");
-							introductionVideo += (video.substring(index+1) + "||");	
-						}
-									
-					}
-				}
-				dto.setIntroductionVideo(introductionVideo);
+			storyImageVideo(dto);
 		}
 
-		
 		projectService.updateProject(dto);
-		  
-		Map<String,String> map = new HashMap<String,String>();
 		map.put("code", "success");
 		return map;
 	}
 	
+	//등록완료 하기 
+	@RequestMapping("/forme/registerComplete")
+	@ResponseBody
+	public Map<String,String> completeProject(ProjectDTO dto){
+		projectService.completeProject(dto);
+		map.put("code", "success");
+		return map;
+	}
 	
+	//파일 업로드 
 	@RequestMapping(value="/forme/fileUpload" , method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String,String> fileUpload(@ModelAttribute("project") ProjectDTO dto, HttpServletRequest request) throws IllegalStateException, IOException {
@@ -174,14 +133,13 @@ public class projectRegisterController {
 			uploadFile.transferTo(new File(folder,filename));
 //			uploadFile.transferTo(new File(folder2,filename));
 		}
-		
 
-		Map<String,String> map = new HashMap<String,String>();
 		map.put("code", "success");
 		map.put("filename", filename);
 		return map;
 	}
 	
+	//이미지 서버에서 삭제 
 	@RequestMapping(value="/forme/deleteIntroductionImg")
 	@ResponseBody
 	public void deleteIntroductionImg(@RequestParam(value="removeIntroductionImg",required=false)String removeImg,HttpServletRequest request){
@@ -191,5 +149,38 @@ public class projectRegisterController {
 			 file.delete();
 		}
 	}  
+	
+	
+	//마감일 rrrr-MM-dd -> rrrr.MM.dd 로 변환 함수
+	ProjectDTO deadLine(ProjectDTO dto) {
+		if(dto.getProjectDeadline() != null) {
+			String[] deadLine = dto.getProjectDeadline().split("-");
+			dto.setProjectDeadline(deadLine[0].toString()+"."+deadLine[1].toString()+"."+deadLine[2].toString());
+		}
+		return dto;
+	}
+	//story image, video 처리 함수
+	ProjectDTO storyImageVideo(ProjectDTO dto) {
+		String introductionImg = "";
+		if(dto.getArrImage() != null && dto.getArrImage().length>0) {
+			for(String img : dto.getArrImage()) {
+				introductionImg += (img + "||");
+			}
+		}
+		dto.setIntroductionImage(introductionImg);
+
+		String introductionVideo = "";
+		if(dto.getArrVideo() != null && dto.getArrVideo().length>0) {
+			for(String video : dto.getArrVideo()) {
+				if(video != null && video != "") {
+					int index = video.lastIndexOf("/");
+					introductionVideo += (video.substring(index+1) + "||");	
+				}
+							
+			}
+		}
+		dto.setIntroductionVideo(introductionVideo);
+		return dto;
+	}
 	
 }

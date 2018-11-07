@@ -17,11 +17,11 @@ public class HashtagDAO {
 			return mybatis.insert("hashtag.insertHashtag", dto);
 		}
 		
-		public List<HashtagDTO> getHashtags(ProjectDTO dto){
-			return mybatis.selectList("hashtag.getHashtags", dto);
+		public List<HashtagDTO> getHashtags(String projectNo){
+			return mybatis.selectList("hashtag.getHashtags", projectNo);
 		}
 		
-		public int deleteHashtag(HashtagDTO dto) {
-			return mybatis.delete("hashtag.deleteHashtag",dto);
+		public int deleteHashtag(String hashtagNo) {
+			return mybatis.delete("hashtag.deleteHashtag",hashtagNo);
 		}
 }

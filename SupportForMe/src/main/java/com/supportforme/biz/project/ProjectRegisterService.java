@@ -11,4 +11,7 @@ public interface ProjectRegisterService {
 	//프로젝트 수정
 	public int updateProject(ProjectDTO dto);
 	
+	//프로젝트 완료 업데이트 
+	public int completeProject(ProjectDTO dto);
+	
 }

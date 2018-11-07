@@ -8,7 +8,7 @@ public interface HashtagService {
 		
 	public int insertHashtag(HashtagDTO dto);
 	
-	public List<HashtagDTO> getHashtags(ProjectDTO dto);
+	public List<HashtagDTO> getHashtags(String projectNo);
 	
-	public int deleteHashtag(HashtagDTO dto);
+	public int deleteHashtag(String hashtagNo);
 }

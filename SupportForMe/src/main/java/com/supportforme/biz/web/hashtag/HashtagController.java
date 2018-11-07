@@ -1,70 +1,57 @@
 package com.supportforme.biz.web.hashtag;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.supportforme.biz.hashtag.HashtagDTO;
 import com.supportforme.biz.hashtag.HashtagService;
-import com.supportforme.biz.project.ProjectDTO;
 
-@Controller
+@RestController
 public class HashtagController {
 	
 	@Autowired HashtagService service;
-
-	private Map<String,String> map = new HashMap<String,String>();
 	
-	@RequestMapping("/forme/insertHashtag")
-	@ResponseBody
-	public Map<String,String> insertHashtag(@ModelAttribute("hashtag") HashtagDTO htdto) {
-		ProjectDTO dto = new ProjectDTO();
+	public Map<String,Object> map = new HashMap<String,Object>();
+	
+	
+	@RequestMapping(value="/forme/hashtags/{projectNo}",method=RequestMethod.GET)
+	public List<HashtagDTO> getHashtags(@PathVariable String projectNo){
+		return service.getHashtags(projectNo);
+	}
+	
+	@RequestMapping(value="/forme/hashtags",method=RequestMethod.POST,consumes="application/json")
+	public Map<String,Object> insertHashtag(@RequestBody HashtagDTO htdto) {
+		List<HashtagDTO> list = service.getHashtags(htdto.getProjectNo());  
 		
-		dto.setProjectNo(htdto.getProjectNo());
-		List<HashtagDTO> list = service.getHashtags(dto);
-		
-		Set<String> set = new HashSet<String>();
-		for(String stHash : htdto.getArrHashtag()) {
-			set.add(stHash);
-		}
-		Iterator<String> hashIter = set.iterator();
-		
+		String code="";
 		if(list.size()>0) {
 			for(HashtagDTO ht : list) {
-				while(hashIter.hasNext()) {
-					String tempHash = hashIter.next().toString();
-					if(tempHash.equals(ht.getHashtagName())) {
-						set.remove(tempHash);
-					}
-					
+				String htName = ht.getHashtagName();
+				if(htName.equals(htdto.getHashtagName())) {
+					code = "same";
 				}
-				hashIter = set.iterator();	
 			}
 		}
-		
-		while(hashIter.hasNext()) {
-			String tempHash = hashIter.next().toString();
-			htdto.setHashtagName(tempHash);
+		if(!code.equals("same")) {
+			code="success";
 			service.insertHashtag(htdto);
 		}
-		
-		map.put("code", "success");
+		map.put("hashtag",htdto);
+		map.put("code", code);
 		return map;
 	}
 	
-	@RequestMapping("/forme/deleteHashtag")
-	@ResponseBody
-	public Map<String,String> deleteHashtag(@ModelAttribute("hashtag") HashtagDTO htdto){
-		service.deleteHashtag(htdto);
+	@RequestMapping(value="/forme/hashtags/{hashtagNo}",method=RequestMethod.DELETE)
+	public Map<String,Object> deleteHashtag(@PathVariable String hashtagNo){
+		service.deleteHashtag(hashtagNo);
 		map.put("code", "success");
 		return map;
 	}

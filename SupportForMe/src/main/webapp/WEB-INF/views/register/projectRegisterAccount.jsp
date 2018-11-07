@@ -7,6 +7,23 @@
 <title></title>
 </head>
 <body>
+<script>
+	$(".register_button").on("click",function(){
+		$("#confirmMessage").html('정말 등록하시겠습니까?<br>등록완료 후 메인 화면에 프로젝트가 나타나게 됩니다. 적절하지 않을 경우 관리자에 의해 보류되어질 수 있음 양해부탁드립니다.');
+		$("#confirmModal").show();			
+	});
+	$("#confirmModalOk").on("click",function(){ 
+		$("#confirmModal").hide();
+		var url = "../registerComplete";
+		var params = {projectNo : '${project.projectNo}'};
+		$.getJSON(url,params,function(result){
+			if(result.code=="success"){
+				$("#alertMessage").text('정상적으로 등록되었습니다.');
+				$("#alertModal").show();
+			}
+		});
+	})
+</script>
 <div style="height: 50px"></div>
 	<form name="registerAccountFrm" id="registerAccountFrm">
 	 	<div class="bold">계좌 정보를 입력하세요</div>
@@ -37,9 +54,11 @@
 			<option value="023" >SC제일은행</option>
 			<option value="090" >카카오뱅크</option>
 		</select>
-		
+		<script>
+		$('select[name="bankCode"]').val('${project.bankCode}').attr("selected", "selected");
+		</script>
 		<div class="bold">계좌번호를 적어주세요</div>
-		<input type="text" name="depositAccount" id="depositAccount" placeholder="'-' 없이 적어주세요">
+		<input type="text" name="depositAccount" id="depositAccount" placeholder="'-' 없이 적어주세요" value="${project.depositAccount}">
 		<div style="height:100px"></div>
 		<div id="accountNotice">
 			<span id="notice">공지</span> 프로젝트의 창작자 명과 계좌에 등록된 예금주명과 다를 시 관리자에게 문의해주세요. TEL) 053-421-2460
