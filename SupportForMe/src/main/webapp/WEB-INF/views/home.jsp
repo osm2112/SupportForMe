@@ -479,7 +479,7 @@ li em {
 				</div>				
 			</c:forEach>
 		</div>
-		<div style="text-align: right"><br><a href="#">더보기 </a></div>	
+		<div style="text-align: right"><br><a href="./getCategoryProjects?searchCondition=001">더보기 </a></div>	
 		<div style="height: 50px"></div>
 		<!-- 미술 부분  -->
 		<div class="suforme_top_1_text_div"><span><i class="fa fa-paint-brush"></i>&nbsp미술 프로젝트</span></div>		
@@ -507,7 +507,7 @@ li em {
 					</div>
 				</c:forEach>
 			</div>
-			<div style="text-align: right"><br><a href="#">더보기 </a></div>	
+			<div style="text-align: right"><br><a href="./getCategoryProjects?searchCondition=003">더보기 </a></div>	
 			<div style="height: 50px"></div>
 		<!-- 도서 -->
 		<div class="suforme_top_1_text_div"><span><i class="fa fa-book"></i>&nbsp도서 프로젝트</span></div> 
@@ -535,7 +535,7 @@ li em {
 				</div>				
 			</c:forEach>
 		</div>
-		<div style="text-align: right"><br><a href="#">더보기 </a></div>
+		<div style="text-align: right"><br><a href="./getCategoryProjects?searchCondition=004">더보기 </a></div>
 		<div style="height: 50px"></div>
 		<!-- 영화 -->
 		<div class="suforme_top_1_text_div"><span><i class="fa fa-film"></i>&nbsp영화 프로젝트</span></div> 
@@ -563,7 +563,7 @@ li em {
 				</div>				
 			</c:forEach>
 		</div>
-		<div style="text-align: right"><br><a href="#">더보기 </a></div>	
+		<div style="text-align: right"><br><a href="./getCategoryProjects?searchCondition=002">더보기 </a></div>	
 		
 	</div>
 	

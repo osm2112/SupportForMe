@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ProjectService {
 	
-	//전체조회
+	//전체검색결과조회, 분야별 결과 조회
 	public List<ProjectDTO> getProjects(ProjectSearchDTO searchDto);
 
 	//공연조회

@@ -16,7 +16,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Autowired ProjectDAO dao; // Mybatis로 만든 ProjectDAO
 	
-	//전체조회
+	//전체 검색결과 조회, 분야별 전체결과 조회
 	@Override
 	public List<ProjectDTO> getProjects(ProjectSearchDTO searchDto) {
 		System.out.println("프로젝트 목록 조회"); 
@@ -64,6 +64,7 @@ public class ProjectServiceImpl implements ProjectService {
 		// TODO Auto-generated method stub
 		return dao.getMovieProjects();
 	}
+	
 	
 	
 }

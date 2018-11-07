@@ -47,10 +47,34 @@ public class ProjectController {
 		
 		return "noNav/projectselect/getProjects";				
 	}
-	//test용
+	//ajax 전송
 	@RequestMapping(value="/**/getProjects" , method=RequestMethod.POST)
 	@ResponseBody
 	public List<ProjectDTO> scrollData(ProjectSearchDTO searchDto){
+		searchDto.setStart(1);
+		searchDto.setEnd(4);
+		return projectService.getProjects(searchDto);
+	
+	}
+	
+	//분야별 조회
+	@RequestMapping(value="/getCategoryProjects", method=RequestMethod.GET) 
+	public String getCategoryProjects(Model model,
+							ProjectSearchDTO searchDto ) {
+		// 시작/마지막 레코드 번호
+		searchDto.setStart(1);
+		searchDto.setEnd(8);
+		
+		model.addAttribute("searchCondition",searchDto.getSearchCondition() );
+		model.addAttribute("count", projectService.getCnt(searchDto)); //전체건수
+		model.addAttribute("list", projectService.getProjects(searchDto));  
+		
+		return "noNav/projectselect/getCategoryProjects";				
+	}
+//ajax 전송
+	@RequestMapping(value="/getCategoryProjects" , method=RequestMethod.POST)
+	@ResponseBody
+	public List<ProjectDTO> categoryScrollData(ProjectSearchDTO searchDto){
 		searchDto.setStart(1);
 		searchDto.setEnd(4);
 		return projectService.getProjects(searchDto);
