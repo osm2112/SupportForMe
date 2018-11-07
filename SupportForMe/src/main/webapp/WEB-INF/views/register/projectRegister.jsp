@@ -577,7 +577,7 @@ input[type=text]:-webkit-autofill {
 	font-size:20px;
 	font-weight:800;
 	margin: 0px 20px;
-}
+}  
 </style>
 <script>
 $(function() {
