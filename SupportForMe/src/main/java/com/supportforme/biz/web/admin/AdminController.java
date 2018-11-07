@@ -115,5 +115,37 @@ public class AdminController {
 
 	}
 	
+	
+	
+	@RequestMapping("/forme/AdminProjectProgressList")	
+	public String getProjectProgressList(Model model, AdminSearchDTO adminSearchDTO, Paging paging, HttpServletRequest request ) {
+		
+		paging.setPageUnit(5);
+		
+		//현재페이지 번호 파라미터
+		if(paging.getPage() ==null) {
+			paging.setPage(1);
+		}
+		//전체 건수
+		int total = adminService.getCntProjectProgressList(adminSearchDTO);
+		paging.setTotalRecord(total);
+		model.addAttribute("paging",paging);
+		
+		//시작 /마지막 레코드 번호
+		adminSearchDTO.setStart(paging.getFirst());
+		adminSearchDTO.setEnd(paging.getLast());
+
+		/*model.addAttribute("searchCondition",request.getParameter("searchCondition"));
+		model.addAttribute("searchKeyword",request.getParameter("searchKeyword"));
+		model.addAttribute("supportForMePickUp",request.getParameter("supportForMePickUp"));*/
+		model.addAttribute("list", adminService.getProjectProgressList(adminSearchDTO));
+		
+		return "adminNav/admin/adminProjectListForm";
+	}
+	
+	
+	
+	
+	
 
 }

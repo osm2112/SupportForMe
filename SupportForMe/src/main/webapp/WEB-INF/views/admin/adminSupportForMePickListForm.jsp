@@ -132,6 +132,7 @@
 				<td onclick="location.href='../support/getProjectDetailPage?projectNo=?projectNo=${list.projectNo}'">${list.supportPickYn}</td>
 			</tr>
 		</c:forEach>
+	</tbody>
 		<tr>
 			<td colspan="6">
 				<my:paging paging="${paging}"/>
@@ -139,7 +140,7 @@
 				<input type="button" class="btn _btn _btn2 pull-right" value="서포미픽  선택" onclick="SupportForMePickUp('yes')">
 			</td>
 		</tr>
-	</tbody>
+	
 	</table>
 </body>
 </html>

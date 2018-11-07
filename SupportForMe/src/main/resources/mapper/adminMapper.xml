@@ -159,4 +159,44 @@
 			</foreach>
 		</where>
 	</update>
+	
+	<resultMap type="java.util.HashMap" id="getProjectProgressListMap">
+		<result column="PROJECT_NO" property="projectNo" />
+		<result column="PROJECT_NAME" property="projectName" />
+		<result column="NAME" property="name" />
+		<result column="USER_ID" property="userId" />
+		<result column="PROJECT_DEADLINE" property="projectDeadline" />
+		<result column="TARGET_AMOUNT" property="targetAmount" />
+		<result column="CODE_NAME" property="codeName" />
+	</resultMap>
+	
+	<select id="getProjectProgressList" parameterType="adminSearch" resultMap="getProjectProgressListMap">
+	SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
+		SELECT 
+				PROJECT.PROJECT_NO,
+				PROJECT.PROJECT_NAME,
+      			MEMBER.NAME,
+      			PROJECT.USER_ID,
+      			PROJECT.PROJECT_DEADLINE,
+      			PROJECT.TARGET_AMOUNT,
+    			COMMON_CODE.CODE_NAME
+		FROM PROJECT 
+		JOIN MEMBER ON PROJECT.USER_ID = MEMBER.USER_ID
+		JOIN COMMON_CODE ON COMMON_CODE.CODE =PROJECT.PROGRESS  AND COMMON_CODE.CODE_GROUP ='C03'
+		WHERE MEMBER.USER_ID IS NOT NULL
+	) A )WHERE RNUM BETWEEN #{start} AND #{end}	
+	</select>
+	
+	
+	<select id="ProjectProgressListCount" parameterType="adminSearch" resultType="int">
+		SELECT 
+				COUNT(PROJECT.PROJECT_NO)
+		FROM PROJECT 
+		JOIN MEMBER ON PROJECT.USER_ID = MEMBER.USER_ID
+		JOIN COMMON_CODE ON COMMON_CODE.CODE =PROJECT.PROGRESS AND COMMON_CODE.CODE_GROUP ='C03'
+		WHERE MEMBER.USER_ID IS NOT NULL	
+	</select>
+	
+	
+	
 </mapper> 
