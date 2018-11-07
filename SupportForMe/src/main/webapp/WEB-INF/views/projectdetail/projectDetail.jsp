@@ -6,13 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 <title>* ${project.projectName} *</title>
 
-<!-- 이건 슬라이드땜에 가져온거 -->
+<!-- 슬라이드 -->
 <link type="text/css" rel="stylesheet" href="../css/lightslider.css" />                  
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="../js/lightslider.js"></script> 
-
 
 <style>
 
@@ -238,6 +240,90 @@ $(document).ready(function() {
         }  
     });
 });
+
+/*-----------------------------------------댓글-----------------------------------------------------------*/
+$(function(){
+	
+	//댓글 조회
+	function loadCommentsList() {
+		var params = { projectNo: '${project.projectNo}'};
+		$.getJSON("../support/getCommentsList", params, function(data){
+			for(i=0; i<data.length; i++) {
+				$("#commentList").append(makeCommentView(data[i]));
+			}
+		});
+	}
+	
+	function makeCommentView(comments) {
+		var div = $("<div>");
+		div.attr("id", "c"+comments.commentNo);
+		div.addClass('comments');
+		div[0].comments=comments;
+		
+		var str ="<span class='userId'>" + comments.userId + "</span><br>" 
+        		+"<span class='commentContent'>" + comments.commentContent +"</span><br>"
+        		+"<span class='commentDate'>"+comments.commentDate+"</span><br>"
+				+"<button type=\"button\" class=\"btnUpdFrm\">수정</button>"
+				+"<button type=\"button\" class=\"btnDel\">삭제</button><hr><br>"
+		div.html(str);
+		console.log(div[0].comments);		
+				
+		return div;
+	}
+
+	//댓글등록
+	$("#btnAdd").click(function(){
+		$("#btnCancel").click();
+		var params = $("[name=addForm]").serialize();		
+		var url = "../forme/insertComments";
+		$.getJSON(url, params, function(data){
+			$("#commentList").prepend( makeCommentView(data) );
+			$("[name=addForm]")[0].reset();
+		});
+	});
+	
+	//댓글 수정
+	$("#btnUpd").click(function(){
+		var params = $("[name=updateForm]").serialize();
+		var url = "../forme/updateComments";
+		$.getJSON(url, params, function(data){
+			var newDiv = makeCommentView(data);
+			var oldDiv = $("#c"+data.commentNo);
+			$("#btnCancel").click();
+			$(newDiv).replaceAll(oldDiv);
+		});
+	});
+	//수정폼 (수정할 댓글밑에 수정폼 보이게 함)
+	$("#commentList").on("click", ".btnUpdFrm", function(){
+		var seq = $(this).parent().attr("id").substring(1);		//seq = 'commentNo'
+		var comments = $(this).parent().get(0).comments;		//$(this).parent()[0]
+		
+		$("#updateForm [name=seq]").val(seq);    
+		$("#updateForm [name=commentContent]").val(comments.commentContent);
+		$("#updateForm [name=commentNo]").val(comments.commentNo);
+		//수정할 댓글밑으로 이동하고 보이게
+		$("#c"+seq).html('');
+		$("#c"+seq).append($('#commentUpdate'));  
+		$('#commentUpdate').show();   
+	});
+	//수정 취소 이벤트
+	$("#btnCancel").click(function(){
+		$("[name=updateForm]")[0].reset(); 
+		$("#comments").append( $("#commentUpdate") );
+		$("#commentUpdate").hide();  
+	});
+	
+	
+	loadCommentsList();
+})
+
+
+
+
+
+
+
+
 </script>
 
 </head> 
@@ -334,8 +420,45 @@ $(document).ready(function() {
 			<div id="story" class="tabcontent">
 				${project.story}
 			</div>
+			
+<!--댓글-->	
 			<div id="comment" class="tabcontent">
-				<p>Paris is the capital of France.</p>
+			
+<!--댓글출력--><div id="commentList"></div>
+
+			<div style="width:600px; height:150px; border:1px solid grey;">
+				<div id="commentAdd">
+					<form name="addForm" id="addForm">
+						<input type="hidden" name="projectNo" value="${project.projectNo}">
+						<input type="text" name="userId" value="${member.userId}" readonly>
+						<textarea name="commentContent" cols="60" rows="5"></textarea>	<br>
+						<button type="button" id="btnAdd">등록</button>		
+					</form>
+				</div>
+			</div>
+			
+<!--댓글 수정-->			
+			<div id="commentUpdate" style="width:600px; height:150px; border:1px solid blue; display:none;">
+				<form name="updateForm" id="updateForm">
+					<input type="hidden" name="commentNo" value="${comments.commentNo}">
+					<input type="text" name="userId" value="${member.userId}" readonly>
+					<textarea name="commentContent" cols="60" rows="5"></textarea>	<br>
+					<button type="button" id="btnUpd">수정</button><button type="button" id="btnCancel">취소</button>	
+				</form>
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+				
 			</div>
         </div>
 <script>

@@ -13,58 +13,67 @@ import com.supportforme.biz.comments.CommentsService;
 @Controller
 public class CommentsController {
 
-	@Autowired
-	CommentsService commentsService;
+	@Autowired CommentsService commentsService;
+/*	
+	@Autowired MemberService memberService;
 	
+	@RequestMapping("/forme/AddrUserId")
+	@ResponseBody
+	public MemberDTO addrInput(HttpSession session) {
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
+		return dto;
+	}
+*/	
 	//댓글조회
-	@RequestMapping("getCommentsList")
+	@RequestMapping("/support/getCommentsList")
 	@ResponseBody
 	public List<CommentsDTO> getCommentsList(CommentsDTO dto) {
 		return commentsService.getCommentsList(dto);
 	}
 	//답글조회
-	@RequestMapping("getReplyCommentsList")
+	@RequestMapping("/support/getReplyCommentsList")
 	@ResponseBody
 	public List<CommentsDTO> getReplyCommentsList(CommentsDTO dto){
 		return commentsService.getReplyCommentsList(dto);
 	}
 	//댓글 입력
-	@RequestMapping("insertComments")
+	@RequestMapping("/forme/insertComments")
 	@ResponseBody
 	public CommentsDTO insertComments(CommentsDTO dto) {
 		commentsService.insertComments(dto);
 		return commentsService.getComments(dto);
 	}
 	//답글 입력
-	@RequestMapping("insertReplyComments")
+	@RequestMapping("/forme/insertReplyComments")
 	@ResponseBody
 	public CommentsDTO insertReplyComments(CommentsDTO dto) {
 		commentsService.insertReplyComments(dto);
 		return commentsService.getComments(dto);
 	}
 	//댓글수정
-	@RequestMapping("updateComments")
+	@RequestMapping("/forme/updateComments")
 	@ResponseBody
 	public CommentsDTO updateComments(CommentsDTO dto) {
 		commentsService.updateComments(dto);
 		return commentsService.getComments(dto);
 	}
 	//답글수정
-	@RequestMapping("updateReplyComments")
+	@RequestMapping("/forme/updateReplyComments")
 	@ResponseBody
 	public CommentsDTO updateReplyComments(CommentsDTO dto) {
 		commentsService.updateReplyComments(dto);
 		return commentsService.getComments(dto);
 	}
 	//댓글삭제
-	@RequestMapping("deleteComments")
+	@RequestMapping("/forme/deleteComments")
 	@ResponseBody
 	public CommentsDTO deleteComments(CommentsDTO dto) {
 		commentsService.deleteComments(dto);
 		return dto;
 	}
 	//답글삭제
-	@RequestMapping("deleteReplyComments")
+	@RequestMapping("/forme/deleteReplyComments")
 	@ResponseBody
 	public CommentsDTO deleteReplyComments(CommentsDTO dto) {
 		commentsService.deleteReplyComments(dto);
