@@ -19,10 +19,10 @@
 			</if>
 			<if test="searchKeyword != null and searchKeyword != '' ">
 				OR (h.hashtag_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'
-					OR p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} ||	'%')		
+					OR p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} ||	'%') AND p.progress NOT IN('제작중','보류')
 			</if>
 			<if test="searchCondition != null and searchCondition != '' ">
-				OR p.category_code = #{searchCondition} 
+				OR p.category_code = #{searchCondition} AND p.progress IN('진행중')
 			</if>
 			<if test="projectNo != null and projectNo != '' ">
 				<![CDATA[ 
@@ -50,9 +50,10 @@
 			<if test="searchKeyword != null and searchKeyword != '' ">
 				OR (p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'
 				OR h.hashtag_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%')
+				AND p.progress NOT IN('제작중','보류')
 			</if>
 			<if test="searchCondition != null and searchCondition != '' ">
-				OR p.category_code = #{searchCondition} 
+				OR p.category_code = #{searchCondition} AND p.progress IN('진행중')
 			</if>
 		</where>	
 	</select>
@@ -64,8 +65,9 @@
 		FROM ( SELECT *
 		FROM project
 		ORDER BY DBMS_RANDOM.RANDOM ) p
-		<where>
+		<where>		
 				<![CDATA[
+				progress ='진행중' AND
 				category_code ='001' AND rownum < 5
 				]]>
 		</where>
@@ -79,6 +81,7 @@
 		ORDER BY DBMS_RANDOM.RANDOM ) p
 		<where>
 				<![CDATA[
+				progress ='진행중' AND
 				category_code ='003' AND rownum < 5		
 				]]>
 		</where>
@@ -92,6 +95,7 @@
 		ORDER BY DBMS_RANDOM.RANDOM ) p
 		<where>
 				<![CDATA[
+				progress ='진행중' AND
 				category_code ='004' AND rownum < 5		
 				]]>
 		</where>
@@ -105,6 +109,7 @@
 		ORDER BY DBMS_RANDOM.RANDOM ) p
 		<where>
 				<![CDATA[
+				progress ='진행중' AND
 				category_code ='002' AND rownum < 5		
 				]]>
 		</where>
@@ -116,9 +121,10 @@
 				SELECT project_no, project_name, image
 				FROM (   select i.project_no, count(*) as count ,p.project_name, p.image
     	  	      	from invest i JOIN project p on( i.PROJECT_NO = p.project_no)
-     		      	  group by i.project_no, p.project_name, p.image
-	      	    	  order by count desc)
-		 		WHERE rownum <=5
+    	  	      	where p.progress ='진행중' 
+     		      	group by i.project_no, p.project_name, p.image
+	      	    	order by count desc)
+		 		WHERE rownum <=5 
 		 		]]>
 	</select>
 	<!-- 서포미픽 조회 -->
@@ -126,7 +132,7 @@
 		<![CDATA[	
 		SELECT project_no, project_name, image, category_code
  		FROM project 
-  		WHERE rownum <=5 AND support_pick_yn = 'Y'
+  		WHERE rownum <=5 AND support_pick_yn = 'Y' AND progress ='진행중' 
   		ORDER BY DBMS_RANDOM.RANDOM
 		 		]]>
 	</select>

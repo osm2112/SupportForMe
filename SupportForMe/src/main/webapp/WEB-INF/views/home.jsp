@@ -53,7 +53,7 @@
 	border-left: none;
 	width: 295px;
 	height: 350px;
-}
+} 
 
 .suforme_picks_projects_content nav li {
 	margin-top: 10px;
@@ -221,34 +221,41 @@ li em {
 }
 
 .flexslider2 .flex-direction-nav .flex-next {
-    right: 5px; /* adjust offset to match the hover style */
+    right: 1560px; /* adjust offset to match the hover style */
     opacity: .8; /* adjust opacity to match the hover style */
   
 }
 
 .flexslider2 .flex-direction-nav .flex-prev {
-    left: 5px; /* adjust offset to match the hover style */
+   
+    left: 260px; /* adjust offset to match the hover style */
     opacity: .8; /* adjust opacity to match the hover style */
  
+}
+.flexslider2 .flex-direction-nav a {
+   
+    margin: -70px 0 0;
 }
 
 .flexslider2 .flex-direction-nav a.flex-prev:before {
     font-family:'FontAwesome';
-    font-size: 20px;
+    font-size: 40px;
     display: inline-block;
-     content: "\f191";  
+    width:40px;
+    content: "\f191";  
     color: black; 
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+   /*  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3); */
     line-height: 40px;  
 }  
  
 .flexslider2 .flex-direction-nav a.flex-next:before {
    font-family:'FontAwesome';
-    font-size: 20px;
+    font-size: 40px;
     display: inline-block;
+    width:40px;
     content: "\f152";
     color: black; 
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+    /* text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3); */
     line-height: 40px;
 }
 
@@ -406,7 +413,12 @@ li em {
 										<nav>
 											<ul>
 												<li>카테고리</li>
-												<li>${pick.categoryCode}</li>
+												<li>
+													<c:if test="${pick.categoryCode eq 001}">공연</c:if>
+													<c:if test="${pick.categoryCode eq 002}">영화</c:if>
+													<c:if test="${pick.categoryCode eq 003}">미술</c:if>
+													<c:if test="${pick.categoryCode eq 004}">도서</c:if>
+												</li>
 												<li>프로젝트 제목</li>
 												<li>${pick.projectName}</li>
 											</ul>

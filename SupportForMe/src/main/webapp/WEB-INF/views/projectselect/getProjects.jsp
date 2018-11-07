@@ -118,7 +118,7 @@ $(document).ready(function() {
 						if (data.length > 0) {
 							for (i = 0; i < data.length; i++) {
 								$('.div2').append(
-														  '<div class="project_box" id=' + data[i].projectNo + ' style="cursor:pointer;" onclick="location.href=\'./support/getProjectDetailPage?projectNo=' + data[i].projectNo + '\'\">'
+														  '<div class="project_box" id=' + data[i].projectNo + ' style="cursor:pointer;" onclick="location.href=\'./getProjectDetailPage?projectNo=' + data[i].projectNo + '\'\">'
 													    + '		<div class="mypage_project_image"><img src="../images/'+data[i].image +'" onerror="this.src=\'../images/대체이미지.jpg\'"></div>'
 														+ '			<div class="mypage_project_content">'
 														+ '				<div class="project_state">' +data[i].progress+ '</div>'
@@ -153,7 +153,7 @@ $(document).ready(function() {
 			</div>
 			<div class="div2">
 				<c:forEach items="${list}" var="project">
-					<div class="project_box" id="${project.projectNo}" style="cursor: pointer;"	onclick="location.href='./support/getProjectDetailPage?projectNo=${project.projectNo}'">
+					<div class="project_box" id="${project.projectNo}" style="cursor: pointer;"	onclick="location.href='./getProjectDetailPage?projectNo=${project.projectNo}'">
 						<div class="mypage_project_image"><img src="../images/${project.image}" onerror="this.src='../images/대체이미지.jpg'"></div>
 						<div class="mypage_project_content">
 							<div class="project_state">${project.progress}마감</div>
