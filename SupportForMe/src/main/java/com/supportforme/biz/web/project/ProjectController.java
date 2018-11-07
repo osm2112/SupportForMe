@@ -58,7 +58,7 @@ public class ProjectController {
 	}
 	
 	//분야별 조회
-	@RequestMapping(value="/getCategoryProjects", method=RequestMethod.GET) 
+	@RequestMapping(value="/support/getCategoryProjects", method=RequestMethod.GET) 
 	public String getCategoryProjects(Model model,
 							ProjectSearchDTO searchDto ) {
 		// 시작/마지막 레코드 번호
@@ -72,7 +72,7 @@ public class ProjectController {
 		return "noNav/projectselect/getCategoryProjects";				
 	}
 //ajax 전송
-	@RequestMapping(value="/getCategoryProjects" , method=RequestMethod.POST)
+	@RequestMapping(value="/support/getCategoryProjects" , method=RequestMethod.POST)
 	@ResponseBody
 	public List<ProjectDTO> categoryScrollData(ProjectSearchDTO searchDto){
 		searchDto.setStart(1);

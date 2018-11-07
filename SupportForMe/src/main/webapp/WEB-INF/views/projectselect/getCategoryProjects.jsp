@@ -120,7 +120,7 @@ $(document).ready(function() {
 							for (i = 0; i < data.length; i++) {
 								$('.div2').append(
 														  '<div class="project_box" id=' + data[i].projectNo + ' style="cursor:pointer;" onclick="location.href=\'./getProjectDetailPage?projectNo=' + data[i].projectNo + '\'\">'
-														+ '		<div class="mypage_project_image"><img src="../images/images.jpg"></div>'
+														+ '		<div class="mypage_project_image"><img src="../images/'+data[i].image +'" onerror="this.src=\'../images/대체이미지.jpg\'"></div>'
 														+ '			<div class="mypage_project_content">'
 														+ '				<div class="project_state">' +data[i].progress+ '</div>'
 														+ '				<ul>'								
@@ -160,7 +160,7 @@ $(document).ready(function() {
 			<div class="div2">
 				<c:forEach items="${list}" var="project">
 					<div class="project_box" id="${project.projectNo}" style="cursor: pointer;"	onclick="location.href='./getProjectDetailPage?projectNo=${project.projectNo}'">
-						<div class="mypage_project_image"><img src="../images/images.jpg"></div>
+						<div class="mypage_project_image"><img src="../images/${project.image}" onerror="this.src='../images/대체이미지.jpg' "></div>
 						<div class="mypage_project_content">
 							<div class="project_state">${project.progress}마감</div>
 							<ul>
@@ -179,7 +179,7 @@ $(document).ready(function() {
 				</c:forEach>
 			</div>
 		</div>
-	</div>
-	<div style="height:300px"></div>
+	</div> 
+	<div style="height:200px"></div>
 </body>
 </html>

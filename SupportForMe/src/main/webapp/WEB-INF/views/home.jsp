@@ -400,7 +400,7 @@ li em {
 								<div class="suforme_picks_grid" style="cursor: pointer;"
 									onclick="location.href='support/getProjectDetailPage?projectNo=${pick.projectNo}'">
 									<div class="suforme_picks_projects">
-										<img src="./images/${pick.image}">
+										<img src="./images/${pick.image}" onerror="this.src='./images/대체이미지.jpg'">
 									</div>
 									<div class="suforme_picks_projects_content">
 										<nav>
@@ -424,11 +424,11 @@ li em {
 				<div class="real_time_rank_div">
 					<div class="real_time_image flexslider3">
 						<ul class="slides">
-							<li><img src="" style="cursor: pointer;"></li>
-							<li><img src="" style="cursor: pointer;"></li>
-							<li><img src="" style="cursor: pointer;"></li>
-							<li><img src="" style="cursor: pointer;"></li>
-							<li><img src="" style="cursor: pointer;"></li>
+							<li><img src="" onerror="this.src='./images/대체이미지.jpg'" style="cursor: pointer;"></li>
+							<li><img src="" onerror="this.src='./images/대체이미지.jpg'" style="cursor: pointer;"></li>
+							<li><img src="" onerror="this.src='./images/대체이미지.jpg'" style="cursor: pointer;"></li>
+							<li><img src="" onerror="this.src='./images/대체이미지.jpg'" style="cursor: pointer;"></li>
+							<li><img src="" onerror="this.src='./images/대체이미지.jpg'" style="cursor: pointer;"></li>
 						</ul>
 					</div>
 					<div class="real_time_rank_projects">
@@ -461,7 +461,7 @@ li em {
 					style="cursor: pointer;"
 					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
 					<div class="main_project_image">
-						<img src="./images/${project.image}">
+						<img src="./images/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
 						<ul>
@@ -479,7 +479,7 @@ li em {
 				</div>				
 			</c:forEach>
 		</div>
-		<div style="text-align: right"><br><a href="./getCategoryProjects?searchCondition=001">더보기 </a></div>	
+		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=001">더보기 </a></div>	
 		<div style="height: 50px"></div>
 		<!-- 미술 부분  -->
 		<div class="suforme_top_1_text_div"><span><i class="fa fa-paint-brush"></i>&nbsp미술 프로젝트</span></div>		
@@ -489,7 +489,7 @@ li em {
 						style="cursor: pointer;"
 						onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
 						<div class="main_project_image">
-							<img src="./images/${project.image}">
+							<img src="./images/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
 						</div>
 						<div class="main_project_content">
 							<ul>
@@ -507,7 +507,7 @@ li em {
 					</div>
 				</c:forEach>
 			</div>
-			<div style="text-align: right"><br><a href="./getCategoryProjects?searchCondition=003">더보기 </a></div>	
+			<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=003">더보기 </a></div>	
 			<div style="height: 50px"></div>
 		<!-- 도서 -->
 		<div class="suforme_top_1_text_div"><span><i class="fa fa-book"></i>&nbsp도서 프로젝트</span></div> 
@@ -517,7 +517,7 @@ li em {
 					style="cursor: pointer;"
 					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
 					<div class="main_project_image">
-						<img src="./images/${project.image}">
+						<img src="./images/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
 						<ul>
@@ -535,7 +535,7 @@ li em {
 				</div>				
 			</c:forEach>
 		</div>
-		<div style="text-align: right"><br><a href="./getCategoryProjects?searchCondition=004">더보기 </a></div>
+		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=004">더보기 </a></div>
 		<div style="height: 50px"></div>
 		<!-- 영화 -->
 		<div class="suforme_top_1_text_div"><span><i class="fa fa-film"></i>&nbsp영화 프로젝트</span></div> 
@@ -545,7 +545,7 @@ li em {
 					style="cursor: pointer;"
 					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
 					<div class="main_project_image">
-						<img src="./images/${project.image}">
+						<img src="./images/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
 						<ul>
@@ -563,7 +563,7 @@ li em {
 				</div>				
 			</c:forEach>
 		</div>
-		<div style="text-align: right"><br><a href="./getCategoryProjects?searchCondition=002">더보기 </a></div>	
+		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=002">더보기 </a></div>	
 		
 	</div>
 	
