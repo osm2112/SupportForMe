@@ -16,6 +16,12 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="../js/lightslider.js"></script> 
 
+<!-- 진행률 상태바 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
 <style>
 
 .pjdtl-bodysize {
@@ -75,10 +81,6 @@
 	flex-direction: column;
 	width: 520px;
 	height: 430px;
-}
-
-.pjdtl-get-price {
-	font-size: 45px;
 }
 
 .pjdtl-target-price {
@@ -179,45 +181,6 @@ ul {
 	width: 660px;
 }
 
-
-
-
-/* Style the tab */
-.tab {
-    overflow: hidden;
-    /*border: 1px solid #ccc;
-    background-color: #f1f1f1;*/
-}
-
-/* Style the buttons inside the tab */
-.tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    color: #747474;
-    font-size: 20px;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-    border-bottom: 2px solid rgb(26, 188, 156);
-    color:#4C4C4C;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-    border-bottom: 2px solid rgb(26, 188, 156);
-    color:#4C4C4C;
-}
-
-/* Style the tab content */
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-}
 </style>
 
 <script>
@@ -317,13 +280,6 @@ $(function(){
 	loadCommentsList();
 })
 
-
-
-
-
-
-
-
 </script>
 
 </head> 
@@ -369,7 +325,7 @@ $(function(){
         <div class="pjdtl-empty-box"></div>
         <!-- 디테일 박스 -->
         <div class="pjdtl-detail-box">
-            <div class="pjdtl-get-price">${invest.totalInvestAmount}원<a style="font-size:40px;">(모인금액)</a></div>
+            <div style="font-size:45px;">${invest.totalInvestAmount}원<span style="font-size:37px;">(모인금액)</span></div>
             <div class="pjdtl-target-price">목표금액 ${project.targetAmount}원</div>
 <!-- 진행상황 막대그래프 -->           
             <div>
@@ -410,80 +366,73 @@ $(function(){
     <div class="pjdtl-bodysize">
         <div class="pjdtl-flex-container">
         <div class="pjdtl-content">
-	        <!-- Tab links -->
-	    	<div class="tab">
-	  			<button class="tablinks" onclick="openContent(event, 'story')">스토리</button>
-	  			<button class="tablinks" onclick="openContent(event, 'comment')">댓글</button>
-			</div>
-	    	
-	    	<!-- Tab content -->
-			<div id="story" class="tabcontent">
-				${project.story}
-			</div>
-			
+		
+		<div class="container">
+		  <ul class="nav nav-tabs" style="width:785px;">
+		    <li class="active"><a data-toggle="tab" href="#home">스토리</a></li>
+		    <li><a data-toggle="tab" href="#menu1">댓글</a></li>
+		  </ul>
+		
+		  <div class="tab-content">
+		    <div id="home" class="tab-pane fade in active" style="width:785px;">
+		    	${project.story}
+		    </div>
+		    <div id="menu1" class="tab-pane fade" style="width:785px;">
+		     			
 <!--댓글-->	
 			<div id="comment" class="tabcontent">
 			
 <!--댓글출력--><div id="commentList"></div>
 
-			<div style="width:600px; height:150px; border:1px solid grey;">
-				<div id="commentAdd">
+				<div id="commentAdd" style="width:785px; height:140px; padding:15px; background-color:#F6F6F6;">
 					<form name="addForm" id="addForm">
 						<input type="hidden" name="projectNo" value="${project.projectNo}">
-						<input type="text" name="userId" value="${member.userId}" readonly>
-						<textarea name="commentContent" cols="60" rows="5"></textarea>	<br>
-						<button type="button" id="btnAdd">등록</button>		
-					</form>
-				</div>
-			</div>
+						<input type="hidden" name="userId" value="${member.userId}">
+                        <div style="display: flex;">
+				            <img src="../images/user-shape.png" style="width:60px; height:60px; margin:auto;">&nbsp;
+                            <textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
+                            <button type="button" id="btnAdd" style="width:180px; height:40px; margin:auto;">등록</button>
+				        </div>
+ 					</form>
+			     </div>
 			
 <!--댓글 수정-->			
-			<div id="commentUpdate" style="width:600px; height:150px; border:1px solid blue; display:none;">
+			<div id="commentUpdate" style="width:785px; height:140px; padding:15px; background-color:#F6F6F6; display:none;">
 				<form name="updateForm" id="updateForm">
 					<input type="hidden" name="commentNo" value="${comments.commentNo}">
-					<input type="text" name="userId" value="${member.userId}" readonly>
-					<textarea name="commentContent" cols="60" rows="5"></textarea>	<br>
-					<button type="button" id="btnUpd">수정</button><button type="button" id="btnCancel">취소</button>	
+					<input type="hidden" name="userId" value="${member.userId}">
+					<div style="display: flex;">
+						<img src="../images/user-shape.png" style="width:60px; height:60px; margin:auto;">&nbsp;
+						<textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
+						<div style="margin:auto;">
+							<button type="button" id="btnUpd" style="width:180px; height:40px;">수정</button><br>
+							<button type="button" id="btnCancel" style="width:180px; height:40px;">취소</button>
+						</div>
+					</div>	
 				</form>
 			</div>
 			
 			
 			
 			
-			
-			
-			
-			
-			
-			
-			
+		    </div>
+		  </div>
+		</div>
+
 			
 				
 			</div>
         </div>
-<script>
-	function openContent(evt, btnName) {
-		var i, tabcontent, tablinks;
-		tabcontent = document.getElementsByClassName("tabcontent");
-		for (i = 0; i < tabcontent.length; i++) {
-			tabcontent[i].style.display = "none";
-		}
-		tablinks = document.getElementsByClassName("tablinks");
-		for (i = 0; i < tablinks.length; i++) {
-			tablinks[i].className = tablinks[i].className.replace(
-					" active", "");
-		}
-		document.getElementById(btnName).style.display = "block";
-		evt.currentTarget.className += " active";
-	}
-</script>
+
         <div class="pjdtl-empty-content"></div>
         <div class="pjdtl-reward">
             <div style="font-size:30px;">리워드 목록</div>
             <c:forEach items="${present}" var="reward" varStatus="status">
             <div class="pjdtl-each-reward">
-            	<img src="../images/checkmark.png" style="width:27px; height:27px">
-            	<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span><br><br>
+            	<div style="display:flex;">
+            		<img src="../images/checkmark.png" style="width:27px; height:27px">
+            		<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span>
+            	</div><br><br>
             	<span style="color:#4C4C4C;">가격</span><br>
             	<span style="font-size:23px; color:#FF007F;">${reward.presentPrice}원 +</span><br>
             	<span style="color:#4C4C4C;">배송비 포함</span><br><br>
