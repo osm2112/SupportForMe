@@ -17,7 +17,7 @@ article {
 </style>
 </head>
 <body>
-	<div class="container">
+	<div class="_container">
 		<header>
 			<tiles:insertAttribute name="header" />
 		</header>

@@ -100,7 +100,7 @@
 			<div id="project_mypage_menu">
 				<nav>
 					<div>프로필 설정</div>
-					<div id="active">나의 프로젝트</div>
+					<div id="_active">나의 프로젝트</div>
 					<div>나의 투자현황</div>
 					<div>지불정보 설정</div>
 				</nav>

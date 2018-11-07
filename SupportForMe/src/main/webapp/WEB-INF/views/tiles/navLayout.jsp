@@ -9,26 +9,26 @@
 body {
 	margin:0px;
 }
-.container > nav {
+._container > nav {
 	float: left;
 	max-width: 800px;
 	margin: 0px 80px 0px 180px; 
 	padding: 1em;
 }
 
-.container > nav > ul {
+._container > nav > ul {
 	list-style-type: none;
 	padding: 0;
 }
 
-.container > nav > ul > a {
+._container > nav > ul > a {
 	text-decoration: none;
 }
-.container > article {
+._container > article {
 	padding: 1em;
 	overflow: hidden;
 }
-#active,.active {
+#_active,._active {
    /* color : rgb(26, 188, 156);
    border-left : 2px solid rgb(26, 188, 156);*/
    background-color : rgb(26, 188, 156);
@@ -38,7 +38,7 @@ body {
 </style>
 </head>
 <body>
-	<div class="container">
+	<div class="_container">
 		<header>
 			<tiles:insertAttribute name="header" />
 		</header>

@@ -57,7 +57,7 @@
             <div>프로젝트 만들기</div>
             <nav>
                 <ul id="rn">
-                    <li class="active basic">기본정보</li>
+                    <li class="_active basic">기본정보</li>
                     <li class="story">스토리</li>
                     <li class="reward">리워드</li>
                     <li class="account">부가정보</li>

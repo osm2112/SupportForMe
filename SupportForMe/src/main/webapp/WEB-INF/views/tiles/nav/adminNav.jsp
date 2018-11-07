@@ -28,7 +28,7 @@
     <div id="project_admin">
          <div id="project_admin_menu">  
             <nav>
-                <div id="active">프로젝트 관리</div>
+                <div id="_active">프로젝트 관리</div>
                 <div>회원 관리</div>
                 <div>서포미 픽 관리</div>
             </nav>

@@ -37,7 +37,7 @@
     <div id="project_invest">
         <div id="project_invest_menu">
             <nav>
-                <div id="active">리워드 선택</div>
+                <div id="_active">리워드 선택</div>
                 <div >결제</div>
                 <div>내역 확인</div>
             </nav>
