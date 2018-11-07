@@ -26,11 +26,6 @@
 	font-size: 18px;
 }
 
-#active {
-	background-color: rgb(26, 188, 156);
-	color: white;
-}
-
 .project_box {
 	width: 255px;
 	height: 420px;

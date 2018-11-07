@@ -19,12 +19,7 @@
             padding-top : 10px;
             padding-left : 5px;
             font-size : 18px;
-        }
-        #active {
-            background-color : rgb(26, 188, 156);
-            color:white;
-        }
-       
+        }     
     </style>
 </head>
 <body>

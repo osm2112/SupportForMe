@@ -6,9 +6,6 @@
 	<c:set var="jsFunc" value="go_page"></c:set>
 </c:if>
 <ul>
-
-
-<c:set var="name" value="홍길동" />
 <c:choose>
     <c:when test="${paging.page > 1}">
     <li><a href="#" onclick="${jsFunc}(${paging.page - 1})">이전</a>
