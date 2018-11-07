@@ -11,9 +11,15 @@ public class AdminSearchDTO  extends AdminDTO{
 	private String enddate;
 	private String[] ids;
 	private String flag;
+	private String progress;
 	
 	
-	
+	public String getProgress() {
+		return progress;
+	}
+	public void setProgress(String progress) {
+		this.progress = progress;
+	}
 	public String getFlag() {
 		return flag;
 	}

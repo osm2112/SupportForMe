@@ -84,8 +84,7 @@
 <div class="input-group" style="width:1200px;">
 	<input type="hidden" name="page" value="1">
 	<select name="searchCondition" class="form-control" style="width:200px;">
-		<option value="">전체</option>
-		<option value="projectNo">프로젝트번호</option>
+		<option value="">전체</option>>
 		<option value="projectName">프로젝트명</option>
 		<option value="name">프로젝트작성자</option>
 		<option value="userId">프로작성자ID</option>
@@ -104,6 +103,7 @@
 	<script>
 		document.searchForm.searchCondition.value ='${searchCondition}';
 		document.searchForm.searchKeyword.value ='${searchKeyword}';
+		document.searchForm.progress.value ='${progress}';
 	</script>
 </div>
 </form>

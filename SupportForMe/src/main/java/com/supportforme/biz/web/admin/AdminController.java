@@ -134,10 +134,10 @@ public class AdminController {
 		//시작 /마지막 레코드 번호
 		adminSearchDTO.setStart(paging.getFirst());
 		adminSearchDTO.setEnd(paging.getLast());
-
-		/*model.addAttribute("searchCondition",request.getParameter("searchCondition"));
+		adminSearchDTO.setProgress(request.getParameter("progress"));
+		model.addAttribute("searchCondition",request.getParameter("searchCondition"));
 		model.addAttribute("searchKeyword",request.getParameter("searchKeyword"));
-		model.addAttribute("supportForMePickUp",request.getParameter("supportForMePickUp"));*/
+		model.addAttribute("progress",request.getParameter("progress"));
 		model.addAttribute("list", adminService.getProjectProgressList(adminSearchDTO));
 		
 		return "adminNav/admin/adminProjectListForm";

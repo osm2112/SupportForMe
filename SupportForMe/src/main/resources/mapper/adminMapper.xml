@@ -183,7 +183,28 @@
 		FROM PROJECT 
 		JOIN MEMBER ON PROJECT.USER_ID = MEMBER.USER_ID
 		JOIN COMMON_CODE ON COMMON_CODE.CODE =PROJECT.PROGRESS  AND COMMON_CODE.CODE_GROUP ='C03'
-		WHERE MEMBER.USER_ID IS NOT NULL
+		<where>
+			MEMBER.PASSWORD IS NOT NULL
+			<if test="searchCondition == 'projectNo'">
+				AND PROJECT.PROJECT_NO LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="searchCondition == 'projectName'">
+				AND PROJECT.PROJECT_NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="searchCondition == 'name'">
+				AND MEMBER.NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="searchCondition == 'userId'">
+				AND PROJECT.USER_ID LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="progress != '' and progress != null ">
+				AND PROJECT.PROGRESS = #{progress}
+			</if>
+		
+		</where>
 	) A )WHERE RNUM BETWEEN #{start} AND #{end}	
 	</select>
 	
@@ -194,7 +215,25 @@
 		FROM PROJECT 
 		JOIN MEMBER ON PROJECT.USER_ID = MEMBER.USER_ID
 		JOIN COMMON_CODE ON COMMON_CODE.CODE =PROJECT.PROGRESS AND COMMON_CODE.CODE_GROUP ='C03'
-		WHERE MEMBER.USER_ID IS NOT NULL	
+		<where>
+			MEMBER.PASSWORD IS NOT NULL
+
+			<if test="searchCondition == 'projectName'">
+				AND PROJECT.PROJECT_NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="searchCondition == 'name'">
+				AND MEMBER.NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			
+			<if test="searchCondition == 'userId'">
+				AND PROJECT.USER_ID LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="progress != '' and progress != null ">
+				AND PROJECT.PROGRESS = #{progress}
+			</if>
+		
+		</where>
 	</select>
 	
 	
