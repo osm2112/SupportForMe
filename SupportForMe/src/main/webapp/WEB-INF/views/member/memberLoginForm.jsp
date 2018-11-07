@@ -6,37 +6,67 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
 </head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <style>
-    input.inputtext {
-        width : 99%;
-    }
-    button.loginbutton{
-        height: 70px;
-        width: 100px;
-        background-color: dimgrey;
-        color: white;
-    }
-    .h1text{
-        
-        display: inline;
-            
-    }
-    button.btn1, button.btn2, button.btn3 {
-        width: 100px;
-        
-    }
-    div.div1 {
-        padding: 10% 2% 10%;
-    }
-    div.div2 {
-        padding: 10% 0px; border:1px solid black; text-align: left;
-    }
-    table.table1 {
-        margin: auto;
-    }
+._btn, .input-group-addon{
+	background-color: rgb(26, 188, 156) ;
+	color: white; 
+}
+/*.input-group{
+	margin-top:25px;
+	margin-bottom:25px;
+} */
+
+.input-group {
+    margin-top: 1em;
+    margin-bottom: 1em;
+} 
+
+
+
+.login-box {
+    line-height: 2.3em;
+    font-size: 1em;
+    color: #aaa;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+
 </style>
 <body>
-	<div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="login-box well" style="width:600px;">
+					<form accept-charset="UTF-8" role="form" method="post" action="../support/login">
+						<legend>로그인</legend>
+						<div class="input-group">
+							<span class="input-group-addon" ><i class="fa fa-user"></i></span>
+							<input type="text" id="userId" name="userId" value=''	placeholder="ID을 입력하세요" class="form-control" />
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+							<input type="password" id="password" name="password" value="" placeholder="비밀번호를 입력하세요" class="form-control" />
+						</div>
+						<button type="submit" id="login-submit"	class="btn btn-default btn-block  _btn" />로그인</button>
+						<span class='text-center'><a href="../support/MemberFindIdForm" class="text-sm">아이디 찾기 /</a></span><span class='text-center'>
+						<a href="../support/MemberFindPasswordForm" class="text-sm"> 비밀번호 찾기</a></span>
+						<div class="form-group">
+							<a href="registerForm.php" class="btn btn-default btn-block _btn">회원가입</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div>
 		<div class="div1">
 			<h1 class="h1text">로그인</h1>
 			<img src="../images/open-lock.png" width="80px"	height="10%" align="right">
@@ -73,6 +103,6 @@
 			
 			</table>
 		</div>
-	</div>
+	</div> -->
 </body>
 </html>
