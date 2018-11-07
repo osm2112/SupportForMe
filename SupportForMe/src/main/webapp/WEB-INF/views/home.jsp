@@ -5,8 +5,8 @@
 <!doctype html>
 <html>
 <head>
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> --> 
+<!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/flexslider.min.css">
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider-min.js"></script>
@@ -510,7 +510,7 @@ li em {
 			<div style="text-align: right"><br><a href="#">더보기 </a></div>	
 			<div style="height: 50px"></div>
 		<!-- 도서 -->
-		<div class="suforme_top_1_text_div"><span><i class="fa fa-users"></i>&nbsp도서 프로젝트</span></div> 
+		<div class="suforme_top_1_text_div"><span><i class="fa fa-book"></i>&nbsp도서 프로젝트</span></div> 
 		<div class="category_project_div">
 			<c:forEach items="${Book}" var="project">
 				<div class="project_box" id="${project.projectNo}"
@@ -538,7 +538,7 @@ li em {
 		<div style="text-align: right"><br><a href="#">더보기 </a></div>
 		<div style="height: 50px"></div>
 		<!-- 영화 -->
-		<div class="suforme_top_1_text_div"><span><i class="fa fa-users"></i>&nbsp영화 프로젝트</span></div> 
+		<div class="suforme_top_1_text_div"><span><i class="fa fa-film"></i>&nbsp영화 프로젝트</span></div> 
 		<div class="category_project_div">
 			<c:forEach items="${Movie}" var="project">
 				<div class="project_box" id="${project.projectNo}"
