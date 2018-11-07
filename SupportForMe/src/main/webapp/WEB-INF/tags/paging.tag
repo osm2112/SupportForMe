@@ -5,13 +5,14 @@
 <c:if test="${empty jsFunc}">
 	<c:set var="jsFunc" value="go_page"></c:set>
 </c:if>
-<ul>
+
+<ul class="pagination my">
 <c:choose>
     <c:when test="${paging.page > 1}">
-    <li><a href="#" onclick="${jsFunc}(${paging.page - 1})">이전</a>
+    <li><a href="#" onclick="${jsFunc}(${paging.page - 1})"></a>
     </c:when>
     <c:otherwise>
-		<li>이전
+		<li class="page-item disabled"><a href="#">이전</a>
     </c:otherwise>
 </c:choose>
 
@@ -20,7 +21,7 @@
 		<li><a href="#" onclick="${jsFunc}(${i})">${i}</a>
 	</c:if>
 	<c:if test="${i == paging.page}">
-		<li class="active">${i}
+		<li class="active"><a href="#">${i}</a>
 	</c:if>
 </c:forEach>
 
@@ -29,7 +30,7 @@
     <li><a href="#" onclick="${jsFunc}(${paging.page + 1})">다음</a>
     </c:when>
     <c:otherwise>
-		<li>다음
+		<li class="page-item disabled"><a href="#">다음</a>
     </c:otherwise>
 </c:choose>
 </ul>

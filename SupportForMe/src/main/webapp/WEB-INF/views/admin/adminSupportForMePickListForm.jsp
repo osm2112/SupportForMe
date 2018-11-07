@@ -7,9 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>서포미픽 관리</title>
 </head>
-<body>
-	<h3>서포미 픽 관리</h3>
-	<hr>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>
 	function go_page(p){
 		document.searchForm.page.value=p;
@@ -53,68 +53,93 @@
 			return false;
 		}
 	}
-	
-	
 
-	
-	
 </script>
+<style>
+._btn {
+	margin-left: 15px;
+}
+
+._btn2 {
+	background: rgb(26, 188, 156);
+	color: white;
+}
+.my.pagination > .active > a, 
+.my.pagination > .active > span, 
+.my.pagination > .active > a:hover, 
+.my.pagination > .active > span:hover, 
+.my.pagination > .active > a:focus, 
+.my.pagination > .active > span:focus {
+  background: rgb(26, 188, 156);
+  border-color: rgb(26, 188, 156);
+}
+.pagination{
+	text-align: center;
+}
+</style>
 </head>
 <body>
-	<h3>서포미픽 관리</h3>
+	<h3>서포미 픽 관리</h3>
 	<hr>
 <form action="../forme/AdminSupportForMePickList" name="searchForm">
+<div class="input-group">
 	<input type="hidden" name="page" value="1">
-	<select name="searchCondition">
+	<select name="searchCondition" class="form-control" style="width: 150px">
 	<option value="">전체</option>
 		<option value="projectNo">프로젝트번호</option>
 		<option value="projectName">프로젝트명</option>
 		<option value="name">프로젝트작성자</option>	
 		<option value="userId">프로젝트작성자ID</option>
 	</select>
-	<select name="supportForMePickUp">
+	<select name="supportForMePickUp" class="form-control" style="width: 150px">
 		<option value="">서포미픽여부</option>
 		<option value="Y">서포미픽업Yes</option>
 		<option value="N">서포미픽업No</option>	
 	</select>
 	
 	
-	<input type="text" name="searchKeyword" value="">
-	<input type="submit" value="검색">
+	<input type="text" class="form-control" name="searchKeyword" value="" style="width: 500px">
+	
+		<input type="submit" class="btn _btn2" value="검색" style="width: 80px">
+	
 	<script>
 		document.searchForm.searchCondition.value ='${searchCondition}';
 		document.searchForm.searchKeyword.value ='${searchKeyword}';
 		document.searchForm.supportForMePickUp.value ='${supportForMePickUp}';
 	</script>
+</div>
 </form>
 
-	<table border="1">
+	<table class="table table-hover" style="width: 880px;">
+	<thead>
 		<tr>
-			<td>선택</td>
-			<td>프로젝트번호</td>
-			<td>프로젝트명</td>
-			<td>프로젝트작성자</td>
-			<td>프로젝트작성ID</td>
-			<td>서포미 픽 여부</td>
+			<th>선택</th>
+			<th>프로젝트번호</th>
+			<th>프로젝트명</th>
+			<th>프로젝트작성자</th>
+			<th>프로젝트작성ID</th>
+			<th>서포미 픽 여부</th>
 		</tr>
+	</thead>
+	<tbody>
 		<c:forEach items="${list}" var="list">
 			<tr>
-				<td><input type="checkbox" name="ids" value="${list.projectNo}"></td>
-				<td>${list.projectNo}</td>
-				<td>${list.projectName}</td>
-				<td>${list.name}</td>
-				<td>${list.userId}</td>
-				<td>${list.supportPickYn}</td>
+				<td ><input type="checkbox" name="ids" value="${list.projectNo}"></td>
+				<td onclick="location.href='../support/getProjectDetailPage?projectNo=?projectNo=${list.projectNo}'">${list.projectNo}</td>
+				<td onclick="location.href='../support/getProjectDetailPage?projectNo=?projectNo=${list.projectNo}'">${list.projectName}</td>
+				<td onclick="location.href='../support/getProjectDetailPage?projectNo=?projectNo=${list.projectNo}'">${list.name}</td>
+				<td onclick="location.href='../support/getProjectDetailPage?projectNo=?projectNo=${list.projectNo}'">${list.userId}</td>
+				<td onclick="location.href='../support/getProjectDetailPage?projectNo=?projectNo=${list.projectNo}'">${list.supportPickYn}</td>
 			</tr>
 		</c:forEach>
 		<tr>
 			<td colspan="6">
-				<input type="button" value="서포미픽 해제" onclick="SupportForMePickUp('no')">
-				<input type="button" value="서포미픽  선택" onclick="SupportForMePickUp('yes')">
+				<my:paging paging="${paging}"/>
+				<input type="button" class="btn _btn _btn2 pull-right" value="서포미픽 해제" onclick="SupportForMePickUp('no')">
+				<input type="button" class="btn _btn _btn2 pull-right" value="서포미픽  선택" onclick="SupportForMePickUp('yes')">
 			</td>
 		</tr>
+	</tbody>
 	</table>
-	<my:paging paging="${paging}"/>
-	
 </body>
 </html>
