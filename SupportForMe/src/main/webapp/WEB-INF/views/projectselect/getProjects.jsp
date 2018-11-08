@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -109,14 +110,16 @@ $(document).ready(function() {
 				}
 			});
 	function loadArticle(lastno) {
+		
 		$.ajax({	type : "post",
 					url : "./getProjects",
 					data : { "projectNo" : lastno,
 							 "searchKeyword" : '${searchDTO.searchKeyword}' },
 					dataType : "json",
 					success : function(data) {
-						if (data.length > 0) {
+						if (data.length > 0 ) {
 							for (i = 0; i < data.length; i++) {
+							
 								$('.div2').append(
 														  '<div class="project_box" id=' + data[i].projectNo + ' style="cursor:pointer;" onclick="location.href=\'./getProjectDetailPage?projectNo=' + data[i].projectNo + '\'\">'
 													    + '		<div class="mypage_project_image"><img src="../images/'+data[i].image +'" onerror="this.src=\'../images/대체이미지.jpg\'"></div>'
@@ -124,13 +127,16 @@ $(document).ready(function() {
 														+ '				<div class="project_state">' +data[i].progress+ '</div>'
 														+ '				<ul>'								
 														+ '  				<li>창작자 ID : ' + data[i].userId	+ '</li>'
+														+ ' 				<li style="height: 5px"></li>'		
 														+ '   				<li style="font-size : 18px;">' + data[i].projectName + '</li>'
-														+ '   				<li style="height : 20px"></li>'
-														+ '   				<li style="display:grid;grid-template-columns: 70% 30%">'
-														+ '       				<span align="left">모금액 : ' + data[i].totalInvest + '</span>'
-														+ '       				<span>' + data[i].percent + '%</span></li>'
-														+ '  				<li style="color:rgb(26, 188, 156)"><progress style="width:80%;" value="'+data[i].percent+'" max="100"></progress>   </li>'
-														+ '  				<li>목표금액 : ' + data[i].targetAmount + '</li>'
+														+ ' 				<li style="height: 10px"></li>'		
+														+ '   				<li style="display:grid; grid-template-columns: 100%">'
+														+ '       				<span>모금액 : ' + data[i].totalInvest +'원</span></li>'
+														+ ' 				<li style="height: 10px"></li>'
+														+ ' 				<li style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%">'			
+														+ ' 						<progress style="width: 95%; height:21px;" value="'+ data[i].percent +'" max="100"></progress><span>'+ data[i].percent +'%</span></li>'		
+														+ ' 				<li style="height: 10px"></li>'
+														+ ' 				<li>목표액 :'+ data[i].targetAmount+'원</li>'
 														+ '				</ul>'
 														+ '			</div>'
 														+ '	</div>');
@@ -158,17 +164,20 @@ $(document).ready(function() {
 					<div class="project_box" id="${project.projectNo}" style="cursor: pointer;"	onclick="location.href='./getProjectDetailPage?projectNo=${project.projectNo}'">
 						<div class="mypage_project_image"><img src="../images/${project.image}" onerror="this.src='../images/대체이미지.jpg'"></div>
 						<div class="mypage_project_content">
-							<div class="project_state">${project.progress}마감</div>
+							<div class="project_state">${project.progress}</div>
 							<ul>
 								<li>창작자 ID : ${project.userId}</li>
+								<li style="height: 5px"></li>
 								<li style="font-size: 18px;">${project.projectName}</li>
-								<li style="height: 20px"></li>
-								<li style="display: grid; grid-template-columns: 70% 30%">
-									<span align="left">모금액 : ${project.totalInvest}</span> 
-									<span>${project.percent}%</span>
+								<li style="height: 10px"></li>
+								<li style="display: grid; grid-template-columns: 100%">
+									<span>모금액 : <fmt:formatNumber value="${project.totalInvest}" pattern="#,###" />원</span> 
 								</li>
-								<li style="color: rgb(26, 188, 156);"><progress style="width:80%;" value="${project.percent}" max="100"></progress></li>
-								<li>목표금액 : ${project.targetAmount}</li>
+								<li style="height: 10px"></li>
+								<li style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%">
+									<progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress><span>${project.percent}%</span></li>
+								<li style="height: 10px"></li>
+								<li>목표액 : <fmt:formatNumber value="${project.targetAmount}" pattern="#,###" />원</li>
 							</ul>
 						</div>
 					</div>
