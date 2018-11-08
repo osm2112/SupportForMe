@@ -6,12 +6,13 @@
 	<select id="getProjects" resultType="project"
 		parameterType="com.supportforme.biz.project.ProjectSearchDTO">
 		SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
-		SELECT p.*
-		,PROJECT_PROGRESS_RATE(p.project_no) "percent",
-		FUNC_TOTAL_INVSET_AMOUNT(p.project_no) "totalInvest" FROM project p
+			SELECT DISTINCT p.project_no, p.support_pick_yn , p.delivery_date , p.category_code, p.project_name , p.image, p.target_amount, p.project_deadline , p.progress , p.user_id 
+			,PROJECT_PROGRESS_RATE(p.project_no) "percent"
+			,FUNC_TOTAL_INVSET_AMOUNT(p.project_no) "totalInvest" 
+			FROM project p
 		<if test="searchKeyword != null and searchKeyword != '' ">
-		LEFT OUTER JOIN hashtag h
-		ON (p.project_no = h.project_no)
+			LEFT OUTER JOIN hashtag h
+			ON (p.project_no = h.project_no)
 		</if>
 		<where>
 			<if test="searchKeyword == null or searchKeyword == '' ">
@@ -37,12 +38,9 @@
 	<!-- 검색한 프로젝트 건수 조회, 분야별 건수 조회 -->
 	<select id="getCnt" resultType="int"
 		parameterType="com.supportforme.biz.project.ProjectSearchDTO">
-			SELECT COUNT(*) FROM PROJECT p 
 		
-			<if test="searchKeyword != null and searchKeyword != '' ">
-			LEFT OUTER JOIN hashtag h ON
-			(p.project_no = h.project_no)
-			</if>
+			 SELECT COUNT(DISTINCT P.PROJECT_NO) FROM PROJECT p  
+			 LEFT OUTER JOIN hashtag h ON (p.project_no = h.project_no)
 		<where>
 			<if test="searchKeyword == null or searchKeyword == '' ">
 				1 = 0	
@@ -56,6 +54,7 @@
 				OR p.category_code = #{searchCondition} AND p.progress IN('진행중')
 			</if>
 		</where>	
+		
 	</select>
 
 	<!-- 공연 조회 -->

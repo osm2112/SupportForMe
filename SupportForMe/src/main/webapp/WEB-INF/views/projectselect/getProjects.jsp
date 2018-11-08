@@ -147,11 +147,13 @@ $(document).ready(function() {
 	<div class="pjdtl_bodysize">
 		<div class="wrapper">
 			<div class="div1">
-				<h1 style="text-align: left;">${count}개의검색결과</h1>
+				<h1 style="text-align: left;"> 
+					${count}개의검색결과</h1>
 				<p style="text-align: left;">검색어 "${searchDTO.searchKeyword}"</p>
 				<br> <br>
 			</div>
 			<div class="div2">
+				
 				<c:forEach items="${list}" var="project">
 					<div class="project_box" id="${project.projectNo}" style="cursor: pointer;"	onclick="location.href='./getProjectDetailPage?projectNo=${project.projectNo}'">
 						<div class="mypage_project_image"><img src="../images/${project.image}" onerror="this.src='../images/대체이미지.jpg'"></div>
@@ -171,6 +173,7 @@ $(document).ready(function() {
 						</div>
 					</div>
 				</c:forEach>
+			
 				<!--  참고
 			<div class="card" style="width: 20rem;">
 				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">

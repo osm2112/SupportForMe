@@ -205,6 +205,8 @@
 }
 
 li em {
+margin-top: 2px;
+	
 	font-style: normal;
 	display: block;
 	float: left;
@@ -213,22 +215,22 @@ li em {
 	height: 12px;
 	margin-right: 9px;
 	border: 1px solid #e0e0e0;
-	color: #666;
+	color: #666; 
 	line-height: 12px;
-	font-size: 11px;
+	font-size: 11px; 
 	text-align: center;
 	font-family: tahoma, sans-serif;
 }
 
 .flexslider2 .flex-direction-nav .flex-next {
-    right: 1560px; /* adjust offset to match the hover style */
+    right: 60px; /* adjust offset to match the hover style */
     opacity: .8; /* adjust opacity to match the hover style */
   
 }
 
 .flexslider2 .flex-direction-nav .flex-prev {
    
-    left: 260px; /* adjust offset to match the hover style */
+    left: 60px; /* adjust offset to match the hover style */
     opacity: .8; /* adjust opacity to match the hover style */
  
 }
