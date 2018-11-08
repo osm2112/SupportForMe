@@ -61,4 +61,10 @@
 		 WHERE PROJECT_NO = #{projectNo}
 	</update>
 	
+	
+	<!-- 프로젝트 등록 완료  -->
+	<update id="completeProject" parameterType="project">
+		UPDATE PROJECT SET progress = '001'
+		WHERE PROJECT_NO = #{projectNo}
+	</update>
 </mapper> 
