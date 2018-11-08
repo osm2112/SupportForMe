@@ -5,35 +5,102 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원 약관 동의</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link
+	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+	rel="stylesheet">
+<style>
+.wrapper {
+	display: grid;
+	grid-template-columns: 50% auto;
+	grid-auto-rows: minmax(50px, auto);
+}
+/*   .wrapper > div{
+        background-color: orange;
+        border: 1px black solid;
+        }  */
+.div1 {
+	grid-column: 1/3;
+	text-align: center;
+}
+
+.div2 {
+	grid-column: 1/3;
+	text-align: center;
+}
+
+.div3 {
+	grid-column: 1/3;
+	text-align: center;
+}
+
+.div4 {
+	grid-column: 3/3;
+	text-align: center;
+}
+
+button.btn1 {
+	height: 70px;
+	width: 100px;
+	background-color: dimgrey;
+	color: white;
+}
+
+textarea.textarea1 {
+	resize: none;
+	width: 100%;
+	height: 200px;
+}
+
+.table {
+	width: 1200px;
+}
+
+.border {
+	border-left: 1px solid lightgrey;
+	border-right: 1px solid lightgrey;
+}
+
+._btn {
+	background-color: rgb(26, 188, 156);
+	color: white;
+}
+</style>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-	function NextStep(){
+	function NextStep() {
 		var check1 = $("input:checkbox[id='check1']").prop("checked");
 		var check2 = $("input:checkbox[id='check2']").prop("checked");
- 		if( check1 == false ||check2 == false){
+		if (check1 == false || check2 == false) {
 			alert('약관에 동의하셔야 합니다.')
 			return false;
 		} else {
-			document.location.href='../support/MemberJoinForm'
-		} 
+			document.location.href = '../support/MemberJoinForm'
+		}
 	}
 </script>
 <body>
 	<div class="wrapper">
 		<div class="div1">
-			<h1 style="text-align: left;">회원가입</h1>
-			<br> <img
-				src="C:/Users/User/Desktop/ui_to_html_2018-10-19/회원이미지.png"
-				width="80%">
+			<h1 style="text-align: left;">&nbsp&nbsp&nbsp&nbsp&nbsp회원가입</h1>
+			<br> <img src="../images/회원이미지.png" width="1200px"
+				height="170px">
 		</div>
-		<div class="div2">
+		<div style="height: 50px;"></div>
+
+		<div class="div2" style="margin: 0 auto;">
 			<table width="1200px" align="center">
+				<caption style="text-align: left;">홈페이지 이용약관</caption>
 				<tr>
-					<td colspan="3" style="text-align: left">홈페이지 이용약관</td>
-				</tr>
-				<tr>
-					<td colspan="3"><textarea class="textarea1" readonly="readonly">
+					<td colspan="3"><textarea class="textarea1"
+							readonly="readonly">
 제 1 장 총칙
 제 1 조 (목적)
 본 약관은 개인정보보호법, 전기통신사업법 및 정보통신망 이용촉진 및 정보보호 등에 관한 법률에 의하여 (주)SupportForME(이하 "회사"라 한다)이 제공하는 회원 서비스(이하 "서비스"라 한다)의 이용 조건, 절차 그리고 회원규칙에 관한 사항 등을 규정함을 목적으로 합니다.
@@ -117,38 +184,39 @@
 				</tr>
 
 				<tr style="text-align: right">
-					<td colspan="3"><input type="checkbox" id='check1' name="check" value="동의"	>동의함 </td>
+					<td colspan="3"><input type="checkbox" id='check1'
+						name="check" value="동의">동의함</td>
 				</tr>
 			</table>
 		</div>
-		<div class="div3">
-			<table width="1200px" align="center">
-				<tr>
-					<td style="text-align: left;">
-						<p>개인정보 수정 및 이용 등에 대한 동의(필수사항)</p>
-					</td>
-				</tr>
-			</table>
 
-			<table border="1px" width="1200px" align="center">
+
+		<div class="div3" style="margin: 0 auto;">
+			<!-- 	<p style="text-align: left;">개인정보 수정 및 이용 등에 대한 동의(필수사항)</p> -->
+			<br>
+			<table class="table table-striped" style="margin: 0 auto;">
 				<caption style="text-align: left;">회원 관리</caption>
 				<tr>
 					<td>수집 하는 개인정보 항목</td>
-					<td>수집 및 이용 목적</td>
+					<td class="border">수집 및 이용 목적</td>
 					<td>보유 및 이용기간</td>
 				</tr>
 				<tr>
 					<td>이름, 로그인ID, 비밀번호, 이메일, 휴대전화번호, 주소</td>
-					<td>회원제 서비스 이용에 따른 본인확인, 개인 식별, 불량회원의 부정 이용 방지와 비인가 사용방지, 가입의사 확인, 고지사항 전달, 회원탈퇴 의사의 확인</td>
-					<td>회원탈퇴시 삭제, 최종 로그인 날짜 기준 1년간 미로그인시 자동 삭제, 단, 탈퇴한 회원의 로그인ID는 중복ID 회원가입방지를 위해 5년간 보유합니다.</td>
+					<td class="border">회원제 서비스 이용에 따른 본인확인, 개인 식별, 불량회원의 부정 이용 방지와
+						비인가 사용방지, 가입의사 확인, 고지사항 전달, 회원탈퇴 의사의 확인</td>
+					<td>회원탈퇴시 삭제, 최종 로그인 날짜 기준 1년간 미로그인시 자동 삭제, 단, 탈퇴한 회원의 로그인ID는
+						중복ID 회원가입방지를 위해 5년간 보유합니다.</td>
 				</tr>
 				<tr style="text-align: right">
-					<td colspan="3"><input type="checkbox" id="check2" value="동의">동의함 </td>
+					<td colspan="3"><input type="checkbox" id="check2" value="동의">동의함
+					</td>
 				</tr>
 				<tr style="text-align: right;">
 					<td colspan="3">
-						<button class="btn1" onclick="NextStep()">다음</button>
-						<button class="btn1" onclick="">취소</button>
+						<button class="btn btn-default _btn" onclick="NextStep()">다음</button>
+						<button class="btn btn-default _btn"
+							onclick="location.href='./MemberLoginForm'">취소</button>
 					</td>
 				</tr>
 			</table>

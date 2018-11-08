@@ -57,7 +57,7 @@
 						<span class='text-center'><a href="../support/MemberFindIdForm" class="text-sm">아이디 찾기 /</a></span><span class='text-center'>
 						<a href="../support/MemberFindPasswordForm" class="text-sm"> 비밀번호 찾기</a></span>
 						<div class="form-group">
-							<a href="registerForm.php" class="btn btn-default btn-block _btn">회원가입</a>
+							<a href="../support/MemberTermsConfirmForm" class="btn btn-default btn-block _btn">회원가입</a>
 						</div>
 					</form>
 				</div>
