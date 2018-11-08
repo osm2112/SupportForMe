@@ -6,6 +6,7 @@
 <html>
 <head>
 <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/flexslider.min.css">
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -449,16 +450,11 @@ margin-top: 2px;
 						<nav id="rank">
 							<!-- <marquee behavior=slide loop=30> -->
 							<ol>
-								<li class="" style="font-size: small; cursor: pointer;"
-									onclick="1"></li>
-								<li class="" style="font-size: small; cursor: pointer;"
-									onclick="2"><em>2</em></li>
-								<li class="" style="font-size: small; cursor: pointer;"
-									onclick="3"><em>3</em>ds</li>
-								<li class="" style="font-size: small; cursor: pointer;"
-									onclick="4"><em>4</em>ds</li>
-								<li class="" style="font-size: small; cursor: pointer;"
-									onclick="5"><em>5</em>ds</li>
+								<li class="" style="font-size: small; cursor: pointer;" onclick="1"></li>
+								<li class="" style="font-size: small; cursor: pointer;" onclick="2"></li>
+								<li class="" style="font-size: small; cursor: pointer;"	onclick="3"></li>
+								<li class="" style="font-size: small; cursor: pointer;"	onclick="4"></li>
+								<li class="" style="font-size: small; cursor: pointer;"	onclick="5"></li>
 							</ol>
 							<!-- </marquee> -->
 						</nav>
