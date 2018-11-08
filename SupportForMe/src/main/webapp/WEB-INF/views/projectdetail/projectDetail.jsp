@@ -222,14 +222,18 @@ $(function(){
 		div.addClass('comments');
 		div[0].comments=comments;
 		
-		var str ="<span class='userId'>" + comments.userId + "</span><br>" 
-        		+"<span class='commentContent'>" + comments.commentContent +"</span><br>"
-        		+"<span class='commentDate'>"+comments.commentDate+"</span><br>"
-				+"<button type=\"button\" class=\"btnUpdFrm\">수정</button>"
-				+"<button type=\"button\" class=\"btnDel\">삭제</button><hr><br>"
+		var str = "<div style='display:flex; width:785px; background-color:#F6F6F6; padding:15px; border-bottom:1px solid #BDBDBD'>"
+				+ "<img src='../images/user-shape.png' style='width:60px; height:60px; margin:auto;'>&nbsp;"	
+				+ "<div>"
+				+ "<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
+				+ "<span class='commentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
+				+ "<textarea name='commentContent' class='commentContent' readonly cols='53' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
+				+ "</div>"
+				+ "<div style='margin:auto;'>"
+				+ "<button type='button' class='btnUpdFrm' style='width:180px; height:40px;'>수정</button>"
+				+ "<button type='button' class='btnDel' style='width:180px; height:40px;'>삭제</button>" ;
 		div.html(str);
-		console.log(div[0].comments);		
-				
+
 		return div;
 	}
 
@@ -252,32 +256,37 @@ $(function(){
 			var newDiv = makeCommentView(data);
 			var oldDiv = $("#c"+data.commentNo);
 			$("#btnCancel").click();
+			$(".tabcontent").append($('#commentUpdate'));
+			$("[name=updateForm]")[0].reset(); 
+			$('#commentUpdate').show(); 
 			$(newDiv).replaceAll(oldDiv);
 		});
 	});
-	//수정폼 (수정할 댓글밑에 수정폼 보이게 함)
+	//수정폼
 	$("#commentList").on("click", ".btnUpdFrm", function(){
-		var seq = $(this).parent().attr("id").substring(1);		//seq = 'commentNo'
-		var comments = $(this).parent().get(0).comments;		//$(this).parent()[0]
-		
+		var seq = $(this).closest(".comments").attr("id").substring(1);		//seq = 'commentNo'
+		console.log(seq);
+		var temp_seq = $("#c"+seq);
+		var comments = temp_seq[0].comments;		//$(this).parent()[0]
 		$("#updateForm [name=seq]").val(seq);    
 		$("#updateForm [name=commentContent]").val(comments.commentContent);
 		$("#updateForm [name=commentNo]").val(comments.commentNo);
-		//수정할 댓글밑으로 이동하고 보이게
+		
 		$("#c"+seq).html('');
-		$("#c"+seq).append($('#commentUpdate'));  
+		$("#c"+seq).append($('#commentUpdate')); 
 		$('#commentUpdate').show();   
 	});
 	//수정 취소
 	$("#btnCancel").click(function(){
 		$("[name=updateForm]")[0].reset(); 
 		$("#comments").append( $("#commentUpdate") );
+		$('#commentUpdate').show();
 		$("#commentUpdate").hide();  
 	});
 	
 	//댓글 삭제
 	$("#commentList").on("click", ".btnDel", function(){
-		var seq = $(this).parent().attr("id").substr(1);  //seq = 'commentNo' => 201811080061
+		var seq = $(this).closest(".comments").attr("id").substring(1);  //seq = 'commentNo' => 201811080061
 		if(confirm("댓글을 삭제하시겠습니까?")) {
 			var params = "commentNo="+ seq;
 			var url = "../forme/deleteComments";
@@ -393,24 +402,24 @@ $(function(){
 			<div id="comment" class="tabcontent">
 			
 <!--댓글출력--><div id="commentList"></div>
-
+				<br>
 				<div id="commentAdd" style="width:785px; height:140px; padding:15px; background-color:#F6F6F6;">
 					<form name="addForm" id="addForm">
 						<input type="hidden" name="projectNo" value="${project.projectNo}">
-						<input type="hidden" name="userId" value="${member.userId}">
+						<input type="hidden" name="userId" value="${pMember.userId}">
                         <div style="display: flex;">
 				            <img src="../images/user-shape.png" style="width:60px; height:60px; margin:auto;">&nbsp;
                             <textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
                             <button type="button" id="btnAdd" style="width:180px; height:40px; margin:auto;">등록</button>
 				        </div>
  					</form>
-			     </div>
+			     </div><br><br>
 			
 <!--댓글 수정-->			
 			<div id="commentUpdate" style="width:785px; height:140px; padding:15px; background-color:#F6F6F6; display:none;">
 				<form name="updateForm" id="updateForm">
 					<input type="hidden" name="commentNo" value="${comments.commentNo}">
-					<input type="hidden" name="userId" value="${member.userId}">
+					<input type="hidden" name="userId" value="${pMember.userId}">
 					<div style="display: flex;">
 						<img src="../images/user-shape.png" style="width:60px; height:60px; margin:auto;">&nbsp;
 						<textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
