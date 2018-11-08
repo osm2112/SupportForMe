@@ -36,13 +36,15 @@
 		document.searchForm.page.value=p;
 		document.searchForm.submit();
 	}
-	/* function SupportForMePickUp(s){
+function ProjectProgres(s){
 		var flag = s;
-		if(flag=='no'){
-			var check= confirm('선택하신 프로젝트의 서포미픽을 해제하시겠습니까?');
-		} else if (flag=='yes') {
-			var check= confirm('선택하신 프로젝트의 서포미픽으로 선택하시겠습니까?');
-		}
+		if(flag=='001'){
+			var check= confirm('선택하신 프로젝트의 보류 및 취소를 해제하시겠습니까?');
+		} else if (flag=='003') {
+			var check= confirm('선택하신 프로젝트를 취소하시겠습니까?');
+		} else if (flag=='005') {
+			var check= confirm('선택하신 프로젝트를 보류하시겠습니까?');
+		}  
 		var ids='';
 		var getIds = document.getElementsByName('ids');
 		for(var i = 0 ; i < getIds.length ; i++ ){
@@ -55,7 +57,7 @@
 			var form = document.createElement("form");
 			var parm = new Array();
 			var input = new Array();
-			form.action = "../forme/AdminSupportForMePick";
+			form.action = "../forme/AdminProjectProgress";
 			form.method = "post";
 			parm.push([ 'ids', ids ]);
 			parm.push([ 'flag', flag ]);
@@ -73,7 +75,7 @@
 		}else {
 			return false;
 		}
-	} */
+	} 
 
 </script>
 </head>
@@ -84,7 +86,7 @@
 <div class="input-group" style="width:1200px;">
 	<input type="hidden" name="page" value="1">
 	<select name="searchCondition" class="form-control" style="width:200px;">
-		<option value="">전체</option>>
+		<option value="">전체</option>
 		<option value="projectName">프로젝트명</option>
 		<option value="name">프로젝트작성자</option>
 		<option value="userId">프로작성자ID</option>
@@ -123,7 +125,7 @@
 		<tbody>
 		<c:forEach items="${list}" var="list">
 			<tr>
-				<td><input type="checkbox" name="ids" value="${list.userId}"></td>
+				<td><input type="checkbox" name="ids" value="${list.projectNo}"></td>
 				<td>${list.projectName}</td>
 				<td>${list.name}</td>
 				<td>${list.userId}</td>
@@ -136,9 +138,9 @@
 		<tr>
 			<td colspan="7">
 				<my:paging paging="${paging}"/>
-				<input type="button" value="프로젝트 보류" class="btn _btn _btn2 pull-right" onclick="DeleteMembers()">
-				<input type="button" value="프로젝트 취소" class="btn _btn _btn2 pull-right" onclick="DeleteMembers()">
-				<input type="button" value="프로젝트 보류 및 취소 해제" class="btn _btn _btn2 pull-right" onclick="DeleteMembers()">
+				<input type="button" value="프로젝트 보류" class="btn _btn _btn2 pull-right" onclick="ProjectProgres('005')">
+				<input type="button" value="프로젝트 취소" class="btn _btn _btn2 pull-right" onclick="ProjectProgres('003')">
+				<input type="button" value="프로젝트 보류 및 취소 해제" class="btn _btn _btn2 pull-right" onclick="ProjectProgres('001')">
 			</td>
 		</tr>
 		</tbody>

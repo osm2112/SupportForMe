@@ -51,5 +51,7 @@ public class AdminDAO {
 		return mybatis.selectOne("admin.ProjectProgressListCount", searchDTO);
 	}
 
-
+	public int adminProjectProgress(AdminSearchDTO searchDTO) {
+		return mybatis.update("admin.adminProjectProgress", searchDTO);
+	}
 }

@@ -237,5 +237,27 @@
 	</select>
 	
 	
+	<update id="adminProjectProgress" parameterType="adminSearch">
+		UPDATE PROJECT
+		<if test=" flag == '001'">
+			SET PROGRESS = '001'
+		</if>
+		<if test=" flag == '003'">
+			SET PROGRESS = '003'
+		</if>
+		<if test=" flag == '005'">
+			SET PROGRESS = '005'
+		</if>
+		<where>
+			PROJECT_NO IN
+			<foreach collection="ids" open="(" close=")" separator=","
+				item="item">
+				#{item}
+			</foreach>
+		</where>
+	</update>
+	
+	
+	
 	
 </mapper> 

@@ -143,7 +143,26 @@ public class AdminController {
 		return "adminNav/admin/adminProjectListForm";
 	}
 	
-	
+	@RequestMapping("/forme/AdminProjectProgress")
+	public String adminProjectProgress(Model model,AdminSearchDTO adminSearchDTO, HttpServletRequest request) {
+		String getIds =request.getParameter("ids");
+		String flag =request.getParameter("flag");			
+		String[] ids = getIds.split("[|]");
+		adminSearchDTO.setIds(ids);
+		adminSearchDTO.setFlag(flag);
+		
+		int result = adminService.adminProjectProgress(adminSearchDTO);	
+		if(result > 0) {
+			model.addAttribute("msg", "정상 처리 되었습니다.");
+			model.addAttribute("url", "../forme/AdminProjectProgressList");
+			return "commons/alertRedirect";
+		} else {
+			model.addAttribute("msg", "선택한 회원이 없습니다.");
+			model.addAttribute("url", "../forme/AdminProjectProgressList");
+			return "commons/alertRedirect";
+		}	
+
+	}
 	
 	
 	

@@ -57,5 +57,10 @@ public class AdminServiceImpl implements AdminService {
 	public int getCntProjectProgressList(AdminSearchDTO searchDTO) {
 		return dao.getCntProjectProgressList(searchDTO);
 	}
+
+	@Override
+	public int adminProjectProgress(AdminSearchDTO searchDTO) {
+		return dao.adminProjectProgress(searchDTO);
+	}
 	
 }
