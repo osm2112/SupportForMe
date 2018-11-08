@@ -26,7 +26,6 @@
 			});
 		})
 	}
-	
 </script>
 <div style="height: 50px"></div>
 	<form name="registerAccountFrm" id="registerAccountFrm">

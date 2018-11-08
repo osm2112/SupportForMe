@@ -26,7 +26,6 @@ $(function() {
 			}
 		});	
 	});
-	
 	$("#presentDeliveryDate").datepicker(
 			{
 				dateFormat : "yy-mm-dd",
@@ -116,6 +115,7 @@ $(function() {
 	function loadRewardList() {
 		var params = {projectNo : '${project.projectNo}'};
 		$.getJSON("../getRewards",params,function(datas){
+			$("#reward_preview").empty();
 			for(i = 0; i<datas.length; i++){
 				$("#reward_preview").append(makeRewardBox(datas[i]));	
 			}

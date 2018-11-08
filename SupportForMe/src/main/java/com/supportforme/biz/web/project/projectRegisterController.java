@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.supportforme.biz.member.MemberDTO;
 import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectRegisterService;
 
@@ -28,7 +29,7 @@ public class projectRegisterController {
 	@Autowired ProjectRegisterService projectService;
 	
 	Map<String,String> map = new HashMap<String,String>();
-	 
+	
 	//url get 방식으로 입력하여 들어오는 것 방지
 	@RequestMapping(value="/forme/registerProject", method=RequestMethod.GET )
 	public String protectInsertProject() {
@@ -38,19 +39,26 @@ public class projectRegisterController {
 	//등록 post 방식
 	@RequestMapping(value="/forme/registerProject", method=RequestMethod.POST )
 	public String insertProject(ProjectDTO dto , HttpSession session) {
-//		MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
-//		dto.setUserId(member.getUserId());
-		dto.setUserId("user2");
+		MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
+		dto.setUserId(member.getUserId());
 		projectService.insertProject(dto);
 		return "redirect:/forme/make/"+dto.getProjectNo();	
 	}
 	
 	//등록페이지 기본정보 등록 페이지로 forward
 	@RequestMapping("/forme/make/{projectNo}")			
-	public String makeProject(Model model,ProjectDTO dto,@PathVariable String projectNo) {
-		dto.setProjectNo(projectNo);
-		model.addAttribute("project", projectService.getProject(dto));
-		return "rgNav/register/projectRegister";
+	public String makeProject(Model model,@PathVariable String projectNo,HttpSession session) {
+		System.out.println("==========================="+projectNo);
+		ProjectDTO dto = new ProjectDTO();
+		MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
+		if(dto.getUserId().equals(member.getUserId())) {
+			dto.setProjectNo(projectNo);
+			model.addAttribute("project", projectService.getProject(dto));
+			return "rgNav/register/projectRegister";
+		}else {
+			return  "redirect:/";
+		}
+		
 	}
 	
 	//기본정보 수정 후 스토리 입력 페이지로 넘어감 
@@ -124,6 +132,12 @@ public class projectRegisterController {
 		return map;
 	}
 	
+	//미리보기
+	@RequestMapping("/forme/preview/{projectNo}")
+	public String privewProject(Model model,@PathVariable String projectNo) {
+		model.addAttribute("projectNo",projectNo);
+		return "ajax/register/registerPreview";
+	}
 	//파일 업로드 
 	@RequestMapping(value="/forme/fileUpload" , method=RequestMethod.POST)
 	@ResponseBody

@@ -26,6 +26,10 @@
 	font-size: 18px;
 }
 
+#preview {
+	margin-bottom: 10px;
+}
+
 #project_register_menu>nav {
 	margin-left: -10px;
 }
@@ -39,21 +43,15 @@
 	list-style-type: none;
 }
 
-#preview {
-	height: 60px;
+#preview_screen {
+	width: 50px;
+	height: 50px;
+	margin-left: 0
 }
-#preview:hover {
-	cursor:default;
-	font-size:20px;
-	color:grey;
-	font-weight: 800;
-}
-#project_register_basic {
-	border-left: 1px solid lightgrey;
-}
-#rn > li:hover {
-	cursor:default;
-	border-left:2px solid rgb(26, 188, 156);
+
+#rn>li:hover {
+	cursor: default;
+	border-left: 2px solid rgb(26, 188, 156);
 }
 </style>
 </head>
@@ -62,7 +60,9 @@
     <div id="project_register_subject">프로젝트 등록</div>
     <div id="project_register">
         <div id="project_register_menu">
-            <div id="preview">프로젝트 미리보기</div>
+            <div id="preview">프로젝트 미리보기 </div>
+             <div style="padding-left:50px"><img src="/SupportForMe/images/screen.png" id="preview_screen" onclick="preview()"></div> 
+            <div></div>
             <div>프로젝트 만들기</div>
             <nav>
                 <ul id="rn">
