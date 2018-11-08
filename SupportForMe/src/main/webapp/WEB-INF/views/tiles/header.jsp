@@ -128,7 +128,7 @@ function go_register() {
 	var cpath = url[3];
 	if(cpath != 'make'){
 		 var $form = $('<form></form>');
-	     $form.attr('action', 'registerProject');
+	     $form.attr('action', '/SupportForMe/forme/registerProject');
 	     $form.attr('method', 'post');
 	     $form.appendTo('body');
 		
