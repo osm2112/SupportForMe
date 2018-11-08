@@ -167,7 +167,7 @@ function view() {
 			</form> 	    
         	</div>
 			
-        	<div id="site_name">
+        	<div id="site_name" style="cursor:pointer;" onclick="location.href='/SupportForMe'">
             	SupportForME
         	</div>
         
