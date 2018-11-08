@@ -22,7 +22,6 @@
 
 
 <style>
-
 .pjdtl-bodysize {
 	margin-left: auto;
 	margin-right: auto;
@@ -50,12 +49,12 @@
 	width: 100px;
 	height: 40px;
 	font-size: 15px;
-	font-weight:700;
-	color:rgb(26, 188, 156);
-	background-color:white;
+	font-weight: 700;
+	color: rgb(26, 188, 156);
+	background-color: white;
 	border: 1px solid rgb(26, 188, 156);
-	border-radius:7px;
-	padding:5px;
+	border-radius: 7px;
+	padding: 5px;
 }
 
 .pjdtl-hashtag {
@@ -88,16 +87,16 @@
 }
 
 .pjdtl-invest-btn {
-	width:420px;
-	height:50px;
-	margin-right:20px;
-	font-size:20px;
-	font-weight:800;
-	color:white;
-	background-color:rgb(26, 188, 156);
+	width: 420px;
+	height: 50px;
+	margin-right: 20px;
+	font-size: 20px;
+	font-weight: 800;
+	color: white;
+	background-color: rgb(26, 188, 156);
 	border: 1px solid rgb(26, 188, 156);
-	border-radius:10px;
-	padding:5px;
+	border-radius: 10px;
+	padding: 5px;
 }
 
 .pjdtl-share-btn {
@@ -149,10 +148,10 @@
 }
 
 li>img {
-	max-width:660px;
-	max-height:375px;
-	width:auto;
-	height:auto;
+	max-width: 660px;
+	max-height: 375px;
+	width: auto;
+	height: auto;
 }
 
 ul {
@@ -180,6 +179,13 @@ ul {
 	width: 660px;
 }
 
+.updComment {
+	display: flex;
+	width: 785px;
+	background-color: #F6F6F6;
+	padding: 15px;
+	border-bottom: 2px solid white;
+}
 </style>
 
 <script>
@@ -222,7 +228,7 @@ $(function(){
 		div.addClass('comments');
 		div[0].comments=comments;
 		
-		var str = "<div style='display:flex; width:785px; background-color:#F6F6F6; padding:15px; border-bottom:1px solid #BDBDBD'>"
+		var str = "<div class='updComment'>"
 				+ "<img src='../images/user-shape.png' style='width:60px; height:60px; margin:auto;'>&nbsp;"	
 				+ "<div>"
 				+ "<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
@@ -256,9 +262,9 @@ $(function(){
 			var newDiv = makeCommentView(data);
 			var oldDiv = $("#c"+data.commentNo);
 			$("#btnCancel").click();
-			$(".tabcontent").append($('#commentUpdate'));
+			$(".tabcontent").append($("#commentUpdate"));
 			$("[name=updateForm]")[0].reset(); 
-			$('#commentUpdate').show(); 
+			$('#commentUpdate').hide(); 
 			$(newDiv).replaceAll(oldDiv);
 		});
 	});
@@ -272,16 +278,17 @@ $(function(){
 		$("#updateForm [name=commentContent]").val(comments.commentContent);
 		$("#updateForm [name=commentNo]").val(comments.commentNo);
 		
-		$("#c"+seq).html('');
+		$("#c"+seq).find(".updComment").hide();
 		$("#c"+seq).append($('#commentUpdate')); 
 		$('#commentUpdate').show();   
 	});
 	//수정 취소
 	$("#btnCancel").click(function(){
+		var seq = $(this).closest(".comments").attr("id").substring(1);
 		$("[name=updateForm]")[0].reset(); 
-		$("#comments").append( $("#commentUpdate") );
-		$('#commentUpdate').show();
-		$("#commentUpdate").hide();  
+		$(".tabcontent").append( $("#commentUpdate") );
+		$("#commentUpdate").hide();
+		$("#c"+seq).find(".updComment").show();
 	});
 	
 	//댓글 삭제
@@ -403,7 +410,7 @@ $(function(){
 			
 <!--댓글출력--><div id="commentList"></div>
 				<br>
-				<div id="commentAdd" style="width:785px; height:140px; padding:15px; background-color:#F6F6F6;">
+				<div id="commentAdd" style="width:785px; padding:15px; background-color:#F6F6F6;">
 					<form name="addForm" id="addForm">
 						<input type="hidden" name="projectNo" value="${project.projectNo}">
 						<input type="hidden" name="userId" value="${pMember.userId}">
@@ -416,7 +423,7 @@ $(function(){
 			     </div><br><br>
 			
 <!--댓글 수정-->			
-			<div id="commentUpdate" style="width:785px; height:140px; padding:15px; background-color:#F6F6F6; display:none;">
+			<div id="commentUpdate" style="width:785px; padding:15px; background-color:#F6F6F6; border-bottom:2px solid white;display:none;">
 				<form name="updateForm" id="updateForm">
 					<input type="hidden" name="commentNo" value="${comments.commentNo}">
 					<input type="hidden" name="userId" value="${pMember.userId}">
