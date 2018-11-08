@@ -40,10 +40,9 @@
 
 </style>
 <body>
-	<div class="container">
 		<div class="row">
-			<div class="col-sm-3">
-				<div class="login-box well" style="width:600px;">
+			<div class="col-md-3" style="width:100%;"> 
+				<div class="login-box well" style="width:600px; margin-left: auto; margin-right:auto; margin-top:100px;">
 					<form accept-charset="UTF-8" role="form" method="post" action="../support/login">
 						<legend>로그인</legend>
 						<div class="input-group">
@@ -64,8 +63,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
 	<!-- <div>
 		<div class="div1">
 			<h1 class="h1text">로그인</h1>
