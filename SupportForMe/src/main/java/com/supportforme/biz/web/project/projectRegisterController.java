@@ -48,12 +48,12 @@ public class projectRegisterController {
 	//등록페이지 기본정보 등록 페이지로 forward
 	@RequestMapping("/forme/make/{projectNo}")			
 	public String makeProject(Model model,@PathVariable String projectNo,HttpSession session) {
-		System.out.println("==========================="+projectNo);
 		ProjectDTO dto = new ProjectDTO();
+		dto.setProjectNo(projectNo);
+		dto = projectService.getProject(dto);
 		MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
 		if(dto.getUserId().equals(member.getUserId())) {
-			dto.setProjectNo(projectNo);
-			model.addAttribute("project", projectService.getProject(dto));
+			model.addAttribute("project",dto);
 			return "rgNav/register/projectRegister";
 		}else {
 			return  "redirect:/";

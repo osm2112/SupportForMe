@@ -125,6 +125,7 @@
 <script>
 function go_register() {
 	var url = window.location.pathname.toString().split('/');
+	console.log(url);
 	var cpath = url[3];
 	if(cpath != 'make'){
 		 var $form = $('<form></form>');

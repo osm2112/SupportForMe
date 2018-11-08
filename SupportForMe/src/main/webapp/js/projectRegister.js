@@ -4,6 +4,7 @@
 
 $(function() {
 		var projectNo = $("input[name=projectNo]").val();
+		
 		//////공통 js-------------------------	
 		$("#rn > li").on("click",function(){
 			if(!$(this).hasClass("_active")){
@@ -137,7 +138,77 @@ $(function() {
 				}).submit();
 			}
 		}); 
+		//hashtag-----------------------------
+		function loadHashtagList() {
+			$.ajax({
+				url : '../hashtags/'+projectNo,
+				type:'GET',
+				dataType : 'json',
+				success : function(datas){
+					$("#keyword_div").empty();
+					for(i = 0; i<datas.length; i++){
+						makeHashtagList(datas[i]);
+					}
+				}
+			});
+		}
 		
+		function makeHashtagList(ht){
+			var k = "<span class='keyword' id='"+ ht.hashtagNo + "'><label class='keyword_label'>"+ ht.hashtagName
+	   	 		  + "</label><img src='/SupportForMe/images/remove.png' class='remove'></span>";
+	   	 		$("#keyword_div").append(k);
+		}
+
+		$("input[name='keyword']").on("keydown",function(e){
+			
+			if(e.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+				
+				if($(".keyword").length < 5){
+					var key = $(this).val();
+					
+					$.ajax({
+						url : '../hashtags',
+						type:'POST',
+						dataType : 'json',
+						data : JSON.stringify({projectNo:projectNo,hashtagName:key}),
+						contentType: 'application/json', 
+						success : function(result){
+							if(result.code == "success"){
+								makeHashtagList(result.hashtag);
+							}else if(result.code == "same"){
+								$("#alertMessage").text("중복된 키워드입니다.");
+								$("#alertModal").show();
+							}
+						}
+					});
+				}else {
+					alert("최대 5개 까지입니다.");
+				}
+				$("input[name='keyword']").val("");
+	        }
+			
+		});
+		
+		$(document).on("click",".remove",function(){
+			var removeKey = $(this).parent().attr("id"); 
+			 $.ajax({
+				url : "../hashtags/"+removeKey,
+				type: 'DELETE',
+				contentType:'application/json;charset=utf-8',
+				dataType : "JSON",
+				success : function(result) {
+					if(result.code = 'success') {
+						$("#"+removeKey).remove();
+					}
+				},
+				error : function() {
+					alert("삭제할 수 없습니다.")
+				} 
+			});	
+		})
+		loadHashtagList();
+		
+		//hashtag 끝-----------------------------		
 		
 		
 		
