@@ -17,9 +17,8 @@
 <script src="../js/lightslider.js"></script> 
 
 <!-- 진행률 상태바 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 
 
 <style>
@@ -269,13 +268,24 @@ $(function(){
 		$("#c"+seq).append($('#commentUpdate'));  
 		$('#commentUpdate').show();   
 	});
-	//수정 취소 이벤트
+	//수정 취소
 	$("#btnCancel").click(function(){
 		$("[name=updateForm]")[0].reset(); 
 		$("#comments").append( $("#commentUpdate") );
 		$("#commentUpdate").hide();  
 	});
 	
+	//댓글 삭제
+	$("#commentList").on("click", ".btnDel", function(){
+		var seq = $(this).parent().attr("id").substr(1);  //seq = 'commentNo' => 201811080061
+		if(confirm("댓글을 삭제하시겠습니까?")) {
+			var params = "commentNo="+ seq;
+			var url = "../forme/deleteComments";
+			$.getJSON(url, params, function(data){
+				$('#c'+data.commentNo).remove();
+			});
+		}
+	});
 	
 	loadCommentsList();
 })
@@ -327,15 +337,15 @@ $(function(){
         <div class="pjdtl-detail-box">
             <div style="font-size:45px;">${invest.totalInvestAmount}원<span style="font-size:37px;">(모인금액)</span></div>
             <div class="pjdtl-target-price">목표금액 ${project.targetAmount}원</div>
-<!-- 진행상황 막대그래프 -->           
-            <div>
-            	<progress style="width:80%; height:27px;" value="${project.projectProgressRate}" max="100"></progress>
-            	<span style="font-size:25px;">${project.projectProgressRate}%</span>
-            </div>
-            <div>
-                <div>${project.progress}</div>
-                <div style="font-size:25px; color:#A6A6A6;">참여자 ${invest.headcount}명</div>
-            </div>
+			<div style="width:70px; border:1px solid #FF007F; border-radius:7px; color:#FF007F; padding:5px; text-align:center; margin-bottom:5px;">
+				<span style="font-weight:700;">${project.progress}</span>
+			</div>
+<!-- 진행상황 막대그래프 -->
+			<div class="progress">
+				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${project.projectProgressRate}%">${project.projectProgressRate}%</div>
+			</div>
+			
+            <div style="font-size:25px; color:#A6A6A6;">참여자 ${invest.headcount}명</div>
             <div style="display:flex;">
                 <button class="pjdtl-invest-btn" onclick="location.href='../forme/InvestSelectReward?projectNo=${project.projectNo}'">투자하기</button>
                 <img src="../images/share-button.png" class="pjdtl-share-btn" onclick="#">
