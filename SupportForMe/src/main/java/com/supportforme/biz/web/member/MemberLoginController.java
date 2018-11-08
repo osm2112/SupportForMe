@@ -33,7 +33,6 @@ public class MemberLoginController {
 	@RequestMapping(value = "/support/login", method = RequestMethod.POST)
 	public String memberLoginProc(Model model, MemberDTO dto, HttpSession session, HttpServletResponse response) throws IOException {
 		MemberDTO memberDTO = memberService.getMember(dto);
-		PrintWriter out = response.getWriter();
 		if (memberDTO != null) {
 			if (memberDTO.getUserId() != null) {
 				if (memberDTO.getPassword() == null) {
