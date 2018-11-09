@@ -146,13 +146,13 @@ $(function() {
 		div.addClass('reward_preview_box');
 		div[0].reward=reward;
 		
-		var rewardBox = "<div class='rw_preview_amount_div'><span class='rw_preview_amount'>"+reward.presentPrice+"</span><label>원 펀딩</label></div>"
+		var rewardBox = "<div class='rw_preview_amount_div'><span class='rw_preview_amount'>"+addComma(reward.presentPrice)+"</span><label>원 펀딩</label></div>"
 					  + "<div class='rw_preview_delivery_s'>리워드 구성</div>"
 					  + "<div class='rw_preview_info'>"+reward.presentName+"</div>"
 					  + "<div class='rw_preview_delivery_s'>예상배송일</div>"
 					  + "<div class='rw_preview_delivery'>"+reward.presentDeliveryDate+"</div><div class='preview_button'>"
-					  + "<button type='button' class='rewardEdit'><img src='/SupportForMe/images/rewardEdit.png' class='rewardImg'>수정하기</button>"
-					  + "<button type='button' class='rewardDel'><img src='/SupportForMe/images/rewardDel.png' class='rewardImg'>삭제하기</button>"
+					  + "<button type='button' class='rewardEdit'><img src='/SupportForMe/images/rewardEdit.png' class='rewardImg'>수정</button>"
+					  + "<button type='button' class='rewardDel'><img src='/SupportForMe/images/rewardDel.png' class='rewardImg'>삭제</button>"
 					  + "</div>";
 		
 		div.html(rewardBox);

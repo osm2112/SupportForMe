@@ -21,6 +21,10 @@
 function preview(){
 	window.location.href="<c:url value='../preview/${project.projectNo}'/>";
 }
+function addComma(num) {
+	  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+	  return num.toString().replace(regexp, ',');
+} 
 </script>
 
 </head>
@@ -95,27 +99,16 @@ function preview(){
 					class="inputStyle inputRight"  placeholder="0"> 원
 				<c:if test="${project.targetAmount != null }">
 					<script>
-						$("input[name=targetAmount]").val('${project.targetAmount}');
+						$("input[name=targetAmount]").val(addComma('${project.targetAmount}'));
 					</script>
 				</c:if>
 				<script>
-				/* $("input[name=targetAmount]").on("keyup",function(){
-					var num = $(this).val();
-				 	var len, point, str; 
-			        num = num + ""; 
-				    point = num.length % 3 ;
-				    len = num.length; 
-				    for(i = 1; i<len+1 ; i++){
-				    	if(point > 0){
-				    		str = num.substr(0,point);
-				    		str += "," + num.substr(point, point+(3*i));
-				    	}
-				    	$("input[name=targetAmount]").val(str); 
-				    }
-				    	 	
-				    }  
-				}); */
-				   
+				$("input[name=targetAmount]").on("focusout",function(){
+					var num = $("input[name=targetAmount]").val(); 
+					num = addComma(num);
+					$("input[name=targetAmount]").val(num);
+				});
+				 
 				 </script>
 			</div>
 			<div id="basic_">

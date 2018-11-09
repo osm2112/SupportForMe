@@ -18,7 +18,7 @@ public class PresentController {
 	@RequestMapping("/forme/insertReward")
 	@ResponseBody
 	public PresentDTO insertReward(PresentDTO pdto){
-		
+		presentFunc(pdto);
 		presentService.insertPresent(pdto);
 		return presentService.getPresent(pdto);
 	}
@@ -39,8 +39,16 @@ public class PresentController {
 	@RequestMapping("/forme/updateReward")
 	@ResponseBody
 	public PresentDTO updateReward(PresentDTO pdto) {
+		presentFunc(pdto);
 		presentService.updatePresent(pdto);
 		return pdto;
 	}
-
+	
+	PresentDTO presentFunc(PresentDTO pdto){
+		if(!pdto.getPresentPrice().equals("")) {
+			String tempPrice = pdto.getPresentPrice();
+			pdto.setPresentPrice(tempPrice.replace(",",""));
+		}
+		return pdto;
+	}
 }

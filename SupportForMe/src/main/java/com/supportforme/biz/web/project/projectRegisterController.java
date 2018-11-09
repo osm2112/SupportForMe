@@ -64,7 +64,7 @@ public class projectRegisterController {
 	//기본정보 수정 후 스토리 입력 페이지로 넘어감 
 	@RequestMapping("/forme/updateProject/story")
 	public String updateProjectBasic(Model model, ProjectDTO dto) {
-		deadLine(dto);
+		basicFunc(dto);
 		projectService.updateProject(dto);
 		model.addAttribute("project", projectService.getProject(dto));
 		return "ajax/register/projectRegisterStory";
@@ -113,7 +113,7 @@ public class projectRegisterController {
 		String[] com = uri.substring(conPath.length()).split("/");
 		
 		if(("basic").equals(com[3])){
-			deadLine(dto);
+			basicFunc(dto);
 		}else if(("story").equals(com[3])) {
 			storyImageVideo(dto);
 		}
@@ -185,7 +185,11 @@ public class projectRegisterController {
 	
 	
 	//마감일 rrrr-MM-dd -> rrrr.MM.dd 로 변환 함수
-	ProjectDTO deadLine(ProjectDTO dto) {
+	ProjectDTO basicFunc(ProjectDTO dto) {
+		if(!dto.getTargetAmount().equals("")) {
+			String ta = dto.getTargetAmount();
+			dto.setTargetAmount(ta.replace(",", ""));
+		}
 		if(!dto.getProjectDeadline().equals("")) {
 			String[] deadLine = dto.getProjectDeadline().split("-");
 			dto.setProjectDeadline(deadLine[0].toString()+"."+deadLine[1].toString()+"."+deadLine[2].toString());

@@ -48,7 +48,9 @@
 	height: 50px;
 	margin-left: 0
 }
-
+#preview_screen:hover {
+	cursor:pointer;
+}
 #rn>li:hover {
 	cursor: default;
 	border-left: 2px solid rgb(26, 188, 156);

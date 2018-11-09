@@ -26,7 +26,8 @@
 	배송이 필요한 리워드는 배송비가 포함된 가격을 적어주세요.
 </div>
 <div id="reward_box">
-	<div class="reward_grid"><label>리워드 금액 </label><input type="text" name="presentPrice" id="reward_input"><label>&nbsp;&nbsp;원</label></div>
+	<div class="reward_grid"><label>리워드 금액 </label><input type="text" name="presentPrice" id="reward_input"><label>&nbsp;&nbsp;원</label>
+	</div>
     <div class="reward_grid">
     	<label>리워드 구성 </label>
     	<textarea  rows="5" cols="200" id="reward_textarea" name="presentName"
@@ -34,9 +35,9 @@
     </div>
     <div class="reward_grid">
 	    <label>예상 배송일 </label>
-	    <div class="rg_delivery"> 
-	    	<input type="text" name="presentDeliveryDate" id="presentDeliveryDate" class="inputStyle">
-	    </div>
+	    <span class="rg_delivery"> 
+	    	<input type="text" name="presentDeliveryDate" id="presentDeliveryDate">
+	    </span>
 	    <label></label>
    </div>
     <div style="text-align:center;margin-top:20px;">
