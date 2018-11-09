@@ -14,7 +14,7 @@ import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectDetailPageService;
 
 @Controller
-public class ProjectDetailPageController {
+public class ProjectDetailPageController {  
 
 	@Autowired ProjectDetailPageService projectDetailPageService;
 	@Autowired MemberService memberService;
