@@ -28,10 +28,11 @@ public class ProjectDetailPageController {
 									   HttpServletRequest request) {
 		
 		String refer = request.getHeader("referer");
-		if(refer.contains("preview")) {
-			model.addAttribute("preview", "p");
-		};
-		
+		if(refer != null) {
+			if(refer.contains("preview")) {
+				model.addAttribute("preview", "p");
+			};
+		}
 		pjdto.setProjectNo(pjdto.getProjectNo());		//"201810310001"
 //		cdto.setTopCommentNo("201810260001");	//댓글의 답글조회하려고   
 		
