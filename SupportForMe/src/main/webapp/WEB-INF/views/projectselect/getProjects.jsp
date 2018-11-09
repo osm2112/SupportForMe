@@ -150,7 +150,7 @@
 																			+ ' style="cursor:pointer;" onclick="location.href=\'./getProjectDetailPage?projectNo='
 																			+ data[i].projectNo
 																			+ '\'\">'
-																			+ '		<div class="mypage_project_image"><img src="../images/'+data[i].image +'" onerror="this.src=\'../images/대체이미지.jpg\'"></div>'
+																			+ '		<div class="mypage_project_image"><img src="../upload/'+data[i].image +'" onerror="this.src=\'../images/대체이미지.jpg\'"></div>'
 																			+ '			<div class="mypage_project_content">'
 																			+ '				<div class="state" id="project_state'+count+'">'
 																			+ data[i].progress
@@ -236,7 +236,7 @@
 						style="cursor: pointer;"
 						onclick="location.href='./getProjectDetailPage?projectNo=${project.projectNo}'">
 						<div class="mypage_project_image">
-							<img src="../images/${project.image}"
+							<img src="../upload/${project.image}"
 								onerror="this.src='../images/대체이미지.jpg'">
 						</div>
 						<div class="mypage_project_content">

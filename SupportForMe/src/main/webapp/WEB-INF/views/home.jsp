@@ -368,7 +368,7 @@ margin-top: 2px;
 					for (i = 0; i < data.length; i++) {
 						
 						$('.real_time_image ul li img').eq(i+1).attr("src",
-								"./images/" + data[i].image);
+								"./upload/" + data[i].image);
 						$('.real_time_image ul li img').eq(i+1).attr(
 								"onclick",
 								"location.href='support/getProjectDetailPage?projectNo="
@@ -392,7 +392,7 @@ margin-top: 2px;
 	<div class="flexslider2">
 		<ol class="slides">
 			<c:forEach items="${Latest}" var="project">
-				<li><img style="cursor: pointer;" src="./images/${project.image}" onerror="this.src='./images/대체이미지.jpg'" onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'"></li>
+				<li><img style="cursor: pointer;" src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'" onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'"></li>
 			</c:forEach>
 		</ol>
 	</div>
@@ -409,7 +409,7 @@ margin-top: 2px;
 								<div class="suforme_picks_grid" style="cursor: pointer;"
 									onclick="location.href='support/getProjectDetailPage?projectNo=${pick.projectNo}'">
 									<div class="suforme_picks_projects">
-										<img src="./images/${pick.image}" onerror="this.src='./images/대체이미지.jpg'">
+										<img src="./upload/${pick.image}" onerror="this.src='./images/대체이미지.jpg'">
 									</div>
 									<div class="suforme_picks_projects_content">
 										<nav>
@@ -470,7 +470,7 @@ margin-top: 2px;
 					style="cursor: pointer;"
 					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
 					<div class="main_project_image">
-						<img src="./images/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
+						<img src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
 						<ul>
@@ -500,7 +500,7 @@ margin-top: 2px;
 						style="cursor: pointer;"
 						onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
 						<div class="main_project_image">
-							<img src="./images/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
+							<img src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
 						</div>
 						<div class="main_project_content">
 						<ul>
@@ -530,7 +530,7 @@ margin-top: 2px;
 					style="cursor: pointer;"
 					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
 					<div class="main_project_image">
-						<img src="./images/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
+						<img src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
 						<ul>
@@ -560,7 +560,7 @@ margin-top: 2px;
 					style="cursor: pointer;"
 					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
 					<div class="main_project_image">
-						<img src="./images/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
+						<img src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
 						<ul>
