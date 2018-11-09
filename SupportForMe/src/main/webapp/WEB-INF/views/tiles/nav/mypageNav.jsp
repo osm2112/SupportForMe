@@ -117,7 +117,7 @@
 	$(window).load(function() {
  	var uri = window.location.pathname.toString();
  	console.log(uri);
- 	if(uri.match('MemberUpdateConfirmForm')||uri.match('MemberUpdateForm')){
+ 	if(uri.match('MemberUpdateConfirmForm')||uri.match('MemberUpdateForm')||uri.match('MemberDeleteConfirmForm')){
  		var memberUpdateConfirmForm = document.getElementById('myUpdate');
  		memberUpdateConfirmForm.setAttribute("class","_active");
  		

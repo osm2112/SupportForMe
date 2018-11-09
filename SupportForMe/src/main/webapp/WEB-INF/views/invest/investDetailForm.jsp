@@ -27,6 +27,8 @@
 
 </style>
 <body>
+<h3>결제  내역 상세 보기</h3>
+<hr>
 	<table class="table table-hover" style="width:600px">
 	<tbody>	
 		<tr>

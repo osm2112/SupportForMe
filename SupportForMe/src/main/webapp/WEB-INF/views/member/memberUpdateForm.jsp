@@ -117,6 +117,8 @@
 	}
 </script>
 <body>
+<h3> 프로필 설정</h3>
+<hr>
 	<table class="table1" border="1" >
 		<tbody>
 			<tr style="color: lightgrey">
