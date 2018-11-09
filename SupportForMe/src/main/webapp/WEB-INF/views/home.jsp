@@ -8,10 +8,17 @@
 <head>
 <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
 
+
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/flexslider.min.css">
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider-min.js"></script>
+
+
+<!--  부트스트랩 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 .bodysize {
 	margin-left: auto;
@@ -400,7 +407,7 @@ margin-top: 2px;
 	<div class="bodysize">
 		<div class="suforme">
 			<div class="suforme_picks_div"> 
-				<div class="suforme_top_1_text_div"><span><i class="fa fa-heart"></i>&nbsp서포미 PICKS</span></div>
+				<div class="suforme_top_1_text_div"><span><i class="fa fa-heart" style="color: rgb(255, 135, 99);"></i>&nbsp서포미 PICKS</span></div>
 
 				<div class="flexslider">
 					<ul class="slides">
@@ -434,7 +441,7 @@ margin-top: 2px;
 			</div>
 			
 			<div class="real_time_rank_outer">
-				<div class="suforme_top_1_text_div"><span><i class="fa fa-trophy"></i>&nbsp실시간 랭킹</span></div>
+				<div class="suforme_top_1_text_div"><span><i class="fa fa-trophy" style="color: rgb(239, 205, 119);"></i>&nbsp실시간 랭킹</span></div>
 				<div class="real_time_rank_div">
 					<div class="real_time_image flexslider3">
 						<ul class="slides">
@@ -463,7 +470,7 @@ margin-top: 2px;
 		</div>
 		<div style="height: 100px"></div> 
 	
-		<div class="suforme_top_1_text_div"><span><i class="fa fa-users"></i>&nbsp공연 프로젝트</span></div> 
+		<div class="suforme_top_1_text_div"><span><i class="fa fa-users" style="color: rgb(6, 135, 133);"></i>&nbsp공연 프로젝트</span></div> 
 		<div class="category_project_div">
 			<c:forEach items="${Performance}" var="project">
 				<div class="project_box" id="${project.projectNo}"
@@ -493,7 +500,7 @@ margin-top: 2px;
 		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=001">더보기 </a></div>	
 		<div style="height: 50px"></div>
 		<!-- 미술 부분  -->
-		<div class="suforme_top_1_text_div"><span><i class="fa fa-paint-brush"></i>&nbsp미술 프로젝트</span></div>		
+		<div class="suforme_top_1_text_div"><span><i class="fa fa-paint-brush" style="color: rgb(6, 135, 133);"></i>&nbsp미술 프로젝트</span></div>		
 			<div class="category_project_div">
 				<c:forEach items="${Art}" var="project">
 					<div class="project_box" id="${project.projectNo}"
@@ -523,7 +530,7 @@ margin-top: 2px;
 			<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=003">더보기 </a></div>	
 			<div style="height: 50px"></div>
 		<!-- 도서 -->
-		<div class="suforme_top_1_text_div"><span><i class="fa fa-book"></i>&nbsp도서 프로젝트</span></div> 
+		<div class="suforme_top_1_text_div"><span><i class="fa fa-book" style="color: rgb(6, 135, 133);"></i>&nbsp도서 프로젝트</span></div> 
 		<div class="category_project_div">
 			<c:forEach items="${Book}" var="project">
 				<div class="project_box" id="${project.projectNo}"
@@ -553,7 +560,7 @@ margin-top: 2px;
 		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=004">더보기 </a></div>
 		<div style="height: 50px"></div>
 		<!-- 영화 -->
-		<div class="suforme_top_1_text_div"><span><i class="fa fa-film"></i>&nbsp영화 프로젝트</span></div> 
+		<div class="suforme_top_1_text_div"><span><i class="fa fa-film" style="color: rgb(6, 135, 133);"></i>&nbsp영화 프로젝트</span></div> 
 		<div class="category_project_div">
 			<c:forEach items="${Movie}" var="project">
 				<div class="project_box" id="${project.projectNo}"
