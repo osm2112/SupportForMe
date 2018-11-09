@@ -18,6 +18,11 @@
 	background: rgb(26, 188, 156);
 	color: white;
 }
+._btn2:hover {
+	background:grey;
+	color: white;
+}
+
 .my.pagination > .active > a, 
 .my.pagination > .active > span, 
 .my.pagination > .active > a:hover, 

@@ -5,58 +5,79 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>결제 세부 내역</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+<style>
+._btn {
+	margin-left: 15px;
+	
+}
+
+._btn2 {
+	background: rgb(26, 188, 156);
+	color: white;
+}
+
+._btn2:hover {
+	background:grey;
+	color: white;
+}
+
+</style>
 <body>
-	<table border="1">
-		
+	<table class="table table-hover" style="width:600px">
+	<tbody>	
 		<tr>
-			<td>결제번호</td>
+			<th scope="row">결제번호</th>
 			<td>${invest.investNo }</td>
 		</tr>
 		<tr>
-			<td>프로젝트명</td>
+			<th scope="row">프로젝트명</th>
 			<td>${invest.projectName }</td>
 		</tr>
 
 		<tr>
-			<td>결제금액</td>
+			<th scope="row">결제금액</th>
 			<td>${invest.invenstAmount }</td>
 		</tr>
 		<tr>
-			<td>결제방식</td>
+			<th scope="row">결제방식</th>
 			<td>${invest.payType }</td>
 		</tr>
 		<tr>
-			<td>결제상태</td>
+			<th scope="row">결제상태</th>
 			<td>${invest.paymentState }</td>
 		</tr>
 		<tr>
-			<td>선택 리워드</td>
+			<th scope="row">선택 리워드</th>
 			<td>${invest.presentName }</td>
 		</tr>
 		<tr>
-			<td>우편번호</td>
+			<th scope="row">우편번호</th>
 			<td>${invest.postcode}</td>
 		</tr>
 		<tr>
-			<td>주소</td>
+			<th scope="row">주소</th>
 			<td>${invest.address }</td>
 		</tr>
 		<tr>
-			<td>상세주소</td>
+			<th scope="row">상세주소</th>
 			<td>${invest.addrDetail }</td>
 		</tr>
 		<tr>
-			<td>전화번호</td>
+			<th scope="row">전화번호</th>
 			<td>${invest.phoneNum }</td>
 		</tr>
 		<tr>
-			<td>EMail</td>
+			<th scope="row">EMail</th>
 			<td>${invest.email }</td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="button" value="뒤로 가기" onclick="history.back()"></td>
+			<td colspan="2"><input type="button" value="뒤로 가기" class="btn _btn _btn2 pull-right" onclick="history.back()"></td>
 		</tr>
+	</tbody>
 	</table>
 </body>
 </html>

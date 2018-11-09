@@ -97,9 +97,9 @@
 </form>
 
 	<table class="table table-hover">
-		<tr><td>결제번호</td><td>프로젝트명</td><td>결제금액</td><td>결제방법</td><td>결제상태</td><td>결제일</td></tr>
+		<tr><th>결제번호</th><th>프로젝트명</th><th>결제금액</th><th>결제방법</th><th>결제상태</th><th>결제일</th></tr>
 		<c:forEach items="${list}" var="list">
-		<tr><td><a href="../forme/InvestDetail?investNo=${list.investNo}">${list.investNo }</a></td><td>${list.projectName }</td><td>${list.invenstAmount }</td><td>${list.payType}</td><td>${list.paymentState }</td><td>${list.investDate }</td></tr>
+		<tr onclick="location.href='../forme/InvestDetail?investNo=${list.investNo}'"><td>${list.investNo }</td><td>${list.projectName }</td><td>${list.invenstAmount }</td><td>${list.payType}</td><td>${list.paymentState }</td><td>${list.investDate }</td></tr>
 	</c:forEach>
 	</table>
 	<div style="width:100%;text-align:center">

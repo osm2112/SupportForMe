@@ -32,9 +32,9 @@
     <div id="project_invest">
         <div id="project_invest_menu">
             <nav>
-                <div id="_active">리워드 선택</div>
-                <div >결제</div>
-                <div>내역 확인</div>
+                <div id="">리워드 선택</div>
+                <div id="">결제</div>
+                <div id="">내역 확인</div>
             </nav>
 
         </div>
