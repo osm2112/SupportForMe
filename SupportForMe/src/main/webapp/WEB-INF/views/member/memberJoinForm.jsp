@@ -55,41 +55,61 @@ caption{
 <script>
 	var idCheck = false;
 	var emailCheck = false;
+	var passwordRegexCheck= false;
+	
 	function CheckId(){
 		var  userid = document.getElementById("userId").value;
-		$.ajax({
-			url : "../support/CheckId?userId="+userid,
-			method : "post",
-			type : "text",
-			success : function(data) {
-				if(data == 0){
-					document.getElementById("checkIdResult").innerHTML = '사용할수 있는  ID입니다.';
-					idCheck = true;
-				} else {
-					document.getElementById("checkIdResult").innerHTML = '<font color="red">사용할수 없는 ID입니다.</font>';
-					idCheck = false;
+		if (userid  != null && userid != ''){
+			$.ajax({
+				url : "../support/CheckId?userId="+userid,
+				method : "post",
+				type : "text",
+				success : function(data) {
+					if(data == 0){
+						
+				      	var idRegex = /^[a-z]+[a-z0-9]{5,20}$/g;
+						if( !idRegex.test(userid)) {
+							document.getElementById("checkIdResult").innerHTML = '<font color="red">아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.</font>';
+							idCheck = false;
+					    } else {
+							document.getElementById("checkIdResult").innerHTML = '사용할 수 있는  ID입니다.';
+							idCheck = true;	   
+					    }
+
+					} else {
+						document.getElementById("checkIdResult").innerHTML = '<font color="red">중복된 ID입니다.</font>';
+						idCheck = false;
+					}
 				}
-			}
-		});
+			});
+		} else {
+			document.getElementById("checkIdResult").innerHTML = '<font color="red">사용할수 없는 ID입니다.</font>';
+			idCheck = false;
+		}
 	}
 	
 	
 	function CheckEmail(){
 		var  email = document.getElementById("email").value;
+		if (email  != null && email != ''){
 		$.ajax({
-			url : "../support/CheckEmail?email="+email,
-			method : "post",
-			type : "text",
-			success : function(data) {
-				if(data == 0){
-					document.getElementById("checkEmailResult").innerHTML = '사용할수 있는  Email입니다.';
-					emailCheck = true;
-				} else {
-					document.getElementById("checkEmailResult").innerHTML = '<font color="red">사용할수 없는 Email입니다.</font>';
-					emailCheck = false;
+				url : "../support/CheckEmail?email="+email,
+				method : "post",
+				type : "text",
+				success : function(data) {
+					if(data == 0){
+						document.getElementById("checkEmailResult").innerHTML = '사용할수 있는  Email입니다.';
+						emailCheck = true;
+					} else {
+						document.getElementById("checkEmailResult").innerHTML = '<font color="red">사용할수 없는 Email입니다.</font>';
+						emailCheck = false;
+					}
 				}
-			}
-		});
+			});
+		} else {
+			document.getElementById("checkEmailResult").innerHTML = '<font color="red">사용할수 없는 Email입니다.</font>';
+			emailCheck = false;
+		}
 	}
 
 	function InsertMember(){
@@ -105,14 +125,31 @@ caption{
 			var  address = document.getElementById("address").value;
 			var  addrDetail = document.getElementById("addrDetail").value;
 			var  introduction = document.getElementById("introduction").value;
+			
+			var check =confirm(
+				'ID : '+userId +'\n'+
+				'이름 : '+name +'\n'+
+				'이메일 : '+email +'\n'+
+				'전화번호 : '+tel1+'-'+tel2 +'-'+tel3+'\n'+
+				'우편번호 : '+postcode +'\n'+
+				'주소 : '+address +'\n'+
+				'상세주소 : '+addrDetail +'\n'+
+				'나의 소개 : '+introduction +'\n'+
+				'상기의 정보로 회원 가입을 하시겠습니까?'
+			);
+			
+			
+			
+			
+			
 				if(idCheck == false){
-					alert('해당 ID는 중복된 ID 입니다.');
+					alert('해당 ID는  사용할수 없습니다.');
 					return false;
 				}
 				if(emailCheck == false){
 					alert('해당  Email은 중복된 Email 입니다.');
 					return false;
-				}
+				} 
 				if (!userId) {
 					alert('ID가 입력되지 않았습니다.');
 					return false;
@@ -125,6 +162,10 @@ caption{
 					alert('비밀번호가 일치하지 않습니다.');
 					return false;
 				}
+				if(passwordRegexCheck == false){
+					alert('비밀번호는 특수문자 /문자/ 숫자를 한자 이상  포함 형태의 8~15자리 이내여야 합니다.');
+					return false;
+				}
 				if (!name) {
 					alert('이름이 입력되지 않았습니다.');
 					return false;
@@ -132,6 +173,13 @@ caption{
 				if (!email) {
 					alert('이메일주소가 입력되지 않았습니다.');
 					return false;
+				} else {
+					var emailRegexp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+					if(!emailRegexp.test(email)){
+						alert('이메일 주소 형식은 OOO@OOO.OOO 입니다.');
+						return false;
+					}
+					
 				}
 				if (!postcode||!address||!addrDetail) {
 					alert('주소가 입력되지 않았습니다.');
@@ -148,38 +196,55 @@ caption{
 					alert('전화번호가 입력 되지 않았습니다.');
 					return false;
 				} else {
-					var regexp = /^[0-9]*$/;
-					if (!regexp.test(tel1) || !regexp.test(tel2) || !regexp.test(tel3)){
+					var regexp = /[0-9]{4}/;
+					console.log(tel2+'_'+tel3)
+					if ( !regexp.test(Number(tel2)) || !regexp.test(Number(tel3))){
 						alert('전화번호는 숫자이여야 합니다.');
 						return false;
 					}
 				}
-
-				var form = document.createElement("form");
-				var parm = new Array();
-				var input = new Array();
-				form.action = "../support/InsertMember";
-				form.method = "post";
-				parm.push([ 'userId', userId ]);
-				parm.push([ 'password', password ]);
-				parm.push([ 'name', name ]);
-				parm.push([ 'phoneNum', tel1+'-'+tel2+'-'+tel3 ]);
-				parm.push([ 'email', email ]);
-				parm.push([ 'postcode', postcode ]);
-				parm.push([ 'address', address ]);
-				parm.push([ 'addrDetail', addrDetail ]);
-				parm.push([ 'introduction', introduction ]);
+				if(check){
+					var form = document.createElement("form");
+					var parm = new Array();
+					var input = new Array();
+					form.action = "../support/InsertMember";
+					form.method = "post";
+					parm.push([ 'userId', userId ]);
+					parm.push([ 'password', password ]);
+					parm.push([ 'name', name ]);
+					parm.push([ 'phoneNum', tel1+'-'+tel2+'-'+tel3 ]);
+					parm.push([ 'email', email ]);
+					parm.push([ 'postcode', postcode ]);
+					parm.push([ 'address', address ]);
+					parm.push([ 'addrDetail', addrDetail ]);
+					parm.push([ 'introduction', introduction ]);
 				
-				for (var i = 0; i < parm.length; i++) {
-					input[i] = document.createElement("input");
-					input[i].setAttribute("type", "hidden");
-					input[i].setAttribute('name', parm[i][0]);
-					input[i].setAttribute("value", parm[i][1]);
-					form.appendChild(input[i]);
+					for (var i = 0; i < parm.length; i++) {
+						input[i] = document.createElement("input");
+						input[i].setAttribute("type", "hidden");
+						input[i].setAttribute('name', parm[i][0]);
+						input[i].setAttribute("value", parm[i][1]);
+						form.appendChild(input[i]);
+					}
+					document.body.appendChild(form);
+					form.submit();
 				}
-				document.body.appendChild(form);
-				form.submit();
 	}
+	
+	function PasswordRegexCheck(){
+		var  password = document.getElementById("password").value;
+		// 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
+		var passwordRegex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+		if(passwordRegex.test(password)){
+			document.getElementById("PasswordRegexCheck").innerHTML ='사용할수 있는 비밀 번호 입니다.';
+			passwordRegexCheck =true;
+		} else {
+			document.getElementById("PasswordRegexCheck").innerHTML ='<font color="red">비밀번호는 특수문자 /문자/ 숫자를 한자 이상  포함 형태의 8~15자리 이내여야 합니다.</font>';
+			passwordRegexCheck =false;
+		}
+	}
+	
+	
 
 </script>
 <body>
@@ -210,7 +275,7 @@ caption{
 
 					<tr>
 						<td><span>＊</span>비밀번호</td>
-						<td><input id="password" type="password" size="10"></td>
+						<td><input id="password" type="password" size="10" maxlength="15" onkeyup="PasswordRegexCheck()"><span id="PasswordRegexCheck"><font color="red">비밀번호는 특수문자 /문자/ 숫자를 한자 이상  포함 형태의 8~15자리 이내여야 합니다.</font></span></td>
 					</tr>
 
 					<tr>
@@ -231,7 +296,7 @@ caption{
 								<option value="017">017</option>
 								<option value="018">018</option>
 								<option value="019">019</option>
-						</select> - <input type="text" id="tel2" size="10"> - <input type="text" id="tel3" size="10"></td>
+						</select> - <input type="text" id="tel2" size="10" maxlength="4"> - <input type="text" id="tel3" size="10" maxlength="4"></td>
 					</tr>
 
 					<tr>

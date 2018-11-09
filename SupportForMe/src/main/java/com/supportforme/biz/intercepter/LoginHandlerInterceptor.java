@@ -15,18 +15,19 @@ public class LoginHandlerInterceptor  extends HandlerInterceptorAdapter{
             throws Exception {
     	String uri = request.getRequestURI();
         HttpSession session = request.getSession();
+        String context =request.getContextPath();
         MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
-        System.out.println("uri임::::::::::::"+uri);
+
         if ( member == null ){
             // 로그인이 안되어 있는 상태임으로 로그인 폼으로 다시 돌려보냄(redirect)
-            response.sendRedirect("../../support/login");
+            response.sendRedirect(context+"/support/login");
             return false; // 더이상 컨트롤러 요청으로 가지 않도록 false로 반환함
         } else {
         	if(uri.contains("Admin")) {
         		if(member.getUserId().contains("Admin")) {
         			return true;
         		} else {
-        			response.sendRedirect("../");
+        			response.sendRedirect(context);
                     return false; // 더이상 컨트롤러 요청으로 가지 않도록
         		}
         	}
