@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -156,45 +156,91 @@ function view() {
      }
 }
 </script>
-<div id="headDiv">
-	<div class="headBodysize">
-    	<div></div>
-    	<div id="head">
-	    	<!--  화면줄였을때 보이는 영역 -->
-    	    <div id="search_div1">
-	        <a href="#" onclick="view()"><img src="/SupportForMe/images/search.png" class="searchImg"></a>
-	        <form action="/SupportForMe/support/getProjects">
-        	<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-			</form> 	    
-        	</div>
-			
-        	<div id="site_name" style="cursor:pointer;" onclick="location.href='/SupportForMe'">
-            	SupportForME
-        	</div>
-        
-        	<div>
-        	<input type="button" onclick="go_register()" id="make_project" value="프로젝트 만들기">
-        	</div>
-        
-        	<!-- 전체화면일때 보이는 영역 -->
-        	<div id="search_div2">
-        	<form action="/SupportForMe/support/getProjects">
-        	<input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-        	<input TYPE="image" src="/SupportForMe/images/search.png" class="searchImg" name="Submit" value="Submit">
-			</form>
-        	</div>
-        
-        	<div id="head_font_size">마이 페이지</div>
-        	<!--<div id="head_font_size">관리 페이지</div>-->
-       		<!-- <div id="logout_head_menu">
-	            <div id="head_font_size"> 로그인 </div>
-    	        <div id="head_font_size">회원가입</div>
-	        </div> -->
-   		</div>
-   	
-    	<div>
-    	</div>
+<c:choose>
+	<c:when test="${preview == 'p'}">
+		<div id="headDiv">
+		<div class="headBodysize">
+	    	<div></div>
+	    	<div id="head">
+		    	<!--  화면줄였을때 보이는 영역 -->
+	    	    <div id="search_div1">
+		        <img src="/SupportForMe/images/search.png" class="searchImg">
+		        <form action="/SupportForMe/support/getProjects">
+	        	<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+				</form> 	    
+	        	</div>
+				
+	        	<div id="site_name" style="cursor:pointer;" onclick="#'">
+	            	SupportForME
+	        	</div>
+	        
+	        	<div>
+	        	<input type="button" id="make_project" value="프로젝트 만들기">
+	        	</div>
+	        
+	        	<!-- 전체화면일때 보이는 영역 -->
+	        	<div id="search_div2">
+	        	<form>
+	        	<input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+	        	<img src="/SupportForMe/images/search.png" class="searchImg">
+				</form>
+	        	</div>
+	        
+	        	<div id="head_font_size">마이 페이지</div>
+	        	<!--<div id="head_font_size">관리 페이지</div>-->
+	       		<!-- <div id="logout_head_menu">
+		            <div id="head_font_size"> 로그인 </div>
+	    	        <div id="head_font_size">회원가입</div>
+		        </div> -->
+	   		</div>
+	   	
+	    	<div>
+	    	</div>
+		</div>
+	</div>	
+	</c:when>
+	<c:otherwise>
+	<div id="headDiv">
+		<div class="headBodysize">
+	    	<div></div>
+	    	<div id="head">
+		    	<!--  화면줄였을때 보이는 영역 -->
+	    	    <div id="search_div1">
+		        <a href="#" onclick="view()"><img src="/SupportForMe/images/search.png" class="searchImg"></a>
+		        <form action="/SupportForMe/support/getProjects">
+	        	<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+				</form> 	    
+	        	</div>
+				
+	        	<div id="site_name" style="cursor:pointer;" onclick="location.href='/SupportForMe'">
+	            	SupportForME
+	        	</div>
+	        
+	        	<div>
+	        	<input type="button" onclick="go_register()" id="make_project" value="프로젝트 만들기">
+	        	</div>
+	        
+	        	<!-- 전체화면일때 보이는 영역 -->
+	        	<div id="search_div2">
+	        	<form action="/SupportForMe/support/getProjects">
+	        	<input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+	        	<input TYPE="image" src="/SupportForMe/images/search.png" class="searchImg" name="Submit" value="Submit">
+				</form>
+	        	</div>
+	        
+	        	<div id="head_font_size">마이 페이지</div>
+	        	<!--<div id="head_font_size">관리 페이지</div>-->
+	       		<!-- <div id="logout_head_menu">
+		            <div id="head_font_size"> 로그인 </div>
+	    	        <div id="head_font_size">회원가입</div>
+		        </div> -->
+	   		</div>
+	   	
+	    	<div>
+	    	</div>
+		</div>
 	</div>
-</div>
+	</c:otherwise>
+</c:choose>
 </body>
 </html>

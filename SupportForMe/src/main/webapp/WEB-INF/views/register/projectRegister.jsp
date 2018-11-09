@@ -59,7 +59,7 @@ function preview(){
 			<input type="hidden" name="userId" value="${project.userId}">
 			<div id="basic_subject">
 				<div class="bold">프로젝트의 제목을 적어주세요</div>
-				<input type="text" name="projectName" id="r_projectName" class="inputStyle" value="${project.projectName}">
+				<input type="text" name="projectName" id="r_projectName" class="inputStyle" maxlength="24"  value="${project.projectName}">
 			</div>
 			<div id="basic_category">
 				<div class="bold">프로젝트 분야를 선택해주세요</div>
@@ -100,6 +100,25 @@ function preview(){
 						$("input[name=targetAmount]").val('${project.targetAmount}');
 					</script>
 				</c:if>
+				<script>
+				$("input[name=targetAmount]").on("keyup",function(){
+					var num = $(this).val();
+				 	var len, point, str; 
+			        num = num + ""; 
+				    point = num.length % 3 ;
+				    len = num.length; 
+				    for(i = 1; i<len+1 ; i++){
+				    	if(point > 0){
+				    		str = num.substr(0,point);
+				    		str += "," + num.substr(point, point+(3*i));
+				    	}
+				    	$("input[name=targetAmount]").val(str); 
+				    }
+				    	 	
+				    }  
+				});
+				   
+				 </script>
 			</div>
 			<div id="basic_">
 				<div class="bold">프로젝트의 진행기간을 적어주세요</div>

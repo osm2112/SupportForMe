@@ -49,11 +49,7 @@ body {
 	<script>
 		var src="/SupportForMe/support/getProjectDetailPage?projectNo=${projectNo}";
 		$("#preview_box").attr("src",src);
-		$(function() {
-		 var iframeEle = $("#preview_box");
-		 console.log(test1.contentWindow.document.getElementById('headDiv').html);
 		//disable
-		});
 	</script>
 	</div>
 	<img src="/SupportForMe/images/HEART2.gif" class="previewImg" style="right:20px" >

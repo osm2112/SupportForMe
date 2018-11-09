@@ -21,7 +21,7 @@ $(function() {
 				var url = "../pageMove/"+projectNo+"/"+nav;
 				$.ajax({
 					url : url,
-					method : "post",
+					type : "post",
 					success : function(result) {
 						$("."+$("._active").attr("class").substr(0,4)).removeClass("_active");
 						$(".rn"+nav).addClass("_active");
@@ -48,10 +48,15 @@ $(function() {
 			}else if(saveClass == 'account'){
 				params = $("#registerAccountFrm").serialize();  
 			}
-			$.getJSON(url,params,function(result){
-				$("#alertMessage").text('저장되었습니다.');
-				$("#alertModal").show();
-			}) 
+			$.ajax({
+				url : url,
+				data : data,
+				type : "post",
+				success : function(result) {
+					$("#alertMessage").text('저장되었습니다.');
+					$("#alertModal").show();
+				}
+			}); 
 		});
 		
 		$("#alertModalClose").on("click",function(){
@@ -79,7 +84,7 @@ $(function() {
 				$.ajax({
 					url : "../updateProject/story",
 					data : $("#registerBasicFrm").serialize(),
-					method : "post",
+					type : "post",
 					success : function(result) {
 						$("#result").html(result);
 						$("#rn > .rnbs").removeClass("_active");
@@ -298,7 +303,7 @@ $(function() {
 				url : '../deleteIntroductionImg',
 				dataType : "JSON",
 				data : {"removeIntroductionImg":introImg},
-				method : "post",
+				type : "post",
 				success : function(result) {
 						$(".sogeRemove."+cnt).parent().remove();
 						

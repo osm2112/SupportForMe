@@ -11,7 +11,7 @@ $(function() {
 		$.ajax({
 			url : "../updateProject/account",  
 			data : $("#rewardRegisterFrm").serialize(),
-			method : "post",
+			type : "post",
 			success : function(result) {
 				$("#result").html(result);
 				$("#rn > .rnrw").removeClass("_active");

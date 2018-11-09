@@ -34,16 +34,18 @@ $(function() {
 		
 		//id가 smarteditor인 textarea에 에디터에서 대입
     	editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
+		
+		var data = $("#registerStoryFrm").serialize();
 		$.ajax({
 			url : "../updateProject/reward",
-			data : $("#registerStoryFrm").serialize(), 
-			method : "post",
+			data : data, 
+			type : "post",
 			success : function(result) {
 				$("#result").html(result);
 				$("#rn > .rnst").removeClass("_active");
 				$("#rn > .rnrw").addClass("_active");	
 			}
-		});	
+		}); 
 	});
 });
 </script>

@@ -1,5 +1,6 @@
 package com.supportforme.biz.web.project;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,14 @@ public class ProjectDetailPageController {
 	public String getProjectDetailPage(Model model,
 									   ProjectDTO pjdto,
 									   //CommentsDTO cdto,
-									   HttpSession session) {
+									   HttpSession session,
+									   HttpServletRequest request) {
+		
+		String refer = request.getHeader("referer");
+		if(refer.contains("preview")) {
+			model.addAttribute("preview", "p");
+		};
+		
 		pjdto.setProjectNo(pjdto.getProjectNo());		//"201810310001"
 //		cdto.setTopCommentNo("201810260001");	//댓글의 답글조회하려고   
 		
