@@ -6,6 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>나의 투자 목록</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <style>
 
@@ -88,10 +91,15 @@ $(document).ready(function() {
 										+'			<div style="font-size: 15px;">선택 리워드 : '+data[i].presentName+'('+data[i].presentPrice+'원)</div>	'
 										+'			<div style="font-size: 15px;">총 투자 금액 : '+data[i].invenstAmount+'원</div>							'
 										+'			<div style="font-size: 15px;">투자일 : '+data[i].investDate+'</div>									'
-										+'			<div style="font-size: 15px;">배송예정일 : '+data[i].investDate+'</div>									'
-										+'			<div style="height: 20px"></div>																	'
+										+'			<div style="font-size: 15px;">배송예정일 : '+data[i].investDate+'</div>								'
+										+'			<div style="height: 10px"></div>																	'
 										+'			<div align="right">'+data[i].projectProgressRate+'%</div>											'
-										+'			<progress value="'+data[i].projectProgressRate+'" max="100" style="width:235px"/>										'
+										+'			<div class="progress">																				'
+										+'				<div class="progress-bar" role="progressbar" aria-valuenow="50"									' 
+										+'						aria-valuemin="0" aria-valuemax="100" style="width:'+data[i].projectProgressRate+'%">	'
+										+'						<span class="sr-only">70% Complete</span>												'
+										+'				</div>																							'
+										+'			</div>																								'
 										+'		</nav>																									'
 										+'	</div>																										'
 										+'</div>																										'						
@@ -121,9 +129,9 @@ $(document).ready(function() {
 					<div style="font-size: 15px;">총 투자 금액 : ${list.invenstAmount}원</div>
 					<div style="font-size: 15px;">투자일 : ${list.investDate}</div>
 					<div style="font-size: 15px;">배송예정일 : ${list.investDate}</div>
-					<div style="height: 20px"></div>
+					<div style="height: 10px"></div>
 					<div align="right">${list.projectProgressRate}%</div>
-					<progress value="${list.projectProgressRate}" max="100" style="width:235px"></progress>
+  					<div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:${list.projectProgressRate}%"><span class="sr-only">70% Complete</span></div></div>
 				</nav>
 			</div>
 		</div>
