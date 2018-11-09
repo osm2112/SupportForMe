@@ -424,7 +424,7 @@ $(function(){
 						<input type="hidden" name="projectNo" value="${project.projectNo}">
 						<input type="hidden" name="userId" value="${pMember.userId}">
                         <div style="display: flex;">
-				            <img src="../images/user-shape.png" style="width:60px; height:60px; margin:auto;">&nbsp;
+				            <img src="../images/user2.png" style="width:60px; height:60px; margin:auto;">&nbsp;
                             <textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
                             <button type="button" id="btnAdd" style="width:180px; height:40px; margin:auto;">등록</button>
 				        </div>
@@ -437,7 +437,7 @@ $(function(){
 					<input type="hidden" name="commentNo" value="${comments.commentNo}">
 					<input type="hidden" name="userId" value="${pMember.userId}">
 					<div style="display: flex;">
-						<img src="../images/user-shape.png" style="width:60px; height:60px; margin:auto;">&nbsp;
+						<img src="../images/user.png" style="width:60px; height:60px; margin:auto;">&nbsp;
 						<textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
 						<div style="margin:auto;">
 							<button type="button" id="btnUpd" style="width:180px; height:40px;">수정</button><br>
