@@ -50,7 +50,7 @@ $(function() {
 			}
 			$.ajax({
 				url : url,
-				data : data,
+				data : params,
 				type : "post",
 				success : function(result) {
 					$("#alertMessage").text('저장되었습니다.');
@@ -88,7 +88,8 @@ $(function() {
 					success : function(result) {
 						$("#result").html(result);
 						$("#rn > .rnbs").removeClass("_active");
-						$("#rn > .rnst").addClass("_active");								}
+						$("#rn > .rnst").addClass("_active");	
+					}
 				});
 					
 		}); 
@@ -305,15 +306,17 @@ $(function() {
 				data : {"removeIntroductionImg":introImg},
 				type : "post",
 				success : function(result) {
-						$(".sogeRemove."+cnt).parent().remove();
-						
-						if(!$(".soge").is(":visible") && !$("#storyDefault").is(":visible")){
-							var dfImg = "<div class='introductionImg rg_img' id='storyDefault'>"
-								  	  + "<img src='/SupportForMe/images/picture.png' id='default'>"	
-								  	  +	"</div>";
-							$(".plus").before(dfImg);
-						}		
-				},
+						if(result.code == "success"){
+							$(".sogeRemove."+cnt).parent().remove();
+							
+							if(!$(".soge").is(":visible") && !$("#storyDefault").is(":visible")){
+								var dfImg = "<div class='introductionImg rg_img' id='storyDefault'>"
+									  	  + "<img src='/SupportForMe/images/picture.png' id='default'>"	
+									  	  +	"</div>";
+								$(".plus").before(dfImg);
+							}		
+						}	
+					},
 				error : function() {
 					alert("삭제할 수 없습니다.")
 				} 

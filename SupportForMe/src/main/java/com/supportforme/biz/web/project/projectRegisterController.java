@@ -172,18 +172,21 @@ public class projectRegisterController {
 	//이미지 서버에서 삭제 
 	@RequestMapping(value="/forme/deleteIntroductionImg")
 	@ResponseBody
-	public void deleteIntroductionImg(@RequestParam(value="removeIntroductionImg",required=false)String removeImg,HttpServletRequest request){
+	public Map<String,String> deleteIntroductionImg(@RequestParam(value="removeIntroductionImg",required=false)String removeImg,HttpServletRequest request){
+		 System.out.println("=================%%"+removeImg);
 		 String folder =  request.getSession().getServletContext().getRealPath("/upload");// 삭제할 파일의 경로
 		 File file = new File(folder,removeImg);
 		 if(file.exists()){
 			 file.delete();
 		}
+		map.put("code", "success");
+		return map;
 	}  
 	
 	
 	//마감일 rrrr-MM-dd -> rrrr.MM.dd 로 변환 함수
 	ProjectDTO deadLine(ProjectDTO dto) {
-		if(dto.getProjectDeadline() != null) {
+		if(!dto.getProjectDeadline().equals("")) {
 			String[] deadLine = dto.getProjectDeadline().split("-");
 			dto.setProjectDeadline(deadLine[0].toString()+"."+deadLine[1].toString()+"."+deadLine[2].toString());
 		}

@@ -8,13 +8,11 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/SupportForMe/css/projectRegister.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
 <script src="http://malsup.github.com/jquery.form.js"></script> 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script src="/SupportForMe/smarteditor/js/HuskyEZCreator.js?ver=1"></script>
-<script src="/SupportForMe/js/projectRegister.js"></script>
+<script src="/SupportForMe/js/projectRegister.js?ver=1"></script>
 <title>프로젝트 등록</title>
 <style>
 
@@ -101,7 +99,7 @@ function preview(){
 					</script>
 				</c:if>
 				<script>
-				$("input[name=targetAmount]").on("keyup",function(){
+				/* $("input[name=targetAmount]").on("keyup",function(){
 					var num = $(this).val();
 				 	var len, point, str; 
 			        num = num + ""; 
@@ -116,7 +114,7 @@ function preview(){
 				    }
 				    	 	
 				    }  
-				});
+				}); */
 				   
 				 </script>
 			</div>
@@ -132,7 +130,7 @@ function preview(){
 					<script>
 						var deadLine = '${project.projectDeadline}';
 						var dl = deadLine.split(".");
-						if(deadLine != null && deadLine != " "){
+						if(deadLine != null && deadLine != ''){
 							var now = new Date();
 							var dDay = new Date(dl[0],dl[1]-1, dl[2]);
 							var now2 = now.getTime();
