@@ -11,9 +11,16 @@ public class MemberDTO {
 	private String introduction;
 	private String postcode;
 	private String addrDetail;
+	private String joinDate;
 	
 	
 	
+	public String getJoinDate() {
+		return joinDate;
+	}
+	public void setJoinDate(String joinDate) {
+		this.joinDate = joinDate;
+	}
 	public String getUserId() {
 		return userId;
 	}

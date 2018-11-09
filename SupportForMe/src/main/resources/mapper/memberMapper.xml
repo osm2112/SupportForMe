@@ -56,7 +56,8 @@
 							EMAIL, 
 							INTRODUCTION, 
 							POSTCODE,
- 							ADDR_DETAIL
+ 							ADDR_DETAIL,
+ 							JOIN_DATE
   							)
 		VALUES ( 
 				 #{userId}, 
@@ -67,7 +68,8 @@
 				 #{email}, 
 				 #{introduction}, 
 				 #{postcode},  
-				 #{addrDetail}
+				 #{addrDetail},
+				 SYSDATE
 				)
 	</insert>
 	
