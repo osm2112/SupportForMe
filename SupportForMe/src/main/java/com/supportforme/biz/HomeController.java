@@ -27,6 +27,8 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
+		//최신 프로젝트조회
+		model.addAttribute("Latest",projectService.getLatestProjects());
 		model.addAttribute("Pick",projectService.getSupportForMePicks());
 		model.addAttribute("Performance",projectService.getPerformanceProjects());
 		model.addAttribute("Art",projectService.getArtProjects());

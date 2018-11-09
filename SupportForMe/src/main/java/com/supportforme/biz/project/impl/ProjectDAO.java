@@ -17,6 +17,10 @@ public class ProjectDAO {
 	public List<ProjectDTO> getProjects(ProjectSearchDTO searchDto) {
 		return mybatis.selectList("project.getProjects", searchDto);  
 	}
+	//최신프로젝트 조회
+	public List<ProjectDTO> getLatestProjects() {
+		return mybatis.selectList("project.getLatestProjects");
+	}
 	//공연조회
 	public List<ProjectDTO> getPerformanceProjects() {
 		return mybatis.selectList("project.getPerformanceProjects");

@@ -391,11 +391,9 @@ margin-top: 2px;
 <body>
 	<div class="flexslider2">
 		<ol class="slides">
-			<li><img src="./images/main.PNG"></li>
-			<li><img src="./images/picture.png"></li>
-			<li><img src="./images/images.jpg"></li>
-			<li><img src="./images/remove.png"></li>
-			<li><img src="./images/plus1.png"></li>
+			<c:forEach items="${Latest}" var="project">
+				<li><img style="cursor: pointer;" src="./images/${project.image}" onerror="this.src='./images/대체이미지.jpg'" onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'"></li>
+			</c:forEach>
 		</ol>
 	</div>
 	<div style="height: 150px"></div>
@@ -476,17 +474,17 @@ margin-top: 2px;
 					</div>
 					<div class="main_project_content">
 						<ul>
-							<li>창작자 ID : ${project.userId}</li>
-							<li style="font-size: 18px;">${project.projectName}</li>
-							<li style="height: 10px"></li>
+							<li style="font-size: 16px;">창작자 ID : ${project.userId}</li>
+							<li style="font-size: 18px; height:50px;">${project.projectName}</li>
+							<li style="height: 5px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
-								<span>모금액 : <fmt:formatNumber value="${project.totalInvest}" pattern="#,###" />원</span> 
+								<span>모금액 : ${project.totalInvest}원</span> 
 							</li>
 							<li style="height: 10px"></li>
 							<li style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%"><progress
 									style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress><span>${project.percent}%</span></li>
 							<li style="height: 10px"></li>
-							<li>목표액 : <fmt:formatNumber value="${project.targetAmount}" pattern="#,###" />원</li>
+							<li>목표액 : ${project.targetAmount}원</li>
 						</ul>						
 					</div>
 				</div>				
@@ -506,17 +504,17 @@ margin-top: 2px;
 						</div>
 						<div class="main_project_content">
 						<ul>
-							<li>창작자 ID : ${project.userId}</li>
-							<li style="font-size: 18px;">${project.projectName}</li>
+							<li style="font-size: 16px;">창작자 ID : ${project.userId}</li>
+							<li style="font-size: 18px; height:50px;">${project.projectName}</li>
 							<li style="height: 10px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
-								<span>모금액 : <fmt:formatNumber value="${project.totalInvest}" pattern="#,###" />원</span> 
+								<span>모금액 : ${project.totalInvest}원</span> 
 							</li>
 							<li style="height: 10px"></li>
 							<li style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%"><progress
 									style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress><span>${project.percent}%</span></li>
 							<li style="height: 10px"></li>
-							<li>목표액 : <fmt:formatNumber value="${project.targetAmount}" pattern="#,###" />원</li>
+							<li>목표액 : ${project.targetAmount}원</li>
 						</ul>						
 						</div>
 					</div>
@@ -536,17 +534,17 @@ margin-top: 2px;
 					</div>
 					<div class="main_project_content">
 						<ul>
-							<li>창작자 ID : ${project.userId}</li>
-							<li style="font-size: 18px;">${project.projectName}</li>
+							<li style="font-size: 16px;">창작자 ID : ${project.userId}</li>
+							<li style="font-size: 18px; height:50px;">${project.projectName}</li>
 							<li style="height: 10px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
-								<span>모금액 : <fmt:formatNumber value="${project.totalInvest}" pattern="#,###" />원</span> 
+								<span>모금액 : ${project.totalInvest}원</span> 
 							</li>
 							<li style="height: 10px"></li>
 							<li style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%"><progress
 									style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress><span>${project.percent}%</span></li>
 							<li style="height: 10px"></li>
-							<li>목표액 : <fmt:formatNumber value="${project.targetAmount}" pattern="#,###" />원</li>
+							<li>목표액 : ${project.targetAmount}원</li>
 						</ul>						
 					</div>
 				</div>				
@@ -566,17 +564,17 @@ margin-top: 2px;
 					</div>
 					<div class="main_project_content">
 						<ul>
-							<li>창작자 ID : ${project.userId}</li>
-							<li style="font-size: 18px;">${project.projectName}</li>
+							<li style="font-size: 16px;">창작자 ID : ${project.userId}</li>
+							<li style="font-size: 18px; height:50px;">${project.projectName}</li>
 							<li style="height: 10px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
-								<span>모금액 : <fmt:formatNumber value="${project.totalInvest}" pattern="#,###" />원</span> 
+								<span>모금액 : ${project.totalInvest}원</span> 
 							</li>
 							<li style="height: 10px"></li>
 							<li style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%"><progress
 									style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress><span>${project.percent}%</span></li>
 							<li style="height: 10px"></li>
-							<li>목표액 : <fmt:formatNumber value="${project.targetAmount}" pattern="#,###" />원</li>
+							<li>목표액 : ${project.targetAmount}원</li>
 						</ul>						
 					</div>
 				</div>				

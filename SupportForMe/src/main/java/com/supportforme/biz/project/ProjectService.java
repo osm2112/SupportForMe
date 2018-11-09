@@ -7,6 +7,9 @@ public interface ProjectService {
 	//전체검색결과조회, 분야별 결과 조회
 	public List<ProjectDTO> getProjects(ProjectSearchDTO searchDto);
 
+	//메인 최신 프로젝트조회
+	public List<ProjectDTO> getLatestProjects();
+	
 	//공연조회
 	public List<ProjectDTO> getPerformanceProjects();
 

@@ -64,6 +64,12 @@ public class ProjectServiceImpl implements ProjectService {
 		// TODO Auto-generated method stub
 		return dao.getMovieProjects();
 	}
+	//최신프로젝트 조회
+	@Override
+	public List<ProjectDTO> getLatestProjects() {
+		// TODO Auto-generated method stub
+		return dao.getLatestProjects();
+	}
 	
 	
 	
