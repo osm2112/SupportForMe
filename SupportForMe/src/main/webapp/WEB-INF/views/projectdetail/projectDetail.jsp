@@ -186,6 +186,9 @@ ul {
 	padding: 15px;
 	border-bottom: 2px solid white;
 }
+.replyCommentShow:hover {
+	cursor:pointer;
+}
 </style>
 
 <script>
@@ -228,16 +231,23 @@ $(function(){
 		div.addClass('comments');
 		div[0].comments=comments;
 		
-		var str = "<div class='updComment'>"
-				+ "<img src='../images/user-shape.png' style='width:60px; height:60px; margin:auto;'>&nbsp;"	
-				+ "<div>"
-				+ "<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
-				+ "<span class='commentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
-				+ "<textarea name='commentContent' class='commentContent' readonly cols='53' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
+		var str = "<div class='updComment' style='background-color: #F6F6F6; border-bottom:2px solid white;'>"
+				+ "<div style='display:flex;'>"
+				+ "		<img src='../images/user.png' style='width:60px; height:60px; margin:auto;'>&nbsp;"	
+				+ "		<div>"
+				+ "			<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
+				+ "			<span class='commentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
+				+ "			<textarea name='commentContent' class='commentContent' readonly cols='53' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
+				+ "		</div>"
+				+ "		<div style='margin:auto;'>"
+				+ "			<button type='button' class='btnUpdFrm' style='width:180px; height:40px;'>수정</button>"
+				+ "			<button type='button' class='btnDel' style='width:180px; height:40px;'>삭제</button>"
+				+ "		</div>"
 				+ "</div>"
-				+ "<div style='margin:auto;'>"
-				+ "<button type='button' class='btnUpdFrm' style='width:180px; height:40px;'>수정</button>"
-				+ "<button type='button' class='btnDel' style='width:180px; height:40px;'>삭제</button>" ;
+				+ "<div id='replyCommentList' style='width:100%; background-color:#F6F6F6; border-top:1px solid #BDBDBD; border-bottom:2px solid white; padding:10px;'>"
+				+ "		<img name='replyCommentShow' class='replyCommentShow' src='../images/comments.png' style='width:40px; height:40px;'>"
+				+ "</div>"
+				+ "</div>";
 		div.html(str);
 
 		return div;
@@ -245,7 +255,6 @@ $(function(){
 
 	//댓글등록
 	$("#btnAdd").click(function(){
-		$("#btnCancel").click();
 		var params = $("[name=addForm]").serialize();		
 		var url = "../forme/insertComments";
 		$.getJSON(url, params, function(data){

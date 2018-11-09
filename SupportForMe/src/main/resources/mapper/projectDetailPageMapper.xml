@@ -9,16 +9,17 @@
        	   IMAGE, 
       	   TARGET_AMOUNT, 
        	   PROJECT_DEADLINE, 
-       	   TO_DATE(PROJECT_DEADLINE, 'yyyy.mm.dd')+7 AS SCHEDULED_PAYMENT_DATE,
+       	   TO_DATE(PROJECT_DEADLINE, 'YYYY.MM.DD')+7 AS SCHEDULED_PAYMENT_DATE,
        	   PROJECT_PROGRESS_RATE(#{projectNo}) AS PROJECT_PROGRESS_RATE, 
-       	   STORY, 
-       	   PROGRESS, 
+       	   STORY,
        	   INTRODUCTION_VIDEO,
        	   INTRODUCTION_IMAGE, 
        	   DELIVERY_DATE,
-       	   CATEGORY_CODE
+       	   CATEGORY_CODE,
+           CODE_NAME AS PROGRESS
 	FROM PROJECT
-	WHERE PROJECT_NO = #{projectNo} 
+  	JOIN COMMON_CODE ON PROJECT.PROGRESS = COMMON_CODE.CODE
+	WHERE PROJECT_NO = #{projectNo} AND COMMON_CODE.CODE_GROUP='C03'
 </select>
 
 <!-- 해시태그 불러오기 -->
