@@ -357,14 +357,17 @@
                         }
                         
                         var thumb = $children.eq(i * settings.slideMove).attr('data-thumb');
-                        var thumbclass = $children.eq(i * settings.slideMove).attr("class");
-/*======여기==========================================================================================================================================================================================================================*/					
-                        if( $("."+thumbclass).hasClass("video-thumb")) {
-                        pagers += '<li style="width:100%;' + property + ':' + thumbWidth + 'px;' + gutter + ':' + settings.thumbMargin + 'px"><a href="#"><img style="max-width:105.83px; max-height:79.36px; width:auto; height:auto;"src="' + thumb + '"/></a></li>';
+                        var thumbSubstr = thumb.substr(thumb.length-3,thumb.length+1).toLowerCase();
+/*======여기==========================================================================================================================================================================================================================*/
+                        if(settings.gallery === true){
+                        	 if(thumbSubstr == 'jpg' || thumbSubstr == 'png' || thumbSubstr == 'gif') {
+                                 pagers += '<li style="width:100%;' + property + ':' + thumbWidth + 'px;' + gutter + ':' + settings.thumbMargin + 'px"><a href="#"><img style="max-width:105.83px; max-height:79.36px; width:auto; height:auto;"src="' + thumb + '"/></a></li>';
+                             }
+                             else {
+                                 	pagers += '<li style="width:100%;' + property + ':' + thumbWidth + 'px;' + gutter + ':' + settings.thumbMargin + 'px"><a href="#"><img src="https://img.youtube.com/vi/' + thumb+ '/default.jpg"/></a></li>';
+                             }
                         }
-                        else if ( $("."+thumbclass).hasClass("video-thumb") == false && settings.gallery === true) {
-                        	pagers += '<li style="width:100%;' + property + ':' + thumbWidth + 'px;' + gutter + ':' + settings.thumbMargin + 'px"><a href="#"><img src="https://img.youtube.com/vi/' + thumb+ '/default.jpg"/></a></li>';
-                        } else {
+                       else {
                             pagers += '<li><a href="#">' + (i + 1) + '</a></li>';
                         }
                         if (settings.mode === 'slide') {
