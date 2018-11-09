@@ -83,24 +83,34 @@
 	color: rgb(231, 76, 60);
 	background-color: white;
 }
+
+#projenct_subject {
+	height: 80px;
+	font-size: 30px;
+	font-weight: 800;
+	padding: 25px;
+	color: grey
+}
+
+#project_mypage_menu>nav>div:hover {
+	cursor: default;
+	border-left: 2px solid rgb(26, 188, 156);
+}
 </style>
 </head>
 <body>
 	<div style="height: 50px"></div>
 	<div class="bodysize">
-		<div
-			style="height: 80px; font-size: 30px; font-weight: 800; padding: 25px; color: grey">My
-			Page</div>
+		<div id="projenct_subject" >My	Page</div>
 		<div id="project_mypage">
 			<div id="project_mypage_menu">
 				<nav>
-					<div>프로필 설정</div>
-					<div id="_active">나의 프로젝트</div>
-					<div>나의 투자현황</div>
-					<div>지불정보 설정</div>
+					<div id="InvestList" class="" onclick="location.href='../forme/MemberUpdateConfirmForm'">프로필 설정</div>
+					<div id="myProject" class="" onclick="">나의 프로젝트</div>
+					<div id="myInvestList" class="" onclick="location.href='../forme/MyInvestList'">나의 투자현황</div>
+					<div id="InvestList" class="" onclick="location.href='../forme/InvestList'">나의 결제내역</div>
 				</nav>
 			</div>
-
 		</div>
 	</div>
 </body>
