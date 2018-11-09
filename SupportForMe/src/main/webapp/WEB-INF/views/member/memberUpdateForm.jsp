@@ -7,54 +7,22 @@
 <title>회원정보 수정</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 </head>
-<style>
-.wrapper {
-	display: grid;
-	grid-template-columns: 50% auto;
-	grid-auto-rows: minmax(100px, auto);
-}
-/*        .wrapper > div{
-        background-color: orange;
-        border: 1px black solid;
-        }  */
-.div1 {
-	grid-column: 1/3;
-	text-align: center;
-}
-
-.div3 {
-	text-align: center;
-}
-
-.wrapp {
-	display: table;
-	width: 100%;
-	height: 100%;
-}
-
-.inner {
-	display: table-cell;
-	vertical-align: middle;
-}
-</style>
 <script>
+	var passwordRegexCheck = false;
 
-
-	var passwordRegexCheck= false;
-
-	function PasswordRegexCheck(){
-		var  password = document.getElementById("password").value;
+	function PasswordRegexCheck() {
+		var password = document.getElementById("password").value;
 		// 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
 		var passwordRegex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-		if(passwordRegex.test(password)){
-			document.getElementById("PasswordRegexCheck").innerHTML ='사용할수 있는 비밀 번호 입니다.';
-			passwordRegexCheck =true;
+		if (passwordRegex.test(password)) {
+			document.getElementById("PasswordRegexCheck").innerHTML = '사용할수 있는 비밀 번호 입니다.';
+			passwordRegexCheck = true;
 		} else {
-			document.getElementById("PasswordRegexCheck").innerHTML ='<font color="red">비밀번호는 특수문자 /문자/ 숫자를 한자 이상  포함 형태의 8~15자리 이내여야 합니다.</font>';
-			passwordRegexCheck =false;
+			document.getElementById("PasswordRegexCheck").innerHTML = '<font color="red">비밀번호는 특수문자 /문자/ 숫자를 한자 이상  포함 형태의 8~15자리 이내여야 합니다.</font>';
+			passwordRegexCheck = false;
 		}
 	}
-	
+
 	function UpdateMember() {
 		var userId = document.getElementById("userId").value;
 		var password = document.getElementById("password").value;
@@ -68,29 +36,28 @@
 		var address = document.getElementById("address").value;
 		var addrDetail = document.getElementById("addrDetail").value;
 		var introduction = document.getElementById("introduction").value;
-		
-		if (!password || !password2 ) {
+
+		if (!password || !password2) {
 			alert('비밀번호가 입력되지 않았습니다.');
 			return false;
 		}
-		
+
 		if (password != password2) {
 			alert('비밀번호가 일치하지 않습니다.');
 			return false;
 		}
 
-		if(passwordRegexCheck == false){
+		if (passwordRegexCheck == false) {
 			alert('비밀번호는 특수문자 /문자/ 숫자를 한자 이상  포함 형태의 8~15자리 이내여야 합니다.');
 			return false;
 		}
-		
-		
+
 		if (!email) {
 			alert('이메일주소가 입력되지 않았습니다.');
 			return false;
 		} else {
 			var emailRegexp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
-			if(!emailRegexp.test(email)){
+			if (!emailRegexp.test(email)) {
 				alert('이메일 주소 형식은 OOO@OOO.OOO 입니다.');
 				return false;
 			}
@@ -110,24 +77,18 @@
 			return false;
 		} else {
 			var regexp = /[0-9]{4}/;
-			if ( !regexp.test(tel2) || !regexp.test(tel3)) {
+			if (!regexp.test(tel2) || !regexp.test(tel3)) {
 				alert('전화번호는 숫자이여야 합니다.');
 				return false;
 			}
 		}
 
-		var check =confirm(
-				'ID : '+userId +'\n'+
-				'이름 : '+name +'\n'+
-				'이메일 : '+email +'\n'+
-				'전화번호 : '+tel1+'-'+tel2 +'-'+tel3+'\n'+
-				'우편번호 : '+postcode +'\n'+
-				'주소 : '+address +'\n'+
-				'상세주소 : '+addrDetail +'\n'+
-				'나의 소개 : '+introduction +'\n'+
-				'상기의 정보로 회원 가입을 하시겠습니까?'
-			);
-		if(check){
+		var check = confirm('ID : ' + userId + '\n' + '이름 : ' + name + '\n'
+				+ '이메일 : ' + email + '\n' + '전화번호 : ' + tel1 + '-' + tel2 + '-'
+				+ tel3 + '\n' + '우편번호 : ' + postcode + '\n' + '주소 : ' + address
+				+ '\n' + '상세주소 : ' + addrDetail + '\n' + '나의 소개 : '
+				+ introduction + '\n' + '상기의 정보로 회원 가입을 하시겠습니까?');
+		if (check) {
 			var form = document.createElement("form");
 			var parm = new Array();
 			var input = new Array();
@@ -136,7 +97,7 @@
 			parm.push([ 'userId', userId ]);
 			parm.push([ 'password', password ]);
 			parm.push([ 'name', name ]);
-			parm.push([ 'phoneNum', tel1+'-'+tel2+'-'+tel3 ]);
+			parm.push([ 'phoneNum', tel1 + '-' + tel2 + '-' + tel3 ]);
 			parm.push([ 'email', email ]);
 			parm.push([ 'postcode', postcode ]);
 			parm.push([ 'address', address ]);
@@ -155,94 +116,88 @@
 		}
 	}
 </script>
-
-
-
-
 <body>
+	<table class="table1" border="1" >
+		<tbody>
+			<tr style="color: lightgrey">
+				<th><span>＊</span>아이디</th>
+				<td><input id="userId" type="text" size="10"
+					readonly="readonly" value="${member.userId}"
+					style="color: lightgrey"></td>
+			</tr>
 
-	<div class="wrapper">
+			<tr style="color: lightgrey">
+				<th width="150"><span>＊</span>이름</th>
+				<td><input id="name" type="text" size="10" readonly="readonly"
+					value="${member.name}" style="color: lightgrey"></td>
+			</tr>
 
-		<div class="div2">
-			<table class="table1">
-				<tbody>
-					<tr>
-						<td><span>＊</span>아이디</td>
-						<td><input id="userId" type="text" size="10" readonly="readonly" value="${member.userId}"></td>
-					</tr>
-					
-					<tr>
-						<td width="150"><span>＊</span>이름</td>
-						<td><input id="name" type="text" size="10" readonly="readonly" value="${member.name}"></td>
-					</tr>
+			<tr>
+				<th><span>＊</span>새 비밀번호</th>
+				<td><input id="password" type="password" size="10"
+					maxlength="15" onkeyup="PasswordRegexCheck()"><br> <span
+					id="PasswordRegexCheck"><font color="red">비밀번호는 특수문자
+							/문자/ 숫자를 한자 이상 포함 형태의 8~15자리 이내여야 합니다.</font></span></td>
+			</tr>
 
-					<tr>
-						<td><span>＊</span>새 비밀번호</td>
-						<td><input id="password" type="password" size="10"  maxlength="15" onkeyup="PasswordRegexCheck()"><br>
-							<span id="PasswordRegexCheck"><font color="red">비밀번호는 특수문자 /문자/ 숫자를 한자 이상  포함 형태의 8~15자리 이내여야 합니다.</font></span>
-						</td>
-					</tr>
-					
-					<tr>
-						<td><span>＊</span>비밀번호확인</td>
-						<td>
-							<input id="password2" type="password" size="10">
-						
-						</td>
-					</tr>
+			<tr>
+				<th><span>＊</span>비밀번호확인</th>
+				<td><input id="password2" type="password" size="10"></td>
+			</tr>
 
-					<tr>
-						<td><span>＊</span>E-mail&nbsp;주소</td>
-						<td>
-							<input id="email" type="email" size="20" value="${member.email}" readonly="readonly"><br>
-						</td>
-					</tr>
-					<tr>
-						<td><span>＊</span>전화번호</td>
-						<td><select id="tel1">
-								<option value="010">010</option>
-								<option value="011">011</option>
-								<option value="016">016</option>
-								<option value="017">017</option>
-								<option value="018">018</option>
-								<option value="019">019</option>
-						</select> - <input type="text" id="tel2" size="10"> - <input type="text" id="tel3" size="10"></td>
-			
-					</tr>
-					<script>
-					var phoneNum = '${member.phoneNum}';
-					var telArray = phoneNum.split('-');
-					document.getElementById("tel1").value=telArray[0];
-					document.getElementById("tel2").value=telArray[1];
-					document.getElementById("tel3").value=telArray[2];
-					</script>
-					<tr>
-						<td><span>＊</span>주소</td>
-						<td>
-							<input type="text" size="10" id="postcode" id="postcode" value="${member.postcode}" readonly="readonly"> 
-							<input type="button" onclick="SearchPostcode()" value="우편번호검색" class=""><br>
-							<div id="layer"	style="display: none; position: fixed; overflow: hidden; z-index: 1; -webkit-overflow-scrolling: touch;">
-							<img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"	id="btnCloseLayer"	style="cursor: pointer; position: absolute; right: -3px; top: -3px; z-index: 1"	onclick="closeDaumPostcode()" alt="닫기 버튼">
-							</div>
-							<script src="../js/SearchAddr.js"></script>
-							<input type="text" id="address" size="60" id="address" value="${member.address}" readonly="readonly"> 
-							<input type="text" size="60" id="addrDetail"value="${member.addrDetail}" >
-						</td>
-					</tr>
-					<tr>
-						<td>자기소개</td>
-						<td><textarea id="introduction"class="textarea1">${member.introduction}</textarea></td>
-					</tr>
-					<tr style="text-align: right;">
-						<td colspan="2">
-							<input type="button" onclick="UpdateMember()" value="정보수정하기"> 
-							<input type="button" onclick="location.href='../forme/MemberDeleteConfirmForm'" value="회원탈퇴하기"> 
-							<input type="button" value="취소">
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+			<tr style="color: lightgrey">
+				<th><span>＊</span>E-mail&nbsp;주소</th>
+				<td><input id="email" type="email" size="20"
+					value="${member.email}" readonly="readonly"
+					style="color: lightgrey"><br></td>
+			</tr>
+			<tr>
+				<th><span>＊</span>전화번호</th>
+				<td><select id="tel1">
+						<option value="010">010</option>
+						<option value="011">011</option>
+						<option value="016">016</option>
+						<option value="017">017</option>
+						<option value="018">018</option>
+						<option value="019">019</option>
+				</select> - <input type="text" id="tel2" size="10" maxlength="4"> - <input
+					type="text" id="tel3" size="10" maxlength="4"></td>
+			</tr>
+			<script>
+				var phoneNum = '${member.phoneNum}';
+				var telArray = phoneNum.split('-');
+				document.getElementById("tel1").value = telArray[0];
+				document.getElementById("tel2").value = telArray[1];
+				document.getElementById("tel3").value = telArray[2];
+			</script>
+			<tr>
+				<th><span>＊</span>주소</th>
+				<td><input type="text" size="10" id="postcode" id="postcode"
+					value="${member.postcode}" readonly="readonly"> <input
+					type="button" onclick="SearchPostcode()" value="우편번호검색" class=""><br>
+					<div id="layer"
+						style="display: none; position: fixed; overflow: hidden; z-index: 1; -webkit-overflow-scrolling: touch;">
+						<img
+							src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"
+							id="btnCloseLayer"
+							style="cursor: pointer; position: absolute; right: -3px; top: -3px; z-index: 1"
+							onclick="closeDaumPostcode()" alt="닫기 버튼">
+					</div> <script src="../js/SearchAddr.js"></script> <input type="text"
+					id="address" size="60" id="address" value="${member.address}"
+					readonly="readonly"><br> <input type="text" size="60"
+					id="addrDetail" value="${member.addrDetail}"></td>
+			</tr>
+			<tr>
+				<th>자기소개</th>
+				<td><textarea id="introduction" class="textarea1">${member.introduction}</textarea></td>
+			</tr>
+			<tr style="text-align: right;">
+				<td colspan="2"><input type="button" onclick="UpdateMember()"
+					value="정보수정하기"> <input type="button"
+					onclick="location.href='../forme/MemberDeleteConfirmForm'"
+					value="회원탈퇴하기"> <input type="button" value="취소"></td>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>

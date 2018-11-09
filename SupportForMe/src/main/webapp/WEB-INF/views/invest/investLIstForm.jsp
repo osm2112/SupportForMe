@@ -40,31 +40,6 @@
 	
 </script>
 </head>
-<!-- <div class="input-group" style="width:1200px;">
-	<input type="hidden" name="page" value="1">
-	<select name="searchCondition" class="form-control" style="width:200px;">
-		<option value="">전체</option>>
-		<option value="projectName">프로젝트명</option>
-		<option value="name">프로젝트작성자</option>
-		<option value="userId">프로작성자ID</option>
-	</select>
-	<select name="progress" class="form-control" style="width:200px;">
-		<option value="">프로젝트진행상태</option>
-		<option value="001">진행중</option>
-		<option value="002">마감</option>
-		<option value="003">무산</option>
-		<option value="004">제작중</option>
-		<option value="005">보류</option>
-		<option value="006">완료</option>
-	</select>
-	<input type="text" name="searchKeyword" value="" class="form-control" style="width:600px;">
-	<input type="submit" class="btn _btn2" value="검색" style="width:200px;">
-	<script>
-		document.searchForm.searchCondition.value ='${searchCondition}';
-		document.searchForm.searchKeyword.value ='${searchKeyword}';
-		document.searchForm.progress.value ='${progress}';
-	</script>
-</div> -->
 
 
 <body>

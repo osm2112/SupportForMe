@@ -10,18 +10,18 @@
 <style>
 
 #mypage_list {
-	margin-left: 20px;
+   margin-left: 20px;
 }
 
 
 .project_box {
-	width: 255px;
-	height: 420px;
-	border: 1px solid lightgrey;
-	display: inline-block;
-	margin-top: 20px;
-	margin-left: 10px;
-	margin-right:10px;
+   width: 255px;
+   height: 420px;
+   border: 1px solid lightgrey;
+   display: inline-block;
+   margin-top: 20px;
+   margin-left: 10px;
+   margin-right:10px;
 }
 .project_box:hover {
    /* border: 4px solid rgb(26, 188, 156); */
@@ -30,31 +30,31 @@
 }
 
 .project_state {
-	border: 1.5px solid rgb(211, 84, 0);
-	border-radius: 5px;
-	color: rgb(211, 84, 0);
-	padding-top: 5px;
-	width: 100px;
-	height: 25px;
-	text-align: center;
-	margin-bottom: 5px;
+   border: 1.5px solid rgb(211, 84, 0);
+   border-radius: 5px;
+   color: rgb(211, 84, 0);
+   padding-top: 5px;
+   width: 100px;
+   height: 25px;
+   text-align: center;
+   margin-bottom: 5px;
 }
 
 .mypage_project_image {
-	width: 240px;
-	height: 160px;
-	border: 1px solid lightgrey;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 5px;
-	background-color: #E9E9E9;
+   width: 240px;
+   height: 160px;
+   border: 1px solid lightgrey;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 5px;
+   background-color: #E9E9E9;
 }
 
 .mypage_project_content {
-	margin-top: 35px;
-	margin-left: 10px;
-	width: 230px;
-	height: 200px;
+   margin-top: 35px;
+   margin-left: 10px;
+   width: 230px;
+   height: 200px;
 }
 
 </style>

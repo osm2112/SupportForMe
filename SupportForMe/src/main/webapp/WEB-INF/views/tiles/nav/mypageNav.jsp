@@ -105,13 +105,38 @@
 		<div id="project_mypage">
 			<div id="project_mypage_menu">
 				<nav>
-					<div id="InvestList" class="" onclick="location.href='../forme/MemberUpdateConfirmForm'">프로필 설정</div>
+					<div id="myUpdate" class="" onclick="location.href='../forme/MemberUpdateConfirmForm'">프로필 설정</div>
 					<div id="myProject" class="" onclick="">나의 프로젝트</div>
-					<div id="myInvestList" class="" onclick="location.href='../forme/MyInvestList'">나의 투자현황</div>
-					<div id="InvestList" class="" onclick="location.href='../forme/InvestList'">나의 결제내역</div>
+					<div id="_myInvestList" class="" onclick="location.href='../forme/MyInvestList'">나의 투자현황</div>
+					<div id="investList" class="" onclick="location.href='../forme/InvestList'">나의 결제내역</div>
 				</nav>
 			</div>
 		</div>
 	</div>
+	<script>
+	$(window).load(function() {
+ 	var uri = window.location.pathname.toString();
+ 	console.log(uri);
+ 	if(uri.match('MemberUpdateConfirmForm')){
+ 		var memberUpdateConfirmForm = document.getElementById('myUpdate');
+ 		memberUpdateConfirmForm.setAttribute("class","_active");
+ 		
+ 	}
+ 	if(uri.match('MyInvestList')){
+ 		var myInvestList = document.getElementById('_myInvestList');
+ 		myInvestList.setAttribute("class","_active");
+ 		
+ 	}
+ 	
+ 	if(uri.match('/InvestList')){
+ 		var investList = document.getElementById('investList');
+ 		investList.setAttribute("class","_active");
+ 		
+ 	}
+ 	
+	});
+	</script>
+	
+	
 </body>
 </html>
