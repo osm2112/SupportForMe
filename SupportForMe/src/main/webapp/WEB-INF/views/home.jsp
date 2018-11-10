@@ -89,14 +89,14 @@
 
 .real_time_rank_div {
 	border: 1px solid lightgrey;
-	height: 350px;
+	height: 480px;
 	width: 285px;
 }
 
 .real_time_image {
 	width: 250px;
 	height: 160px;
-	border: 1px solid lightgrey;
+	/* border: 1px solid lightgrey; */
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10px;
@@ -297,12 +297,12 @@ margin-top: 2px;
 							controlNav : false,
 							directionNav : false,
 							start : function(slider) {
-								$('.real_time_rank_projects li').eq(0)
+								$('.real_time_rank_projects li span').eq(0)
 										.css('border',
 												'2px solid rgb(26, 188, 156)');
 							},
 							after : function(slider) {
-								$('.real_time_rank_projects li').eq(
+								$('.real_time_rank_projects li span').eq(
 										slider.currentSlide - 1).css('border',
 										"");
 								/* 		$('.real_time_rank_projects li').eq(
@@ -311,7 +311,7 @@ margin-top: 2px;
 												slider.currentSlide).attr("class","no");
 								 */
 
-								$('.real_time_rank_projects li').eq(
+								$('.real_time_rank_projects li span').eq(
 										slider.currentSlide).css('border',
 										'2px solid rgb(26, 188, 156)');
 							}
@@ -319,7 +319,7 @@ margin-top: 2px;
 
 				Rank();
 				Ranking();
-				setInterval("Rank()", 5000);
+				setInterval("Rank()", 8000);
 
 			});
 	function Ranking() {
@@ -454,15 +454,17 @@ margin-top: 2px;
 					</div>
 					<div class="real_time_rank_projects">
 						<nav id="rank">
+							<div style="height:20px;"></div>
 							<!-- <marquee behavior=slide loop=30> -->
 							<ol>
-								<li class="" style="font-size: small; cursor: pointer;" onclick="1"></li>
-								<li class="" style="font-size: small; cursor: pointer;" onclick="2"></li>
-								<li class="" style="font-size: small; cursor: pointer;"	onclick="3"></li>
-								<li class="" style="font-size: small; cursor: pointer;"	onclick="4"></li>
-								<li class="" style="font-size: small; cursor: pointer;"	onclick="5"></li>
+								<li class="" style="height:50px; font-size: small; cursor: pointer;" onclick="1"></li>
+								<li class="" style="height:50px; font-size: small; cursor: pointer;" onclick="2"></li>
+								<li class="" style="height:50px; font-size: small; cursor: pointer;"	onclick="3"></li>
+								<li class="" style="height:50px; font-size: small; cursor: pointer;"	onclick="4"></li>
+								<li class="" style="height:50px; font-size: small; cursor: pointer;"	onclick="5"></li>
 							</ol>
 							<!-- </marquee> -->
+							
 						</nav>
 					</div>
 				</div>
