@@ -381,14 +381,14 @@ margin-top: 2px;
 								"location.href='support/getProjectDetailPage?projectNo="
 										+ data[i].projectNo + "'");
 						$('.real_time_rank_projects nav ol li').eq(i).html(
-								"<span><em>" + (i + 1) + "</em>"
+								"<span style='cursor: pointer;'><em>" + (i + 1) + "</em>"
 										+ data[i].projectName + "</span>");
-						$('.real_time_rank_projects nav ol li').eq(i).attr(
+						$('.real_time_rank_projects nav ol li span').eq(i).attr(
 								"onclick",
 								"location.href='support/getProjectDetailPage?projectNo="
 										+ data[i].projectNo + "'");
 					}
-				}
+				} 
 
 			}
 		});
@@ -457,11 +457,11 @@ margin-top: 2px;
 							<div style="height:20px;"></div>
 							<!-- <marquee behavior=slide loop=30> -->
 							<ol>
-								<li class="" style="height:50px; font-size: small; cursor: pointer;" onclick="1"></li>
-								<li class="" style="height:50px; font-size: small; cursor: pointer;" onclick="2"></li>
-								<li class="" style="height:50px; font-size: small; cursor: pointer;"	onclick="3"></li>
-								<li class="" style="height:50px; font-size: small; cursor: pointer;"	onclick="4"></li>
-								<li class="" style="height:50px; font-size: small; cursor: pointer;"	onclick="5"></li>
+								<li class="" style="height:50px; font-size: small;" onclick="1"></li>
+								<li class="" style="height:50px; font-size: small;" onclick="2"></li>
+								<li class="" style="height:50px; font-size: small;"	onclick="3"></li>
+								<li class="" style="height:50px; font-size: small;"	onclick="4"></li>
+								<li class="" style="height:50px; font-size: small;"	onclick="5"></li>
 							</ol>
 							<!-- </marquee> -->
 							
