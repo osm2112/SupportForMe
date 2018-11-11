@@ -37,15 +37,14 @@
 }
 
 .pjdtl-project-name {
-	display: flex;
-	justify-content: center;
+	width: 100%;
 	font-size: 50px;
+	text-align: center;
 }
 
 .pjdtl-pick-btn {
 	display: flex;
 	flex: 0 0 auto;
-	margin-left: auto;
 	width: 100px;
 	height: 40px;
 	font-size: 15px;
@@ -55,11 +54,17 @@
 	border: 1px solid rgb(26, 188, 156);
 	border-radius: 7px;
 	padding: 5px;
+	margin-top:auto;
+	margin-bottom:auto;
 }
 
 .pjdtl-hashtag {
 	color: rgb(26, 188, 156);
 	font-size: 25px;
+}
+.pjdtl-hashtag:hover {
+	cursor:pointer;
+	text-decoration:underline;
 }
 
 .pjdtl-intro-box {
@@ -330,7 +335,7 @@ $(function(){
     </div>
     <div class="pjdtl-center"><!-- 해시태그 -->
         <c:forEach items="${hashtag}" var="projectTag">
-            <span class="pjdtl-hashtag">#${projectTag.hashtagName}</span>&nbsp;
+            <span class="pjdtl-hashtag" onclick="location.href='../support/getProjects?searchKeyword=${projectTag.hashtagName}'">#${projectTag.hashtagName}</span>&nbsp;
         </c:forEach>
     </div>
     <br>
