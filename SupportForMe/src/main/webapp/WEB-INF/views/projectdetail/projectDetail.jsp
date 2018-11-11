@@ -94,7 +94,7 @@
 .pjdtl-invest-btn {
 	width: 420px;
 	height: 50px;
-	margin-right: 20px;
+	margin-right: 10px;
 	font-size: 20px;
 	font-weight: 800;
 	color: white;
@@ -331,7 +331,9 @@ $(function(){
     <!-- 프로젝트 이름, 관리자 버튼 -->
     <div class="pjdtl-flex-container">
         <div class="pjdtl-project-name">${project.projectName}</div>
-        <button class="pjdtl-pick-btn" onclick="#">PICK</button>
+        <c:if test="${pMember.userId == 'admin'}">
+        	<button class="pjdtl-pick-btn" onclick="#">PICK</button>
+    	</c:if>
     </div>
     <div class="pjdtl-center"><!-- 해시태그 -->
         <c:forEach items="${hashtag}" var="projectTag">
