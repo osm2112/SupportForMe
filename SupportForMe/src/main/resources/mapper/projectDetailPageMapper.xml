@@ -9,7 +9,7 @@
        	   IMAGE, 
       	   TARGET_AMOUNT, 
        	   PROJECT_DEADLINE, 
-       	   TO_DATE(PROJECT_DEADLINE, 'YYYY.MM.DD')+7 AS SCHEDULED_PAYMENT_DATE,
+       	   TO_CHAR((TO_DATE(PROJECT_DEADLINE, 'YYYY.MM.DD')+7), 'YYYY.MM.DD') AS SCHEDULED_PAYMENT_DATE,
        	   PROJECT_PROGRESS_RATE(#{projectNo}) AS PROJECT_PROGRESS_RATE, 
        	   STORY,
        	   INTRODUCTION_VIDEO,
@@ -53,23 +53,5 @@
 	GROUP BY PRESENT_NO
 	ORDER BY PRESENT_NO
 </select>
-
-
-<!-- 댓글 불러오기 -->
-<select id="getComments" resultType="comments" parameterType="project">
-	SELECT *
-	FROM COMMENTS
-	WHERE PROJECT_NO = #{projectNo} 
-</select>
-
-<!-- 답글 불러오기 -->
-<select id="getReplyComments" resultType="comments" parameterType="comments">
-	SELECT *
-	FROM COMMENTS
-	WHERE TOP_COMMENT_NO = #{topCommentNo}
-</select>
-
-
-
 
 </mapper>

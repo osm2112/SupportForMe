@@ -466,7 +466,14 @@ $(function(){
             <div class="pjdtl-each-reward">
             	<div style="display:flex;">
             		<img src="../images/checkmark.png" style="width:27px; height:27px">
-            		<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span>
+            		<c:choose>
+            		<c:when test="${presentCount[status.index].rewardSelectCount == null}">
+            			<span style="font-size:27px; color:#8C8C8C;">0명이 선택</span>
+            		</c:when>
+            		<c:otherwise>
+            			<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span>
+            		</c:otherwise>
+            		</c:choose>
             	</div><br><br>
             	<span style="color:#4C4C4C;">가격</span><br>
             	<span style="font-size:23px; color:#FF007F;">${reward.presentPrice}원 +</span><br>
