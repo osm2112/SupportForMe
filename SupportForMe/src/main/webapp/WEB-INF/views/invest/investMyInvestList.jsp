@@ -108,8 +108,7 @@ $(document).ready(function() {
 							}
 						}
 					}
-				});
-		lastno = $(".project_box").last().attr("id");					
+				});				
 	}
 });
 
