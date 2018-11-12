@@ -209,8 +209,8 @@ function view() {
 	    	<div id="head">
 		    	<!--  화면줄였을때 보이는 영역 -->
 	    	    <div id="search_div1">
-		        <img src="/SupportForMe/images/search.png" class="searchImg">
-		        <form action="/SupportForMe/support/getProjects">
+		        <img src="<%= request.getContextPath() %>/images/search.png" class="searchImg">
+		        <form action="<%= request.getContextPath() %>/support/getProjects">
 	        	<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
 				</form> 	    
 	        	</div>
@@ -227,7 +227,7 @@ function view() {
 	        	<div id="search_div2">
 	        	<form>
 	        	<input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-	        	<img src="/SupportForMe/images/search.png" class="searchImg">
+	        	<img src="<%= request.getContextPath() %>/images/search.png" class="searchImg">
 				</form>
 	        	</div>
 	        	
@@ -252,13 +252,13 @@ function view() {
 	    	<div id="head">
 		    	<!--  화면줄였을때 보이는 영역 -->
 	    	    <div id="search_div1">
-		        <a href="#" onclick="view()"><img src="/SupportForMe/images/search.png" class="searchImg"></a>
-		        <form action="/SupportForMe/support/getProjects">
+		        <a href="#" onclick="view()"><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg"></a>
+		        <form action="<%= request.getContextPath() %>/support/getProjects">
 	        	<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
 				</form> 	    
 	        	</div>
 				
-	        	<div id="site_name" style="cursor:pointer;" onclick="location.href='/SupportForMe'">
+	        	<div id="site_name" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>'">
 	            	SupportForME
 	        	</div>
 	        
@@ -268,14 +268,14 @@ function view() {
 	        
 	        	<!-- 전체화면일때 보이는 영역 -->
 	        	<div id="search_div2">
-	        	<form action="/SupportForMe/support/getProjects">
+	        	<form action="<%= request.getContextPath() %>/support/getProjects">
 	        	<input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-	        	<input TYPE="image" src="/SupportForMe/images/search.png" class="searchImg" name="Submit" value="Submit">
+	        	<input TYPE="image" src="<%= request.getContextPath() %>/images/search.png" class="searchImg" name="Submit" value="Submit">
 				</form>
 	        	</div>
 	        	<c:if test="${loginID eq null}">
-	        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='/SupportForMe/support/MemberLoginForm'">로그인</div>
-	        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='/SupportForMe/support/MemberTermsConfirmForm'">회원가입</div>
+	        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>/support/MemberLoginForm'">로그인</div>
+	        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>/support/MemberTermsConfirmForm'">회원가입</div>
 	        	</c:if>
 	        	<c:if test="${loginID ne null}">
 	        	<div id="head_font_size" class="hamburger-wrapper"><span class="hamburger">마이 페이지</span></div>
@@ -295,12 +295,12 @@ function view() {
   <span id="close-sidenav">&times;</span>
   <header>회원아이디 <br> ${loginID} </header>
   <ul>
-    <li><a href="/SupportForMe/forme/MemberUpdateConfirmForm">프로필 설정</a></li>
+    <li><a href="<%= request.getContextPath() %>/forme/MemberUpdateConfirmForm">프로필 설정</a></li>
     <li><a href="#">나의 프로젝트</a></li>
-    <li><a href="/SupportForMe/forme/MyInvestList">나의 투자 현황</a></li>
-    <li><a href="/SupportForMe/forme/InvestList">나의 결제 내역</a></li>
-    <li><a href="/SupportForMe/support/logout">로그아웃</a></li>
-    <li><a href="/SupportForMe/forme/MemberDeleteConfirmForm">회원탈퇴</a></li>
+    <li><a href="<%= request.getContextPath() %>/forme/MyInvestList">나의 투자 현황</a></li>
+    <li><a href="<%= request.getContextPath() %>/forme/InvestList">나의 결제 내역</a></li>
+    <li><a href="<%= request.getContextPath() %>/support/logout">로그아웃</a></li>
+    <li><a href="<%= request.getContextPath() %>/forme/MemberDeleteConfirmForm">회원탈퇴</a></li>
   </ul>
 </nav>
 
