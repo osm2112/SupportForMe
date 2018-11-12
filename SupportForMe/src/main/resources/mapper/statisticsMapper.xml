@@ -42,7 +42,7 @@
 		COUNT(CASE WHEN MM = '12' THEN CNT END) "M12"
 	FROM TEMP
 	WHERE YY ='2018'
-	GROUP BY YY
+	GROUP BY YY;
 	</select>
 	<select id="memberJoinStatisticsWeek" >
 	WITH TEMP2 AS(
@@ -135,7 +135,7 @@
 				COUNT(CASE WHEN MM = '12' THEN CNT END) "M12"
 		FROM TEMP
 		WHERE YY ='2018'
-		GROUP BY YY
+		GROUP BY YY;
 	</select>
 
 	<select id="projectRegWeek">
@@ -233,7 +233,7 @@
 			ROUND(NVL(( COUNT(CASE WHEN MM = '12' AND CNT1='003' THEN CNT1	END)/NULLIF(COUNT(CASE WHEN MM = '12' THEN CNT2 END),0)*100),0),2)	"M12"
 	FROM TEMP
 	WHERE YY = '2018'
-	GROUP BY YY
+	GROUP BY YY;
 	
 	</select>
 	<select id="projectFailRateWeek">

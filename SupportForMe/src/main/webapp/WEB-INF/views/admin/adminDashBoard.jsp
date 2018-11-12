@@ -89,6 +89,9 @@
     google.charts.load("current", {packages:['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
+    	
+    	
+    	
       var data = google.visualization.arrayToDataTable([
         ["Element", "Density", { role: "style" } ],
         ["1월", 8.94, "color: #01DFA5"],
