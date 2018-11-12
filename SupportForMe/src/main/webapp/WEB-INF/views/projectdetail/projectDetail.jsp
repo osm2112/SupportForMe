@@ -298,7 +298,31 @@ $(function(){
             <div style="display:flex;">
                 <button class="pjdtl-invest-btn" onclick="location.href='../forme/InvestSelectReward?projectNo=${project.projectNo}'">투자하기</button>
                 <img src="../images/share-button.png" class="pjdtl-share-btn">
-            </div><br>
+            </div><br><br>
+            <table class="table-bordered" style="width:480px;">
+            	<tr>
+            		<td><img src="../images/calendar.png" class="pjdtl-status-img"></td>
+    				<td><img src="../images/right-arrow.png" class="pjdtl-right-arrow"></td>
+    				<td><img src="../images/credit-card.png" class="pjdtl-status-img"></td>
+    				<td><img src="../images/right-arrow.png" class="pjdtl-right-arrow"></td>
+    				<td><img src="../images/delivery-truck.png" class="pjdtl-status-img"></td>
+            	</tr>
+            	<tr>
+            		<td class="pjdtl-status-font">종료일</td>
+            		<td></td>
+            		<td class="pjdtl-status-font">결제 예정일</td>
+            		<td></td>
+            		<td class="pjdtl-status-font">예상 배송일</td>
+            	</tr>
+            	<tr>
+            		<td class="pjdtl-status-font">${project.projectDeadline}</td>
+            		<td class="pjdtl-status-font"></td>
+            		<td class="pjdtl-status-font">${project.scheduledPaymentDate}</td>
+            		<td class="pjdtl-status-font"></td>
+            		<td class="pjdtl-status-font">${project.deliveryDate}</td>
+            	</tr>
+            </table>
+<!--           
             <div class="pjdtl-status-box">
                 <div class="">
                 <div>
@@ -315,7 +339,7 @@ $(function(){
                 </div>
                 </div>
             </div>
-            
+-->            
         </div>
     </div>
     </div>
