@@ -2,7 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="statistics">
-	<select id="memberJoinStatisticsMonth" resultType="">
+
+
+	<resultMap type="java.util.HashMap" id="statisticMonthMap">
+		<result column="M01" property="M01" />
+		<result column="M02" property="M02" />
+		<result column="M03" property="M03" />
+		<result column="M04" property="M04" />
+		<result column="M05" property="M05" />
+		<result column="M06" property="M06" />
+		<result column="M07" property="M07" />
+		<result column="M08" property="M08" />
+		<result column="M09" property="M09" />
+		<result column="M10" property="M10" />
+		<result column="M11" property="M11" />
+		<result column="M12" property="M12" />
+		
+	</resultMap>	
+
+	<select id="memberJoinStatisticsMonth"  resultMap="statisticMonthMap">
 	WITH TEMP AS(
 		SELECT USER_ID AS CNT,
 				TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm--dd'),'yyyy') AS YY,
@@ -26,7 +44,7 @@
 	WHERE YY ='2018'
 	GROUP BY YY;
 	</select>
-	<select id="memberJoinStatisticsWeek" resultType="">
+	<select id="memberJoinStatisticsWeek" >
 	WITH TEMP2 AS(
 		SELECT USER_ID AS CNT,
 			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm--dd'),'yyyy') AS YY,
@@ -46,7 +64,7 @@
 	;
 	</select>
 
-	<select id="memberJoinStatisticsDay" resultType="">
+	<select id="memberJoinStatisticsDay" >
 	WITH TEMP AS(
 	SELECT 	USER_ID AS CNT,
 			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm--dd'),'yyyy') AS YY,
@@ -92,7 +110,7 @@
 	;
 	</select>
 
-	<select id="projectRegMonth" resultType="">
+	<select id="projectRegMonth" >
 		WITH TEMP AS
 		(
 		SELECT PROJECT_NO AS "CNT",
@@ -120,7 +138,7 @@
 		GROUP BY YY;
 	</select>
 
-	<select id="projectRegWeek" resultType="">
+	<select id="projectRegWeek">
 		WITH TEMP AS
 		(
 		SELECT 
@@ -142,7 +160,7 @@
 		GROUP BY YY,MM
 		;
 	</select>
-	<select id="projectRegDay" resultType="">
+	<select id="projectRegDay" >
 	WITH TEMP AS
 	(
 	SELECT PROJECT_NO AS "CNT",
@@ -190,7 +208,7 @@
 	;	
 	</select>
 	
-	<select id="projectFailRateMonth" resultType="">
+	<select id="projectFailRateMonth">
 	WITH TEMP AS
 	(
 	SELECT PROGRESS CNT1, PROJECT_NO CNT2,
@@ -218,7 +236,7 @@
 	GROUP BY YY;
 	
 	</select>
-	<select id="projectFailRateWeek" resultType="">
+	<select id="projectFailRateWeek">
 	WITH TEMP AS
 	(
   	SELECT PROGRESS  CNT1,  PROJECT_NO CNT2,
@@ -241,10 +259,7 @@
 	</select>
 	
 	
-	
-	<select id="projectFailRateWeek" resultType="">
-	
-	</select>
+
 	
 	
 	

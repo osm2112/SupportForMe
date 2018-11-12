@@ -20,6 +20,12 @@ public class AdminStatisticsController {
 	}
 	
 	
+	@RequestMapping("/forme/AdminDashBoard")
+	public String adminDashBoard(HttpSession session) {
+		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
+		return "admin/adminDashBoard";
+	}
+	
 
 }
 

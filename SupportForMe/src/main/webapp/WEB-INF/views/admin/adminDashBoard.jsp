@@ -25,7 +25,7 @@
     width: 250px;
     height: 100%;
     margin-left: -250px;
-    background: #000;
+    background: grey;
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -51,12 +51,12 @@
   .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999;
+    color: white;
   }
   
   .sidebar-nav li a:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    background: rgb(26, 188, 156);
   }
   
   .sidebar-nav > .sidebar-brand {
@@ -73,10 +73,11 @@
       <li class="sidebar-brand">
         <a href="#">SupportForMe</a>
       </li>
-      <li><a href="#">대쉬보드</a></li>
+      <li><a href="#">DASHBOARD</a></li>
       <li><a href="#">회원 관련 통계정보</a></li>
       <li><a href="#">프로젝트 관련 통계정보</a></li>
       <li><a href="#">결제관련 통계정보</a></li>
+      <li><a href="#">관리자 메뉴로 가기</a></li>
     </ul>
   </div>
   <!-- /사이드바 -->
