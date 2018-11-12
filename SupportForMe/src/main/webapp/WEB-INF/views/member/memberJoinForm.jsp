@@ -107,13 +107,22 @@ caption {
 						method : "post",
 						type : "text",
 						success : function(data) {
-							if (data == 0) {
-								document.getElementById("checkEmailResult").innerHTML = '사용할수 있는  Email입니다.';
-								emailCheck = true;
-							} else {
+							
+							var emailRegexp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+							if (!emailRegexp.test(email)){
 								document.getElementById("checkEmailResult").innerHTML = '<font color="red">사용할수 없는 Email입니다.</font>';
 								emailCheck = false;
 							}
+							else {								
+								if (data == 0) {
+									document.getElementById("checkEmailResult").innerHTML = '사용할수 있는  Email입니다.';
+									emailCheck = true;
+								} else {
+									document.getElementById("checkEmailResult").innerHTML = '<font color="red">사용할수 없는 Email입니다.</font>';
+									emailCheck = false;
+								}
+							}
+						
 						}
 					});
 		} else {
@@ -147,7 +156,7 @@ caption {
 			return false;
 		}
 		if (emailCheck == false) {
-			alert('해당  Email은 중복된 Email 입니다.');
+			alert('해당  Email은 사용할 수 없습니다.');
 			return false;
 		}
 		if (!userId) {
