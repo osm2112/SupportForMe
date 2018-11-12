@@ -269,6 +269,18 @@ margin-top: 2px;
     /* text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3); */
     line-height: 40px;
 }
+<!-- 문자생략 테스트 -->
+
+
+#main_div {    height: 20px; width: 150px;        white-space: nowrap;    overflow: hidden;    text-overflow: ellipsis; }
+
+div p {
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  width: 100px;
+  height: 20px;
+}
 
 </style>
 <script>
@@ -594,5 +606,19 @@ margin-top: 2px;
 	</div>
 	
 	<div style="height: 200px"></div>
+	
+
+
+
+<!-- 
+<ul>
+    <li class="main_div"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+    <li><a class="main_div" href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+    <li class="main_div"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+    <li><a class="main_div" href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+</ul> -->
+<div id="main_div">Military Grid Reference System (MGRS) coordinates may be displayed at the bottom of the A-G Mode page on a black background.</div>
+<div><p>Military Grid Reference System (MGRS) coordinates may be displayed at the bottom of the A-G Mode page on a black background.</p></div>
+
 </body>
 </html>
