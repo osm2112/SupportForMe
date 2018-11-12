@@ -42,6 +42,8 @@ public class LoginHandlerInterceptor  extends HandlerInterceptorAdapter{
 						response.sendRedirect(context);
 						return false; // 더이상 컨트롤러 요청으로 가지 않도록
 					}
+				} else {
+					return true;
 				}
 			}
 

@@ -3,6 +3,7 @@ package com.supportforme.biz;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +31,17 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 
-	public String home(Model model, HttpSession session) {
-		
+	public String home(Model model, HttpSession session, HttpServletRequest request) {
+		String userId = null;
+		String contextPath = request.getContextPath();
 		if ( session.getAttribute("LoginInfo") == null ) {
 			model.addAttribute("loginID", null);
 		/*	System.out.println( session.getAttribute("LoginInfo")+"22222222222222222222222222222222222222");*/
 		}
 		else {
 		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
-		model.addAttribute("loginID", dto.getUserId());
+		userId = dto.getUserId();
+		model.addAttribute("loginID", userId);
 	/*	System.out.println(dto.getUserId());
 		System.out.println( session.getAttribute("LoginInfo")+"33333333333333333333333333333333333333333");
 	*/
@@ -52,7 +55,17 @@ public class HomeController {
 		model.addAttribute("Book",projectService.getBookProjects());
 		model.addAttribute("Movie",projectService.getMovieProjects());
 		model.addAttribute("Rank",projectService.getInvsetTop5());
-		return "noNav/home";
+		if(userId !=null) {
+			if(userId.contains("Admin")) {
+				model.addAttribute("url", contextPath+"/forme/AdminDashBoard");
+				return "commons/alertRedirect";
+			}	else {
+				return "noNav/home";
+			}
+		}
+		 else {
+			return "noNav/home";
+		}
 	}
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	@ResponseBody

@@ -66,6 +66,12 @@
     font-size: 1.3em;
     line-height: 3em;
   }
+  
+      a:link { color: white; text-decoration: none; }
+      a:visited { color: white; text-decoration: none; }
+      a:hover { color: white; text-decoration: none; }
+      a:active { color: white; background-color: green; }
+  
 </style>
 </head>
 <body>
@@ -76,11 +82,12 @@
       <li class="sidebar-brand" style="background: rgb(26, 188, 156);">
         <a href="#">SupportForMe</a>
       </li>
-      <li><a href="#">DASHBOARD</a></li>
+      <li><a href="<c:url value='/'/>forme/AdminDashBoard">DASHBOARD</a></li>
       <li><a href="#">회원 관련 통계정보</a></li>
       <li><a href="#">프로젝트 관련 통계정보</a></li>
       <li><a href="#">결제관련 통계정보</a></li>
-      <li><a href="#">관리자 메뉴로 가기</a></li>
+      <li><a href="<c:url value='/'/>forme/AdminProjectProgressList">관리자 메뉴로 가기</a></li>
+      <li><a href="<c:url value='/'/>support/logout">로그아웃</a></li>
     </ul>
   </div>
   <!-- /사이드바 -->
@@ -97,7 +104,7 @@
     google.charts.setOnLoadCallback(drawChart3);
     function drawChart() {
     	$.ajax({	type : "post",
-			url : path+"forme/AdminMemberJoinStatisticsMonth",
+			url : path+"forme/AdminMemberJoinMonth",
 			dataType : "json",
 			async: false,
 			success : function(data) {
@@ -182,7 +189,7 @@
     function drawChart3() {
     	$.ajax({	
     		type : "post",
-			url : path+"forme/AdminMemberJoinStatisticsMonth",
+			url : path+"forme/InvestAmountSumMonth",
 			dataType : "json",
 			async: false,
 			success : function(data) {
