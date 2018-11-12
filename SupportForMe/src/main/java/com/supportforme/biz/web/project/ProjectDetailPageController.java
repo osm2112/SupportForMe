@@ -33,8 +33,7 @@ public class ProjectDetailPageController {
 				model.addAttribute("preview", "p");
 			};
 		}
-		pjdto.setProjectNo(pjdto.getProjectNo());		//"201810310001"
-//		cdto.setTopCommentNo("201810260001");	//댓글의 답글조회하려고   
+		pjdto.setProjectNo(pjdto.getProjectNo());
 		
 		model.addAttribute("project", projectDetailPageService.getProjectDetail(pjdto));
 		model.addAttribute("hashtag", projectDetailPageService.getProjectHashtags(pjdto));
@@ -42,8 +41,7 @@ public class ProjectDetailPageController {
 		model.addAttribute("present", projectDetailPageService.getProjectPresents(pjdto));
 		model.addAttribute("presentCount", projectDetailPageService.getProjectPresentsCount(pjdto));
 		model.addAttribute("pMember", (MemberDTO)session.getAttribute("LoginInfo"));
-//		model.addAttribute("comments", projectDetailPageService.getComments(pjdto));
-//		model.addAttribute("replyComments", projectDetailPageService.getReplyComments(cdto));
+
 		return "noNav/projectdetail/projectDetail";
 	}
 }
