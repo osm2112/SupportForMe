@@ -9,7 +9,9 @@
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-<title>* ${project.projectName} *</title>
+<title></title>
+
+<link rel="stylesheet" href="../css/projectDetail.css">
 
 <!-- 슬라이드 -->
 <link type="text/css" rel="stylesheet" href="../css/lightslider.css" />                  
@@ -21,182 +23,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-<style>
-.pjdtl-bodysize {
-	margin-left: auto;
-	margin-right: auto;
-	width: 1200px;
-}
-
-.pjdtl-center {
-	text-align: center;
-}
-
-.pjdtl-flex-container {
-	display: flex;
-}
-
-.pjdtl-project-name {
-	width: 100%;
-	font-size: 50px;
-	text-align: center;
-}
-
-.pjdtl-pick-btn {
-	display: flex;
-	flex: 0 0 auto;
-	width: 100px;
-	height: 40px;
-	font-size: 15px;
-	font-weight: 700;
-	color: rgb(26, 188, 156);
-	background-color: white;
-	border: 1px solid rgb(26, 188, 156);
-	border-radius: 7px;
-	padding: 5px;
-	margin-top:auto;
-	margin-bottom:auto;
-}
-
-.pjdtl-hashtag {
-	color: rgb(26, 188, 156);
-	font-size: 25px;
-}
-.pjdtl-hashtag:hover {
-	cursor:pointer;
-	text-decoration:underline;
-}
-
-.pjdtl-intro-box {
-	width: 660px;
-	height: 430px;
-	border: 1px solid;
-	border-color: silver;
-}
-
-.pjdtl-empty-box {
-	width: 20px;
-	height: 430px;
-}
-
-.pjdtl-detail-box {
-	display: flex;
-	flex-direction: column;
-	width: 520px;
-	height: 430px;
-}
-
-.pjdtl-target-price {
-	font-size: 33px;
-	color: #A6A6A6;
-}
-
-.pjdtl-invest-btn {
-	width: 420px;
-	height: 50px;
-	margin-right: 10px;
-	font-size: 20px;
-	font-weight: 800;
-	color: white;
-	background-color: rgb(26, 188, 156);
-	border: 1px solid rgb(26, 188, 156);
-	border-radius: 10px;
-	padding: 5px;
-}
-
-.pjdtl-share-btn {
-	width: 50px;
-	height: 50px;
-}
-
-.pjdtl-status-box {
-	display: flex;
-	justify-content: space-between;
-	width: 479px;
-	height: 170px;
-	border: 1px solid lightgray;
-	padding: 0px 20px;
-}
-
-.pjdtl-status-img {
-	width: 90px;
-	height: 90px;
-}
-
-.pjdtl-right-arrow {
-	width: 50px;
-	height: 50px;
-}
-
-.pjdtl-status-font {
-	font-size: 20px;
-	text-align: center;
-}
-
-.pjdtl-content {
-	width: 800px;
-}
-
-.pjdtl-empty-content {
-	width: 30px;
-}
-
-.pjdtl-reward {
-	width: 370px;
-}
-
-.pjdtl-each-reward {
-	width: 330px;
-	padding: 20px;
-	margin: 10px 0px;
-	border: 1px solid lightgray;
-}
-
-li>img {
-	max-width: 660px;
-	max-height: 375px;
-	width: auto;
-	height: auto;
-}
-
-ul {
-	list-style: none outside none;
-	padding-left: 0;
-	margin: 0;
-}
-
-.demo .item {
-	margin-bottom: 60px;
-}
-
-.content-slider li {
-	background-color: #ed3020;
-	text-align: center;
-	color: #FFF;
-}
-
-.content-slider h3 {
-	margin: 0;
-	padding: 70px 0;
-}
-
-.demo {
-	width: 660px;
-}
-
-.updComment {
-	width: 785px;
-	background-color: #F6F6F6;
-	padding: 15px;
-	border-bottom: 2px solid white;
-}
-#rcBtn:hover {
-	cursor:pointer;
-}
-</style>
-
 <script>
-
+	var path = "<c:url value='/'/>"
+	
 /*----------------------------------------슬라이드---------------------------------------------------------*/
 $(document).ready(function() {
 	$("#content-slider").lightSlider({
@@ -224,7 +53,7 @@ $(function(){
 	//댓글 조회
 	function loadCommentsList() {
 		var params = { projectNo: '${project.projectNo}'};
-		$.getJSON("../support/getCommentsList", params, function(data){
+		$.getJSON(path+"/support/getCommentsList", params, function(data){
 			for(i=0; i<data.length; i++) {
 				$("#commentList").append(makeCommentView(data[i]));
 			}
@@ -249,20 +78,20 @@ $(function(){
 				+ "			<textarea name='commentContent' class='commentContent' readonly cols='53' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
 				+ "		</div>"
 				+ "		<div style='margin:auto;'>"
-				+ "			<button type='button' class='btnUpdFrm' style='width:180px; height:40px;'>수정</button>"
-				+ "			<button type='button' class='btnDel' style='width:180px; height:40px;'>삭제</button>"
+				+ "			<button type='button' class='btnUpdFrm' style='width:170px; height:40px;'>수정</button>"
+				+ "			<button type='button' class='btnDel' style='width:170px; height:40px;'>삭제</button>"
 				+ "		</div>"
 				+ "</div>"
-				+ "<div id='rcList' style='display:none; border-top:1px dotted; margin-top:10px; padding:10px; #BDBDBD;'></div>"
-				+ "<div id='replyCommentAdd' style='display:none; width:100%; padding:15px; background-color:#F6F6F6;'>답글 입력하는곳"
-				+ "		<form name='replyAddForm' id='addForm'>"
+				+ "<div id='rcList' style='display:none; border-top:2px dotted #BDBDBD; padding:10px; margin-top:10px;'></div>"
+				+ "<div id='replyCommentAdd' style='display:none; width:100%; padding:15px; margin-top:10px; background-color:#F6F6F6; border-top:2px dotted #BDBDBD;'>"
+				+ "		<form name='replyAddForm' id='replyAddForm'>"
 				+ "			<input type='hidden' name='projectNo' value='${project.projectNo}'>"
 				+ "			<input type='hidden' name='userId' value='${pMember.userId}'>"
-				+ "			<input type='hidden' name='topCommentNo' value='${comments.commentNo}'>"
+				+ "			<input type='hidden' name='topCommentNo' value='"+comments.commentNo+"'>"
 				+ "			<div style='display:flex;'>"
    				+ "				<img src='../images/user-icon.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
     			+ "				<textarea name='commentContent' cols='70' rows='5'></textarea>&nbsp;"
-    			+ "				<button type='button' id='replyBtnAdd' style='width:180px; height:40px; margin:auto;'>등록</button>"
+    			+ "				<button type='button' id='replyBtnAdd' style='width:170px; height:40px; margin:auto;'>등록</button>"
 				+ "			</div>"
 				+ "		</form>"
 				+ "</div>"
@@ -271,26 +100,30 @@ $(function(){
 
 		return div;
 	}
-	//답글 조회(버튼클릭시 화면에 출력)
+	//답글 조회(버튼클릭시 화면에 출력, 답변이 보이는 상태에서 버튼을 클릭하면 답글목록 닫음)
 	$("#commentList").on("click", "#rcBtn", function(){
 		/*rc: reply comment*/
 		var rc_id = $(this).closest(".comments").attr("id").substring(1);
 		console.log(rc_id);
 		
 		var rcList = $("#c"+rc_id).children().children("#rcList");
-		if( rcList.is(":visible")) {
+		var rcAdd = $("#c"+rc_id).children().children("#replyCommentAdd");
+		
+		if( rcList.is(":visible") || rcAdd.is(":visible") ) {
 			rcList.children().remove();
 			rcList.hide();
+			rcAdd.hide();
 		} else {
-		$.getJSON("../support/getReplyCommentsList?topCommentNo="+rc_id, function(data) {
+		$.getJSON(path+"/support/getReplyCommentsList?topCommentNo="+rc_id, function(data) {
 			for(i=0; i<data.length; i++) {
 			$("#c"+rc_id).children().children("#rcList").append(makeReplyCommentView(data[i])).show();
 		}
 		});
+		$("#c"+rc_id).children().children("#replyCommentAdd").show();
 		}
 	
 	});
-	
+	//답글 만드는 함수
 	function makeReplyCommentView(comments) {
 		var div = $("<div>");
 		div.attr("id", "rc"+comments.commentNo);
@@ -298,45 +131,50 @@ $(function(){
 		div[0].comments=comments;
 		
 		var str = "<div class='replyComment' style='background-color: #F6F6F6; border-bottom:2px solid white;'>"
-				+ "<div style='display:flex;'>"
+				+ "<div style='display:flex; padding:10px;'>"
 				+ "	<div style='width:60px; margin-right:10px;'>"
-				+ "		<img src='../images/arrow.png' style='width:60px; height:60px; margin:auto;'><br>"
+				+ "		<img src='../images/arrow.png' style='width:50px; height:50px; margin:auto;'><br>"
 				+ "	</div>"
 				+ "		<div>"
 				+ "			<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
 				+ "			<span class='commentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
-				+ "			<textarea name='commentContent' class='commentContent' readonly cols='52' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
+				+ "			<textarea name='commentContent' class='commentContent' readonly cols='51' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
 				+ "		</div>"
 				+ "		<div style='margin:auto;'>"
-				+ "			<button type='button' class='btnUpdFrm' style='width:180px; height:40px;'>수정</button>"
-				+ "			<button type='button' class='btnDel' style='width:180px; height:40px;'>삭제</button>"
+				+ "			<button type='button' class='btnUpdFrm' style='width:170px; height:40px;'>수정</button>"
+				+ "			<button type='button' class='btnDel' style='width:170px; height:40px;'>삭제</button>"
 				+ "		</div>"
 				+ "</div>"
 				+ "</div>";
 		
 		div.html(str);
 		return div;
-		
-		
 	}
-	
-	
-	
 	
 	//댓글등록
 	$("#btnAdd").click(function(){
 		var params = $("[name=addForm]").serialize();		
-		var url = "../forme/insertComments";
+		var url = path+"/forme/insertComments";
 		$.getJSON(url, params, function(data){
 			$("#commentList").prepend( makeCommentView(data) );
 			$("[name=addForm]")[0].reset();
+		});
+	});
+	//답글등록
+		$("#commentList").on("click", "#replyBtnAdd", function(){
+		var params = $(this).closest("[name=replyAddForm]").serialize();
+		var check_this = $(this).closest("[name=replyAddForm]");	//function안에서 this 안돼서 넣음
+		var url = "../forme/insertReplyComments";
+		$.getJSON(url, params, function(data){		
+			check_this.parent().prev().prepend( makeReplyCommentView(data) );
+			check_this.closest("[name=replyAddForm]")[0].reset();
 		});
 	});
 	
 	//댓글 수정
 	$("#btnUpd").click(function(){
 		var params = $("[name=updateForm]").serialize();
-		var url = "../forme/updateComments";
+		var url = path+"/forme/updateComments";
 		$.getJSON(url, params, function(data){
 			var newDiv = makeCommentView(data);
 			var oldDiv = $("#c"+data.commentNo);
@@ -347,6 +185,11 @@ $(function(){
 			$(newDiv).replaceAll(oldDiv);
 		});
 	});
+	//답글 수정
+	
+	
+	
+	
 	//수정폼
 	$("#commentList").on("click", ".btnUpdFrm", function(){
 		var seq = $(this).closest(".comments").attr("id").substring(1);		//seq = 'commentNo'
@@ -375,12 +218,15 @@ $(function(){
 		var seq = $(this).closest(".comments").attr("id").substring(1);  //seq = 'commentNo' => 201811080061
 		if(confirm("댓글을 삭제하시겠습니까?")) {
 			var params = "commentNo="+ seq;
-			var url = "../forme/deleteComments";
+			var url = path+"/forme/deleteComments";
 			$.getJSON(url, params, function(data){
 				$('#c'+data.commentNo).remove();
 			});
 		}
 	});
+	//답글 삭제
+	
+	
 	
 	loadCommentsList();
 })
@@ -397,7 +243,7 @@ $(function(){
     <div class="pjdtl-flex-container">
         <div class="pjdtl-project-name">${project.projectName}</div>
         <c:if test="${pMember.userId == 'admin'}">
-        	<button class="pjdtl-pick-btn" onclick="#">PICK</button>
+        	<button class="pjdtl-pick-btn" >PICK</button>
     	</c:if>
     </div>
     <div class="pjdtl-center"><!-- 해시태그 -->
@@ -445,7 +291,7 @@ $(function(){
             <div style="font-size:25px; color:#A6A6A6;">참여자 ${invest.headcount}명</div>
             <div style="display:flex;">
                 <button class="pjdtl-invest-btn" onclick="location.href='../forme/InvestSelectReward?projectNo=${project.projectNo}'">투자하기</button>
-                <img src="../images/share-button.png" class="pjdtl-share-btn" onclick="#">
+                <img src="../images/share-button.png" class="pjdtl-share-btn">
             </div><br>
             <div class="pjdtl-status-box">
                 <div class="">
@@ -512,8 +358,8 @@ $(function(){
 						<img src="../images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
 						<textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
 						<div style="margin:auto;">
-							<button type="button" id="btnUpd" style="width:180px; height:40px;">수정</button><br>
-							<button type="button" id="btnCancel" style="width:180px; height:40px;">취소</button>
+							<button type="button" id="btnUpd" style="width:170px; height:40px;">수정</button><br>
+							<button type="button" id="btnCancel" style="width:170px; height:40px;">취소</button>
 						</div>
 					</div>	
 				</form>

@@ -75,7 +75,7 @@
 		  		  SYSDATE,
 		  		  #{topCommentNo},
 		  		  #{projectNo},
-		  		  #{userId})
+		  		  #{userId}
 		  )		
 </insert>
 
