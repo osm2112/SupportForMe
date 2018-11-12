@@ -56,15 +56,11 @@
 							<span class="input-group-addon">EMAIL</span> 
 							<input name="email" type="text" placeholder="EMAIL를 입력하세요" class="form-control">
 						</div>
-						<input class="btn btn-default btn-block _btn" type="submit" value="ID 찾기">
+						<input class="btn btn-default btn-block _btn" type="submit" value="비밀번호 찾기">
 					</form>
 				</div>
 			</div>
 		</div>
-
-
-
-
 	<!-- <h5>가입시 정보를 입력하여 주세요</h5>
 	<form action="../support/FindPassword" method="post">
 		ID : <input name="userId" type="text"><br>
