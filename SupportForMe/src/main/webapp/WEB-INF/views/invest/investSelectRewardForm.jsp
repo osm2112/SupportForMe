@@ -19,7 +19,7 @@
         }
     </style>
     <script>
-    
+    var path = "<c:url value='/'/>";
     var presentNo =null;
     var projectNo =null;
     var presentName = null;
@@ -50,7 +50,7 @@
 				var form = document.createElement("form");
 				var parm = new Array();
 				var input = new Array();
-				form.action = "../forme/InvestPaymentInfoForm";
+				form.action = path+"/forme/InvestPaymentInfoForm";
 				form.method = "post";
 				parm.push([ 'presentNo', presentNo ]);
 				parm.push([ 'projectNo', projectNo ]);

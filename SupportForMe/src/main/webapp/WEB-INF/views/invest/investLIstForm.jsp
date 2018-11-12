@@ -44,7 +44,7 @@
 
 <body>
 	<h3>결제 내역 보기</h3>
-<form action="../forme/InvestList" name="searchForm">
+<form action="/SupportForMe/forme/InvestList" name="searchForm">
 <div class="input-group">
 	<input type="hidden" name="page" value="1">
 	<select name="searchCondition" class="form-control" style="width:120px;">
