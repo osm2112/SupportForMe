@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +34,7 @@ public class projectRegisterController {
 	//url get 방식으로 입력하여 들어오는 것 방지
 	@RequestMapping(value="/forme/registerProject", method=RequestMethod.GET )
 	public String protectInsertProject() {
-		return "register/main/tempMain";
+		return  "redirect:/";
 	}
 	
 	//등록 post 방식
@@ -59,6 +60,12 @@ public class projectRegisterController {
 			return  "redirect:/";
 		}
 		
+	}
+	
+	@RequestMapping("/forme/updateProject/basic")
+	public String projectBasic(Model model, @RequestBody ProjectDTO dto) {
+		model.addAttribute("project", projectService.getProject(dto));
+		return "ajax/register/projectRegisterBasic";
 	}
 	
 	//기본정보 수정 후 스토리 입력 페이지로 넘어감 
@@ -94,7 +101,7 @@ public class projectRegisterController {
 		model.addAttribute("project", projectService.getProject(dto));
 		String path ="";
 		if("bs".equals(page)) {
-			path = "ajax/register/projectRegister";
+			path = "ajax/register/projectRegisterBasic";
 		}else if("st".equals(page)) {
 			path = "ajax/register/projectRegisterStory";
 		}else if("rw".equals(page)) {

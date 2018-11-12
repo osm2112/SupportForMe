@@ -30,7 +30,7 @@ $(function() {
 	    }
 	});
 	
-	$(".next_button").on("click",function(){
+	$(".next_button").click(function(){
 		
 		//id가 smarteditor인 textarea에 에디터에서 대입
     	editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
@@ -47,8 +47,27 @@ $(function() {
 			}
 		}); 
 	});
+	
+	$(".save_button").click(function(){
+	
+		editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
+		url = "../saveProject/story";
+		params = $("#registerStoryFrm").serialize();
+		
+		$.ajax({
+			url : url,
+			data : params,
+			type : "post",
+			success : function(result) {
+				$("#alertMessage").text('저장되었습니다.');
+				$("#alertModal").show();
+			}
+		}); 
+	});
+	
 });
 </script>
+<div id="storyPage">
 	<form name="fileUploadStoryFrm" id="fileUploadStoryFrm" method="post">
 		<input type="file" name="uploadFile" id="fileUploadStory"  accept=".gif, .jpg, .png" style="display:none">
 	</form>
@@ -93,8 +112,7 @@ $(function() {
 									<img src="/SupportForMe/upload/${image}">	
 									<img src="/SupportForMe/images/slimcancel.png" class="sogeRemove ${i.index+1}">
 									<input type='hidden' name='arrImage' value='${image}'>
-								</div>
-									             		
+								</div>             		
 			          		</c:forTokens>	
 					</c:if>
 					<c:if test="${project.introductionImage == null}">
@@ -115,6 +133,6 @@ $(function() {
 	   	<input type="button" name="save" class="save_button story" value="저장하기">
 		<input type="button" name="next" class="next_button story" value="다음 단계">
 	</form>
-	
+</div>	
 </body>
 </html>

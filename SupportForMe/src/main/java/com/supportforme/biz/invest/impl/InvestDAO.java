@@ -52,5 +52,14 @@ public class InvestDAO {
 	public List<Map<String, Object>>  getMyInvestList(InvestSearchDTO dto){
 		return mybatis.selectList("invest.getMyInvestList", dto); 
 	}
-
+	
+	//마이페이지 나의 투자자
+	public List<Map<String,Object>> getMyInvestorList(InvestSearchDTO searchDTO){
+		return mybatis.selectList("invest.getMyInvestorList",searchDTO);
+	}
+	
+	//마이페이지 나의 투자자 전체 개수 가져오기
+	public int getInvestorCnt(InvestSearchDTO searchDTO) {
+		return mybatis.selectOne("invest.getInvestorCnt", searchDTO);
+	}
 }

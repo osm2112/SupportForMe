@@ -180,4 +180,36 @@ public class InvestController {
 		model.addAttribute("presentList", list);
 		return "noNav/invest/investSelectRewardForm";
 	}
+	
+	//마이페이지 나의 투자자들 페이지 이동
+	@RequestMapping("/forme/MyInvestors")
+	public String myInvestors(InvestDTO dto, Model model) {
+		return "myNav/mypage/mypageMyInvestor";
+	}
+	@RequestMapping("/forme/getInvestors")
+	@ResponseBody
+	public List<Map<String,Object>> getInvestors(InvestSearchDTO searchDTO, Paging paging, Model model, HttpSession session){
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
+		System.out.println("==========아이디"+memberDTO.getUserId());
+		searchDTO.setUserId(memberDTO.getUserId());
+		
+		paging.setPageUnit(5);
+		
+		//현재페이지 번호 파라미터
+		if(paging.getPage() ==null) {
+			paging.setPage(1);
+		}
+		//전체 건수
+		int total = investService.getInvestorCnt(searchDTO);
+		System.out.println("==========전체개수"+total);
+		paging.setTotalRecord(total);
+		model.addAttribute("paging",paging);
+		
+		//시작 /마지막 레코드 번호
+		searchDTO.setStart(paging.getFirst());
+		searchDTO.setEnd(paging.getLast());
+		
+		
+		return investService.getMyInvestorList(searchDTO);
+	}
 }

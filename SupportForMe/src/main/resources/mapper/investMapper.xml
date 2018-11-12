@@ -246,4 +246,64 @@
 		ORDER BY INVEST.INVEST_NO DESC
 	) A )WHERE RNUM BETWEEN ${start} AND ${end}
 	</select>
+	
+	<resultMap type="java.util.HashMap" id="MyInvestorListMap">
+		<result column="INVEST_NO" property="investNo" />
+		<result column="NAME" property="name" />
+		<result column="INVESTMENT_AMOUNT" property="investmentAmount" />
+		<result column="INVEST_DATE" property="investDate" />
+		<result column="PRESENT_NAME" property="presentName" />
+		<result column="POSTCODE" property="postcode" />
+		<result column="ADDRESS" property="address" />
+		<result column="EMAIL" property="email" />
+		<result column="PHONE_NUM" property="phoneNum" />
+		<result column="PAYMENT_STATE" property="paymentState" />
+	</resultMap>
+	
+	<select id="getMyInvestorList"	parameterType="com.supportforme.biz.invest.InvestSearchDTO" resultMap="MyInvestorListMap">
+	SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
+		SELECT 
+				INVEST.INVEST_NO														INVEST_NO,
+				INVEST.NAME																NAME,
+				INVEST.INVESTMENT_AMOUNT												INVESTMENT_AMOUNT, 
+				TO_CHAR(TO_DATE(SUBSTR(INVEST.INVEST_NO,0,8),'rrrrmmdd'), 'rrrr/mm/dd')	INVEST_DATE, 
+				PRESENT.PRESENT_NAME													PRESENT_NAME,
+				INVEST.POSTCODE															POSTCODE,
+				INVEST.ADDRESS||' '||INVEST.ADDR_DETAIL									ADDRESS,	
+				INVEST.EMAIL															EMAIL,
+				INVEST.PHONE_NUM														PHONE_NUM
+		FROM INVEST 
+		JOIN PRESENT ON INVEST.PROJECT_NO = INVEST.PROJECT_NO AND INVEST.PRESENT_NO = PRESENT.PRESENT_NO
+		JOIN COMMON_CODE ON (INVEST.PAYMENT_STATE= COMMON_CODE.CODE AND COMMON_CODE.CODE_GROUP = 'B02')
+		JOIN PROJECT ON(INVEST.PROJECT_NO = PROJECT.PROJECT_NO)
+		JOIN COMMON_CODE COMMON_CODE2 ON (PROJECT.PROGRESS = COMMON_CODE2.CODE AND COMMON_CODE2.CODE_GROUP = 'C03')
+		<where>
+			COMMON_CODE.CODE = '001' 
+			AND COMMON_CODE2.CODE = '002'
+			AND PROJECT.USER_ID = #{userId}
+			<if test="searchCondition == 'presentName'">
+				AND PRESENT.PRESENT_NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+		</where>
+		ORDER BY INVEST_DATE DESC
+	) A )WHERE RNUM BETWEEN ${start} AND ${end}
+	</select>
+	
+	<select id="getInvestorCnt" parameterType="investSearch" resultType="int">
+		SELECT COUNT(*)
+		FROM INVEST 
+		JOIN PRESENT ON INVEST.PROJECT_NO = INVEST.PROJECT_NO AND INVEST.PRESENT_NO = PRESENT.PRESENT_NO
+		JOIN COMMON_CODE ON (INVEST.PAYMENT_STATE= COMMON_CODE.CODE AND COMMON_CODE.CODE_GROUP = 'B02')
+		JOIN PROJECT ON(INVEST.PROJECT_NO = PROJECT.PROJECT_NO)
+		JOIN COMMON_CODE COMMON_CODE2 ON (PROJECT.PROGRESS = COMMON_CODE2.CODE AND COMMON_CODE2.CODE_GROUP = 'C03')
+		<where>
+			COMMON_CODE.CODE = '001' 
+			AND COMMON_CODE2.CODE = '002'
+			AND PROJECT.USER_ID = #{userId}
+			<if test="searchCondition == 'presentName'">
+				AND PRESENT.PRESENT_NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+		</where>
+	</select>
+	
 </mapper> 

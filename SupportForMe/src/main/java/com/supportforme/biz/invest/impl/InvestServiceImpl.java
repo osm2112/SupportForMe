@@ -57,4 +57,15 @@ public class InvestServiceImpl implements InvestService {
 	public List<Map<String, Object>> getMyInvestList(InvestSearchDTO dto) {
 		return dao.getMyInvestList(dto);
 	}
+	
+	//마이페이지 나의 투자자
+	@Override
+	public List<Map<String, Object>> getMyInvestorList(InvestSearchDTO searchDTO) {
+		return dao.getMyInvestorList(searchDTO);
+	}
+
+	@Override
+	public int getInvestorCnt(InvestSearchDTO searchDTO) {
+		return dao.getInvestorCnt(searchDTO);
+	}
 }

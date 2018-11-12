@@ -2,7 +2,6 @@
  * 프로젝트 선물 등록 자바스크립트 
  */
 $(function() {
-	
 	var projectNo = $("#projectNo").val();
 	/* var context = '${pageContext.request.contextPath}';	//절대 경로
 	console.log(context); */
@@ -19,21 +18,21 @@ $(function() {
 			}
 		});	
 	});
-	$("#presentDeliveryDate").datepicker(
-			{
-				dateFormat : "yy-mm-dd",
-				maxDate : "+1m +19d", //7 // new Data(2018,11,20)
-				minDate : "1w",
-				dayNamesMin : [ "일", "월", "화", "수", "목", "금", "토" ],
-				onSelect : function(strDate, obj) {
-					
-				},
-				showOn : "both",
-				buttonImage : "/SupportForMe/images/calendar.png",
-				buttonImageOnly : true,
-				buttonText : "Select date"
-	});
 	
+	$(".save_button").click(function(){
+		url = "../saveProject/ex";
+		params = $("#registerRewardFrm").serialize();
+		
+		$.ajax({
+			url : url,
+			data : params,
+			type : "post",
+			success : function(result) {
+				$("#alertMessage").text('저장되었습니다.');
+				$("#alertModal").show();
+			}
+		}); 
+	});
 	//선물 등록, 선물 수정 
 	$("#registerRewardFrm").on("click",".add_button",function(){
 		var seq = $("#registerRewardFrm [name=presentNo]").val();
@@ -67,8 +66,14 @@ $(function() {
 	//선물입력 폼 값 체크
 	function checkReward(){
 		var msg="";
+		var regexp = /^[0-9]+$/;
 		if(!$("#registerRewardFrm [name=presentPrice]").val()){
 			$("#alertMessage").text("리워드 금액을 적어주세요.");
+			$("#alertModal").show();
+			return false;
+		}
+		if(!regexp.test($("#registerRewardFrm [name=presentPrice]").val())){
+			$("#alertMessage").text("리워드 금액은 숫자만 가능합니다.");
 			$("#alertModal").show();
 			return false;
 		}

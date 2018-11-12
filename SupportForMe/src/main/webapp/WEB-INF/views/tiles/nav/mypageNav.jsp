@@ -8,7 +8,7 @@
 <style>
 #project_mypage {
 	display: grid;
-	grid-template-columns: 280px 1fr;
+	grid-template-columns:200px 1fr;
 }
 
 #project_mypage_menu {
@@ -84,7 +84,7 @@
 	background-color: white;
 }
 
-#projenct_subject {
+#project_subject {
 	height: 80px;
 	font-size: 30px;
 	font-weight: 800;
@@ -101,7 +101,7 @@
 <body>
 	<div style="height: 50px"></div>
 	<div class="bodysize">
-		<div id="projenct_subject" >My	Page</div>
+		<div id="project_subject" >My Page</div>
 		<div id="project_mypage">
 			<div id="project_mypage_menu">
 				<nav>
@@ -109,6 +109,7 @@
 					<div id="myProject" class="" onclick="">나의 프로젝트</div>
 					<div id="_myInvestList" class="" onclick="location.href='../forme/MyInvestList'">나의 투자현황</div>
 					<div id="investList" class="" onclick="location.href='../forme/InvestList'">나의 결제내역</div>
+					<div id="investList" class="" onclick="location.href='../forme/MyInvestors'">나의 투자자 정보</div>
 				</nav>
 			</div>
 		</div>

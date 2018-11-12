@@ -12,7 +12,7 @@ body {
 ._container > nav {
 	float: left;
 	max-width: 800px;
-	margin: 0px 80px 0px 180px; 
+	margin: 0px 45px 0px 160px; 
 	padding: 1em;
 }
 

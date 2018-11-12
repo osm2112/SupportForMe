@@ -18,10 +18,7 @@
 	<update id="updateProject" parameterType="project">
 		 UPDATE PROJECT
 		 SET
-		 progress = '004'
-		 <if test="userId != null and userId != ''">
-		 ,USER_ID = #{userId}
-		 </if>
+		 USER_ID = #{userId}
 		 <if test="projectName != null and projectName != ''">
 		 ,PROJECT_NAME = #{projectName} 
 		 </if>
@@ -32,7 +29,7 @@
 		 ,TARGET_AMOUNT = #{targetAmount} 
 		  </if>
 		 <if test="projectDeadline != null and projectDeadline != ''">
-		 	,PROJECT_DEADLINE = #{projectDeadline}
+		 ,PROJECT_DEADLINE = #{projectDeadline}
 		  </if>
 		 <if test="introductionVideo != null">
 		 ,INTRODUCTION_VIDEO = #{introductionVideo}

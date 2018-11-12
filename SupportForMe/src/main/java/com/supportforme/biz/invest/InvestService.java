@@ -25,5 +25,9 @@ public interface InvestService {
 	
 	public List<Map<String, Object>>  getMyInvestList(InvestSearchDTO dto);
 	
+	//마이페이지 나의 투자자
+	public List<Map<String,Object>> getMyInvestorList(InvestSearchDTO searchDTO);
 	
+	//마이페이지 나의 투자자 전체 개수 가져오기
+	public int getInvestorCnt(InvestSearchDTO searchDTO);
 }

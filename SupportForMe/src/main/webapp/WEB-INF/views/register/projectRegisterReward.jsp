@@ -5,13 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="/SupportForMe/js/projectRegisterReward.js"></script>
+<script src="<%=request.getContextPath()%>/js/projectRegisterReward.js?ver=1"></script>
 </head>
 <body>
 <div style="height: 50px"></div>
-<script>
 
-</script>
 <form name="rewardRegisterFrm" id="rewardRegisterFrm">
 	<input type="hidden" name="projectNo" value="${project.projectNo}">
 	<input type="hidden" name="userId" value="${project.userId}">
@@ -38,6 +36,23 @@
 	    <span class="rg_delivery"> 
 	    	<input type="text" name="presentDeliveryDate" id="presentDeliveryDate">
 	    </span>
+	    <script>
+		$("#presentDeliveryDate").datepicker(
+				{
+					dateFormat : "yy-mm-dd",
+					maxDate : "+1m +19d", //7 // new Data(2018,11,20)
+					minDate : "1w",
+					dayNamesMin : [ "일", "월", "화", "수", "목", "금", "토" ],
+					onSelect : function(strDate, obj) {
+						
+					},
+					showOn : "both",
+					buttonImage : "/SupportForMe/images/calendar.png",
+					buttonImageOnly : true,
+					buttonText : "Select date"
+		});
+
+		</script>
 	    <label></label>
    </div>
     <div style="text-align:center;margin-top:20px;">
