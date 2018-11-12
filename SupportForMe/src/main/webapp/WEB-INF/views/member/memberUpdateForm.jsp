@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -15,20 +14,14 @@ textarea.textarea1 {
 
 </style>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-
 <!--  부트스트랩 -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <script>
 	var passwordRegexCheck = false;
-
+	var path = "<c:url value='/'/>";
 	function PasswordRegexCheck() {
 		var password = document.getElementById("password").value;
 		// 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
@@ -111,7 +104,7 @@ textarea.textarea1 {
 			var form = document.createElement("form");
 			var parm = new Array();
 			var input = new Array();
-			form.action = "../forme/UpdateMember";
+			form.action = path+"forme/UpdateMember";
 			form.method = "post";
 			parm.push([ 'userId', userId ]);
 			parm.push([ 'password', password ]);
@@ -281,7 +274,7 @@ textarea.textarea1 {
 			<label class="col-lg-1 control-label" style="width:150px;"></label>
 				<div class="col-lg-offset-2 col-lg-4" style="text-align: right;">
 					<input class="btn btn-default" type="button" onclick="UpdateMember()" value="정보수정하기">	
-					<input class="btn btn-default" type="button" onclick="location.href='../forme/MemberDeleteConfirmForm'" value="회원탈퇴하기">	
+					<input class="btn btn-default" type="button" onclick="location.href='<c:url value='/'/>/forme/MemberDeleteConfirmForm'" value="회원탈퇴하기">	
 					<input class="btn btn-default" type="button" value="취소">	
 				</div>
 			</div>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -7,13 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원 가입</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
 .wrapper {
@@ -63,6 +58,7 @@ caption {
 </style>
 </head>
 <script>
+	var path = "<c:url value='/'/>";
 	var idCheck = false;
 	var emailCheck = false;
 	var passwordRegexCheck = false;
@@ -72,7 +68,7 @@ caption {
 		if (userid != null && userid != '') {
 			$
 					.ajax({
-						url : "../support/CheckId?userId=" + userid,
+						url : path+"support/CheckId?userId=" + userid,
 						method : "post",
 						type : "text",
 						success : function(data) {
@@ -104,7 +100,7 @@ caption {
 		if (email != null && email != '') {
 			$
 					.ajax({
-						url : "../support/CheckEmail?email=" + email,
+						url : path+"/support/CheckEmail?email=" + email,
 						method : "post",
 						type : "text",
 						success : function(data) {
@@ -215,7 +211,7 @@ caption {
 			var form = document.createElement("form");
 			var parm = new Array();
 			var input = new Array();
-			form.action = "../support/InsertMember";
+			form.action = path+"/support/InsertMember";
 			form.method = "post";
 			parm.push([ 'userId', userId ]);
 			parm.push([ 'password', password ]);
@@ -256,7 +252,7 @@ caption {
 	<div class="wrapper">
 		<div class="div1">
 			<h1 style="text-align: left;">&nbsp&nbsp&nbsp&nbsp&nbsp회원가입</h1>
-			<br> <img src="../images/회원이미지2.png" width="1200px"
+			<br> <img src="<c:url value='/'/>images/회원이미지2.png" width="1200px"
 				height="170px">
 		</div>
 		<div class="div2 form-horizontal" style="margin-left: 23%;">

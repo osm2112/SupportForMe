@@ -44,7 +44,7 @@
 		<div class="row">
 			<div class="col-md-3" style="width:100%;"> 
 				<div class="login-box well" style="width:600px; margin-left: auto; margin-right:auto; margin-top:100px;">
-					<form accept-charset="UTF-8" role="form" method="post" action="../support/login">
+					<form accept-charset="UTF-8" role="form" method="post" action="<c:url value='/'/>support/login">
 						<legend>로그인</legend>
 						<div class="input-group">
 							<span class="input-group-addon" ><i class="fa fa-user"></i></span>
@@ -55,8 +55,8 @@
 							<input type="password" id="password" name="password" value="" placeholder="비밀번호를 입력하세요" class="form-control" />
 						</div>
 						<button type="submit" id="login-submit"	class="btn btn-default btn-block  _btn">로그인</button>
-						<span class='text-center'><a href="../support/MemberFindIdForm" class="text-sm">아이디 찾기 /</a></span><span class='text-center'>
-						<a href="../support/MemberFindPasswordForm" class="text-sm"> 비밀번호 찾기</a></span>
+						<span class='text-center'><a href="<c:url value='/'/>support/MemberFindIdForm" class="text-sm">아이디 찾기 /</a></span><span class='text-center'>
+						<a href="<c:url value='/'/>support/MemberFindPasswordForm" class="text-sm"> 비밀번호 찾기</a></span>
 						<div class="form-group">
 							<a href="../support/MemberTermsConfirmForm" class="btn btn-default btn-block _btn">회원가입</a>
 						</div>

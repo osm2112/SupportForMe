@@ -35,7 +35,7 @@
 			var form = document.createElement("form");
 			var parm = new Array();
 			var input = new Array();
-			form.action = path + "/forme/AdminSupportForMePick";
+			form.action = path + "forme/AdminSupportForMePick";
 			form.method = "post";
 			parm.push([ 'ids', ids ]);
 			parm.push([ 'flag', flag ]);
@@ -87,7 +87,7 @@
 <body>
 	<h3>서포미 픽 관리</h3>
 	<hr>
-<form action="/SupportForMe/forme/AdminSupportForMePickList" name="searchForm">
+<form action="<c:url value='/'/>forme/AdminSupportForMePickList" name="searchForm">
 <div class="input-group">
 	<input type="hidden" name="page" value="1">
 	<select name="searchCondition" class="form-control" style="width: 150px">

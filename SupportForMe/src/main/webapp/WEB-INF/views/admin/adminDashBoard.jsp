@@ -97,7 +97,7 @@
     google.charts.setOnLoadCallback(drawChart3);
     function drawChart() {
     	$.ajax({	type : "post",
-			url : path+"/forme/AdminMemberJoinStatisticsMonth",
+			url : path+"forme/AdminMemberJoinStatisticsMonth",
 			dataType : "json",
 			async: false,
 			success : function(data) {
@@ -138,7 +138,7 @@
     }
     function drawChart2() {
     	$.ajax({	type : "post",
-			url : path+"/forme/AdminProjectRegMonth",
+			url : path+"forme/AdminProjectRegMonth",
 			dataType : "json",
 			async: false,
 			success : function(data) {
@@ -182,7 +182,7 @@
     function drawChart3() {
     	$.ajax({	
     		type : "post",
-			url : path+"/forme/AdminMemberJoinStatisticsMonth",
+			url : path+"forme/AdminMemberJoinStatisticsMonth",
 			dataType : "json",
 			async: false,
 			success : function(data) {

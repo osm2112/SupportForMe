@@ -68,8 +68,6 @@ textarea.textarea1 {
 }
 </style>
 </head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	function NextStep() {
 		var check1 = $("input:checkbox[id='check1']").prop("checked");
@@ -78,7 +76,7 @@ textarea.textarea1 {
 			alert('약관에 동의하셔야 합니다.')
 			return false;
 		} else {
-			document.location.href = '../support/MemberJoinForm'
+			document.location.href = '<c:url value='/'/>support/MemberJoinForm'
 		}
 	}
 </script>
@@ -212,7 +210,7 @@ textarea.textarea1 {
 					<td colspan="3">
 						<button class="btn btn-default _btn" onclick="NextStep()">다음</button>
 						<button class="btn btn-default _btn"
-							onclick="location.href='./MemberLoginForm'">취소</button>
+							onclick="location.href='<c:url value='/'/>/forme/MemberLoginForm'">취소</button>
 					</td>
 				</tr>
 			</table>
