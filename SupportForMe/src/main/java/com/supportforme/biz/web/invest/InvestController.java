@@ -1,5 +1,6 @@
 package com.supportforme.biz.web.invest;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,10 +10,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.supportforme.biz.common.Paging;
 import com.supportforme.biz.invest.InvestDTO;
@@ -20,10 +19,6 @@ import com.supportforme.biz.invest.InvestSearchDTO;
 import com.supportforme.biz.invest.InvestService;
 import com.supportforme.biz.member.MemberDTO;
 import com.supportforme.biz.member.MemberService;
-import com.supportforme.biz.project.ProjectDTO;
-import com.supportforme.biz.project.ProjectDetailPageService;
-import com.supportforme.biz.project.ProjectService;
-import com.supportforme.biz.test.UserSearchDTO;
 
 
 @Controller
@@ -183,14 +178,8 @@ public class InvestController {
 	
 	//마이페이지 나의 투자자들 페이지 이동
 	@RequestMapping("/forme/MyInvestors")
-	public String myInvestors(InvestDTO dto, Model model) {
-		return "myNav/mypage/mypageMyInvestor";
-	}
-	@RequestMapping("/forme/getInvestors")
-	@ResponseBody
-	public List<Map<String,Object>> getInvestors(InvestSearchDTO searchDTO, Paging paging, Model model, HttpSession session){
+	public String myInvestors(InvestSearchDTO searchDTO, Paging paging, Model model, HttpSession session) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
-		System.out.println("==========아이디"+memberDTO.getUserId());
 		searchDTO.setUserId(memberDTO.getUserId());
 		
 		paging.setPageUnit(5);
@@ -201,7 +190,6 @@ public class InvestController {
 		}
 		//전체 건수
 		int total = investService.getInvestorCnt(searchDTO);
-		System.out.println("==========전체개수"+total);
 		paging.setTotalRecord(total);
 		model.addAttribute("paging",paging);
 		
@@ -209,7 +197,36 @@ public class InvestController {
 		searchDTO.setStart(paging.getFirst());
 		searchDTO.setEnd(paging.getLast());
 		
-		
-		return investService.getMyInvestorList(searchDTO);
+		model.addAttribute("investor",investService.getMyInvestorList(searchDTO));
+		return "myNav/mypage/mypageMyInvestor";
 	}
+//	@RequestMapping("/forme/getInvestors")
+//	@ResponseBody
+//	public List<Map<String,Object>> getInvestors(InvestSearchDTO searchDTO, Paging paging, Model model, HttpSession session){
+//		MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
+//		System.out.println("==========아이디"+memberDTO.getUserId());
+//		searchDTO.setUserId(memberDTO.getUserId());
+//		
+//		paging.setPageUnit(5);
+//		
+//		//현재페이지 번호 파라미터
+//		if(paging.getPage() ==null) {
+//			paging.setPage(1);
+//		}
+//		//전체 건수
+//		int total = investService.getInvestorCnt(searchDTO);
+//		System.out.println("==========전체개수"+total);
+//		paging.setTotalRecord(total);
+//		model.addAttribute("paging",paging);
+//		
+//		//시작 /마지막 레코드 번호
+//		searchDTO.setStart(paging.getFirst());
+//		searchDTO.setEnd(paging.getLast());
+//
+//		List<Map<String,Object>> list = investService.getMyInvestorList(searchDTO);
+//		Map<String,Object> map = new HashMap<String, Object>();
+//		map.put("paging", paging);
+//		list.add(map);
+//		return list;
+//	}
 }
