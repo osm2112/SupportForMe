@@ -218,7 +218,7 @@ function view() {
 				</form> 	    
 	        	</div>
 				
-	        	<div id="site_name" style="cursor:pointer;" onclick="#'">
+	        	<div id="site_name" style="cursor:pointer;" onclick="">
 	            	SupportForME
 	        	</div>
 	        

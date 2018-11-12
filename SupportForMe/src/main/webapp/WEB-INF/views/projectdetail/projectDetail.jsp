@@ -185,18 +185,19 @@ ul {
 }
 
 .updComment {
-	display: flex;
 	width: 785px;
 	background-color: #F6F6F6;
 	padding: 15px;
 	border-bottom: 2px solid white;
 }
-.replyCommentShow:hover {
+#rcBtn:hover {
 	cursor:pointer;
 }
 </style>
 
 <script>
+
+/*----------------------------------------슬라이드---------------------------------------------------------*/
 $(document).ready(function() {
 	$("#content-slider").lightSlider({
         loop:true,
@@ -238,10 +239,10 @@ $(function(){
 		
 		var str = "<div class='updComment' style='background-color: #F6F6F6; border-bottom:2px solid white;'>"
 				+ "<div style='display:flex;'>"
-				+ "	<div style='width:60px; margin-right:10px;'>"
-				+ "		<img src='../images/user-icon.png' style='width:60px; height:60px; margin:auto;'><br>"
-				+ "		<img name='replyCommentShow' class='replyCommentShow' src='../images/comments.png' style='width:40px; height:40px; margin-top:60px;'>"
-				+ "	</div>"
+				+ "		<div style='width:60px; margin-right:10px;'>"
+				+ "			<img src='../images/user-icon.png' style='width:60px; height:60px; margin:auto;'><br>"
+				+ "			<img name='rcBtn' id='rcBtn' src='../images/comments.png' style='width:40px; height:40px; margin-top:60px;'>"
+				+ "		</div>"
 				+ "		<div>"
 				+ "			<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
 				+ "			<span class='commentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
@@ -252,12 +253,76 @@ $(function(){
 				+ "			<button type='button' class='btnDel' style='width:180px; height:40px;'>삭제</button>"
 				+ "		</div>"
 				+ "</div>"
+				+ "<div id='rcList' style='display:none; border-top:1px dotted; margin-top:10px; padding:10px; #BDBDBD;'></div>"
+				+ "<div id='replyCommentAdd' style='display:none; width:100%; padding:15px; background-color:#F6F6F6;'>답글 입력하는곳"
+				+ "		<form name='replyAddForm' id='addForm'>"
+				+ "			<input type='hidden' name='projectNo' value='${project.projectNo}'>"
+				+ "			<input type='hidden' name='userId' value='${pMember.userId}'>"
+				+ "			<input type='hidden' name='topCommentNo' value='${comments.commentNo}'>"
+				+ "			<div style='display:flex;'>"
+   				+ "				<img src='../images/user-icon.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
+    			+ "				<textarea name='commentContent' cols='70' rows='5'></textarea>&nbsp;"
+    			+ "				<button type='button' id='replyBtnAdd' style='width:180px; height:40px; margin:auto;'>등록</button>"
+				+ "			</div>"
+				+ "		</form>"
+				+ "</div>"
 				+ "</div>";
 		div.html(str);
 
 		return div;
 	}
-
+	//답글 조회(버튼클릭시 화면에 출력)
+	$("#commentList").on("click", "#rcBtn", function(){
+		/*rc: reply comment*/
+		var rc_id = $(this).closest(".comments").attr("id").substring(1);
+		console.log(rc_id);
+		
+		var rcList = $("#c"+rc_id).children().children("#rcList");
+		if( rcList.is(":visible")) {
+			rcList.children().remove();
+			rcList.hide();
+		} else {
+		$.getJSON("../support/getReplyCommentsList?topCommentNo="+rc_id, function(data) {
+			for(i=0; i<data.length; i++) {
+			$("#c"+rc_id).children().children("#rcList").append(makeReplyCommentView(data[i])).show();
+		}
+		});
+		}
+	
+	});
+	
+	function makeReplyCommentView(comments) {
+		var div = $("<div>");
+		div.attr("id", "rc"+comments.commentNo);
+		div.addClass('comments');
+		div[0].comments=comments;
+		
+		var str = "<div class='replyComment' style='background-color: #F6F6F6; border-bottom:2px solid white;'>"
+				+ "<div style='display:flex;'>"
+				+ "	<div style='width:60px; margin-right:10px;'>"
+				+ "		<img src='../images/arrow.png' style='width:60px; height:60px; margin:auto;'><br>"
+				+ "	</div>"
+				+ "		<div>"
+				+ "			<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
+				+ "			<span class='commentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
+				+ "			<textarea name='commentContent' class='commentContent' readonly cols='52' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
+				+ "		</div>"
+				+ "		<div style='margin:auto;'>"
+				+ "			<button type='button' class='btnUpdFrm' style='width:180px; height:40px;'>수정</button>"
+				+ "			<button type='button' class='btnDel' style='width:180px; height:40px;'>삭제</button>"
+				+ "		</div>"
+				+ "</div>"
+				+ "</div>";
+		
+		div.html(str);
+		return div;
+		
+		
+	}
+	
+	
+	
+	
 	//댓글등록
 	$("#btnAdd").click(function(){
 		var params = $("[name=addForm]").serialize();		
@@ -425,18 +490,18 @@ $(function(){
 			<div id="comment" class="tabcontent">
 			
 <!--댓글출력--><div id="commentList"></div>
-				<br>
-				<div id="commentAdd" style="width:785px; padding:15px; background-color:#F6F6F6;">
-					<form name="addForm" id="addForm">
-						<input type="hidden" name="projectNo" value="${project.projectNo}">
-						<input type="hidden" name="userId" value="${pMember.userId}">
-                        <div style="display: flex;">
-				            <img src="../images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
-                            <textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
-                            <button type="button" id="btnAdd" style="width:180px; height:40px; margin:auto;">등록</button>
-				        </div>
- 					</form>
-			     </div><br><br>
+			<br>
+<!--댓글입력--><div id="commentAdd" style="width:785px; padding:15px; background-color:#F6F6F6;">
+				<form name="addForm" id="addForm">
+					<input type="hidden" name="projectNo" value="${project.projectNo}">
+					<input type="hidden" name="userId" value="${pMember.userId}">
+                       <div style="display: flex;">
+				           <img src="../images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
+                           <textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
+                           <button type="button" id="btnAdd" style="width:180px; height:40px; margin:auto;">등록</button>
+				       </div>
+ 				</form>
+			</div><br><br>
 			
 <!--댓글 수정-->			
 			<div id="commentUpdate" style="width:785px; padding:15px; background-color:#F6F6F6; border-bottom:2px solid white;display:none;">
@@ -453,12 +518,12 @@ $(function(){
 					</div>	
 				</form>
 			</div>
-			
-			
+
+        	
 			
 			
 		    </div>
-		  </div>
+<!--댓글탭끝나는곳--></div>
 		</div>
 
 			

@@ -109,6 +109,7 @@ public class MemberController {
 	@RequestMapping("/forme/MemberUpdateForm")
 	public String memberUpdateForm(Model model, HttpSession session, HttpServletRequest request) {
 		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
+		model.addAttribute("loginID", dto.getUserId());
 		String ref = null;
 		if (request.getHeader("referer") != null) {
 			ref = request.getHeader("referer");
