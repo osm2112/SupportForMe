@@ -6,6 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<!--  부트스트랩 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>SupportForMe</title>
 <style>
 #headDiv {
@@ -19,7 +23,8 @@
 #head{
   padding : 10px 20px;
   display : grid;
-  grid-template-columns: 2fr 1fr 6fr 2fr;
+  /* grid-template-columns: 2fr 1fr 6fr 2fr; */
+  grid-template-columns: 2fr 1fr 6fr 1fr 1fr;
   grid-template-rows: 50px;    
   grid-gap: 20px;  
    
@@ -73,7 +78,7 @@
     font-size:18px;
     padding-top:15px;
     text-align:center;
-    width : 120px;
+    width : 100px;
 }
 #logout_head_menu {
     display:grid;
@@ -120,7 +125,50 @@
    		display:none;
     }
 }   
+<!-- 사이드바 -->
+/* body { margin: 0; padding: 0; }
+body.dark { background: rgba(0,0,0,.4); z-index: 30; }
+ */
+.hamburger-wrapper {
+  float: right;
 
+}
+.hamburger {
+  cursor: pointer;
+}
+#close-sidenav {
+  cursor: pointer;
+  font-size: 3em;
+  margin-top: -10px;
+  float: right;
+}
+#sidenav {
+
+  z-index : 30;
+  height: 100%; width: 200px;
+  top: 0; right: -200px;
+  background: white;
+  border : 1px solid black;
+  position: fixed;
+  transition: 0.4s;
+}
+#sidenav ul { margin: 0; padding: 0; list-style-type: none; }
+
+#sidenav header {
+
+	border : 0px;
+	height: 70px;
+	text-align: center;
+	font-size: 1em;
+}
+#sidenav header, #sidenav a {
+  color: black;
+  display: block;
+  text-decoration: none;
+  padding: 1em;
+}
+#sidenav header { background: rgb(26, 188, 156); }
+#sidenav a:hover { background: lightgrey; }
 </style>
 <script>
 function go_register() {
@@ -185,8 +233,9 @@ function view() {
 	        	<img src="/SupportForMe/images/search.png" class="searchImg">
 				</form>
 	        	</div>
-	        
-	        	<div id="head_font_size">마이 페이지</div>
+	        	
+	        	
+	        	<div id="head_font_size" class="hamburger-wrapper"><span class="hamburger">마이 페이지</span></div>
 	        	<!--<div id="head_font_size">관리 페이지</div>-->
 	       		<!-- <div id="logout_head_menu">
 		            <div id="head_font_size"> 로그인 </div>
@@ -227,18 +276,56 @@ function view() {
 	        	<input TYPE="image" src="/SupportForMe/images/search.png" class="searchImg" name="Submit" value="Submit">
 				</form>
 	        	</div>
-	        
-	        	<div id="head_font_size">마이 페이지</div>
+	        	<c:if test="${loginID eq null}">
+	        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='/SupportForMe/support/MemberLoginForm'">로그인</div>
+	        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='/SupportForMe/support/MemberTermsConfirmForm'">회원가입</div>
+	        	</c:if>
+	        	<c:if test="${loginID ne null}">
+	        	<div id="head_font_size" class="hamburger-wrapper"><span class="hamburger">마이 페이지</span></div>
+	        	</c:if>
+	        	
+	        	
+	        	<!-- <div class="hamburger-wrapper">
+				  <span class="hamburger">&equiv;</span>
+				</div> -->
 	        	<!--<div id="head_font_size">관리 페이지</div>-->
 	       		<!-- <div id="logout_head_menu">
 		            <div id="head_font_size"> 로그인 </div>
 	    	        <div id="head_font_size">회원가입</div>
 		        </div> -->
+ <!--  사이드바 -->
+ <nav id="sidenav">
+  <span id="close-sidenav">&times;</span>
+  <header>회원아이디 <br> ${loginID} </header>
+  <ul>
+    <li><a href="#">프로필 설정</a></li>
+    <li><a href="#">나의 프로젝트</a></li>
+    <li><a href="#">나의 투자 현황</a></li>
+    <li><a href="#">지불정보 설정</a></li>
+    <li><a href="#">로그아웃</a></li>
+  </ul>
+</nav>
+
+
+<script>
+$(".hamburger").click(function() {
+	$("#sidenav").css("right", "0");
+  $("body").addClass("dark");
+});
+$("#close-sidenav").click(function() {
+	$("#sidenav").css("right", "-200px");
+  $("body").removeClass("dark");
+});
+</script>
+
+<!--  사이드바 -->
 	   		</div>
-	   	
+	   <!-- 	
 	    	<div>
-	    	</div>
+	    	</div> -->
 		</div>
+		
+
 	</div>
 	</c:otherwise>
 </c:choose>
