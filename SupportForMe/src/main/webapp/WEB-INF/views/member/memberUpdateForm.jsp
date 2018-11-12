@@ -267,7 +267,7 @@ textarea.textarea1 {
 			</div>   
 		<!-- 자기소개 -->
 		<div class="form-group">
-		<label class="col-lg-1 control-label" style="width:150px;">＊자기소개</label>
+		<label class="col-lg-1 control-label" style="width:150px;">자기소개</label>
 		<div class="col-lg-6" style="padding-left: 3px;">
 			<textarea class="form-control textarea1" id="introduction">${member.introduction}</textarea>
 		</div>
