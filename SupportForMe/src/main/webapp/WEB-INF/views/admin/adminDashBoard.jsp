@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,8 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
 	google.charts.load('current', {packages:['corechart']});
+	
+    var path = "<c:url value='/'/>";
 </script>
 <style>
   /* 사이드바 래퍼 스타일 */
@@ -94,11 +97,10 @@
     google.charts.setOnLoadCallback(drawChart3);
     function drawChart() {
     	$.ajax({	type : "post",
-			url : "../AdminMemberJoinStatisticsMonth",
+			url : path+"/forme/AdminMemberJoinStatisticsMonth",
 			dataType : "json",
 			async: false,
 			success : function(data) {
-				console.log(data[0].M01);
 			      var dataSet = google.visualization.arrayToDataTable([
 			          ["Element", "회원 가입자 수", { role: "style" } ],
 			          ["1월", data[0].M01, "color: #01DFA5"],
@@ -136,7 +138,7 @@
     }
     function drawChart2() {
     	$.ajax({	type : "post",
-			url : "../AdminMemberJoinStatisticsMonth",
+			url : path+"/forme/AdminProjectRegMonth",
 			dataType : "json",
 			async: false,
 			success : function(data) {
@@ -178,8 +180,9 @@
   }
     
     function drawChart3() {
-    	$.ajax({	type : "post",
-			url : "../AdminMemberJoinStatisticsMonth",
+    	$.ajax({	
+    		type : "post",
+			url : path+"/forme/AdminMemberJoinStatisticsMonth",
 			dataType : "json",
 			async: false,
 			success : function(data) {

@@ -6,4 +6,6 @@ import java.util.Map;
 public interface AdminStatisticService {
 	public List<Map<String, Object>>  memberJoinStatisticsMonth(AdminStatisticDTO dto);
 	
+	public List<Map<String, Object>>  projectRegMonth(AdminStatisticDTO dto);
+	
 }

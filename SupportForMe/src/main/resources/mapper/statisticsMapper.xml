@@ -110,7 +110,7 @@
 	
 	</select>
 
-	<select id="projectRegMonth" >
+	<select id="projectRegMonth" resultMap="statisticMonthMap">
 		WITH TEMP AS
 		(
 		SELECT PROJECT_NO AS "CNT",

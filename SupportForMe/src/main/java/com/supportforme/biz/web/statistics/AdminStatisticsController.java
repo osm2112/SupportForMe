@@ -18,13 +18,18 @@ import com.supportforme.biz.statistics.AdminStatisticService;
 public class AdminStatisticsController {
 
 	@Autowired AdminStatisticService adminStatisticService;
+	
 	@RequestMapping("/forme/AdminMemberJoinStatisticsMonth")
 	@ResponseBody
 	public  List<Map<String, Object>> memberJoinStatisticsMonth(AdminStatisticDTO dto) {
-		
 		return adminStatisticService.memberJoinStatisticsMonth(dto);
 	}
 	
+	@RequestMapping("/forme/AdminProjectRegMonth")
+	@ResponseBody
+	public  List<Map<String, Object>> projectRegMonth(AdminStatisticDTO dto) {
+		return adminStatisticService.projectRegMonth(dto);
+	}
 	
 	@RequestMapping("/forme/AdminDashBoard")
 	public String adminDashBoard(HttpSession session) {

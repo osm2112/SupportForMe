@@ -62,6 +62,7 @@
 
 </style>
 <script>
+var path = "<c:url value='/'/>";
 $(document).ready(function() {
 	$(document).scroll(function() {
 				var lastno = $(".project_box").last().attr("id");
@@ -73,7 +74,7 @@ $(document).ready(function() {
 			});
 	function loadArticle(lastno) {
 		$.ajax({	type : "post",
-					url : "../forme/MyInvestListScroll",
+					url : path+"/forme/MyInvestListScroll",
 					data : { "investNo" : lastno},
 					dataType : "json",
 					success : function(data) {

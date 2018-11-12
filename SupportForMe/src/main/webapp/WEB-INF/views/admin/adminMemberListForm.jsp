@@ -10,6 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
+	var path = "<c:url value='/'/>";
 	function go_page(p){
 		document.searchForm.page.value=p;
 		document.searchForm.submit();
@@ -26,7 +27,7 @@
 		if(check){
 			var form = document.createElement("form");
 			var input = document.createElement("input"); 
-			form.action = "../forme/AdminDeleteMembers";
+			form.action = path+"/forme/AdminDeleteMembers";
 			form.method = "post";
 			input.setAttribute("type", "hidden");
 			input.setAttribute('name', "ids");

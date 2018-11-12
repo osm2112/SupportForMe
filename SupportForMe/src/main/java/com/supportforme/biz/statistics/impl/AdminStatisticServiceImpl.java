@@ -18,4 +18,9 @@ public class AdminStatisticServiceImpl implements AdminStatisticService {
 		return adminStatisticDAO.memberJoinStatisticsMonth(dto);
 	}
 
+	@Override
+	public List<Map<String, Object>> projectRegMonth(AdminStatisticDTO dto) {
+		return adminStatisticDAO.projectRegMonth(dto);
+	}
+
 }
