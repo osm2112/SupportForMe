@@ -18,7 +18,7 @@ import com.supportforme.biz.statistics.AdminStatisticService;
 public class AdminStatisticsController {
 
 	@Autowired AdminStatisticService adminStatisticService;
-	@RequestMapping("/forme/AdminStatistics")
+	@RequestMapping("/forme/AdminMemberJoinStatisticsMonth")
 	@ResponseBody
 	public  List<Map<String, Object>> memberJoinStatisticsMonth(AdminStatisticDTO dto) {
 		
