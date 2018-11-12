@@ -85,8 +85,46 @@
   <!-- 본문 -->
   <div id="page-content-wrapper">
     <div class="container-fluid">
-      <h1>간단한 사이드바</h1>
-    
+  <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Density", { role: "style" } ],
+        ["1월", 8.94, "color: #01DFA5"],
+        ["2월", 10.49, "color: #01DFA5"],
+        ["3월", 19.30, "color: #01DFA5"],
+        ["4월", 21.45, "color: #01DFA5"],
+        ["5월", 21.45, "color: #01DFA5"],
+        ["6월", 21.45, "color: #01DFA5"],
+        ["7월", 21.45, "color: #01DFA5"],
+        ["8월", 21.45, "color: #01DFA5"],
+        ["9월", 21.45, "color: #01DFA5"],
+        ["10월", 21.45, "color: #01DFA5"],
+        ["11월", 21.45, "color: #01DFA5"],
+        ["12월", 21.45, "color: #01DFA5"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "월별 회원 가입 현황",
+        width: 1000,
+        height: 400,
+        bar: {groupWidth: "85%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("chart1"));
+      chart.draw(view, options);
+  }
+  </script>
+	<div id="chart1" style="width: 1000px; height: 400px;"></div>
     </div>
   </div>
   <!-- /본문 -->
