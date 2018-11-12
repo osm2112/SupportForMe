@@ -9,6 +9,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>2018. 10. 26.</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+<!--  부트스트랩 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!--   jQuery  -->
 
 <style>
@@ -107,6 +112,29 @@
 .mypage_project_content ul {
 	list-style-type: none;
 }
+<!-- -->
+.text3d{
+/* text-shadow:   0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+      font:18px Arial, Helvetica, sans-serif;
+      color:grey; */
+
+  /* text-shadow: 0px 0px 0px #FFD, -0px 0px 0px #FFD, -0px -0px 0px #FFD, 0px -0px 0px #FFD, 0px 1px 0px #FFD, -0px 1px 0px #FFD, -0px -1px 0px #FFD, 0px -1px 0px #FFD, 0px 2px 0px #FFD, -0px 2px 0px #FFD, -0px -2px 0px #FFD, 0px -2px 0px #FFD, 1px 0px 0px #FFD, -1px 0px 0px #FFD, -1px -0px 0px #FFD, 1px -0px 0px #FFD, 1px 1px 0px #FFD, -1px 1px 0px #FFD, -1px -1px 0px #FFD, 1px -1px 0px #FFD, 1px 2px 0px #FFD, -1px 2px 0px #FFD, -1px -2px 0px #FFD, 1px -2px 0px #FFD, 2px 0px 0px #FFD, -2px 0px 0px #FFD, -2px -0px 0px #FFD, 2px -0px 0px #FFD, 2px 1px 0px #FFD, -2px 1px 0px #FFD, -2px -1px 0px #FFD, 2px -1px 0px #FFD, 2px 2px 0px #FFD, -2px 2px 0px #FFD, -2px -2px 0px #FFD, 2px -2px 0px #FFD, 0px 0px 0px hsla(0,0%,0%,0), -4px 2px 2px black; */
+   /* text-shadow: -0px 0px hsla(0,0%,100%,0.03333), 0px -0px hsla(0,0%,0%,0.2), -0.5px 0.5px hsla(0,0%,100%,0.03333), 0.5px -0.5px hsla(0,0%,0%,0.2), -1px 1px hsla(0,0%,100%,0.03333), 1px -1px hsla(0,0%,0%,0.2), -1.5px 1.5px hsla(0,0%,100%,0.03333), 1.5px -1.5px hsla(0,0%,0%,0.2), -2px 2px hsla(0,0%,100%,0.03333), 2px -2px hsla(0,0%,0%,0.2), 0px 0px 40px hsla(0,0%,100%,0.1); */
+ font-size : 17px;
+ text-shadow: -0px 0px hsla(0,0%,0%,0.2), 0px -0px hsla(0,0%,100%,0.2), -0.5px 0.5px hsla(0,0%,0%,0.2), 0.5px -0.5px hsla(0,0%,100%,0.2), -1px 1px hsla(0,0%,0%,0.2), 1px -1px hsla(0,0%,100%,0.2), -1.5px 1.5px hsla(0,0%,0%,0.2), 1.5px -1.5px hsla(0,0%,100%,0.2), 0px 0px 4.5px hsla(0,0%,0%,1);
+ 
+ }
 </style>
 <script>
 	$(document)
@@ -157,27 +185,24 @@
 																			+ data[i].progress
 																			+ '</div>'
 																			+ '				<ul>'
-																			+ '  				<li style="font-size: 16px;">창작자 ID : '
+																			+ '  				<li style="font-size: 16px;">'
 																			+ data[i].userId
-																			+ '</li>'
+																			+ '님</li>'
 																			+ ' 				<li style="height: 5px"></li>'
-																			+ '   				<li style="font-size : 18px; height:50px;">'
+																			+ '   				<li style="font-size : 18px; height:50px;"><strong>'
 																			+ data[i].projectName
-																			+ '</li>'
+																			+ '</strong></li>'
 																			+ ' 				<li style="height: 10px"></li>'
 																			+ '   				<li style="display:grid; grid-template-columns: 100%">'
-																			+ '       				<span>모금액 : '
+																			+ '       				<span class="text3d">모금액 : '
 																			+ data[i].totalInvest
 																			+ '원</span></li>'
 																			+ ' 				<li style="height: 10px"></li>'
-																			+ ' 				<li style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%">'
-																			+ ' 						<progress style="width: 95%; height:21px;" value="'
-																			+ data[i].percent
-																			+ '" max="100"></progress><span>'
-																			+ data[i].percent
-																			+ '%</span></li>'
+																			+ ' 	<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">'
+																			+ ' 	<div class="progress"><div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:'+data[i].percent+'%"></div></div>'
+																			+'<span>'+ data[i].percent+ '%</span></li>'
 																			+ ' 				<li style="height: 10px"></li>'
-																			+ ' 				<li>목표액 :'
+																			+ ' 				<li class="text3d">목표액 :'
 																			+ data[i].targetAmount
 																			+ '원</li>'
 																			+ '				</ul>'
@@ -251,20 +276,24 @@
 						<div class="mypage_project_content">
 							<div class="project_state">${project.progress}</div>
 							<ul>
-								<li style="font-size: 16px;">창작자 ID : ${project.userId}</li>
+								<li style="font-size: 16px;">${project.userId}님</li>
 								<li style="height: 5px"></li>
-								<li style="font-size: 18px; height: 50px;">${project.projectName}</li>
+								<li style="font-size: 18px; height: 50px;"><strong>${project.projectName}</strong></li>
 								<li style="height: 10px"></li>
-								<li style="display: grid; grid-template-columns: 100%"><span>모금액
+								<li style="display: grid; grid-template-columns: 100%"><span class="text3d">모금액
 										: ${project.totalInvest}원</span></li>
 								<li style="height: 10px"></li>
-								<li
-									style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%">
-									<progress style="width: 95%; height: 21px;"
-										value="${project.percent}" max="100"></progress><span>${project.percent}%</span>
-								</li>
+							<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
+							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
+							 --%>
+							<div class="progress">
+    							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
+   								 </div>
+  							</div>
+							<span>&nbsp;${project.percent}%</span>
+							</li>
 								<li style="height: 10px"></li>
-								<li>목표액 : ${project.targetAmount}원</li>
+								<li class="text3d">목표액 : ${project.targetAmount}원</li>
 							</ul>
 						</div>
 					</div>
