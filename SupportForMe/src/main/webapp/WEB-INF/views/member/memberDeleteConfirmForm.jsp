@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,7 @@ h3 {
 <h3>회원 탈퇴</h3>
 <hr>
 <h3>회원 탈퇴를 하시려면 비밀번호를 입력하여 주세요.</h3>
-	<form id="frm" action="../forme/MemberDeletePassWordCheck" method="post" class="_form">
+	<form id="frm" action="/SupportForMe/forme/MemberDeletePassWordCheck" method="post" class="_form">
 		<div class="input-group">
 			<input type="password" name="password" id = password class="form-control" style="width:550px;">
 			<input type="submit" onclick="Confirm()" value="확인" style="width:150px;" class="btn _btn ">
