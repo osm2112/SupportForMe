@@ -107,13 +107,12 @@ caption {
 						method : "post",
 						type : "text",
 						success : function(data) {
-							
+
 							var emailRegexp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
-							if (!emailRegexp.test(email)){
+							if (!emailRegexp.test(email)) {
 								document.getElementById("checkEmailResult").innerHTML = '<font color="red">사용할수 없는 Email입니다.</font>';
 								emailCheck = false;
-							}
-							else {								
+							} else {
 								if (data == 0) {
 									document.getElementById("checkEmailResult").innerHTML = '사용할수 있는  Email입니다.';
 									emailCheck = true;
@@ -122,7 +121,7 @@ caption {
 									emailCheck = false;
 								}
 							}
-						
+
 						}
 					});
 		} else {
@@ -330,20 +329,20 @@ caption {
 					</tr>
 				</tbody>
 			</table> -->
-<br><br><br><br>
- 
-		
+			<br>
+			<br>
+			<br>
+			<br>
+
+
 			<!-- 아이디 -->
 			<div class="form-group">
 				<label for="inputId" class="col-lg-2 control-label">아이디</label>
 				<div class="col-lg-5">
 					<input class="form-control" id="userId" type="text" size="10"
-						onkeyup="CheckId()">
-						
-					
-					<span id="checkIdResult"
+						onkeyup="CheckId()"> <span id="checkIdResult"
 						style="display: table-cell; vertical-align: middle; text-align: left;"></span>
-				
+
 				</div>
 
 			</div>
@@ -352,16 +351,12 @@ caption {
 				<label for="inputPassword" class="col-lg-2 control-label">비밀번호</label>
 				<div class="col-lg-5">
 					<input class="form-control" id="password" type="password" size="10"
-						maxlength="15" onkeyup="PasswordRegexCheck()">
-						
-						<span id="PasswordRegexCheck"
+						maxlength="15" onkeyup="PasswordRegexCheck()"> <span
+						id="PasswordRegexCheck"
 						style="display: table-cell; vertical-align: middle;"><font
 						color="red">비밀번호는 특수문자 /문자/ 숫자를 한자 이상 포함 형태의 8~15자리 이내여야
 							합니다.</font></span>
 				</div>
-				
-					
-				
 			</div>
 
 			<div class="form-group">
@@ -416,14 +411,12 @@ caption {
 				<label for="inputEmail" class="col-lg-2 control-label">이메일</label>
 				<div class="col-lg-5">
 					<input class="form-control" id="email" type="email" size="20"
-						onkeyup="CheckEmail()">
-						
-						<span id="checkEmailResult"
+						onkeyup="CheckEmail()"> <span id="checkEmailResult"
 						style="display: table-cell; vertical-align: middle;"></span>
-				
+
 				</div>
-				
-					
+
+
 			</div>
 			<!-- 주소 -->
 			<div class="form-group" style="margin-bottom: 5px;">
@@ -462,26 +455,26 @@ caption {
 				</div>
 			</div>
 			<!-- 자기소개 -->
-			
+
 			<div class="form-group">
 				<label class="col-lg-2 control-label">자기소개</label>
 				<div class="col-lg-5">
 					<textarea class="form-control textarea1" id="introduction"> </textarea>
 				</div>
 			</div>
-		
+
 			<!-- 회원가입버튼 -->
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-5" style="text-align: right;">
 					<input class="btn btn-default" type="button"
-						onclick="InsertMember()" value="회원가입하기"> 
-					<input class="btn btn-default" type="button" 
+						onclick="InsertMember()" value="회원가입하기"> <input
+						class="btn btn-default" type="button"
 						onclick="location.href='./MemberLoginForm'" value="취소">
 
 				</div>
 			</div>
-		</div>		
+		</div>
 	</div>
-	
+
 </body>
 </html>

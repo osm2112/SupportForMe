@@ -5,7 +5,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원정보 수정</title>
+<style>
+textarea.textarea1 {
+	resize: none;
+	width: 100%;
+	height: 80px;
+}    
+
+</style>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+<!--  부트스트랩 -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <script>
 	var passwordRegexCheck = false;
@@ -15,7 +33,7 @@
 		// 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
 		var passwordRegex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 		if (passwordRegex.test(password)) {
-			document.getElementById("PasswordRegexCheck").innerHTML = '사용할수 있는 비밀 번호 입니다.';
+			document.getElementById("PasswordRegexCheck").innerHTML = '<font color="blue">사용할수 있는 비밀번호 입니다.</font>';
 			passwordRegexCheck = true;
 		} else {
 			document.getElementById("PasswordRegexCheck").innerHTML = '<font color="red">비밀번호는 특수문자 /문자/ 숫자를 한자 이상  포함 형태의 8~15자리 이내여야 합니다.</font>';
@@ -117,9 +135,158 @@
 	}
 </script>
 <body>
-<h3> 프로필 설정</h3>
-<hr>
-	<table class="table1" border="1" >
+	<h3>프로필 설정</h3>
+	<hr>
+	<!-- 아이디 -->
+	<div class="form-group">
+		<label style="color: lightgrey; width:150px;" class="col-lg-1 control-label">＊아이디</label>
+		<div class="col-lg-4" style="padding-left: 3px;">
+			<input class="form-control" id="userId" type="text" size="10"
+				readonly="readonly" value="${member.userId}"
+				style="color: lightgrey">
+		</div>
+		<br>
+		<br>
+	</div>
+	<!-- 이름 -->
+	<div class="form-group">
+		<label style="color: lightgrey; width:150px;" class="col-lg-1 control-label">＊이름</label>
+		<div class="col-lg-4" style="padding-left: 3px;">
+				<input class="form-control" id="name" type="text" size="10" readonly="readonly"
+					value="${member.name}" style="color: lightgrey">
+		</div>
+		<br>
+		<br>
+	</div>
+	<!-- 새 비밀번호 -->   
+	<div class="form-group">
+		<label class="col-lg-1 control-label" style="width:150px;">＊새 비밀번호</label>
+		<div class="col-lg-6" style="padding-left: 3px;">
+			<input class="form-control" id="password" type="password" size="10"
+					maxlength="15" onkeyup="PasswordRegexCheck()"><span id="PasswordRegexCheck"><font color="red">비밀번호는 특수문자
+							/문자/ 숫자를 한자 이상 포함 형태의 8~15자리 이내여야 합니다.</font></span>
+		</div>
+		<br>
+		<br>
+		<br>
+	</div>
+	<!-- 비밀번호 확인 -->
+		<div class="form-group">
+		<label class="col-lg-1 control-label" style="width:150px;">＊비밀번호 확인</label>
+		<div class="col-lg-6" style="padding-left: 3px;">
+			<input class="form-control" id="password2" type="password" size="10">
+		</div>
+		<br>
+		<br>
+	</div>
+	<!-- 이메일 주소 -->
+	<div class="form-group">
+		<label style="color: lightgrey; width:150px;" class="col-lg-1 control-label">＊E-mail 주소</label>
+		<div class="col-lg-4" style="padding-left: 3px;">
+				<input class="form-control" id="email" type="email" size="20"
+					value="${member.email}" readonly="readonly"
+					style="color: lightgrey">
+		</div>
+		<br>
+		<br>
+	</div>
+	<!-- 전화번호 -->
+	<div class="form-group">   
+		<label style="width:150px;" class="col-lg-1 control-label">＊전화번호</label>
+		<div class="col-lg-2" style="padding-left: 3px;">
+				<select class="form-control" id="tel1" style="width:150px;">
+						<option value="010">010</option>
+						<option value="011">011</option>
+						<option value="016">016</option>
+						<option value="017">017</option>
+						<option value="018">018</option>
+						<option value="019">019</option>
+				</select> 							
+		</div>
+		<div class="col-lg-1" style="display: table; width: 1px; height: 34px; padding-left: 0px; padding-right: 0px;">
+			<span style="display: table-cell; vertical-align: middle;">-</span>
+		</div>
+		<div class="col-lg-2">
+		<input class="form-control" type="text" id="tel2" style="width:150px;" size="10" maxlength="4"> 
+		</div>
+		<div class="col-lg-1" style="display: table; width: 1px; height: 34px; padding-left: 0px; padding-right: 0px;">
+			<span style="display: table-cell; vertical-align: middle;">-</span>
+		</div>
+		<div class="col-lg-2">
+		<input class="form-control" type="text" id="tel3" style="width:150px;" size="10" maxlength="4">
+		</div>
+		<br>
+		<br>
+	</div>
+	<script>
+				var phoneNum = '${member.phoneNum}';
+				var telArray = phoneNum.split('-');
+				document.getElementById("tel1").value = telArray[0];
+				document.getElementById("tel2").value = telArray[1];
+				document.getElementById("tel3").value = telArray[2];
+	</script>
+ 
+	<!-- 주소 -->
+		<div class="form-group">
+		<label class="col-lg-1 control-label" style="width:150px;">＊주소</label>
+				<div class="col-lg-3" style="padding-left: 3px;">
+					<input class="form-control" type="text" size="10" id="postcode" id="postcode"
+					value="${member.postcode}" readonly="readonly">
+				</div>
+				<div class="col-lg-2" style="padding-left: 0px;">
+					<input type="button" onclick="SearchPostcode()" value="우편번호검색" class="form-control">
+			
+				</div>
+				<div id="layer"
+						style="display: none; position: fixed; overflow: hidden; z-index: 1; -webkit-overflow-scrolling: touch;">
+						<img
+							src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"
+							id="btnCloseLayer"
+							style="cursor: pointer; position: absolute; right: -3px; top: -3px; z-index: 1"
+							onclick="closeDaumPostcode()" alt="닫기 버튼">
+					</div> <script src="../js/SearchAddr.js"></script>
+				<br>
+			</div>  
+				<div class="form-group">
+				<label class="col-lg-1 control-label" style="width:150px;"></label>
+				<div class="col-lg-5" style="padding-left: 3px;">
+					<input class="form-control" type="text"
+					id="address" size="60" id="address" value="${member.address}"
+					readonly="readonly">
+				</div>
+				<br>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-1 control-label" style="width:150px;"></label>
+				<div class="col-lg-5" style="padding-left: 3px;">
+					<input class="form-control" type="text" size="60"
+					id="addrDetail" value="${member.addrDetail}">
+				</div>
+				<br>
+				<br>
+			</div>   
+		<!-- 자기소개 -->
+		<div class="form-group">
+		<label class="col-lg-1 control-label" style="width:150px;">＊자기소개</label>
+		<div class="col-lg-6" style="padding-left: 3px;">
+			<textarea class="form-control textarea1" id="introduction">${member.introduction}</textarea>
+		</div>
+		<br>
+		<br>
+		<br>
+		</div>
+					<!-- 수정버튼 -->
+			<div class="form-group">
+			<label class="col-lg-1 control-label" style="width:150px;"></label>
+				<div class="col-lg-offset-2 col-lg-4" style="text-align: right;">
+					<input class="btn btn-default" type="button" onclick="UpdateMember()" value="정보수정하기">	
+					<input class="btn btn-default" type="button" onclick="location.href='../forme/MemberDeleteConfirmForm'" value="회원탈퇴하기">	
+					<input class="btn btn-default" type="button" value="취소">	
+				</div>
+			</div>
+			
+	
+	<%-- <table class="table" border="1">
 		<tbody>
 			<tr style="color: lightgrey">
 				<th><span>＊</span>아이디</th>
@@ -127,13 +294,11 @@
 					readonly="readonly" value="${member.userId}"
 					style="color: lightgrey"></td>
 			</tr>
-
 			<tr style="color: lightgrey">
 				<th width="150"><span>＊</span>이름</th>
 				<td><input id="name" type="text" size="10" readonly="readonly"
 					value="${member.name}" style="color: lightgrey"></td>
 			</tr>
-
 			<tr>
 				<th><span>＊</span>새 비밀번호</th>
 				<td><input id="password" type="password" size="10"
@@ -200,6 +365,6 @@
 					value="회원탈퇴하기"> <input type="button" value="취소"></td>
 			</tr>
 		</tbody>
-	</table>
+	</table> --%>
 </body>
 </html>
