@@ -298,11 +298,12 @@ function view() {
   <span id="close-sidenav">&times;</span>
   <header>회원아이디 <br> ${loginID} </header>
   <ul>
-    <li><a href="#">프로필 설정</a></li>
+    <li><a href="/SupportForMe/forme/MemberUpdateConfirmForm">프로필 설정</a></li>
     <li><a href="#">나의 프로젝트</a></li>
-    <li><a href="#">나의 투자 현황</a></li>
-    <li><a href="#">지불정보 설정</a></li>
-    <li><a href="#">로그아웃</a></li>
+    <li><a href="/SupportForMe/forme/MyInvestList">나의 투자 현황</a></li>
+    <li><a href="/SupportForMe/forme/InvestList">나의 결제 내역</a></li>
+    <li><a href="/SupportForMe/support/logout">로그아웃</a></li>
+    <li><a href="/SupportForMe/forme/MemberDeleteConfirmForm">회원탈퇴</a></li>
   </ul>
 </nav>
 

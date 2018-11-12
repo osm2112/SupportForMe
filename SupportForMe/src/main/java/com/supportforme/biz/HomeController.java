@@ -3,6 +3,8 @@ package com.supportforme.biz;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.supportforme.biz.member.MemberDTO;
 import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectService;
 
@@ -26,7 +29,21 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
+
+	public String home(Model model, HttpSession session) {
+		
+		if ( session.getAttribute("LoginInfo") == null ) {
+			model.addAttribute("loginID", null);
+		/*	System.out.println( session.getAttribute("LoginInfo")+"22222222222222222222222222222222222222");*/
+		}
+		else {
+		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
+		model.addAttribute("loginID", dto.getUserId());
+	/*	System.out.println(dto.getUserId());
+		System.out.println( session.getAttribute("LoginInfo")+"33333333333333333333333333333333333333333");
+	*/
+		}
+	
 		//최신 프로젝트조회
 		model.addAttribute("Latest",projectService.getLatestProjects());
 		model.addAttribute("Pick",projectService.getSupportForMePicks());

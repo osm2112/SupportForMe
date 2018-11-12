@@ -474,8 +474,9 @@ caption {
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-5" style="text-align: right;">
 					<input class="btn btn-default" type="button"
-						onclick="InsertMember()" value="회원가입하기"> <input
-						class="btn btn-default" type="button" value="취소">
+						onclick="InsertMember()" value="회원가입하기"> 
+					<input class="btn btn-default" type="button" 
+						onclick="location.href='./MemberLoginForm'" value="취소">
 
 				</div>
 			</div>
