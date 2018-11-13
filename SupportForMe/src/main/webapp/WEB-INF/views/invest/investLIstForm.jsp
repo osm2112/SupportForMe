@@ -44,7 +44,7 @@
 
 <body>
 	<h3>결제 내역 보기</h3>
-<form action="/SupportForMe/forme/InvestList" name="searchForm">
+<form action="<c:url value='/'/>forme/InvestList" name="searchForm">
 <div class="input-group">
 	<input type="hidden" name="page" value="1">
 	<select name="searchCondition" class="form-control" style="width:120px;">
@@ -74,7 +74,7 @@
 	<table class="table table-hover">
 		<tr><th>결제번호</th><th>프로젝트명</th><th>결제금액</th><th>결제방법</th><th>결제상태</th><th>결제일</th></tr>
 		<c:forEach items="${list}" var="list">
-		<tr onclick="location.href='../forme/InvestDetail?investNo=${list.investNo}'"><td>${list.investNo }</td><td>${list.projectName }</td><td>${list.invenstAmount }</td><td>${list.payType}</td><td>${list.paymentState }</td><td>${list.investDate }</td></tr>
+		<tr onclick="location.href='<c:url value='/'/>forme/InvestDetail?investNo=${list.investNo}'"><td>${list.investNo }</td><td>${list.projectName }</td><td>${list.invenstAmount }</td><td>${list.payType}</td><td>${list.paymentState }</td><td>${list.investDate }</td></tr>
 	</c:forEach>
 	</table>
 	<div style="width:100%;text-align:center">

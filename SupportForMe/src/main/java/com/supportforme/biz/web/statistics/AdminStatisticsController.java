@@ -19,7 +19,7 @@ public class AdminStatisticsController {
 
 	@Autowired AdminStatisticService adminStatisticService;
 	
-	@RequestMapping("/forme/AdminMemberJoinStatisticsMonth")
+	@RequestMapping("/forme/AdminMemberJoinMonth")
 	@ResponseBody
 	public  List<Map<String, Object>> memberJoinStatisticsMonth(AdminStatisticDTO dto) {
 		return adminStatisticService.memberJoinStatisticsMonth(dto);
@@ -29,6 +29,12 @@ public class AdminStatisticsController {
 	@ResponseBody
 	public  List<Map<String, Object>> projectRegMonth(AdminStatisticDTO dto) {
 		return adminStatisticService.projectRegMonth(dto);
+	}
+	
+	@RequestMapping("/forme/InvestAmountSumMonth")
+	@ResponseBody
+	public  List<Map<String, Object>> investAmountSumMonth(AdminStatisticDTO dto) {
+		return adminStatisticService.investAmountSumMonth(dto);
 	}
 	
 	@RequestMapping("/forme/AdminDashBoard")

@@ -8,4 +8,6 @@ public interface AdminStatisticService {
 	
 	public List<Map<String, Object>>  projectRegMonth(AdminStatisticDTO dto);
 	
+	public List<Map<String, Object>>  investAmountSumMonth(AdminStatisticDTO dto);
+	
 }

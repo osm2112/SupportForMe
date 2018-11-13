@@ -74,7 +74,7 @@ $(document).ready(function() {
 			});
 	function loadArticle(lastno) {
 		$.ajax({	type : "post",
-					url : path+"/forme/MyInvestListScroll",
+					url : path+"forme/MyInvestListScroll",
 					data : { "investNo" : lastno},
 					dataType : "json",
 					success : function(data) {
@@ -108,8 +108,7 @@ $(document).ready(function() {
 							}
 						}
 					}
-				});
-		lastno = $(".project_box").last().attr("id");					
+				});				
 	}
 });
 
@@ -118,9 +117,9 @@ $(document).ready(function() {
 	<div id="myInvestList" >
 		<div style="font-size: 30px; font-weight: 800; margin-bottom: 20px">나의	투자 현황</div>
 		<c:forEach items="${list}" var="list">
-		<div class="project_box" style="" id="${list.investNo}" onclick="location.href='../support/getProjectDetailPage?projectNo=${list.projectNo}'">
+		<div class="project_box" style="" id="${list.investNo}" onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">
 			<div class="mypage_project_image">
-				<img class="mypage_project_image"src="../upload/${list.image}">
+				<img class="mypage_project_image"src="<c:url value='/'/>upload/${list.image}">
 			</div>
 			<div class="mypage_project_content">
 				<div class="project_state">${list.projectProgress}</div>

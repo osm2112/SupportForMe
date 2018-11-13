@@ -7,15 +7,12 @@
 <title>결제</title>
 </head>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <!--  부트스트랩 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
 .bodysize {
@@ -42,12 +39,11 @@ var path = "<c:url value='/'/>";
 	function AddrInput() {
 		var input = document.querySelector("input[id=inputAddr]").checked;
 		if (input == true) {
-			$
-					.ajax({
-						url : path+"/forme/AddrInput",
-						method : "post",
-						type : "json",
-						success : function(data) {
+			$.ajax({
+					url : path+"forme/AddrInput",
+					method : "post",
+					type : "json",
+					success : function(data) {
 							document.querySelector("#name").value = data.name;
 							document.querySelector("#postcode").value = data.postcode;
 							document.querySelector("#email").value = data.email;
@@ -58,8 +54,7 @@ var path = "<c:url value='/'/>";
 							document.querySelector("#tel1").value = telArray[0];
 							document.querySelector("#tel2").value = telArray[1];
 							document.querySelector("#tel3").value = telArray[2];
-
-						}
+					}
 					});
 		} else {
 			document.querySelector("#name").value = '';
@@ -72,6 +67,7 @@ var path = "<c:url value='/'/>";
 			document.querySelector("#tel3").value = '';
 		}
 	}
+	
 	var paymentInfo = {
 		name : '결제테스트',
 		amount : '',
@@ -80,118 +76,81 @@ var path = "<c:url value='/'/>";
 		buyer_tel : '',
 		buyer_addr : ''
 	}
-	console.log(paymentInfo.name);
-	$(document)
-			.ready(
-					function() {
-						IMP.init('imp55982631');
-						$("#payment")
-								.click(
-										function() {
-											$
-													.ajax({
-														url : path+"/forme/PaymentInfo",
-														method : "post",
-														type : "json",
-														async : false,
-														data : {
-															"address" : document
-																	.getElementById("address").value,
-															"addrDetail" : document
-																	.getElementById("addrDetail").value,
-															"postcode" : document
-																	.getElementById("postcode").value,
-															"email" : document
-																	.getElementById("email").value,
-															"name" : document
-																	.getElementById("name").value,
-															"tel1" : document
-																	.getElementById("tel1").value,
-															"tel2" : document
-																	.getElementById("tel2").value,
-															"tel3" : document
-																	.getElementById("tel3").value,
-															"request" : document
-																	.getElementById("request").value
-
-														},
-														success : function(data) {
-															paymentInfo.amount = data.investmentAmount;
-															paymentInfo.buyer_email = data.email;
-															paymentInfo.buyer_name = data.name;
-															paymentInfo.buyer_tel = data.phoneNum;
-															paymentInfo.buyer_addr = data.address;
-															console.log(data);
-														}
+	
+	$(document)	.ready(	function() {
+		IMP.init('imp55982631');
+		$("#payment").click( function() {
+							$.ajax({
+								url : path+"forme/PaymentInfo",
+								method : "post",
+								type : "json",
+								async : false,
+								data : {
+										"address" : document.getElementById("address").value,
+										"addrDetail" : document.getElementById("addrDetail").value,
+										"postcode" : document.getElementById("postcode").value,
+										"email" : document.getElementById("email").value,
+										"name" : document.getElementById("name").value,
+										"tel1" : document.getElementById("tel1").value,
+										"tel2" : document.getElementById("tel2").value,
+										"tel3" : document.getElementById("tel3").value,
+										"request" : document.getElementById("request").value
+										},
+								success : function(data) {
+										paymentInfo.amount = data.investmentAmount;
+										paymentInfo.buyer_email = data.email;
+										paymentInfo.buyer_name = data.name;
+										paymentInfo.buyer_tel = data.phoneNum;
+										paymentInfo.buyer_addr = data.address;
+										}
+							});
+		});
+		
+		$("#payment").click( function() {
+					IMP.request_pay({
+									pg : 'html5_inicis',
+									pay_method : 'card',
+									merchant_uid : 'merchant_'+ new Date().getTime(),
+									name : paymentInfo.name,
+									amount : paymentInfo.amount,
+									buyer_email : paymentInfo.buyer_email,
+									buyer_name : paymentInfo.buyer_name,
+									buyer_tel : paymentInfo.buyer_tel,
+									buyer_addr : paymentInfo.buyer_addr
+									},
+									function(rsp) {
+										if (rsp.success) {
+											var msg = '결제가 완료되었습니다.'+ "\n";
+												msg += '결제 금액 : ' + rsp.paid_amount + "\n";
+												msg += '카드 승인번호 : ' + rsp.apply_num + "\n";
+													$.ajax({
+															url : path+"forme/PaymentEndProcess",
+															method : "post",
+															async : false,
+															data : {
+																	"address" : document.getElementById("address").value,
+																	"addrDetail" : document.getElementById("addrDetail").value,
+																	"postcode" : document.getElementById("postcode").value,
+																	"email" : document.getElementById("email").value,
+																	"name" : document.getElementById("name").value,
+																	"tel1" : document.getElementById("tel1").value,
+																	"tel2" : document.getElementById("tel2").value,
+																	"tel3" : document.getElementById("tel3").value,
+																	"request" : document.getElementById("request").value,
+																	"uuid" : rsp.imp_uid
+																	}
 													});
-										});
-						$("#payment")
-								.click(
-										function() {
-											IMP
-													.request_pay(
-															{
-																pg : 'html5_inicis',
-																pay_method : 'card',
-																merchant_uid : 'merchant_'
-																		+ new Date()
-																				.getTime(),
-																name : paymentInfo.name,
-																amount : paymentInfo.amount,
-																buyer_email : paymentInfo.buyer_email,
-																buyer_name : paymentInfo.buyer_name,
-																buyer_tel : paymentInfo.buyer_tel,
-																buyer_addr : paymentInfo.buyer_addr
-															},
-															function(rsp) {
-																if (rsp.success) {
-																	var msg = '결제가 완료되었습니다.'
-																			+ "\n";
-																	msg += '결제 금액 : '
-																			+ rsp.paid_amount
-																			+ "\n";
-																	msg += '카드 승인번호 : '
-																			+ rsp.apply_num
-																			+ "\n";
-																	$
-																			.ajax({
-																				url : "../forme/PaymentEndProcess",
-																				method : "post",
-																				async : false,
-																				data : {
-																					"address" : document
-																							.getElementById("address").value,
-																					"addrDetail" : document
-																							.getElementById("addrDetail").value,
-																					"postcode" : document
-																							.getElementById("postcode").value,
-																					"email" : document
-																							.getElementById("email").value,
-																					"name" : document
-																							.getElementById("name").value,
-																					"tel1" : document
-																							.getElementById("tel1").value,
-																					"tel2" : document
-																							.getElementById("tel2").value,
-																					"tel3" : document
-																							.getElementById("tel3").value,
-																					"request" : document
-																							.getElementById("request").value,
-																					"uuid" : rsp.imp_uid
-																				}
-																			});
-																	alert(msg);
-																	location.href = path+'/forme/InvestList'
-																} else {
-																	var msg = '결제에 실패하였습니다.';
-																	msg += '에러내용 : '
-																			+ rsp.error_msg;
-																	alert(msg);
-																}
+													alert(msg);
+													location.href = path+'/forme/InvestList'
+										} else {
+											var msg = '결제에 실패하였습니다.';
+												msg += '에러내용 : ' + rsp.error_msg;
+											alert(msg);
+										}
 
-															});
-										});
-					});
+									});
+						});
+	});
 </script>
 <body>
 	<div class="bodysize">

@@ -27,7 +27,7 @@
 		if(check){
 			var form = document.createElement("form");
 			var input = document.createElement("input"); 
-			form.action = path+"/forme/AdminDeleteMembers";
+			form.action = path+"forme/AdminDeleteMembers";
 			form.method = "post";
 			input.setAttribute("type", "hidden");
 			input.setAttribute('name', "ids");
@@ -73,7 +73,7 @@
 <body>
 <h3>회원관리</h3>
 <hr>
-<form action="../forme/AdminMemberList" name="searchForm">
+<form action="<c:url value='/'/>forme/AdminMemberList" name="searchForm">
 <div class="input-group" style="width:1200px;">
 	<input type="hidden" name="page" value="1">
 	<select name="searchCondition" class="form-control" style="width:200px;">

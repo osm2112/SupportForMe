@@ -66,7 +66,7 @@ $(function(){
 		div.addClass('comments');
 		div[0].comments=comments;
 		
-		var str = "<div class='updComment' style='background-color: #F6F6F6; border-bottom:2px solid white;'>"
+		var str = "<div class='updComment' style='background-color: #F6F6F6; border-bottom:3px solid white;'>"
 				+ "<div style='display:flex;'>"
 				+ "		<div style='width:60px; margin-right:10px;'>"
 				+ "			<img src='../images/user-icon.png' style='width:60px; height:60px; margin:auto;'><br>"
@@ -83,13 +83,13 @@ $(function(){
 				+ "		</div>"
 				+ "</div>"
 				+ "<div id='rcList' style='display:none; border-top:2px dotted #BDBDBD; padding:10px; margin-top:10px;'></div>"
-				+ "<div id='replyCommentAdd' style='display:none; width:100%; padding:15px; margin-top:10px; background-color:#F6F6F6; border-top:2px dotted #BDBDBD;'>"
+				+ "<div id='replyCommentAdd' style='display:none; width:100%; padding:15px; background-color:#F6F6F6;'>"
 				+ "		<form name='replyAddForm' id='replyAddForm'>"
 				+ "			<input type='hidden' name='projectNo' value='${project.projectNo}'>"
 				+ "			<input type='hidden' name='userId' value='${pMember.userId}'>"
 				+ "			<input type='hidden' name='topCommentNo' value='"+comments.commentNo+"'>"
 				+ "			<div style='display:flex;'>"
-   				+ "				<img src='../images/user-icon.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
+   				+ "				<img src='../images/arrow.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
     			+ "				<textarea name='commentContent' cols='70' rows='5'></textarea>&nbsp;"
     			+ "				<button type='button' id='replyBtnAdd' style='width:170px; height:40px; margin:auto;'>등록</button>"
 				+ "			</div>"
@@ -104,7 +104,6 @@ $(function(){
 	$("#commentList").on("click", "#rcBtn", function(){
 		/*rc: reply comment*/
 		var rc_id = $(this).closest(".comments").attr("id").substring(1);
-		console.log(rc_id);
 		
 		var rcList = $("#c"+rc_id).children().children("#rcList");
 		var rcAdd = $("#c"+rc_id).children().children("#replyCommentAdd");
@@ -130,7 +129,7 @@ $(function(){
 		div.addClass('comments');
 		div[0].comments=comments;
 		
-		var str = "<div class='replyComment' style='background-color: #F6F6F6; border-bottom:2px solid white;'>"
+		var str = "<div class='replyComment' style='background-color: #F6F6F6; border-bottom:1px dotted #BDBDBD;'>"
 				+ "<div style='display:flex; padding:10px;'>"
 				+ "	<div style='width:60px; margin-right:10px;'>"
 				+ "		<img src='../images/arrow.png' style='width:50px; height:50px; margin:auto;'><br>"
@@ -141,8 +140,8 @@ $(function(){
 				+ "			<textarea name='commentContent' class='commentContent' readonly cols='51' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
 				+ "		</div>"
 				+ "		<div style='margin:auto;'>"
-				+ "			<button type='button' class='btnUpdFrm' style='width:170px; height:40px;'>수정</button>"
-				+ "			<button type='button' class='btnDel' style='width:170px; height:40px;'>삭제</button>"
+				+ "			<button type='button' class='rcBtnUpdFrm' style='width:170px; height:40px;'>수정</button>"
+				+ "			<button type='button' class='rcBtnDel' style='width:170px; height:40px;'>삭제</button>"
 				+ "		</div>"
 				+ "</div>"
 				+ "</div>";
@@ -164,7 +163,7 @@ $(function(){
 		$("#commentList").on("click", "#replyBtnAdd", function(){
 		var params = $(this).closest("[name=replyAddForm]").serialize();
 		var check_this = $(this).closest("[name=replyAddForm]");	//function안에서 this 안돼서 넣음
-		var url = "../forme/insertReplyComments";
+		var url = path+"/forme/insertReplyComments";
 		$.getJSON(url, params, function(data){		
 			check_this.parent().prev().prepend( makeReplyCommentView(data) );
 			check_this.closest("[name=replyAddForm]")[0].reset();
@@ -188,12 +187,9 @@ $(function(){
 	//답글 수정
 	
 	
-	
-	
 	//수정폼
 	$("#commentList").on("click", ".btnUpdFrm", function(){
 		var seq = $(this).closest(".comments").attr("id").substring(1);		//seq = 'commentNo'
-		console.log(seq);
 		var temp_seq = $("#c"+seq);
 		var comments = temp_seq[0].comments;		//$(this).parent()[0]
 		$("#updateForm [name=seq]").val(seq);    
@@ -225,7 +221,17 @@ $(function(){
 		}
 	});
 	//답글 삭제
-	
+	$("#commentList").on("click", ".rcBtnDel", function(){
+		var seq = $(this).parent().parent().parent().parent().attr("id").substring(2);
+		console.log("아아아아아아아아아악아아아아아악"+seq);
+		if(confirm("답글을 삭제하시겠습니까?")) {
+			var params = "commentNo="+seq;
+			var url = path+"/forme/deleteComments";
+			$.getJSON(url, params, function(data){
+				$('#rc'+data.commentNo).remove();
+			});
+		}
+	});
 	
 	
 	loadCommentsList();
@@ -261,7 +267,7 @@ $(function(){
 				<c:forTokens items="${project.introductionVideo}" delims="||" var="video">
 					<li data-thumb="${video}" class="video-thumb">
 						<iframe width="660" height="371" src="https://www.youtube.com/embed/${video}"
-							frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
 					</li>
 				</c:forTokens>
 				<c:forTokens items="${project.introductionImage}" delims="||" var="img">
@@ -292,7 +298,31 @@ $(function(){
             <div style="display:flex;">
                 <button class="pjdtl-invest-btn" onclick="location.href='../forme/InvestSelectReward?projectNo=${project.projectNo}'">투자하기</button>
                 <img src="../images/share-button.png" class="pjdtl-share-btn">
-            </div><br>
+            </div><br><br>
+            <table class="table-bordered" style="width:480px;">
+            	<tr>
+            		<td><img src="../images/calendar.png" class="pjdtl-status-img"></td>
+    				<td><img src="../images/right-arrow.png" class="pjdtl-right-arrow"></td>
+    				<td><img src="../images/credit-card.png" class="pjdtl-status-img"></td>
+    				<td><img src="../images/right-arrow.png" class="pjdtl-right-arrow"></td>
+    				<td><img src="../images/delivery-truck.png" class="pjdtl-status-img"></td>
+            	</tr>
+            	<tr>
+            		<td class="pjdtl-status-font">종료일</td>
+            		<td></td>
+            		<td class="pjdtl-status-font">결제 예정일</td>
+            		<td></td>
+            		<td class="pjdtl-status-font">예상 배송일</td>
+            	</tr>
+            	<tr>
+            		<td class="pjdtl-status-font">${project.projectDeadline}</td>
+            		<td class="pjdtl-status-font"></td>
+            		<td class="pjdtl-status-font">${project.scheduledPaymentDate}</td>
+            		<td class="pjdtl-status-font"></td>
+            		<td class="pjdtl-status-font">${project.deliveryDate}</td>
+            	</tr>
+            </table>
+<!--           
             <div class="pjdtl-status-box">
                 <div class="">
                 <div>
@@ -309,7 +339,7 @@ $(function(){
                 </div>
                 </div>
             </div>
-            
+-->            
         </div>
     </div>
     </div>
@@ -344,7 +374,7 @@ $(function(){
                        <div style="display: flex;">
 				           <img src="../images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
                            <textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
-                           <button type="button" id="btnAdd" style="width:180px; height:40px; margin:auto;">등록</button>
+                           <button type="button" id="btnAdd" style="width:170px; height:40px; margin:auto;">등록</button>
 				       </div>
  				</form>
 			</div><br><br>

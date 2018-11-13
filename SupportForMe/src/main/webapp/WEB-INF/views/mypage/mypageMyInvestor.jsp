@@ -10,13 +10,35 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+._btn {
+	margin-left: 15px;
+}
+
+._btn2 {
+	background: rgb(26, 188, 156);
+	color: white;
+}
+.my.pagination > .active > a, 
+.my.pagination > .active > span, 
+.my.pagination > .active > a:hover, 
+.my.pagination > .active > span:hover, 
+.my.pagination > .active > a:focus, 
+.my.pagination > .active > span:focus {
+  background: rgb(26, 188, 156);
+  border-color: rgb(26, 188, 156);
+}
+.pagination{
+	text-align: center;
+}
+</style>
 <script>
 function go_page(p){
 	document.searchForm.page.value=p;
 	document.searchForm.submit();
 }
 
-$(function(){
+/*  $(function(){
 	investorList();
 });
 var path = "<c:url value='/'/>"
@@ -35,6 +57,7 @@ function investorList() {
 
 //사용자 목록 조회 응답
 function investorListResult(data) {
+	console.log(data.length);
 	$("tbody").empty();
 	$.each(data,function(idx,item){
 		$('<tr>')
@@ -50,30 +73,68 @@ function investorListResult(data) {
 		.append($('<input type=\'hidden\' id=\'hidden_userId\'>').val(item.id))
 		.appendTo('tbody');
 	});//each
-}//userListResult
+	var paging = data[data.length-1].paging;
+	var page = "";
+	$("#page").append(page);
+	
+}//userListResult  */
 </script>
 </head>
 <body>	
 	<div style="height:50px"></div>
 	<h3>나의 투자자 보기</h3>
 	<div style="height:30px"></div>
+	<form action="<c:url value='/'/>forme/MyInvestors" name="searchForm">
+	<div class="input-group">
+		<input type="hidden" name="page" value="1">
+		<select name="searchCondition" class="form-control" style="width:120px;">
+		<option value="">전체</option>
+			<option value="projectName">프로젝트명</option>	
+			<option value="investNo">투자번호</option>
+			<option value="presentName">선물명</option>
+			<option value="address">주소</option>
+		</select>
+		<input type="text" name="searchKeyword" value="" class="form-control" style="width:300px;">
+		<input type="submit" value="검색" class="btn _btn2">
+		<script>
+			document.searchForm.searchCondition.value ='${searchCondition}';
+			document.searchForm.startdate.value ='${startdate}';
+			document.searchForm.enddate.value ='${enddate}';
+			document.searchForm.searchKeyword.value ='${searchKeyword}';
+			document.searchForm.payType.value ='${payType}';
+		</script>
+	</div>
+	</form>
+	
 	<table class="table table-hover" style="width:1350px">
 		<thead>
 		<tr>
 			<th class="text-center">투자번호</th>
 			<th class="text-center">이름</th>
-			<th class="text-center">투자금</th>
-			<th class="text-center">투자일</th>
-			<th class="text-center">선물이름</th>
+			<th class="text-center">선물명</th>
 			<th class="text-center">우편번호</th>
 			<th class="text-center">주소</th>
 			<th>이메일</th>
 			<th>휴대폰번호</th>
+			<th>프로젝트 이름</th>
 		</tr>
 		</thead>
-		<tbody></tbody>
+		<tbody>
+			<c:forEach items="${investor}" var="investor">
+			<tr>
+				<td class="text-center">${investor.investNo}</td>
+				<td class="text-center">${investor.name}</td>
+				<td class="text-center">${investor.presentName}</td>
+				<td class="text-center">${investor.postcode}</td>
+				<td class="text-center">${investor.address}</td>
+				<td>${investor.email}</td>
+				<td>${investor.phoneNum}</td>
+				<td>${investor.projectName}</td>
+			</tr>
+			</c:forEach>
+		</tbody>
 	</table>
-	<div style="width:100%;text-align:center">
+	<div style="width:100%;text-align:center" id="page">
 		<my:paging paging="${paging}"/>
 	</div>
 </body>

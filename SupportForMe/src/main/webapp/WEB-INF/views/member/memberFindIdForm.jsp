@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -36,7 +35,7 @@
 		<div class="row">
 			<div class="col-md-3" style="width:100%;"> 
 				<div class="login-box well" style="width:600px; margin-left: auto; margin-right:auto; margin-top:100px;">
-					<form accept-charset="UTF-8" role="form" method="post" action="../support/FindId">
+					<form accept-charset="UTF-8" role="form" method="post" action="<c:url value='/'/>support/FindId">
 						<legend>아이디 찾기</legend>
 						<span class='text-center'>가입시 정보를 입력하여 주세요</span><br>  
 						<span class='text-center'><strong>ID</strong>는 가입하실때 입력하신 <strong>Email</strong>로 발송 됩니다</span>

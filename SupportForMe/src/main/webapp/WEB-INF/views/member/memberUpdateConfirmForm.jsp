@@ -40,7 +40,7 @@ h3 {
 <hr>
 <h3>비밀번호를 입력하여 주세요.</h3>
 
-<form action="../forme/MemberUpdatePassWordCheck" method="post" class="_form">
+<form action="<c:url value='/'/>forme/MemberUpdatePassWordCheck" method="post" class="_form">
 	<div class="input-group">
 		<input type="password" class="form-control" name="password" id = "password" style="width:550px;">
 		<input type="submit" value="확인" style="width:150px;" class="btn _btn " >

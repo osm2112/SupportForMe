@@ -89,7 +89,7 @@
 
 .real_time_rank_div {
 	border: 1px solid lightgrey;
-	height: 480px;
+	height: 370px;
 	width: 285px;
 }
 
@@ -269,19 +269,36 @@ margin-top: 2px;
     /* text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3); */
     line-height: 40px;
 }
-<!-- 문자생략 테스트 -->
 
+.real_time_rank_projects li span text {
 
-#main_div {    height: 20px; width: 150px;        white-space: nowrap;    overflow: hidden;    text-overflow: ellipsis; }
-
-div p {
-  overflow: hidden; 
-  text-overflow: ellipsis;
-  white-space: nowrap; 
-  width: 100px;
-  height: 20px;
+/* background: -webkit-linear-gradient(to right, #BDFFF3, #4AC29A);  /* Chrome 10-25, Safari 5.1-6 */
+/* background: linear-gradient(to right, #BDFFF3, #4AC29A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/* transition-duration: 1s; */
 }
 
+.text3d{
+/* text-shadow:   0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+      font:18px Arial, Helvetica, sans-serif;
+      color:grey; */
+
+  /* text-shadow: 0px 0px 0px #FFD, -0px 0px 0px #FFD, -0px -0px 0px #FFD, 0px -0px 0px #FFD, 0px 1px 0px #FFD, -0px 1px 0px #FFD, -0px -1px 0px #FFD, 0px -1px 0px #FFD, 0px 2px 0px #FFD, -0px 2px 0px #FFD, -0px -2px 0px #FFD, 0px -2px 0px #FFD, 1px 0px 0px #FFD, -1px 0px 0px #FFD, -1px -0px 0px #FFD, 1px -0px 0px #FFD, 1px 1px 0px #FFD, -1px 1px 0px #FFD, -1px -1px 0px #FFD, 1px -1px 0px #FFD, 1px 2px 0px #FFD, -1px 2px 0px #FFD, -1px -2px 0px #FFD, 1px -2px 0px #FFD, 2px 0px 0px #FFD, -2px 0px 0px #FFD, -2px -0px 0px #FFD, 2px -0px 0px #FFD, 2px 1px 0px #FFD, -2px 1px 0px #FFD, -2px -1px 0px #FFD, 2px -1px 0px #FFD, 2px 2px 0px #FFD, -2px 2px 0px #FFD, -2px -2px 0px #FFD, 2px -2px 0px #FFD, 0px 0px 0px hsla(0,0%,0%,0), -4px 2px 2px black; */
+   /* text-shadow: -0px 0px hsla(0,0%,100%,0.03333), 0px -0px hsla(0,0%,0%,0.2), -0.5px 0.5px hsla(0,0%,100%,0.03333), 0.5px -0.5px hsla(0,0%,0%,0.2), -1px 1px hsla(0,0%,100%,0.03333), 1px -1px hsla(0,0%,0%,0.2), -1.5px 1.5px hsla(0,0%,100%,0.03333), 1.5px -1.5px hsla(0,0%,0%,0.2), -2px 2px hsla(0,0%,100%,0.03333), 2px -2px hsla(0,0%,0%,0.2), 0px 0px 40px hsla(0,0%,100%,0.1); */
+ font-size : 17px;
+ text-shadow: -0px 0px hsla(0,0%,0%,0.2), 0px -0px hsla(0,0%,100%,0.2), -0.5px 0.5px hsla(0,0%,0%,0.2), 0.5px -0.5px hsla(0,0%,100%,0.2), -1px 1px hsla(0,0%,0%,0.2), 1px -1px hsla(0,0%,100%,0.2), -1.5px 1.5px hsla(0,0%,0%,0.2), 1.5px -1.5px hsla(0,0%,100%,0.2), 0px 0px 4.5px hsla(0,0%,0%,1);
+ 
+ }
 </style>
 <script>
 	$(document).ready(
@@ -309,13 +326,17 @@ div p {
 							controlNav : false,
 							directionNav : false,
 							start : function(slider) {
-								$('.real_time_rank_projects li span').eq(0)
-										.css('border',
-												'2px solid rgb(26, 188, 156)');
+								$('.real_time_rank_projects li span text').eq(0)
+										.css({
+								
+										 "background": "linear-gradient(to right, #BDFFF3, #4AC29A)"
+										 
+										});
+								
 							},
 							after : function(slider) {
-								$('.real_time_rank_projects li span').eq(
-										slider.currentSlide - 1).css('border',
+								$('.real_time_rank_projects li span text').eq(
+										slider.currentSlide - 1).css('background',
 										"");
 								/* 		$('.real_time_rank_projects li').eq(
 												slider.currentSlide - 1).attr("class","ranktext");										
@@ -323,9 +344,10 @@ div p {
 												slider.currentSlide).attr("class","no");
 								 */
 
-								$('.real_time_rank_projects li span').eq(
-										slider.currentSlide).css('border',
-										'2px solid rgb(26, 188, 156)');
+								$('.real_time_rank_projects li span text').eq(
+										slider.currentSlide).css({
+											 "background": "linear-gradient(to right, #BDFFF3, #4AC29A)"
+										});
 							}
 						});
 
@@ -336,7 +358,7 @@ div p {
 			});
 	function Ranking() {
 		$('.real_time_rank_projects li')
-				.eq(0)
+				.eq(0)  
 				.attr("class", "ranktext")
 				.delay(800)
 				.queue(
@@ -393,8 +415,8 @@ div p {
 								"location.href='support/getProjectDetailPage?projectNo="
 										+ data[i].projectNo + "'");
 						$('.real_time_rank_projects nav ol li').eq(i).html(
-								"<span style='cursor: pointer;'><em>" + (i + 1) + "</em>"
-										+ data[i].projectName + "</span>");
+								"<span style='cursor: pointer; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 170px; height: 20px;'><em>" + (i + 1) + "</em>"
+										+"<text>"+ data[i].projectName + "</text></span>");
 						$('.real_time_rank_projects nav ol li span').eq(i).attr(
 								"onclick",
 								"location.href='support/getProjectDetailPage?projectNo="
@@ -419,7 +441,7 @@ div p {
 	<div class="bodysize">
 		<div class="suforme">
 			<div class="suforme_picks_div"> 
-				<div class="suforme_top_1_text_div"><span><i class="fa fa-heart" style="color: rgb(255, 135, 99);"></i>&nbsp서포미 PICKS</span></div>
+				<div class="suforme_top_1_text_div"><span style="font-size: 35px;"><i class="fa fa-heart" style="color: rgb(255, 135, 99);"></i>&nbsp서포미 PICKS</span></div><br>
 
 				<div class="flexslider">
 					<ul class="slides">
@@ -433,15 +455,15 @@ div p {
 									<div class="suforme_picks_projects_content">
 										<nav>
 											<ul>
-												<li>카테고리</li>
-												<li>
+												<li style="font-size: 30px"><strong>카테고리</strong></li>
+												<li style="font-size: 25px">
 													<c:if test="${pick.categoryCode eq 001}">공연</c:if>
 													<c:if test="${pick.categoryCode eq 002}">영화</c:if>
 													<c:if test="${pick.categoryCode eq 003}">미술</c:if>
 													<c:if test="${pick.categoryCode eq 004}">도서</c:if>
 												</li>
-												<li>프로젝트 제목</li>
-												<li>${pick.projectName}</li>
+												<li style="font-size: 30px"><strong>프로젝트 제목</strong></li>
+												<li style="font-size: 25px">${pick.projectName}</li>
 											</ul>
 										</nav>
 									</div>
@@ -453,7 +475,7 @@ div p {
 			</div>
 			
 			<div class="real_time_rank_outer">
-				<div class="suforme_top_1_text_div"><span><i class="fa fa-trophy" style="color: rgb(239, 205, 119);"></i>&nbsp실시간 랭킹</span></div>
+				<div class="suforme_top_1_text_div"><span style="font-size: 35px;"><i class="fa fa-trophy" style="color: rgb(239, 205, 119);"></i>&nbsp실시간 랭킹</span></div><br>
 				<div class="real_time_rank_div">
 					<div class="real_time_image flexslider3">
 						<ul class="slides">
@@ -469,11 +491,11 @@ div p {
 							<div style="height:20px;"></div>
 							<!-- <marquee behavior=slide loop=30> -->
 							<ol>
-								<li class="" style="height:50px; font-size: small;" onclick="1"></li>
-								<li class="" style="height:50px; font-size: small;" onclick="2"></li>
-								<li class="" style="height:50px; font-size: small;"	onclick="3"></li>
-								<li class="" style="height:50px; font-size: small;"	onclick="4"></li>
-								<li class="" style="height:50px; font-size: small;"	onclick="5"></li>
+								<li class="" style="height:30px; font-size: small;" onclick="1"></li>
+								<li class="" style="height:30px; font-size: small;" onclick="2"></li>
+								<li class="" style="height:30px; font-size: small;"	onclick="3"></li>
+								<li class="" style="height:30px; font-size: small;"	onclick="4"></li>
+								<li class="" style="height:30px; font-size: small;"	onclick="5"></li>
 							</ol>
 							<!-- </marquee> -->
 							
@@ -484,7 +506,7 @@ div p {
 		</div>
 		<div style="height: 100px"></div> 
 	
-		<div class="suforme_top_1_text_div"><span><i class="fa fa-users" style="color: rgb(6, 135, 133);"></i>&nbsp공연 프로젝트</span></div> 
+		<div class="suforme_top_1_text_div"><span style="font-size: 35px;"><i class="fa fa-users" style="color: rgb(6, 135, 133);"></i>&nbsp공연 프로젝트</span></div><br> 
 		<div class="category_project_div">
 			<c:forEach items="${Performance}" var="project">
 				<div class="project_box" id="${project.projectNo}"
@@ -495,17 +517,24 @@ div p {
 					</div>
 					<div class="main_project_content">
 						<ul>
-							<li style="font-size: 16px;">창작자 ID : ${project.userId}</li>
-							<li style="font-size: 18px; height:50px;">${project.projectName}</li>
+							<li style="font-size: 16px;">${project.userId}님</li>
+							<li style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
 							<li style="height: 5px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
-								<span>모금액 : ${project.totalInvest}원</span> 
+								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
 							</li>
 							<li style="height: 10px"></li>
-							<li style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%"><progress
-									style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress><span>${project.percent}%</span></li>
+							<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
+							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
+							 --%>
+							<div class="progress">
+    							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
+   								 </div>
+  							</div>
+							<span>&nbsp;${project.percent}%</span>
+							</li>
 							<li style="height: 10px"></li>
-							<li>목표액 : ${project.targetAmount}원</li>
+							<li class="text3d">목표액 : ${project.targetAmount}원</li>
 						</ul>						
 					</div>
 				</div>				
@@ -514,7 +543,7 @@ div p {
 		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=001">더보기 </a></div>	
 		<div style="height: 50px"></div>
 		<!-- 미술 부분  -->
-		<div class="suforme_top_1_text_div"><span><i class="fa fa-paint-brush" style="color: rgb(6, 135, 133);"></i>&nbsp미술 프로젝트</span></div>		
+		<div class="suforme_top_1_text_div"><span style="font-size: 35px;"><i class="fa fa-paint-brush" style="color: rgb(6, 135, 133);"></i>&nbsp미술 프로젝트</span></div>	<br>	
 			<div class="category_project_div">
 				<c:forEach items="${Art}" var="project">
 					<div class="project_box" id="${project.projectNo}"
@@ -525,17 +554,24 @@ div p {
 						</div>
 						<div class="main_project_content">
 						<ul>
-							<li style="font-size: 16px;">창작자 ID : ${project.userId}</li>
-							<li style="font-size: 18px; height:50px;">${project.projectName}</li>
+							<li style="font-size: 16px;">${project.userId}님</li>
+							<li style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
 							<li style="height: 10px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
-								<span>모금액 : ${project.totalInvest}원</span> 
+								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
 							</li>
 							<li style="height: 10px"></li>
-							<li style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%"><progress
-									style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress><span>${project.percent}%</span></li>
+							<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
+							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
+							 --%>
+							<div class="progress">
+    							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
+   								 </div>
+  							</div>
+							<span>&nbsp;${project.percent}%</span>
+							</li>
 							<li style="height: 10px"></li>
-							<li>목표액 : ${project.targetAmount}원</li>
+							<li class="text3d">목표액 : ${project.targetAmount}원</li>
 						</ul>						
 						</div>
 					</div>
@@ -544,7 +580,7 @@ div p {
 			<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=003">더보기 </a></div>	
 			<div style="height: 50px"></div>
 		<!-- 도서 -->
-		<div class="suforme_top_1_text_div"><span><i class="fa fa-book" style="color: rgb(6, 135, 133);"></i>&nbsp도서 프로젝트</span></div> 
+		<div class="suforme_top_1_text_div"><span style="font-size: 35px;"><i class="fa fa-book" style="color: rgb(6, 135, 133);"></i>&nbsp도서 프로젝트</span></div> <br>
 		<div class="category_project_div">
 			<c:forEach items="${Book}" var="project">
 				<div class="project_box" id="${project.projectNo}"
@@ -555,17 +591,24 @@ div p {
 					</div>
 					<div class="main_project_content">
 						<ul>
-							<li style="font-size: 16px;">창작자 ID : ${project.userId}</li>
-							<li style="font-size: 18px; height:50px;">${project.projectName}</li>
+							<li style="font-size: 16px;">${project.userId}님</li>
+							<li style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
 							<li style="height: 10px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
-								<span>모금액 : ${project.totalInvest}원</span> 
+								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
 							</li>
 							<li style="height: 10px"></li>
-							<li style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%"><progress
-									style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress><span>${project.percent}%</span></li>
+							<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
+							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
+							 --%>
+							<div class="progress">
+    							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
+   								 </div>
+  							</div>
+							<span>&nbsp;${project.percent}%</span>
+							</li>
 							<li style="height: 10px"></li>
-							<li>목표액 : ${project.targetAmount}원</li>
+							<li class="text3d">목표액 : ${project.targetAmount}원</li>
 						</ul>						
 					</div>
 				</div>				
@@ -574,7 +617,7 @@ div p {
 		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=004">더보기 </a></div>
 		<div style="height: 50px"></div>
 		<!-- 영화 -->
-		<div class="suforme_top_1_text_div"><span><i class="fa fa-film" style="color: rgb(6, 135, 133);"></i>&nbsp영화 프로젝트</span></div> 
+		<div class="suforme_top_1_text_div"><span style="font-size: 35px;"><i class="fa fa-film" style="color: rgb(6, 135, 133);"></i>&nbsp영화 프로젝트</span></div> <br>
 		<div class="category_project_div">
 			<c:forEach items="${Movie}" var="project">
 				<div class="project_box" id="${project.projectNo}"
@@ -585,17 +628,24 @@ div p {
 					</div>
 					<div class="main_project_content">
 						<ul>
-							<li style="font-size: 16px;">창작자 ID : ${project.userId}</li>
-							<li style="font-size: 18px; height:50px;">${project.projectName}</li>
+							<li style="font-size: 16px;">${project.userId}님</li>
+							<li style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
 							<li style="height: 10px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
-								<span>모금액 : ${project.totalInvest}원</span> 
+								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
 							</li>
 							<li style="height: 10px"></li>
-							<li style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%"><progress
-									style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress><span>${project.percent}%</span></li>
+							<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
+							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
+							 --%>
+							<div class="progress">
+    							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
+   								 </div>
+  							</div>
+							<span>&nbsp;${project.percent}%</span>
+							</li>
 							<li style="height: 10px"></li>
-							<li>목표액 : ${project.targetAmount}원</li>
+							<li class="text3d">목표액 : ${project.targetAmount}원</li>
 						</ul>						
 					</div>
 				</div>				
@@ -607,18 +657,5 @@ div p {
 	
 	<div style="height: 200px"></div>
 	
-
-
-
-<!-- 
-<ul>
-    <li class="main_div"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-    <li><a class="main_div" href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-    <li class="main_div"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-    <li><a class="main_div" href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-</ul> -->
-<div id="main_div">Military Grid Reference System (MGRS) coordinates may be displayed at the bottom of the A-G Mode page on a black background.</div>
-<div><p>Military Grid Reference System (MGRS) coordinates may be displayed at the bottom of the A-G Mode page on a black background.</p></div>
-
 </body>
 </html>

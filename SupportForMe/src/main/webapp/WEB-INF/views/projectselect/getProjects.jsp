@@ -10,7 +10,9 @@
 <title>2018. 10. 26.</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <!--   jQuery  -->
-
+<!--  부트스트랩 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 /*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
 .pjdtl_bodysize {
@@ -156,25 +158,22 @@
 																			+ data[i].progress
 																			+ '</div>'
 																			+ '				<ul>'
-																			+ '  				<li style="font-size: 16px;">창작자 ID : '
+																			+ '  				<li style="font-size: 16px;">'
 																			+ data[i].userId
-																			+ '</li>'
+																			+ '님</li>'
 																			+ ' 				<li style="height: 5px"></li>'
-																			+ '   				<li style="font-size : 18px;">'
+																			+ '   				<li style="font-size : 18px; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 200px; height: 20px;"><strong>'
 																			+ data[i].projectName
-																			+ '</li>'
+																			+ '</strong></li>'
 																			+ ' 				<li style="height: 10px"></li>'
 																			+ '   				<li style="display:grid; grid-template-columns: 100%">'
 																			+ '       				<span>모금액 : '
 																			+ data[i].totalInvest
 																			+ '원</span></li>'
 																			+ ' 				<li style="height: 10px"></li>'
-																			+ ' 				<li style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%">'
-																			+ ' 						<progress style="width: 95%; height:21px;" value="'
-																			+ data[i].percent
-																			+ '" max="100"></progress><span>'
-																			+ data[i].percent
-																			+ '%</span></li>'
+																			+ ' 				<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">'
+																			+ ' 	<div class="progress"><div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:'+data[i].percent+'%"></div></div>'
+																			+'<span>&nbsp;'+ data[i].percent+ '%</span></li>'
 																			+ ' 				<li style="height: 10px"></li>'
 																			+ ' 				<li>목표액 :'
 																			+ data[i].targetAmount
@@ -245,18 +244,22 @@
 								<c:if test="${project.progress eq '무산'}">style="border: 1.5px solid rgb(38, 11, 102); color : rgb(38, 11, 102);"</c:if>
 								<c:if test="${project.progress eq '마감'}">style="border: 1.5px solid rgb(132, 127, 132); color : rgb(132, 127, 132);"</c:if>>${project.progress}</div>
 							<ul>
-								<li style="font-size: 16px;">창작자 ID : ${project.userId}</li>
+								<li style="font-size: 16px;">${project.userId}님</li>
 								<li style="height: 5px"></li>
-								<li style="font-size: 18px;">${project.projectName}</li>
+								<li style="font-size: 18px; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 200px; height: 20px;"><strong>${project.projectName}</strong></li>
 								<li style="height: 10px"></li>
 								<li style="display: grid; grid-template-columns: 100%"><span>모금액
 										: ${project.totalInvest}원</span></li>
 								<li style="height: 10px"></li>
-								<li
-									style="color: rgb(26, 188, 156); display: grid; grid-template-columns: 80% 20%">
-									<progress style="width: 95%; height: 21px;"
-										value="${project.percent}" max="100"></progress><span>${project.percent}%</span>
-								</li>
+							<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
+							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
+							 --%>
+							<div class="progress">
+    							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
+   								 </div>
+  							</div>
+							<span>&nbsp;${project.percent}%</span>
+							</li>
 								<li style="height: 10px"></li>
 								<li>목표액 : ${project.targetAmount}원</li>
 							</ul>
