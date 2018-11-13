@@ -53,7 +53,7 @@ $(function(){
 	//댓글 조회
 	function loadCommentsList() {
 		var params = { projectNo: '${project.projectNo}'};
-		$.getJSON(path+"/support/getCommentsList", params, function(data){
+		$.getJSON(path+"support/getCommentsList", params, function(data){
 			for(i=0; i<data.length; i++) {
 				$("#commentList").append(makeCommentView(data[i]));
 			}
@@ -120,7 +120,7 @@ $(function(){
 			rcAdd.hide();
 		} else {
 			$("#c"+rc_id).children().children("#rcList").show();
-			$.getJSON(path+"/support/getReplyCommentsList?topCommentNo="+rc_id, function(data) {
+			$.getJSON(path+"support/getReplyCommentsList?topCommentNo="+rc_id, function(data) {
 				for(i=0; i<data.length; i++) {
 					$("#c"+rc_id).children().children("#rcList").append(makeReplyCommentView(data[i])).show();
 				}
@@ -169,7 +169,7 @@ $(function(){
 			} else {return false;}
 		} else {
 			var params = $("[name=addForm]").serialize();		
-			var url = path+"/forme/insertComments";
+			var url = path+"forme/insertComments";
 			$.getJSON(url, params, function(data){
 				$("#commentList").prepend( makeCommentView(data) );
 				$("[name=addForm]")[0].reset();
@@ -186,7 +186,7 @@ $(function(){
 			} else {	
 				var params = $(this).closest("[name=replyAddForm]").serialize();
 				var check_this = $(this).closest("[name=replyAddForm]");	//function안에서 this 안돼서 넣음
-				var url = path+"/forme/insertReplyComments";
+				var url = path+"forme/insertReplyComments";
 				$.getJSON(url, params, function(data){		
 					check_this.parent().prev().prepend( makeReplyCommentView(data) );
 					check_this.closest("[name=replyAddForm]")[0].reset();
@@ -197,7 +197,7 @@ $(function(){
 	//댓글 수정
 	$("#btnUpd").click(function(){
 		var params = $("[name=updateForm]").serialize();
-		var url = path+"/forme/updateComments";
+		var url = path+"forme/updateComments";
 		$.getJSON(url, params, function(data){
 			var newDiv = makeCommentView(data);
 			var oldDiv = $("#c"+data.commentNo);
@@ -211,7 +211,7 @@ $(function(){
 	//답글 수정
  	$("#commentList").on("click", ".rcBtnUpd", function(){
  		var params = $("[name=rcUpdateForm]").serialize();
-		var url = path+"/forme/updateReplyComments";
+		var url = path+"forme/updateReplyComments";
 		$.getJSON(url, params, function(data){
 			var newDiv = makeReplyCommentView(data);
 			var oldDiv = $("#rc"+data.commentNo);
@@ -272,7 +272,7 @@ $(function(){
 		var seq = $(this).closest(".comments").attr("id").substring(1);  //seq = 'commentNo' => 201811080061
 		if(confirm("댓글을 삭제하시겠습니까?")) {
 			var params = "commentNo="+ seq;
-			var url = path+"/forme/deleteComments";
+			var url = path+"forme/deleteComments";
 			$.getJSON(url, params, function(data){
 				$('#c'+data.commentNo).remove();
 			});
@@ -283,7 +283,7 @@ $(function(){
 		var seq = $(this).parent().parent().parent().parent().attr("id").substring(2);
 		if(confirm("답글을 삭제하시겠습니까?")) {
 			var params = "commentNo="+seq;
-			var url = path+"/forme/deleteComments";
+			var url = path+"forme/deleteComments";
 			$.getJSON(url, params, function(data){
 				$('#rc'+data.commentNo).remove();
 			});
@@ -293,6 +293,27 @@ $(function(){
 	
 	loadCommentsList();
 })
+
+/*----------------관리자 pick-----------------------------------------------------------------------------------------*/
+function pick() {
+	
+	var seq = '${project.projectNo}';
+	console.log(seq);	//2018어쩌고~
+	if('${project.supportPickYn}' == 'N' || '${project.supportPickYn}' == '') {
+		var url = path+"forme/updatePickYes";
+		var params = "projectNo="+seq;
+		$.getJSON(url, params, function(data){
+			alert('PICK :^)');
+		});
+	} else {
+		var url = path+"forme/updatePickNo";
+		var params = "projectNo="+seq;
+		$.getJSON(url, params, function(data){
+			alert('PICK 취소!');
+		});
+	}
+	
+}
 
 </script>
 

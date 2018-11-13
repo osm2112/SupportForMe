@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.supportforme.biz.member.MemberDTO;
 import com.supportforme.biz.member.MemberService;
@@ -42,5 +43,20 @@ public class ProjectDetailPageController {
 		model.addAttribute("pMember", (MemberDTO)session.getAttribute("LoginInfo"));
 
 		return "noNav/projectdetail/projectDetail";
+	}
+	
+	
+	//관리자 픽 [Yes/No]
+	@RequestMapping("/forme/updatePickYes")
+	@ResponseBody
+	public ProjectDTO updatePickYes(ProjectDTO dto) {
+		projectDetailPageService.updatePickYes(dto);
+		return dto;
+	}
+	@RequestMapping("/forme/updatePickNo")
+	@ResponseBody
+	public ProjectDTO updatePickNo(ProjectDTO dto) {
+		projectDetailPageService.updatePickNo(dto);
+		return dto;
 	}
 }
