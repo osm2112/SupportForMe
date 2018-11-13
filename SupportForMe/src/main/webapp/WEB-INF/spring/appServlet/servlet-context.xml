@@ -22,7 +22,7 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
-		up static resources in the ${webappRoot}/resources directory -->
+		up static resources in the ${webappRoot}/resources directory -->  
 
 	<!-- 리소스 경로 지정 하기 안하면 jsp를 제외한 모든파일 읽어 올수 없음 -->
 	<resources mapping="/resources/**" location="/resources/" />
