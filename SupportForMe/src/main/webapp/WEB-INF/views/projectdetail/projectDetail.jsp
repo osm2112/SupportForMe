@@ -19,7 +19,7 @@
 <script src="../js/lightslider.js"></script> 
 
 <!-- 진행률 상태바 -->
-<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
@@ -298,11 +298,9 @@ $(function(){
 function pick() {
 	
 	var seq = '${project.projectNo}';
-	console.log(seq);
 	var url = path+"forme/updatePick";
 	var params = "projectNo="+seq;
 	$.getJSON(url, params, function(data){
-		console.log(data.supportPickYn);
 		if(data.supportPickYn == 'Y'){
 			alert('PICK :^)');
 		} else {
@@ -365,8 +363,8 @@ function pick() {
 				<span style="font-weight:700;">${project.progress}</span>
 			</div>
 <!-- 진행상황 막대그래프 -->
-			<div class="progress">
-				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${project.projectProgressRate}%">${project.projectProgressRate}%</div>
+			<div class="progress" style="width:480px; height:30px; margin-bottom:10px;">
+				<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${project.projectProgressRate}%;">${project.projectProgressRate}%</div>
 			</div>
 			
             <div style="font-size:25px; color:#A6A6A6;">참여자 ${invest.headcount}명</div>
@@ -374,9 +372,10 @@ function pick() {
                 <button class="pjdtl-invest-btn" onclick="location.href='../forme/InvestSelectReward?projectNo=${project.projectNo}'">투자하기</button>
                 <img src="../images/share-button.png" class="pjdtl-share-btn">
             </div><br><br>
-            <table class="table-bordered" style="width:480px;">
-            	<tr>
-            		<td><img src="../images/calendar.png" class="pjdtl-status-img"></td>
+ 
+            <table style="width:480px; border:1px solid #A6A6A6;">
+            	<tr style="text-align: center;">
+            		<td><img src="../images/calendar.png" style="width:90px; height:82px;"></td>
     				<td><img src="../images/right-arrow.png" class="pjdtl-right-arrow"></td>
     				<td><img src="../images/credit-card.png" class="pjdtl-status-img"></td>
     				<td><img src="../images/right-arrow.png" class="pjdtl-right-arrow"></td>
@@ -397,24 +396,6 @@ function pick() {
             		<td class="pjdtl-status-font">${project.deliveryDate}</td>
             	</tr>
             </table>
-<!--           
-            <div class="pjdtl-status-box">
-                <div class="">
-                <div>
-                    <img src="../images/calendar.png" class="pjdtl-status-img">
-                    <img src="../images/right-arrow.png" class="pjdtl-right-arrow">
-                    <img src="../images/credit-card.png" class="pjdtl-status-img">
-                    <img src="../images/right-arrow.png" class="pjdtl-right-arrow">
-                    <img src="../images/delivery-truck.png" class="pjdtl-status-img">
-                </div>
-                <div class="pjdtl-flex-container" >
-                    <div class="pjdtl-status-font">종료일<br>${project.projectDeadline}</div>
-                    <div class="pjdtl-status-font">결제 예정일<br>${project.scheduledPaymentDate}</div>
-                    <div class="pjdtl-status-font">예상 배송일<br>${project.deliveryDate}</div>
-                </div>
-                </div>
-            </div>
--->            
         </div>
     </div>
     </div>
