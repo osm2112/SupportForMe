@@ -26,7 +26,15 @@ public class AdminController {
 		
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		
-		paging.setPageUnit(25);
+		if(request.getParameter("pageUnit") != null) {
+			int pageunit = Integer.parseInt(request.getParameter("pageUnit"));
+			System.out.println("-----------------"+pageunit);
+			paging.setPageUnit(pageunit);
+		} else {
+			paging.setPageUnit(10);
+		}
+		
+	
 		
 		//현재페이지 번호 파라미터
 		if(paging.getPage() ==null) {
@@ -42,7 +50,8 @@ public class AdminController {
 		adminSearchDTO.setEnd(paging.getLast());
 
 		model.addAttribute("searchCondition",request.getParameter("searchCondition"));
-		model.addAttribute("searchKeyword",request.getParameter("searchKeyword"));		
+		model.addAttribute("searchKeyword",request.getParameter("searchKeyword"));
+		model.addAttribute("pageUnit",request.getParameter("pageUnit"));	
 		model.addAttribute("list", adminService.getAdminMembers(adminSearchDTO));
 		
 		return "adminNav/admin/adminMemberListForm";
@@ -71,7 +80,14 @@ public class AdminController {
 	@RequestMapping("/forme/AdminSupportForMePickList")	
 	public String getAdminSupportForMePickList(Model model, AdminSearchDTO adminSearchDTO, Paging paging, HttpServletRequest request ) {
 		
-		paging.setPageUnit(25);
+		if(request.getParameter("pageUnit") != null) {
+			int pageunit = Integer.parseInt(request.getParameter("pageUnit"));
+			System.out.println("-----------------"+pageunit);
+			paging.setPageUnit(pageunit);
+		} else {
+			paging.setPageUnit(10);
+		}
+		
 		
 		//현재페이지 번호 파라미터
 		if(paging.getPage() ==null) {
@@ -89,6 +105,7 @@ public class AdminController {
 		model.addAttribute("searchCondition",request.getParameter("searchCondition"));
 		model.addAttribute("searchKeyword",request.getParameter("searchKeyword"));
 		model.addAttribute("supportForMePickUp",request.getParameter("supportForMePickUp"));
+		model.addAttribute("pageUnit",request.getParameter("pageUnit"));
 		model.addAttribute("list", adminService.getAdminSupportForMePickUpList(adminSearchDTO));
 		
 		return "adminNav/admin/adminSupportForMePickListForm";
@@ -120,7 +137,13 @@ public class AdminController {
 	@RequestMapping("/forme/AdminProjectProgressList")	
 	public String getProjectProgressList(Model model, AdminSearchDTO adminSearchDTO, Paging paging, HttpServletRequest request ) {
 		
-		paging.setPageUnit(25);
+		if(request.getParameter("pageUnit") != null) {
+			int pageunit = Integer.parseInt(request.getParameter("pageUnit"));
+			System.out.println("-----------------"+pageunit);
+			paging.setPageUnit(pageunit);
+		} else {
+			paging.setPageUnit(10);
+		}
 		
 		//현재페이지 번호 파라미터
 		if(paging.getPage() ==null) {
@@ -138,6 +161,7 @@ public class AdminController {
 		model.addAttribute("searchCondition",request.getParameter("searchCondition"));
 		model.addAttribute("searchKeyword",request.getParameter("searchKeyword"));
 		model.addAttribute("progress",request.getParameter("progress"));
+		model.addAttribute("pageUnit",request.getParameter("pageUnit"));
 		model.addAttribute("list", adminService.getProjectProgressList(adminSearchDTO));
 		
 		return "adminNav/admin/adminProjectListForm";

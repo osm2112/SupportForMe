@@ -68,6 +68,11 @@
 			}
 		}
 	}
+	
+	function veiwNumber(){
+		var searchForm = document.getElementById("searchForm");
+		searchForm.submit();
+	}
 </script>
 <style>
 ._btn {
@@ -100,7 +105,7 @@
 <body>
 	<h3>서포미 픽 관리</h3>
 	<hr>
-<form action="<c:url value='/'/>forme/AdminSupportForMePickList" name="searchForm">
+<form action="<c:url value='/'/>forme/AdminSupportForMePickList" name="searchForm" id="searchForm">
 <div class="input-group">
 	<input type="hidden" name="page" value="1">
 	<select name="searchCondition" class="form-control" style="width: 150px">
@@ -118,13 +123,18 @@
 	
 	
 	<input type="text" class="form-control" name="searchKeyword" value="" style="width: 500px">
-	
-		<input type="submit" class="btn _btn2" value="검색" style="width: 80px">
+	<input type="submit" class="btn _btn2" value="검색" style="width: 80px"><br>
+	<select id="pageUnit" name="pageUnit" class="form-control" onchange="veiwNumber()" style="width:200px;">
+		<option value="10">10개씩 보기</option>
+		<option value="25">25개씩 보기</option>	
+		<option value="50">50개씩 보기</option>
+	</select>
 	
 	<script>
 		document.searchForm.searchCondition.value ='${searchCondition}';
 		document.searchForm.searchKeyword.value ='${searchKeyword}';
 		document.searchForm.supportForMePickUp.value ='${supportForMePickUp}';
+		document.searchForm.pageUnit.value ='${pageUnit}';
 	</script>
 </div>
 </form>

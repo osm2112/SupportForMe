@@ -98,12 +98,17 @@
 			}
 		}
 	}
+	
+	function veiwNumber(){
+		var searchForm = document.getElementById("searchForm");
+		searchForm.submit();
+	}
 </script>
 </head>
 <body>
 <h3>프로젝트 관리</h3>
 <hr>
-<form action="<c:url value='/'/>forme/AdminProjectProgressList" name="searchForm">
+<form action="<c:url value='/'/>forme/AdminProjectProgressList" id="searchForm" name="searchForm">
 <div class="input-group" style="width:1200px;">
 	<input type="hidden" name="page" value="1">
 	<select name="searchCondition" class="form-control" style="width:200px;">
@@ -122,11 +127,17 @@
 		<option value="006">완료</option>
 	</select>
 	<input type="text" name="searchKeyword" value="" class="form-control" style="width:600px;">
-	<input type="submit" class="btn _btn2" value="검색" style="width:200px;">
+	<input type="submit" class="btn _btn2" value="검색" style="width:200px;"><br>
+	<select id="pageUnit" name="pageUnit" class="form-control" onchange="veiwNumber()" style="width:200px;">
+		<option value="10">10개씩 보기</option>
+		<option value="25">25개씩 보기</option>	
+		<option value="50">50개씩 보기</option>
+	</select>
 	<script>
 		document.searchForm.searchCondition.value ='${searchCondition}';
 		document.searchForm.searchKeyword.value ='${searchKeyword}';
 		document.searchForm.progress.value ='${progress}';
+		document.searchForm.pageUnit.value ='${pageUnit}';
 	</script>
 </div>
 </form>
