@@ -13,7 +13,7 @@
 		 SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM ( 
          	SELECT DISTINCT p.project_no, p.support_pick_yn , p.delivery_date , p.category_code, p.project_name , p.image, TO_CHAR( p.target_amount , '999,999,999,999,999') "target_amount", p.project_deadline , p.user_id, c.code_name "progress"  
          	,PROJECT_PROGRESS_RATE(p.project_no) "percent"
-         	,TO_CHAR( FUNC_TOTAL_INVSET_AMOUNT(p.project_no) , '999,999,999,999,999') "totalInvest"
+         	,TO_CHAR( FUNC_TOTAL_INVEST_AMOUNT(p.project_no) , '999,999,999,999,999') "totalInvest"
          	FROM project p JOIN common_code c ON (p.progress = c.code) 
 		<if test="searchKeyword != null and searchKeyword != '' ">
 			LEFT OUTER JOIN hashtag h
@@ -79,7 +79,7 @@
 	<select id="getPerformanceProjects" resultType="project">
 		SELECT p.project_no, p.support_pick_yn , p.delivery_date , p.category_code, p.project_name , p.image, TO_CHAR( p.target_amount , '999,999,999,999,999') "target_amount", p.project_deadline , p.progress , p.user_id
 		,PROJECT_PROGRESS_RATE(p.project_no) "percent"
-		,TO_CHAR( FUNC_TOTAL_INVSET_AMOUNT(p.project_no) , '999,999,999,999,999') "totalInvest"
+		,TO_CHAR( FUNC_TOTAL_INVEST_AMOUNT(p.project_no) , '999,999,999,999,999') "totalInvest"
 		FROM ( SELECT *
 		FROM project
 		ORDER BY DBMS_RANDOM.RANDOM ) p
@@ -94,7 +94,7 @@
 	<select id="getArtProjects" resultType="project">
 		SELECT p.project_no, p.support_pick_yn , p.delivery_date , p.category_code, p.project_name , p.image, TO_CHAR( p.target_amount , '999,999,999,999,999') "target_amount", p.project_deadline , p.progress , p.user_id
 		,PROJECT_PROGRESS_RATE(p.project_no) "percent"
-		,TO_CHAR( FUNC_TOTAL_INVSET_AMOUNT(p.project_no) , '999,999,999,999,999') "totalInvest"
+		,TO_CHAR( FUNC_TOTAL_INVEST_AMOUNT(p.project_no) , '999,999,999,999,999') "totalInvest"
 		FROM ( SELECT *
 		FROM project
 		ORDER BY DBMS_RANDOM.RANDOM ) p
@@ -119,7 +119,7 @@
 	<select id="getBookProjects" resultType="project">
 		SELECT p.project_no, p.support_pick_yn , p.delivery_date , p.category_code, p.project_name , p.image, TO_CHAR( p.target_amount , '999,999,999,999,999') "target_amount", p.project_deadline , p.progress , p.user_id
 		,PROJECT_PROGRESS_RATE(p.project_no) "percent"
-		,TO_CHAR( FUNC_TOTAL_INVSET_AMOUNT(p.project_no) , '999,999,999,999,999') "totalInvest"
+		,TO_CHAR( FUNC_TOTAL_INVEST_AMOUNT(p.project_no) , '999,999,999,999,999') "totalInvest"
 		FROM ( SELECT *
 		FROM project
 		ORDER BY DBMS_RANDOM.RANDOM ) p
@@ -134,7 +134,7 @@
 	<select id="getMovieProjects" resultType="project">
 		SELECT p.project_no, p.support_pick_yn , p.delivery_date , p.category_code, p.project_name , p.image, TO_CHAR( p.target_amount , '999,999,999,999,999') "target_amount", p.project_deadline , p.progress , p.user_id
 		,PROJECT_PROGRESS_RATE(p.project_no) "percent"
-		,TO_CHAR( FUNC_TOTAL_INVSET_AMOUNT(p.project_no) , '999,999,999,999,999') "totalInvest"
+		,TO_CHAR( FUNC_TOTAL_INVEST_AMOUNT(p.project_no) , '999,999,999,999,999') "totalInvest"
 		FROM ( SELECT *
 		FROM project
 		ORDER BY DBMS_RANDOM.RANDOM ) p
@@ -167,5 +167,28 @@
   		ORDER BY DBMS_RANDOM.RANDOM
 		 		]]>
 	</select>
-
+	<!-- 나의 프로젝트 조회 -->
+	<select id="getMyProjects" resultType="project">
+			 SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM ( 
+         	SELECT DISTINCT p.project_no, p.support_pick_yn , p.delivery_date , p.category_code, p.project_name , p.image, TO_CHAR( p.target_amount , '999,999,999,999,999') "target_amount", p.project_deadline , p.user_id, p.progress "progress_cd", c.code_name "progress"  
+         	,PROJECT_PROGRESS_RATE(p.project_no) "percent"
+         	,TO_CHAR( FUNC_TOTAL_INVEST_AMOUNT(p.project_no) , '999,999,999,999,999') "totalInvest"
+         	FROM project p JOIN common_code c ON (p.progress = c.code) 
+	
+  		<where>
+  				USER_ID = #{userId} and c.code_group = 'C03'
+  				<if test="projectNo != null and projectNo != '' ">
+				<![CDATA[ 
+				and p.project_no < #{projectNo}
+				]]>
+			</if>
+  		</where> 	 		
+		ORDER BY p.project_no desc
+		) A )WHERE rnum BETWEEN #{start} AND #{end}
+	</select>
+	<!-- 프로젝트 삭제 -->
+	<delete id="deleteProject" parameterType="project">
+		DELETE FROM PROJECT
+		WHERE  project_no = #{projectNo}
+	</delete>
 </mapper> 
