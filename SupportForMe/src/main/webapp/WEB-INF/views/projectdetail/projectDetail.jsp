@@ -306,7 +306,7 @@ $(function(){
     <div class="pjdtl-flex-container">
         <div class="pjdtl-project-name">${project.projectName}</div>
         <c:if test="${pMember.userId == 'Admin'}">
-        	<button class="pjdtl-pick-btn" >PICK</button>
+        	<button class="pjdtl-pick-btn" onclick="pick()">PICK</button>
     	</c:if>
     </div>
     <div class="pjdtl-center"><!-- 해시태그 -->

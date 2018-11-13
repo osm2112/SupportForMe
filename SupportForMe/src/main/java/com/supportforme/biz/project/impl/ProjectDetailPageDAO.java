@@ -40,4 +40,12 @@ public class ProjectDetailPageDAO {
 	}
 	
 	
+	//관리자 픽 Yes/No
+	public void updatePickYes(ProjectDTO dto) {
+		mybatis.update("projectDetail.updatePickYes", dto);
+	}
+	public void updatePickNo(ProjectDTO dto) {
+		mybatis.update("projectDetail.updatePickNo", dto);
+	}
+	
 }

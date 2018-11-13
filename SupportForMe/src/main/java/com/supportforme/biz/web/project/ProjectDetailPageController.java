@@ -23,7 +23,6 @@ public class ProjectDetailPageController {
 	@RequestMapping("/support/getProjectDetailPage")
 	public String getProjectDetailPage(Model model,
 									   ProjectDTO pjdto,
-									   //CommentsDTO cdto,
 									   HttpSession session,
 									   HttpServletRequest request) {
 		

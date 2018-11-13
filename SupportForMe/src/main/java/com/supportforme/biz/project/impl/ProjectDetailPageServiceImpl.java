@@ -30,7 +30,7 @@ public class ProjectDetailPageServiceImpl implements ProjectDetailPageService {
 	public InvestDTO getProjectAboutInvest(ProjectDTO dto) {
 		return projectDetailPageDAO.getProjectAboutInvest(dto);
 	}
-	
+	//리워드 리스트
 	@Override
 	public List<PresentDTO> getProjectPresents(ProjectDTO dto) {
 		return projectDetailPageDAO.getProjectPresents(dto);
@@ -39,17 +39,15 @@ public class ProjectDetailPageServiceImpl implements ProjectDetailPageService {
 	public List<PresentDTO> getProjectPresentsCount(ProjectDTO dto) {
 		return projectDetailPageDAO.getProjectPresentsCount(dto);
 	}
-	/*
-	@Override
-	public List<CommentsDTO> getComments(ProjectDTO dto) {
-		return projectDetailPageDAO.getComments(dto);
-	}
-
-	@Override
-	public List<CommentsDTO> getReplyComments(CommentsDTO dto) {
-		return projectDetailPageDAO.getReplyComments(dto);
-	}
-	*/
 	
+	//관리자 픽[Yes/No]
+	@Override
+	public void updatePickYes(ProjectDTO dto) {
+		projectDetailPageDAO.updatePickYes(dto);
+	}
+	@Override
+	public void updatePickNo(ProjectDTO dto) {
+		projectDetailPageDAO.updatePickNo(dto);
+	}
 
 }
