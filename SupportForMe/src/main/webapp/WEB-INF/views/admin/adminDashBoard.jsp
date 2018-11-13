@@ -66,7 +66,6 @@
 				dataType : "json",
 				async: false,
 				success : function(data) {
-					console.log(data[0].M01);
 				      var dataSet = google.visualization.arrayToDataTable([
 				          ["Element", "프로젝트 생성 수", { role: "style" } ],
 				          ["1월", data[0].M01, "color: #01DFA5"],
@@ -110,7 +109,6 @@
 				dataType : "json",
 				async: false,
 				success : function(data) {
-					console.log(data[0].M01);
 				      var dataSet = google.visualization.arrayToDataTable([
 				          ["Element", "결제 금액 합계", { role: "style" } ],
 				          ["1월", data[0].M01, "color: #01DFA5"],
@@ -186,7 +184,7 @@
 				          ["28일", data[0].D28, "color: #01DFA5"],
 				          ["29일", data[0].D29, "color: #01DFA5"],
 				          ["30일", data[0].D30, "color: #01DFA5"],
-				          ["31일", data[0].D31, "color: #01DFA5"],
+				          ["31일", data[0].D31, "color: #01DFA5"]
 				        ]);
 				      var view = new google.visualization.DataView(dataSet);
 				      view.setColumns([0, 1,
@@ -216,7 +214,7 @@
 				dataType : "json",
 				async: false,
 				success : function(data) {
-					console.log(data[0].M01);
+					
 				      var dataSet = google.visualization.arrayToDataTable([
 				          ["Element", "프로젝트 등록 건수", { role: "style" } ],
 				          ["1일", data[0].D01, "color: #01DFA5"],
@@ -249,7 +247,7 @@
 				          ["28일", data[0].D28, "color: #01DFA5"],
 				          ["29일", data[0].D29, "color: #01DFA5"],
 				          ["30일", data[0].D30, "color: #01DFA5"],
-				          ["31일", data[0].D31, "color: #01DFA5"],
+				          ["31일", data[0].D31, "color: #01DFA5"]
 				        ]);
 				      var view = new google.visualization.DataView(dataSet);
 				      view.setColumns([0, 1,
