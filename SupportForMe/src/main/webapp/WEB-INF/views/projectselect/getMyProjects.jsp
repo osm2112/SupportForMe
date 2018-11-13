@@ -13,6 +13,7 @@
 <!--  부트스트랩 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/loading.css">
 <style>
 /*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
 .pjdtl_bodysize {
@@ -171,9 +172,10 @@ var contextPath = '<%= request.getContextPath() %>';
 										data : {
 											"projectNo" : lastno,
 											"userId" : '${loginID}'
-										},
-										dataType : "json",
+										},dataType : "json",
+										timeout :5000,
 										success : function(data) {
+											$('.loader').addClass('display-none');
 											if (data.length > 0) {
 												for (i = 0; i < data.length; i++) {
 													count = ++count;
@@ -231,7 +233,9 @@ var contextPath = '<%= request.getContextPath() %>';
 													} */
 												}
 											}
-										}
+										},beforeSend:function(){											
+									        $('.loader').removeClass('display-none');											
+									    }
 									});
 							lastno = $(".project_box").last().attr("id");
 						}
@@ -304,6 +308,7 @@ var contextPath = '<%= request.getContextPath() %>';
 			</div>
 		</div>
 	</div>
-	<div style="height: 300px"></div>
+	<div class="loader">Loading...</div>
+	
 </body>
 </html>

@@ -512,7 +512,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 					<div class="main_project_content">
 						<ul>
 							<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
-							<li class="text3dPn" style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
+							<li class="text3dPn" style="font-size : 18px; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 180px; height: 30px;"><strong>${project.projectName}</strong></li>
 							<li style="height: 5px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
 								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
@@ -549,7 +549,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 						<div class="main_project_content">
 						<ul>
 							<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
-							<li class="text3dPn" style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
+							<li class="text3dPn" style="font-size : 18px; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 180px; height: 30px;"><strong>${project.projectName}</strong></li>
 							<li style="height: 10px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
 								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
@@ -586,7 +586,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 					<div class="main_project_content">
 						<ul>
 							<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
-							<li class="text3dPn" style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
+							<li class="text3dPn" style="font-size : 18px; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 180px; height: 30px;"><strong>${project.projectName}</strong></li>
 							<li style="height: 10px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
 								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
@@ -623,7 +623,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 					<div class="main_project_content">
 						<ul>
 							<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
-							<li class="text3dPn" style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
+							<li class="text3dPn" style="font-size : 18px; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 180px; height: 30px;"><strong>${project.projectName}</strong></li>
 							<li style="height: 10px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
 								<span class="text3d">모금액 : ${project.totalInvest}원</span> 

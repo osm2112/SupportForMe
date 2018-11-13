@@ -13,6 +13,7 @@
 <!--  부트스트랩 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/loading.css">
 <style>
 /*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
 .pjdtl_bodysize {
@@ -161,6 +162,7 @@ text-shadow:   0 1px 0 #ccc,
       font:Arial, Helvetica, sans-serif;
       color:grey; 
 }
+
 </style>
 <script>
 	$(document)
@@ -181,8 +183,7 @@ text-shadow:   0 1px 0 #ccc,
 								});
 						function loadArticle(lastno) {
 
-							$
-									.ajax({
+							$.ajax({
 										type : "post",
 										url : "./getProjects",
 										data : {
@@ -191,6 +192,8 @@ text-shadow:   0 1px 0 #ccc,
 										},
 										dataType : "json",
 										success : function(data) {
+											 $('.loader').addClass('display-none');
+											
 											if (data.length > 0) {
 												for (i = 0; i < data.length; i++) {
 													count = ++count;
@@ -244,7 +247,10 @@ text-shadow:   0 1px 0 #ccc,
 													}  */
 												}
 											}
-										}
+										
+										},beforeSend:function(){											
+									        $('.loader').removeClass('display-none');											
+									    },timeout :5000
 									});
 							lastno = $(".project_box").last().attr("id");
 						}
@@ -310,6 +316,8 @@ text-shadow:   0 1px 0 #ccc,
 			</div>
 		</div>
 	</div>
+	<div class="loader">Loading...</div>
 	<div style="height: 300px"></div>
+	
 </body>
 </html>
