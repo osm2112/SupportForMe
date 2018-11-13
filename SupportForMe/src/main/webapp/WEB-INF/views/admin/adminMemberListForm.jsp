@@ -41,6 +41,21 @@
 		
 		
 	}
+	
+	function AllCheck(){
+		var allCheck = document.getElementById("allCheck").checked;
+		console.log(allCheck);
+		var getIds = document.getElementsByName("ids");
+		if (allCheck == true){
+			for(var i = 0 ; i < getIds.length ; i++){
+				getIds[i].checked = true;
+			}
+		} else{
+			for(var i = 0 ; i < getIds.length ; i++){
+				getIds[i].checked = false;
+			}
+		}
+	}
 </script>
 <style>
 ._btn {
@@ -95,7 +110,7 @@
 	<table class="table table-hover" style="width:1200px">
 		<thead>
 		<tr>
-			<th>선택</th>
+			<th><input type="checkbox" id="allCheck" onclick="AllCheck()">선택</th>
 			<th>ID</th>
 			<th>이름</th>
 			<th>Email</th>

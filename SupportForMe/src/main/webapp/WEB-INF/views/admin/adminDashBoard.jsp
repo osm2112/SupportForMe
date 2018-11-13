@@ -18,28 +18,39 @@
     google.charts.setOnLoadCallback(drawChart2);
     google.charts.setOnLoadCallback(drawChart3);
     google.charts.setOnLoadCallback(drawChart4);
-    google.charts.setOnLoadCallback(drawChart5);
+    /*google.charts.setOnLoadCallback(drawChart5); */
     function drawChart() {
     	$.ajax({type : "post",
 				url : path+"forme/AdminMemberJoinMonth",
 				dataType : "json",
 				async: false,
 				success : function(data) {
-				      var dataSet = google.visualization.arrayToDataTable([
-				          ["Element", "회원 가입자 수", { role: "style" } ],
-				          ["1월", data[0].M01, "color: #01DFA5"],
-				          ["2월", data[0].M02, "color: #01DFA5"],
-				          ["3월", data[0].M03, "color: #01DFA5"],
-				          ["4월", data[0].M04, "color: #01DFA5"],
-				          ["5월", data[0].M05, "color: #01DFA5"],
-				          ["6월", data[0].M06, "color: #01DFA5"],
-				          ["7월", data[0].M07, "color: #01DFA5"],
-				          ["8월", data[0].M08, "color: #01DFA5"],
-				          ["9월", data[0].M09, "color: #01DFA5"],
-				          ["10월", data[0].M10, "color: #01DFA5"],
-				          ["11월", data[0].M11, "color: #01DFA5"],
-				          ["12월", data[0].M12, "color: #01DFA5"]
-				        ]);
+					var param = new Array();
+					for(var i =0 ; i < 12 ;i++){
+						param[i]=0;
+					}
+					if(data!=null){
+						param[0]=data[0].M01;
+						param[1]=data[0].M02;
+						param[3]=data[0].M03;
+						param[4]=data[0].M04;
+						param[5]=data[0].M05;
+						param[6]=data[0].M06;
+						param[7]=data[0].M07;
+						param[8]=data[0].M08;
+						param[9]=data[0].M09;
+						param[10]=data[0].M10;
+						param[11]=data[0].M11;
+						param[12]=data[0].M12;
+					}
+					
+				    var dataSet = google.visualization.arrayToDataTable(["Element", "회원 가입자 수", { role: "style" } ])
+				    for(var i = 0 ; i < 12 ; i ++){
+				        dataSet.push([(i+1)+"월", param[i], "color: #01DFA5"]);
+				    }
+				          
+				          
+				       
 				      var view = new google.visualization.DataView(dataSet);
 				      view.setColumns([0, 1,
 				                       { calc: "stringify",

@@ -54,7 +54,20 @@
 			return false;
 		}
 	}
-
+	function AllCheck(){
+		var allCheck = document.getElementById("allCheck").checked;
+		console.log(allCheck);
+		var getIds = document.getElementsByName("ids");
+		if (allCheck == true){
+			for(var i = 0 ; i < getIds.length ; i++){
+				getIds[i].checked = true;
+			}
+		} else{
+			for(var i = 0 ; i < getIds.length ; i++){
+				getIds[i].checked = false;
+			}
+		}
+	}
 </script>
 <style>
 ._btn {
@@ -119,7 +132,7 @@
 	<table class="table table-hover" style="width: 880px;">
 	<thead>
 		<tr>
-			<th>선택</th>
+			<th><input type="checkbox" id="allCheck" onclick="AllCheck()">선택</th>
 			<th>프로젝트번호</th>
 			<th>프로젝트명</th>
 			<th>프로젝트작성자</th>

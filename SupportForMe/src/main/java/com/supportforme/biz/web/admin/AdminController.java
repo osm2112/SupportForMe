@@ -26,7 +26,7 @@ public class AdminController {
 		
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		
-		paging.setPageUnit(5);
+		paging.setPageUnit(25);
 		
 		//현재페이지 번호 파라미터
 		if(paging.getPage() ==null) {
@@ -71,7 +71,7 @@ public class AdminController {
 	@RequestMapping("/forme/AdminSupportForMePickList")	
 	public String getAdminSupportForMePickList(Model model, AdminSearchDTO adminSearchDTO, Paging paging, HttpServletRequest request ) {
 		
-		paging.setPageUnit(5);
+		paging.setPageUnit(25);
 		
 		//현재페이지 번호 파라미터
 		if(paging.getPage() ==null) {
@@ -120,7 +120,7 @@ public class AdminController {
 	@RequestMapping("/forme/AdminProjectProgressList")	
 	public String getProjectProgressList(Model model, AdminSearchDTO adminSearchDTO, Paging paging, HttpServletRequest request ) {
 		
-		paging.setPageUnit(5);
+		paging.setPageUnit(25);
 		
 		//현재페이지 번호 파라미터
 		if(paging.getPage() ==null) {

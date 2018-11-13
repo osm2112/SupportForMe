@@ -42,7 +42,7 @@
 		document.searchForm.page.value=p;
 		document.searchForm.submit();
 	}
-function ProjectProgres(s){
+	function ProjectProgres(s){
 		var flag = s;
 		if(flag=='001'){
 			var check= confirm('선택하신 프로젝트의 보류 및 취소를 해제하시겠습니까?');
@@ -83,6 +83,21 @@ function ProjectProgres(s){
 		}
 	} 
 
+	
+	function AllCheck(){
+		var allCheck = document.getElementById("allCheck").checked;
+		console.log(allCheck);
+		var getIds = document.getElementsByName("ids");
+		if (allCheck == true){
+			for(var i = 0 ; i < getIds.length ; i++){
+				getIds[i].checked = true;
+			}
+		} else{
+			for(var i = 0 ; i < getIds.length ; i++){
+				getIds[i].checked = false;
+			}
+		}
+	}
 </script>
 </head>
 <body>
@@ -119,7 +134,7 @@ function ProjectProgres(s){
 	<table class="table table-hover" style="width:1200px">
 		<thead>
 		<tr>
-			<th>선택</th>
+			<th><input type="checkbox" id="allCheck" onclick="AllCheck()">선택</th>
 			<th>프로젝트명</th>
 			<th>프로젝트작성자</th>
 			<th>프로젝트작성자ID</th>
