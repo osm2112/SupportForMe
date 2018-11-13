@@ -62,6 +62,7 @@ public class CommentsController {
 	@RequestMapping("/forme/updateReplyComments")
 	@ResponseBody
 	public CommentsDTO updateReplyComments(CommentsDTO dto) {
+		System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"+dto);
 		commentsService.updateReplyComments(dto);
 		return commentsService.getComments(dto);
 	}
