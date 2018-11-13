@@ -18,39 +18,54 @@
     google.charts.setOnLoadCallback(drawChart2);
     google.charts.setOnLoadCallback(drawChart3);
     google.charts.setOnLoadCallback(drawChart4);
-    /*google.charts.setOnLoadCallback(drawChart5); */
+    google.charts.setOnLoadCallback(drawChart5);
     function drawChart() {
     	$.ajax({type : "post",
 				url : path+"forme/AdminMemberJoinMonth",
 				dataType : "json",
 				async: false,
 				success : function(data) {
-					var param = new Array();
-					for(var i =0 ; i < 12 ;i++){
-						param[i]=0;
+					var M01 = 0;
+					var M02 = 0;
+					var M03 = 0;
+					var M04 = 0;
+					var M05 = 0;
+					var M06 = 0;
+					var M07 = 0;
+					var M08 = 0;
+					var M09 = 0;
+					var M10 = 0;
+					var M11 = 0;
+					var M12 = 0;
+					if( typeof data[0] != "undefined"){
+						M01 = data[0].M01;
+						M02 = data[0].M02;
+						M03 = data[0].M03;
+						M04 = data[0].M04;
+						M05 = data[0].M05;
+						M06 = data[0].M06;
+						M07 = data[0].M07;
+						M08 = data[0].M08;
+						M09 = data[0].M09;
+						M10 = data[0].M10;
+						M11 = data[0].M11;
+						M12 = data[0].M12;
 					}
-					if(data!=null){
-						param[0]=data[0].M01;
-						param[1]=data[0].M02;
-						param[3]=data[0].M03;
-						param[4]=data[0].M04;
-						param[5]=data[0].M05;
-						param[6]=data[0].M06;
-						param[7]=data[0].M07;
-						param[8]=data[0].M08;
-						param[9]=data[0].M09;
-						param[10]=data[0].M10;
-						param[11]=data[0].M11;
-						param[12]=data[0].M12;
-					}
-					
-				    var dataSet = google.visualization.arrayToDataTable(["Element", "회원 가입자 수", { role: "style" } ])
-				    for(var i = 0 ; i < 12 ; i ++){
-				        dataSet.push([(i+1)+"월", param[i], "color: #01DFA5"]);
-				    }
-				          
-				          
-				       
+				      var dataSet = google.visualization.arrayToDataTable([
+				          ["Element", "회원 가입자 수", { role: "style" } ],
+				          ["1월", M01, "color: #01DFA5"],
+				          ["2월", M02, "color: #01DFA5"],
+				          ["3월", M03, "color: #01DFA5"],
+				          ["4월", M04, "color: #01DFA5"],
+				          ["5월", M05, "color: #01DFA5"],
+				          ["6월", M06, "color: #01DFA5"],
+				          ["7월", M07, "color: #01DFA5"],
+				          ["8월", M08, "color: #01DFA5"],
+				          ["9월", M09, "color: #01DFA5"],
+				          ["10월", M10, "color: #01DFA5"],
+				          ["11월", M11, "color: #01DFA5"],
+				          ["12월", M12, "color: #01DFA5"]
+				        ]);
 				      var view = new google.visualization.DataView(dataSet);
 				      view.setColumns([0, 1,
 				                       { calc: "stringify",
@@ -77,20 +92,48 @@
 				dataType : "json",
 				async: false,
 				success : function(data) {
+					var M01 = 0;
+					var M02 = 0;
+					var M03 = 0;
+					var M04 = 0;
+					var M05 = 0;
+					var M06 = 0;
+					var M07 = 0;
+					var M08 = 0;
+					var M09 = 0;
+					var M10 = 0;
+					var M11 = 0;
+					var M12 = 0;
+					if(typeof data[0] != "undefined"){
+						M01 = data[0].M01;
+						M02 = data[0].M02;
+						M03 = data[0].M03;
+						M04 = data[0].M04;
+						M05 = data[0].M05;
+						M06 = data[0].M06;
+						M07 = data[0].M07;
+						M08 = data[0].M08;
+						M09 = data[0].M09;
+						M10 = data[0].M10;
+						M11 = data[0].M11;
+						M12 = data[0].M12;
+					}
+					
+					
 				      var dataSet = google.visualization.arrayToDataTable([
 				          ["Element", "프로젝트 생성 수", { role: "style" } ],
-				          ["1월", data[0].M01, "color: #01DFA5"],
-				          ["2월", data[0].M02, "color: #01DFA5"],
-				          ["3월", data[0].M03, "color: #01DFA5"],
-				          ["4월", data[0].M04, "color: #01DFA5"],
-				          ["5월", data[0].M05, "color: #01DFA5"],
-				          ["6월", data[0].M06, "color: #01DFA5"],
-				          ["7월", data[0].M07, "color: #01DFA5"],
-				          ["8월", data[0].M08, "color: #01DFA5"],
-				          ["9월", data[0].M09, "color: #01DFA5"],
-				          ["10월", data[0].M10, "color: #01DFA5"],
-				          ["11월", data[0].M11, "color: #01DFA5"],
-				          ["12월", data[0].M12, "color: #01DFA5"]
+				          ["1월", M01, "color: #01DFA5"],
+				          ["2월", M02, "color: #01DFA5"],
+				          ["3월", M03, "color: #01DFA5"],
+				          ["4월", M04, "color: #01DFA5"],
+				          ["5월", M05, "color: #01DFA5"],
+				          ["6월", M06, "color: #01DFA5"],
+				          ["7월", M07, "color: #01DFA5"],
+				          ["8월", M08, "color: #01DFA5"],
+				          ["9월", M09, "color: #01DFA5"],
+				          ["10월", M10, "color: #01DFA5"],
+				          ["11월", M11, "color: #01DFA5"],
+				          ["12월", M12, "color: #01DFA5"]
 				        ]);
 				      var view = new google.visualization.DataView(dataSet);
 				      view.setColumns([0, 1,
@@ -120,20 +163,47 @@
 				dataType : "json",
 				async: false,
 				success : function(data) {
+					console.log(data[0]);
+					var M01 = 0;
+					var M02 = 0;
+					var M03 = 0;
+					var M04 = 0;
+					var M05 = 0;
+					var M06 = 0;
+					var M07 = 0;
+					var M08 = 0;
+					var M09 = 0;
+					var M10 = 0;
+					var M11 = 0;
+					var M12 = 0;
+					if(typeof data[0] != "undefined"){
+						M01 = data[0].M01;
+						M02 = data[0].M02;
+						M03 = data[0].M03;
+						M04 = data[0].M04;
+						M05 = data[0].M05;
+						M06 = data[0].M06;
+						M07 = data[0].M07;
+						M08 = data[0].M08;
+						M09 = data[0].M09;
+						M10 = data[0].M10;
+						M11 = data[0].M11;
+						M12 = data[0].M12;
+					}
 				      var dataSet = google.visualization.arrayToDataTable([
 				          ["Element", "결제 금액 합계", { role: "style" } ],
-				          ["1월", data[0].M01, "color: #01DFA5"],
-				          ["2월", data[0].M02, "color: #01DFA5"],
-				          ["3월", data[0].M03, "color: #01DFA5"],
-				          ["4월", data[0].M04, "color: #01DFA5"],
-				          ["5월", data[0].M05, "color: #01DFA5"],
-				          ["6월", data[0].M06, "color: #01DFA5"],
-				          ["7월", data[0].M07, "color: #01DFA5"],
-				          ["8월", data[0].M08, "color: #01DFA5"],
-				          ["9월", data[0].M09, "color: #01DFA5"],
-				          ["10월", data[0].M10, "color: #01DFA5"],
-				          ["11월", data[0].M11, "color: #01DFA5"],
-				          ["12월", data[0].M12, "color: #01DFA5"]
+				          ["1월", M01, "color: #01DFA5"],
+				          ["2월", M02, "color: #01DFA5"],
+				          ["3월", M03, "color: #01DFA5"],
+				          ["4월", M04, "color: #01DFA5"],
+				          ["5월", M05, "color: #01DFA5"],
+				          ["6월", M06, "color: #01DFA5"],
+				          ["7월", M07, "color: #01DFA5"],
+				          ["8월", M08, "color: #01DFA5"],
+				          ["9월", M09, "color: #01DFA5"],
+				          ["10월", M10, "color: #01DFA5"],
+				          ["11월", M11, "color: #01DFA5"],
+				          ["12월", M12, "color: #01DFA5"]
 				        ]);
 				      var view = new google.visualization.DataView(dataSet);
 				      view.setColumns([0, 1,
@@ -163,39 +233,103 @@
 				dataType : "json",
 				async: false,
 				success : function(data) {
+					var D01 = 0;
+					var D02 = 0;
+					var D03 = 0;
+					var D04 = 0;
+					var D05 = 0;
+					var D06 = 0;
+					var D07 = 0;
+					var D08 = 0;
+					var D09 = 0;
+					var D10 = 0;
+					var D11 = 0;
+					var D12 = 0;
+					var D13 = 0;
+					var D14 = 0;
+					var D15 = 0;
+					var D16 = 0;
+					var D17 = 0;
+					var D18 = 0;
+					var D19 = 0;
+					var D20 = 0;
+					var D21 = 0;
+					var D22 = 0;
+					var D23 = 0;
+					var D24 = 0;
+					var D25 = 0;
+					var D26 = 0;
+					var D27 = 0;
+					var D28 = 0;
+					var D29 = 0;
+					var D30 = 0;
+					var D31 = 0;
+					if(typeof data[0] != "undefined"){
+						D01 = data[0].D01;
+						D02 = data[0].D02;
+						D03 = data[0].D03;
+						D04 = data[0].D04;
+						D05 = data[0].D05;
+						D06 = data[0].D06;
+						D07 = data[0].D07;
+						D08 = data[0].D08;
+						D09 = data[0].D09;
+						D10 = data[0].D10;
+						D11 = data[0].D11;
+						D12 = data[0].D12;
+						D13 = data[0].D13;
+						D14 = data[0].D14;
+						D15 = data[0].D15;
+						D16 = data[0].D16;
+						D17 = data[0].D17;
+						D18 = data[0].D18;
+						D19 = data[0].D19;
+						D20 = data[0].D20;
+						D21 = data[0].D21;
+						D22 = data[0].D22;
+						D23 = data[0].D23;
+						D24 = data[0].D24;
+						D25 = data[0].D25;
+						D26 = data[0].D26;
+						D27 = data[0].D27;
+						D28 = data[0].D28;
+						D29 = data[0].D29;
+						D30 = data[0].D30;
+						D31 = data[0].D31;
+					}
 				      var dataSet = google.visualization.arrayToDataTable([
 				          ["Element", "프로젝트 보류 건수", { role: "style" } ],
-				          ["1일", data[0].D01, "color: #01DFA5"],
-				          ["2일", data[0].D02, "color: #01DFA5"],
-				          ["3일", data[0].D03, "color: #01DFA5"],
-				          ["4일", data[0].D04, "color: #01DFA5"],
-				          ["5일", data[0].D05, "color: #01DFA5"],
-				          ["6일", data[0].D06, "color: #01DFA5"],
-				          ["7일", data[0].D07, "color: #01DFA5"],
-				          ["8일", data[0].D08, "color: #01DFA5"],
-				          ["9일", data[0].D09, "color: #01DFA5"],
-				          ["10일", data[0].D10, "color: #01DFA5"],
-				          ["11일", data[0].D11, "color: #01DFA5"],
-				          ["12일", data[0].D12, "color: #01DFA5"],
-				          ["13일", data[0].D13, "color: #01DFA5"],
-				          ["14일", data[0].D14, "color: #01DFA5"],
-				          ["15일", data[0].D15, "color: #01DFA5"],
-				          ["16일", data[0].D16, "color: #01DFA5"],
-				          ["17일", data[0].D17, "color: #01DFA5"],
-				          ["18일", data[0].D18, "color: #01DFA5"],
-				          ["19일", data[0].D19, "color: #01DFA5"],
-				          ["20일", data[0].D20, "color: #01DFA5"],
-				          ["21일", data[0].D21, "color: #01DFA5"],
-				          ["22일", data[0].D22, "color: #01DFA5"],
-				          ["23일", data[0].D23, "color: #01DFA5"],
-				          ["24일", data[0].D24, "color: #01DFA5"],
-				          ["25일", data[0].D25, "color: #01DFA5"],
-				          ["26일", data[0].D26, "color: #01DFA5"],
-				          ["27일", data[0].D27, "color: #01DFA5"],
-				          ["28일", data[0].D28, "color: #01DFA5"],
-				          ["29일", data[0].D29, "color: #01DFA5"],
-				          ["30일", data[0].D30, "color: #01DFA5"],
-				          ["31일", data[0].D31, "color: #01DFA5"]
+				          ["1일", D01, "color: #01DFA5"],
+				          ["2일", D02, "color: #01DFA5"],
+				          ["3일", D03, "color: #01DFA5"],
+				          ["4일", D04, "color: #01DFA5"],
+				          ["5일", D05, "color: #01DFA5"],
+				          ["6일", D06, "color: #01DFA5"],
+				          ["7일", D07, "color: #01DFA5"],
+				          ["8일", D08, "color: #01DFA5"],
+				          ["9일", D09, "color: #01DFA5"],
+				          ["10일", D10, "color: #01DFA5"],
+				          ["11일", D11, "color: #01DFA5"],
+				          ["12일", D12, "color: #01DFA5"],
+				          ["13일", D13, "color: #01DFA5"],
+				          ["14일", D14, "color: #01DFA5"],
+				          ["15일", D15, "color: #01DFA5"],
+				          ["16일", D16, "color: #01DFA5"],
+				          ["17일", D17, "color: #01DFA5"],
+				          ["18일", D18, "color: #01DFA5"],
+				          ["19일", D19, "color: #01DFA5"],
+				          ["20일", D20, "color: #01DFA5"],
+				          ["21일", D21, "color: #01DFA5"],
+				          ["22일", D22, "color: #01DFA5"],
+				          ["23일", D23, "color: #01DFA5"],
+				          ["24일", D24, "color: #01DFA5"],
+				          ["25일", D25, "color: #01DFA5"],
+				          ["26일", D26, "color: #01DFA5"],
+				          ["27일", D27, "color: #01DFA5"],
+				          ["28일", D28, "color: #01DFA5"],
+				          ["29일", D29, "color: #01DFA5"],
+				          ["30일", D30, "color: #01DFA5"],
+				          ["31일", D31, "color: #01DFA5"]
 				        ]);
 				      var view = new google.visualization.DataView(dataSet);
 				      view.setColumns([0, 1,
@@ -225,40 +359,103 @@
 				dataType : "json",
 				async: false,
 				success : function(data) {
-					
+					var D01 = 0;
+					var D02 = 0;
+					var D03 = 0;
+					var D04 = 0;
+					var D05 = 0;
+					var D06 = 0;
+					var D07 = 0;
+					var D08 = 0;
+					var D09 = 0;
+					var D10 = 0;
+					var D11 = 0;
+					var D12 = 0;
+					var D13 = 0;
+					var D14 = 0;
+					var D15 = 0;
+					var D16 = 0;
+					var D17 = 0;
+					var D18 = 0;
+					var D19 = 0;
+					var D20 = 0;
+					var D21 = 0;
+					var D22 = 0;
+					var D23 = 0;
+					var D24 = 0;
+					var D25 = 0;
+					var D26 = 0;
+					var D27 = 0;
+					var D28 = 0;
+					var D29 = 0;
+					var D30 = 0;
+					var D31 = 0;
+					if(typeof data[0] != "undefined"){
+						D01 = data[0].D01;
+						D02 = data[0].D02;
+						D03 = data[0].D03;
+						D04 = data[0].D04;
+						D05 = data[0].D05;
+						D06 = data[0].D06;
+						D07 = data[0].D07;
+						D08 = data[0].D08;
+						D09 = data[0].D09;
+						D10 = data[0].D10;
+						D11 = data[0].D11;
+						D12 = data[0].D12;
+						D13 = data[0].D13;
+						D14 = data[0].D14;
+						D15 = data[0].D15;
+						D16 = data[0].D16;
+						D17 = data[0].D17;
+						D18 = data[0].D18;
+						D19 = data[0].D19;
+						D20 = data[0].D20;
+						D21 = data[0].D21;
+						D22 = data[0].D22;
+						D23 = data[0].D23;
+						D24 = data[0].D24;
+						D25 = data[0].D25;
+						D26 = data[0].D26;
+						D27 = data[0].D27;
+						D28 = data[0].D28;
+						D29 = data[0].D29;
+						D30 = data[0].D30;
+						D31 = data[0].D31;
+					}
 				      var dataSet = google.visualization.arrayToDataTable([
 				          ["Element", "프로젝트 등록 건수", { role: "style" } ],
-				          ["1일", data[0].D01, "color: #01DFA5"],
-				          ["2일", data[0].D02, "color: #01DFA5"],
-				          ["3일", data[0].D03, "color: #01DFA5"],
-				          ["4일", data[0].D04, "color: #01DFA5"],
-				          ["5일", data[0].D05, "color: #01DFA5"],
-				          ["6일", data[0].D06, "color: #01DFA5"],
-				          ["7일", data[0].D07, "color: #01DFA5"],
-				          ["8일", data[0].D08, "color: #01DFA5"],
-				          ["9일", data[0].D09, "color: #01DFA5"],
-				          ["10일", data[0].D10, "color: #01DFA5"],
-				          ["11일", data[0].D11, "color: #01DFA5"],
-				          ["12일", data[0].D12, "color: #01DFA5"],
-				          ["13일", data[0].D13, "color: #01DFA5"],
-				          ["14일", data[0].D14, "color: #01DFA5"],
-				          ["15일", data[0].D15, "color: #01DFA5"],
-				          ["16일", data[0].D16, "color: #01DFA5"],
-				          ["17일", data[0].D17, "color: #01DFA5"],
-				          ["18일", data[0].D18, "color: #01DFA5"],
-				          ["19일", data[0].D19, "color: #01DFA5"],
-				          ["20일", data[0].D20, "color: #01DFA5"],
-				          ["21일", data[0].D21, "color: #01DFA5"],
-				          ["22일", data[0].D22, "color: #01DFA5"],
-				          ["23일", data[0].D23, "color: #01DFA5"],
-				          ["24일", data[0].D24, "color: #01DFA5"],
-				          ["25일", data[0].D25, "color: #01DFA5"],
-				          ["26일", data[0].D26, "color: #01DFA5"],
-				          ["27일", data[0].D27, "color: #01DFA5"],
-				          ["28일", data[0].D28, "color: #01DFA5"],
-				          ["29일", data[0].D29, "color: #01DFA5"],
-				          ["30일", data[0].D30, "color: #01DFA5"],
-				          ["31일", data[0].D31, "color: #01DFA5"]
+				          ["1일", D01, "color: #01DFA5"],
+				          ["2일", D02, "color: #01DFA5"],
+				          ["3일", D03, "color: #01DFA5"],
+				          ["4일", D04, "color: #01DFA5"],
+				          ["5일", D05, "color: #01DFA5"],
+				          ["6일", D06, "color: #01DFA5"],
+				          ["7일", D07, "color: #01DFA5"],
+				          ["8일", D08, "color: #01DFA5"],
+				          ["9일", D09, "color: #01DFA5"],
+				          ["10일", D10, "color: #01DFA5"],
+				          ["11일", D11, "color: #01DFA5"],
+				          ["12일", D12, "color: #01DFA5"],
+				          ["13일", D13, "color: #01DFA5"],
+				          ["14일", D14, "color: #01DFA5"],
+				          ["15일", D15, "color: #01DFA5"],
+				          ["16일", D16, "color: #01DFA5"],
+				          ["17일", D17, "color: #01DFA5"],
+				          ["18일", D18, "color: #01DFA5"],
+				          ["19일", D19, "color: #01DFA5"],
+				          ["20일", D20, "color: #01DFA5"],
+				          ["21일", D21, "color: #01DFA5"],
+				          ["22일", D22, "color: #01DFA5"],
+				          ["23일", D23, "color: #01DFA5"],
+				          ["24일", D24, "color: #01DFA5"],
+				          ["25일", D25, "color: #01DFA5"],
+				          ["26일", D26, "color: #01DFA5"],
+				          ["27일", D27, "color: #01DFA5"],
+				          ["28일", D28, "color: #01DFA5"],
+				          ["29일", D29, "color: #01DFA5"],
+				          ["30일", D30, "color: #01DFA5"],
+				          ["31일", D31, "color: #01DFA5"]
 				        ]);
 				      var view = new google.visualization.DataView(dataSet);
 				      view.setColumns([0, 1,
