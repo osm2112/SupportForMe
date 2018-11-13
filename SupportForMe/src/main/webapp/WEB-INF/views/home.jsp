@@ -435,7 +435,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 	<div class="bodysize">
 		<div class="suforme">
 			<div class="suforme_picks_div"> 
-				<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px;"><i class="fa fa-heart" style="color: rgb(255, 135, 99);"></i>&nbsp서포미 PICKS</span></div><br>
+				<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px;  color:#E8F35480;"><i class="fa fa-heart" style="color: rgb(255, 135, 99);"></i>&nbsp서포미 PICKS</span></div><br>
 
 				<div class="flexslider">
 					<ul class="slides">
@@ -469,7 +469,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 			</div>
 			
 			<div class="real_time_rank_outer">
-				<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px;"><i class="fa fa-trophy" style="color: rgb(239, 205, 119);"></i>&nbsp실시간 랭킹</span></div><br>
+				<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px; color:#E8F35480;"><i class="fa fa-trophy" style="color: rgb(239, 205, 119);"></i>&nbsp실시간 랭킹</span></div><br>
 				<div class="real_time_rank_div">
 					<div class="real_time_image flexslider3">
 						<ul class="slides">
@@ -500,7 +500,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 		</div>
 		<div style="height: 100px"></div> 
 	
-		<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px;"><i class="fa fa-users" style="color: rgb(6, 135, 133);"></i>&nbsp공연 프로젝트</span></div><br> 
+		<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px; color:#E8F35480;"><i class="fa fa-users" style="color: rgb(6, 135, 133);"></i>&nbsp공연 프로젝트</span></div><br> 
 		<div class="category_project_div">
 			<c:forEach items="${Performance}" var="project">
 				<div class="project_box" id="${project.projectNo}"
@@ -537,7 +537,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=001">더보기 </a></div>	
 		<div style="height: 50px"></div>
 		<!-- 미술 부분  -->
-		<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px;"><i class="fa fa-paint-brush" style="color: rgb(6, 135, 133);"></i>&nbsp미술 프로젝트</span></div>	<br>	
+		<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px; color:#E8F35480;"><i class="fa fa-paint-brush" style="color: rgb(6, 135, 133);"></i>&nbsp미술 프로젝트</span></div>	<br>	
 			<div class="category_project_div">
 				<c:forEach items="${Art}" var="project">
 					<div class="project_box" id="${project.projectNo}"
@@ -574,7 +574,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 			<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=003">더보기 </a></div>	
 			<div style="height: 50px"></div>
 		<!-- 도서 -->
-		<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px;"><i class="fa fa-book" style="color: rgb(6, 135, 133);"></i>&nbsp도서 프로젝트</span></div> <br>
+		<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px; color:#E8F35480;"><i class="fa fa-book" style="color: rgb(6, 135, 133);"></i>&nbsp도서 프로젝트</span></div> <br>
 		<div class="category_project_div">
 			<c:forEach items="${Book}" var="project">
 				<div class="project_box" id="${project.projectNo}"
@@ -611,7 +611,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=004">더보기 </a></div>
 		<div style="height: 50px"></div>
 		<!-- 영화 -->
-		<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px;"><i class="fa fa-film" style="color: rgb(6, 135, 133);"></i>&nbsp영화 프로젝트</span></div> <br>
+		<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px; color:#E8F35480;"><i class="fa fa-film" style="color: rgb(6, 135, 133);"></i>&nbsp영화 프로젝트</span></div> <br>
 		<div class="category_project_div">
 			<c:forEach items="${Movie}" var="project">
 				<div class="project_box" id="${project.projectNo}"

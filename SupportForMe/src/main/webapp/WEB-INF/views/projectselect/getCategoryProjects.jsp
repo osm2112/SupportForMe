@@ -114,7 +114,7 @@
 }
 <!-- -->
 .text3dss{
-/* text-shadow:   0 1px 0 #ccc,
+text-shadow:   0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
                0 3px 0 #bbb,
                0 4px 0 #b9b9b9,
@@ -126,14 +126,8 @@
                0 5px 10px rgba(0,0,0,.25),
                0 10px 10px rgba(0,0,0,.2),
                0 20px 20px rgba(0,0,0,.15);
-      font:18px Arial, Helvetica, sans-serif;
-      color:grey; */
-
-  /* text-shadow: 0px 0px 0px #FFD, -0px 0px 0px #FFD, -0px -0px 0px #FFD, 0px -0px 0px #FFD, 0px 1px 0px #FFD, -0px 1px 0px #FFD, -0px -1px 0px #FFD, 0px -1px 0px #FFD, 0px 2px 0px #FFD, -0px 2px 0px #FFD, -0px -2px 0px #FFD, 0px -2px 0px #FFD, 1px 0px 0px #FFD, -1px 0px 0px #FFD, -1px -0px 0px #FFD, 1px -0px 0px #FFD, 1px 1px 0px #FFD, -1px 1px 0px #FFD, -1px -1px 0px #FFD, 1px -1px 0px #FFD, 1px 2px 0px #FFD, -1px 2px 0px #FFD, -1px -2px 0px #FFD, 1px -2px 0px #FFD, 2px 0px 0px #FFD, -2px 0px 0px #FFD, -2px -0px 0px #FFD, 2px -0px 0px #FFD, 2px 1px 0px #FFD, -2px 1px 0px #FFD, -2px -1px 0px #FFD, 2px -1px 0px #FFD, 2px 2px 0px #FFD, -2px 2px 0px #FFD, -2px -2px 0px #FFD, 2px -2px 0px #FFD, 0px 0px 0px hsla(0,0%,0%,0), -4px 2px 2px black; */
-   /* text-shadow: -0px 0px hsla(0,0%,100%,0.03333), 0px -0px hsla(0,0%,0%,0.2), -0.5px 0.5px hsla(0,0%,100%,0.03333), 0.5px -0.5px hsla(0,0%,0%,0.2), -1px 1px hsla(0,0%,100%,0.03333), 1px -1px hsla(0,0%,0%,0.2), -1.5px 1.5px hsla(0,0%,100%,0.03333), 1.5px -1.5px hsla(0,0%,0%,0.2), -2px 2px hsla(0,0%,100%,0.03333), 2px -2px hsla(0,0%,0%,0.2), 0px 0px 40px hsla(0,0%,100%,0.1); */
- font-size : 17px;
- text-shadow: -0px 0px hsla(0,0%,0%,0.2), 0px -0px hsla(0,0%,100%,0.2), -0.5px 0.5px hsla(0,0%,0%,0.2), 0.5px -0.5px hsla(0,0%,100%,0.2), -1px 1px hsla(0,0%,0%,0.2), 1px -1px hsla(0,0%,100%,0.2), -1.5px 1.5px hsla(0,0%,0%,0.2), 1.5px -1.5px hsla(0,0%,100%,0.2), 0px 0px 4.5px hsla(0,0%,0%,1);
- 
+      font:Arial, Helvetica, sans-serif;
+      color:grey; 
  }
 .text3d{
 text-shadow:1px 1px white, -1px -1px #666; 
@@ -261,13 +255,13 @@ text-shadow:1px 1px white, -1px -1px #666;
 	<div class="pjdtl_bodysize">
 		<div class="wrapper">
 			<div class="div1">
-				<h1 style="text-align: left;">
+				<h1 class="text3dss" style="text-align: left; color: black;">
 					<c:if test="${searchCondition eq 001}">공연프로젝트</c:if>
 					<c:if test="${searchCondition eq 002}">영화프로젝트</c:if>
 					<c:if test="${searchCondition eq 003}">미술프로젝트</c:if>
 					<c:if test="${searchCondition eq 004}">도서프로젝트</c:if>
 				</h1>
-				<h1 style="text-align: left;">${count}개</h1>
+				<h1 class="text3dss" style="text-align: left;">${count}개</h1>
 				<br> <br>
 			</div>
 			<div class="div2">

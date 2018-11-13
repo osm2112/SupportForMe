@@ -144,6 +144,23 @@ color : rgb(84, 70, 13);
 .progress006 {
 border : 1.5px solid rgb(84, 70, 13);
 color : rgb(84, 70, 13);
+}
+.text3dss{
+text-shadow:   0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+      font:Arial, Helvetica, sans-serif;
+      color:grey; 
+}
 </style>
 <script>
 	$(document)
@@ -238,8 +255,8 @@ color : rgb(84, 70, 13);
 	<div class="pjdtl_bodysize">
 		<div class="wrapper">
 			<div class="div1">
-				<h1 style="text-align: left;">${count}개의검색결과</h1>
-				<p style="text-align: left; font-size: 25px;">검색어 "${searchDTO.searchKeyword}"</p>
+				<h1 class="text3dss" style="text-align: left;  color: black;">${count}개의검색결과</h1>
+				<p class="text3dss" style="text-align: left; font-size: 25px;">검색어 "${searchDTO.searchKeyword}"</p>
 				<br> <br>
 			</div>
 			<div class="div2">
