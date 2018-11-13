@@ -66,6 +66,7 @@ $(function(){
 		div.addClass('comments');
 		div[0].comments=comments;
 		
+		
 		var str = "<div class='updComment' style='background-color: #F6F6F6; border-bottom:3px solid white;'>"
 				+ "<div style='display:flex;'>"
 				+ "		<div style='width:60px; margin-right:10px;'>"
@@ -75,13 +76,18 @@ $(function(){
 				+ "		<div>"
 				+ "			<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
 				+ "			<span class='commentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
-				+ "			<textarea name='commentContent' class='commentContent' readonly cols='53' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
-				+ "		</div>"
-				+ "		<div style='margin:auto;'>"
-				+ "			<button type='button' class='btnUpdFrm' style='width:170px; height:40px;'>수정</button>"
-				+ "			<button type='button' class='btnDel' style='width:170px; height:40px;'>삭제</button>"
-				+ "		</div>"
-				+ "</div>"
+				+ "			<textarea name='commentContent' class='commentContent' readonly cols='65' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
+				+ "		</div>";
+		var btn = "		<div style='margin:auto; margin-bottom:5px;'>"
+				+ "			<button type='button' class='btnUpdFrm' style='width:50px; height:30px;margin-bottom:5px;'>수정</button><br>"
+				+ "			<button type='button' class='btnDel' style='width:50px; height:30px;'>삭제</button>"
+				+ "		</div>";
+					
+		if('${pMember.userId}' == comments.userId) {
+						str+=btn
+				}
+				
+			str	+= "</div>"
 				+ "<div id='rcList' style='display:none; border-top:2px dotted #BDBDBD; padding:10px; margin-top:10px;'></div>"
 				+ "<div id='replyCommentAdd' style='display:none; width:100%; padding:15px; background-color:#F6F6F6;'>"
 				+ "		<form name='replyAddForm' id='replyAddForm'>"
@@ -90,8 +96,8 @@ $(function(){
 				+ "			<input type='hidden' name='topCommentNo' value='"+comments.commentNo+"'>"
 				+ "			<div style='display:flex;'>"
    				+ "				<img src='../images/arrow.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
-    			+ "				<textarea name='commentContent' cols='70' rows='5'></textarea>&nbsp;"
-    			+ "				<button type='button' id='replyBtnAdd' style='width:170px; height:40px; margin:auto;'>등록</button>"
+    			+ "				<textarea name='commentContent' cols='72' rows='5' style='resize:none;'></textarea>&nbsp;"
+    			+ "				<button type='button' id='replyBtnAdd' style='width:50px; height:30px; margin:auto;'>등록</button>"
 				+ "			</div>"
 				+ "		</form>"
 				+ "</div>"
@@ -113,11 +119,12 @@ $(function(){
 			rcList.hide();
 			rcAdd.hide();
 		} else {
-		$.getJSON(path+"/support/getReplyCommentsList?topCommentNo="+rc_id, function(data) {
-			for(i=0; i<data.length; i++) {
-			$("#c"+rc_id).children().children("#rcList").append(makeReplyCommentView(data[i])).show();
-		}
-		});
+			$("#c"+rc_id).children().children("#rcList").show();
+			$.getJSON(path+"/support/getReplyCommentsList?topCommentNo="+rc_id, function(data) {
+				for(i=0; i<data.length; i++) {
+					$("#c"+rc_id).children().children("#rcList").append(makeReplyCommentView(data[i])).show();
+				}
+			});
 		$("#c"+rc_id).children().children("#replyCommentAdd").show();
 		}
 	
@@ -137,13 +144,16 @@ $(function(){
 				+ "		<div>"
 				+ "			<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
 				+ "			<span class='commentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
-				+ "			<textarea name='commentContent' class='commentContent' readonly cols='51' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
-				+ "		</div>"
-				+ "		<div style='margin:auto;'>"
-				+ "			<button type='button' class='rcBtnUpdFrm' style='width:170px; height:40px;'>수정</button>"
-				+ "			<button type='button' class='rcBtnDel' style='width:170px; height:40px;'>삭제</button>"
-				+ "		</div>"
-				+ "</div>"
+				+ "			<textarea name='commentContent' class='commentContent' readonly cols='64' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
+				+ "		</div>";
+		var btn = "		<div style='margin:auto; margin-bottom:5px;'>"
+				+ "			<button type='button' class='rcBtnUpdFrm' style='width:50px; height:30px;margin-bottom:5px;'>수정</button>"
+				+ "			<button type='button' class='rcBtnDel' style='width:50px; height:30px;'>삭제</button>"
+				+ "		</div>";
+		if('${pMember.userId}' == comments.userId) {
+					str+=btn
+				}
+			str	+= "</div>"
 				+ "</div>";
 		
 		div.html(str);
@@ -152,22 +162,36 @@ $(function(){
 	
 	//댓글등록
 	$("#btnAdd").click(function(){
-		var params = $("[name=addForm]").serialize();		
-		var url = path+"/forme/insertComments";
-		$.getJSON(url, params, function(data){
-			$("#commentList").prepend( makeCommentView(data) );
-			$("[name=addForm]")[0].reset();
-		});
+		
+		if('${pMember.userId}'== ''){
+			if(confirm("로그인 후 이용가능합니다. 로그인 하시겠습니까?")){
+				location.href=path+"/support/login";
+			} else {return false;}
+		} else {
+			var params = $("[name=addForm]").serialize();		
+			var url = path+"/forme/insertComments";
+			$.getJSON(url, params, function(data){
+				$("#commentList").prepend( makeCommentView(data) );
+				$("[name=addForm]")[0].reset();
+			});
+		}
 	});
 	//답글등록
 		$("#commentList").on("click", "#replyBtnAdd", function(){
-		var params = $(this).closest("[name=replyAddForm]").serialize();
-		var check_this = $(this).closest("[name=replyAddForm]");	//function안에서 this 안돼서 넣음
-		var url = path+"/forme/insertReplyComments";
-		$.getJSON(url, params, function(data){		
-			check_this.parent().prev().prepend( makeReplyCommentView(data) );
-			check_this.closest("[name=replyAddForm]")[0].reset();
-		});
+			
+			if('${pMember.userId}' == ''){
+				if(confirm("로그인 후 이용가능합니다. 로그인 하시겠습니까?")){
+					location.href=path+"/support/login";
+				} else {return false;}
+			} else {	
+				var params = $(this).closest("[name=replyAddForm]").serialize();
+				var check_this = $(this).closest("[name=replyAddForm]");	//function안에서 this 안돼서 넣음
+				var url = path+"/forme/insertReplyComments";
+				$.getJSON(url, params, function(data){		
+					check_this.parent().prev().prepend( makeReplyCommentView(data) );
+					check_this.closest("[name=replyAddForm]")[0].reset();
+			});
+		}
 	});
 	
 	//댓글 수정
@@ -185,7 +209,19 @@ $(function(){
 		});
 	});
 	//답글 수정
-	
+ 	$("#commentList").on("click", ".rcBtnUpd", function(){
+ 		var params = $("[name=rcUpdateForm]").serialize();
+		var url = path+"/forme/updateReplyComments";
+		$.getJSON(url, params, function(data){
+			var newDiv = makeReplyCommentView(data);
+			var oldDiv = $("#rc"+data.commentNo);
+			$("#rcBtnCancel").click();
+			$(".tabcontent").append($("#replyCommentUpdate"));
+			$("[name=rcUpdateForm]")[0].reset(); 
+			$('#replyCommentUpdate').hide(); 
+			$(newDiv).replaceAll(oldDiv);
+		});
+	});
 	
 	//수정폼
 	$("#commentList").on("click", ".btnUpdFrm", function(){
@@ -200,6 +236,20 @@ $(function(){
 		$("#c"+seq).append($('#commentUpdate')); 
 		$('#commentUpdate').show();   
 	});
+	//답글 수정 폼
+  	$("#commentList").on("click", ".rcBtnUpdFrm", function(){
+		var seq = $(this).parent().parent().parent().parent().attr("id").substring(2);
+		var temp_seq = $("#rc"+seq);
+		var comments = temp_seq[0].comments;
+		$("#rcUpdateForm [name=seq]").val(seq);    
+		$("#rcUpdateForm [name=commentContent]").val(comments.commentContent);
+		$("#rcUpdateForm [name=commentNo]").val(comments.commentNo);
+		
+		$("#rc"+seq).find(".replyComment").hide();
+		$("#rc"+seq).append($('#replyCommentUpdate')); 
+		$('#replyCommentUpdate').show();  
+	});
+
 	//수정 취소
 	$("#btnCancel").click(function(){
 		var seq = $(this).closest(".comments").attr("id").substring(1);
@@ -207,6 +257,14 @@ $(function(){
 		$(".tabcontent").append( $("#commentUpdate") );
 		$("#commentUpdate").hide();
 		$("#c"+seq).find(".updComment").show();
+	});
+	//답글 수정취소
+ 	$("#commentList").on("click", ".rcBtnCancel", function(){
+		var seq = $(this).closest(".comments").attr("id").substring(2);
+		$("[name=rcUpdateForm]")[0].reset(); 
+		$(".tabcontent").append( $("#replyCommentUpdate") );
+		$("#replyCommentUpdate").hide();
+		$("#rc"+seq).children(".replyComment").show();
 	});
 	
 	//댓글 삭제
@@ -223,7 +281,6 @@ $(function(){
 	//답글 삭제
 	$("#commentList").on("click", ".rcBtnDel", function(){
 		var seq = $(this).parent().parent().parent().parent().attr("id").substring(2);
-		console.log("아아아아아아아아아악아아아아아악"+seq);
 		if(confirm("답글을 삭제하시겠습니까?")) {
 			var params = "commentNo="+seq;
 			var url = path+"/forme/deleteComments";
@@ -248,7 +305,7 @@ $(function(){
     <!-- 프로젝트 이름, 관리자 버튼 -->
     <div class="pjdtl-flex-container">
         <div class="pjdtl-project-name">${project.projectName}</div>
-        <c:if test="${pMember.userId == 'admin'}">
+        <c:if test="${pMember.userId == 'Admin'}">
         	<button class="pjdtl-pick-btn" >PICK</button>
     	</c:if>
     </div>
@@ -394,17 +451,25 @@ $(function(){
 					</div>	
 				</form>
 			</div>
-
-        	
-			
-			
+<!--답글 수정-->
+			<div id="replyCommentUpdate" style="width:100%; padding:15px; background-color:#F6F6F6; border-bottom:1px dotted grey; display:none;">
+				<form name="rcUpdateForm" id="rcUpdateForm">
+					<input type="hidden" name="commentNo" value="${comments.commentNo}">
+					<input type="hidden" name="userId" value="${pMember.userId}">
+					<div style="display: flex;">
+						<img src="../images/arrow.png" style="width:50px; height:50px; margin:auto;">&nbsp;
+						<textarea name="commentContent" cols="75" rows="5" style="resize:none;"></textarea>&nbsp;
+						<div style="margin:auto; margin-bottom:5px;">
+							<button type="button" class="rcBtnUpd" style="width:50px; height:30px; margin-bottom:5px;">수정</button><br>
+							<button type="button" class="rcBtnCancel" style="width:50px; height:30px;">취소</button>
+						</div>
+					</div>	
+				</form>
+			</div>			
 		    </div>
 <!--댓글탭끝나는곳--></div>
 		</div>
-
-			
-				
-			</div>
+		</div>
         </div>
 
         <div class="pjdtl-empty-content"></div>
