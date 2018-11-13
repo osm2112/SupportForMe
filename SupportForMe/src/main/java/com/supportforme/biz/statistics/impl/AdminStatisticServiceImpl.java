@@ -28,4 +28,14 @@ public class AdminStatisticServiceImpl implements AdminStatisticService {
 		return adminStatisticDAO.investAmountSumMonth(dto);
 	}
 
+	@Override
+	public List<Map<String, Object>> projectHoldDayCnt(AdminStatisticDTO dto) {
+		return adminStatisticDAO.projectHoldDayCnt(dto);
+	}
+
+	@Override
+	public List<Map<String, Object>> projectRegDayCnt(AdminStatisticDTO dto) {
+		return adminStatisticDAO.projectRegDayCnt(dto);
+	}
+
 }

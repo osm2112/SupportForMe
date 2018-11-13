@@ -26,4 +26,15 @@ public class AdminStatisticDAO {
 	public List<Map<String, Object>> investAmountSumMonth(AdminStatisticDTO dto) {
 		return mybatis.selectList("statistics.investAmountSumMonth", dto);
 	}
+	
+	
+	public List<Map<String, Object>> projectHoldDayCnt(AdminStatisticDTO dto) {
+		return mybatis.selectList("statistics.projectHoldCnt", dto);
+	
+	}
+	
+	
+	public List<Map<String, Object>> projectRegDayCnt(AdminStatisticDTO dto) {
+		return mybatis.selectList("statistics.projectRegDayCnt", dto);
+	}
 }

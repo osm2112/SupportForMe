@@ -37,6 +37,24 @@ public class AdminStatisticsController {
 		return adminStatisticService.investAmountSumMonth(dto);
 	}
 	
+	@RequestMapping("/forme/AdminProjectHoldDayCnt")
+	@ResponseBody
+	public  List<Map<String, Object>> projectHoldCnt(AdminStatisticDTO dto) {
+		return adminStatisticService.projectHoldDayCnt(dto);
+	}
+	
+	
+	
+	@RequestMapping("/forme/AdminProjectRegDayCnt")
+	@ResponseBody
+	public  List<Map<String, Object>> projectRegDayCnt(AdminStatisticDTO dto) {
+		return adminStatisticService.projectHoldDayCnt(dto);
+	}
+	
+	
+	
+	
+	
 	@RequestMapping("/forme/AdminDashBoard")
 	public String adminDashBoard(HttpSession session) {
 		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
