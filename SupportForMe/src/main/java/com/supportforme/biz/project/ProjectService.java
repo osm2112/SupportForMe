@@ -30,4 +30,11 @@ public interface ProjectService {
 	
 	//서포미픽 조회
 	public List<ProjectDTO> getSupportForMePicks();
+	
+	// 나의 프로젝트 조회
+	public List<ProjectDTO> getMyProjects(ProjectSearchDTO searchDto);
+	
+	// 프로젝트 삭제
+	public void deleteProject(ProjectDTO Dto);
+
 }

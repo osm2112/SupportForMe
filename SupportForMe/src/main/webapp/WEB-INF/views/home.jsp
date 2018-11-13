@@ -270,34 +270,13 @@ margin-top: 2px;
     line-height: 40px;
 }
 
-.real_time_rank_projects li span text {
 
-/* background: -webkit-linear-gradient(to right, #BDFFF3, #4AC29A);  /* Chrome 10-25, Safari 5.1-6 */
-/* background: linear-gradient(to right, #BDFFF3, #4AC29A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-/* transition-duration: 1s; */
-}
 
 .text3d{
-/* text-shadow:   0 1px 0 #ccc,
-               0 2px 0 #c9c9c9,
-               0 3px 0 #bbb,
-               0 4px 0 #b9b9b9,
-               0 5px 0 #aaa,
-               0 6px 1px rgba(0,0,0,.1),
-               0 0 5px rgba(0,0,0,.1),
-               0 1px 3px rgba(0,0,0,.3),
-               0 3px 5px rgba(0,0,0,.2),
-               0 5px 10px rgba(0,0,0,.25),
-               0 10px 10px rgba(0,0,0,.2),
-               0 20px 20px rgba(0,0,0,.15);
-      font:18px Arial, Helvetica, sans-serif;
-      color:grey; */
-
-  /* text-shadow: 0px 0px 0px #FFD, -0px 0px 0px #FFD, -0px -0px 0px #FFD, 0px -0px 0px #FFD, 0px 1px 0px #FFD, -0px 1px 0px #FFD, -0px -1px 0px #FFD, 0px -1px 0px #FFD, 0px 2px 0px #FFD, -0px 2px 0px #FFD, -0px -2px 0px #FFD, 0px -2px 0px #FFD, 1px 0px 0px #FFD, -1px 0px 0px #FFD, -1px -0px 0px #FFD, 1px -0px 0px #FFD, 1px 1px 0px #FFD, -1px 1px 0px #FFD, -1px -1px 0px #FFD, 1px -1px 0px #FFD, 1px 2px 0px #FFD, -1px 2px 0px #FFD, -1px -2px 0px #FFD, 1px -2px 0px #FFD, 2px 0px 0px #FFD, -2px 0px 0px #FFD, -2px -0px 0px #FFD, 2px -0px 0px #FFD, 2px 1px 0px #FFD, -2px 1px 0px #FFD, -2px -1px 0px #FFD, 2px -1px 0px #FFD, 2px 2px 0px #FFD, -2px 2px 0px #FFD, -2px -2px 0px #FFD, 2px -2px 0px #FFD, 0px 0px 0px hsla(0,0%,0%,0), -4px 2px 2px black; */
-   /* text-shadow: -0px 0px hsla(0,0%,100%,0.03333), 0px -0px hsla(0,0%,0%,0.2), -0.5px 0.5px hsla(0,0%,100%,0.03333), 0.5px -0.5px hsla(0,0%,0%,0.2), -1px 1px hsla(0,0%,100%,0.03333), 1px -1px hsla(0,0%,0%,0.2), -1.5px 1.5px hsla(0,0%,100%,0.03333), 1.5px -1.5px hsla(0,0%,0%,0.2), -2px 2px hsla(0,0%,100%,0.03333), 2px -2px hsla(0,0%,0%,0.2), 0px 0px 40px hsla(0,0%,100%,0.1); */
- font-size : 17px;
- text-shadow: -0px 0px hsla(0,0%,0%,0.2), 0px -0px hsla(0,0%,100%,0.2), -0.5px 0.5px hsla(0,0%,0%,0.2), 0.5px -0.5px hsla(0,0%,100%,0.2), -1px 1px hsla(0,0%,0%,0.2), 1px -1px hsla(0,0%,100%,0.2), -1.5px 1.5px hsla(0,0%,0%,0.2), 1.5px -1.5px hsla(0,0%,100%,0.2), 0px 0px 4.5px hsla(0,0%,0%,1);
- 
+text-shadow:1px 1px white, -1px -1px #666; 
+ }
+.text3dPn{
+ text-shadow:-1px -1px white, 1px 1px #666;
  }
 </style>
 <script>
@@ -455,14 +434,14 @@ margin-top: 2px;
 									<div class="suforme_picks_projects_content">
 										<nav>
 											<ul>
-												<li style="font-size: 30px"><strong>카테고리</strong></li>
+												<li class="text3dPn" style="font-size: 30px"><strong>카테고리</strong></li>
 												<li style="font-size: 25px">
 													<c:if test="${pick.categoryCode eq 001}">공연</c:if>
 													<c:if test="${pick.categoryCode eq 002}">영화</c:if>
 													<c:if test="${pick.categoryCode eq 003}">미술</c:if>
 													<c:if test="${pick.categoryCode eq 004}">도서</c:if>
-												</li>
-												<li style="font-size: 30px"><strong>프로젝트 제목</strong></li>
+												</li> 
+												<li class="text3dPn" style="font-size: 30px"><strong>프로젝트 제목</strong></li>
 												<li style="font-size: 25px">${pick.projectName}</li>
 											</ul>
 										</nav>
@@ -517,8 +496,8 @@ margin-top: 2px;
 					</div>
 					<div class="main_project_content">
 						<ul>
-							<li style="font-size: 16px;">${project.userId}님</li>
-							<li style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
+							<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
+							<li class="text3dPn" style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
 							<li style="height: 5px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
 								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
@@ -531,7 +510,7 @@ margin-top: 2px;
     							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
    								 </div>
   							</div>
-							<span>&nbsp;${project.percent}%</span>
+							<span class="text3d">&nbsp;${project.percent}%</span>
 							</li>
 							<li style="height: 10px"></li>
 							<li class="text3d">목표액 : ${project.targetAmount}원</li>
@@ -554,8 +533,8 @@ margin-top: 2px;
 						</div>
 						<div class="main_project_content">
 						<ul>
-							<li style="font-size: 16px;">${project.userId}님</li>
-							<li style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
+							<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
+							<li class="text3dPn" style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
 							<li style="height: 10px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
 								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
@@ -568,7 +547,7 @@ margin-top: 2px;
     							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
    								 </div>
   							</div>
-							<span>&nbsp;${project.percent}%</span>
+							<span class="text3d">&nbsp;${project.percent}%</span>
 							</li>
 							<li style="height: 10px"></li>
 							<li class="text3d">목표액 : ${project.targetAmount}원</li>
@@ -591,8 +570,8 @@ margin-top: 2px;
 					</div>
 					<div class="main_project_content">
 						<ul>
-							<li style="font-size: 16px;">${project.userId}님</li>
-							<li style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
+							<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
+							<li class="text3dPn" style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
 							<li style="height: 10px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
 								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
@@ -605,7 +584,7 @@ margin-top: 2px;
     							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
    								 </div>
   							</div>
-							<span>&nbsp;${project.percent}%</span>
+							<span class="text3d">&nbsp;${project.percent}%</span>
 							</li>
 							<li style="height: 10px"></li>
 							<li class="text3d">목표액 : ${project.targetAmount}원</li>
@@ -628,8 +607,8 @@ margin-top: 2px;
 					</div>
 					<div class="main_project_content">
 						<ul>
-							<li style="font-size: 16px;">${project.userId}님</li>
-							<li style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
+							<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
+							<li class="text3dPn" style="font-size: 18px; height:50px;"><strong>${project.projectName}</strong></li>
 							<li style="height: 10px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
 								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
@@ -642,7 +621,7 @@ margin-top: 2px;
     							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
    								 </div>
   							</div>
-							<span>&nbsp;${project.percent}%</span>
+							<span class="text3d">&nbsp;${project.percent}%</span>
 							</li>
 							<li style="height: 10px"></li>
 							<li class="text3d">목표액 : ${project.targetAmount}원</li>

@@ -105,7 +105,7 @@
 			<div id="project_mypage_menu">
 				<nav>
 					<div id="myUpdate" class="" onclick="location.href='../forme/MemberUpdateConfirmForm'">프로필 설정</div>
-					<div id="myProject" class="" onclick="">나의 프로젝트</div>
+					<div id="myProject" class="" onclick="location.href='../forme/getMyProjects'">나의 프로젝트</div>
 					<div id="_myInvestList" class="" onclick="location.href='../forme/MyInvestList'">나의 투자현황</div>
 					<div id="investList" class="" onclick="location.href='../forme/InvestList'">나의 결제내역</div>
 					<div id="investList" class="" onclick="location.href='../forme/MyInvestors'">나의 투자자 정보</div>

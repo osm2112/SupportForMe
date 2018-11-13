@@ -17,6 +17,7 @@ public class ProjectDTO {
 	private String depositAccount;
 	private String bankCode;
 	private String progress;
+	private String progressCd;
 	private String userId;
 	private String introductionImage;
 	private String supportPickYn;
@@ -29,6 +30,13 @@ public class ProjectDTO {
 	private String percent;
 	private String totalInvest;
 	
+	
+	public String getProgressCd() {
+		return progressCd;
+	}
+	public void setProgressCd(String progressCd) {
+		this.progressCd = progressCd;
+	}
 	public String getProjectProgressRate() {
 		return projectProgressRate;
 	}

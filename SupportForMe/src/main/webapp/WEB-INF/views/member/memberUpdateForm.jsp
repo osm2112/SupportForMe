@@ -269,7 +269,7 @@ textarea.textarea1 {
 		<br>
 		<br>
 		</div>
-					<!-- 수정버튼 -->
+		<!-- 수정버튼 -->
 			<div class="form-group">
 			<label class="col-lg-1 control-label" style="width:150px;"></label>
 				<div class="col-lg-offset-2 col-lg-4" style="text-align: right;">

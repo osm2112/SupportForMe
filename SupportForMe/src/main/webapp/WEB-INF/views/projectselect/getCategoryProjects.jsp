@@ -70,7 +70,7 @@
 	border: 1.5px solid rgb(211, 84, 0);
 	border-radius: 5px;
 	color: rgb(211, 84, 0);
-	padding-top: 5px;
+	/* padding-top: 5px; */
 	width: 100px;
 	height: 25px;
 	text-align: center;
@@ -79,7 +79,7 @@
 
 .state {
 	border-radius: 5px;
-	padding-top: 5px;
+	/* padding-top: 5px; */
 	width: 100px;
 	height: 25px;
 	text-align: center;
@@ -113,7 +113,7 @@
 	list-style-type: none;
 }
 <!-- -->
-.text3d{
+.text3dss{
 /* text-shadow:   0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
                0 3px 0 #bbb,
@@ -134,6 +134,12 @@
  font-size : 17px;
  text-shadow: -0px 0px hsla(0,0%,0%,0.2), 0px -0px hsla(0,0%,100%,0.2), -0.5px 0.5px hsla(0,0%,0%,0.2), 0.5px -0.5px hsla(0,0%,100%,0.2), -1px 1px hsla(0,0%,0%,0.2), 1px -1px hsla(0,0%,100%,0.2), -1.5px 1.5px hsla(0,0%,0%,0.2), 1.5px -1.5px hsla(0,0%,100%,0.2), 0px 0px 4.5px hsla(0,0%,0%,1);
  
+ }
+.text3d{
+text-shadow:1px 1px white, -1px -1px #666; 
+ }
+.text3dPn{
+ text-shadow:-1px -1px white, 1px 1px #666;
  }
 </style>
 <script>
@@ -185,11 +191,11 @@
 																			+ data[i].progress
 																			+ '</div>'
 																			+ '				<ul>'
-																			+ '  				<li style="font-size: 16px;">'
+																			+ '  				<li class="text3d" style="font-size: 16px;">'
 																			+ data[i].userId
 																			+ '님</li>'
 																			+ ' 				<li style="height: 5px"></li>'
-																			+ '   				<li style="font-size : 18px; height:50px;"><strong>'
+																			+ '   				<li class="text3dPn" style="font-size : 18px; height:50px;"><strong>'
 																			+ data[i].projectName
 																			+ '</strong></li>'
 																			+ ' 				<li style="height: 10px"></li>'
@@ -200,7 +206,7 @@
 																			+ ' 				<li style="height: 10px"></li>'
 																			+ ' 	<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">'
 																			+ ' 	<div class="progress"><div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:'+data[i].percent+'%"></div></div>'
-																			+'<span>'+ data[i].percent+ '%</span></li>'
+																			+'<span class="text3d">'+ data[i].percent+ '%</span></li>'
 																			+ ' 				<li style="height: 10px"></li>'
 																			+ ' 				<li class="text3d">목표액 :'
 																			+ data[i].targetAmount
@@ -276,9 +282,9 @@
 						<div class="mypage_project_content">
 							<div class="project_state">${project.progress}</div>
 							<ul>
-								<li style="font-size: 16px;">${project.userId}님</li>
+								<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
 								<li style="height: 5px"></li>
-								<li style="font-size: 18px; height: 50px;"><strong>${project.projectName}</strong></li>
+								<li class="text3dPn" style="font-size: 18px; height: 50px;"><strong>${project.projectName}</strong></li>
 								<li style="height: 10px"></li>
 								<li style="display: grid; grid-template-columns: 100%"><span class="text3d">모금액
 										: ${project.totalInvest}원</span></li>
@@ -290,7 +296,7 @@
     							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
    								 </div>
   							</div>
-							<span>&nbsp;${project.percent}%</span>
+							<span class="text3d">&nbsp;${project.percent}%</span>
 							</li>
 								<li style="height: 10px"></li>
 								<li class="text3d">목표액 : ${project.targetAmount}원</li>

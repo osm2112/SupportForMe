@@ -70,6 +70,18 @@ public class ProjectServiceImpl implements ProjectService {
 		// TODO Auto-generated method stub
 		return dao.getLatestProjects();
 	}
+	//나의 프로젝트 조회
+	@Override
+	public List<ProjectDTO> getMyProjects(ProjectSearchDTO searchDto) {
+		// TODO Auto-generated method stub
+		return dao.getMyProjects(searchDto);
+	}
+	//프로젝트 삭제
+	@Override
+	public void deleteProject(ProjectDTO Dto) {
+		// TODO Auto-generated method stub
+		dao.deleteProject(Dto);
+	} 
 	
 	
 	

@@ -50,5 +50,14 @@ public class ProjectDAO {
 	public List<ProjectDTO> getSupportForMePicks(){
 		return mybatis.selectList("project.getSupportForMePicks");
 	}
-
+	
+	//나의 프로젝트 조회
+	public List<ProjectDTO> getMyProjects(ProjectSearchDTO searchDto) {
+		return mybatis.selectList("project.getMyProjects", searchDto);  
+	}
+	
+	//프로젝트 삭제
+	public void deleteProject(ProjectDTO Dto) {
+		mybatis.delete("project.deleteProject", Dto);  
+	}
 }

@@ -67,7 +67,7 @@
 	border: 1.5px solid rgb(211, 84, 0);
 	border-radius: 5px;
 	color: rgb(211, 84, 0);
-	/* padding-top: 5px; */
+	padding-top: 0px; 
 	width: 100px;
 	height: 25px;
 	text-align: center;
@@ -94,7 +94,7 @@
 	height: 160px;
 	border: 1px solid lightgrey;
 	margin-left: auto;
-	margin-right: auto;
+	margin-right: auto; 
 	/* margin-top : 5px; */
 	margin-bottom: 5px;
 	background-color: #E9E9E9;
@@ -115,11 +115,40 @@ text-shadow:1px 1px white, -1px -1px #666;
 .text3dPn{
  text-shadow:-1px -1px white, 1px 1px #666;
  }
+/*진행중 */
+.progress001 {
+border : 1.5px solid rgb(211, 84, 0);
+color : rgb(211, 84, 0);
+}
+/* 마감 */
+.progress002 {
+border : 1.5px solid rgb(132, 127, 132);
+color : rgb(132, 127, 132);
+}
+/* 무산 */
+.progress003 {
+border : 1.5px solid rgb(38, 11, 102);
+color : "rgb(38, 11, 102);
+}
+/* 제작중 */
+.progress004 {
+border : 1.5px solid rgb(77, 77, 192);
+color : rgb(38, 11, 102);
+}
+/* 보류 */
+.progress005 {
+border : 1.5px solid rgb(84, 70, 13);
+color : rgb(84, 70, 13);
+}
+/* 완료 */
+.progress006 {
+border : 1.5px solid rgb(84, 70, 13);
+color : rgb(84, 70, 13);
+}
 </style>
 <script>
-	$(document)
-			.ready(
-					function() {
+var contextPath = '<%= request.getContextPath() %>';
+	$(document).ready(function() {
 						var count = 0;
 						$(document).scroll(
 								function() {
@@ -133,31 +162,30 @@ text-shadow:1px 1px white, -1px -1px #666;
 										loadArticle(lastno);
 									}
 								});
+						
 						function loadArticle(lastno) {
 
-							$
-									.ajax({
+							$.ajax({
 										type : "post",
-										url : "./getProjects",
+										url : "./getMyProjects",
 										data : {
 											"projectNo" : lastno,
-											"searchKeyword" : '${searchDTO.searchKeyword}'
+											"userId" : '${loginID}'
 										},
 										dataType : "json",
 										success : function(data) {
 											if (data.length > 0) {
 												for (i = 0; i < data.length; i++) {
 													count = ++count;
-													var select = "project_state"
-															+ count;
-
+													var select = "project_state"+ count;
+													var deleteBtn = (data[i].progressCd =='004') ? '<button class="btn btn-default" onclick="projectdelete(\''+data[i].projectNo+'\');">삭제</button></li></ul>' : '';
+												
 													$('.div2')
 															.append(
+																	// style="cursor:pointer;" onclick="location.href=\''+contextPath+'/support/getProjectDetailPage?projectNo='+ data[i].projectNo+ '\'\"
 																	'<div class="project_box" id='
 																			+ data[i].projectNo
-																			+ ' style="cursor:pointer;" onclick="location.href=\'./getProjectDetailPage?projectNo='
-																			+ data[i].projectNo
-																			+ '\'\">'
+																			+ '>'
 																			+ '		<div class="mypage_project_image"><img src="../upload/'+data[i].image +'" onerror="this.src=\'../images/대체이미지.jpg\'"></div>'
 																			+ '			<div class="mypage_project_content">'
 																			+ '				<div class="state" id="project_state'+count+'">'
@@ -184,71 +212,67 @@ text-shadow:1px 1px white, -1px -1px #666;
 																			+ ' 				<li class="text3d">목표액 :'
 																			+ data[i].targetAmount
 																			+ '원</li>'
-																			+ '				</ul>'
+																			+ '<li style="height: 10px"></li>'
+																			+ '<li><button class="btn btn-default" onclick="location.href=\''+contextPath+'/forme/make/'+data[i].projectNo+'\'">수정</button>'
+																			+ deleteBtn
+																			/* + '<button class="btn btn-default" onclick="projectdelete(\''+data[i].projectNo+'\');">삭제</button></li></ul>' */  
+																			
 																			+ '			</div>'
 																			+ '	</div>');
-
-													if (data[i].progress == '진행중') {
+													$("#" + select).addClass("progress"+data[i].progressCd)
+								
+												/* 	if (data[i].progress == '진행중') {
 														$("#" + select)
 																.css(
 																		{
 																			"border" : "1.5px solid rgb(211, 84, 0)",
 																			"color" : "rgb(211, 84, 0)"
 																		});
-													} else if (data[i].progress == '마감') {
-														$("#" + select)
-																.css(
-																		{
-																			"border" : "1.5px solid rgb(132, 127, 132)",
-																			"color" : "rgb(132, 127, 132)"
-																		});
-													} else if (data[i].progress == '완료') {
-														$("#" + select)
-																.css(
-																		{
-																			"border" : "1.5px solid rgb(84, 70, 13)",
-																			"color" : "rgb(84, 70, 13)"
-																		});
-													} else if (data[i].progress == '무산') {
-														$("#" + select)
-																.css(
-																		{
-																			"border" : "1.5px solid rgb(38, 11, 102)",
-																			"color" : "rgb(38, 11, 102)"
-																		});
-													}
+													} */
 												}
 											}
 										}
 									});
 							lastno = $(".project_box").last().attr("id");
 						}
-					});
+				});
+	function projectdelete(pno) {
+		if(confirm("프로젝트 삭제를 원하면 예, 삭제를 원하지않으면 아니오를 눌러주세요"))
+		 {
+			console.log('예');
+			$.ajax({
+				type : "delete",
+				url : contextPath+"/project/"+pno,		
+				success : function(data) {
+					alert('해당프로젝트가 삭제되었습니다.');
+					window.location.reload();
+				}
+			});
+		 }
+		 else
+		 {
+			 console.log('아니오');						
+		 }
+	}
 </script>
 </head>
 <body>
 	<div class="pjdtl_bodysize">
 		<div class="wrapper">
 			<div class="div1">
-				<h1 style="text-align: left;">${count}개의검색결과</h1>
-				<p style="text-align: left; font-size: 25px;">검색어 "${searchDTO.searchKeyword}"</p>
-				<br> <br>
 			</div>
 			<div class="div2">
 
 				<c:forEach items="${list}" var="project">
 					<div class="project_box" id="${project.projectNo}"
-						style="cursor: pointer;"
-						onclick="location.href='./getProjectDetailPage?projectNo=${project.projectNo}'">
+						<%-- style="cursor: pointer;"
+						onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'" --%>>
 						<div class="mypage_project_image">
 							<img src="../upload/${project.image}"
 								onerror="this.src='../images/대체이미지.jpg'">
 						</div>
 						<div class="mypage_project_content">
-							<div class="project_state"
-								<c:if test="${project.progress eq '완료'}">style="border: 1.5px solid rgb(84, 70, 13); color : rgb(84, 70, 13);"</c:if>
-								<c:if test="${project.progress eq '무산'}">style="border: 1.5px solid rgb(38, 11, 102); color : rgb(38, 11, 102);"</c:if>
-								<c:if test="${project.progress eq '마감'}">style="border: 1.5px solid rgb(132, 127, 132); color : rgb(132, 127, 132);"</c:if>>${project.progress}</div>
+							<div class="project_state progress${project.progressCd}">${project.progress}</div>
 							<ul>
 								<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
 								<li style="height: 5px"></li>
@@ -268,23 +292,15 @@ text-shadow:1px 1px white, -1px -1px #666;
 							</li>
 								<li style="height: 10px"></li>
 								<li class="text3d">목표액 : ${project.targetAmount}원</li>
+								<li style="height: 10px"></li>
+								<li><button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/forme/make/${project.projectNo}'">수정</button>
+								    <c:if test="${project.progressCd eq 004 }"><button class="btn btn-default" onclick="projectdelete('${project.projectNo}');">삭제</button></c:if>
+								    </li>
+								
 							</ul>
 						</div>
 					</div>
 				</c:forEach>
-
-				<!--  참고
-			<div class="card" style="width: 20rem;">
-				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
-				<div class="card-body">
-					<h4 class="card-title">프로젝트상태(진행중, 마감)</h4>
-					<p class="card-text">(db에서 받아 온 프로젝트제목값)</p>
-					<p class="card-text">( 모집률을 구하는함수호출값 )</p>
-					<p class="card-text">(db에서 받아 온 프로젝트의 목표금액)</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
- 				-->
 			</div>
 		</div>
 	</div>

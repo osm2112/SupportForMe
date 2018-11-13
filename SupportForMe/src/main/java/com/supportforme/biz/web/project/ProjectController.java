@@ -2,18 +2,23 @@ package com.supportforme.biz.web.project;
 
 
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.supportforme.biz.common.Paging;
+import com.supportforme.biz.member.MemberDTO;
 import com.supportforme.biz.project.ProjectDTO;
 import com.supportforme.biz.project.ProjectSearchDTO;
 import com.supportforme.biz.project.ProjectService;
@@ -79,6 +84,52 @@ public class ProjectController {
 		searchDto.setEnd(4);
 		return projectService.getProjects(searchDto);
 	
+	}
+	
+	//나의 프로젝트조회
+	@RequestMapping(value="/forme/getMyProjects", method=RequestMethod.GET) 
+	public String getMyProjects(Model model
+								,ProjectSearchDTO searchDto
+								,HttpSession session) {
+		
+		if ( session.getAttribute("LoginInfo") == null ) {
+			model.addAttribute("loginID", null);
+		}
+		else {
+			MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
+			String userId = dto.getUserId();
+			searchDto.setUserId(userId);
+			model.addAttribute("loginID", userId);
+		}
+		
+		// 시작/마지막 레코드 번호
+		searchDto.setStart(1);
+		searchDto.setEnd(8);
+	
+		model.addAttribute("list", projectService.getMyProjects(searchDto));  
+		
+		return "myNav/projectselect/getMyProjects";				
+	}
+	//나의 프로젝트 무한스크롤
+	@RequestMapping(value="/forme/getMyProjects" , method=RequestMethod.POST)
+	@ResponseBody
+	public List<ProjectDTO> MyProjectsScrollData(ProjectSearchDTO searchDto){
+		searchDto.setStart(1);
+		searchDto.setEnd(4);
+		return projectService.getMyProjects(searchDto);
+	
+	}
+	
+	//프로젝트 삭제
+	@ResponseBody
+	@RequestMapping(value="/project/{projectNo}", method=RequestMethod.DELETE) 
+	public HashMap<String,Object> deleteProject(@PathVariable String projectNo, ProjectDTO Dto){
+		Dto.setProjectNo(projectNo);
+		projectService.deleteProject(Dto);
+		// 결과를 안넘겨주는것보다 결과를 넘겨주는것이 좋음. 
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("result", Boolean.TRUE);
+		return map; // 결과가 JSON으로 바뀜 @ResponseBody에 의해
 	}
 }
 
