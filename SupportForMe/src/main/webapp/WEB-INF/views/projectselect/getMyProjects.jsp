@@ -133,7 +133,7 @@ color : "rgb(38, 11, 102);
 /* 제작중 */
 .progress004 {
 border : 1.5px solid rgb(77, 77, 192);
-color : rgb(38, 11, 102);
+color : rgb(77, 77, 192);
 }
 /* 보류 */
 .progress005 {

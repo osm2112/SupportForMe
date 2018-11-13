@@ -115,6 +115,35 @@ text-shadow:1px 1px white, -1px -1px #666;
 .text3dPn{
  text-shadow:-1px -1px white, 1px 1px #666;
  }
+/*진행중 */
+.progress001 {
+border : 1.5px solid rgb(211, 84, 0);
+color : rgb(211, 84, 0);
+}
+/* 마감 */
+.progress002 {
+border : 1.5px solid rgb(132, 127, 132);
+color : rgb(132, 127, 132);
+}
+/* 무산 */
+.progress003 {
+border : 1.5px solid rgb(38, 11, 102);
+color : "rgb(38, 11, 102);
+}
+/* 제작중 */
+.progress004 {
+border : 1.5px solid rgb(77, 77, 192);
+color : rgb(77, 77, 192);
+}
+/* 보류 */
+.progress005 {
+border : 1.5px solid rgb(84, 70, 13);
+color : rgb(84, 70, 13);
+}
+/* 완료 */
+.progress006 {
+border : 1.5px solid rgb(84, 70, 13);
+color : rgb(84, 70, 13);
 </style>
 <script>
 	$(document)
@@ -148,8 +177,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 											if (data.length > 0) {
 												for (i = 0; i < data.length; i++) {
 													count = ++count;
-													var select = "project_state"
-															+ count;
+													var select = "project_state"+ count;
 
 													$('.div2')
 															.append(
@@ -187,36 +215,16 @@ text-shadow:1px 1px white, -1px -1px #666;
 																			+ '				</ul>'
 																			+ '			</div>'
 																			+ '	</div>');
-
-													if (data[i].progress == '진행중') {
+													
+													$("#" + select).addClass("progress"+data[i].progressCd)
+													/* if (data[i].progress == '진행중') {
 														$("#" + select)
 																.css(
 																		{
 																			"border" : "1.5px solid rgb(211, 84, 0)",
 																			"color" : "rgb(211, 84, 0)"
 																		});
-													} else if (data[i].progress == '마감') {
-														$("#" + select)
-																.css(
-																		{
-																			"border" : "1.5px solid rgb(132, 127, 132)",
-																			"color" : "rgb(132, 127, 132)"
-																		});
-													} else if (data[i].progress == '완료') {
-														$("#" + select)
-																.css(
-																		{
-																			"border" : "1.5px solid rgb(84, 70, 13)",
-																			"color" : "rgb(84, 70, 13)"
-																		});
-													} else if (data[i].progress == '무산') {
-														$("#" + select)
-																.css(
-																		{
-																			"border" : "1.5px solid rgb(38, 11, 102)",
-																			"color" : "rgb(38, 11, 102)"
-																		});
-													}
+													}  */
 												}
 											}
 										}
@@ -245,10 +253,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 								onerror="this.src='../images/대체이미지.jpg'">
 						</div>
 						<div class="mypage_project_content">
-							<div class="project_state"
-								<c:if test="${project.progress eq '완료'}">style="border: 1.5px solid rgb(84, 70, 13); color : rgb(84, 70, 13);"</c:if>
-								<c:if test="${project.progress eq '무산'}">style="border: 1.5px solid rgb(38, 11, 102); color : rgb(38, 11, 102);"</c:if>
-								<c:if test="${project.progress eq '마감'}">style="border: 1.5px solid rgb(132, 127, 132); color : rgb(132, 127, 132);"</c:if>>${project.progress}</div>
+							<div class="project_state progress${project.progressCd}">${project.progress}</div>
 							<ul>
 								<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
 								<li style="height: 5px"></li>
