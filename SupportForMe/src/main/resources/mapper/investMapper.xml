@@ -314,8 +314,17 @@
 			COMMON_CODE.CODE = '001' 
 			AND COMMON_CODE2.CODE = '002'
 			AND PROJECT.USER_ID = #{userId}
+			<if test="searchCondition == 'projectName'">
+				AND PROJECT.PROJECT_NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="searchCondition == 'investNo'">
+				AND INVEST.INVEST_NO LIKE '%' || #{searchKeyword} || '%'
+			</if>
 			<if test="searchCondition == 'presentName'">
 				AND PRESENT.PRESENT_NAME LIKE '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="searchCondition == 'address'">
+				AND ADDRESS LIKE '%' || #{searchKeyword} || '%'
 			</if>
 		</where>
 	</select>

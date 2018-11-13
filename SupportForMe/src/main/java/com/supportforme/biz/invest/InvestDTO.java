@@ -19,6 +19,7 @@ public class InvestDTO {
 	private String name;
 	private String request;
 	private String uuid;
+	private String[] subject;			/* 필요해서 추가했습니다 ^^ - 김혜연 */
 	
 	public String getTotalInvestAmount() {
 		return totalInvestAmount;
@@ -122,7 +123,13 @@ public class InvestDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	public String[] getSubject() {
+		return subject;
+	}
+	public void setSubject(String[] subject) {
+		this.subject = subject;
+	}
+	
 	
 	
 	
