@@ -10,4 +10,9 @@ public interface AdminStatisticService {
 	
 	public List<Map<String, Object>>  investAmountSumMonth(AdminStatisticDTO dto);
 	
+	
+	public List<Map<String, Object>>  projectHoldDayCnt(AdminStatisticDTO dto);
+	
+	public List<Map<String, Object>>  projectRegDayCnt(AdminStatisticDTO dto);
+	
 }
