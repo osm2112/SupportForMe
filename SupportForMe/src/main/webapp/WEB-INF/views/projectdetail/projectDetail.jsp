@@ -22,6 +22,29 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<style>
+.more {
+	border-top:1px solid #EAEAEA;
+	border-bottom:1px solid #EAEAEA; 
+	color:#747474; 
+	text-align:center; 
+	height:30px;
+	font-size:20px;
+}
+.more:hover {
+	border-top:1px solid #EAEAEA;
+	border-bottom:1px solid #EAEAEA;
+	background-color: #EAEAEA;
+	color:#747474; 
+	text-align:center; 
+	height:30px;
+	font-size:20px;
+	cursor:pointer;
+}
+</style>
+
+
+
 
 <script>
 	var path = "<c:url value='/'/>"
@@ -139,7 +162,7 @@ $(function(){
 		var str = "<div class='replyComment' style='background-color: #F6F6F6; border-bottom:1px dotted #BDBDBD;'>"
 				+ "<div style='display:flex; padding:10px;'>"
 				+ "	<div style='width:60px; margin-right:10px;'>"
-				+ "		<img src='../images/arrow.png' style='width:50px; height:50px; margin:auto;'><br>"
+				+ "		<img src='../images/arrow2.png' style='width:50px; height:50px; margin:auto;'><br>"
 				+ "	</div>"
 				+ "		<div>"
 				+ "			<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
@@ -422,6 +445,7 @@ function pick() {
 			<div id="comment" class="tabcontent">
 			
 <!--댓글출력--><div id="commentList"></div>
+			<div class="more" id="more">더보기</div>
 			<br>
 <!--댓글입력--><div id="commentAdd" style="width:785px; padding:15px; background-color:#F6F6F6;">
 				<form name="addForm" id="addForm">
@@ -456,7 +480,7 @@ function pick() {
 					<input type="hidden" name="commentNo" value="${comments.commentNo}">
 					<input type="hidden" name="userId" value="${pMember.userId}">
 					<div style="display: flex;">
-						<img src="../images/arrow.png" style="width:50px; height:50px; margin:auto;">&nbsp;
+						<img src="../images/arrow2.png" style="width:50px; height:50px; margin:auto;">&nbsp;
 						<textarea name="commentContent" cols="75" rows="5" style="resize:none;"></textarea>&nbsp;
 						<div style="margin:auto; margin-bottom:5px;">
 							<button type="button" class="rcBtnUpd" style="width:50px; height:30px; margin-bottom:5px;">수정</button><br>
@@ -478,7 +502,14 @@ function pick() {
             <div class="pjdtl-each-reward">
             	<div style="display:flex;">
             		<img src="../images/checkmark.png" style="width:27px; height:27px">
-            		<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span>
+            		<c:choose>
+            		<c:when test="${presentCount[status.index].rewardSelectCount == null}">
+            			<span style="font-size:27px; color:#8C8C8C;">0명이 선택</span>
+            		</c:when>
+            		<c:otherwise>
+            			<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span>
+            		</c:otherwise>
+            		</c:choose>
             	</div><br><br>
             	<span style="color:#4C4C4C;">가격</span><br>
             	<span style="font-size:23px; color:#FF007F;">${reward.presentPrice}원 +</span><br>
