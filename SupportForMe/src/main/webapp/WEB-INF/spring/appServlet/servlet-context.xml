@@ -31,12 +31,15 @@
 	<resources mapping="/css/**" location="/css/" />
 	<resources mapping="/upload/**" location="/upload/" />
 	<resources mapping="/smarteditor/**" location="/smarteditor/" />
-
+	
+	<!-- excel -->
+	<beans:bean p:order="1" class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:order="2">
+		p:order="3">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
@@ -44,7 +47,7 @@
 	<!-- 타일즈 설정 -->
 	<beans:bean
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver"
-		p:order="1"
+		p:order="2"
 		p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView" />
 	<!--Don't add suffix or prefix like you do with .jsp files -->
 	<beans:bean id="tilesConfigurer"
@@ -65,7 +68,7 @@
 		<beans:property name="driverClassName"
 			value="oracle.jdbc.OracleDriver" />
 		<beans:property name="url"
-			value="jdbc:oracle:thin:@localhost:1521:XE" />
+			value="jdbc:oracle:thin:@192.168.0.17:1521:XE" />
 		<beans:property name="username" value="supporter" />
 		<beans:property name="password" value="supporter" />
 	</beans:bean>
@@ -158,8 +161,7 @@
 		</interceptor>
 	</interceptors>	
 	
-
-
+	
 
 
 </beans:beans>
