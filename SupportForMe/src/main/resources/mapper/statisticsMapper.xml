@@ -99,20 +99,13 @@
 	GROUP BY YY,MM
 	</select>
 	
-	
-	
 
-
-
-	
-	
-	
 
 	<select id="memberJoinStatisticsMonth"  resultMap="statisticMonthMap">
 	WITH TEMP AS(
 		SELECT USER_ID AS CNT,
-				TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm--dd'),'yyyy') AS YY,
-				TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm--dd'),'mm') AS MM
+				TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm-dd'),'yyyy') AS YY,
+				TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm-dd'),'mm') AS MM
 	FROM MEMBER
 	)
 	SELECT
@@ -135,9 +128,9 @@
 	<select id="memberJoinStatisticsWeek" >
 	WITH TEMP2 AS(
 		SELECT USER_ID AS CNT,
-			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm--dd'),'yyyy') AS YY,
-			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm--dd'),'mm') AS MM,
-			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm--dd'),'W') AS WW
+			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm-dd'),'yyyy') AS YY,
+			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm-dd'),'mm') AS MM,
+			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm-dd'),'W') AS WW
 		FROM MEMBER
 	)
 	SELECT
@@ -155,9 +148,9 @@
 	<select id="memberJoinStatisticsDay" >
 	WITH TEMP AS(
 	SELECT 	USER_ID AS CNT,
-			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm--dd'),'yyyy') AS YY,
-			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm--dd'),'mm') AS MM,
-			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm--dd'),'dd') AS DD
+			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm-dd'),'yyyy') AS YY,
+			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm-dd'),'mm') AS MM,
+			TO_CHAR(TO_DATE(JOIN_DATE,'rrrr-mm-dd'),'dd') AS DD
 	FROM MEMBER
 	)
 	SELECT

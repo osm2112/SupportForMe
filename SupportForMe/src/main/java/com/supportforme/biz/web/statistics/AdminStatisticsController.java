@@ -48,7 +48,7 @@ public class AdminStatisticsController {
 	@RequestMapping("/forme/AdminProjectRegDayCnt")
 	@ResponseBody
 	public  List<Map<String, Object>> projectRegDayCnt(AdminStatisticDTO dto) {
-		return adminStatisticService.projectHoldDayCnt(dto);
+		return adminStatisticService.projectRegDayCnt(dto);
 	}
 	
 	
