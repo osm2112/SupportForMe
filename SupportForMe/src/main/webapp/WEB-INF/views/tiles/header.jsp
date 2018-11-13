@@ -296,7 +296,7 @@ function view() {
   <header>회원아이디 <br> ${loginID} </header>
   <ul>
     <li><a href="<%= request.getContextPath() %>/forme/MemberUpdateConfirmForm">프로필 설정</a></li>
-    <li><a href="#">나의 프로젝트</a></li>
+    <li><a href="<%= request.getContextPath() %>/forme/getMyProjects">나의 프로젝트</a></li>
     <li><a href="<%= request.getContextPath() %>/forme/MyInvestList">나의 투자 현황</a></li>
     <li><a href="<%= request.getContextPath() %>/forme/InvestList">나의 결제 내역</a></li>
     <li><a href="<%= request.getContextPath() %>/support/logout">로그아웃</a></li>
