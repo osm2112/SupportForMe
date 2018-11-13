@@ -298,20 +298,17 @@ $(function(){
 function pick() {
 	
 	var seq = '${project.projectNo}';
-	console.log(seq);	//2018어쩌고~
-	if('${project.supportPickYn}' == 'N' || '${project.supportPickYn}' == '') {
-		var url = path+"forme/updatePickYes";
-		var params = "projectNo="+seq;
-		$.getJSON(url, params, function(data){
+	console.log(seq);
+	var url = path+"forme/updatePick";
+	var params = "projectNo="+seq;
+	$.getJSON(url, params, function(data){
+		console.log(data.supportPickYn);
+		if(data.supportPickYn == 'Y'){
 			alert('PICK :^)');
-		});
-	} else {
-		var url = path+"forme/updatePickNo";
-		var params = "projectNo="+seq;
-		$.getJSON(url, params, function(data){
+		} else {
 			alert('PICK 취소!');
-		});
-	}
+		}
+	});
 	
 }
 

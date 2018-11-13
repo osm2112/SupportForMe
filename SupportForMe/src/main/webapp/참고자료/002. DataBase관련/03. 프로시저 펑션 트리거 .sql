@@ -210,4 +210,31 @@ BEGIN
                VALUES (v_projectNo, p_userId, '004');
   p_projectNo := v_projectNo;
 END;
+
+
+/*관리자 픽*/
+create or replace procedure pick_control (p_project_no varchar2)is
+
+v_project_no project.project_no%type := p_project_no;
+v_support_pick_yn varchar2(50);
+
+begin
+    select support_pick_yn into v_support_pick_yn
+    from project
+    where project_no = v_project_no;
+    -- 'Y'이면 'N'입력
+    if v_support_pick_yn = 'Y' then
+        update project set support_pick_yn = 'N'
+        where project_no = v_project_no;
+    -- 'N' or ''이면 'Y'입력
+    else
+        update project set support_pick_yn = 'Y'
+        where project_no = v_project_no; 
+    end if;
+end;
+
+
+
+
+
   

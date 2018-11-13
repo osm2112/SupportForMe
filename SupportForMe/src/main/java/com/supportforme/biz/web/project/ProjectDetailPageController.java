@@ -47,16 +47,11 @@ public class ProjectDetailPageController {
 	
 	
 	//관리자 픽 [Yes/No]
-	@RequestMapping("/forme/updatePickYes")
+	@RequestMapping("/forme/updatePick")
 	@ResponseBody
-	public ProjectDTO updatePickYes(ProjectDTO dto) {
-		projectDetailPageService.updatePickYes(dto);
-		return dto;
+	public ProjectDTO updatePick(ProjectDTO dto) {
+		projectDetailPageService.updatePick(dto);
+		return projectDetailPageService.getProjectDetail(dto);
 	}
-	@RequestMapping("/forme/updatePickNo")
-	@ResponseBody
-	public ProjectDTO updatePickNo(ProjectDTO dto) {
-		projectDetailPageService.updatePickNo(dto);
-		return dto;
-	}
+	
 }

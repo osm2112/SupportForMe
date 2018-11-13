@@ -42,12 +42,8 @@ public class ProjectDetailPageServiceImpl implements ProjectDetailPageService {
 	
 	//관리자 픽[Yes/No]
 	@Override
-	public void updatePickYes(ProjectDTO dto) {
-		projectDetailPageDAO.updatePickYes(dto);
-	}
-	@Override
-	public void updatePickNo(ProjectDTO dto) {
-		projectDetailPageDAO.updatePickNo(dto);
+	public void updatePick(ProjectDTO dto) {
+		projectDetailPageDAO.updatePick(dto);
 	}
 
 }

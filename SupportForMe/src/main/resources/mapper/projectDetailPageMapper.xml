@@ -56,14 +56,10 @@
 </select>
 
 <!-- 관리자 픽 pick -->
-<update id="updatePickYes" parameterType="project">
-	UPDATE PROJECT SET SUPPORT_PICK_YN = 'Y'
-	WHERE PROJECT_NO = #{projectNo}
-</update>
-<update id="updatePickNo" parameterType="project">
-	UPDATE PROJECT SET SUPPORT_PICK_YN = 'N'
-	WHERE PROJECT_NO = #{projectNo}
-</update>
+<select id="updatePick" statementType="CALLABLE" parameterType="project">
+	{CALL PICK_CONTROL (#{projectNo})}
+</select>
+
 
 
 

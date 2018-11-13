@@ -21,7 +21,8 @@ public interface ProjectDetailPageService {
 	public List<PresentDTO> getProjectPresentsCount(ProjectDTO dto);
 
 	//관리자 픽 Yes/No
-	public void updatePickYes(ProjectDTO dto);
-	public void updatePickNo(ProjectDTO dto);
+//	public void updatePickYes(ProjectDTO dto);
+//	public void updatePickNo(ProjectDTO dto);
+	public void updatePick(ProjectDTO dto);
 	
 }
