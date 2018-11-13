@@ -32,8 +32,8 @@
 
 <!-- 프로젝트별 모인금액, 투자자 인원수 불러오기 -->
 <select id="getProjectAboutInvest" resultType="invest" parameterType="project">
-	SELECT SUM(INVESTMENT_AMOUNT) AS TOTAL_INVEST_AMOUNT,
-		   COUNT(*) AS HEADCOUNT
+	SELECT NVL((SUM(INVESTMENT_AMOUNT)), '0') AS TOTAL_INVEST_AMOUNT,
+		   NVL((COUNT(*)), '0') AS HEADCOUNT
 	FROM INVEST
 	WHERE PROJECT_NO = #{projectNo}
 </select>
@@ -48,7 +48,7 @@
 	ORDER BY PRESENT_NO
 </select>
 <select id="getProjectPresentsCount" resultType="present" parameterType="project">
-	SELECT COUNT(*) AS REWARD_SELECT_COUNT
+	SELECT NVL((COUNT(*)), '0') AS REWARD_SELECT_COUNT
 	FROM INVEST
 	WHERE PROJECT_NO = #{projectNo}
 	GROUP BY PRESENT_NO

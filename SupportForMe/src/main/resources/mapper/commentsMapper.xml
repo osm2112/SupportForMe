@@ -6,7 +6,12 @@
 <!-- 댓글 불러오기 -->
 <!-- 댓글 -->
 <select id="getCommentsList" resultType="comments" parameterType="comments">
-	SELECT *
+	SELECT COMMENT_NO,
+		   TOP_COMMENT_NO,
+		   COMMENT_CONTENT,
+		   NVL(COMMENT_DATE, ' ') AS COMMENT_DATE,
+		   PROJECT_NO,
+		   NVL(USER_ID, ' ') AS USER_ID
 	FROM COMMENTS
 	WHERE PROJECT_NO = #{projectNo} AND TOP_COMMENT_NO IS NULL
 	ORDER BY COMMENT_NO DESC 

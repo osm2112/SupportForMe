@@ -95,7 +95,7 @@ $(function(){
 				+ "			<input type='hidden' name='userId' value='${pMember.userId}'>"
 				+ "			<input type='hidden' name='topCommentNo' value='"+comments.commentNo+"'>"
 				+ "			<div style='display:flex;'>"
-   				+ "				<img src='../images/arrow.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
+   				+ "				<img src='../images/arrow2.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
     			+ "				<textarea name='commentContent' cols='72' rows='5' style='resize:none;'></textarea>&nbsp;"
     			+ "				<button type='button' id='replyBtnAdd' style='width:50px; height:30px; margin:auto;'>등록</button>"
 				+ "			</div>"
@@ -478,14 +478,7 @@ function pick() {
             <div class="pjdtl-each-reward">
             	<div style="display:flex;">
             		<img src="../images/checkmark.png" style="width:27px; height:27px">
-            		<c:choose>
-            		<c:when test="${presentCount[status.index].rewardSelectCount == null}">
-            			<span style="font-size:27px; color:#8C8C8C;">0명이 선택</span>
-            		</c:when>
-            		<c:otherwise>
-            			<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span>
-            		</c:otherwise>
-            		</c:choose>
+            		<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span>
             	</div><br><br>
             	<span style="color:#4C4C4C;">가격</span><br>
             	<span style="font-size:23px; color:#FF007F;">${reward.presentPrice}원 +</span><br>
