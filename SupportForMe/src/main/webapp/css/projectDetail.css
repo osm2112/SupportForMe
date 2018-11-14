@@ -18,6 +18,7 @@
 	width: 100%;
 	font-size: 50px;
 	text-align: center;
+	color:#353535;
 }
 
 .pjdtl-pick-btn {
@@ -66,7 +67,7 @@
 
 .pjdtl-target-price {
 	font-size: 33px;
-	color: #A6A6A6;
+	color: #8C8C8C;
 }
 
 .pjdtl-invest-btn {
@@ -89,7 +90,7 @@
 .pjdtl-share-btn:hover {
 	cursor:pointer;
 }
-
+/*
 .pjdtl-status-box {
 	display: flex;
 	justify-content: space-between;
@@ -98,7 +99,7 @@
 	border: 1px solid lightgray;
 	padding: 0px 20px;
 }
-
+*/
 .pjdtl-status-img {
 	width: 90px;
 	height: 90px;
@@ -110,8 +111,9 @@
 }
 
 .pjdtl-status-font {
-	font-size: 20px;
+	font-size: 18px;
 	text-align: center;
+	color:#4C4C4C;
 }
 
 .pjdtl-content {

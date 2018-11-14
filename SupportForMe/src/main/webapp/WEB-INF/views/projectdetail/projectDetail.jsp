@@ -435,9 +435,16 @@ function pick() {
         <div class="pjdtl-empty-box"></div>
         <!-- 디테일 박스 -->
         <div class="pjdtl-detail-box">
-            <div style="font-size:45px;">${invest.totalInvestAmount}원<span style="font-size:37px;">(모인금액)</span></div>
-            <div class="pjdtl-target-price">목표금액 ${project.targetAmount}원</div>
-			<div style="width:70px; border:1px solid #FF007F; border-radius:7px; color:#FF007F; padding:5px; text-align:center; margin-bottom:5px;">
+            <div id="totalInvestAmount" style="font-size:45px;">
+            	<script>
+            		$("#totalInvestAmount").text(addComma('${invest.totalInvestAmount}')+"원");          	
+            	</script>
+            	<span style="font-size:35px;">(모인금액)</span></div>
+            <div class="pjdtl-target-price"></div>
+            <script>
+            	$(".pjdtl-target-price").text("목표금액 "+addComma('${project.targetAmount}')+"원");
+            </script>
+			<div style="width:100px; color:#FF007F; text-align:center; margin-bottom:3px; margin-left:-15px;font-size:23px;">
 				<span style="font-weight:700;">${project.progress}</span>
 			</div>
 <!-- 진행상황 막대그래프 -->
@@ -445,15 +452,15 @@ function pick() {
 				<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${project.projectProgressRate}%;">${project.projectProgressRate}%</div>
 			</div>
 			
-            <div style="font-size:25px; color:#A6A6A6;">참여자 ${invest.headcount}명</div>
+            <div style="font-size:25px; color:#8C8C8C;">참여자 ${invest.headcount}명</div>
             <div style="display:flex;">
                 <button class="pjdtl-invest-btn" onclick="location.href='../forme/InvestSelectReward?projectNo=${project.projectNo}'">투자하기</button>
             <!--<img src="../images/share-button.png" class="pjdtl-share-btn">-->
             </div><br><br>
  
-            <table style="width:480px; border:1px solid #A6A6A6;">
+            <table style="width:480px;border:1px solid #A6A6A6;">
             	<tr style="text-align: center;">
-            		<td><img src="../images/calendar.png" style="width:90px; height:82px;"></td>
+            		<td style="height:100px;"><img src="../images/calendar.png" style="width:90px; height:82px;"></td>
     				<td><img src="../images/right-arrow.png" class="pjdtl-right-arrow"></td>
     				<td><img src="../images/credit-card.png" class="pjdtl-status-img"></td>
     				<td><img src="../images/right-arrow.png" class="pjdtl-right-arrow"></td>
