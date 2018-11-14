@@ -90,14 +90,11 @@ $(function(){
 	function loadCommentsList() {
 		var params = { projectNo: '${project.projectNo}'};
 		$.getJSON(path+"support/getCommentsList", params, function(data){
-			makeCommentView(data);
+			more(data);
 		});
 	}
-	
-	function makeCommentView(comments) {
-		
+	function more(comments) {
 		var l = comments.length;
-		
 		if(l <= endView) {
 			$("#more").hide();
 		}
@@ -107,7 +104,15 @@ $(function(){
 
  		$.each($items, function(i, comments) {
 			i += startView;
+			$("#commentList").append(makeCommentView(comments));
+ 		});
+ 		setView(comments.length);
+		}
+	}
+	
+	function makeCommentView(comments) {
 		
+			
 		var div = $("<div>");
 		div.attr("id", "c"+comments.commentNo);
 		div.addClass('comments');
@@ -149,15 +154,15 @@ $(function(){
 				+ "</div>"
 				+ "</div>";
 		div.html(str);
-		$("#commentList").append(div);
-		});
-		setView(comments.length);
+		
+		
+		return div;
 	}
-	}
+
 	$("#more").click(function() {
 		$.ajax({
 			url: path+"support/getCommentsList?projectNo="+'${project.projectNo}',
-			success: makeCommentView, 
+			success: more,
 		});
 	});
 	
@@ -230,6 +235,7 @@ $(function(){
 			$.getJSON(url, params, function(data){
 				$("#commentList").prepend( makeCommentView(data) );
 				$("[name=addForm]")[0].reset();
+				location.hash = "#here";
 			});
 		}
 	});
@@ -465,7 +471,7 @@ function pick() {
     </div>
     </div>
     
-    <div style="border-bottom:1px solid lightgray;"></div><br>
+    <div id="here" style="border-bottom:1px solid lightgray;"></div><br>
     
     <div class="pjdtl-bodysize">
         <div class="pjdtl-flex-container">
