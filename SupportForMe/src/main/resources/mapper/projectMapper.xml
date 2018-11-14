@@ -27,7 +27,8 @@
 			<if test="searchKeyword != null and searchKeyword != '' ">
 			<!-- (h.hashtag_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%' -->
 				OR (h.hashtag_name = #{searchKeyword, jdbcType=VARCHAR} 
-					OR p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} ||	'%') AND p.progress NOT IN('004','005')  and c.code_group = 'C03'
+					OR  replace(p.project_name,' ','')  like '%' || #{searchKeyword, jdbcType=VARCHAR} ||	'%'
+					OR  p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} ||	'%') AND p.progress NOT IN('004','005')  and c.code_group = 'C03'
 			</if>
 			<if test="searchCondition != null and searchCondition != '' ">
 				OR p.category_code = #{searchCondition} AND p.progress IN('001') and c.code_group = 'C03'
@@ -53,7 +54,8 @@
 				1 = 0	
 			</if>
 			<if test="searchKeyword != null and searchKeyword != '' ">
-				OR (p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'
+				OR ( replace(p.project_name,' ','') like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'
+					OR p.project_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%'
 				<!-- h.hashtag_name like '%' || #{searchKeyword, jdbcType=VARCHAR} || '%') -->
 				OR 	h.hashtag_name = #{searchKeyword, jdbcType=VARCHAR} )
 				AND p.progress NOT IN('004','005')
