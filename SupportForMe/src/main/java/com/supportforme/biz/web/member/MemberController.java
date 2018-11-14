@@ -40,22 +40,51 @@ public class MemberController {
 	}
 
 	@RequestMapping("/forme/MemberUpdateConfirmForm")
-	public String memberUpdateConfirmForm() {
+	public String memberUpdateConfirmForm(Model model,HttpSession session) {
+		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
+		if ( memberDTO == null ) {
+			model.addAttribute("loginID", null);
+		} else {
+			String userId = memberDTO.getUserId();
+			model.addAttribute("loginID", userId);
+		}
 		return "myNav/member/memberUpdateConfirmForm";
 	}
 
 	@RequestMapping("/forme/MemberDeleteConfirmForm")
-	public String memberDeleteConfirmForm() {
+	public String memberDeleteConfirmForm(Model model, HttpSession session) {
+		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
+		if ( memberDTO == null ) {
+			model.addAttribute("loginID", null);
+		} else {
+			String userId = memberDTO.getUserId();
+			model.addAttribute("loginID", userId);
+		}
 		return "myNav/member/memberDeleteConfirmForm";
 	}
 	
 	@RequestMapping("/support/MemberFindIdForm")
-	public String memberFindIdForm() {
+	public String memberFindIdForm(Model model, HttpSession session) {
+		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
+		if ( memberDTO == null ) {
+			model.addAttribute("loginID", null);
+		} else {
+			String userId = memberDTO.getUserId();
+			model.addAttribute("loginID", userId);
+		}
 		return "noNav/member/memberFindIdForm";
 	}
 	
 	@RequestMapping("/support/MemberFindPasswordForm")
-	public String memberFindPasswordForm() {
+	public String memberFindPasswordForm(Model model, HttpSession session ) {
+		
+		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
+		if ( memberDTO == null ) {
+			model.addAttribute("loginID", null);
+		} else {
+			String userId = memberDTO.getUserId();
+			model.addAttribute("loginID", userId);
+		}
 		return "noNav/member/memberFindPasswordForm";
 	}
 	
@@ -108,8 +137,13 @@ public class MemberController {
 
 	@RequestMapping("/forme/MemberUpdateForm")
 	public String memberUpdateForm(Model model, HttpSession session, HttpServletRequest request) {
-		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
-		model.addAttribute("loginID", dto.getUserId());
+		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
+		if ( memberDTO == null ) {
+			model.addAttribute("loginID", null);
+		} else {
+			String userId = memberDTO.getUserId();
+			model.addAttribute("loginID", userId);
+		}
 		String ref = null;
 		if (request.getHeader("referer") != null) {
 			ref = request.getHeader("referer");
@@ -117,7 +151,7 @@ public class MemberController {
 
 		if (ref != null) {
 			if (ref.equals("http://localhost:8181/SupportForMe/forme/MemberUpdatePassWordCheck")) {
-				model.addAttribute("member", dto);
+				model.addAttribute("member", memberDTO);
 				return "myNav/member/memberUpdateForm";
 			} else {
 				model.addAttribute("url", "../forme/MemberUpdateConfirmForm");

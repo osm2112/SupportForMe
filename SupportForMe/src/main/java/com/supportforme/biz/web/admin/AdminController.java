@@ -24,7 +24,15 @@ public class AdminController {
 	@RequestMapping("/forme/AdminMemberList")	
 	public String getAdminMembers(Model model, AdminSearchDTO adminSearchDTO, Paging paging, HttpServletRequest request,HttpSession session ) {
 		
+		
+		
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
+		if ( memberDTO == null ) {
+			model.addAttribute("loginID", null);
+		} else {
+			String userId = memberDTO.getUserId();
+			model.addAttribute("loginID", userId);
+		}
 		
 		if(request.getParameter("pageUnit") != null) {
 			int pageunit = Integer.parseInt(request.getParameter("pageUnit"));
@@ -33,8 +41,6 @@ public class AdminController {
 		} else {
 			paging.setPageUnit(10);
 		}
-		
-	
 		
 		//현재페이지 번호 파라미터
 		if(paging.getPage() ==null) {
@@ -78,7 +84,17 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/forme/AdminSupportForMePickList")	
-	public String getAdminSupportForMePickList(Model model, AdminSearchDTO adminSearchDTO, Paging paging, HttpServletRequest request ) {
+	public String getAdminSupportForMePickList(Model model, AdminSearchDTO adminSearchDTO, Paging paging, HttpServletRequest request, HttpSession session ) {
+		
+		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
+		if ( memberDTO == null ) {
+			model.addAttribute("loginID", null);
+		} else {
+			String userId = memberDTO.getUserId();
+			model.addAttribute("loginID", userId);
+		}
+		
+		
 		
 		if(request.getParameter("pageUnit") != null) {
 			int pageunit = Integer.parseInt(request.getParameter("pageUnit"));
@@ -112,7 +128,16 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/forme/AdminSupportForMePick")
-	public String adminSupportForMePick(Model model,AdminSearchDTO adminSearchDTO, HttpServletRequest request) {
+	public String adminSupportForMePick(Model model,AdminSearchDTO adminSearchDTO, HttpServletRequest request, HttpSession session) {
+		
+		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
+		if ( memberDTO == null ) {
+			model.addAttribute("loginID", null);
+		} else {
+			String userId = memberDTO.getUserId();
+			model.addAttribute("loginID", userId);
+		}
+		
 		String getIds =request.getParameter("ids");
 		String flag =request.getParameter("flag");			
 		String[] ids = getIds.split("[|]");
@@ -135,7 +160,15 @@ public class AdminController {
 	
 	
 	@RequestMapping("/forme/AdminProjectProgressList")	
-	public String getProjectProgressList(Model model, AdminSearchDTO adminSearchDTO, Paging paging, HttpServletRequest request ) {
+	public String getProjectProgressList(Model model, AdminSearchDTO adminSearchDTO, Paging paging, HttpServletRequest request, HttpSession session) {
+		
+		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
+		if ( memberDTO == null ) {
+			model.addAttribute("loginID", null);
+		} else {
+			String userId = memberDTO.getUserId();
+			model.addAttribute("loginID", userId);
+		}
 		
 		if(request.getParameter("pageUnit") != null) {
 			int pageunit = Integer.parseInt(request.getParameter("pageUnit"));
@@ -169,9 +202,11 @@ public class AdminController {
 	
 	@RequestMapping("/forme/AdminProjectProgress")
 	public String adminProjectProgress(Model model,AdminSearchDTO adminSearchDTO, HttpServletRequest request) {
+		
 		String getIds =request.getParameter("ids");
 		String flag =request.getParameter("flag");			
 		String[] ids = getIds.split("[|]");
+		
 		adminSearchDTO.setIds(ids);
 		adminSearchDTO.setFlag(flag);
 		
@@ -185,10 +220,5 @@ public class AdminController {
 			model.addAttribute("url", "../forme/AdminProjectProgressList");
 			return "commons/alertRedirect";
 		}	
-
 	}
-	
-	
-	
-
 }

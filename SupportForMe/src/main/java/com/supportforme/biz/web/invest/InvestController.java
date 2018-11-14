@@ -200,7 +200,7 @@ public class InvestController {
 		//시작 /마지막 레코드 번호
 		searchDTO.setStart(paging.getFirst());
 		searchDTO.setEnd(paging.getLast());
-		
+		model.addAttribute("loginID", memberDTO.getUserId());
 		model.addAttribute("searchCondition", searchDTO.getSearchCondition());
 		model.addAttribute("searchKeyword", searchDTO.getSearchKeyword());
 		model.addAttribute("investor",investService.getMyInvestorList(searchDTO));
