@@ -1,4 +1,4 @@
-package com.supportforme.biz.web.ex;
+package com.supportforme.biz.common;
 
 import java.math.BigDecimal;
 import java.util.Date;

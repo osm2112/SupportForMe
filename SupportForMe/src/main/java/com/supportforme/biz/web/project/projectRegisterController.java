@@ -180,7 +180,6 @@ public class projectRegisterController {
 	@RequestMapping(value="/forme/deleteIntroductionImg")
 	@ResponseBody
 	public Map<String,String> deleteIntroductionImg(@RequestParam(value="removeIntroductionImg",required=false)String removeImg,HttpServletRequest request){
-		 System.out.println("=================%%"+removeImg);
 		 String folder =  request.getSession().getServletContext().getRealPath("/upload");// 삭제할 파일의 경로
 		 File file = new File(folder,removeImg);
 		 if(file.exists()){
