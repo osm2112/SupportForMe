@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -297,9 +299,16 @@ function view() {
     <li><a href="<%= request.getContextPath() %>/forme/MemberUpdateConfirmForm">프로필 설정</a></li>
     <li><a href="<%= request.getContextPath() %>/forme/getMyProjects">나의 프로젝트</a></li>
     <li><a href="<%= request.getContextPath() %>/forme/MyInvestList">나의 투자 현황</a></li>
-    <li><a href="<%= request.getContextPath() %>/forme/InvestList">나의 결제 내역</a></li>
+    <li><a href="<%= request.getContextPath() %>/forme/MyInvestors">나의 투자자</a></li>
+    <li><a href="<%= request.getContextPath() %>/forme/InvestList">나의 결재 내역</a></li>
+    <c:set var ="id" value="${loginID}"/>
+    <c:if test="${fn:contains(id,'Admin' )}">
+    <li><a href="<%= request.getContextPath() %>/forme/AdminProjectProgressList">프로젝트 관리</a></li>
+    <li><a href="<%= request.getContextPath() %>/forme/AdminMemberList">회원 관리</a></li>
+    <li><a href="<%= request.getContextPath() %>/forme/AdminSupportForMePickList">서포미 픽 관리</a></li>
+    </c:if>
     <li><a href="<%= request.getContextPath() %>/support/logout">로그아웃</a></li>
-    <li><a href="<%= request.getContextPath() %>/forme/MemberDeleteConfirmForm">회원탈퇴</a></li>
+    
   </ul>
 </nav>
 
