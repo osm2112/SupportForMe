@@ -23,12 +23,12 @@
 .bodysize {
 	margin-left: auto;
 	margin-right: auto;
-	width: 1100px;
+	width: 1200px;
 }
 
 .suforme {
 	display: grid;
-	grid-template-columns: 780px 1fr;
+	grid-template-columns: 850px 1fr;
 }
 /*         .slide_main_img {
             width : 100%;
@@ -36,13 +36,13 @@
         } */
 .suforme_picks_grid {
 	display: grid;
-	grid-template-columns: 1fr 300px;
-	border: 1px solid lightgrey;
-	height: 370px;
+	grid-template-columns: 1fr 320px;
+ 	border: 1px solid #EEEEEE;
+	height: 360px;
 }
 
 .suforme_picks_div {
-	width: 750px;
+	width:800px;
 }
 
 .suforme_picks_div .flexslider {
@@ -51,26 +51,26 @@
 
 .suforme_top_1_text_div {
 	font-size: 30px;
-	color: #353535;
+	font-weight:700;
+	color: #474747;
 	width: auto;
 	height: 45px;
 }
 
 .suforme_picks_projects {
-	width: 450px;
+	width: 480px;
 	height: 360px;
 	background-color: #E9E9E9;
 }
-
 .suforme_picks_projects_content {
-	border-left: 1px solid lightgrey;
-	width: 295px;
-	height: 370px;
+	/* border-left: 1px solid lightgrey; */
+	width: 280px;
+	height: 360px;
+	margin: 10px 15px;
 }
 
-.suforme_picks_projects_content nav li {
+.suforme_picks_projects_content div {
 	margin-top: 10px;
-	list-style-type: none;
 }
 
 .picks_project_category {
@@ -92,19 +92,19 @@
 }
 
 .real_time_rank_div {
-	border: 1px solid lightgrey;
-	height: 370px;
-	width: 285px;
+	border: 1px solid #EEEEEE;
+	height: 360px;
+	width: 300px;
 }
 
 .real_time_image {
-	width: 250px;
-	height: 160px;
+	width:100%;
+	height: 170px;
 	/* border: 1px solid lightgrey; */
-	margin-left: auto;
+	/* margin-left: auto;
 	margin-right: auto;
-	margin-top: 10px;
-	background-color: #E9E9E9;
+	margin-top: 10px;	background-color: #E9E9E9; */
+
 }
 
 .real_time_rank_projects {
@@ -120,9 +120,9 @@
 
 .project_box {
 	background: white;
-	width: 255px;
+	width: 280px;
 	height: 350px;
-	border: 1px solid lightgrey;
+	border: 1px solid #EEEEEE;
 }
 
 .main_project_image {
@@ -130,13 +130,12 @@
 	height: 170px;
 	background-color: #E9E9E9;
 }
-
 .main_project_content {
-	width: 250px;
+	width: 280px;
 	height: 160px;
 	padding: 10px 10px 10px 15px;
 	margin: 5px;
-	color: #353535;
+	color: #474747;
 }
 
 .category_project_div {
@@ -146,7 +145,9 @@
 
 .project_box:hover {
 	/* 	border: 4px solid rgb(26, 188, 156); */
-	box-shadow: 8px 8px 3px lightgrey;
+	box-shadow: 5px 5px 3px lightgrey;
+	margin-top:-5px;
+	
 }
 
 <!--
@@ -173,91 +174,37 @@
 
 .flexslider2 .slides img {
 	width: 100%;
-	height: 400px;
+	height: 480px;
 	display: block;
 	-moz-user-select: none;
 }
 
 .flexslider3 .slides img {
 	width: 100%;
-	height: 160px;
+	height: 180px;
 }
 
 <!--
 -->
-@
-keyframes flickerAnimation { 0% {
-	opacity: 1;
+@keyframes flickerAnimation { 
+	0% { opacity: 1 }
+	50%{ opacity:0;	}
+	100%{opacity:1;}
 }
-
-50%
-{
-opacity
-:
- 
-0;
+@-o-keyframes flickerAnimation { 
+	0% {opacity: 1;	}
+	50%{opacity:0;}
+	100%{opacity:1;}
 }
-100%{
-opacity
-:
- 
-1;
+@-moz-keyframes flickerAnimation { 
+	0% {opacity: 1;}
+	50%{opacity:0;}
+	100%{opacity:1;}
 }
-}
-@
--o-keyframes flickerAnimation { 0% {
-	opacity: 1;
-}
-
-50%{
-opacity
- 
-:
-0;
-}
-100%{
-opacity
- 
-:
- 
-1;
-}
-}
-@
--moz-keyframes flickerAnimation { 0% {
-	opacity: 1;
-}
-
-50%{
-opacity
-:
- 
-0;
-}
-100%{
-opacity
-:
- 
-1;
-}
-}
-@
--webkit-keyframes flickerAnimation { 0% {
-	opacity: 1;
-}
-
-50%{
-opacity
-:
- 
-0;
-}
-100%{
-opacity
-:
- 
-1;
-}
+@-webkit-keyframes flickerAnimation { 
+	0% {opacity: 1;}
+	50%{opacity:0;}
+	100%{opacity:1;}
 }
 .ranktext {
 	-webkit-animation: flickerAnimation 6s infinite;
@@ -286,43 +233,55 @@ li em {
 	text-align: center;
 	font-family: tahoma, sans-serif;
 }
-
-.flexslider2 .flex-direction-nav .flex-next {
-	right: 60px; /* adjust offset to match the hover style */
-	opacity: .8; /* adjust opacity to match the hover style */
+ .flexslider2 .flex-direction-nav .flex-next {
+	right: 120px; /* adjust offset to match the hover style */
+	opacity: 0; /* adjust opacity to match the hover style */
 }
 
 .flexslider2 .flex-direction-nav .flex-prev {
-	left: 60px; /* adjust offset to match the hover style */
-	opacity: .8; /* adjust opacity to match the hover style */
+	left: 120px; /* adjust offset to match the hover style */
+	opacity: 0; /* adjust opacity to match the hover style */
 }
 
 .flexslider2 .flex-direction-nav a {
-	margin: -70px 0 0;
+	margin: -150px 0 0 0;
 }
 
 .flexslider2 .flex-direction-nav a.flex-prev:before {
-	font-family: 'FontAwesome';
+	font-family: 'flexslider-icon';
 	font-size: 40px;
 	display: inline-block;
 	width: 40px;
-	content: "\f191";
-	color: black;
+	content: '\f001';
+	color: #474747;
 	/*  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3); */
 	line-height: 40px;
 }
 
 .flexslider2 .flex-direction-nav a.flex-next:before {
-	font-family: 'FontAwesome';
+	font-family: 'flexslider-icon';
 	font-size: 40px;
 	display: inline-block;
 	width: 40px;
-	content: "\f152";
-	color: black;
+	content: '\f002';
+	color: #474747;
 	/* text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3); */
 	line-height: 40px;
 }
-
+.flexslider2:hover .flex-direction-nav .flex-prev {
+  opacity: 0.7;
+  left: 80px;
+}
+.flexslider2:hover .flex-direction-nav .flex-prev:hover {
+  opacity: 1;
+}
+.flexslider2:hover .flex-direction-nav .flex-next {
+  opacity: 0.7;
+  right: 80px;
+}
+.flexslider2:hover .flex-direction-nav .flex-next:hover {
+  opacity: 1;
+}
 /* .text3dss{
 text-shadow:   0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
@@ -341,8 +300,8 @@ text-shadow:   0 1px 0 #ccc,
 } */
 .text3d {
 	/* text-shadow: 1px 1px white, -1px -1px #666; */
-	font-size:16.5px;
-	color:#353535;
+	font-size:18px;
+	color:#474747;
 }
 
 .text3dPn {
@@ -351,17 +310,42 @@ text-shadow:   0 1px 0 #ccc,
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	width: 180px;
-	height: 30px;
-	font-size:18.5px;
+	width: 245px;
+	height: 35px;
+	font-size:20px;
 }
 .remainDay {
 	padding-right:20px;
 	display:inline-block;
+	width:180px;
 }
 .rdPercent {
 	color:#5e5e5e;
 	font-size:16.5px;
+}
+.mainCategory{
+	width:1225px;
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+	margin-bottom:20px
+}
+.mainCategory div a {
+	font-size:20px;
+	border:1px solid rgb(26, 188, 156);
+	/* background-color:rgb(26, 188, 156);
+	color:white; */
+	color:rgb(26, 188, 156);
+	padding:5px 15px;
+	border-radius : 5px;
+}
+.mainCategory div a:hover{
+	font-size:20px;
+	text-decoration:none;
+	background-color:white;
+	border:1px solid #FF007F;
+	border-radius : 5px;
+	color:#FF007F;
+	padding:5px 15px;
 }
 </style>
 <script>
@@ -377,8 +361,8 @@ text-shadow:   0 1px 0 #ccc,
 							animation : "slide",
 							controlNav : false,
 							directionNav : true,
-							prevText : "",
-							nextText : ""
+							prevText : "Previous",
+							nextText : "Next"
 
 						/* ,
 						customDirectionNav : $(".custom-navigation2 a")  */
@@ -541,7 +525,8 @@ text-shadow:   0 1px 0 #ccc,
 	<div class="bodysize">
 		<div class="suforme">
 			<div class="suforme_picks_div"> 
-				<div class="suforme_top_1_text_div" style="	margin-bottom:-3px;">서포미 PICKS</div><br>
+				<div class="suforme_top_1_text_div" style="	margin-bottom:-3px;">
+				<!-- <i class="fa fa-heart" style="color: #FF007F;width:25px;height:25px"></i> --> 서포미 PICKS </div><br>
 
 				<div class="flexslider">
 					<ul class="slides">
@@ -553,19 +538,15 @@ text-shadow:   0 1px 0 #ccc,
 										<img src="./upload/${pick.image}" onerror="this.src='./images/대체이미지.jpg'">
 									</div>
 									<div class="suforme_picks_projects_content">
-										<nav>
-											<ul>
-												<li class="text3dPn" style="font-size: 30px"><strong>카테고리</strong></li>
-												<li style="font-size: 25px">
-													<c:if test="${pick.categoryCode eq 001}">공연</c:if>
-													<c:if test="${pick.categoryCode eq 002}">영화</c:if>
-													<c:if test="${pick.categoryCode eq 003}">미술</c:if>
-													<c:if test="${pick.categoryCode eq 004}">도서</c:if>
-												</li> 
-												<li class="text3dPn" style="font-size: 30px"><strong>프로젝트 제목</strong></li>
-												<li style="font-size: 25px">${pick.projectName}</li>
-											</ul>
-										</nav>
+										<div class="text3dPn" style="font-size: 30px"><strong>카테고리</strong></div>
+										<div style="font-size: 25px">
+											<c:if test="${pick.categoryCode eq 001}">공연</c:if>
+											<c:if test="${pick.categoryCode eq 002}">영화</c:if>
+											<c:if test="${pick.categoryCode eq 003}">미술</c:if>
+											<c:if test="${pick.categoryCode eq 004}">도서</c:if>
+										</div> 
+										<div class="text3dPn" style="font-size: 30px"><strong>프로젝트 제목</strong></div>
+										<p style="font-size: 25px">${pick.projectName}</p>
 									</div>
 								</div>
 							</li>
@@ -591,11 +572,11 @@ text-shadow:   0 1px 0 #ccc,
 							<div style="height:20px;"></div>
 							<!-- <marquee behavior=slide loop=30> -->
 							<ol>
-								<li class="" style="height:30px; font-size: small;" onclick="1"></li>
-								<li class="" style="height:30px; font-size: small;" onclick="2"></li>
-								<li class="" style="height:30px; font-size: small;"	onclick="3"></li>
-								<li class="" style="height:30px; font-size: small;"	onclick="4"></li>
-								<li class="" style="height:30px; font-size: small;"	onclick="5"></li>
+								<li class="" style="height:25px; font-size: 17px;" onclick="1"></li>
+								<li class="" style="height:25px; font-size: 17px;" onclick="2"></li>
+								<li class="" style="height:25px; font-size: 17px;"	onclick="3"></li>
+								<li class="" style="height:25px; font-size: 17px;"	onclick="4"></li>
+								<li class="" style="height:25px; font-size: 17px;"	onclick="5"></li>
 							</ol>
 							<!-- </marquee> -->
 							
@@ -604,9 +585,11 @@ text-shadow:   0 1px 0 #ccc,
 				</div>
 			</div>
 		</div>
-		<div style="height: 100px"></div> 
+		<div style="height: 50px"></div> 
 	
-		<div class="suforme_top_1_text_div">공연 프로젝트</div><br> 
+		<div class="suforme_top_1_text_div mainCategory">
+			<div>공연 프로젝트</div>
+			<div style="text-align:right;"><a href="./support/getCategoryProjects?searchCondition=001">더보기 </a></div></div> 
 		<div class="category_project_div">
 			<c:forEach items="${Performance}" var="project">
 				<div class="project_box" id="${project.projectNo}"
@@ -617,6 +600,7 @@ text-shadow:   0 1px 0 #ccc,
 					</div>
 					<div class="main_project_content">
 						<div class="text3d">${project.userId}님</div>
+						<div style="height: 5px"></div>
 						<div class="text3dPn" style=""><strong>${project.projectName}</strong></div>
 						<div style="height:20px"></div>
 						<div style="display: grid; grid-template-columns: 100%">
@@ -626,68 +610,78 @@ text-shadow:   0 1px 0 #ccc,
 						<div style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
 							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
 							 --%>
-							<div class="progress" style="height:10px;width:210px">
+							<div class="progress" style="height:10px;width:250px">
 	    						<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:10px">
 	   							 </div>
 	  						</div>
 						</div>
 						<div class="rdPercent">
-							<div class="remainDay" id="${project.projectNo}rd"></div>
-							<div style="display:inline-block;margin-left:100px">&nbsp;${project.percent}%</div>
+							<div class="remainDay" id="${project.projectNo}pf"></div>
+							<div style="display:inline-block;">&nbsp;${project.percent}%</div>
 						</div>
 						<script>
 							var seq = '${project.projectNo}';
 							var rd = '${project.projectDeadline}';
-							console.log(rd);
 							if(rd != ''){
-								$("#"+seq+"rd").text("D-"+remainDay(rd));
+								$("#"+seq+"pf").text("D-"+remainDay(rd));
 							}
 						</script>
 					</div>						
 				</div>				
 			</c:forEach>
 		</div>
-		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=001">더보기 </a></div>	
-		<div style="height: 50px"></div>
+		
+		<div style="height: 70px"></div>
 		<!-- 미술 부분  -->
-		<div class="suforme_top_1_text_div">미술 프로젝트</div><br>	
+		<div class="suforme_top_1_text_div mainCategory">
+			<div>미술 프로젝트</div>
+			<div  style="text-align:right;"><a href="./support/getCategoryProjects?searchCondition=003">더보기 </a></div></div>	
 			<div class="category_project_div">
 				<c:forEach items="${Art}" var="project">
 					<div class="project_box" id="${project.projectNo}"
-						style="cursor: pointer;"
-						onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
-						<div class="main_project_image">
-							<img src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
+					style="cursor: pointer;"
+					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
+					<div class="main_project_image">
+						<img src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
+					</div>
+					<div class="main_project_content">
+						<div class="text3d">${project.userId}님</div>
+						<div style="height: 5px"></div>
+						<div class="text3dPn" style=""><strong>${project.projectName}</strong></div>
+						<div style="height:20px"></div>
+						<div style="display: grid; grid-template-columns: 100%">
+							<span class="text3d">모금액 ${project.totalInvest}원</span> 
 						</div>
-						<div class="main_project_content">
-						<ul>
-							<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
-							<li class="text3dPn" style="font-size : 18px; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 180px; height: 30px;"><strong>${project.projectName}</strong></li>
-							<li style="height: 10px"></li>
-							<li style="display: grid; grid-template-columns: 100%">
-								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
-							</li>
-							<li style="height: 10px"></li>
-							<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
+						<div style="height: 5px"></div>
+						<div style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
 							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
 							 --%>
-							<div class="progress">
-    							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
-   								 </div>
-  							</div>
-							<span class="text3d">&nbsp;${project.percent}%</span>
-							</li>
-							<li style="height: 10px"></li>
-							<li class="text3d">목표액 : ${project.targetAmount}원</li>
-						</ul>						
+							<div class="progress" style="height:10px;width:250px">
+	    						<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:10px">
+	   							 </div>
+	  						</div>
 						</div>
-					</div>
+						<div class="rdPercent">
+							<div class="remainDay" id="${project.projectNo}art"></div>
+							<div style="display:inline-block;">&nbsp;${project.percent}%</div>
+						</div>
+						<script>
+							var seq = '${project.projectNo}';
+							var rd = '${project.projectDeadline}';
+							if(rd != ''){
+								$("#"+seq+"art").text("D-"+remainDay(rd));
+							}
+						</script>
+					</div>						
+				</div>				
 				</c:forEach>
 			</div>
-			<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=003">더보기 </a></div>	
-			<div style="height: 50px"></div>
+			<div style="height: 70px"></div>
 		<!-- 도서 --> 
-		<div class="suforme_top_1_text_div">도서 프로젝트</div> <br>
+		<div class="suforme_top_1_text_div mainCategory">
+			<div>도서 프로젝트</div>
+			<div  style="text-align:right;"><a href="./support/getCategoryProjects?searchCondition=004">더보기 </a></div>
+		</div>	
 		<div class="category_project_div">
 			<c:forEach items="${Book}" var="project">
 				<div class="project_box" id="${project.projectNo}"
@@ -697,34 +691,43 @@ text-shadow:   0 1px 0 #ccc,
 						<img src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
-						<ul>
-							<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
-							<li class="text3dPn" style="font-size : 18px; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 180px; height: 30px;"><strong>${project.projectName}</strong></li>
-							<li style="height: 10px"></li>
-							<li style="display: grid; grid-template-columns: 100%">
-								<span class="text3d">모금액 ${project.totalInvest}원</span> 
-							</li>
-							<li style="height: 10px"></li>
-							<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
+						<div class="text3d">${project.userId}님</div>
+						<div style="height: 5px"></div>
+						<div class="text3dPn" style=""><strong>${project.projectName}</strong></div>
+						<div style="height:20px"></div>
+						<div style="display: grid; grid-template-columns: 100%">
+							<span class="text3d">모금액 ${project.totalInvest}원</span> 
+						</div>
+						<div style="height: 5px"></div>
+						<div style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
 							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
 							 --%>
-							<div class="progress">
-    							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
-   								 </div>
-  							</div>
-							<span class="text3d">&nbsp;${project.percent}%</span>
-							</li>
-							<li style="height: 10px"></li>
-							<li class="text3d">목표액 ${project.targetAmount}원</li>
-						</ul>						
-					</div>
+							<div class="progress" style="height:10px;width:250px">
+	    						<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:10px">
+	   							 </div>
+	  						</div>
+						</div>
+						<div class="rdPercent">
+							<div class="remainDay" id="${project.projectNo}book"></div>
+							<div style="display:inline-block;">&nbsp;${project.percent}%</div>
+						</div>
+						<script>
+							var seq = '${project.projectNo}';
+							var rd = '${project.projectDeadline}';
+							if(rd != ''){
+								$("#"+seq+"book").text("D-"+remainDay(rd));
+							}
+						</script>
+					</div>						
 				</div>				
 			</c:forEach>
 		</div>
-		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=004">더보기 </a></div>
-		<div style="height: 50px"></div>
+		<div style="height: 70px"></div>
 		<!-- 영화 -->
-		<div class="suforme_top_1_text_div">영화 프로젝트</div> <br>
+		<div class="suforme_top_1_text_div mainCategory">
+			<div>영화 프로젝트</div>
+			<div  style="text-align:right;"><a href="./support/getCategoryProjects?searchCondition=002">더보기 </a></div>
+		</div>
 		<div class="category_project_div">
 			<c:forEach items="${Movie}" var="project">
 				<div class="project_box" id="${project.projectNo}"
@@ -734,35 +737,39 @@ text-shadow:   0 1px 0 #ccc,
 						<img src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
-						<ul>
-							<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
-							<li class="text3dPn" style="font-size : 18px; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 180px; height: 30px;"><strong>${project.projectName}</strong></li>
-							<li style="height: 10px"></li>
-							<li style="display: grid; grid-template-columns: 100%">
-								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
-							</li>
-							<li style="height: 10px"></li>
-							<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
+						<div class="text3d">${project.userId}님</div>
+						<div style="height: 5px"></div>
+						<div class="text3dPn" style=""><strong>${project.projectName}</strong></div>
+						<div style="height:20px"></div>
+						<div style="display: grid; grid-template-columns: 100%">
+							<span class="text3d">모금액 ${project.totalInvest}원</span> 
+						</div>
+						<div style="height: 5px"></div>
+						<div style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
 							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
 							 --%>
-							<div class="progress">
-    							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
-   								 </div>
-  							</div>
-							<span class="text3d">&nbsp;${project.percent}%</span>
-							</li>
-							<li style="height: 10px"></li>
-							<li class="text3d">목표액 : ${project.targetAmount}원</li>
-						</ul>						
-					</div>
+							<div class="progress" style="height:10px;width:250px">
+	    						<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:10px">
+	   							 </div>
+	  						</div>
+						</div>
+						<div class="rdPercent">
+							<div class="remainDay" id="${project.projectNo}mv"></div>
+							<div style="display:inline-block;">&nbsp;${project.percent}%</div>
+						</div>
+						<script>
+							var seq = '${project.projectNo}';
+							var rd = '${project.projectDeadline}';
+							if(rd != ''){
+								$("#"+seq+"mv").text("D-"+remainDay(rd));
+							}
+						</script>
+					</div>						
 				</div>				
 			</c:forEach>
 		</div>
-		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=002">더보기 </a></div>	
-		
 	</div>
-	
-	<div style="height: 200px"></div>
+	<div style="height: 100px"></div>
 	
 </body>
 </html>
