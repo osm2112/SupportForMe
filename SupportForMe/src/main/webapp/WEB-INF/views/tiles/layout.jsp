@@ -16,12 +16,14 @@ article {
 }
 .footer {
     /*    position: absolute; bottom: 0; width: 100%; */
-    height: 222px;
+    height: 200px;
     padding: 1em;
     color: white;
-    background-color: #1EB496;
+    background-color: rgb(26, 188, 156);
+    color:white;
     text-align: center;
-    box-shadow: 0px -1px 10px 1px rgba(0, 0, 0, 0.2);
+    margin-top:15em;
+    box-shadow: 0px -1px 5px 1px rgba(0, 0, 0, 0.2);
     font-size:25px;
 }
 </style>
