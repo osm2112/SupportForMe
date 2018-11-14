@@ -44,3 +44,34 @@
 .display-none{ /*감추기*/
         display:none;
 }
+
+/*진행중 */
+.progress001 {
+border : 1.5px solid rgb(211, 84, 0);
+color : rgb(211, 84, 0);
+}
+/* 마감 */
+.progress002 {
+border : 1.5px solid rgb(132, 127, 132);
+color : rgb(132, 127, 132);
+}
+/* 무산 */
+.progress003 {
+border : 1.5px solid rgb(38, 11, 102);
+color : "rgb(38, 11, 102);
+}
+/* 제작중 */
+.progress004 {
+border : 1.5px solid rgb(77, 77, 192);
+color : rgb(77, 77, 192);
+}
+/* 보류 */
+.progress005 {
+border : 1.5px solid rgb(84, 70, 13);
+color : rgb(84, 70, 13);
+} 
+/* 완료 */
+.progress006 {
+border : 1.5px solid rgb(84, 70, 13);
+color : rgb(84, 70, 13);
+}
