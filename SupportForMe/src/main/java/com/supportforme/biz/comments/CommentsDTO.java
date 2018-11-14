@@ -7,7 +7,14 @@ public class CommentsDTO {
 	private String commentDate;
 	private String projectNo;
 	private String userId;
+	private String cnt;
 	
+	public String getCnt() {
+		return cnt;
+	}
+	public void setCnt(String cnt) {
+		this.cnt = cnt;
+	}
 	public String getCommentNo() {
 		return commentNo;
 	}

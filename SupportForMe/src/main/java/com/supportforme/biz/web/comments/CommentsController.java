@@ -70,8 +70,10 @@ public class CommentsController {
 	@ResponseBody
 	public CommentsDTO deleteComments(CommentsDTO dto) {
 		commentsService.deleteComments(dto);
+		dto.setCnt(commentsService.getCommentCnt(dto));
 		return dto;
 	}
+	
 	//답글삭제
 	@RequestMapping("/forme/deleteReplyComments")
 	@ResponseBody

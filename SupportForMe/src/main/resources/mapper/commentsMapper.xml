@@ -63,6 +63,11 @@
 <select id="deleteComments" statementType="CALLABLE" parameterType="comments">
 	{CALL DELETE_COMMENTS (#{commentNo})}
 </select>
+<select id="getCommentCnt" resultType="string" parameterType="comments">
+	SELECT COUNT(*) AS CNT
+	FROM COMMENTS
+	WHERE TOP_COMMENT_NO = #{commentNo}
+</select>
 
 <!-- 답글입력 -->
 <insert id="insertReplyComments" parameterType="comments">

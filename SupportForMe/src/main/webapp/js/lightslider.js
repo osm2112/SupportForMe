@@ -236,7 +236,7 @@
                 if (settings.vertical) {
                     $slide.parent().addClass('vertical');
                     elSize = settings.verticalHeight;
-                    $slide.css('height', elSize + 'px');
+                    /*$slide.css('height', elSize + 'px');*/
                 } else {
                     elSize = $el.outerWidth();
                 }
@@ -361,10 +361,10 @@
 /*======여기==========================================================================================================================================================================================================================*/
                         if(settings.gallery === true){
                         	 if(thumbSubstr == 'jpg' || thumbSubstr == 'png' || thumbSubstr == 'gif') {
-                                 pagers += '<li style="width:100%;' + property + ':' + thumbWidth + 'px;' + gutter + ':' + settings.thumbMargin + 'px"><a href="#"><img style="max-width:105.83px; max-height:79.36px; width:auto; height:auto;"src="' + thumb + '"/></a></li>';
+                                 pagers += '<li style="' + property + ':' + thumbWidth + 'px;' + gutter + ':' + settings.thumbMargin + 'px"><a href="#"><img style="max-width:105.83px;height:79.36px;" src="' + thumb + '"/></a></li>';
                              }
                              else {
-                                 	pagers += '<li style="width:100%;' + property + ':' + thumbWidth + 'px;' + gutter + ':' + settings.thumbMargin + 'px"><a href="#"><img src="https://img.youtube.com/vi/' + thumb+ '/default.jpg"/></a></li>';
+                                 	pagers += '<li style="' + property + ':' + thumbWidth + 'px;' + gutter + ':' + settings.thumbMargin + 'px"><a href="#"><img src="https://img.youtube.com/vi/' + thumb+ '/default.jpg"/></a></li>';
                              }
                         }
                        else {
@@ -436,7 +436,7 @@
                     refresh.init();
                 }, 0);
             },
-            setHeight: function (ob, fade) {
+           setHeight: function (ob, fade) {
                 var obj = null,
                     $this = this;
                 if (settings.loop) {

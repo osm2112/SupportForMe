@@ -73,23 +73,51 @@ $(document).ready(function() {
 /*-----------------------------------------댓글-----------------------------------------------------------*/
 $(function(){
 	
+	var startView = 0;
+	var perView = 5;
+	var endView = startView + perView;
+	function setView(comments) {
+		//불러올 댓글이 없으면 more버튼이 사라짐		
+		var l = comments;
+		if(l <= endView) {
+			$("#more").hide();
+		}
+		startView = endView;
+		endView = startView + perView;
+	}
+	
 	//댓글 조회
 	function loadCommentsList() {
 		var params = { projectNo: '${project.projectNo}'};
 		$.getJSON(path+"support/getCommentsList", params, function(data){
-			for(i=0; i<data.length; i++) {
-				$("#commentList").append(makeCommentView(data[i]));
-			}
+			more(data);
 		});
+	}
+	function more(comments) {
+		var l = comments.length;
+		if(l <= endView) {
+			$("#more").hide();
+		}
+		if(comments.length>0) {
+			
+		var $items = comments.slice(startView,endView);
+
+ 		$.each($items, function(i, comments) {
+			i += startView;
+			$("#commentList").append(makeCommentView(comments));
+ 		});
+ 		setView(comments.length);
+		}
 	}
 	
 	function makeCommentView(comments) {
+		
+			
 		var div = $("<div>");
 		div.attr("id", "c"+comments.commentNo);
 		div.addClass('comments');
-		div[0].comments=comments;
-		
-		
+		div[0].comments=comments;	
+			
 		var str = "<div class='updComment' style='background-color: #F6F6F6; border-bottom:3px solid white;'>"
 				+ "<div style='display:flex;'>"
 				+ "		<div style='width:60px; margin-right:10px;'>"
@@ -119,16 +147,27 @@ $(function(){
 				+ "			<input type='hidden' name='topCommentNo' value='"+comments.commentNo+"'>"
 				+ "			<div style='display:flex;'>"
    				+ "				<img src='../images/arrow2.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
-    			+ "				<textarea name='commentContent' cols='72' rows='5' style='resize:none;'></textarea>&nbsp;"
+    			+ "				<textarea name='commentContent' cols='72' rows='5' placeholder='내용을 입력해주세요.' style='resize:none;'></textarea>&nbsp;"
     			+ "				<button type='button' id='replyBtnAdd' style='width:50px; height:30px; margin:auto;'>등록</button>"
 				+ "			</div>"
 				+ "		</form>"
 				+ "</div>"
 				+ "</div>";
 		div.html(str);
-
+		
+		
 		return div;
 	}
+
+	$("#more").click(function() {
+		$.ajax({
+			url: path+"support/getCommentsList?projectNo="+'${project.projectNo}',
+			success: more,
+		});
+	});
+	
+	
+	
 	//답글 조회(버튼클릭시 화면에 출력, 답변이 보이는 상태에서 버튼을 클릭하면 답글목록 닫음)
 	$("#commentList").on("click", "#rcBtn", function(){
 		/*rc: reply comment*/
@@ -165,9 +204,9 @@ $(function(){
 				+ "		<img src='../images/arrow2.png' style='width:50px; height:50px; margin:auto;'><br>"
 				+ "	</div>"
 				+ "		<div>"
-				+ "			<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
-				+ "			<span class='commentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
-				+ "			<textarea name='commentContent' class='commentContent' readonly cols='64' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
+				+ "			<span class='rcUserId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
+				+ "			<span class='rCommentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
+				+ "			<textarea name='commentContent' class='replyCommentContent' readonly cols='64' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
 				+ "		</div>";
 		var btn = "		<div style='margin:auto; margin-bottom:5px;'>"
 				+ "			<button type='button' class='rcBtnUpdFrm' style='width:50px; height:30px;margin-bottom:5px;'>수정</button>"
@@ -196,6 +235,7 @@ $(function(){
 			$.getJSON(url, params, function(data){
 				$("#commentList").prepend( makeCommentView(data) );
 				$("[name=addForm]")[0].reset();
+				location.hash = "#here";
 			});
 		}
 	});
@@ -297,7 +337,15 @@ $(function(){
 			var params = "commentNo="+ seq;
 			var url = path+"forme/deleteComments";
 			$.getJSON(url, params, function(data){
-				$('#c'+data.commentNo).remove();
+				if(data.cnt == 0 ) {
+					$('#c'+data.commentNo).remove();
+				} else {
+					$('#c'+data.commentNo).find('.userId').text('');
+					$('#c'+data.commentNo).find('.commentDate').text('');
+					$('#c'+data.commentNo).find('.commentContent').text('삭제된 댓글입니다.');
+					$('#c'+data.commentNo).find('.btnUpdFrm').hide();
+					$('#c'+data.commentNo).find('.btnDel').hide();
+				}
 			});
 		}
 	});
@@ -362,12 +410,12 @@ function pick() {
         	<ul id="image-gallery" class="gallery list-unstyled cS-hidden">
 				<c:forTokens items="${project.introductionVideo}" delims="||" var="video">
 					<li data-thumb="${video}" class="video-thumb">
-						<iframe width="660" height="371" src="https://www.youtube.com/embed/${video}"
+						<iframe width="660" height="390" src="https://www.youtube.com/embed/${video}"
 							frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
 					</li>
 				</c:forTokens>
 				<c:forTokens items="${project.introductionImage}" delims="||" var="img">
-					<li data-thumb="/SupportForMe/upload/${img}" style="background-color:black; width:660px; height:380px;">
+					<li data-thumb="/SupportForMe/upload/${img}" style="width:660px; height:380px;">
 						<img src="/SupportForMe/upload/${img}"/>
 					</li>
 				</c:forTokens>
@@ -393,7 +441,7 @@ function pick() {
             <div style="font-size:25px; color:#A6A6A6;">참여자 ${invest.headcount}명</div>
             <div style="display:flex;">
                 <button class="pjdtl-invest-btn" onclick="location.href='../forme/InvestSelectReward?projectNo=${project.projectNo}'">투자하기</button>
-                <img src="../images/share-button.png" class="pjdtl-share-btn">
+            <!--<img src="../images/share-button.png" class="pjdtl-share-btn">-->
             </div><br><br>
  
             <table style="width:480px; border:1px solid #A6A6A6;">
@@ -423,7 +471,7 @@ function pick() {
     </div>
     </div>
     
-    <div style="border-bottom:1px solid lightgray;"></div><br>
+    <div id="here" style="border-bottom:1px solid lightgray;"></div><br>
     
     <div class="pjdtl-bodysize">
         <div class="pjdtl-flex-container">
@@ -453,8 +501,8 @@ function pick() {
 					<input type="hidden" name="userId" value="${pMember.userId}">
                        <div style="display: flex;">
 				           <img src="../images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
-                           <textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
-                           <button type="button" id="btnAdd" style="width:170px; height:40px; margin:auto;">등록</button>
+                           <textarea name="commentContent" cols="77" rows="5" placeholder="내용을 입력해주세요." style="resize:none;"></textarea>&nbsp;
+                           <button type="button" id="btnAdd" style="width:50px; height:30px; margin:auto;">등록</button>
 				       </div>
  				</form>
 			</div><br><br>
@@ -468,8 +516,8 @@ function pick() {
 						<img src="../images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
 						<textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
 						<div style="margin:auto;">
-							<button type="button" id="btnUpd" style="width:170px; height:40px;">수정</button><br>
-							<button type="button" id="btnCancel" style="width:170px; height:40px;">취소</button>
+							<button type="button" id="btnUpd" style="width:50px; height:30px;">수정</button><br>
+							<button type="button" id="btnCancel" style="width:50px; height:30px;">취소</button>
 						</div>
 					</div>	
 				</form>
@@ -510,7 +558,7 @@ function pick() {
             			<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span>
             		</c:otherwise>
             		</c:choose>
-            	</div><br><br>
+            	</div><br>
             	<span style="color:#4C4C4C;">가격</span><br>
             	<span style="font-size:23px; color:#FF007F;">${reward.presentPrice}원 +</span><br>
             	<span style="color:#4C4C4C;">배송비 포함</span><br><br>

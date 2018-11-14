@@ -52,14 +52,19 @@ public class projectRegisterController {
 		ProjectDTO dto = new ProjectDTO();
 		dto.setProjectNo(projectNo);
 		dto = projectService.getProject(dto);
-		MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
-		if(dto.getUserId().equals(member.getUserId())) {
-			model.addAttribute("project",dto);
-			return "rgNav/register/projectRegister";
-		}else {
+		if ( session.getAttribute("LoginInfo") == null ) {
+			model.addAttribute("loginID", null);
 			return  "redirect:/";
 		}
-		
+		else {
+			MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
+			String userId = dto.getUserId();
+			model.addAttribute("loginID", userId);
+			if(dto.getUserId().equals(member.getUserId())) {
+				model.addAttribute("project",dto);
+				return "rgNav/register/projectRegister";
+			}else { return "redirect:/";}
+		}
 	}
 	
 	@RequestMapping("/forme/updateProject/basic")
