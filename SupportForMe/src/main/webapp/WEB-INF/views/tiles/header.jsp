@@ -16,13 +16,13 @@
 }
 .headBodysize {
   display:grid;
-  grid-template-columns: 1fr 7fr 1fr;
+  grid-template-columns: 1fr 10fr 1fr;
 }
 #head{
   padding : 10px 20px;
   display : grid;
-  /* grid-template-columns: 2fr 1fr 6fr 2fr; */
-  grid-template-columns: 2fr 1fr 6fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 6fr 1.5fr; 
+ /*  grid-template-columns: 2fr 1fr 6fr 1fr 1fr; */
   grid-template-rows: 50px;    
   grid-gap: 20px;  
    
@@ -63,7 +63,7 @@
     vertical-align: top;
 }
 .search_keyword {
-        width :300px;
+        width :350px;
         height : 25px;
         margin: 0px 10px;
         border : none;
@@ -77,6 +77,7 @@
     padding-top:15px;
     text-align:center;
     width : 100px;
+    color:#474747;
 }
 #logout_head_menu {
     display:grid;
@@ -138,32 +139,34 @@ body.dark { background: rgba(0,0,0,.4); z-index: 30; }
   cursor: pointer;
   font-size: 3em;
   margin-top: -10px;
+  margin-right:5px;
   float: right;
 }
 #sidenav {
 
-  z-index : 30;
-  height: 100%; width: 200px;
-  top: 0; right: -200px;
+  z-index : 50;
+  height: 100%; width: 260px;
+  top: 70px; right: -260px;
   background: white;
-  border : 1px solid black;
+  border : 1px solid #EEEEEE;
   position: fixed;
   transition: 0.4s;
 }
-#sidenav ul { margin: 0; padding: 0; list-style-type: none; }
+#sidenav ul { margin: 0; padding: 0; list-style-type: none;}
 
 #sidenav header {
-
 	border : 0px;
-	height: 70px;
+	height: 150px;
 	text-align: center;
 	font-size: 1em;
 }
-#sidenav header, #sidenav a {
-  color: black;
+#sidenav a {
+  color: #474747;
   display: block;
   text-decoration: none;
   padding: 1em;
+  font-weight:600;
+  border-bottom:1px solid #EEEEEE;
 }
 #sidenav header { background: rgb(26, 188, 156); }
 #sidenav a:hover { background: lightgrey; }
@@ -202,51 +205,6 @@ function view() {
      }
 }
 </script>
-<c:choose>
-	<c:when test="${preview == 'p'}">
-		<div id="headDiv">
-		<div class="headBodysize">
-	    	<div></div>
-	    	<div id="head">
-		    	<!--  화면줄였을때 보이는 영역 -->
-	    	    <div id="search_div1">
-		        <img src="<%= request.getContextPath() %>/images/search.png" class="searchImg">
-		        <form action="<%= request.getContextPath() %>/support/getProjects">
-	        	<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-				</form> 	    
-	        	</div>
-				
-	        	<div id="site_name" style="cursor:pointer;" onclick="">
-	            	SupportForME
-	        	</div>
-	        
-	        	<div>
-	        	<input type="button" id="make_project" value="프로젝트 만들기">
-	        	</div>
-	        
-	        	<!-- 전체화면일때 보이는 영역 -->
-	        	<div id="search_div2">
-	        	<form>
-	        	<input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-	        	<img src="<%= request.getContextPath() %>/images/search.png" class="searchImg">
-				</form>
-	        	</div>
-	        	
-	        	
-	        	<div id="head_font_size" class="hamburger-wrapper"><span class="hamburger">마이 페이지</span></div>
-	        	<!--<div id="head_font_size">관리 페이지</div>-->
-	       		<!-- <div id="logout_head_menu">
-		            <div id="head_font_size"> 로그인 </div>
-	    	        <div id="head_font_size">회원가입</div>
-		        </div> -->
-	   		</div>
-	   	
-	    	<div>
-	    	</div>
-		</div>
-	</div>	
-	</c:when>
-	<c:otherwise>
 	<div id="headDiv">
 		<div class="headBodysize">
 	    	<div></div>
@@ -275,26 +233,22 @@ function view() {
 				</form>
 	        	</div>
 	        	<c:if test="${loginID eq null}">
-	        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>/support/MemberLoginForm'">로그인</div>
-	        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>/support/MemberTermsConfirmForm'">회원가입</div>
+	        	<div id="logout_head_menu">
+		        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>/support/MemberLoginForm'">로그인</div>
+		        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>/support/MemberTermsConfirmForm'">회원가입</div>
+	        	</div>
 	        	</c:if>
 	        	<c:if test="${loginID ne null}">
 	        	<div id="head_font_size" class="hamburger-wrapper"><span class="hamburger">마이 페이지</span></div>
 	        	</c:if>
-	        	
-	        	
-	        	<!-- <div class="hamburger-wrapper">
-				  <span class="hamburger">&equiv;</span>
-				</div> -->
-	        	<!--<div id="head_font_size">관리 페이지</div>-->
-	       		<!-- <div id="logout_head_menu">
-		            <div id="head_font_size"> 로그인 </div>
-	    	        <div id="head_font_size">회원가입</div>
-		        </div> -->
  <!--  사이드바 -->
  <nav id="sidenav">
   <span id="close-sidenav">&times;</span>
-  <header>회원아이디 <br> ${loginID} </header>
+  <header>
+  	<div style="height:40px"></div>
+  	<div style="margin-left:10px"><img src="<%= request.getContextPath() %>/images/hUser.png" style="width:55px;height:55px;margin-left:15px;"></div>
+  	<div style="color:white; font-size:20px;margin-top:5px">${loginID}</div> 
+  </header>
   <ul>
     <li><a href="<%= request.getContextPath() %>/forme/MemberUpdateConfirmForm">프로필 설정</a></li>
     <li><a href="<%= request.getContextPath() %>/forme/getMyProjects">나의 프로젝트</a></li>
@@ -315,11 +269,16 @@ function view() {
 
 <script>
 $(".hamburger").click(function() {
-	$("#sidenav").css("right", "0");
-  $("body").addClass("dark");
+	if($("#sidenav").css("right") == '0px'){
+		$("#sidenav").css("right", "-260px");
+		  $("body").removeClass("dark");
+	}else {
+		$("#sidenav").css("right", "0");
+		  $("body").addClass("dark");
+	}
 });
 $("#close-sidenav").click(function() {
-	$("#sidenav").css("right", "-200px");
+	$("#sidenav").css("right", "-260px");
   $("body").removeClass("dark");
 });
 </script>
@@ -332,8 +291,6 @@ $("#close-sidenav").click(function() {
 		</div>
 		
 
-	</div>
-	</c:otherwise>
-</c:choose>
+</div>
 </body>
 </html>

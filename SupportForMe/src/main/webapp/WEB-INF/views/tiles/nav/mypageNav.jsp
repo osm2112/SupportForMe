@@ -20,9 +20,9 @@
 
 #project_mypage_menu nav div {
 	height: 35px;
-	padding-top: 10px;
-	padding-left: 5px;
+	padding: 6px 10px;
 	font-size: 18px;
+	margin:10px 0px;
 }
 
 .project_box {
@@ -86,7 +86,7 @@
 #project_subject {
 	height: 80px;
 	font-size: 30px;
-	font-weight: 800;
+	font-weight:700;
 	padding: 25px;
 	color: grey
 }
@@ -108,7 +108,7 @@
 					<div id="myProject" class="" onclick="location.href='../forme/getMyProjects'">나의 프로젝트</div>
 					<div id="_myInvestList" class="" onclick="location.href='../forme/MyInvestList'">나의 투자현황</div>
 					<div id="investList" class="" onclick="location.href='../forme/InvestList'">나의 결제내역</div>
-					<div id="investList" class="" onclick="location.href='../forme/MyInvestors'">나의 투자자 정보</div>
+					<div id="MyInvestors" class="" onclick="location.href='../forme/MyInvestors'">나의 투자자 정보</div>
 				</nav>
 			</div>
 		</div>
@@ -116,10 +116,15 @@
 	<script>
 	$(window).load(function() {
  	var uri = window.location.pathname.toString();
- 	console.log(uri);
+	console.log(uri);
  	if(uri.match('MemberUpdateConfirmForm')||uri.match('MemberUpdateForm')||uri.match('MemberDeleteConfirmForm')){
  		var memberUpdateConfirmForm = document.getElementById('myUpdate');
  		memberUpdateConfirmForm.setAttribute("class","_active");
+ 		
+ 	}
+ 	if(uri.match('getMyProjects')){
+ 		var myInvestList = document.getElementById('myProject');
+ 		myInvestList.setAttribute("class","_active");
  		
  	}
  	if(uri.match('MyInvestList')){
@@ -130,6 +135,11 @@
  	
  	if(uri.match('/InvestList')){
  		var investList = document.getElementById('investList');
+ 		investList.setAttribute("class","_active");
+ 		
+ 	}
+ 	if(uri.match('MyInvestors')){
+ 		var investList = document.getElementById('MyInvestors');
  		investList.setAttribute("class","_active");
  		
  	}

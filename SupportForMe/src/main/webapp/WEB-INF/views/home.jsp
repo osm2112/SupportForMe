@@ -324,7 +324,7 @@ text-shadow:   0 1px 0 #ccc,
 	font-size:16.5px;
 }
 .mainCategory{
-	width:1225px;
+	width:1185px;
 	display:grid;
 	grid-template-columns: 1fr 1fr;
 	margin-bottom:20px

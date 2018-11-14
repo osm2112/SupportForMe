@@ -36,14 +36,24 @@ body {
 }
 .footer {
     /*    position: absolute; bottom: 0; width: 100%; */
-    height: 222px;
-    padding: 1em;
-    color: black;
+    height: 200px;
+    color: white;
     background-color: rgb(26, 188, 156);
+    color:white;
     text-align: center;
-    box-shadow: 0px -1px 10px 1px rgba(0, 0, 0, 0.2);
+    margin-top:15em;
+    box-shadow: 0px -1px 5px 1px rgba(0, 0, 0, 0.2);
+    font-size:25px;
 }
 </style>
+<script>
+setInterval(function() {
+    var timer = new Date();
+    var h = timer.getHours();
+    var m = timer.getMinutes();
+    var s = timer.getSeconds();
+document.getElementById('clock').innerHTML = h + ":" + m + ":" + s; }, 1000);
+</script>
 </head>
 <body>
 	<div class="_container">
@@ -59,7 +69,7 @@ body {
 		<footer class="footer">
 			 ⓒSupportForMe<br><br>
         	${serverTime} <br>
-        	<h2 id="clock"></h2> <!-- 현재시간 clock.js 파일 -->
+        	<h3 id="clock"></h3> <!-- 현재시간 clock.js 파일 -->
 	<%--     <tiles:insertAttribute name="footer" /> --%>
 		</footer>
 	</div>

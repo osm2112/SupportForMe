@@ -370,6 +370,11 @@ $(function(){
 	
 	
 	loadCommentsList();
+	/*--------------preview header--------------------------------------------------------------------------------------*/
+	var preview = '${preview}';
+	if(preview == 'p'){
+		$("#headDiv").hide();
+	}
 })
 
 /*----------------관리자 pick-----------------------------------------------------------------------------------------*/
@@ -389,7 +394,6 @@ function pick() {
 }
 
 </script>
-
 </head> 
     
 <body>
@@ -404,9 +408,18 @@ function pick() {
     	</c:if>
     </div>
     <div class="pjdtl-center"><!-- 해시태그 -->
-        <c:forEach items="${hashtag}" var="projectTag">
-            <span class="pjdtl-hashtag" onclick="location.href='../support/getProjects?searchKeyword=${projectTag.hashtagName}'">#${projectTag.hashtagName}</span>&nbsp;
-        </c:forEach>
+    <c:choose>
+    	<c:when test="${preview == 'p'}">
+	        <c:forEach items="${hashtag}" var="projectTag">
+	            <span class="pjdtl-hashtag">#${projectTag.hashtagName}</span>&nbsp;
+	        </c:forEach>
+        </c:when>
+        <c:otherwise>
+	        <c:forEach items="${hashtag}" var="projectTag">
+	            <span class="pjdtl-hashtag" onclick="location.href='../support/getProjects?searchKeyword=${projectTag.hashtagName}'">#${projectTag.hashtagName}</span>&nbsp;
+	        </c:forEach>
+        </c:otherwise>
+    </c:choose>
     </div>
     <br>
     <div class="pjdtl-flex-container">
@@ -454,7 +467,14 @@ function pick() {
 			
             <div style="font-size:25px; color:#8C8C8C;">참여자 ${invest.headcount}명</div>
             <div style="display:flex;">
-                <button class="pjdtl-invest-btn" onclick="location.href='../forme/InvestSelectReward?projectNo=${project.projectNo}'">투자하기</button>
+            <c:choose>
+            	<c:when test="${preview == 'p'}">
+               	 <button class="pjdtl-invest-btn">투자하기</button>
+                </c:when>
+                <c:otherwise>
+                	<button class="pjdtl-invest-btn" onclick="location.href='../forme/InvestSelectReward?projectNo=${project.projectNo}'">투자하기</button>
+                </c:otherwise>
+            </c:choose>
             <!--<img src="../images/share-button.png" class="pjdtl-share-btn">-->
             </div><br><br>
  
@@ -560,18 +580,20 @@ function pick() {
         <div class="pjdtl-empty-content"></div>
         <div class="pjdtl-reward">
             <div style="font-size:30px;">리워드 목록</div>
+            <c:if test="${present.size()>0}">
             <c:forEach var="i" begin="0" end="${present.size()-1}" varStatus="status">
             <div class="pjdtl-each-reward">
             	<div style="display:flex;">
             		<img src="../images/checkmark.png" style="width:27px; height:27px">
-            		<c:choose>
+            		<%-- <c:choose>
             		<c:when test="${presentCount[status.index].rewardSelectCount == null}">
             			<span style="font-size:27px; color:#8C8C8C;">0명이 선택</span>
             		</c:when>
             		<c:otherwise>
             			<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span>
             		</c:otherwise>
-            		</c:choose>
+            		</c:choose> --%>
+            		<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span>
             	</div><br>
             	<span style="color:#4C4C4C;">가격</span><br>
             	<span class="rewardPrice" style="font-size:23px; color:#FF007F;"></span>
@@ -583,6 +605,7 @@ function pick() {
             	<span style="font-size: 23px;">${present[i].presentName}</span>
             </div>
             </c:forEach>
+            </c:if>
         </div>
         </div>
     </div>

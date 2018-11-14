@@ -16,7 +16,7 @@ body {
 	border-radius:15px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 1520px;
+	width: 1220px;
 	text-align:center;
 }
 #preview_box {
@@ -36,8 +36,8 @@ body {
 }
 .previewImg {
 	position: fixed; 
-	width:170px;
-	height:170px;
+	width:130px;
+	height:130px;
 	bottom: 30px; 
 }
 </style>
@@ -45,14 +45,15 @@ body {
 <body>
 	<div id="preview_subject"> <img src="/SupportForMe/images/heart.gif" style="width:80px;height:50px;vertical-align:bottom">PREVIEW<img src="/SupportForMe/images/heart.gif" style="width:80px;height:50px;vertical-align:bottom"></div>
 	<div id="preview_body">
-	<iframe name="test1" id="preview_box" width='1500px' height='800px'></iframe>
+	<iframe name="test1" id="preview_box" width='1220px' height='600px'></iframe>
 	<script>
-		var src="/SupportForMe/support/getProjectDetailPage?projectNo=${projectNo}";
+		 var src="/SupportForMe/support/getProjectDetailPage?projectNo=${projectNo}"; 
+		 /* var src="/SupportForMe/"; */
 		$("#preview_box").attr("src",src);
 		//disable
 	</script>
 	</div>
-	<img src="/SupportForMe/images/HEART2.gif" class="previewImg" style="right:20px" >
-	<img src="/SupportForMe/images/HEART2.gif" class="previewImg" style="left:20px">
+	<img src="/SupportForMe/images/HEART2.gif" class="previewImg" style="right:10px" >
+	<img src="/SupportForMe/images/HEART2.gif" class="previewImg" style="left:10px">
 </body>
 </html>
