@@ -26,7 +26,8 @@ public interface CommentsService {
 	
 	//댓글 삭제
 	public void deleteComments(CommentsDTO dto);
-	
+	public String getCommentCnt(CommentsDTO dto);
+		
 	//답글 삭제
 	public void deleteReplyComments(CommentsDTO dto);
 	

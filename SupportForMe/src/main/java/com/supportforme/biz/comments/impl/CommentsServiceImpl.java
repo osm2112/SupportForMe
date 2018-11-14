@@ -46,6 +46,11 @@ public class CommentsServiceImpl implements CommentsService{
 	public void deleteComments(CommentsDTO dto) {
 		dao.deleteComments(dto);
 	}
+	public String getCommentCnt(CommentsDTO dto) {
+		return dao.getCommentCnt(dto);
+	}
+	
+	
 	//답글 삭제
 	public void deleteReplyComments(CommentsDTO dto) {
 		dao.deleteReplyComments(dto);

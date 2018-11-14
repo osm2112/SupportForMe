@@ -52,6 +52,10 @@ public class CommentsDAO {
 	public void deleteComments(CommentsDTO dto) {
 		mybatis.delete("comments.deleteComments", dto);
 	}
+	public String getCommentCnt(CommentsDTO dto) {
+		return mybatis.selectOne("comments.getCommentCnt", dto);
+	}
+	
 	
 	//답글 삭제
 	public void deleteReplyComments(CommentsDTO dto) {
