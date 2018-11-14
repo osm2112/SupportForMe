@@ -153,7 +153,7 @@ $(function(){
 				+ "			<input type='hidden' name='userId' value='${pMember.userId}'>"
 				+ "			<input type='hidden' name='topCommentNo' value='"+comments.commentNo+"'>"
 				+ "			<div style='display:flex;'>"
-   				+ "				<img src='../images/arrow2.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
+   				+ "				<img src='../images/turn-right.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
     			+ "				<textarea name='commentContent' cols='72' rows='5' placeholder='내용을 입력해주세요.' style='resize:none;'></textarea>&nbsp;"
     			+ "				<button type='button' id='replyBtnAdd' style='width:50px; height:30px; margin:auto;'>등록</button>"
 				+ "			</div>"
@@ -449,7 +449,7 @@ function pick() {
 			</div>
 <!-- 진행상황 막대그래프 -->
 			<div class="progress" style="width:480px; height:30px; margin-bottom:10px;">
-				<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${project.projectProgressRate}%;">${project.projectProgressRate}%</div>
+				<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${project.projectProgressRate}%; height:30px;">${project.projectProgressRate}%</div>
 			</div>
 			
             <div style="font-size:25px; color:#8C8C8C;">참여자 ${invest.headcount}명</div>
