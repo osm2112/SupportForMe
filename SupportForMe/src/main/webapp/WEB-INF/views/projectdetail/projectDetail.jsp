@@ -47,7 +47,14 @@
 
 
 <script>
-	var path = "<c:url value='/'/>"
+var path = "<c:url value='/'/>"
+
+//금액 세자리마다 ","표시하기
+function addComma(num) {
+    var regexp = /\B(?=(\d{3})+(?!\d))/g;
+    return num.toString().replace(regexp, ',');
+}
+
 	
 /*----------------------------------------슬라이드---------------------------------------------------------*/
 $(document).ready(function() {
@@ -546,7 +553,7 @@ function pick() {
         <div class="pjdtl-empty-content"></div>
         <div class="pjdtl-reward">
             <div style="font-size:30px;">리워드 목록</div>
-            <c:forEach items="${present}" var="reward" varStatus="status">
+            <c:forEach var="i" begin="0" end="${present.size()-1}" varStatus="status">
             <div class="pjdtl-each-reward">
             	<div style="display:flex;">
             		<img src="../images/checkmark.png" style="width:27px; height:27px">
@@ -560,10 +567,13 @@ function pick() {
             		</c:choose>
             	</div><br>
             	<span style="color:#4C4C4C;">가격</span><br>
-            	<span style="font-size:23px; color:#FF007F;">${reward.presentPrice}원 +</span><br>
+            	<span class="rewardPrice" style="font-size:23px; color:#FF007F;"></span>
+            		<script>
+            			$(".rewardPrice").eq('${i}').text(addComma('${present[i].presentPrice}')+"원 +");
+            		</script><br>
             	<span style="color:#4C4C4C;">배송비 포함</span><br><br>
             	<span style="color:#4C4C4C;">구성</span><br>
-            	<span style="font-size: 23px;">${reward.presentName}</span>
+            	<span style="font-size: 23px;">${present[i].presentName}</span>
             </div>
             </c:forEach>
         </div>

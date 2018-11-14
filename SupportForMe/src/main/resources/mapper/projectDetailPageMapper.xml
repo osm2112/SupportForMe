@@ -45,7 +45,7 @@
 		   PRESENT_PRICE
 	FROM PRESENT
 	WHERE PROJECT_NO = #{projectNo}
-	ORDER BY PRESENT_NO
+	ORDER BY PRESENT_NO DESC
 </select>
 <select id="getProjectPresentsCount" resultType="present" parameterType="project">
 	SELECT COUNT(*) AS REWARD_SELECT_COUNT
