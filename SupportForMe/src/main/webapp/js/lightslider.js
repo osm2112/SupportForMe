@@ -236,7 +236,7 @@
                 if (settings.vertical) {
                     $slide.parent().addClass('vertical');
                     elSize = settings.verticalHeight;
-                    /*$slide.css('height', elSize + 'px');*/
+                    $slide.css('height', elSize + 'px');
                 } else {
                     elSize = $el.outerWidth();
                 }
