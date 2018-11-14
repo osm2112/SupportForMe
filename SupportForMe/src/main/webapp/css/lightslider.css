@@ -10,7 +10,24 @@
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    height:500px;
+    padding-bottom:0px;
+}
+.lSSlideOuter .lSSlideWrapper{
+	height:400px;
+}
+.lSSlideOuter .lSSlideWrapper ul {
+	height:400px;
+}
+.lSSlideOuter .lSSlideWrapper ul li {
+	height:400px;
+}
+.lSSlideOuter .lSSlideWrapper ul li img{
+	max-width: 660px;
+	max-height: 400px;
+	width:100%;
+	height:100%;
 }
 .lightSlider:before, .lightSlider:after {
     content: " ";

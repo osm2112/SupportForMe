@@ -73,39 +73,51 @@ $(document).ready(function() {
 /*-----------------------------------------댓글-----------------------------------------------------------*/
 $(function(){
 	
+	var startView = 0;
+	var perView = 5;
+	var endView = startView + perView;
+	function setView(comments) {
+		//불러올 댓글이 없으면 more버튼이 사라짐		
+		var l = comments;
+		if(l <= endView) {
+			$("#more").hide();
+		}
+		startView = endView;
+		endView = startView + perView;
+	}
+	
 	//댓글 조회
 	function loadCommentsList() {
-/* 		
-		var startView = 0;
-		var perView = 5;
-		var endView = startView + perView;
-		
-		function setView() {
-			
-			var l = $().text();
-			
-			if(l <= endView) {
-				$("#more").hide();
-			}
-			startView = endView;
-			endView = startView + perView;
-		}
-	 */	
 		var params = { projectNo: '${project.projectNo}'};
 		$.getJSON(path+"support/getCommentsList", params, function(data){
-			for(i=0; i<data.length; i++) {
-				$("#commentList").append(makeCommentView(data[i]));
-			}
+			more(data);
 		});
+	}
+	function more(comments) {
+		var l = comments.length;
+		if(l <= endView) {
+			$("#more").hide();
+		}
+		if(comments.length>0) {
+			
+		var $items = comments.slice(startView,endView);
+
+ 		$.each($items, function(i, comments) {
+			i += startView;
+			$("#commentList").append(makeCommentView(comments));
+ 		});
+ 		setView(comments.length);
+		}
 	}
 	
 	function makeCommentView(comments) {
+		
+			
 		var div = $("<div>");
 		div.attr("id", "c"+comments.commentNo);
 		div.addClass('comments');
-		div[0].comments=comments;
-		
-		
+		div[0].comments=comments;	
+			
 		var str = "<div class='updComment' style='background-color: #F6F6F6; border-bottom:3px solid white;'>"
 				+ "<div style='display:flex;'>"
 				+ "		<div style='width:60px; margin-right:10px;'>"
@@ -142,9 +154,20 @@ $(function(){
 				+ "</div>"
 				+ "</div>";
 		div.html(str);
-
+		
+		
 		return div;
 	}
+
+	$("#more").click(function() {
+		$.ajax({
+			url: path+"support/getCommentsList?projectNo="+'${project.projectNo}',
+			success: more,
+		});
+	});
+	
+	
+	
 	//답글 조회(버튼클릭시 화면에 출력, 답변이 보이는 상태에서 버튼을 클릭하면 답글목록 닫음)
 	$("#commentList").on("click", "#rcBtn", function(){
 		/*rc: reply comment*/
@@ -212,6 +235,7 @@ $(function(){
 			$.getJSON(url, params, function(data){
 				$("#commentList").prepend( makeCommentView(data) );
 				$("[name=addForm]")[0].reset();
+				location.hash = "#here";
 			});
 		}
 	});
@@ -386,7 +410,7 @@ function pick() {
         	<ul id="image-gallery" class="gallery list-unstyled cS-hidden">
 				<c:forTokens items="${project.introductionVideo}" delims="||" var="video">
 					<li data-thumb="${video}" class="video-thumb">
-						<iframe width="660" height="371" src="https://www.youtube.com/embed/${video}"
+						<iframe width="660" height="390" src="https://www.youtube.com/embed/${video}"
 							frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
 					</li>
 				</c:forTokens>
