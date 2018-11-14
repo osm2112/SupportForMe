@@ -14,7 +14,7 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 		<org.apache.tiles-version>3.0.8</org.apache.tiles-version>
-		
+		<!-- 젠킨스 빌드시 코딩 안맞는 애러 해결하기 위해 -->
 		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
 	
 	</properties>
