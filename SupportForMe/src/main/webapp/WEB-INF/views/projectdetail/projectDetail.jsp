@@ -417,7 +417,7 @@ function pick() {
         	<ul id="image-gallery" class="gallery list-unstyled cS-hidden">
 				<c:forTokens items="${project.introductionVideo}" delims="||" var="video">
 					<li data-thumb="${video}" class="video-thumb">
-						<iframe width="660" height="390" src="https://www.youtube.com/embed/${video}"
+						<iframe width="660" height="380" src="https://www.youtube.com/embed/${video}"
 							frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
 					</li>
 				</c:forTokens>

@@ -7,6 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div style="height:300px"></div>
+	<footer class="footer">
+      FOOTER<br>
+        <br>
+        ${serverTime} <br>
+        <h2 id="clock"></h2> <!-- 현재시간 clock.js 파일 -->
+<%--     <tiles:insertAttribute name="footer" /> --%>
+   </footer>
+    .footer {
+    /*    position: absolute; bottom: 0; width: 100%; */
+    height: 222px;
+    padding: 1em;
+    color: black;
+    background-color: #fcedff;
+    text-align: center;
+    box-shadow: 0px -1px 10px 1px rgba(0, 0, 0, 0.2);
+    }
 </body>
 </html>
