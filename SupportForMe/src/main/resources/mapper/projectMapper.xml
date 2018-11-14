@@ -84,6 +84,7 @@
 		SELECT p.project_no, p.support_pick_yn , p.delivery_date , p.category_code, p.project_name , p.image, TO_CHAR( p.target_amount , '999,999,999,999,999') "target_amount", p.project_deadline , p.progress , p.user_id
 		,PROJECT_PROGRESS_RATE(p.project_no) "percent"
 		,TO_CHAR( FUNC_TOTAL_INVEST_AMOUNT(p.project_no) , '999,999,999,999,999') "totalInvest"
+		,p.project_deadline
 		FROM ( SELECT *
 		FROM project
 		ORDER BY DBMS_RANDOM.RANDOM ) p

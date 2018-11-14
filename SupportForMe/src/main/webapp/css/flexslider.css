@@ -73,7 +73,7 @@ html[xmlns] .flexslider .slides {
  * DEFAULT THEME
  * ====================================================================================================================*/
 .flexslider {
-  margin: 0 0 60px;
+  margin: 0 0 10px;
   background: #fff;
   border: 4px solid #fff;
   position: relative;
@@ -86,8 +86,14 @@ html[xmlns] .flexslider .slides {
   -o-box-shadow: '' 0 1px 4px rgba(0, 0, 0, 0.2);
   box-shadow: '' 0 1px 4px rgba(0, 0, 0, 0.2);
 }
+.flexslider .flex-viewport{
+	height:370px;
+}
 .flexslider .slides {
   zoom: 1;
+}
+.flexslider .slides li {
+	height:370px;
 }
 .flexslider .slides img {
   height: auto;

@@ -20,14 +20,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
-
-
-
 .bodysize {
 	margin-left: auto;
 	margin-right: auto;
 	width: 1100px;
-	
 }
 
 .suforme {
@@ -41,32 +37,36 @@
 .suforme_picks_grid {
 	display: grid;
 	grid-template-columns: 1fr 300px;
+	border: 1px solid lightgrey;
+	height: 370px;
 }
 
 .suforme_picks_div {
 	width: 750px;
-	height: 400px;
+}
+
+.suforme_picks_div .flexslider {
+	height: 370px;
 }
 
 .suforme_top_1_text_div {
-	font-size: 20px;
+	font-size: 30px;
+	color: #353535;
 	width: auto;
 	height: 45px;
 }
 
 .suforme_picks_projects {
-	border: 1px solid lightgrey;
 	width: 450px;
-	height: 350px;
+	height: 360px;
 	background-color: #E9E9E9;
 }
-  
+
 .suforme_picks_projects_content {
-	border: 1px solid lightgrey;
-	border-left: none;
+	border-left: 1px solid lightgrey;
 	width: 295px;
-	height: 350px;
-} 
+	height: 370px;
+}
 
 .suforme_picks_projects_content nav li {
 	margin-top: 10px;
@@ -122,28 +122,21 @@
 	background: white;
 	width: 255px;
 	height: 350px;
-	border: 1px solid lightgrey
+	border: 1px solid lightgrey;
 }
 
 .main_project_image {
-	width: 240px;
-	height: 160px;
-	border: 1px solid lightgrey;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 5px;
+	width: 100%;
+	height: 170px;
 	background-color: #E9E9E9;
 }
 
 .main_project_content {
-	margin-top: 10px;
-	margin-left: 10px;
-	width: 230px;
-	height: 150px;
-}
-
-.main_project_content ul {
-	list-style-type: none;
+	width: 250px;
+	height: 160px;
+	padding: 10px 10px 10px 15px;
+	margin: 5px;
+	color: #353535;
 }
 
 .category_project_div {
@@ -152,22 +145,25 @@
 }
 
 .project_box:hover {
-/* 	border: 4px solid rgb(26, 188, 156); */
+	/* 	border: 4px solid rgb(26, 188, 156); */
 	box-shadow: 8px 8px 3px lightgrey;
 }
 
-<!-- -->
+<!--
+-->
 .main_project_image img {
 	width: 100%;
 	height: 100%;
 	object-fit: .main_project_image;
 }
+
 .flexslider .slides img {
 	width: 100%;
 	height: 100%;
 	display: block;
 	-moz-user-select: none;
 }
+
 .real_time_rank_projects nav {
 	max-width: 100%;
 	width: 100%;
@@ -186,27 +182,82 @@
 	width: 100%;
 	height: 160px;
 }
+
 <!--
 -->
-@keyframes flickerAnimation { 
-0%  { opacity: 1;}
-50% { opacity: 0;}
-100%{ opacity: 1;}
+@
+keyframes flickerAnimation { 0% {
+	opacity: 1;
 }
-@-o-keyframes flickerAnimation { 
-0% { opacity: 1;}
-50%{ opacity :0;}
-100%{ opacity : 1; }
+
+50%
+{
+opacity
+:
+ 
+0;
 }
-@-moz-keyframes flickerAnimation { 
-0% { opacity: 1;}
-50%{ opacity: 0;}
-100%{ opacity: 1;}
+100%{
+opacity
+:
+ 
+1;
 }
-@-webkit-keyframes flickerAnimation { 
-0% { opacity: 1;}
-50%{ opacity: 0;}
-100%{ opacity: 1;}
+}
+@
+-o-keyframes flickerAnimation { 0% {
+	opacity: 1;
+}
+
+50%{
+opacity
+ 
+:
+0;
+}
+100%{
+opacity
+ 
+:
+ 
+1;
+}
+}
+@
+-moz-keyframes flickerAnimation { 0% {
+	opacity: 1;
+}
+
+50%{
+opacity
+:
+ 
+0;
+}
+100%{
+opacity
+:
+ 
+1;
+}
+}
+@
+-webkit-keyframes flickerAnimation { 0% {
+	opacity: 1;
+}
+
+50%{
+opacity
+:
+ 
+0;
+}
+100%{
+opacity
+:
+ 
+1;
+}
 }
 .ranktext {
 	-webkit-animation: flickerAnimation 6s infinite;
@@ -214,13 +265,13 @@
 	-o-animation: flickerAnimation 6s infinite;
 	animation: flickerAnimation 6s infinite;
 }
+
 #rank ol {
 	list-style-type: none;
 }
 
 li em {
-margin-top: 2px;
-	
+	margin-top: 2px;
 	font-style: normal;
 	display: block;
 	float: left;
@@ -229,52 +280,48 @@ margin-top: 2px;
 	height: 12px;
 	margin-right: 9px;
 	border: 1px solid #e0e0e0;
-	color: #666; 
+	color: #666;
 	line-height: 12px;
-	font-size: 11px; 
+	font-size: 11px;
 	text-align: center;
 	font-family: tahoma, sans-serif;
 }
 
 .flexslider2 .flex-direction-nav .flex-next {
-    right: 60px; /* adjust offset to match the hover style */
-    opacity: .8; /* adjust opacity to match the hover style */
-  
+	right: 60px; /* adjust offset to match the hover style */
+	opacity: .8; /* adjust opacity to match the hover style */
 }
 
 .flexslider2 .flex-direction-nav .flex-prev {
-   
-    left: 60px; /* adjust offset to match the hover style */
-    opacity: .8; /* adjust opacity to match the hover style */
- 
+	left: 60px; /* adjust offset to match the hover style */
+	opacity: .8; /* adjust opacity to match the hover style */
 }
+
 .flexslider2 .flex-direction-nav a {
-   
-    margin: -70px 0 0;
+	margin: -70px 0 0;
 }
 
 .flexslider2 .flex-direction-nav a.flex-prev:before {
-    font-family:'FontAwesome';
-    font-size: 40px;
-    display: inline-block;
-    width:40px;
-    content: "\f191";  
-    color: black; 
-   /*  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3); */
-    line-height: 40px;  
-}  
- 
-.flexslider2 .flex-direction-nav a.flex-next:before {
-   font-family:'FontAwesome';
-    font-size: 40px;
-    display: inline-block;
-    width:40px;
-    content: "\f152";
-    color: black; 
-    /* text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3); */
-    line-height: 40px;
+	font-family: 'FontAwesome';
+	font-size: 40px;
+	display: inline-block;
+	width: 40px;
+	content: "\f191";
+	color: black;
+	/*  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3); */
+	line-height: 40px;
 }
 
+.flexslider2 .flex-direction-nav a.flex-next:before {
+	font-family: 'FontAwesome';
+	font-size: 40px;
+	display: inline-block;
+	width: 40px;
+	content: "\f152";
+	color: black;
+	/* text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3); */
+	line-height: 40px;
+}
 
 /* .text3dss{
 text-shadow:   0 1px 0 #ccc,
@@ -292,72 +339,100 @@ text-shadow:   0 1px 0 #ccc,
       font:Arial, Helvetica, sans-serif;
       color:grey; 
 } */
-.text3d{
-text-shadow:1px 1px white, -1px -1px #666; 
- }
-.text3dPn{
- text-shadow:-1px -1px white, 1px 1px #666;
- }
+.text3d {
+	/* text-shadow: 1px 1px white, -1px -1px #666; */
+	font-size:16.5px;
+	color:#353535;
+}
+
+.text3dPn {
+	/* text-shadow: -1px -1px white, 1px 1px #666; */
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 180px;
+	height: 30px;
+	font-size:18.5px;
+}
+.remainDay {
+	padding-right:20px;
+	display:inline-block;
+}
+.rdPercent {
+	color:#5e5e5e;
+	font-size:16.5px;
+}
 </style>
 <script>
-	$(document).ready(
-			function() {
-				$('.flexslider').flexslider({
-					animation : "slide"
-				});
-				$('.flexslider2').flexslider({
-					/* animation: "fade", */
-					slideshowSpeed : 10000,
-					animation : "slide",
-					controlNav : false,
-					directionNav : true,
-					prevText : "",
-					nextText : ""
-					
-					/* ,
-					customDirectionNav : $(".custom-navigation2 a")  */
-				});
-
-				$('.flexslider3').flexslider(
-						{
-							slideshowSpeed : 8000,
+	$(document)
+			.ready(
+					function() {
+						$('.flexslider').flexslider({
+							animation : "slide"
+						});
+						$('.flexslider2').flexslider({
+							/* animation: "fade", */
+							slideshowSpeed : 10000,
 							animation : "slide",
 							controlNav : false,
-							directionNav : false,
-							start : function(slider) {
-								$('.real_time_rank_projects li span text').eq(0)
-										.css({
-								
-										 "background": "linear-gradient(to right, #BDFFF3, #4AC29A)"
-										 
-										});
-								
-							},
-							after : function(slider) {
-								$('.real_time_rank_projects li span text').eq(
-										slider.currentSlide - 1).css('background',
-										"");
-								/* 		$('.real_time_rank_projects li').eq(
-												slider.currentSlide - 1).attr("class","ranktext");										
-										$('.real_time_rank_projects li').eq(
-												slider.currentSlide).attr("class","no");
-								 */
+							directionNav : true,
+							prevText : "",
+							nextText : ""
 
-								$('.real_time_rank_projects li span text').eq(
-										slider.currentSlide).css({
-											 "background": "linear-gradient(to right, #BDFFF3, #4AC29A)"
-										});
-							}
+						/* ,
+						customDirectionNav : $(".custom-navigation2 a")  */
 						});
 
-				Rank();
-				Ranking();
-				setInterval("Rank()", 8000);
+						$('.flexslider3')
+								.flexslider(
+										{
+											slideshowSpeed : 8000,
+											animation : "slide",
+											controlNav : false,
+											directionNav : false,
+											start : function(slider) {
+												$(
+														'.real_time_rank_projects li span text')
+														.eq(0)
+														.css(
+																{
 
-			});
+																	"background" : "linear-gradient(to right, #BDFFF3, #4AC29A)"
+
+																});
+
+											},
+											after : function(slider) {
+												$(
+														'.real_time_rank_projects li span text')
+														.eq(
+																slider.currentSlide - 1)
+														.css('background', "");
+												/* 		$('.real_time_rank_projects li').eq(
+																slider.currentSlide - 1).attr("class","ranktext");										
+														$('.real_time_rank_projects li').eq(
+																slider.currentSlide).attr("class","no");
+												 */
+
+												$(
+														'.real_time_rank_projects li span text')
+														.eq(slider.currentSlide)
+														.css(
+																{
+																	"background" : "linear-gradient(to right, #BDFFF3, #4AC29A)"
+																});
+											}
+										});
+
+						Rank();
+						Ranking();
+						setInterval("Rank()", 8000);
+
+					});
 	function Ranking() {
 		$('.real_time_rank_projects li')
-				.eq(0)  
+				.eq(0)
 				.attr("class", "ranktext")
 				.delay(800)
 				.queue(
@@ -375,9 +450,12 @@ text-shadow:1px 1px white, -1px -1px #666;
 														.delay(800)
 														.queue(
 																function() {
-																	$('.real_time_rank_projects li')
-																			.eq(3)
-																			.attr(	"class",
+																	$(
+																			'.real_time_rank_projects li')
+																			.eq(
+																					3)
+																			.attr(
+																					"class",
 																					"ranktext")
 																			.delay(
 																					800)
@@ -399,36 +477,59 @@ text-shadow:1px 1px white, -1px -1px #666;
 	}
 
 	function Rank() {
-		$.ajax({
-			type : "post",
-			url : "./",
-			dataType : "json",
-			success : function(data) {
-				if (data.length > 0) {
-					for (i = 0; i < data.length; i++) {
-						
-						$('.real_time_image ul li img').eq(i+1).attr("src",
-								"./upload/" + data[i].image);
-						$('.real_time_image ul li img').eq(i+1).attr(
-								"onclick",
-								"location.href='support/getProjectDetailPage?projectNo="
-										+ data[i].projectNo + "'");
-						$('.real_time_rank_projects nav ol li').eq(i).html(
-								"<span style='cursor: pointer; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 170px; height: 20px;'><em>" + (i + 1) + "</em>"
-										+"<text>"+ data[i].projectName + "</text></span>");
-						$('.real_time_rank_projects nav ol li span').eq(i).attr(
-								"onclick",
-								"location.href='support/getProjectDetailPage?projectNo="
-										+ data[i].projectNo + "'");
-					}
-				} 
+		$
+				.ajax({
+					type : "post",
+					url : "./",
+					dataType : "json",
+					success : function(data) {
+						if (data.length > 0) {
+							for (i = 0; i < data.length; i++) {
 
-			}
-		});
+								$('.real_time_image ul li img').eq(i + 1).attr(
+										"src", "./upload/" + data[i].image);
+								$('.real_time_image ul li img').eq(i + 1).attr(
+										"onclick",
+										"location.href='support/getProjectDetailPage?projectNo="
+												+ data[i].projectNo + "'");
+								$('.real_time_rank_projects nav ol li')
+										.eq(i)
+										.html(
+												"<span style='cursor: pointer; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 170px; height: 20px;'><em>"
+														+ (i + 1)
+														+ "</em>"
+														+ "<text>"
+														+ data[i].projectName
+														+ "</text></span>");
+								$('.real_time_rank_projects nav ol li span')
+										.eq(i).attr(
+												"onclick",
+												"location.href='support/getProjectDetailPage?projectNo="
+														+ data[i].projectNo
+														+ "'");
+							}
+						}
+
+					}
+				});
+	}
+	function remainDay(deadLine) {
+		var dl = deadLine.split(".");
+		var remain;
+		if(deadLine != null && deadLine != ''){
+			var now = new Date();
+			var dDay = new Date(dl[0],dl[1]-1, dl[2]);
+			var now2 = now.getTime();
+			var dDay2 = dDay.getTime();
+			remain = dDay2 - now2;
+			remain = Math.floor(remain / (24 * 3600 * 1000)) + 1;
+		}
+		return remain;
 	}
 </script>
 </head>
 <body>
+<!-- <span class="text3dss" style="font-size: 35px;"><i class="fa fa-paint-brush" style="color: rgb(6, 135, 133);"></i></span> -->
 	<div class="flexslider2">
 		<ol class="slides">
 			<c:forEach items="${Latest}" var="project">
@@ -440,7 +541,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 	<div class="bodysize">
 		<div class="suforme">
 			<div class="suforme_picks_div"> 
-				<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px;"><i class="fa fa-heart" style="color: rgb(255, 135, 99);"></i>&nbsp서포미 PICKS</span></div><br>
+				<div class="suforme_top_1_text_div" style="	margin-bottom:-3px;">서포미 PICKS</div><br>
 
 				<div class="flexslider">
 					<ul class="slides">
@@ -474,7 +575,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 			</div>
 			
 			<div class="real_time_rank_outer">
-				<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px;"><i class="fa fa-trophy" style="color: rgb(239, 205, 119);"></i>&nbsp실시간 랭킹</span></div><br>
+				<div class="suforme_top_1_text_div">실시간 랭킹</div><br>
 				<div class="real_time_rank_div">
 					<div class="real_time_image flexslider3">
 						<ul class="slides">
@@ -505,7 +606,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 		</div>
 		<div style="height: 100px"></div> 
 	
-		<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px;"><i class="fa fa-users" style="color: rgb(6, 135, 133);"></i>&nbsp공연 프로젝트</span></div><br> 
+		<div class="suforme_top_1_text_div">공연 프로젝트</div><br> 
 		<div class="category_project_div">
 			<c:forEach items="${Performance}" var="project">
 				<div class="project_box" id="${project.projectNo}"
@@ -515,34 +616,41 @@ text-shadow:1px 1px white, -1px -1px #666;
 						<img src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
-						<ul>
-							<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
-							<li class="text3dPn" style="font-size : 18px; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 180px; height: 30px;"><strong>${project.projectName}</strong></li>
-							<li style="height: 5px"></li>
-							<li style="display: grid; grid-template-columns: 100%">
-								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
-							</li>
-							<li style="height: 10px"></li>
-							<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
+						<div class="text3d">${project.userId}님</div>
+						<div class="text3dPn" style=""><strong>${project.projectName}</strong></div>
+						<div style="height:20px"></div>
+						<div style="display: grid; grid-template-columns: 100%">
+							<span class="text3d">모금액 ${project.totalInvest}원</span> 
+						</div>
+						<div style="height: 5px"></div>
+						<div style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
 							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
 							 --%>
-							<div class="progress">
-    							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
-   								 </div>
-  							</div>
-							<span class="text3d">&nbsp;${project.percent}%</span>
-							</li>
-							<li style="height: 10px"></li>
-							<li class="text3d">목표액 : ${project.targetAmount}원</li>
-						</ul>						
-					</div>
+							<div class="progress" style="height:10px;width:210px">
+	    						<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:10px">
+	   							 </div>
+	  						</div>
+						</div>
+						<div class="rdPercent">
+							<div class="remainDay" id="${project.projectNo}rd"></div>
+							<div style="display:inline-block;margin-left:100px">&nbsp;${project.percent}%</div>
+						</div>
+						<script>
+							var seq = '${project.projectNo}';
+							var rd = '${project.projectDeadline}';
+							console.log(rd);
+							if(rd != ''){
+								$("#"+seq+"rd").text("D-"+remainDay(rd));
+							}
+						</script>
+					</div>						
 				</div>				
 			</c:forEach>
 		</div>
 		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=001">더보기 </a></div>	
 		<div style="height: 50px"></div>
 		<!-- 미술 부분  -->
-		<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px;"><i class="fa fa-paint-brush" style="color: rgb(6, 135, 133);"></i>&nbsp미술 프로젝트</span></div>	<br>	
+		<div class="suforme_top_1_text_div">미술 프로젝트</div><br>	
 			<div class="category_project_div">
 				<c:forEach items="${Art}" var="project">
 					<div class="project_box" id="${project.projectNo}"
@@ -579,7 +687,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 			<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=003">더보기 </a></div>	
 			<div style="height: 50px"></div>
 		<!-- 도서 --> 
-		<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px;"><i class="fa fa-book" style="color: rgb(6, 135, 133);"></i>&nbsp도서 프로젝트</span></div> <br>
+		<div class="suforme_top_1_text_div">도서 프로젝트</div> <br>
 		<div class="category_project_div">
 			<c:forEach items="${Book}" var="project">
 				<div class="project_box" id="${project.projectNo}"
@@ -594,7 +702,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 							<li class="text3dPn" style="font-size : 18px; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 180px; height: 30px;"><strong>${project.projectName}</strong></li>
 							<li style="height: 10px"></li>
 							<li style="display: grid; grid-template-columns: 100%">
-								<span class="text3d">모금액 : ${project.totalInvest}원</span> 
+								<span class="text3d">모금액 ${project.totalInvest}원</span> 
 							</li>
 							<li style="height: 10px"></li>
 							<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
@@ -607,7 +715,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 							<span class="text3d">&nbsp;${project.percent}%</span>
 							</li>
 							<li style="height: 10px"></li>
-							<li class="text3d">목표액 : ${project.targetAmount}원</li>
+							<li class="text3d">목표액 ${project.targetAmount}원</li>
 						</ul>						
 					</div>
 				</div>				
@@ -616,7 +724,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 		<div style="text-align: right"><br><a href="./support/getCategoryProjects?searchCondition=004">더보기 </a></div>
 		<div style="height: 50px"></div>
 		<!-- 영화 -->
-		<div class="suforme_top_1_text_div"><span class="text3dss" style="font-size: 35px;"><i class="fa fa-film" style="color: rgb(6, 135, 133);"></i>&nbsp영화 프로젝트</span></div> <br>
+		<div class="suforme_top_1_text_div">영화 프로젝트</div> <br>
 		<div class="category_project_div">
 			<c:forEach items="${Movie}" var="project">
 				<div class="project_box" id="${project.projectNo}"
