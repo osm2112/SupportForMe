@@ -116,56 +116,34 @@ text-shadow:1px 1px white, -1px -1px #666;
 .text3dPn{
  text-shadow:-1px -1px white, 1px 1px #666;
  }
-/*진행중 */
-.progress001 {
-border : 1.5px solid rgb(211, 84, 0);
-color : rgb(211, 84, 0);
-}
-/* 마감 */
-.progress002 {
-border : 1.5px solid rgb(132, 127, 132);
-color : rgb(132, 127, 132);
-}
-/* 무산 */
-.progress003 {
-border : 1.5px solid rgb(38, 11, 102);
-color : "rgb(38, 11, 102);
-}
-/* 제작중 */
-.progress004 {
-border : 1.5px solid rgb(77, 77, 192);
-color : rgb(77, 77, 192);
-}
-/* 보류 */
-.progress005 {
-border : 1.5px solid rgb(84, 70, 13);
-color : rgb(84, 70, 13);
-}
-/* 완료 */
-.progress006 {
-border : 1.5px solid rgb(84, 70, 13);
-color : rgb(84, 70, 13);
-}
+
 </style>
 <script>
 var contextPath = '<%= request.getContextPath() %>';
 	$(document).ready(function() {
 						var count = 0;
+						
+						if ($(".project_box").length == 0 ) {
+							$('.loader').addClass('display-none');
+						}
+						
 						$(document).scroll(
 								function() {
 									var lastno = $(".project_box").last().attr(
 											"id");
 									console.log(lastno);
 									var maxHeight = $(document).height();
-									var currentScroll = $(window).scrollTop()
-											+ $(window).height();
+									var currentScroll = $(window).scrollTop() + $(window).height();
+									
+									console.log($(".project_box").length);
+								
 									if (maxHeight <= currentScroll) {
 										loadArticle(lastno);
 									}
 								});
 						
 						function loadArticle(lastno) {
-
+							console.log($(".project_box").length);
 							$.ajax({
 										type : "post",
 										url : "./getMyProjects",
@@ -173,7 +151,7 @@ var contextPath = '<%= request.getContextPath() %>';
 											"projectNo" : lastno,
 											"userId" : '${loginID}'
 										},dataType : "json",
-										timeout :5000,
+										
 										success : function(data) {
 											$('.loader').addClass('display-none');
 											if (data.length > 0) {
@@ -223,19 +201,9 @@ var contextPath = '<%= request.getContextPath() %>';
 																			+ '	</div>');
 													$("#" + select).addClass("progress"+data[i].progressCd)
 								
-												/* 	if (data[i].progress == '진행중') {
-														$("#" + select)
-																.css(
-																		{
-																			"border" : "1.5px solid rgb(211, 84, 0)",
-																			"color" : "rgb(211, 84, 0)"
-																		});
-													} */
 												}
 											}
-										},beforeSend:function(){											
-									        $('.loader').removeClass('display-none');											
-									    }
+										}
 									});
 							lastno = $(".project_box").last().attr("id");
 						}
@@ -308,7 +276,7 @@ var contextPath = '<%= request.getContextPath() %>';
 			</div>
 		</div>
 	</div>
-	<div class="loader">Loading...</div>
+
 	
 </body>
 </html>
