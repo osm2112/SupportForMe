@@ -114,7 +114,7 @@
 	list-style-type: none;
 }
 <!-- -->
-.text3dss{
+/* .text3dss{
 text-shadow:   0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
                0 3px 0 #bbb,
@@ -129,7 +129,7 @@ text-shadow:   0 1px 0 #ccc,
                0 20px 20px rgba(0,0,0,.15);
       font:Arial, Helvetica, sans-serif;
       color:grey; 
- }
+ } */
 .text3d{
 text-shadow:1px 1px white, -1px -1px #666; 
  }
@@ -142,32 +142,39 @@ text-shadow:1px 1px white, -1px -1px #666;
 			.ready(
 					function() {
 						var count = 0;
+						
+						if ($(".project_box").length <= ${count} ) {
+							$('.loader').addClass('display-none');
+						}
+						
 						$(document).scroll(
 								function() {
 									var lastno = $(".project_box").last().attr(
 											"id");
 									console.log(lastno);
 									var maxHeight = $(document).height();
-									var currentScroll = $(window).scrollTop()
-											+ $(window).height();
-									if (maxHeight <= currentScroll) {
-										loadArticle(lastno);
-									}
-								});
+									var currentScroll = $(window).scrollTop()+ $(window).height();
+									
+									console.log($(".project_box").length);
+									
+								
+										if (maxHeight <= currentScroll) {
+											loadArticle(lastno);
+											}
+									
+									
+						});
 						function loadArticle(lastno) {
-
-							$
-									.ajax({
+							
+							$.ajax({
 										type : "post",
 										url : "./getCategoryProjects",
 										data : {
 											"projectNo" : lastno,
 											"searchCondition" : '${searchCondition}'
 										},
-										dataType : "json",
-										timeout:5000,
+										dataType : "json",			
 										success : function(data) {
-											 $('.loader').addClass('display-none');
 											if (data.length > 0) {
 												for (i = 0; i < data.length; i++) {
 													count = ++count;
@@ -211,45 +218,16 @@ text-shadow:1px 1px white, -1px -1px #666;
 																			+ '				</ul>'
 																			+ '			</div>'
 																			+ '	</div>');
-
-													if (data[i].progress == '진행중') {
-														$("#" + select)
-																.css(
-																		{
-																			"border" : "1.5px solid rgb(211, 84, 0)",
-																			"color" : "rgb(211, 84, 0)"
-																		});
-													} else if (data[i].progress == '마감') {
-														$("#" + select)
-																.css(
-																		{
-																			"border" : "1.5px solid rgb(132, 127, 132)",
-																			"color" : "rgb(132, 127, 132)"
-
-																		});
-													} else if (data[i].progress == '완료') {
-														$("#" + select)
-																.css(
-																		{
-																			"border" : "1.5px solid rgb(84, 70, 13)",
-																			"color" : "rgb(84, 70, 13)"
-
-																		});
-													} else if (data[i].progress == '무산') {
-														$("#" + select)
-																.css(
-																		{
-																			"border" : "1.5px solid rgb(38, 11, 102)",
-																			"color" : "rgb(38, 11, 102)"
-
-																		});
-													}
+													$("#" + select).addClass("progress"+data[i].progressCd);
+								
 												}
-
 											}
 										},beforeSend:function(){											
 									        $('.loader').removeClass('display-none');											
-									    }
+									    },complete:function(){
+									        $('.loader').addClass('display-none');
+									    },timeout: 5000
+
 									});
 							lastno = $(".project_box").last().attr("id");
 						}
@@ -266,7 +244,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 					<c:if test="${searchCondition eq 003}">미술프로젝트</c:if>
 					<c:if test="${searchCondition eq 004}">도서프로젝트</c:if>
 				</h1>
-				<h1 class="text3dss" style="text-align: left;">${count}개</h1>
+				<p class="text3dss" style="text-align: left; font-size: 25px;">${count}개의 프로젝트</p>
 				<br> <br>
 			</div>
 			<div class="div2">
@@ -279,7 +257,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 								onerror="this.src='../images/대체이미지.jpg' ">
 						</div>
 						<div class="mypage_project_content">
-							<div class="project_state">${project.progress}</div>
+							<div class="project_state progress${project.progressCd}">${project.progress}</div>
 							<ul>
 								<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
 								<li style="height: 5px"></li>
@@ -304,9 +282,10 @@ text-shadow:1px 1px white, -1px -1px #666;
 					</div>
 				</c:forEach>
 			</div>
-		</div>
+			
+		</div>			
 	</div>
-	<div class="loader">Loading...</div>
-	<div style="height: 200px"></div>
+<div class="loader">Loading...</div>
+<div style="height: 300px"></div>
 </body>
 </html>

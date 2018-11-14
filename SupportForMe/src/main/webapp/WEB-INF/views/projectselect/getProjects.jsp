@@ -116,70 +116,27 @@ text-shadow:1px 1px white, -1px -1px #666;
 .text3dPn{
  text-shadow:-1px -1px white, 1px 1px #666;
  }
-/*진행중 */
-.progress001 {
-border : 1.5px solid rgb(211, 84, 0);
-color : rgb(211, 84, 0);
-}
-/* 마감 */
-.progress002 {
-border : 1.5px solid rgb(132, 127, 132);
-color : rgb(132, 127, 132);
-}
-/* 무산 */
-.progress003 {
-border : 1.5px solid rgb(38, 11, 102);
-color : "rgb(38, 11, 102);
-}
-/* 제작중 */
-.progress004 {
-border : 1.5px solid rgb(77, 77, 192);
-color : rgb(77, 77, 192);
-}
-/* 보류 */
-.progress005 {
-border : 1.5px solid rgb(84, 70, 13);
-color : rgb(84, 70, 13);
-}
-/* 완료 */
-.progress006 {
-border : 1.5px solid rgb(84, 70, 13);
-color : rgb(84, 70, 13);
-}
-.text3dss{
-text-shadow:   0 1px 0 #ccc,
-               0 2px 0 #c9c9c9,
-               0 3px 0 #bbb,
-               0 4px 0 #b9b9b9,
-               0 5px 0 #aaa,
-               0 6px 1px rgba(0,0,0,.1),
-               0 0 5px rgba(0,0,0,.1),
-               0 1px 3px rgba(0,0,0,.3),
-               0 3px 5px rgba(0,0,0,.2),
-               0 5px 10px rgba(0,0,0,.25),
-               0 10px 10px rgba(0,0,0,.2),
-               0 20px 20px rgba(0,0,0,.15);
-      font:Arial, Helvetica, sans-serif;
-      color:grey; 
-}
-
 </style>
 <script>
 	$(document)
 			.ready(
 					function() {
 						var count = 0;
+						
+						if ($(".project_box").length <= ${count} ) {
+							$('.loader').addClass('display-none');
+						}
+						
 						$(document).scroll(
 								function() {
-									var lastno = $(".project_box").last().attr(
-											"id");
+									var lastno = $(".project_box").last().attr("id");
 									console.log(lastno);
 									var maxHeight = $(document).height();
-									var currentScroll = $(window).scrollTop()
-											+ $(window).height();
-									if (maxHeight <= currentScroll) {
-										loadArticle(lastno);
-									}
+									var currentScroll = $(window).scrollTop()+ $(window).height();
+										if (maxHeight <= currentScroll) {
+											loadArticle(lastno);
+											}
+										
 								});
 						function loadArticle(lastno) {
 
