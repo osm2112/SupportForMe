@@ -34,7 +34,15 @@ body {
    background-color : rgb(26, 188, 156);
    color : white;
 }
-
+.footer {
+    /*    position: absolute; bottom: 0; width: 100%; */
+    height: 222px;
+    padding: 1em;
+    color: black;
+    background-color: rgb(26, 188, 156);
+    text-align: center;
+    box-shadow: 0px -1px 10px 1px rgba(0, 0, 0, 0.2);
+}
 </style>
 </head>
 <body>
@@ -48,8 +56,11 @@ body {
 		<article>
 			<tiles:insertAttribute name="content" />
 		</article>
-		<footer>
-			<tiles:insertAttribute name="footer" />
+		<footer class="footer">
+			 ⓒSupportForMe<br><br>
+        	${serverTime} <br>
+        	<h2 id="clock"></h2> <!-- 현재시간 clock.js 파일 -->
+	<%--     <tiles:insertAttribute name="footer" /> --%>
 		</footer>
 	</div>
 </body>
