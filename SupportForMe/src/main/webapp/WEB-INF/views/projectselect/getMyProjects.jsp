@@ -145,6 +145,10 @@ color : rgb(84, 70, 13);
 border : 1.5px solid rgb(84, 70, 13);
 color : rgb(84, 70, 13);
 }
+._btn {
+    background-color: rgb(26, 188, 156);
+    color: white;
+}
 </style>
 <script>
 var contextPath = '<%= request.getContextPath() %>';
@@ -187,8 +191,8 @@ var contextPath = '<%= request.getContextPath() %>';
 												for (i = 0; i < data.length; i++) {
 													count = ++count;
 													var select = "project_state"+ count;
-												 	var detailBtn = (data[i].progressCd !='004') ? '<button class="btn btn-default" onclick="location.href=\''+contextPath+ '/support/getProjectDetailPage?projectNo='+ data[i].projectNo+'\'">상세화면</button>' : ''; 
-													var deleteBtn = (data[i].progressCd =='004') ? '<button class="btn btn-default" onclick="projectdelete(\''+data[i].projectNo+'\');">삭제</button></li></ul>' : '';
+												 	var detailBtn = (data[i].progressCd !='004') ? '<button class="btn btn-default _btn" onclick="location.href=\''+contextPath+ '/support/getProjectDetailPage?projectNo='+ data[i].projectNo+'\'">상세화면</button>' : ''; 
+													var deleteBtn = (data[i].progressCd =='004') ? '<button class="btn btn-default _btn" onclick="projectdelete(\''+data[i].projectNo+'\');">삭제</button></li></ul>' : '';
 													
 													$('.div2')
 															.append(
@@ -223,7 +227,7 @@ var contextPath = '<%= request.getContextPath() %>';
 																			+ data[i].targetAmount
 																			+ '원</li>'
 																			+ '<li style="height: 10px"></li>'
-																			+ '<li><button class="btn btn-default" onclick="location.href=\''+contextPath+'/forme/make/'+data[i].projectNo+'\'">수정</button>'
+																			+ '<li><button class="btn btn-default _btn" onclick="location.href=\''+contextPath+'/forme/make/'+data[i].projectNo+'\'">수정</button>'
 																			+ detailBtn
 																			+ deleteBtn
 																			/* + '<button class="btn btn-default" onclick="projectdelete(\''+data[i].projectNo+'\');">삭제</button></li></ul>' */  
@@ -296,9 +300,9 @@ var contextPath = '<%= request.getContextPath() %>';
 								<li style="height: 10px"></li>
 								<li class="text3d">목표액 : ${project.targetAmount}원</li>
 								<li style="height: 10px"></li>
-								<li><button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/forme/make/${project.projectNo}'">수정</button>
-								    <c:if test="${project.progressCd eq 004 }"><button class="btn btn-default" onclick="projectdelete('${project.projectNo}');">삭제</button></c:if>
-								    <c:if test="${project.progressCd ne 004 }"><button class="btn btn-default" onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'">상세화면</button></c:if>
+								<li><button class="btn btn-default _btn" onclick="location.href='<%= request.getContextPath() %>/forme/make/${project.projectNo}'">수정</button>
+								    <c:if test="${project.progressCd eq 004 }"><button class="btn btn-default _btn" onclick="projectdelete('${project.projectNo}');">삭제</button></c:if>
+								    <c:if test="${project.progressCd ne 004 }"><button class="btn btn-default _btn" onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'">상세화면</button></c:if>
 								    </li>
 								
 							</ul>
