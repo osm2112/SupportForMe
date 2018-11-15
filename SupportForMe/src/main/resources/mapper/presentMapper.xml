@@ -5,7 +5,7 @@
 	
 	<!-- 선물 다건 조회  -->
 	<select id="getPresents" resultType="present" parameterType="present">
-		SELECT * FROM PRESENT WHERE PROJECT_NO = #{projectNo} ORDER BY PRESENT_NO
+		SELECT * FROM PRESENT WHERE PROJECT_NO = #{projectNo} ORDER BY PRESENT_PRICE
 	</select>
 	
 	<!-- 선물 단건 조회  -->

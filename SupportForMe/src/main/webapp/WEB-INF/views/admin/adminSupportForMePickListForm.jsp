@@ -154,11 +154,11 @@
 		<c:forEach items="${list}" var="list">
 			<tr>
 				<td ><input type="checkbox" name="ids" value="${list.projectNo}"></td>
-				<td onclick="location.href='../support/getProjectDetailPage?projectNo=?projectNo=${list.projectNo}'">${list.projectNo}</td>
-				<td onclick="location.href='../support/getProjectDetailPage?projectNo=?projectNo=${list.projectNo}'">${list.projectName}</td>
-				<td onclick="location.href='../support/getProjectDetailPage?projectNo=?projectNo=${list.projectNo}'">${list.name}</td>
-				<td onclick="location.href='../support/getProjectDetailPage?projectNo=?projectNo=${list.projectNo}'">${list.userId}</td>
-				<td onclick="location.href='../support/getProjectDetailPage?projectNo=?projectNo=${list.projectNo}'">${list.supportPickYn}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.projectNo}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.projectName}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.name}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.userId}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.supportPickYn}</td>
 			</tr>
 		</c:forEach>
 	</tbody>

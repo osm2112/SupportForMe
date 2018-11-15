@@ -298,6 +298,13 @@ text-shadow:   0 1px 0 #ccc,
       font:Arial, Helvetica, sans-serif;
       color:grey; 
 } */
+.flex-direction-nav a:before {
+    font-family: flexslider-icon;
+    font-size: 35px;
+    display: inline-block;
+    content: '\f001';
+}
+
 .text3d {
 	/* text-shadow: 1px 1px white, -1px -1px #666; */
 	font-size:18px;
@@ -317,7 +324,7 @@ text-shadow:   0 1px 0 #ccc,
 .remainDay {
 	padding-right:20px;
 	display:inline-block;
-	width:180px;
+	width:200px;
 }
 .rdPercent {
 	color:#5e5e5e;
@@ -331,10 +338,9 @@ text-shadow:   0 1px 0 #ccc,
 }
 .mainCategory div a {
 	font-size:20px;
-	border:1px solid rgb(26, 188, 156);
 	/* background-color:rgb(26, 188, 156);
 	color:white; */
-	color:rgb(26, 188, 156);
+	color:#353535;
 	padding:5px 15px;
 	border-radius : 5px;
 }
@@ -342,9 +348,8 @@ text-shadow:   0 1px 0 #ccc,
 	font-size:20px;
 	text-decoration:none;
 	background-color:white;
-	border:1px solid #FF007F;
 	border-radius : 5px;
-	color:#FF007F;
+	color:rgb(26, 188, 156);
 	padding:5px 15px;
 }
 </style>
@@ -610,7 +615,7 @@ text-shadow:   0 1px 0 #ccc,
 						<div style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
 							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
 							 --%>
-							<div class="progress" style="height:10px;width:250px">
+							<div class="progress" style="height:10px;width:240px">
 	    						<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:10px">
 	   							 </div>
 	  						</div>
@@ -623,7 +628,12 @@ text-shadow:   0 1px 0 #ccc,
 							var seq = '${project.projectNo}';
 							var rd = '${project.projectDeadline}';
 							if(rd != ''){
-								$("#"+seq+"pf").text("D-"+remainDay(rd));
+								var remain = remainDay(rd);
+								if(remain < 0){
+									$("#"+seq).remove();
+								}else {
+									$("#"+seq+"pf").text("D-"+remain);	
+								}
 							}
 						</script>
 					</div>						
@@ -656,7 +666,7 @@ text-shadow:   0 1px 0 #ccc,
 						<div style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
 							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
 							 --%>
-							<div class="progress" style="height:10px;width:250px">
+							<div class="progress" style="height:10px;width:240px">
 	    						<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:10px">
 	   							 </div>
 	  						</div>
@@ -666,11 +676,16 @@ text-shadow:   0 1px 0 #ccc,
 							<div style="display:inline-block;">&nbsp;${project.percent}%</div>
 						</div>
 						<script>
-							var seq = '${project.projectNo}';
-							var rd = '${project.projectDeadline}';
-							if(rd != ''){
-								$("#"+seq+"art").text("D-"+remainDay(rd));
+						var seq = '${project.projectNo}';
+						var rd = '${project.projectDeadline}';
+						if(rd != ''){
+							var remain = remainDay(rd);
+							if(remain < 0){
+								$("#"+seq).remove();
+							}else {
+								$("#"+seq+"art").text("D-"+remain);	
 							}
+						}
 						</script>
 					</div>						
 				</div>				
@@ -702,7 +717,7 @@ text-shadow:   0 1px 0 #ccc,
 						<div style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
 							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
 							 --%>
-							<div class="progress" style="height:10px;width:250px">
+							<div class="progress" style="height:10px;width:240px">
 	    						<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:10px">
 	   							 </div>
 	  						</div>
@@ -712,11 +727,16 @@ text-shadow:   0 1px 0 #ccc,
 							<div style="display:inline-block;">&nbsp;${project.percent}%</div>
 						</div>
 						<script>
-							var seq = '${project.projectNo}';
-							var rd = '${project.projectDeadline}';
-							if(rd != ''){
-								$("#"+seq+"book").text("D-"+remainDay(rd));
+						var seq = '${project.projectNo}';
+						var rd = '${project.projectDeadline}';
+						if(rd != ''){
+							var remain = remainDay(rd);
+							if(remain < 0){
+								$("#"+seq).remove();
+							}else {
+								$("#"+seq+"book").text("D-"+remain);	
 							}
+						}
 						</script>
 					</div>						
 				</div>				
@@ -748,7 +768,7 @@ text-shadow:   0 1px 0 #ccc,
 						<div style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
 							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
 							 --%>
-							<div class="progress" style="height:10px;width:250px">
+							<div class="progress" style="height:10px;width:240px">
 	    						<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:10px">
 	   							 </div>
 	  						</div>
@@ -758,11 +778,16 @@ text-shadow:   0 1px 0 #ccc,
 							<div style="display:inline-block;">&nbsp;${project.percent}%</div>
 						</div>
 						<script>
-							var seq = '${project.projectNo}';
-							var rd = '${project.projectDeadline}';
-							if(rd != ''){
-								$("#"+seq+"mv").text("D-"+remainDay(rd));
+						var seq = '${project.projectNo}';
+						var rd = '${project.projectDeadline}';
+						if(rd != ''){
+							var remain = remainDay(rd);
+							if(remain < 0){
+								$("#"+seq).remove();
+							}else {
+								$("#"+seq+"mv").text("D-"+remain);	
 							}
+						}
 						</script>
 					</div>						
 				</div>				

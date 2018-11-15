@@ -1,27 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<style>
+body {
+	margin:0;
+}
+.footer {
+    /*    position: absolute; bottom: 0; width: 100%; */  
+    height: 60px;
+    padding-top: 10px ;
+    color: white;
+    background-color: rgb(26, 188, 156);
+    text-align: center;
+/*     margin-top:5em; */
+    font-size:25px;
+    cursor:default;
+}
+.clock {
+	height:35px;
+	border-top:1px solid rgba(0, 0, 0, 0.2);
+	font-size:20px;	
+	text-align: center;
+	padding-top: 5px ;
+}
+</style>
+<script>
+setInterval(function() {
+    var timer = new Date();
+    var h = timer.getHours();
+    var m = timer.getMinutes();
+    var s = timer.getSeconds();
+	$(".clock").html(h + ":" + m + ":" + s);
+}, 1000);
+</script>
 </head>
 <body>
-	<footer class="footer">
-      FOOTER<br>
-        <br>
-        ${serverTime} <br>
-        <h2 id="clock"></h2> <!-- 현재시간 clock.js 파일 -->
-<%--     <tiles:insertAttribute name="footer" /> --%>
-   </footer>
-    .footer {
-    /*    position: absolute; bottom: 0; width: 100%; */
-    height: 222px;
-    padding: 1em;
-    color: black;
-    background-color: #fcedff;
-    text-align: center;
-    box-shadow: 0px -1px 10px 1px rgba(0, 0, 0, 0.2);
-    }
+	<div style="height:420px"></div>
+	<div class="clock"></div> <!-- 현재시간 clock.js 파일 -->
+	<div class="footer" onclick="location.href='<%= request.getContextPath()%>'"> ⓒSupportForMe </div>
 </body>
 </html>

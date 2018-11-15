@@ -28,10 +28,10 @@ public class AdminController {
 		
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		if ( memberDTO == null ) {
-			model.addAttribute("loginID", null);
+			model.addAttribute("member", memberDTO);
 		} else {
 			String userId = memberDTO.getUserId();
-			model.addAttribute("loginID", userId);
+			model.addAttribute("member", memberDTO);
 		}
 		
 		if(request.getParameter("pageUnit") != null) {
@@ -88,10 +88,10 @@ public class AdminController {
 		
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		if ( memberDTO == null ) {
-			model.addAttribute("loginID", null);
+			model.addAttribute("member", null);
 		} else {
 			String userId = memberDTO.getUserId();
-			model.addAttribute("loginID", userId);
+			model.addAttribute("member", memberDTO);
 		}
 		
 		
@@ -132,10 +132,10 @@ public class AdminController {
 		
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		if ( memberDTO == null ) {
-			model.addAttribute("loginID", null);
+			model.addAttribute("member", null);
 		} else {
 			String userId = memberDTO.getUserId();
-			model.addAttribute("loginID", userId);
+			model.addAttribute("member", memberDTO);
 		}
 		
 		String getIds =request.getParameter("ids");
@@ -164,10 +164,10 @@ public class AdminController {
 		
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		if ( memberDTO == null ) {
-			model.addAttribute("loginID", null);
+			model.addAttribute("member", null);
 		} else {
 			String userId = memberDTO.getUserId();
-			model.addAttribute("loginID", userId);
+			model.addAttribute("member", memberDTO);
 		}
 		
 		if(request.getParameter("pageUnit") != null) {

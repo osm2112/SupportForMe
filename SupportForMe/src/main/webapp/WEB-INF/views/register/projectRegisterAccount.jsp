@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,7 @@
 </head>
 <body>
 <script>
+$(function(){
 	$(".save_button").click(function(){
 		var regexp = /^[0-9]+$/;
 		var deposit = $("[name=depositAccount]").val()
@@ -29,24 +31,26 @@
 			$("#alertModal").show();
 		}
 	});
-	$(".register_button").on("click",function(){
-		$("#confirmMessage").html('정말 등록하시겠습니까?<br>등록완료 후 메인 화면에 프로젝트가 나타나게 됩니다. 적절하지 않을 경우 관리자에 의해 보류되어질 수 있음 양해부탁드립니다.');
+	$(".register_button").click(function(){
+		$("#confirmMessage").html('정말 등록하시겠습니까?<br>등록완료 후 메인 화면에 프로젝트가 나타나게 됩니다.<br>적절하지 않을 경우 관리자에 의해 보류되어질 수 있음<br>양해부탁드립니다.');
 		$("#confirmModal").show();	
-		accountConfirm();
 	});
-	function accountConfirm(){
-		$("#confirmModalOk").click(function(){ 
-			$("#confirmModal").hide();
-			var url = "../registerComplete";
-			var params = {projectNo : '${project.projectNo}'};
-			$.getJSON(url,params,function(result){
-				if(result.code=="success"){
-					$("#alertMessage").text('정상적으로 등록되었습니다.');
-					$("#alertModal").show();
-				}
-			});
-		})
-	}
+
+	$("#confirmModalOk").click(function(){ 
+		$("#confirmModal").hide();
+		var url = "../registerComplete";
+		var params = {projectNo : '${project.projectNo}'};
+		$.getJSON(url,params,function(result){
+			if(result.code=="success"){
+				$("#alertMessage").text('정상적으로 등록되었습니다.');
+				$("#alertModal").show();
+			}else if(result.code=="fail"){
+				$("#alertMessage").text('등록에 실패했습니다. 리워드를 등록해주세요.');
+				$("#alertModal").show();
+			}
+		});
+	});
+});
 </script>
 <div style="height: 50px"></div>
 	<form name="registerAccountFrm" id="registerAccountFrm">
@@ -91,6 +95,8 @@
 	</form>
 	<div style="height:100px"></div>
 	<input type="button" name="save" class="save_button account" value="저장하기">
-	<input type="button" name="complete" class="register_button" value="등록완료">
+	<c:if test="${project.progress == '004'}">
+		<input type="button" name="complete" class="register_button" value="등록완료">
+	</c:if>
 </body>
 </html>

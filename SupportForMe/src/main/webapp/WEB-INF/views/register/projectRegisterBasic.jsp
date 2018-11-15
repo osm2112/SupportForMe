@@ -65,9 +65,11 @@
 				$("input[name=targetAmount]").on("focusout",function(){
 					var num = $("input[name=targetAmount]").val(); 
 					var regexp = /^[0-9]+$/;
-					if(regexp.test(num)){
-						num = addComma(num);
-						$("input[name=targetAmount]").val(num);
+					if(regexp.test(num) || num == ''){
+						if(num != ''){
+							num = addComma(num);
+							$("input[name=targetAmount]").val(num);
+						}
 					}else {
 						$("#alertMessage").text("목표금액은 숫자만 가능합니다.");
 						$("#alertModal").show();

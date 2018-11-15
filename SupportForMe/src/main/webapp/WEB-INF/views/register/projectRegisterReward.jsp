@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="<%=request.getContextPath()%>/js/projectRegisterReward.js?ver=1"></script>
+<script src="<%=request.getContextPath()%>/js/projectRegisterReward.js?ver=1.1"></script>
 </head>
 <body>
 <div style="height: 50px"></div>
@@ -40,7 +40,7 @@
 		$("#presentDeliveryDate").datepicker(
 				{
 					dateFormat : "yy-mm-dd",
-					maxDate : "+1m +19d", //7 // new Data(2018,11,20)
+					maxDate : "+2m", //7 // new Data(2018,11,20)
 					minDate : "1w",
 					dayNamesMin : [ "일", "월", "화", "수", "목", "금", "토" ],
 					onSelect : function(strDate, obj) {

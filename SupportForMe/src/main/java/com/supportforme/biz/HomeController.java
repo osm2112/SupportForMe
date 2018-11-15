@@ -34,17 +34,15 @@ public class HomeController {
 	public String home(Model model, HttpSession session, HttpServletRequest request) {
 		String userId = null;
 		String contextPath = request.getContextPath();
-		if ( session.getAttribute("LoginInfo") == null ) {
-			model.addAttribute("loginID", null);
-		/*	System.out.println( session.getAttribute("LoginInfo")+"22222222222222222222222222222222222222");*/
+		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
+		
+		if ( /*session.getAttribute("LoginInfo")*/dto == null ) {
+			model.addAttribute("member", null);
 		}
 		else {
-		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
+		/*MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");*/
 		userId = dto.getUserId();
-		model.addAttribute("loginID", userId);
-	/*	System.out.println(dto.getUserId());
-		System.out.println( session.getAttribute("LoginInfo")+"33333333333333333333333333333333333333333");
-	*/
+		model.addAttribute("member", dto);
 		}
 	
 		//최신 프로젝트조회
@@ -55,11 +53,13 @@ public class HomeController {
 		model.addAttribute("Book",projectService.getBookProjects());
 		model.addAttribute("Movie",projectService.getMovieProjects());
 		model.addAttribute("Rank",projectService.getInvsetTop5());
+		
 		if(userId !=null) {
 			if(userId.contains("Admin")) {
 				model.addAttribute("url", contextPath+"/forme/AdminDashBoard");
 				return "commons/alertRedirect";
-			}	else {
+			}
+			else {
 				return "noNav/home";
 			}
 		}

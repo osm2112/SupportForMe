@@ -119,20 +119,19 @@ $(function(){
 	
 	function makeCommentView(comments) {
 		
-			
 		var div = $("<div>");
 		div.attr("id", "c"+comments.commentNo);
 		div.addClass('comments');
 		div[0].comments=comments;	
-			
+		
 		var str = "<div class='updComment' style='background-color: #F6F6F6; border-bottom:3px solid white;'>"
 				+ "<div style='display:flex;'>"
 				+ "		<div style='width:60px; margin-right:10px;'>"
 				+ "			<img src='../images/user-icon.png' style='width:60px; height:60px; margin:auto;'><br>"
-				+ "			<img name='rcBtn' id='rcBtn' src='../images/comments.png' style='width:40px; height:40px; margin-top:60px;'>"
+				+ "			<img name='rcBtn' id='rcBtn' src='../images/comments.png' style='width:35px; height:35px; margin-top:60px;'>"
 				+ "		</div>"
 				+ "		<div>"
-				+ "			<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
+				+ "			<span class='userId' name='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
 				+ "			<span class='commentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
 				+ "			<textarea name='commentContent' class='commentContent' readonly cols='65' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
 				+ "		</div>";
@@ -141,7 +140,7 @@ $(function(){
 				+ "			<button type='button' class='btnDel' style='width:50px; height:30px;'>삭제</button>"
 				+ "		</div>";
 					
-		if('${pMember.userId}' == comments.userId) {
+		if('${member.userId}' == comments.userId) {
 						str+=btn
 				}
 				
@@ -150,7 +149,7 @@ $(function(){
 				+ "<div id='replyCommentAdd' style='display:none; width:100%; padding:15px; background-color:#F6F6F6;'>"
 				+ "		<form name='replyAddForm' id='replyAddForm'>"
 				+ "			<input type='hidden' name='projectNo' value='${project.projectNo}'>"
-				+ "			<input type='hidden' name='userId' value='${pMember.userId}'>"
+				+ "			<input type='hidden' name='userId' value='${member.userId}'>"
 				+ "			<input type='hidden' name='topCommentNo' value='"+comments.commentNo+"'>"
 				+ "			<div style='display:flex;'>"
    				+ "				<img src='../images/turn-right.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
@@ -219,7 +218,7 @@ $(function(){
 				+ "			<button type='button' class='rcBtnUpdFrm' style='width:50px; height:30px;margin-bottom:5px;'>수정</button>"
 				+ "			<button type='button' class='rcBtnDel' style='width:50px; height:30px;'>삭제</button>"
 				+ "		</div>";
-		if('${pMember.userId}' == comments.userId) {
+		if('${member.userId}' == comments.userId) {
 					str+=btn
 				}
 			str	+= "</div>"
@@ -231,29 +230,38 @@ $(function(){
 	
 	//댓글등록
 	$("#btnAdd").click(function(){
-		
-		if('${pMember.userId}'== ''){
+		if('${member.userId}'== ''){
 			if(confirm("로그인 후 이용가능합니다. 로그인 하시겠습니까?")){
 				location.href=path+"/support/login";
 			} else {return false;}
 		} else {
+			if($('#addForm [name=commentContent]').val() == '') {
+				alert("내용을 입력해주세요.");
+				return false;
+			} else{
 			var params = $("[name=addForm]").serialize();		
 			var url = path+"forme/insertComments";
 			$.getJSON(url, params, function(data){
 				$("#commentList").prepend( makeCommentView(data) );
 				$("[name=addForm]")[0].reset();
-				location.hash = "#here";
+				window.location.hash = "#here";
 			});
+			}
 		}
+			
 	});
 	//답글등록
 		$("#commentList").on("click", "#replyBtnAdd", function(){
 			
-			if('${pMember.userId}' == ''){
+			if('${member.userId}' == ''){
 				if(confirm("로그인 후 이용가능합니다. 로그인 하시겠습니까?")){
 					location.href=path+"/support/login";
 				} else {return false;}
-			} else {	
+			} else {
+				if($(this).prev('[name=commentContent]').val() == '') {
+					alert("내용을 입력해주세요.");
+					return false;
+				} else{
 				var params = $(this).closest("[name=replyAddForm]").serialize();
 				var check_this = $(this).closest("[name=replyAddForm]");	//function안에서 this 안돼서 넣음
 				var url = path+"forme/insertReplyComments";
@@ -261,6 +269,7 @@ $(function(){
 					check_this.parent().prev().prepend( makeReplyCommentView(data) );
 					check_this.closest("[name=replyAddForm]")[0].reset();
 			});
+		}
 		}
 	});
 	
@@ -370,7 +379,7 @@ $(function(){
 	
 	
 	loadCommentsList();
-	/*--------------preview header--------------------------------------------------------------------------------------*/
+/*--------------preview header--------------------------------------------------------------------------------------*/
 	var preview = '${preview}';
 	if(preview == 'p'){
 		$("#headDiv").hide();
@@ -393,6 +402,20 @@ function pick() {
 	
 }
 
+
+/*-------------투자하기 버튼 제어-------------------------------------------------------------------------------------*/
+function invest(){
+	var invest = '${project.progress}';
+	console.log(invest);
+	
+	if('${project.progress}' != '진행중') {
+		alert('종료된 프로젝트 입니다.');
+		return false;
+	} else {
+		location.href = path+"forme/InvestSelectReward?projectNo=${project.projectNo}";
+	}
+}
+
 </script>
 </head> 
     
@@ -403,7 +426,7 @@ function pick() {
     <!-- 프로젝트 이름, 관리자 버튼 -->
     <div class="pjdtl-flex-container">
         <div class="pjdtl-project-name">${project.projectName}</div>
-        <c:if test="${pMember.userId == 'Admin'}">
+        <c:if test="${member.userId == 'Admin'}">
         	<button class="pjdtl-pick-btn" onclick="pick()">PICK</button>
     	</c:if>
     </div>
@@ -462,22 +485,23 @@ function pick() {
 			</div>
 <!-- 진행상황 막대그래프 -->
 			<div class="progress" style="width:480px; height:30px; margin-bottom:10px;">
-				<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${project.projectProgressRate}%; height:30px;">${project.projectProgressRate}%</div>
+				<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${project.projectProgressRate}%; height:30px;padding-top:5px;font-size:17px">${project.projectProgressRate}%</div>
 			</div>
 			
             <div style="font-size:25px; color:#8C8C8C;">참여자 ${invest.headcount}명</div>
+            <div style="height:10px"></div>
             <div style="display:flex;">
             <c:choose>
             	<c:when test="${preview == 'p'}">
                	 <button class="pjdtl-invest-btn">투자하기</button>
                 </c:when>
                 <c:otherwise>
-                	<button class="pjdtl-invest-btn" onclick="location.href='../forme/InvestSelectReward?projectNo=${project.projectNo}'">투자하기</button>
+                	<button class="pjdtl-invest-btn" onclick="invest()">투자하기</button>
                 </c:otherwise>
             </c:choose>
             <!--<img src="../images/share-button.png" class="pjdtl-share-btn">-->
-            </div><br><br>
- 
+            </div>
+ 			<div style="height:10px"></div>
             <table style="width:480px;border:1px solid #A6A6A6;">
             	<tr style="text-align: center;">
             		<td style="height:100px;"><img src="../images/calendar.png" style="width:90px; height:82px;"></td>
@@ -532,7 +556,7 @@ function pick() {
 <!--댓글입력--><div id="commentAdd" style="width:785px; padding:15px; background-color:#F6F6F6;">
 				<form name="addForm" id="addForm">
 					<input type="hidden" name="projectNo" value="${project.projectNo}">
-					<input type="hidden" name="userId" value="${pMember.userId}">
+					<input type="hidden" name="userId" value="${member.userId}">
                        <div style="display: flex;">
 				           <img src="../images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
                            <textarea name="commentContent" cols="77" rows="5" placeholder="내용을 입력해주세요." style="resize:none;"></textarea>&nbsp;
@@ -545,7 +569,7 @@ function pick() {
 			<div id="commentUpdate" style="width:785px; padding:15px; background-color:#F6F6F6; border-bottom:2px solid white;display:none;">
 				<form name="updateForm" id="updateForm">
 					<input type="hidden" name="commentNo" value="${comments.commentNo}">
-					<input type="hidden" name="userId" value="${pMember.userId}">
+					<input type="hidden" name="userId" value="${member.userId}">
 					<div style="display: flex;">
 						<img src="../images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
 						<textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
@@ -560,7 +584,7 @@ function pick() {
 			<div id="replyCommentUpdate" style="width:100%; padding:15px; background-color:#F6F6F6; border-bottom:1px dotted grey; display:none;">
 				<form name="rcUpdateForm" id="rcUpdateForm">
 					<input type="hidden" name="commentNo" value="${comments.commentNo}">
-					<input type="hidden" name="userId" value="${pMember.userId}">
+					<input type="hidden" name="userId" value="${member.userId}">
 					<div style="display: flex;">
 						<img src="../images/arrow2.png" style="width:50px; height:50px; margin:auto;">&nbsp;
 						<textarea name="commentContent" cols="75" rows="5" style="resize:none;"></textarea>&nbsp;
@@ -585,15 +609,14 @@ function pick() {
             <div class="pjdtl-each-reward">
             	<div style="display:flex;">
             		<img src="../images/checkmark.png" style="width:27px; height:27px">
-            		<%-- <c:choose>
+            		<c:choose>
             		<c:when test="${presentCount[status.index].rewardSelectCount == null}">
             			<span style="font-size:27px; color:#8C8C8C;">0명이 선택</span>
             		</c:when>
             		<c:otherwise>
             			<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span>
             		</c:otherwise>
-            		</c:choose> --%>
-            		<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span>
+            		</c:choose>
             	</div><br>
             	<span style="color:#4C4C4C;">가격</span><br>
             	<span class="rewardPrice" style="font-size:23px; color:#FF007F;"></span>

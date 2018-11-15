@@ -64,4 +64,10 @@
 		UPDATE PROJECT SET progress = '001'
 		WHERE PROJECT_NO = #{projectNo}
 	</update>
+	
+	<!-- 프로젝트 선물 갯수  -->
+	<select id="getPresentCnt" parameterType="project" resultType="string">
+		SELECT COUNT(*) FROM PRESENT
+		WHERE PROJECT_NO = #{projectNo}
+	</select>
 </mapper> 

@@ -8,7 +8,14 @@ public class CommentsDTO {
 	private String projectNo;
 	private String userId;
 	private String cnt;
+	private String replyCommentCnt;
 	
+	public String getReplyCommentCnt() {
+		return replyCommentCnt;
+	}
+	public void setReplyCommentCnt(String replyCommentCnt) {
+		this.replyCommentCnt = replyCommentCnt;
+	}
 	public String getCnt() {
 		return cnt;
 	}

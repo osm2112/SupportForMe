@@ -13,6 +13,8 @@
 #headDiv {
 	margin:0px;
     border-bottom:1px solid lightgrey;
+    background-color:white;
+    z-index:5;
 }
 .headBodysize {
   display:grid;
@@ -78,11 +80,13 @@
     text-align:center;
     width : 100px;
     color:#474747;
+    font-weight:550;
 }
 #logout_head_menu {
     display:grid;
     grid-template-columns: 80px 80px;
-}                 
+} 
+          
 @media(max-width:850px){
     .bodysize {
         display:grid;
@@ -91,7 +95,8 @@
     }
     #head {
         display:grid;
-        grid-template-columns : 1fr 3fr ;
+   /*      grid-template-columns : 1fr 3fr ; */
+        
     }
     #head > #site_name {
      color : rgb(26, 188, 156);
@@ -124,6 +129,7 @@
    		display:none;
     }
 }   
+
 <!-- 사이드바 -->
 /* body { margin: 0; padding: 0; }
 body.dark { background: rgba(0,0,0,.4); z-index: 30; }
@@ -146,7 +152,7 @@ body.dark { background: rgba(0,0,0,.4); z-index: 30; }
 
   z-index : 50;
   height: 100%; width: 260px;
-  top: 70px; right: -260px;
+  top: 70.5px; right: -260px;
   background: white;
   border : 1px solid #EEEEEE;
   position: fixed;
@@ -156,7 +162,7 @@ body.dark { background: rgba(0,0,0,.4); z-index: 30; }
 
 #sidenav header {
 	border : 0px;
-	height: 150px;
+	height: 180px;
 	text-align: center;
 	font-size: 1em;
 }
@@ -195,6 +201,7 @@ function go_register() {
 function view() {
 	var objDiv = document.getElementById("site_name");
 	var objDiv2 = document.getElementById("searchKeyword");
+	
     if(objDiv.style.display=="block"){ 
     	objDiv.style.display = "none";
     	objDiv2.style.display = "block";
@@ -204,6 +211,18 @@ function view() {
     	 objDiv2.style.display = "none";  
      }
 }
+
+function view2() {
+	
+	var objDiv2 = document.getElementById("searchKeyword2");
+	
+    if(objDiv2.style.display=="block"){ 
+    	objDiv2.style.display = "none";
+    }
+    else{ 
+    	objDiv2.style.display = "block";
+    }
+}
 </script>
 	<div id="headDiv">
 		<div class="headBodysize">
@@ -211,13 +230,13 @@ function view() {
 	    	<div id="head">
 		    	<!--  화면줄였을때 보이는 영역 -->
 	    	    <div id="search_div1">
-		        <a href="#" onclick="view()"><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg"></a>
-		        <form action="<%= request.getContextPath() %>/support/getProjects">
-	        	<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-				</form> 	    
+		        	<a href="#" onclick="view()"><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg"></a>
+		        	<form action="<%= request.getContextPath() %>/support/getProjects">
+	        			<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?" style="display:none;">
+					</form> 	    
 	        	</div>
 				
-	        	<div id="site_name" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>'">
+	        	<div id="site_name" style="cursor:pointer; display:block;" onclick="location.href='<%= request.getContextPath() %>'">
 	            	SupportForME
 	        	</div>
 	        
@@ -228,26 +247,30 @@ function view() {
 	        	<!-- 전체화면일때 보이는 영역 -->
 	        	<div id="search_div2">
 	        	<form action="<%= request.getContextPath() %>/support/getProjects">
-	        	<input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-	        	<input TYPE="image" src="<%= request.getContextPath() %>/images/search.png" class="searchImg" name="Submit" value="Submit">
+	        		<input type="text" name="searchKeyword" id="searchKeyword2" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?" style="display:none;">
+	      
+				<%--<input TYPE="image" src="<%= request.getContextPath() %>/images/search.png" class="searchImg" name="Submit" value="Submit"> --%> 
 				</form>
+				<a href="#" onclick="view2()"><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg"></a>
 	        	</div>
-	        	<c:if test="${loginID eq null}">
+	        	
+	        	<c:if test="${member.userId eq null}">
 	        	<div id="logout_head_menu">
 		        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>/support/MemberLoginForm'">로그인</div>
 		        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>/support/MemberTermsConfirmForm'">회원가입</div>
 	        	</div>
 	        	</c:if>
-	        	<c:if test="${loginID ne null}">
+	        	<c:if test="${member.userId ne null}">
 	        	<div id="head_font_size" class="hamburger-wrapper"><span class="hamburger">마이 페이지</span></div>
 	        	</c:if>
  <!--  사이드바 -->
  <nav id="sidenav">
   <span id="close-sidenav">&times;</span>
   <header>
-  	<div style="height:40px"></div>
+  	<div style="height:30px"></div>
   	<div style="margin-left:10px"><img src="<%= request.getContextPath() %>/images/hUser.png" style="width:55px;height:55px;margin-left:15px;"></div>
-  	<div style="color:white; font-size:20px;margin-top:5px">${loginID}</div> 
+  	<div style="color:white; font-size:18px;margin-top:5px">${member.name}</div> 
+  	<div style="color:white; font-size:18px;margin-top:5px">${member.email}</div>
   </header>
   <ul>
     <li><a href="<%= request.getContextPath() %>/forme/MemberUpdateConfirmForm">프로필 설정</a></li>
@@ -255,7 +278,7 @@ function view() {
     <li><a href="<%= request.getContextPath() %>/forme/MyInvestList">나의 투자 현황</a></li>
     <li><a href="<%= request.getContextPath() %>/forme/MyInvestors">나의 투자자</a></li>
     <li><a href="<%= request.getContextPath() %>/forme/InvestList">나의 결재 내역</a></li>
-    <c:set var ="id" value="${loginID}"/>
+    <c:set var ="id" value="${member.userId}"/>
     <c:if test="${fn:contains(id,'Admin' )}">
     <li><a href="<%= request.getContextPath() %>/forme/AdminProjectProgressList">프로젝트 관리</a></li>
     <li><a href="<%= request.getContextPath() %>/forme/AdminMemberList">회원 관리</a></li>
@@ -281,16 +304,11 @@ $("#close-sidenav").click(function() {
 	$("#sidenav").css("right", "-260px");
   $("body").removeClass("dark");
 });
+
+
 </script>
-
-<!--  사이드바 -->
-	   		</div>
-	   <!-- 	
-	    	<div>
-	    	</div> -->
-		</div>
-		
-
+</div>
+</div>
 </div>
 </body>
 </html>

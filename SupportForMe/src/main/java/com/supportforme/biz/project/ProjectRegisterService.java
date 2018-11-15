@@ -14,4 +14,7 @@ public interface ProjectRegisterService {
 	//프로젝트 완료 업데이트 
 	public int completeProject(ProjectDTO dto);
 	
+	//프로젝트의 선물 갯수 
+	public String getPresentCnt(ProjectDTO dto);
+	
 }
