@@ -119,17 +119,16 @@ $(function(){
 	
 	function makeCommentView(comments) {
 		
-			
 		var div = $("<div>");
 		div.attr("id", "c"+comments.commentNo);
 		div.addClass('comments');
 		div[0].comments=comments;	
-			
+		
 		var str = "<div class='updComment' style='background-color: #F6F6F6; border-bottom:3px solid white;'>"
 				+ "<div style='display:flex;'>"
 				+ "		<div style='width:60px; margin-right:10px;'>"
 				+ "			<img src='../images/user-icon.png' style='width:60px; height:60px; margin:auto;'><br>"
-				+ "			<img name='rcBtn' id='rcBtn' src='../images/comments.png' style='width:40px; height:40px; margin-top:60px;'>"
+				+ "			<img name='rcBtn' id='rcBtn' src='../images/comments.png' style='width:35px; height:35px; margin-top:60px;'>"
 				+ "		</div>"
 				+ "		<div>"
 				+ "			<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
@@ -245,7 +244,7 @@ $(function(){
 			$.getJSON(url, params, function(data){
 				$("#commentList").prepend( makeCommentView(data) );
 				$("[name=addForm]")[0].reset();
-				location.hash = "#here";
+				window.location.hash = "#here";
 			});
 			}
 		}
@@ -259,7 +258,6 @@ $(function(){
 					location.href=path+"/support/login";
 				} else {return false;}
 			} else {
-				console.log($('#replyAddForm [name=commentContent]').val());
 				if($(this).prev('[name=commentContent]').val() == '') {
 					alert("내용을 입력해주세요.");
 					return false;

@@ -8,6 +8,7 @@ public interface CommentsService {
 	
 	//댓글 조회
 	public List<CommentsDTO> getCommentsList(CommentsDTO dto);
+//	public String getReplyCommentCnt(CommentsDTO dto);
 		
 	//댓글에 달린 답글 조회
 	public List<CommentsDTO> getReplyCommentsList(CommentsDTO dto);
@@ -28,8 +29,4 @@ public interface CommentsService {
 	public void deleteComments(CommentsDTO dto);
 	public String getCommentCnt(CommentsDTO dto);
 		
-	//답글 삭제
-	public void deleteReplyComments(CommentsDTO dto);
-	
-	
 }
