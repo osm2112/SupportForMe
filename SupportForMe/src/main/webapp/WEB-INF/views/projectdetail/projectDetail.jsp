@@ -141,7 +141,7 @@ $(function(){
 				+ "			<button type='button' class='btnDel' style='width:50px; height:30px;'>삭제</button>"
 				+ "		</div>";
 					
-		if('${pMember.userId}' == comments.userId) {
+		if('${member.userId}' == comments.userId) {
 						str+=btn
 				}
 				
@@ -150,7 +150,7 @@ $(function(){
 				+ "<div id='replyCommentAdd' style='display:none; width:100%; padding:15px; background-color:#F6F6F6;'>"
 				+ "		<form name='replyAddForm' id='replyAddForm'>"
 				+ "			<input type='hidden' name='projectNo' value='${project.projectNo}'>"
-				+ "			<input type='hidden' name='userId' value='${pMember.userId}'>"
+				+ "			<input type='hidden' name='userId' value='${member.userId}'>"
 				+ "			<input type='hidden' name='topCommentNo' value='"+comments.commentNo+"'>"
 				+ "			<div style='display:flex;'>"
    				+ "				<img src='../images/turn-right.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
