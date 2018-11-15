@@ -462,10 +462,11 @@ function pick() {
 			</div>
 <!-- 진행상황 막대그래프 -->
 			<div class="progress" style="width:480px; height:30px; margin-bottom:10px;">
-				<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${project.projectProgressRate}%; height:30px;">${project.projectProgressRate}%</div>
+				<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${project.projectProgressRate}%; height:30px;padding-top:5px;font-size:17px">${project.projectProgressRate}%</div>
 			</div>
 			
             <div style="font-size:25px; color:#8C8C8C;">참여자 ${invest.headcount}명</div>
+            <div style="height:10px"></div>
             <div style="display:flex;">
             <c:choose>
             	<c:when test="${preview == 'p'}">
@@ -476,8 +477,8 @@ function pick() {
                 </c:otherwise>
             </c:choose>
             <!--<img src="../images/share-button.png" class="pjdtl-share-btn">-->
-            </div><br><br>
- 
+            </div>
+ 			<div style="height:10px"></div>
             <table style="width:480px;border:1px solid #A6A6A6;">
             	<tr style="text-align: center;">
             		<td style="height:100px;"><img src="../images/calendar.png" style="width:90px; height:82px;"></td>
