@@ -3,7 +3,7 @@
 .pjdtl-bodysize {
 	margin-left: auto;
 	margin-right: auto;
-	width: 1200px;
+	width: 1100px;
 }
 
 .pjdtl-center {
@@ -16,7 +16,7 @@
 
 .pjdtl-project-name {
 	width: 100%;
-	font-size: 50px;
+	font-size: 45px;
 	text-align: center;
 	color:#353535;
 }
@@ -61,8 +61,9 @@
 .pjdtl-detail-box {
 	display: flex;
 	flex-direction: column;
-	width: 520px;
-	height: 500px;
+	width: 480px;
+	height: 480px;
+	margin-left:15px;
 }
 
 .pjdtl-target-price {
@@ -117,7 +118,7 @@
 }
 
 .pjdtl-content {
-	width: 800px;
+	width: 780px;
 }
 
 .pjdtl-empty-content {
@@ -125,19 +126,19 @@
 }
 
 .pjdtl-reward {
-	width: 370px;
+	width: 350px;
 }
 
 .pjdtl-each-reward {
-	width: 330px;
+	width: 310px;
 	padding: 20px;
 	margin: 10px 0px;
 	border: 1px solid lightgray;
 }
 
 li>img {
-	max-width: 660px;
-	max-height: 375px;
+	max-width: 627px;
+	max-height: 365px;
 	width:100%;
 	height:100%;
 }
@@ -152,7 +153,7 @@ ul {
 }
 
 .demo .item {
-	margin-bottom: 60px;
+	margin-bottom: 50px;
 }
 
 .content-slider li {
@@ -167,7 +168,7 @@ ul {
 }
 
 .demo {
-	width: 660px;
+	width: 627px;
 }
 
 .updComment {

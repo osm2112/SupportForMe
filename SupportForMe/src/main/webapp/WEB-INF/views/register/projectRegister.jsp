@@ -18,7 +18,13 @@
 </style>
 <script>
 function preview(){
-	window.location.href="<c:url value='../preview/${project.projectNo}'/>";
+	var progress = '${project.progress}';
+	if(progress == '004'){
+		window.location.href="<c:url value='../preview/${project.projectNo}'/>";
+	}else{
+		$("#alertMessage").text('제작중인 프로젝트만 미리보기가 가능합니다.');
+		$("#alertModal").show();
+	}
 }
 function addComma(num) {
 	  var regexp = /\B(?=(\d{3})+(?!\d))/g;

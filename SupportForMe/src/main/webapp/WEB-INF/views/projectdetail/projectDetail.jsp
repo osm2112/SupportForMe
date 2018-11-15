@@ -11,7 +11,7 @@
 
 <title></title>
 
-<link rel="stylesheet" href="../css/projectDetail.css">
+<link rel="stylesheet" href="../css/projectDetail.css?ver=1">
 
 <!-- 슬라이드 -->
 <link type="text/css" rel="stylesheet" href="../css/lightslider.css" />                  
@@ -453,7 +453,7 @@ function invest(){
         	<ul id="image-gallery" class="gallery list-unstyled cS-hidden">
 				<c:forTokens items="${project.introductionVideo}" delims="||" var="video">
 					<li data-thumb="${video}" class="video-thumb">
-						<iframe width="660" height="380" src="https://www.youtube.com/embed/${video}"
+						<iframe width="625" height="365" src="https://www.youtube.com/embed/${video}"
 							frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
 					</li>
 				</c:forTokens>
@@ -480,7 +480,7 @@ function invest(){
             <script>
             	$(".pjdtl-target-price").text("목표금액 "+addComma('${project.targetAmount}')+"원");
             </script>
-			<div style="width:100px; color:#FF007F; text-align:center; margin-bottom:3px; margin-left:-15px;font-size:23px;">
+			<div style="width:100px; color:#FF007F; text-align:center; margin:10px 0px 5px -15px;font-size:23px;">
 				<span style="font-weight:700;">${project.progress}</span>
 			</div>
 <!-- 진행상황 막대그래프 -->
@@ -489,7 +489,7 @@ function invest(){
 			</div>
 			
             <div style="font-size:25px; color:#8C8C8C;">참여자 ${invest.headcount}명</div>
-            <div style="height:10px"></div>
+            <div style="height:15px"></div>
             <div style="display:flex;">
             <c:choose>
             	<c:when test="${preview == 'p'}">
@@ -501,7 +501,7 @@ function invest(){
             </c:choose>
             <!--<img src="../images/share-button.png" class="pjdtl-share-btn">-->
             </div>
- 			<div style="height:10px"></div>
+ 			<div style="height:15px"></div>
             <table style="width:480px;border:1px solid #A6A6A6;">
             	<tr style="text-align: center;">
             		<td style="height:100px;"><img src="../images/calendar.png" style="width:90px; height:82px;"></td>
@@ -536,16 +536,16 @@ function invest(){
         <div class="pjdtl-content">
 		
 		<div class="container">
-		  <ul class="nav nav-tabs" style="width:785px;">
+		  <ul class="nav nav-tabs" style="width:750px;">
 		    <li class="active"><a data-toggle="tab" href="#home">스토리</a></li>
 		    <li><a data-toggle="tab" href="#menu1">댓글</a></li>
 		  </ul>
 		
 		  <div class="tab-content">
-		    <div id="home" class="tab-pane fade in active" style="width:785px;">
+		    <div id="home" class="tab-pane fade in active" style="width:750px;padding-top:10px">
 		    	${project.story}
 		    </div>
-		    <div id="menu1" class="tab-pane fade" style="width:785px;">
+		    <div id="menu1" class="tab-pane fade" style="width:750px;">
 		     			
 <!--댓글-->	
 			<div id="comment" class="tabcontent">
@@ -553,7 +553,7 @@ function invest(){
 <!--댓글출력--><div id="commentList"></div>
 			<div class="more" id="more">더보기</div>
 			<br>
-<!--댓글입력--><div id="commentAdd" style="width:785px; padding:15px; background-color:#F6F6F6;">
+<!--댓글입력--><div id="commentAdd" style="width:750px; padding:10px; background-color:#F6F6F6;">
 				<form name="addForm" id="addForm">
 					<input type="hidden" name="projectNo" value="${project.projectNo}">
 					<input type="hidden" name="userId" value="${member.userId}">
@@ -566,7 +566,7 @@ function invest(){
 			</div><br><br>
 			
 <!--댓글 수정-->			
-			<div id="commentUpdate" style="width:785px; padding:15px; background-color:#F6F6F6; border-bottom:2px solid white;display:none;">
+			<div id="commentUpdate" style="width:750px; padding:10px; background-color:#F6F6F6; border-bottom:2px solid white;display:none;">
 				<form name="updateForm" id="updateForm">
 					<input type="hidden" name="commentNo" value="${comments.commentNo}">
 					<input type="hidden" name="userId" value="${member.userId}">
