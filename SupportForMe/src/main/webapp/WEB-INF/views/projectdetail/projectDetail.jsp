@@ -219,7 +219,7 @@ $(function(){
 				+ "			<button type='button' class='rcBtnUpdFrm' style='width:50px; height:30px;margin-bottom:5px;'>수정</button>"
 				+ "			<button type='button' class='rcBtnDel' style='width:50px; height:30px;'>삭제</button>"
 				+ "		</div>";
-		if('${mamber.userId}' == comments.userId) {
+		if('${member.userId}' == comments.userId) {
 					str+=btn
 				}
 			str	+= "</div>"
@@ -231,14 +231,12 @@ $(function(){
 	
 	//댓글등록
 	$("#btnAdd").click(function(){
-		console.log('${mamber.userId}');
-		if('${mamber.userId}'== ''){
+		if('${member.userId}'== ''){
 			if(confirm("로그인 후 이용가능합니다. 로그인 하시겠습니까?")){
 				location.href=path+"/support/login";
 			} else {return false;}
 		} else {
-			
-			if($('[name=commentContent]') == '') {
+			if($('#addForm [name=commentContent]').val() == '') {
 				alert("내용을 입력해주세요.");
 				return false;
 			} else{
@@ -256,11 +254,16 @@ $(function(){
 	//답글등록
 		$("#commentList").on("click", "#replyBtnAdd", function(){
 			
-			if('${mamber.userId}' == ''){
+			if('${member.userId}' == ''){
 				if(confirm("로그인 후 이용가능합니다. 로그인 하시겠습니까?")){
 					location.href=path+"/support/login";
 				} else {return false;}
-			} else {	
+			} else {
+				console.log($('#replyAddForm [name=commentContent]').val());
+				if($(this).prev('[name=commentContent]').val() == '') {
+					alert("내용을 입력해주세요.");
+					return false;
+				} else {
 				var params = $(this).closest("[name=replyAddForm]").serialize();
 				var check_this = $(this).closest("[name=replyAddForm]");	//function안에서 this 안돼서 넣음
 				var url = path+"forme/insertReplyComments";
@@ -268,6 +271,7 @@ $(function(){
 					check_this.parent().prev().prepend( makeReplyCommentView(data) );
 					check_this.closest("[name=replyAddForm]")[0].reset();
 			});
+		}
 		}
 	});
 	
@@ -540,7 +544,7 @@ function pick() {
 <!--댓글입력--><div id="commentAdd" style="width:785px; padding:15px; background-color:#F6F6F6;">
 				<form name="addForm" id="addForm">
 					<input type="hidden" name="projectNo" value="${project.projectNo}">
-					<input type="hidden" name="userId" value="${mamber.userId}">
+					<input type="hidden" name="userId" value="${member.userId}">
                        <div style="display: flex;">
 				           <img src="../images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
                            <textarea name="commentContent" cols="77" rows="5" placeholder="내용을 입력해주세요." style="resize:none;"></textarea>&nbsp;
@@ -553,7 +557,7 @@ function pick() {
 			<div id="commentUpdate" style="width:785px; padding:15px; background-color:#F6F6F6; border-bottom:2px solid white;display:none;">
 				<form name="updateForm" id="updateForm">
 					<input type="hidden" name="commentNo" value="${comments.commentNo}">
-					<input type="hidden" name="userId" value="${mamber.userId}">
+					<input type="hidden" name="userId" value="${member.userId}">
 					<div style="display: flex;">
 						<img src="../images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
 						<textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
@@ -568,7 +572,7 @@ function pick() {
 			<div id="replyCommentUpdate" style="width:100%; padding:15px; background-color:#F6F6F6; border-bottom:1px dotted grey; display:none;">
 				<form name="rcUpdateForm" id="rcUpdateForm">
 					<input type="hidden" name="commentNo" value="${comments.commentNo}">
-					<input type="hidden" name="userId" value="${mamber.userId}">
+					<input type="hidden" name="userId" value="${member.userId}">
 					<div style="display: flex;">
 						<img src="../images/arrow2.png" style="width:50px; height:50px; margin:auto;">&nbsp;
 						<textarea name="commentContent" cols="75" rows="5" style="resize:none;"></textarea>&nbsp;
