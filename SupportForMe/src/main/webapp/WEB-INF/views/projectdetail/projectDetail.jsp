@@ -131,7 +131,7 @@ $(function(){
 				+ "			<img name='rcBtn' id='rcBtn' src='../images/comments.png' style='width:35px; height:35px; margin-top:60px;'>"
 				+ "		</div>"
 				+ "		<div>"
-				+ "			<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
+				+ "			<span class='userId' name='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
 				+ "			<span class='commentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
 				+ "			<textarea name='commentContent' class='commentContent' readonly cols='65' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
 				+ "		</div>";
@@ -261,9 +261,7 @@ $(function(){
 				if($(this).prev('[name=commentContent]').val() == '') {
 					alert("내용을 입력해주세요.");
 					return false;
-				} else if($(this).val() == '') {
-					alert("삭제된 댓글에는 답글을 등록할 수 없습니다.");
-				}else {
+				} else{
 				var params = $(this).closest("[name=replyAddForm]").serialize();
 				var check_this = $(this).closest("[name=replyAddForm]");	//function안에서 this 안돼서 넣음
 				var url = path+"forme/insertReplyComments";
@@ -407,7 +405,10 @@ function pick() {
 
 /*-------------투자하기 버튼 제어-------------------------------------------------------------------------------------*/
 function invest(){
-	if('${project.progress}' != '001') {
+	var invest = '${project.progress}';
+	console.log(invest);
+	
+	if('${project.progress}' != '진행중') {
 		alert('종료된 프로젝트 입니다.');
 		return false;
 	} else {

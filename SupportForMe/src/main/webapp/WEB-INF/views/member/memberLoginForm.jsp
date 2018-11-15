@@ -41,7 +41,7 @@
 
 </style>
 <body>
-		<div class="row">
+		<div class="row" style="height:800px">
 			<div class="col-md-3" style="width:100%;"> 
 				<div class="login-box well" style="width:600px; margin-left: auto; margin-right:auto; margin-top:100px;">
 					<form accept-charset="UTF-8" role="form" method="post" action="<c:url value='/'/>support/login">
