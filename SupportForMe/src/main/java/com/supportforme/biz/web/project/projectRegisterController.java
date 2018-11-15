@@ -53,13 +53,12 @@ public class projectRegisterController {
 		dto.setProjectNo(projectNo);
 		dto = projectService.getProject(dto);
 		if ( session.getAttribute("LoginInfo") == null ) {
-			model.addAttribute("loginID", null);
+			model.addAttribute("member", null);
 			return  "redirect:/";
 		}
 		else {
 			MemberDTO member = (MemberDTO) session.getAttribute("LoginInfo");
-			String userId = dto.getUserId();
-			model.addAttribute("loginID", userId);
+			model.addAttribute("member", member);
 			if(dto.getUserId().equals(member.getUserId())) {
 				model.addAttribute("project",dto);
 				return "rgNav/register/projectRegister";

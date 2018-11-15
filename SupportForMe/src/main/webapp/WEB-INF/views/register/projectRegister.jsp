@@ -15,7 +15,6 @@
 <script src="/SupportForMe/js/projectRegister.js?ver=1.5"></script>
 <title>프로젝트 등록</title>
 <style>
-
 </style>
 <script>
 function preview(){
@@ -49,6 +48,6 @@ function addComma(num) {
    </div>
  </div>
 <div id="hiddenProjectNo" style="display:none">${project.projectNo}</div>
-<div id="result"></div>
+<div id="result" style="width:1000px"></div>
 </body>
 </html>
