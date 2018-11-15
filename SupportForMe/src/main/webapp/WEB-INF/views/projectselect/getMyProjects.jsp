@@ -16,7 +16,6 @@
 <style>
 /*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
 .pjdtl_bodysize {
-	margin-top:55px;
 	width: 1100px;
 }
 /*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
@@ -255,6 +254,7 @@ var contextPath = '<%= request.getContextPath() %>';
 </script>
 </head>
 <body>
+<div style="height:50px"></div>
 	<div class="pjdtl_bodysize">
 		<h3>나의 프로젝트</h3>
 		<div style="height:20px"></div>

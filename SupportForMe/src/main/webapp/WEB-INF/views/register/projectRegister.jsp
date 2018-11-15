@@ -47,6 +47,16 @@ function addComma(num) {
   	<button type="button" id="confirmModalOk">확인</button> <button id="confirmModalCel">취소</button>
    </div>
  </div>
+ <!-- 등록 완료 모달 -->
+<div id="confirmRC" class="modal">
+   <!-- Modal content -->
+   <div class="modal-content">                                                                   
+    <div class="close">&times;</div>
+  	<div id="confirmRCMessage">
+  	</div>
+  	<button type="button" id="confirmRCOk">확인</button> <button id="confirmRCCel">취소</button>
+   </div>
+ </div>
 <div id="hiddenProjectNo" style="display:none">${project.projectNo}</div>
 <div id="result" style="width:1000px"></div>
 </body>

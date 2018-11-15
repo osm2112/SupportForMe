@@ -99,9 +99,9 @@ $(function(){
 <body>	
 	<div style="height:50px"></div>
 	<h3>나의 투자자 보기</h3>
-	<div style="height:30px"></div>
+	<div style="height:20px"></div>
 	<form action="<c:url value='/'/>forme/MyInvestors" name="searchForm" >
-	<div style="width:1350px;margin-bottom:10px" align=right>
+	<div style="width:1100px;margin-bottom:10px" align=right>
 		<div class="input-group" >
 			<input type="hidden" name="page" value="1">
 			<select name="searchCondition" class="form-control" style="width:120px;">
@@ -120,7 +120,7 @@ $(function(){
 		</div>
 	</div>
 	</form>
-	<table class="table table-hover" style="width:1350px;height:300px;">
+	<table class="table table-hover" style="width:1100px;height:300px;">
 		<thead>
 		<tr>
 			<th class="text-center">투자번호</th>
@@ -148,10 +148,10 @@ $(function(){
 			</c:forEach>
 		</tbody>
 	</table>
-	<div style="text-align:right;width:1350px">
+	<div style="text-align:right;width:1100px">
 		<button type="button" id="excel" class="_btn3" data-toggle="modal" data-target="#excelModal">Excel</button>
 	</div>
-	<div style="width:100%;text-align:center" id="page">
+	<div style="width:1100px;text-align:center" id="page">
 		<my:paging paging="${paging}"/>
 	</div>
 	

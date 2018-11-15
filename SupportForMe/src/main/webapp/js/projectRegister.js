@@ -42,7 +42,10 @@ $(function() {
 			$("#confirmModal").hide()
 			$("#confirmMessage").text('');
 		})
-		
+		$("#confirmRCCel").on("click",function(){
+			$("#confirmRC").hide()
+			$("#confirmRCMessage").text('');
+		})
 		$(".close").on("click",function(){
 			$(this).closest(".modal").hide();
 			$(this).next().text('');

@@ -22,10 +22,10 @@
    margin: 20% auto; /* 15% from the top and centered */
    padding: 5px 10px 10px 10px;
    border: 1px solid #888;
-   width: 22.5%; /* Could be more or less, depending on screen size */                      
+   width: 25%; /* Could be more or less, depending on screen size */                      
 }
 
-#alertMessage,#confirmMessage {
+#alertMessage,#confirmMessage,#confirmRCMessage {
 	border-bottom : 1px solid lightgrey;
 	padding-bottom : 15px;
 	margin-bottom : 10px;
@@ -45,7 +45,7 @@
 }
 
 /* 모달 확인 버튼 */
-#alertModalClose, #confirmModalOk{
+#alertModalClose, #confirmModalOk ,#confirmRCOk{
 	background-color: #FF007F;
 	border : none;
 	border-radius : 5px;
@@ -53,7 +53,7 @@
 	margin:5px;
 	color:white;
 }
-#confirmModalCel {
+#confirmModalCel,#confirmRCCel {
 	border : 1px solid #FF007F;
 	border-radius : 5px;
 	padding : 7px 35px;

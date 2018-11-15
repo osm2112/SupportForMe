@@ -32,12 +32,11 @@ $(function(){
 		}
 	});
 	$(".register_button").click(function(){
-		$("#confirmMessage").html('정말 등록하시겠습니까?<br>등록완료 후 메인 화면에 프로젝트가 나타나게 됩니다.<br>적절하지 않을 경우 관리자에 의해 보류되어질 수 있음<br>양해부탁드립니다.');
-		$("#confirmModal").show();	
+		$("#confirmRCMessage").html('정말 등록하시겠습니까?<br>등록완료 후 메인 화면에 프로젝트가 나타나게 됩니다.<br>적절하지 않을 경우 관리자에 의해 보류되어질 수 있음<br>양해부탁드립니다.');
+		$("#confirmRC").show();
 	});
-
-	$("#confirmModalOk").click(function(){ 
-		$("#confirmModal").hide();
+	$("#confirmRCOk").click(function(){ 
+		$("#confirmRC").hide();
 		var url = "../registerComplete";
 		var params = {projectNo : '${project.projectNo}'};
 		$.getJSON(url,params,function(result){
@@ -45,7 +44,7 @@ $(function(){
 				$("#alertMessage").text('정상적으로 등록되었습니다.');
 				$("#alertModal").show();
 			}else if(result.code=="fail"){
-				$("#alertMessage").text('등록에 실패했습니다. 리워드를 등록해주세요.');
+			$("#alertMessage").text('등록에 실패했습니다. 리워드를 등록해주세요.');
 				$("#alertModal").show();
 			}
 		});

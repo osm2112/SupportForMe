@@ -12,10 +12,11 @@
 <link	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"	rel="stylesheet">
 <style>
 ._form {
-	margin: 0 auto;
+	/* margin: 0 auto;
 	width: 800px;
-	margin-top: 200px;
-}
+	margin-top: 200px; */
+	margin-top:15px;
+} 
 
 ._btn {
 	margin-left: 15px;
@@ -27,18 +28,15 @@
 	background: grey;
 	color: white;
 }
-
-h3 {
-	margin-top: 50px;
-}
-
 </style>
 
 </head>
 
 <body>
+<div style="height:50px"></div>
 <h3>프로필 설정</h3>
 <hr>
+<div style="margin-left:auto;margin-right:auto;width:1100px;margin-top:50px;height:300px">
 <h3>비밀번호를 입력하여 주세요.</h3>
 
 <form action="<c:url value='/'/>forme/MemberUpdatePassWordCheck" method="post" class="_form">
@@ -47,6 +45,6 @@ h3 {
 		<input type="submit" value="확인" style="width:150px;" class="btn _btn " >
 	</div>
 </form>
-
+</div>
 </body>
 </html>

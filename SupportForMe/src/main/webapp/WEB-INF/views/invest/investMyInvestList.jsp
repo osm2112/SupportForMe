@@ -114,8 +114,10 @@ $(document).ready(function() {
 
 </script>
 <body>
+<div style="height:50px"></div>  
 	<div id="myInvestList" >
-		<div style="font-size: 30px; font-weight: 800; margin-bottom: 20px">나의	투자 현황</div>
+		<h3>나의	투자 현황</h3>
+		<div style="height:20px"></div>
 		<c:forEach items="${list}" var="list">
 		<div class="project_box" style="" id="${list.investNo}" onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">
 			<div class="mypage_project_image">
