@@ -37,7 +37,18 @@ public class ProjectController {
 	@RequestMapping(value="/**/getProjects", method=RequestMethod.GET) 
 	public String getProjects(Model model,
 							ProjectSearchDTO searchDto
-						  ,Paging paging) {
+						  ,Paging paging
+						  ,HttpSession session) {
+		
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");	
+		if ( dto == null ) {
+			model.addAttribute("member", null);
+		}
+		else {
+		model.addAttribute("member", dto);
+		}
+		
 		//전체 건수	
 		int total = projectService.getCnt(searchDto); 
 		paging.setTotalRecord(total);
