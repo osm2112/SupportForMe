@@ -55,6 +55,10 @@ textarea.textarea1 {
 caption {
 	text-align: right;
 }
+._btn {
+    background-color: rgb(26, 188, 156);
+    color: white;
+}
 </style>
 </head>
 <script>
@@ -463,9 +467,9 @@ caption {
 			<!-- 회원가입버튼 -->
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-5" style="text-align: right;">
-					<input class="btn btn-default" type="button"
+					<input class="btn btn-default _btn" type="button"
 						onclick="InsertMember()" value="회원가입하기"> <input
-						class="btn btn-default" type="button"
+						class="btn btn-default _btn" type="button"
 						onclick="location.href='./MemberLoginForm'" value="취소">
 
 				</div>

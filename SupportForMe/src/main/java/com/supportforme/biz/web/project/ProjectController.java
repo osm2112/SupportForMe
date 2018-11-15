@@ -46,7 +46,7 @@ public class ProjectController {
 			model.addAttribute("member", null);
 		}
 		else {
-		model.addAttribute("member", dto);
+			model.addAttribute("member", dto);
 		}
 		
 		//전체 건수	
