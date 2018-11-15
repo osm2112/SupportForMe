@@ -261,7 +261,9 @@ $(function(){
 				if($(this).prev('[name=commentContent]').val() == '') {
 					alert("내용을 입력해주세요.");
 					return false;
-				} else {
+				} else if($(this).val() == '') {
+					alert("삭제된 댓글에는 답글을 등록할 수 없습니다.");
+				}else {
 				var params = $(this).closest("[name=replyAddForm]").serialize();
 				var check_this = $(this).closest("[name=replyAddForm]");	//function안에서 this 안돼서 넣음
 				var url = path+"forme/insertReplyComments";
@@ -379,7 +381,7 @@ $(function(){
 	
 	
 	loadCommentsList();
-	/*--------------preview header--------------------------------------------------------------------------------------*/
+/*--------------preview header--------------------------------------------------------------------------------------*/
 	var preview = '${preview}';
 	if(preview == 'p'){
 		$("#headDiv").hide();
@@ -400,6 +402,17 @@ function pick() {
 		}
 	});
 	
+}
+
+
+/*-------------투자하기 버튼 제어-------------------------------------------------------------------------------------*/
+function invest(){
+	if('${project.progress}' != '001') {
+		alert('종료된 프로젝트 입니다.');
+		return false;
+	} else {
+		location.href = path+"forme/InvestSelectReward?projectNo=${project.projectNo}";
+	}
 }
 
 </script>
@@ -482,7 +495,7 @@ function pick() {
                	 <button class="pjdtl-invest-btn">투자하기</button>
                 </c:when>
                 <c:otherwise>
-                	<button class="pjdtl-invest-btn" onclick="location.href='../forme/InvestSelectReward?projectNo=${project.projectNo}'">투자하기</button>
+                	<button class="pjdtl-invest-btn" onclick="invest()">투자하기</button>
                 </c:otherwise>
             </c:choose>
             <!--<img src="../images/share-button.png" class="pjdtl-share-btn">-->
