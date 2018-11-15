@@ -11,7 +11,7 @@ body {
 .footer {
     /*    position: absolute; bottom: 0; width: 100%; */  
     height: 60px;
-    padding-top: 0.5em ;
+    padding-top: 10px ;
     color: white;
     background-color: rgb(26, 188, 156);
     text-align: center;
@@ -24,7 +24,7 @@ body {
 	border-top:1px solid rgba(0, 0, 0, 0.2);
 	font-size:20px;	
 	text-align: center;
-	 padding-top: 0.2em ;
+	padding-top: 5px ;
 }
 </style>
 <script>
@@ -38,7 +38,7 @@ setInterval(function() {
 </script>
 </head>
 <body>
-	<div style="height:300px"></div>
+	<div style="height:420px"></div>
 	<div class="clock"></div> <!-- 현재시간 clock.js 파일 -->
 	<div class="footer" onclick="location.href='<%= request.getContextPath()%>'"> ⓒSupportForMe </div>
 </body>

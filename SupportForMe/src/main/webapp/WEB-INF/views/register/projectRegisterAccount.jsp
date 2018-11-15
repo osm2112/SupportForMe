@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,6 +92,8 @@
 	</form>
 	<div style="height:100px"></div>
 	<input type="button" name="save" class="save_button account" value="저장하기">
-	<input type="button" name="complete" class="register_button" value="등록완료">
+	<c:if test="${project.progress == '004'}">
+		<input type="button" name="complete" class="register_button" value="등록완료">
+	</c:if>
 </body>
 </html>

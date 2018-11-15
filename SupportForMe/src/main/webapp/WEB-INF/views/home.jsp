@@ -628,7 +628,12 @@ text-shadow:   0 1px 0 #ccc,
 							var seq = '${project.projectNo}';
 							var rd = '${project.projectDeadline}';
 							if(rd != ''){
-								$("#"+seq+"pf").text("D-"+remainDay(rd));
+								var remain = remainDay(rd);
+								if(remain < 0){
+									$("#"+seq).remove();
+								}else {
+									$("#"+seq+"pf").text("D-"+remain);	
+								}
 							}
 						</script>
 					</div>						
@@ -671,11 +676,16 @@ text-shadow:   0 1px 0 #ccc,
 							<div style="display:inline-block;">&nbsp;${project.percent}%</div>
 						</div>
 						<script>
-							var seq = '${project.projectNo}';
-							var rd = '${project.projectDeadline}';
-							if(rd != ''){
-								$("#"+seq+"art").text("D-"+remainDay(rd));
+						var seq = '${project.projectNo}';
+						var rd = '${project.projectDeadline}';
+						if(rd != ''){
+							var remain = remainDay(rd);
+							if(remain < 0){
+								$("#"+seq).remove();
+							}else {
+								$("#"+seq+"art").text("D-"+remain);	
 							}
+						}
 						</script>
 					</div>						
 				</div>				
@@ -717,11 +727,16 @@ text-shadow:   0 1px 0 #ccc,
 							<div style="display:inline-block;">&nbsp;${project.percent}%</div>
 						</div>
 						<script>
-							var seq = '${project.projectNo}';
-							var rd = '${project.projectDeadline}';
-							if(rd != ''){
-								$("#"+seq+"book").text("D-"+remainDay(rd));
+						var seq = '${project.projectNo}';
+						var rd = '${project.projectDeadline}';
+						if(rd != ''){
+							var remain = remainDay(rd);
+							if(remain < 0){
+								$("#"+seq).remove();
+							}else {
+								$("#"+seq+"book").text("D-"+remain);	
 							}
+						}
 						</script>
 					</div>						
 				</div>				
@@ -763,11 +778,16 @@ text-shadow:   0 1px 0 #ccc,
 							<div style="display:inline-block;">&nbsp;${project.percent}%</div>
 						</div>
 						<script>
-							var seq = '${project.projectNo}';
-							var rd = '${project.projectDeadline}';
-							if(rd != ''){
-								$("#"+seq+"mv").text("D-"+remainDay(rd));
+						var seq = '${project.projectNo}';
+						var rd = '${project.projectDeadline}';
+						if(rd != ''){
+							var remain = remainDay(rd);
+							if(remain < 0){
+								$("#"+seq).remove();
+							}else {
+								$("#"+seq+"mv").text("D-"+remain);	
 							}
+						}
 						</script>
 					</div>						
 				</div>				

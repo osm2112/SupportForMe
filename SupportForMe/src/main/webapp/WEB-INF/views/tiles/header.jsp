@@ -78,6 +78,7 @@
     text-align:center;
     width : 100px;
     color:#474747;
+    font-weight:550;
 }
 #logout_head_menu {
     display:grid;
@@ -157,7 +158,7 @@ body.dark { background: rgba(0,0,0,.4); z-index: 30; }
 
 #sidenav header {
 	border : 0px;
-	height: 150px;
+	height: 180px;
 	text-align: center;
 	font-size: 1em;
 }
@@ -264,8 +265,8 @@ function view2() {
   <header>
   	<div style="height:30px"></div>
   	<div style="margin-left:10px"><img src="<%= request.getContextPath() %>/images/hUser.png" style="width:55px;height:55px;margin-left:15px;"></div>
-  	<div style="color:white; font-size:20px;margin-top:5px">${member.name}</div> 
-  	<div style="color:white; font-size:20px;margin-top:5px">${member.email}</div>
+  	<div style="color:white; font-size:18px;margin-top:5px">${member.name}</div> 
+  	<div style="color:white; font-size:18px;margin-top:5px">${member.email}</div>
   </header>
   <ul>
     <li><a href="<%= request.getContextPath() %>/forme/MemberUpdateConfirmForm">프로필 설정</a></li>
