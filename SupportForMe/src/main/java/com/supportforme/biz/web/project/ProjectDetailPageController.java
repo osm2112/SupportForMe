@@ -40,8 +40,11 @@ public class ProjectDetailPageController {
 		model.addAttribute("invest", projectDetailPageService.getProjectAboutInvest(pjdto));
 		model.addAttribute("present", projectDetailPageService.getProjectPresents(pjdto));
 		model.addAttribute("presentCount", projectDetailPageService.getProjectPresentsCount(pjdto));
-		model.addAttribute("member", (MemberDTO)session.getAttribute("LoginInfo"));
-
+		if ( session.getAttribute("LoginInfo") == null ) {
+			model.addAttribute("member", null);
+		}else{
+			model.addAttribute("member", (MemberDTO)session.getAttribute("LoginInfo"));
+		}
 		return "noNav/projectdetail/projectDetail";
 	}
 	
