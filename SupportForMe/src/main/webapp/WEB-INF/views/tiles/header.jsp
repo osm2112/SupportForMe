@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <title>SupportForMe</title>
@@ -84,6 +85,13 @@
     display:grid;
     grid-template-columns: 80px 80px;
 }                 
+
+@media (min-width : 851px){
+	#site_name {
+	display: block;
+	}
+	
+}
 @media(max-width:850px){
     .bodysize {
         display:grid;
@@ -126,6 +134,8 @@
    		display:none;
     }
 }   
+
+
 <!-- 사이드바 -->
 /* body { margin: 0; padding: 0; }
 body.dark { background: rgba(0,0,0,.4); z-index: 30; }
@@ -172,6 +182,12 @@ body.dark { background: rgba(0,0,0,.4); z-index: 30; }
 }
 #sidenav header { background: rgb(26, 188, 156); }
 #sidenav a:hover { background: lightgrey; }
+.none {
+	display:none;
+}
+.block {
+	display:block;
+}
 </style>
 <script>
 function go_register() {
@@ -191,20 +207,33 @@ function go_register() {
 
 
 </script>
-</head>
-<body>
 <script>
 function view() {
+	/* var mql = window.matchMedia("screen and (max-width: 850px)"); */
+
+	
 	var objDiv = document.getElementById("site_name");
 	var objDiv2 = document.getElementById("searchKeyword");
 	
-    if(objDiv.style.display=="block"){ 
+    if(/* objDiv.style.display=="block" */
+    	objDiv.classList.contains( 'block' )  ){ 
+    	
+    	objDiv.classList.add( 'none' );
+    	objDiv.classList.remove( 'block' );
+    	objDiv2.classList.add( 'block' );
+    	objDiv2.classList.remove( 'none' );
+    /* 	
     	objDiv.style.display = "none";
-    	objDiv2.style.display = "block";
+    	objDiv2.style.display = "block"; */
     }
      else{ 
-    	 objDiv.style.display = "block";
-    	 objDiv2.style.display = "none";  
+    	objDiv.classList.add( 'block' );
+    	objDiv.classList.remove( 'none' );
+        objDiv2.classList.add( 'none' );
+        objDiv2.classList.remove( 'block' );
+    	
+       /*  objDiv.style.display = "block";
+    	objDiv2.style.display = "none"; */  
      }
 }
 
@@ -220,6 +249,9 @@ function view2() {
     }
 }
 </script>
+</head>
+<body>
+
 	<div id="headDiv">
 		<div class="headBodysize">
 	    	<div></div>
@@ -228,11 +260,11 @@ function view2() {
 	    	    <div id="search_div1">
 		        	<a href="#" onclick="view()"><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg"></a>
 		        	<form action="<%= request.getContextPath() %>/support/getProjects">
-	        			<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?" style="display:none;">
+	        			<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword none" placeholder="찾으시는 프로젝트가 있으신가요?">
 					</form> 	    
 	        	</div>
 				
-	        	<div id="site_name" style="cursor:pointer; display:block;" onclick="location.href='<%= request.getContextPath() %>'">
+	        	<div id="site_name" class="block" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>'">
 	            	SupportForME
 	        	</div>
 	        
@@ -243,11 +275,11 @@ function view2() {
 	        	<!-- 전체화면일때 보이는 영역 -->
 	        	<div id="search_div2">
 	        	<form action="<%= request.getContextPath() %>/support/getProjects">
-	        		<input type="text" name="searchKeyword" id="searchKeyword2" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?" style="display:none;">
+	        		<input type="text" name="searchKeyword" id="searchKeyword2" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?"  style="display:none;">
 	      
 				<%--<input TYPE="image" src="<%= request.getContextPath() %>/images/search.png" class="searchImg" name="Submit" value="Submit"> --%> 
 				</form>
-				<a href="#" onclick="view2()"><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg"></a>
+				<a href="#" onclick="view2()"><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg" ></a>
 	        	</div>
 	        	
 	        	<c:if test="${member.userId eq null}">
