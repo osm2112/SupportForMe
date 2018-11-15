@@ -298,6 +298,13 @@ text-shadow:   0 1px 0 #ccc,
       font:Arial, Helvetica, sans-serif;
       color:grey; 
 } */
+.flex-direction-nav a:before {
+    font-family: flexslider-icon;
+    font-size: 35px;
+    display: inline-block;
+    content: '\f001';
+}
+
 .text3d {
 	/* text-shadow: 1px 1px white, -1px -1px #666; */
 	font-size:18px;
