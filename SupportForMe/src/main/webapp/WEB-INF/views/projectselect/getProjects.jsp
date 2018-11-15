@@ -127,16 +127,19 @@ text-shadow:1px 1px white, -1px -1px #666;
 							$('.loader').addClass('display-none');
 						}
 						
-						$(document).scroll(
-								function() {
+						$(document).scroll(function() {
 									var lastno = $(".project_box").last().attr("id");
-									console.log(lastno);
+		
+									
+
+		
 									var maxHeight = $(document).height();
 									var currentScroll = $(window).scrollTop()+ $(window).height();
-										if (maxHeight <= currentScroll) {
+
+									console.log("documentHeight:" + maxHeight + " | scrollTop +windowHeight: " + currentScroll );
+									if (maxHeight <= currentScroll + 10 ) {
 											loadArticle(lastno);
-											}
-										
+											}				
 								});
 						function loadArticle(lastno) {
 
