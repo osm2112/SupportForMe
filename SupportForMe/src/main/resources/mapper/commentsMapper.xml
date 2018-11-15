@@ -27,7 +27,7 @@
 
 <!-- 답글 -->
 <select id="getReplyCommentsList" resultType="comments" parameterType="comments">
-	SELECT *, COUNT(*) AS REPLY_COMMENT_CNT
+	SELECT *
 	FROM COMMENTS
 	WHERE TOP_COMMENT_NO = #{topCommentNo}
 	ORDER BY COMMENT_NO DESC

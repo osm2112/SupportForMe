@@ -261,9 +261,7 @@ $(function(){
 				if($(this).prev('[name=commentContent]').val() == '') {
 					alert("내용을 입력해주세요.");
 					return false;
-				} else if($(this).val() == '') {
-					alert("삭제된 댓글에는 답글을 등록할 수 없습니다.");
-				}else {
+				} else {
 				var params = $(this).closest("[name=replyAddForm]").serialize();
 				var check_this = $(this).closest("[name=replyAddForm]");	//function안에서 this 안돼서 넣음
 				var url = path+"forme/insertReplyComments";
