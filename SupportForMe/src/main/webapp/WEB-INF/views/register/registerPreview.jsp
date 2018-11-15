@@ -47,8 +47,8 @@ body {
 	<div id="preview_body">
 	<iframe name="test1" id="preview_box" width='1220px' height='600px'></iframe>
 	<script>
-		/*  var src="/SupportForMe/support/getProjectDetailPage?projectNo=${projectNo}";  */
-		var src="/SupportForMe/forme/make/${projectNo}";
+		 var src="/SupportForMe/support/getProjectDetailPage?projectNo=${projectNo}";
+		/* var src="/SupportForMe/forme/make/${projectNo}"; */
 		$("#preview_box").attr("src",src);
 		//disable
 	</script>

@@ -5,11 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
-#project_mypage {
-	display: grid;
-	grid-template-columns:200px 1fr;
-}
-
 #project_mypage_menu {
 	margin-left: 25px;
 }
@@ -98,19 +93,17 @@
 </style>
 </head>
 <body>
-	<div style="height: 50px"></div>
+	<div style="height: 25px"></div>
 	<div class="bodysize">
-		<div id="project_subject" >My Page</div>
-		<div id="project_mypage">
-			<div id="project_mypage_menu">
-				<nav>
-					<div id="myUpdate" class="" onclick="location.href='../forme/MemberUpdateConfirmForm'">프로필 설정</div>
-					<div id="myProject" class="" onclick="location.href='../forme/getMyProjects'">나의 프로젝트</div>
-					<div id="_myInvestList" class="" onclick="location.href='../forme/MyInvestList'">나의 투자현황</div>
-					<div id="investList" class="" onclick="location.href='../forme/InvestList'">나의 결제내역</div>
-					<div id="MyInvestors" class="" onclick="location.href='../forme/MyInvestors'">나의 투자자 정보</div>
-				</nav>
-			</div>
+		<div id="project_subject" >나의 페이지</div>
+		<div id="project_mypage_menu">
+			<nav>
+				<div id="myUpdate" class="" onclick="location.href='../forme/MemberUpdateConfirmForm'">프로필 설정</div>
+				<div id="myProject" class="" onclick="location.href='../forme/getMyProjects'">나의 프로젝트</div>
+				<div id="_myInvestList" class="" onclick="location.href='../forme/MyInvestList'">나의 투자현황</div>
+				<div id="investList" class="" onclick="location.href='../forme/InvestList'">나의 결제내역</div>
+				<div id="MyInvestors" class="" onclick="location.href='../forme/MyInvestors'">나의 투자자 정보</div>
+			</nav>
 		</div>
 	</div>
 	<script>

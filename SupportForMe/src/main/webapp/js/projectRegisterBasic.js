@@ -55,7 +55,7 @@ $("#projectDeadline").datepicker(
 });
 
 //대표 이미지 
-$(".thumbnailImg").on("click",function(){
+$(".thumbnailImg").click(function(){
 	$("#fileUploadImage").click();
 });
 
@@ -106,7 +106,7 @@ function makeHashtagList(ht){
 	 		$("#keyword_div").append(k);
 }
 
-$("input[name='keyword']").on("keydown",function(e){
+$("input[name='keyword']").keydown(function(e){
 	
 	if(e.keyCode == 13){//키가 13이면 실행 (엔터는 13)
 		

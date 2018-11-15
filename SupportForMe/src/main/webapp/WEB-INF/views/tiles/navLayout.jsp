@@ -12,9 +12,7 @@ body {
 }
 ._container > nav {
 	float: left;
-	max-width: 800px;
 	margin: 0px 45px 0px 160px; 
-	padding: 1em;
 }
 
 ._container > nav > ul {
@@ -26,7 +24,6 @@ body {
 	text-decoration: none;
 }
 ._container > article {
-	padding: 1em;
 	overflow: hidden;
 }
 #_active,._active {
@@ -39,10 +36,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-} 
-.sticky + article {
-	padding-top:102px;
-}  
+}   
 </style>
 
 </head>

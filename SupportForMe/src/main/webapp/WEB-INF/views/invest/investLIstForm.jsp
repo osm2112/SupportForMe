@@ -43,7 +43,8 @@
 
 
 <body>
-	<h3>결제 내역 보기</h3>
+<div style="height:50px"></div>
+<h3>결제 내역 보기</h3>
 <form action="<c:url value='/'/>forme/InvestList" name="searchForm">
 <div class="input-group">
 	<input type="hidden" name="page" value="1">

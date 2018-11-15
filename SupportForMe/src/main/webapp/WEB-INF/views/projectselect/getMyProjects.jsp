@@ -16,9 +16,8 @@
 <style>
 /*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
 .pjdtl_bodysize {
-	margin-left: auto;
-	margin-right: auto;
-	width: 1200px;
+	margin-top:55px;
+	width: 1100px;
 }
 /*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
 .wrapper {
@@ -39,7 +38,7 @@
 	display: grid;
 	grid-column: 1/5;
 	grid-column-gap: 20px;
-	grid-row-gap: 3em;
+	grid-row-gap: 2em;
 	grid-template-columns: repeat(4, 1fr);
 	/*grid-template-columns: 25% 25% 25% 25%;*/
 	grid-auto-rows: minmax(300px, auto);
@@ -55,99 +54,101 @@
 .project_box {
 	width: 100%;
 	height: 400px;
-	border: 1px solid lightgrey;
+	border: 1px solid #EEEEEE;
+	padding:0;
 }
 
 .project_box:hover {
 	/* 	border: 4px solid rgb(26, 188, 156); */
-	box-shadow: 8px 8px 3px lightgrey;
+	box-shadow: 5px 5px 3px lightgrey;
 }
 
-.project_state {
-	border: 1.5px solid rgb(211, 84, 0);
-	border-radius: 5px;
-	color: rgb(211, 84, 0);
-	padding-top: 0px; 
+.project_state, .state {
 	width: 100px;
-	height: 25px;
-	text-align: center;
-	margin-bottom: 5px;
-}
-
-.state {
-	border-radius: 5px;
-	/* padding-top: 5px; */
-	width: 100px;
-	height: 25px;
-	text-align: center;
-	margin-bottom: 5px;
+	height: 30px;
+	font-weight:700
 }
 
 .mypage_project_content {
-	margin-left: 5px;
+	margin-left: 15px;
 	width: 100%;
-	height: 200px;
+	height: 180px;
 }
 
 .mypage_project_image {
 	width: 100%;
-	height: 160px;
-	border: 1px solid lightgrey;
-	margin-left: auto;
-	margin-right: auto; 
-	/* margin-top : 5px; */
-	margin-bottom: 5px;
-	background-color: #E9E9E9;
+	height: 170px;
+	margin: -2px -5px 0 0;
+	padding:0 ;
 }
 
 .mypage_project_image img {
+	margin:0;
 	width: 100%;
 	height: 100%;
-	object-fit: mypage_project_image;
+	object-fit: .mypage_project_image;
+}
+.text3d {
+	/* text-shadow:1px 1px white, -1px -1px #666; */
+	font-size:17px;
 }
 
-.mypage_project_content ul {
-	list-style-type: none;
+.text3dPn {
+	/*  text-shadow:-1px -1px white, 1px 1px #666; */
+	font-size: 18px;
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 200px;
+	height:30px;
 }
-.text3d{
-text-shadow:1px 1px white, -1px -1px #666; 
- }
-.text3dPn{
- text-shadow:-1px -1px white, 1px 1px #666;
- }
 /*진행중 */
 .progress001 {
-border : 1.5px solid rgb(211, 84, 0);
-color : rgb(211, 84, 0);
+	border:1px solid #FF007F;
+	color: #FF007F;
 }
 /* 마감 */
 .progress002 {
-border : 1.5px solid rgb(132, 127, 132);
-color : rgb(132, 127, 132);
+	border:1px solid #8041D9;
+	color:#8041D9;
 }
 /* 무산 */
 .progress003 {
-border : 1.5px solid rgb(38, 11, 102);
-color : "rgb(38, 11, 102);
+	border:1px solid #4C4C4C;
+	color:#4C4C4C;
 }
 /* 제작중 */
 .progress004 {
-border : 1.5px solid rgb(77, 77, 192);
-color : rgb(77, 77, 192);
+	border:1px solid #FF5E00;
+	color: #FF5E00;
 }
 /* 보류 */
 .progress005 {
-border : 1.5px solid rgb(84, 70, 13);
-color : rgb(84, 70, 13);
-} 
+	border:1px solid #008299;
+	color:#008299;
+}
 /* 완료 */
 .progress006 {
-border : 1.5px solid rgb(84, 70, 13);
-color : rgb(84, 70, 13);
+	border:1px solid #41AF39;
+	color:#41AF39;
 }
-._btn {
-    background-color: rgb(26, 188, 156);
-    color: white;
+
+.btn {
+	border: 1px solid lightgrey;
+	width:110px;
+	margin-right:5px;
+	font-weight:700
+}
+._btn1 {
+	color: rgb(26, 188, 156);
+}
+._btn2{
+	color: #FF007F;
+}
+.tI {
+	display:inline-block;
+	width:195px;
 }
 </style>
 <script>
@@ -167,9 +168,7 @@ var contextPath = '<%= request.getContextPath() %>';
 									console.log(lastno);
 									var maxHeight = $(document).height();
 									var currentScroll = $(window).scrollTop() + $(window).height();
-									
 									console.log($(".project_box").length);
-								
 									if (maxHeight <= currentScroll) {
 										loadArticle(lastno);
 									}
@@ -191,47 +190,39 @@ var contextPath = '<%= request.getContextPath() %>';
 												for (i = 0; i < data.length; i++) {
 													count = ++count;
 													var select = "project_state"+ count;
-												 	var detailBtn = (data[i].progressCd !='004') ? '<button class="btn btn-default _btn" onclick="location.href=\''+contextPath+ '/support/getProjectDetailPage?projectNo='+ data[i].projectNo+'\'">상세화면</button>' : ''; 
-													var deleteBtn = (data[i].progressCd =='004') ? '<button class="btn btn-default _btn" onclick="projectdelete(\''+data[i].projectNo+'\');">삭제</button></li></ul>' : '';
+												 	var detailBtn = (data[i].progressCd !='004') ? '<button class="btn btn-default _btn2" onclick="location.href=\''+contextPath+ '/support/getProjectDetailPage?projectNo='+ data[i].projectNo+'\'">상세화면</button>' : ''; 
+													var deleteBtn = (data[i].progressCd =='004') ? '<button class="btn btn-default _btn2" onclick="projectdelete(\''+data[i].projectNo+'\');">삭제</button></div>' : '';
 													
 													$('.div2')
-															.append(
-																	// style="cursor:pointer;" onclick="location.href=\''+contextPath+'/support/getProjectDetailPage?projectNo='+ data[i].projectNo+ '\'\"
-																	'<div class="project_box" id='
+															.append('<div class="project_box" id='
 																			+ data[i].projectNo
 																			+ '>'
 																			+ '		<div class="mypage_project_image"><img src="../upload/'+data[i].image +'" onerror="this.src=\'../images/대체이미지.jpg\'"></div>'
 																			+ '			<div class="mypage_project_content">'
-																			+ '				<div class="state" id="project_state'+count+'">'
+																			+ '				<div class="project_state progress'+data[i].progressCd+'">'
 																			+ data[i].progress
 																			+ '</div>'
-																			+ '				<ul>'
-																			+ '  				<li class="text3d" style="font-size: 16px;">'
+																			+ '  				<div class="text3d" style="font-size: 16px;">'
 																			+ data[i].userId
-																			+ '님</li>'
-																			+ ' 				<li style="height: 5px"></li>'
-																			+ '   				<li class="text3dPn" style="font-size : 18px; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 200px; height: 30px;"><strong>'
+																			+ '님</div>'
+																			+ ' 				<div style="height: 5px"></div>'
+																			+ '   				<div class="text3dPn"><strong>'
 																			+ data[i].projectName
-																			+ '</strong></li>'
-																			+ ' 				<li style="height: 10px"></li>'
-																			+ '   				<li style="display:grid; grid-template-columns: 100%">'
-																			+ '       				<span class="text3d">모금액 : '
+																			+ '</strong></div>'
+																			+ ' 				<div style="height: 5px"></div>'
+																			+ '   				<div><span class="tI">'
 																			+ data[i].totalInvest
-																			+ '원</span></li>'
-																			+ ' 				<li style="height: 10px"></li>'
-																			+ ' 				<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">'
-																			+ ' 	<div class="progress"><div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:'+data[i].percent+'%"></div></div>'
-																			+'<span class="text3d">&nbsp;'+ data[i].percent+ '%</span></li>'
-																			+ ' 				<li style="height: 10px"></li>'
-																			+ ' 				<li class="text3d">목표액 :'
+																			+ '원</span><span class="text3d">&nbsp;'+ data[i].percent+ '%</span></div>'
+																			+ ' 				<div style="height: 5px"></div>'
+																			+ ' 	<div class="progress" style="height:15px;width:225px;margin-bottom:5px"><div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"'
+																			+ ' style="width:${project.percent}%;height:15px;background-color:rgb(26, 188, 156);"></div></div>'
+																			+ ' 				<div class="text3d">목표금액 '
 																			+ data[i].targetAmount
-																			+ '원</li>'
-																			+ '<li style="height: 10px"></li>'
-																			+ '<li><button class="btn btn-default _btn" onclick="location.href=\''+contextPath+'/forme/make/'+data[i].projectNo+'\'">수정</button>'
+																			+ '원</div>'
+																			+ '<div style="height: 5px"></div>'
+																			+ '<div><button class="btn btn-default _btn1" onclick="location.href=\''+contextPath+'/forme/make/'+data[i].projectNo+'\'">수정</button>'
 																			+ detailBtn
 																			+ deleteBtn
-																			/* + '<button class="btn btn-default" onclick="projectdelete(\''+data[i].projectNo+'\');">삭제</button></li></ul>' */  
-																			
 																			+ '			</div>'
 																			+ '	</div>');
 													$("#" + select).addClass("progress"+data[i].progressCd)
@@ -265,9 +256,9 @@ var contextPath = '<%= request.getContextPath() %>';
 </head>
 <body>
 	<div class="pjdtl_bodysize">
+		<h3>나의 프로젝트</h3>
+		<div style="height:20px"></div>
 		<div class="wrapper">
-			<div class="div1">
-			</div>
 			<div class="div2">
 				<c:forEach items="${list}" var="project">
 					<div class="project_box" id="${project.projectNo}"
@@ -279,31 +270,23 @@ var contextPath = '<%= request.getContextPath() %>';
 						</div>
 						<div class="mypage_project_content">
 							<div class="project_state progress${project.progressCd}">${project.progress}</div>
-							<ul>
-								<li class="text3d" style="font-size: 16px;">${project.userId}님</li>
-								<li style="height: 5px"></li>
-								<li class="text3dPn" style="font-size: 18px; display:block;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 200px; height: 30px;"><strong>${project.projectName}</strong></li>
-								<li style="height: 10px"></li>
-								<li style="display: grid; grid-template-columns: 100%"><span class="text3d">모금액
-										: ${project.totalInvest}원</span></li>
-								<li style="height: 10px"></li>
-							<li style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
-							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
-							 --%>
-							<div class="progress">
-    							<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%">
-   								 </div>
+							<div class="text3d" style="font-size: 16px;">${project.userId}님</div>
+							<div style="height: 5px"></div>
+							<div class="text3dPn"><strong>${project.projectName}</strong></div>
+							<div style="height: 5px"></div>
+							<div ><span class="tI">${project.totalInvest}원</span><span class="text3d">&nbsp;${project.percent}%</span></div>
+							<div style="height: 5px"></div>
+							<div class="progress" style="height:15px;width:225px;margin-bottom:5px">
+    							<div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:15px;background-color:rgb(26, 188, 156);">
+   							 	</div>
   							</div>
-							<span class="text3d">&nbsp;${project.percent}%</span>
-							</li>
-								<li style="height: 10px"></li>
-								<li class="text3d">목표액 : ${project.targetAmount}원</li>
-								<li style="height: 10px"></li>
-								<li><button class="btn btn-default _btn" onclick="location.href='<%= request.getContextPath() %>/forme/make/${project.projectNo}'">수정</button>
-								    <c:if test="${project.progressCd eq 004 }"><button class="btn btn-default _btn" onclick="projectdelete('${project.projectNo}');">삭제</button></c:if>
-								    <c:if test="${project.progressCd ne 004 }"><button class="btn btn-default _btn" onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'">상세화면</button></c:if>
-								    </li>					
-							</ul>
+							<div class="text3d">목표금액  ${project.targetAmount}원</div>
+							<div style="height: 5px"></div>
+							<div>
+								<button class="btn btn-default _btn1" onclick="location.href='<%= request.getContextPath() %>/forme/make/${project.projectNo}'">수정</button>
+							    <c:if test="${project.progressCd eq 004 }"><button class="btn btn-default _btn2" onclick="projectdelete('${project.projectNo}');">삭제</button></c:if>
+							    <c:if test="${project.progressCd ne 004 }"><button class="btn btn-default _btn2" onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'">상세화면</button></c:if>
+							</div>
 						</div>
 					</div>
 				</c:forEach>

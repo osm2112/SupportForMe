@@ -28,7 +28,7 @@
 
 .suforme {
 	display: grid;
-	grid-template-columns: 850px 1fr;
+	grid-template-columns: 840px 1fr;
 }
 /*         .slide_main_img {
             width : 100%;
@@ -50,11 +50,11 @@
 }
 
 .suforme_top_1_text_div {
-	font-size: 30px;
+	font-size: 25px;
 	font-weight:700;
 	color: #474747;
 	width: auto;
-	height: 45px;
+	height: 40px;
 }
 
 .suforme_picks_projects {
@@ -92,7 +92,8 @@
 }
 
 .real_time_rank_div {
-	border: 1px solid #EEEEEE;
+	border-top: 1px solid rgb(26, 188, 156);
+	border-bottom: 1px solid rgb(26, 188, 156);
 	height: 360px;
 	width: 300px;
 }
@@ -120,18 +121,18 @@
 
 .project_box {
 	background: white;
-	width: 280px;
+	width: 270px;
 	height: 350px;
 	border: 1px solid #EEEEEE;
 }
 
 .main_project_image {
 	width: 100%;
-	height: 170px;
+	height: 175px;
 	background-color: #E9E9E9;
 }
 .main_project_content {
-	width: 280px;
+	width: 270px;
 	height: 160px;
 	padding: 10px 10px 10px 15px;
 	margin: 5px;
@@ -319,12 +320,12 @@ text-shadow:   0 1px 0 #ccc,
 	white-space: nowrap;
 	width: 245px;
 	height: 35px;
-	font-size:20px;
+	font-size:18.5px;
 }
 .remainDay {
 	padding-right:20px;
 	display:inline-block;
-	width:200px;
+	width:190px;
 }
 .rdPercent {
 	color:#5e5e5e;
@@ -526,7 +527,7 @@ text-shadow:   0 1px 0 #ccc,
 			</c:forEach>
 		</ol>
 	</div>
-	<div style="height: 150px"></div>
+	<div style="height: 100px"></div>
 	<div class="bodysize">
 		<div class="suforme">
 			<div class="suforme_picks_div"> 
@@ -607,7 +608,7 @@ text-shadow:   0 1px 0 #ccc,
 						<div class="text3d">${project.userId}님</div>
 						<div style="height: 5px"></div>
 						<div class="text3dPn" style=""><strong>${project.projectName}</strong></div>
-						<div style="height:20px"></div>
+						<div style="height:15px"></div>
 						<div style="display: grid; grid-template-columns: 100%">
 							<span class="text3d">모금액 ${project.totalInvest}원</span> 
 						</div>
@@ -615,7 +616,7 @@ text-shadow:   0 1px 0 #ccc,
 						<div style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
 							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
 							 --%>
-							<div class="progress" style="height:10px;width:240px">
+							<div class="progress" style="height:10px;width:230px">
 	    						<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:10px">
 	   							 </div>
 	  						</div>
@@ -658,7 +659,7 @@ text-shadow:   0 1px 0 #ccc,
 						<div class="text3d">${project.userId}님</div>
 						<div style="height: 5px"></div>
 						<div class="text3dPn" style=""><strong>${project.projectName}</strong></div>
-						<div style="height:20px"></div>
+						<div style="height:15px"></div>
 						<div style="display: grid; grid-template-columns: 100%">
 							<span class="text3d">모금액 ${project.totalInvest}원</span> 
 						</div>
@@ -666,7 +667,7 @@ text-shadow:   0 1px 0 #ccc,
 						<div style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
 							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
 							 --%>
-							<div class="progress" style="height:10px;width:240px">
+							<div class="progress" style="height:10px;width:230px">
 	    						<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:10px">
 	   							 </div>
 	  						</div>
@@ -709,7 +710,7 @@ text-shadow:   0 1px 0 #ccc,
 						<div class="text3d">${project.userId}님</div>
 						<div style="height: 5px"></div>
 						<div class="text3dPn" style=""><strong>${project.projectName}</strong></div>
-						<div style="height:20px"></div>
+						<div style="height:15px"></div>
 						<div style="display: grid; grid-template-columns: 100%">
 							<span class="text3d">모금액 ${project.totalInvest}원</span> 
 						</div>
@@ -717,7 +718,7 @@ text-shadow:   0 1px 0 #ccc,
 						<div style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
 							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
 							 --%>
-							<div class="progress" style="height:10px;width:240px">
+							<div class="progress" style="height:10px;width:230px">
 	    						<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:10px">
 	   							 </div>
 	  						</div>
@@ -760,7 +761,7 @@ text-shadow:   0 1px 0 #ccc,
 						<div class="text3d">${project.userId}님</div>
 						<div style="height: 5px"></div>
 						<div class="text3dPn" style=""><strong>${project.projectName}</strong></div>
-						<div style="height:20px"></div>
+						<div style="height:15px"></div>
 						<div style="display: grid; grid-template-columns: 100%">
 							<span class="text3d">모금액 ${project.totalInvest}원</span> 
 						</div>
@@ -768,7 +769,7 @@ text-shadow:   0 1px 0 #ccc,
 						<div style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
 							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
 							 --%>
-							<div class="progress" style="height:10px;width:240px">
+							<div class="progress" style="height:10px;width:230px">
 	    						<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:10px">
 	   							 </div>
 	  						</div>

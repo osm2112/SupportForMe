@@ -2,11 +2,12 @@
  * 프로젝트 선물 등록 자바스크립트 
  */
 $(function() {
+	$("#result").off("click");
 	var projectNo = $("#projectNo").val();
 	/* var context = '${pageContext.request.contextPath}';	//절대 경로
 	console.log(context); */
 	
-	$(".next_button").on("click",function(){
+	$(".next_button").click(function(){
 		$.ajax({
 			url : "../updateProject/account",  
 			data : $("#rewardRegisterFrm").serialize(),
