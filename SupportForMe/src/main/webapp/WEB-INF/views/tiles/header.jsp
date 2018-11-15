@@ -232,22 +232,23 @@ function view() {
 	        	<input TYPE="image" src="<%= request.getContextPath() %>/images/search.png" class="searchImg" name="Submit" value="Submit">
 				</form>
 	        	</div>
-	        	<c:if test="${loginID eq null}">
+	        	<c:if test="${member.userId eq null}">
 	        	<div id="logout_head_menu">
 		        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>/support/MemberLoginForm'">로그인</div>
 		        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>/support/MemberTermsConfirmForm'">회원가입</div>
 	        	</div>
 	        	</c:if>
-	        	<c:if test="${loginID ne null}">
+	        	<c:if test="${member.userId ne null}">
 	        	<div id="head_font_size" class="hamburger-wrapper"><span class="hamburger">마이 페이지</span></div>
 	        	</c:if>
  <!--  사이드바 -->
  <nav id="sidenav">
   <span id="close-sidenav">&times;</span>
   <header>
-  	<div style="height:40px"></div>
+  	<div style="height:30px"></div>
   	<div style="margin-left:10px"><img src="<%= request.getContextPath() %>/images/hUser.png" style="width:55px;height:55px;margin-left:15px;"></div>
-  	<div style="color:white; font-size:20px;margin-top:5px">${loginID}</div> 
+  	<div style="color:white; font-size:20px;margin-top:5px">${member.name}</div> 
+  	<div style="color:white; font-size:20px;margin-top:5px">${member.email}</div>
   </header>
   <ul>
     <li><a href="<%= request.getContextPath() %>/forme/MemberUpdateConfirmForm">프로필 설정</a></li>
@@ -255,7 +256,7 @@ function view() {
     <li><a href="<%= request.getContextPath() %>/forme/MyInvestList">나의 투자 현황</a></li>
     <li><a href="<%= request.getContextPath() %>/forme/MyInvestors">나의 투자자</a></li>
     <li><a href="<%= request.getContextPath() %>/forme/InvestList">나의 결재 내역</a></li>
-    <c:set var ="id" value="${loginID}"/>
+    <c:set var ="id" value="${member.userId}"/>
     <c:if test="${fn:contains(id,'Admin' )}">
     <li><a href="<%= request.getContextPath() %>/forme/AdminProjectProgressList">프로젝트 관리</a></li>
     <li><a href="<%= request.getContextPath() %>/forme/AdminMemberList">회원 관리</a></li>
@@ -282,15 +283,8 @@ $("#close-sidenav").click(function() {
   $("body").removeClass("dark");
 });
 </script>
-
-<!--  사이드바 -->
-	   		</div>
-	   <!-- 	
-	    	<div>
-	    	</div> -->
-		</div>
-		
-
+</div>
+</div>
 </div>
 </body>
 </html>
