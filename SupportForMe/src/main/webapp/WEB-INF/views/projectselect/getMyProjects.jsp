@@ -160,7 +160,7 @@ var contextPath = '<%= request.getContextPath() %>';
 							$('.loader').addClass('display-none');
 						}
 						
-						$(document).scroll(
+			$(document).scroll(
 								function() {
 									var lastno = $(".project_box").last().attr(
 											"id");
@@ -269,7 +269,6 @@ var contextPath = '<%= request.getContextPath() %>';
 			<div class="div1">
 			</div>
 			<div class="div2">
-
 				<c:forEach items="${list}" var="project">
 					<div class="project_box" id="${project.projectNo}"
 						<%-- style="cursor: pointer;"
@@ -303,8 +302,7 @@ var contextPath = '<%= request.getContextPath() %>';
 								<li><button class="btn btn-default _btn" onclick="location.href='<%= request.getContextPath() %>/forme/make/${project.projectNo}'">수정</button>
 								    <c:if test="${project.progressCd eq 004 }"><button class="btn btn-default _btn" onclick="projectdelete('${project.projectNo}');">삭제</button></c:if>
 								    <c:if test="${project.progressCd ne 004 }"><button class="btn btn-default _btn" onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'">상세화면</button></c:if>
-								    </li>
-								
+								    </li>					
 							</ul>
 						</div>
 					</div>
@@ -312,7 +310,5 @@ var contextPath = '<%= request.getContextPath() %>';
 			</div>
 		</div>
 	</div>
-
-	
 </body>
 </html>

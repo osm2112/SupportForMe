@@ -33,7 +33,7 @@
 }
 
 #make_project {
-   font-size : 17px;
+   font-size : 16px;
    font-weight : 800;
    color: white;
    background-color : rgb(26, 188, 156);
@@ -78,7 +78,6 @@
     text-align:center;
     width : 100px;
     color:#474747;
-    font-weight:550;
 }
 #logout_head_menu {
     display:grid;
@@ -92,7 +91,8 @@
     }
     #head {
         display:grid;
-        grid-template-columns : 1fr 3fr ;
+   /*      grid-template-columns : 1fr 3fr ; */
+        
     }
     #head > #site_name {
      color : rgb(26, 188, 156);
@@ -157,7 +157,7 @@ body.dark { background: rgba(0,0,0,.4); z-index: 30; }
 
 #sidenav header {
 	border : 0px;
-	height: 180px;
+	height: 150px;
 	text-align: center;
 	font-size: 1em;
 }
@@ -196,6 +196,7 @@ function go_register() {
 function view() {
 	var objDiv = document.getElementById("site_name");
 	var objDiv2 = document.getElementById("searchKeyword");
+	
     if(objDiv.style.display=="block"){ 
     	objDiv.style.display = "none";
     	objDiv2.style.display = "block";
@@ -205,6 +206,18 @@ function view() {
     	 objDiv2.style.display = "none";  
      }
 }
+
+function view2() {
+	
+	var objDiv2 = document.getElementById("searchKeyword2");
+	
+    if(objDiv2.style.display=="block"){ 
+    	objDiv2.style.display = "none";
+    }
+    else{ 
+    	objDiv2.style.display = "block";
+    }
+}
 </script>
 	<div id="headDiv">
 		<div class="headBodysize">
@@ -212,13 +225,13 @@ function view() {
 	    	<div id="head">
 		    	<!--  화면줄였을때 보이는 영역 -->
 	    	    <div id="search_div1">
-		        <a href="#" onclick="view()"><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg"></a>
-		        <form action="<%= request.getContextPath() %>/support/getProjects">
-	        	<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-				</form> 	    
+		        	<a href="#" onclick="view()"><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg"></a>
+		        	<form action="<%= request.getContextPath() %>/support/getProjects">
+	        			<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?" style="display:none;">
+					</form> 	    
 	        	</div>
 				
-	        	<div id="site_name" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>'">
+	        	<div id="site_name" style="cursor:pointer; display:block;" onclick="location.href='<%= request.getContextPath() %>'">
 	            	SupportForME
 	        	</div>
 	        
@@ -229,10 +242,13 @@ function view() {
 	        	<!-- 전체화면일때 보이는 영역 -->
 	        	<div id="search_div2">
 	        	<form action="<%= request.getContextPath() %>/support/getProjects">
-	        	<input type="text" name="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
-	        	<input TYPE="image" src="<%= request.getContextPath() %>/images/search.png" class="searchImg" name="Submit" value="Submit">
+	        		<input type="text" name="searchKeyword" id="searchKeyword2" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?" style="display:none;">
+	      
+				<%--<input TYPE="image" src="<%= request.getContextPath() %>/images/search.png" class="searchImg" name="Submit" value="Submit"> --%> 
 				</form>
+				<a href="#" onclick="view2()"><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg"></a>
 	        	</div>
+	        	
 	        	<c:if test="${member.userId eq null}">
 	        	<div id="logout_head_menu">
 		        	<div id="head_font_size" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>/support/MemberLoginForm'">로그인</div>
@@ -248,8 +264,8 @@ function view() {
   <header>
   	<div style="height:30px"></div>
   	<div style="margin-left:10px"><img src="<%= request.getContextPath() %>/images/hUser.png" style="width:55px;height:55px;margin-left:15px;"></div>
-  	<div style="color:white; font-size:18px;margin-top:5px">${member.name}님</div> 
-  	<div style="color:white; font-size:18px;margin-top:5px">${member.email}</div>
+  	<div style="color:white; font-size:20px;margin-top:5px">${member.name}</div> 
+  	<div style="color:white; font-size:20px;margin-top:5px">${member.email}</div>
   </header>
   <ul>
     <li><a href="<%= request.getContextPath() %>/forme/MemberUpdateConfirmForm">프로필 설정</a></li>
