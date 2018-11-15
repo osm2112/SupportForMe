@@ -407,7 +407,10 @@ function pick() {
 
 /*-------------투자하기 버튼 제어-------------------------------------------------------------------------------------*/
 function invest(){
-	if('${project.progress}' != '001') {
+	var invest = '${project.progress}';
+	console.log(invest);
+	
+	if('${project.progress}' != '진행중') {
 		alert('종료된 프로젝트 입니다.');
 		return false;
 	} else {
