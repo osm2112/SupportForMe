@@ -131,7 +131,7 @@ $(function(){
 				+ "			<img name='rcBtn' id='rcBtn' src='../images/comments.png' style='width:35px; height:35px; margin-top:60px;'>"
 				+ "		</div>"
 				+ "		<div>"
-				+ "			<span class='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
+				+ "			<span class='userId' name='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
 				+ "			<span class='commentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
 				+ "			<textarea name='commentContent' class='commentContent' readonly cols='65' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
 				+ "		</div>";
@@ -261,7 +261,7 @@ $(function(){
 				if($(this).prev('[name=commentContent]').val() == '') {
 					alert("내용을 입력해주세요.");
 					return false;
-				} else {
+				} else{
 				var params = $(this).closest("[name=replyAddForm]").serialize();
 				var check_this = $(this).closest("[name=replyAddForm]");	//function안에서 this 안돼서 넣음
 				var url = path+"forme/insertReplyComments";
