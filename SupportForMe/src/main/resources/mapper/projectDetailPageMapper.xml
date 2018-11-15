@@ -48,7 +48,7 @@
 	ORDER BY PRESENT_NO DESC
 </select>
 <select id="getProjectPresentsCount" resultType="present" parameterType="project">
-	SELECT NVL((COUNT(*)), '0') AS REWARD_SELECT_COUNT
+	SELECT COUNT(*) AS REWARD_SELECT_COUNT
 	FROM INVEST
 	WHERE PROJECT_NO = #{projectNo}
 	GROUP BY PRESENT_NO
