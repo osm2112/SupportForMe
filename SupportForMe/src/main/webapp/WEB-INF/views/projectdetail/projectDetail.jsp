@@ -231,12 +231,17 @@ $(function(){
 	
 	//댓글등록
 	$("#btnAdd").click(function(){
-		
+		console.log('${mamber.userId}');
 		if('${mamber.userId}'== ''){
 			if(confirm("로그인 후 이용가능합니다. 로그인 하시겠습니까?")){
 				location.href=path+"/support/login";
 			} else {return false;}
 		} else {
+			
+			if($('[name=commentContent]') == '') {
+				alert("내용을 입력해주세요.");
+				return false;
+			} else{
 			var params = $("[name=addForm]").serialize();		
 			var url = path+"forme/insertComments";
 			$.getJSON(url, params, function(data){
@@ -244,7 +249,9 @@ $(function(){
 				$("[name=addForm]")[0].reset();
 				location.hash = "#here";
 			});
+			}
 		}
+			
 	});
 	//답글등록
 		$("#commentList").on("click", "#replyBtnAdd", function(){
@@ -403,7 +410,7 @@ function pick() {
     <!-- 프로젝트 이름, 관리자 버튼 -->
     <div class="pjdtl-flex-container">
         <div class="pjdtl-project-name">${project.projectName}</div>
-        <c:if test="${mamber.userId == 'Admin'}">
+        <c:if test="${member.userId == 'Admin'}">
         	<button class="pjdtl-pick-btn" onclick="pick()">PICK</button>
     	</c:if>
     </div>
