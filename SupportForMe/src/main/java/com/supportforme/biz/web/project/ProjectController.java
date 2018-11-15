@@ -93,13 +93,14 @@ public class ProjectController {
 								,HttpSession session) {
 		
 		if ( session.getAttribute("LoginInfo") == null ) {
-			model.addAttribute("loginID", null);
+			model.addAttribute("member", null);
 		}
 		else {
 			MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
 			String userId = dto.getUserId();
 			searchDto.setUserId(userId);
-			model.addAttribute("loginID", userId);
+			
+			model.addAttribute("member", dto);
 		}
 		
 		// 시작/마지막 레코드 번호
