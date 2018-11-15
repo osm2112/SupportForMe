@@ -45,7 +45,7 @@ public class InvestController {
 	public String getMyInvestList(Model model, HttpSession session, InvestSearchDTO dto) {
 		
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
-		model.addAttribute("loginID", memberDTO.getUserId());
+		model.addAttribute("member", memberDTO);
 		dto.setUserId(memberDTO.getUserId());
 		dto.setStart(1);
 		dto.setEnd(10);
@@ -74,7 +74,7 @@ public class InvestController {
 	@RequestMapping("/forme/InvestList")	
 	public String getInvests(Model model,InvestSearchDTO searchDTO, Paging paging, HttpSession session,HttpServletRequest request) {
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
-		model.addAttribute("loginID", memberDTO.getUserId());
+		model.addAttribute("member", memberDTO);
 		searchDTO.setUserId(memberDTO.getUserId());
 		paging.setPageUnit(5);
 		
@@ -106,7 +106,7 @@ public class InvestController {
 	public String getInvest(Model model, InvestDTO dto, HttpSession session) {
 		
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
-		model.addAttribute("loginID", memberDTO.getUserId());
+		model.addAttribute("member", memberDTO);
 		model.addAttribute("invest", investService.getInvest(dto));
 		return "myNav/invest/investDetailForm";
 	}
@@ -165,7 +165,7 @@ public class InvestController {
 	public String investPaymentInfoForm(InvestDTO dto, Model model, HttpSession session, HttpServletRequest request) {
 		
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
-		model.addAttribute("loginID", memberDTO.getUserId());
+		model.addAttribute("member", memberDTO);
 		
 		session.setAttribute("presentNo",request.getParameter("presentNo"));
 		session.setAttribute("projectNo",request.getParameter("projectNo"));
@@ -182,7 +182,7 @@ public class InvestController {
 	public String getPresentList(InvestDTO dto, Model model, HttpServletRequest request,HttpSession session) {
 		
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
-		model.addAttribute("loginID", memberDTO.getUserId());
+		model.addAttribute("member", memberDTO);
 		
 		InvestDTO investDTO = new InvestDTO();
 		investDTO.setProjectNo(request.getParameter("projectNo"));
@@ -222,7 +222,7 @@ public class InvestController {
 		@RequestMapping("/forme/investorExcelView")
 		public ModelAndView excelView(Model model,InvestSearchDTO searchDTO , HttpSession session){
 			MemberDTO memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
-			model.addAttribute("loginID", memberDTO.getUserId());
+			model.addAttribute("member", memberDTO);
 			searchDTO.setUserId(memberDTO.getUserId());
 			searchDTO.setStart(1);
 			searchDTO.setEnd(1000);

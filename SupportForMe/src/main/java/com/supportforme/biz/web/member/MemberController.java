@@ -43,10 +43,9 @@ public class MemberController {
 	public String memberUpdateConfirmForm(Model model,HttpSession session) {
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		if ( memberDTO == null ) {
-			model.addAttribute("loginID", null);
+			model.addAttribute("member", null);
 		} else {
-			String userId = memberDTO.getUserId();
-			model.addAttribute("loginID", userId);
+			model.addAttribute("member", memberDTO);
 		}
 		return "myNav/member/memberUpdateConfirmForm";
 	}
@@ -55,10 +54,9 @@ public class MemberController {
 	public String memberDeleteConfirmForm(Model model, HttpSession session) {
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		if ( memberDTO == null ) {
-			model.addAttribute("loginID", null);
+			model.addAttribute("member", null);
 		} else {
-			String userId = memberDTO.getUserId();
-			model.addAttribute("loginID", userId);
+			model.addAttribute("member", memberDTO);
 		}
 		return "myNav/member/memberDeleteConfirmForm";
 	}
@@ -67,10 +65,9 @@ public class MemberController {
 	public String memberFindIdForm(Model model, HttpSession session) {
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		if ( memberDTO == null ) {
-			model.addAttribute("loginID", null);
+			model.addAttribute("member", null);
 		} else {
-			String userId = memberDTO.getUserId();
-			model.addAttribute("loginID", userId);
+			model.addAttribute("member", memberDTO);
 		}
 		return "noNav/member/memberFindIdForm";
 	}
@@ -80,10 +77,9 @@ public class MemberController {
 		
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		if ( memberDTO == null ) {
-			model.addAttribute("loginID", null);
+			model.addAttribute("member", null);
 		} else {
-			String userId = memberDTO.getUserId();
-			model.addAttribute("loginID", userId);
+			model.addAttribute("member", memberDTO);
 		}
 		return "noNav/member/memberFindPasswordForm";
 	}
@@ -139,10 +135,9 @@ public class MemberController {
 	public String memberUpdateForm(Model model, HttpSession session, HttpServletRequest request) {
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		if ( memberDTO == null ) {
-			model.addAttribute("loginID", null);
+			model.addAttribute("member", null);
 		} else {
-			String userId = memberDTO.getUserId();
-			model.addAttribute("loginID", userId);
+			model.addAttribute("member", memberDTO);
 		}
 		String ref = null;
 		if (request.getHeader("referer") != null) {
