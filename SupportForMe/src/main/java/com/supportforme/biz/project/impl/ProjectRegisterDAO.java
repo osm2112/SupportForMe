@@ -31,4 +31,8 @@ public class ProjectRegisterDAO {
 		return mybatis.update("project.completeProject", dto);
 	}
 	
+	public String getPresentCnt(ProjectDTO dto) {
+		return mybatis.selectOne("project.getPresentCnt",dto);
+	}
+	
 }

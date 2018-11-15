@@ -138,8 +138,13 @@ public class projectRegisterController {
 	@RequestMapping("/forme/registerComplete")
 	@ResponseBody
 	public Map<String,String> completeProject(ProjectDTO dto){
-		projectService.completeProject(dto);
-		map.put("code", "success");
+		String cnt = projectService.getPresentCnt(dto);
+		if(!cnt.equals("0")) {
+			projectService.completeProject(dto);
+			map.put("code", "success");
+		}else {
+			map.put("code", "fail");
+		}
 		return map;
 	}
 	

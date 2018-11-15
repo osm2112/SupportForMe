@@ -66,15 +66,21 @@ $(function() {
 	//선물입력 폼 값 체크
 	function checkReward(){
 		var msg="";
-		var regexp = /^[0-9]+$/;
+		var regexp = /^([1-9])([0-9])+$/;
 		if(!$("#registerRewardFrm [name=presentPrice]").val()){
 			$("#alertMessage").text("리워드 금액을 적어주세요.");
 			$("#alertModal").show();
 			return false;
 		}
 		if(!regexp.test($("#registerRewardFrm [name=presentPrice]").val())){
-			$("#alertMessage").text("리워드 금액은 숫자만 가능합니다.");
-			$("#alertModal").show();
+			var regexp2 = /^[1-9]/;
+			if(regexp2.test($("#registerRewardFrm [name=presentPrice]").val())){
+				$("#alertMessage").text("리워드 금액은 숫자만 가능합니다.");
+				$("#alertModal").show();
+			}else{
+				$("#alertMessage").text("리워드 금액 첫 숫자는 1이상 가능합니다.");
+				$("#alertModal").show();
+			}
 			return false;
 		}
 		if(!$("#registerRewardFrm [name=presentName]").val()){

@@ -8,13 +8,20 @@
 <style>
 body {
 	margin:0px;
+	font-family : '맑은 고딕';
 }
-
 article {
 	margin: 0px;
 	overflow: hidden;
 }
-
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+} 
+.sticky + article {
+	padding-top:102px;
+}  
 </style>
 
 </head>
@@ -31,5 +38,19 @@ article {
 	     	<tiles:insertAttribute name="footer" /> 
 		</footer>
 	</div>
+<script>
+window.onscroll = function() {myFunction()};
+
+var header = document.getElementById("headDiv");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+</script>
 </body>
 </html>
