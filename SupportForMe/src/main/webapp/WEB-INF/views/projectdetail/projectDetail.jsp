@@ -536,8 +536,8 @@ function outFunc() {
 					</li>
 				</c:forTokens>
 				<c:forTokens items="${project.introductionImage}" delims="||" var="img">
-					<li data-thumb="<%= request.getContextPath() %>/upload/${img}" style="width:660px; height:380px;">
-						<img src="<%= request.getContextPath() %>/upload/${img}"/>
+					<li data-thumb="/SupportForMe/upload/${img}" style="width:660px; height:380px;">
+						<img src="/SupportForMe/upload/${img}"/>
 					</li>
 				</c:forTokens>
 				
