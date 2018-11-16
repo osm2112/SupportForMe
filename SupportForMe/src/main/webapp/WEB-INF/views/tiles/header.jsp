@@ -268,7 +268,7 @@ function view2() {
   <span id="close-sidenav">&times;</span>
   <header>
   	<div style="height:30px"></div>
-  	<div style="margin-left:10px"><img src="<%= request.getContextPath() %>/images/hUser.png" style="width:55px;height:55px;margin-left:15px;"></div>
+  	<div style="margin-left:10px"><img src="<%= request.getContextPath() %>/images/user-white2.png" style="width:55px;height:55px;margin-left:15px;"></div>
   	<div style="color:white; font-size:18px;margin-top:5px">${member.name}</div> 
   	<div style="color:white; font-size:18px;margin-top:5px">${member.email}</div>
   </header>
