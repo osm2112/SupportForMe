@@ -172,7 +172,7 @@ ul {
 }
 
 .updComment {
-	width: 785px;
+	width: 100%;
 	background-color: #F6F6F6;
 	padding: 15px;
 	border-bottom: 2px solid white;
@@ -180,3 +180,5 @@ ul {
 #rcBtn:hover {
 	cursor:pointer;
 }
+
+

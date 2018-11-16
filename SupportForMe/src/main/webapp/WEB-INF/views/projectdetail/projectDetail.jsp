@@ -65,9 +65,43 @@
    color:rgb(26, 188, 156);
    border-radius: 5px;
 }
+
+/*url 복사하기*/
+._tooltip {
+    position: relative;
+	display: inline-block;
+}
+._tooltip ._tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+._tooltip ._tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+._tooltip:hover ._tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
 </style>
-
-
 
 
 <script>
@@ -157,7 +191,7 @@ $(function(){
 				+ "		<div>"
 				+ "			<span class='userId' name='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
 				+ "			<span class='commentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
-				+ "			<textarea name='commentContent' class='commentContent' readonly cols='65' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
+				+ "			<textarea name='commentContent' class='commentContent' readonly cols='63' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
 				+ "		</div>";
 		var btn = "		<div style='margin:auto; margin-bottom:5px;'>"
 				+ "			<button type='button' class='btnUpdFrm' style='width:50px; height:30px;margin-bottom:5px;'>수정</button><br>"
@@ -177,7 +211,7 @@ $(function(){
 				+ "			<input type='hidden' name='topCommentNo' value='"+comments.commentNo+"'>"
 				+ "			<div style='display:flex;'>"
    				+ "				<img src='../images/turn-right.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
-    			+ "				<textarea name='commentContent' cols='72' rows='5' placeholder='내용을 입력해주세요.' style='resize:none;'></textarea>&nbsp;"
+    			+ "				<textarea name='commentContent' cols='77' rows='5' placeholder='내용을 입력해주세요.' style='resize:none;'></textarea>&nbsp;"
     			+ "				<button type='button' id='replyBtnAdd' style='width:50px; height:30px; margin:auto;'>등록</button>"
 				+ "			</div>"
 				+ "		</form>"
@@ -236,7 +270,7 @@ $(function(){
 				+ "		<div>"
 				+ "			<span class='rcUserId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
 				+ "			<span class='rCommentDate' style='color:#747474'>"+ comments.commentDate + "</span><br>"
-				+ "			<textarea name='commentContent' class='replyCommentContent' readonly cols='64' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
+				+ "			<textarea name='commentContent' class='replyCommentContent' readonly cols='62' rows='5' style='resize:none; border:none; font-size:17px; margin-right:10px;'>"+ comments.commentContent +"</textarea>"
 				+ "		</div>";
 		var btn = "		<div style='margin:auto; margin-bottom:5px;'>"
 				+ "			<button type='button' class='rcBtnUpdFrm' style='width:50px; height:30px;margin-bottom:5px;'>수정</button>"
@@ -440,6 +474,25 @@ function invest(){
 	}
 }
 
+/*--------------url링크 가져오기/공유하기-------------------------------------------------------------------------------*/
+function url() {
+	var link = location.href;
+	$('.pjdtl-share-btn').next().children().find('.modal-body input').val(link);
+}
+
+function copyUrl() {
+	var copyText = document.getElementById("myInput");
+		copyText.select();
+	document.execCommand("copy");
+
+	var tooltip = document.getElementById("myTooltip");
+	tooltip.innerHTML = "복사되었습니다.";
+}
+function outFunc() {
+	  var tooltip = document.getElementById("myTooltip");
+	  tooltip.innerHTML = "복사하기";
+}
+
 </script>
 </head> 
     
@@ -523,7 +576,32 @@ function invest(){
                 	<button class="pjdtl-invest-btn" onclick="invest()">투자하기</button>
                 </c:otherwise>
             </c:choose>
-            <!--<img src="../images/share-button.png" class="pjdtl-share-btn">-->
+            <img src="../images/share-button.png" onclick="url()" class="pjdtl-share-btn" data-toggle="modal" data-target="#myModal">
+            	<!-- Modal -->
+				<div class="modal fade" id="myModal" role="dialog">
+				    <div class="modal-dialog" style="margin-top:15em; width:50em;">
+				    
+				      <!-- Modal content-->
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">공유</h4>
+				        </div>
+				        <div class="modal-body" style="display:flex;">
+				          		<input type="text" id="myInput" style="width:45em;height:3em;"/>
+				          	<div class="_tooltip" style="margin-top:auto; margin-bottom:auto; margin-left:10px;">	
+				          		<button onclick="copyUrl()" onmouseout="outFunc()" id="clipboard" class="btn btn-default" style="height:30px;">
+				          		<span class="_tooltiptext" id="myTooltip">복사하기</span>
+				          		Copy url</button>
+				        	</div>
+				        </div>
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				        </div>
+				      </div>
+				      
+				    </div>
+				</div>
             </div>
  			<div style="height:15px"></div>
             <table style="width:450px;border:1px solid #A6A6A6;">

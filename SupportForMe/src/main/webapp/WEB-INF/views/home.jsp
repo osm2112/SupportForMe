@@ -92,8 +92,7 @@
 }
 
 .real_time_rank_div {
-	border-top: 1px solid rgb(26, 188, 156);
-	border-bottom: 1px solid rgb(26, 188, 156);
+	border: 1px solid #EEEEEE;
 	height: 360px;
 	width: 300px;
 }
@@ -187,35 +186,30 @@
 
 <!--
 -->
-@keyframes flickerAnimation { 
-	0% { opacity: 1 }
-	50%{ opacity:0;	}
-	100%{opacity:1;}
-}
-@-o-keyframes flickerAnimation { 
-	0% {opacity: 1;	}
-	50%{opacity:0;}
-	100%{opacity:1;}
-}
-@-moz-keyframes flickerAnimation { 
-	0% {opacity: 1;}
-	50%{opacity:0;}
-	100%{opacity:1;}
-}
-@-webkit-keyframes flickerAnimation { 
-	0% {opacity: 1;}
-	50%{opacity:0;}
-	100%{opacity:1;}
+/*topToBottom Animation*/
+
+@-webkit-keyframes topToBottom{
+	0% { opacity: 1; }
+	1% { opacity: 1; -webkit-transform: translateY(-1px); }
+	2% { opacity: 0.9; -webkit-transform: translateY(-2px); }
+	3% { opacity: 0.8; -webkit-transform: translateY(-3px); }
+	4% { opacity: 0.7; -webkit-transform: translateY(-4px); }
+	5% { opacity: 0.5; -webkit-transform: translateY(-5px); }
+	6% { opacity: 0.5; -webkit-transform: translateY(-5px); }
+	7% { opacity: 0; -webkit-transform: translateY(-5px); }
+	8% { opacity: 0; -webkit-transform: translateY(5px); }
+	10% { opacity: 1; -webkit-transform: translateY(1px); }
+	15% { opacity: 1; -webkit-transform: translateY(0px); }
+	80% { opacity: 1; }
+	100% { opacity: 1; }
 }
 .ranktext {
-	-webkit-animation: flickerAnimation 6s infinite;
-	-moz-animation: flickerAnimation 6s infinite;
-	-o-animation: flickerAnimation 6s infinite;
-	animation: flickerAnimation 6s infinite;
+	-webkit-animation: topToBottom 10s infinite;
 }
 
 #rank ol {
 	list-style-type: none;
+	margin-left:-15px;
 }
 
 li em {
@@ -223,16 +217,16 @@ li em {
 	font-style: normal;
 	display: block;
 	float: left;
-	min-width: 13px;
-	width: 13px;
-	height: 12px;
-	margin-right: 9px;
+	width: 20px;
+	height: 18px;
+	margin-right: 5px;
 	border: 1px solid #e0e0e0;
 	color: #666;
 	line-height: 12px;
-	font-size: 11px;
+	font-size: 12px;
 	text-align: center;
 	font-family: tahoma, sans-serif;
+	padding-top:2px;
 }
  .flexslider2 .flex-direction-nav .flex-next {
 	right: 120px; /* adjust offset to match the hover style */
@@ -377,41 +371,29 @@ text-shadow:   0 1px 0 #ccc,
 						$('.flexslider3')
 								.flexslider(
 										{
-											slideshowSpeed : 8000,
+											slideshowSpeed : 2000,
 											animation : "slide",
 											controlNav : false,
 											directionNav : false,
 											start : function(slider) {
-												$(
-														'.real_time_rank_projects li span text')
-														.eq(0)
-														.css(
-																{
-
-																	"background" : "linear-gradient(to right, #BDFFF3, #4AC29A)"
-
-																});
-
+												/* $('.real_time_rank_projects li span text') */
+												$('.real_time_rank_projects li')
+												.eq(0)
+												.addClass("ranktext");
+												/* .css({"font-weight" : "700"}); */
 											},
 											after : function(slider) {
-												$(
-														'.real_time_rank_projects li span text')
-														.eq(
-																slider.currentSlide - 1)
-														.css('background', "");
+												$('.real_time_rank_projects li')
+												.eq(slider.currentSlide - 1)
+												.removeClass("ranktext");
 												/* 		$('.real_time_rank_projects li').eq(
 																slider.currentSlide - 1).attr("class","ranktext");										
 														$('.real_time_rank_projects li').eq(
 																slider.currentSlide).attr("class","no");
 												 */
-
-												$(
-														'.real_time_rank_projects li span text')
-														.eq(slider.currentSlide)
-														.css(
-																{
-																	"background" : "linear-gradient(to right, #BDFFF3, #4AC29A)"
-																});
+												$('.real_time_rank_projects li')
+												.eq(slider.currentSlide)
+												.addClass("ranktext");
 											}
 										});
 
@@ -420,55 +402,8 @@ text-shadow:   0 1px 0 #ccc,
 						setInterval("Rank()", 8000);
 
 					});
-	function Ranking() {
-		$('.real_time_rank_projects li')
-				.eq(0)
-				.attr("class", "ranktext")
-				.delay(800)
-				.queue(
-						function() {
-							$('.real_time_rank_projects li')
-									.eq(1)
-									.attr("class", "ranktext")
-									.delay(800)
-									.queue(
-											function() {
-												$('.real_time_rank_projects li')
-														.eq(2)
-														.attr("class",
-																"ranktext")
-														.delay(800)
-														.queue(
-																function() {
-																	$(
-																			'.real_time_rank_projects li')
-																			.eq(
-																					3)
-																			.attr(
-																					"class",
-																					"ranktext")
-																			.delay(
-																					800)
-																			.queue(
-																					function() {
-																						$(
-																								'.real_time_rank_projects li')
-																								.eq(
-																										4)
-																								.attr(
-																										"class",
-																										"ranktext")
-																								.delay(
-																										800);
-																					});
-																});
-											});
-						});
-	}
-
 	function Rank() {
-		$
-				.ajax({
+		$.ajax({
 					type : "post",
 					url : "./",
 					dataType : "json",
