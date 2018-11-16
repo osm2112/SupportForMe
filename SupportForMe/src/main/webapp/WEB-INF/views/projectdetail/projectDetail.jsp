@@ -65,9 +65,43 @@
    color:rgb(26, 188, 156);
    border-radius: 5px;
 }
+
+/*url 복사하기*/
+._tooltip {
+    position: relative;
+	display: inline-block;
+}
+._tooltip ._tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+._tooltip ._tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+._tooltip:hover ._tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
 </style>
-
-
 
 
 <script>
@@ -443,10 +477,21 @@ function invest(){
 /*--------------url링크 가져오기/공유하기-------------------------------------------------------------------------------*/
 function url() {
 	var link = location.href;
-	$('.pjdtl-share-btn').next().children().find('.modal-body textarea').text(link);
+	$('.pjdtl-share-btn').next().children().find('.modal-body input').val(link);
 }
 
+function copyUrl() {
+	var copyText = document.getElementById("myInput");
+		copyText.select();
+	document.execCommand("copy");
 
+	var tooltip = document.getElementById("myTooltip");
+	tooltip.innerHTML = "복사되었습니다.";
+}
+function outFunc() {
+	  var tooltip = document.getElementById("myTooltip");
+	  tooltip.innerHTML = "복사하기";
+}
 
 </script>
 </head> 
@@ -534,7 +579,7 @@ function url() {
             <img src="../images/share-button.png" onclick="url()" class="pjdtl-share-btn" data-toggle="modal" data-target="#myModal">
             	<!-- Modal -->
 				<div class="modal fade" id="myModal" role="dialog">
-				    <div class="modal-dialog" style="margin-top:15em;">
+				    <div class="modal-dialog" style="margin-top:15em; width:50em;">
 				    
 				      <!-- Modal content-->
 				      <div class="modal-content">
@@ -543,8 +588,12 @@ function url() {
 				          <h4 class="modal-title">공유</h4>
 				        </div>
 				        <div class="modal-body" style="display:flex;">
-				          <textarea cols='63' style="resize:none;"></textarea>
-				          <button class="btn btn-default btn-sm" style="height:30px; margin-top:auto; margin-bottom:auto; margin-left:20px;">복사하기</button>
+				          		<input type="text" id="myInput" style="width:45em;height:3em;"/>
+				          	<div class="_tooltip">	
+				          		<button onclick="copyUrl()" onmouseout="outFunc()" id="clipboard" class="btn btn-default" style="height:30px; margin-top:auto; margin-bottom:auto; margin-left:20px;">
+				          		<span class="_tooltiptext" id="myTooltip">복사하기</span>
+				          		Copy url</button>
+				        	</div>
 				        </div>
 				        <div class="modal-footer">
 				          <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
