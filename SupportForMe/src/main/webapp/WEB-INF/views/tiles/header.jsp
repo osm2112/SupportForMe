@@ -203,18 +203,34 @@ function go_register() {
 <body>
 <script>
 function view() {
+	/* var mql = window.matchMedia("screen and (max-width: 850px)"); */
+
+	
 	var objDiv = document.getElementById("site_name");
 	var objDiv2 = document.getElementById("searchKeyword");
 	
-    if(objDiv.style.display=="block"){ 
+    if(/* objDiv.style.display=="block" */
+    	objDiv.classList.contains( 'block' )  ){ 
+    	
+    	objDiv.classList.add( 'none' );
+    	objDiv.classList.remove( 'block' );
+    	objDiv2.classList.add( 'block' );
+    	objDiv2.classList.remove( 'none' );
+    /* 	
     	objDiv.style.display = "none";
-    	objDiv2.style.display = "block";
+    	objDiv2.style.display = "block"; */
     }
      else{ 
-    	 objDiv.style.display = "block";
-    	 objDiv2.style.display = "none";  
+    	objDiv.classList.add( 'block' );
+    	objDiv.classList.remove( 'none' );
+        objDiv2.classList.add( 'none' );
+        objDiv2.classList.remove( 'block' );
+    	
+       /*  objDiv.style.display = "block";
+    	objDiv2.style.display = "none"; */  
      }
 }
+
 
 function view2() {
 	
@@ -236,11 +252,11 @@ function view2() {
 	    	    <div id="search_div1">
 		        	<a href="#" onclick="view()"><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg"></a>
 		        	<form action="<%= request.getContextPath() %>/support/getProjects">
-	        			<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?" style="display:none;">
+	        			<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
 					</form> 	    
 	        	</div>
 				
-	        	<div id="site_name" style="cursor:pointer; display:block;" onclick="location.href='<%= request.getContextPath() %>'">
+	        	<div id="site_name" class="block" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>'">
 	            	SupportForME
 	        	</div>
 	        
