@@ -521,13 +521,14 @@ function outFunc() {
         </c:otherwise>
     </c:choose>
     </div>
-    <br>
+    <br>${project.introductionVideo}
     <div class="pjdtl-flex-container">
         <!-- 사진/이미지/영상/비디오 슬라이드/슬라이더-->
         <div class="demo">
         <div class="item">
         	<div class="clearfix">
         	<ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+        	
 				<c:forTokens items="${project.introductionVideo}" delims="||" var="video">
 					<li data-thumb="${video}" class="video-thumb">
 						<iframe width="625" height="365" src="https://www.youtube.com/embed/${video}"
@@ -606,7 +607,7 @@ function outFunc() {
  			<div style="height:15px"></div>
             <table style="width:450px;border:1px solid #A6A6A6;">
             	<tr style="text-align: center;">
-            		<td style="height:100px;"><img src="../images/calendar.png" style="width:90px; height:82px;"></td>
+            		<td style="height:100px;"><img src="/SupportForMe/images/calendar.png" style="width:90px; height:82px;"></td>
     				<td><img src="/SupportForMe/images/right-arrow.png" class="pjdtl-right-arrow"></td>
     				<td><img src="/SupportForMe/images/credit-card.png" class="pjdtl-status-img"></td>
     				<td><img src="/SupportForMe/images/right-arrow.png" class="pjdtl-right-arrow"></td>
@@ -704,6 +705,7 @@ function outFunc() {
         </div>
 
         <div class="pjdtl-empty-content"></div>
+<!-- 리워드 -->
         <div class="pjdtl-reward">
             <div style="font-size:30px;">리워드 목록</div>
             <c:if test="${present.size()>0}">
@@ -713,12 +715,10 @@ function outFunc() {
             		<img src="/SupportForMe/images/checkmark.png" style="width:27px; height:27px">
             		<c:choose>
             		<c:when test="${presentCount[status.index].rewardSelectCount == null}">
-            			<span style="font-size:27px; color:#FF007F;">0명</span>
-            			<span style="font-size:27px; color:#8C8C8C;">이 선택</span>
+            			<span style="font-size:27px; color:#8C8C8C;">&nbsp;0명이 선택</span>
             		</c:when>
             		<c:otherwise>
-            			<span style="font-size:27px; color:#FF007F;">${presentCount[status.index].rewardSelectCount}명</span>
-            			<span style="font-size:27px; color:#8C8C8C;">이 선택</span>
+            			<span style="font-size:27px; color:#8C8C8C;">&nbsp;${presentCount[status.index].rewardSelectCount}명이 선택</span>
             		</c:otherwise>
             		</c:choose>
             	</div><br>
