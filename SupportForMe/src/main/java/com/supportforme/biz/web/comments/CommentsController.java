@@ -29,13 +29,18 @@ public class CommentsController {
 	@RequestMapping("/support/getCommentsList")
 	@ResponseBody
 	public List<CommentsDTO> getCommentsList(CommentsDTO dto) {
-		return commentsService.getCommentsList(dto);
+		List<CommentsDTO> list = commentsService.getCommentsList(dto);
+		for(CommentsDTO i : list ) {
+			i.setReplyCommentCnt(commentsService.getReplyCommentCnt(i));
+		}
+		return list;
 	}
-//	@RequestMapping("/support/getReplyCommentCnt")
-//	@ResponseBody
-//	public String getReplyCommentCnt(CommentsDTO dto) {
-//		return commentsService.getReplyCommentCnt(dto);
-//	}
+	@RequestMapping("/support/getReplyCommentCnt")
+	@ResponseBody
+	public String getReplyCommentCnt(CommentsDTO dto) {
+		return commentsService.getReplyCommentCnt(dto);
+	}
+	
 	//답글조회
 	@RequestMapping("/support/getReplyCommentsList")
 	@ResponseBody
@@ -74,6 +79,7 @@ public class CommentsController {
 	@RequestMapping("/forme/deleteComments")
 	@ResponseBody
 	public CommentsDTO deleteComments(CommentsDTO dto) {
+		System.out.println("ddddddddddd"+dto);
 		commentsService.deleteComments(dto);
 		dto.setCnt(commentsService.getCommentCnt(dto));
 		return dto;

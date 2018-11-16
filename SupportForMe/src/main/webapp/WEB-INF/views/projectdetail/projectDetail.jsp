@@ -175,8 +175,20 @@ $(function(){
 		}
 	}
 	
+	function rcCnt(commentNo){
+		var cnt;
+		var params = { commentNo: comments.commentNo};
+		$.ajax({
+			url: path+"support/getReplyCommentCnt",
+			data: params,
+			success: function(data) {
+				comments.replyCommentCnt = data;
+			}
+		});return comments;
+	}
+	
 	function makeCommentView(comments) {
-		
+
 		var div = $("<div>");
 		div.attr("id", "c"+comments.commentNo);
 		div.addClass('comments');
@@ -186,7 +198,10 @@ $(function(){
 				+ "<div style='display:flex;'>"
 				+ "		<div style='width:60px; margin-right:10px;'>"
 				+ "			<img src='/SupportForMe/images/user-icon.png' style='width:60px; height:60px; margin:auto;'><br>"
-				+ "			<img name='rcBtn' id='rcBtn' src='/SupportForMe/images/comments.png' style='width:35px; height:35px; margin-top:60px;'>"
+				+ "			<div style='display:flex;'>"
+				+ "				<img name='rcBtn' id='rcBtn' src='/SupportForMe/images/comments.png' style='width:34px; height:35px; margin-top:60px;'>"
+				+ "				<div id='rcCount"+comments.commentNo+"' style='width:25px; height:35px; margin-top:60px; text-align:center; padding-top:7px;'>"+ comments.replyCommentCnt +"</div>"
+				+ "			</div>"
 				+ "		</div>"
 				+ "		<div>"
 				+ "			<span class='userId' name='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
@@ -229,8 +244,6 @@ $(function(){
 			success: more,
 		});
 	});
-	
-	
 	
 	//답글 조회(버튼클릭시 화면에 출력, 답변이 보이는 상태에서 버튼을 클릭하면 답글목록 닫음)
 	$("#commentList").on("click", "#rcBtn", function(){
@@ -275,6 +288,7 @@ $(function(){
 		var btn = "		<div style='margin:auto; margin-bottom:5px;'>"
 				+ "			<button type='button' class='rcBtnUpdFrm' style='width:50px; height:30px;margin-bottom:5px;'>수정</button>"
 				+ "			<button type='button' class='rcBtnDel' style='width:50px; height:30px;'>삭제</button>"
+				+ "			<input type='hidden' value='"+comments.topCommentNo+"'>"
 				+ "		</div>";
 		if('${member.userId}' == comments.userId) {
 					str+=btn
@@ -320,16 +334,45 @@ $(function(){
 					alert("내용을 입력해주세요.");
 					return false;
 				} else{
-				var params = $(this).closest("[name=replyAddForm]").serialize();
-				var check_this = $(this).closest("[name=replyAddForm]");	//function안에서 this 안돼서 넣음
-				var url = path+"forme/insertReplyComments";
-				$.getJSON(url, params, function(data){		
-					check_this.parent().prev().prepend( makeReplyCommentView(data) );
-					check_this.closest("[name=replyAddForm]")[0].reset();
-			});
-		}
-		}
+					console.log($(this).closest('#replyCommentAdd').prev().parent());
+					console.log($(this).closest('#replyCommentAdd').prev().parent().find('.userId').text());
+					if($(this).closest('#replyCommentAdd').prev().parent().find('.userId').text() == ' ' ) {
+						alert("삭제된 댓글에는 답글을 등록할 수 없습니다.");
+						$(this).closest("[name=replyAddForm]")[0].reset();
+						return false;
+					} else {
+						var params = $(this).closest("[name=replyAddForm]").serialize();
+						var check_this = $(this).closest("[name=replyAddForm]");
+						var url = path+"forme/insertReplyComments";
+						$.ajax ({
+							url: url,
+							data: params,
+							async: false,
+							success: function(data) {
+								check_this.parent().prev().prepend( makeReplyCommentView(data) );
+								check_this.closest("[name=replyAddForm]")[0].reset();
+								console.log(data);
+								
+								cntComments(data.topCommentNo);
+							}
+						});
+						
+					}
+				}
+			}
 	});
+/*함수함수함수*/
+ 	function cntComments(commentNo){	
+	
+		$.ajax({
+				url: path+"support/getReplyCommentCnt",
+				data: {commentNo: commentNo},
+				success: function(data) {
+					$('#rcCount'+commentNo).text(data);
+				}
+		});		
+		
+	}
 	
 	//댓글 수정
 	$("#btnUpd").click(function(){
@@ -425,12 +468,20 @@ $(function(){
 	});
 	//답글 삭제
 	$("#commentList").on("click", ".rcBtnDel", function(){
+		var cur = $(this).next().val();
 		var seq = $(this).parent().parent().parent().parent().attr("id").substring(2);
 		if(confirm("답글을 삭제하시겠습니까?")) {
 			var params = "commentNo="+seq;
 			var url = path+"forme/deleteComments";
-			$.getJSON(url, params, function(data){
-				$('#rc'+data.commentNo).remove();
+			$.ajax({
+				url: url,
+				data: params,
+				async: false,
+				success: function(data) {
+					$('#rc'+data.commentNo).remove();
+					cntComments(cur);
+				}
+				
 			});
 		}
 	});

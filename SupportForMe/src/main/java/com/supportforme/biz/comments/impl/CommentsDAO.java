@@ -22,10 +22,10 @@ public class CommentsDAO {
 	public List<CommentsDTO> getCommentsList(CommentsDTO dto) {
 		return mybatis.selectList("comments.getCommentsList", dto);
 	}
-//	public String getReplyCommentCnt(CommentsDTO dto) {
-//		return mybatis.selectOne("comments.getReplyCommentCnt", dto);
-//	}
-		
+	public String getReplyCommentCnt(CommentsDTO dto) {
+		return mybatis.selectOne("comments.getReplyCommentCnt", dto);
+	}
+	
 	//댓글에 달린 답글 조회
 	public List<CommentsDTO> getReplyCommentsList(CommentsDTO dto) {
 		return mybatis.selectList("comments.getReplyCommentsList", dto);

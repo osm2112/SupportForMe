@@ -22,9 +22,9 @@ public class CommentsServiceImpl implements CommentsService{
 	public List<CommentsDTO> getCommentsList(CommentsDTO dto){
 		return dao.getCommentsList(dto);
 	}
-//	public String getReplyCommentCnt(CommentsDTO dto) {
-//		return dao.getReplyCommentCnt(dto);
-//	}
+	public String getReplyCommentCnt(CommentsDTO dto) {
+		return dao.getReplyCommentCnt(dto);
+	}
 	//댓글에 달린 답글 조회
 	public List<CommentsDTO> getReplyCommentsList(CommentsDTO dto){
 		return dao.getReplyCommentsList(dto);

@@ -6,6 +6,7 @@
 <!-- 댓글 불러오기 -->
 <!-- 댓글 -->
 <select id="getCommentsList" resultType="comments" parameterType="comments">
+
 	SELECT COMMENT_NO,
 		   TOP_COMMENT_NO,
 		   COMMENT_CONTENT,
@@ -14,16 +15,14 @@
 		   NVL(USER_ID, ' ') AS USER_ID
 	FROM COMMENTS
 	WHERE PROJECT_NO = #{projectNo} AND TOP_COMMENT_NO IS NULL
-	ORDER BY COMMENT_NO DESC 
+	ORDER BY COMMENT_NO DESC
 </select>
 <!-- 답글 개수 -->
-<!-- 
 <select id="getReplyCommentCnt" resultType="string" parameterType="comments">
-	SELECT COUNT(*) as REPLY_COMMENT_CNT
+	SELECT NVL((COUNT(*)), '0') as REPLY_COMMENT_CNT
 	FROM COMMENTS
 	WHERE TOP_COMMENT_NO = #{commentNo}
 </select>
--->
 
 <!-- 답글 -->
 <select id="getReplyCommentsList" resultType="comments" parameterType="comments">
