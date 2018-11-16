@@ -151,7 +151,7 @@
 	width:195px;
 }
 .loader {
-  margin: 50px 0px 0px 500px;
+  margin: 100px 0px 0px 500px;
 }
 </style>
 <script>
@@ -304,6 +304,6 @@ var contextPath = '<%= request.getContextPath() %>';
 		</div>
 	</div> 
 	<p class="loader">Loading...</p>
-	
+	<div style="height: 300px"></div>
 </body>
 </html>
