@@ -9,6 +9,9 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <title>SupportForMe</title>
+<link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico" />
+
+
 <style>
 #headDiv {
 	margin:0px;
@@ -130,6 +133,7 @@
     }
 }   
 
+
 <!-- 사이드바 -->
 /* body { margin: 0; padding: 0; }
 body.dark { background: rgba(0,0,0,.4); z-index: 30; }
@@ -199,18 +203,34 @@ function go_register() {
 <body>
 <script>
 function view() {
+	/* var mql = window.matchMedia("screen and (max-width: 850px)"); */
+
+	
 	var objDiv = document.getElementById("site_name");
 	var objDiv2 = document.getElementById("searchKeyword");
 	
-    if(objDiv.style.display=="block"){ 
+    if(/* objDiv.style.display=="block" */
+    	objDiv.classList.contains( 'block' )  ){ 
+    	
+    	objDiv.classList.add( 'none' );
+    	objDiv.classList.remove( 'block' );
+    	objDiv2.classList.add( 'block' );
+    	objDiv2.classList.remove( 'none' );
+    /* 	
     	objDiv.style.display = "none";
-    	objDiv2.style.display = "block";
+    	objDiv2.style.display = "block"; */
     }
      else{ 
-    	 objDiv.style.display = "block";
-    	 objDiv2.style.display = "none";  
+    	objDiv.classList.add( 'block' );
+    	objDiv.classList.remove( 'none' );
+        objDiv2.classList.add( 'none' );
+        objDiv2.classList.remove( 'block' );
+    	
+       /*  objDiv.style.display = "block";
+    	objDiv2.style.display = "none"; */  
      }
 }
+
 
 function view2() {
 	
@@ -224,6 +244,41 @@ function view2() {
     }
 }
 </script>
+<c:choose>
+<c:when test="${preview == 'p'}">
+	<div id="headDiv">
+		<div class="headBodysize">
+	    	<div></div>
+	    	<div id="head">
+		    	<!--  화면줄였을때 보이는 영역 -->
+	    	    <div id="search_div1">
+		        	<a><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg"></a>
+		        	<form>
+	        			<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+					</form> 	    
+	        	</div>
+				
+	        	<div id="site_name" class="block" style="cursor:pointer;">
+	            	SupportForME
+	        	</div>
+	        
+	        	<div>
+	        	<input type="button"id="make_project" value="프로젝트 만들기">
+	        	</div>
+	        
+	        	<!-- 전체화면일때 보이는 영역 -->
+	        	<div id="search_div2">
+				<img src="<%= request.getContextPath() %>/images/search.png" class="searchImg">
+	        	</div>
+	        	<div id="logout_head_menu">
+		        	<div id="head_font_size" style="cursor:pointer;">로그인</div>
+		        	<div id="head_font_size" style="cursor:pointer;">회원가입</div>
+	        	</div>
+	        </div>
+	      </div>
+	   </div>
+</c:when>
+<c:otherwise>
 	<div id="headDiv">
 		<div class="headBodysize">
 	    	<div></div>
@@ -232,11 +287,11 @@ function view2() {
 	    	    <div id="search_div1">
 		        	<a href="#" onclick="view()"><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg"></a>
 		        	<form action="<%= request.getContextPath() %>/support/getProjects">
-	        			<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?" style="display:none;">
+	        			<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
 					</form> 	    
 	        	</div>
 				
-	        	<div id="site_name" style="cursor:pointer; display:block;" onclick="location.href='<%= request.getContextPath() %>'">
+	        	<div id="site_name" class="block" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>'">
 	            	SupportForME
 	        	</div>
 	        
@@ -310,5 +365,7 @@ $("#close-sidenav").click(function() {
 </div>
 </div>
 </div>
+</c:otherwise>
+</c:choose>
 </body>
 </html>

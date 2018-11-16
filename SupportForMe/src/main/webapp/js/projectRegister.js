@@ -1,8 +1,9 @@
 /**
  * 	프로젝트 등록 페이지 자바스크립트 
  */
-var path = "<c:url value='/'/>";
+
 $(function() {
+		var path = $("#path").text();
 		var projectNo = $("#hiddenProjectNo").text();
 		onLoadBasic();
 		

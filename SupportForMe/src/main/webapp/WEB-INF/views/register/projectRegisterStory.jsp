@@ -13,6 +13,7 @@
 <body>
 <script>
 $(function() {
+	var path = "<c:url value='/'/>";
 	//전역변수선언
 	var editor_object = [];
 	 
@@ -37,7 +38,7 @@ $(function() {
 		
 		var data = $("#registerStoryFrm").serialize();
 		$.ajax({
-			url : "../updateProject/reward",
+			url : path + "forme/updateProject/reward",
 			data : data, 
 			type : "post",
 			success : function(result) {
@@ -51,7 +52,7 @@ $(function() {
 	$(".save_button").click(function(){
 	
 		editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
-		url = "../saveProject/story";
+		url = path + "forme/saveProject/story";
 		params = $("#registerStoryFrm").serialize();
 		
 		$.ajax({

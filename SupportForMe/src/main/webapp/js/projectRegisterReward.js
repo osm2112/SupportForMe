@@ -2,8 +2,9 @@
  * 프로젝트 선물 등록 자바스크립트 
 
  */
-var path = "<c:url value='/'/>";
+
 $(function() {
+	var path = $("#path").text();
 	$("#result").off("click");
 	var projectNo = $("#projectNo").val();
 	/* var context = '${pageContext.request.contextPath}';	//절대 경로
