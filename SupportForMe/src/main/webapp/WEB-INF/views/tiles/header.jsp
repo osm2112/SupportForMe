@@ -89,7 +89,13 @@
     display:grid;
     grid-template-columns: 80px 80px;
 } 
-          
+
+@media (min-width : 851px){
+	#site_name {
+	display: block;
+	}
+	
+}          
 @media(max-width:850px){
     .bodysize {
         display:grid;
@@ -256,7 +262,7 @@ function view2() {
 					</form> 	    
 	        	</div>
 				
-	        	<div id="site_name" class="block" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>'">
+	        	<div id="site_name" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>'">
 	            	SupportForME
 	        	</div>
 	        

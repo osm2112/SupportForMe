@@ -20,7 +20,9 @@
 function preview(){
 	var progress = '${project.progress}';
 	if(progress == '004'){
-		window.location.href="<c:url value='../preview/${project.projectNo}'/>";
+		/* var newWindow = window.open("about:blank");
+		newWindow.location.href = 'http://www.daum.net'; */
+		window.open("<c:url value='../preview/${project.projectNo}'/>",'_blank');
 	}else{
 		$("#alertMessage").text('제작중인 프로젝트만 미리보기가 가능합니다.');
 		$("#alertModal").show();
