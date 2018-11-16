@@ -589,8 +589,8 @@ function outFunc() {
 				        </div>
 				        <div class="modal-body" style="display:flex;">
 				          		<input type="text" id="myInput" style="width:45em;height:3em;"/>
-				          	<div class="_tooltip">	
-				          		<button onclick="copyUrl()" onmouseout="outFunc()" id="clipboard" class="btn btn-default" style="height:30px; margin-top:auto; margin-bottom:auto; margin-left:20px;">
+				          	<div class="_tooltip" style="margin-top:auto; margin-bottom:auto; margin-left:10px;">	
+				          		<button onclick="copyUrl()" onmouseout="outFunc()" id="clipboard" class="btn btn-default" style="height:30px;">
 				          		<span class="_tooltiptext" id="myTooltip">복사하기</span>
 				          		Copy url</button>
 				        	</div>
