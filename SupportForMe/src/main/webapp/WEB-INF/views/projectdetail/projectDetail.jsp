@@ -41,6 +41,30 @@
 	font-size:20px;
 	cursor:pointer;
 }
+.btnUpdFrm, .btnDel, .rcBtnUpdFrm, .rcBtnDel, .rcBtnUpd, .rcBtnCancel {
+   border:1px solid #747474;
+   background:white;
+   color: #747474;
+   border-radius: 5px;
+}
+.btnUpdFrm:hover, .btnDel:hover, .rcBtnUpdFrm:hover, .rcBtnUpdFrm:hover, .rcBtnDel:hover, .rcBtnUpd:hover, .rcBtnCancel:hover {
+   border:1px solid rgb(26, 188, 156);
+   background:white;
+   color:rgb(26, 188, 156);
+   border-radius: 5px;
+}
+#replyBtnAdd, #btnAdd, #btnUpd, #btnCancel {
+   border:1px solid #747474;
+   background:white;
+   color: #747474;
+   border-radius: 5px;
+}
+#replyBtnAdd:hover, #btnAdd:hover, #btnUpd:hover, #btnCancel:hover {
+   border:1px solid rgb(26, 188, 156);
+   background:white;
+   color:rgb(26, 188, 156);
+   border-radius: 5px;
+}
 </style>
 
 
