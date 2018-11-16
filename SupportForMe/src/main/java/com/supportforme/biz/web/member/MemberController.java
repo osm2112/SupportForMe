@@ -133,6 +133,9 @@ public class MemberController {
 
 	@RequestMapping("/forme/MemberUpdateForm")
 	public String memberUpdateForm(Model model, HttpSession session, HttpServletRequest request) {
+		String contextPath = request.getContextPath();
+		
+		
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("LoginInfo");
 		if ( memberDTO == null ) {
 			model.addAttribute("member", null);
@@ -145,15 +148,15 @@ public class MemberController {
 		}
 
 		if (ref != null) {
-			if (ref.equals("http://localhost:8181/SupportForMe/forme/MemberUpdatePassWordCheck")) {
+			if (ref.contains("/forme/MemberUpdatePassWordCheck")) {
 				model.addAttribute("member", memberDTO);
 				return "myNav/member/memberUpdateForm";
 			} else {
-				model.addAttribute("url", "../forme/MemberUpdateConfirmForm");
+				model.addAttribute("url", contextPath+"/forme/MemberUpdateConfirmForm");
 				return "commons/alertRedirect";
 			}
 		} else {
-			model.addAttribute("url", "../forme/MemberUpdateConfirmForm");
+			model.addAttribute("url", contextPath+"/forme/MemberUpdateConfirmForm");
 			return "commons/alertRedirect";
 		}
 	}
@@ -163,13 +166,15 @@ public class MemberController {
 			HttpServletRequest request) {
 		String pw = null;
 		String ref = null;
+		String contextPath = request.getContextPath();
+		System.out.println(contextPath);
 		if (request.getHeader("referer") != null) {
 			ref = request.getHeader("referer");
 		}
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO = (MemberDTO) session.getAttribute("LoginInfo");
 		if (ref != null) {
-			if (ref.equals("http://localhost:8181/SupportForMe/forme/MemberUpdateConfirmForm")) {
+			if (ref.contains("/forme/MemberUpdateConfirmForm")) {
 				if (memberDTO != null) {
 					pw = memberService.passwordCheck(memberDTO).getPassword();
 				}
@@ -179,19 +184,19 @@ public class MemberController {
 						return "commons/alertRedirect";
 					} else {
 						model.addAttribute("msg", "비밀번호가 틀렸습니다.");
-						model.addAttribute("url", "../forme/MemberUpdateConfirmForm");
+						model.addAttribute("url", contextPath+"/forme/MemberUpdateConfirmForm");
 						return "commons/alertRedirect";
 					}
 				} else {
-					model.addAttribute("url", "../forme/MemberUpdateConfirmForm");
+					model.addAttribute("url", contextPath+"/forme/MemberUpdateConfirmForm");
 					return "commons/alertRedirect";
 				}
 			} else {
-				model.addAttribute("url", "../forme/MemberUpdateConfirmForm");
+				model.addAttribute("url", contextPath+"/forme/MemberUpdateConfirmForm");
 				return "commons/alertRedirect";
 			}
 		} else {
-			model.addAttribute("url", "../forme/MemberUpdateConfirmForm");
+			model.addAttribute("url", contextPath+"/forme/MemberUpdateConfirmForm");
 			return "commons/alertRedirect";
 		}
 	}
