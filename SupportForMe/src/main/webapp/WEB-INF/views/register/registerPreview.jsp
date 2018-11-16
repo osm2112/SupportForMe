@@ -33,7 +33,7 @@ body {
 	padding-bottom : 10px;
 	margin-bottom:20px;
 	border-bottom : 1px solid lightgrey;
-}
+}  
 .previewImg {
 	position: fixed; 
 	width:130px;
