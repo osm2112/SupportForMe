@@ -105,7 +105,7 @@
 
 
 <script>
-var path = "<c:url value='/'/>"
+var path = "<c:url value='/'/>";
 
 //금액 세자리마다 ","표시하기
 function addComma(num) {
@@ -516,7 +516,7 @@ function outFunc() {
         </c:when>
         <c:otherwise>
 	        <c:forEach items="${hashtag}" var="projectTag">
-	            <span class="pjdtl-hashtag" onclick="location.href='../support/getProjects?searchKeyword=${projectTag.hashtagName}'">#${projectTag.hashtagName}</span>&nbsp;
+	            <span class="pjdtl-hashtag" onclick="location.href='<%= request.getContextPath() %>/support/getProjects?searchKeyword=${projectTag.hashtagName}'">#${projectTag.hashtagName}</span>&nbsp;
 	        </c:forEach>
         </c:otherwise>
     </c:choose>
@@ -713,10 +713,12 @@ function outFunc() {
             		<img src="../images/checkmark.png" style="width:27px; height:27px">
             		<c:choose>
             		<c:when test="${presentCount[status.index].rewardSelectCount == null}">
-            			<span style="font-size:27px; color:#8C8C8C;">0명이 선택</span>
+            			<span style="font-size:27px; color:#FF007F;">0명</span>
+            			<span style="font-size:27px; color:#8C8C8C;">이 선택</span>
             		</c:when>
             		<c:otherwise>
-            			<span style="font-size:27px; color:#8C8C8C;">${presentCount[status.index].rewardSelectCount}명이 선택</span>
+            			<span style="font-size:27px; color:#FF007F;">${presentCount[status.index].rewardSelectCount}명</span>
+            			<span style="font-size:27px; color:#8C8C8C;">이 선택</span>
             		</c:otherwise>
             		</c:choose>
             	</div><br>
