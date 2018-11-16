@@ -22,7 +22,7 @@ $(function() {
 	
 	$(".save_button").click(function(){
 		url = "../saveProject/ex";
-		params = $("#registerRewardFrm").serialize();
+		params = $("#rewardRegisterFrm").serialize();
 		
 		$.ajax({
 			url : url,

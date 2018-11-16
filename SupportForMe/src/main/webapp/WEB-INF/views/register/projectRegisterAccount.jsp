@@ -9,12 +9,13 @@
 </head>
 <body>
 <script>
+var path = "<c:url value='/'/>";
 $(function(){
 	$(".save_button").click(function(){
 		var regexp = /^[0-9]+$/;
 		var deposit = $("[name=depositAccount]").val()
 		if(regexp.test(deposit) || deposit == ''){
-			url = "../saveProject/ex";
+			url = path + "forme/saveProject/ex";
 			params = $("#registerAccountFrm").serialize();
 			
 			$.ajax({
@@ -37,12 +38,13 @@ $(function(){
 	});
 	$("#confirmRCOk").click(function(){ 
 		$("#confirmRC").hide();
-		var url = "../registerComplete";
+		var url = path + "forme/registerComplete";
 		var params = {projectNo : '${project.projectNo}'};
 		$.getJSON(url,params,function(result){
 			if(result.code=="success"){
 				$("#alertMessage").text('정상적으로 등록되었습니다.');
 				$("#alertModal").show();
+				location.href=path + "forme/getMyProjects?userId=${project.userId}";
 			}else if(result.code=="fail"){
 			$("#alertMessage").text('등록에 실패했습니다. 리워드를 등록해주세요.');
 				$("#alertModal").show();

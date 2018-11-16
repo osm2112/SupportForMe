@@ -9,7 +9,6 @@
 </head>
 <body>
 <div style="height: 50px"></div>
-
 <form name="rewardRegisterFrm" id="rewardRegisterFrm">
 	<input type="hidden" name="projectNo" value="${project.projectNo}">
 	<input type="hidden" name="userId" value="${project.userId}">
