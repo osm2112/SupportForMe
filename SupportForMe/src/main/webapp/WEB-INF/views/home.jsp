@@ -349,6 +349,8 @@ text-shadow:   0 1px 0 #ccc,
 }
 </style>
 <script>
+var contextPath = '<%= request.getContextPath() %>';
+
 	$(document)
 			.ready(
 					function() {
@@ -411,10 +413,10 @@ text-shadow:   0 1px 0 #ccc,
 							for (i = 0; i < data.length; i++) {
 
 								$('.real_time_image ul li img').eq(i + 1).attr(
-										"src", "./upload/" + data[i].image);
+										"src", contextPath+"/upload/" + data[i].image);
 								$('.real_time_image ul li img').eq(i + 1).attr(
 										"onclick",
-										"location.href='support/getProjectDetailPage?projectNo="
+										"location.href='"+contextPath+"/support/getProjectDetailPage?projectNo="
 												+ data[i].projectNo + "'");
 								$('.real_time_rank_projects nav ol li')
 										.eq(i)
@@ -428,7 +430,7 @@ text-shadow:   0 1px 0 #ccc,
 								$('.real_time_rank_projects nav ol li span')
 										.eq(i).attr(
 												"onclick",
-												"location.href='support/getProjectDetailPage?projectNo="
+												"location.href='"+contextPath +"/support/getProjectDetailPage?projectNo="
 														+ data[i].projectNo
 														+ "'");
 							}
@@ -457,7 +459,7 @@ text-shadow:   0 1px 0 #ccc,
 	<div class="flexslider2">
 		<ol class="slides">
 			<c:forEach items="${Latest}" var="project">
-				<li><img style="cursor: pointer;" src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'" onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'"></li>
+				<li><img style="cursor: pointer;" src="<%= request.getContextPath() %>/upload/${project.image}" onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'" onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'"></li>
 			</c:forEach>
 		</ol>
 	</div>
@@ -473,9 +475,9 @@ text-shadow:   0 1px 0 #ccc,
 						<c:forEach items="${Pick}" var="pick">
 							<li>
 								<div class="suforme_picks_grid" style="cursor: pointer;"
-									onclick="location.href='support/getProjectDetailPage?projectNo=${pick.projectNo}'">
+									onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${pick.projectNo}'">
 									<div class="suforme_picks_projects">
-										<img src="./upload/${pick.image}" onerror="this.src='./images/대체이미지.jpg'">
+										<img src="<%= request.getContextPath() %>/upload/${pick.image}" onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 									</div>
 									<div class="suforme_picks_projects_content">
 										<div class="text3dPn" style="font-size: 30px"><strong>카테고리</strong></div>
@@ -500,11 +502,11 @@ text-shadow:   0 1px 0 #ccc,
 				<div class="real_time_rank_div">
 					<div class="real_time_image flexslider3">
 						<ul class="slides">
-							<li><img src="" onerror="this.src='./images/대체이미지.jpg'" style="cursor: pointer;"></li>
-							<li><img src="" onerror="this.src='./images/대체이미지.jpg'" style="cursor: pointer;"></li>
-							<li><img src="" onerror="this.src='./images/대체이미지.jpg'" style="cursor: pointer;"></li>
-							<li><img src="" onerror="this.src='./images/대체이미지.jpg'" style="cursor: pointer;"></li>
-							<li><img src="" onerror="this.src='./images/대체이미지.jpg'" style="cursor: pointer;"></li>
+							<li><img src="" onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'" style="cursor: pointer;"></li>
+							<li><img src="" onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'" style="cursor: pointer;"></li>
+							<li><img src="" onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'" style="cursor: pointer;"></li>
+							<li><img src="" onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'" style="cursor: pointer;"></li>
+							<li><img src="" onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'" style="cursor: pointer;"></li>
 						</ul>
 					</div>
 					<div class="real_time_rank_projects">
@@ -514,9 +516,9 @@ text-shadow:   0 1px 0 #ccc,
 							<ol>
 								<li class="" style="height:25px; font-size: 17px;" onclick="1"></li>
 								<li class="" style="height:25px; font-size: 17px;" onclick="2"></li>
-								<li class="" style="height:25px; font-size: 17px;"	onclick="3"></li>
-								<li class="" style="height:25px; font-size: 17px;"	onclick="4"></li>
-								<li class="" style="height:25px; font-size: 17px;"	onclick="5"></li>
+								<li class="" style="height:25px; font-size: 17px;" onclick="3"></li>
+								<li class="" style="height:25px; font-size: 17px;" onclick="4"></li>
+								<li class="" style="height:25px; font-size: 17px;" onclick="5"></li>
 							</ol>
 							<!-- </marquee> -->
 							
@@ -529,14 +531,14 @@ text-shadow:   0 1px 0 #ccc,
 	
 		<div class="suforme_top_1_text_div mainCategory">
 			<div>공연 프로젝트</div>
-			<div style="text-align:right;"><a href="./support/getCategoryProjects?searchCondition=001">더보기 </a></div></div> 
+			<div style="text-align:right;"><a href="<%= request.getContextPath() %>/support/getCategoryProjects?searchCondition=001">더보기 </a></div></div> 
 		<div class="category_project_div">
 			<c:forEach items="${Performance}" var="project">
 				<div class="project_box" id="${project.projectNo}"
 					style="cursor: pointer;"
-					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
+					onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'">
 					<div class="main_project_image">
-						<img src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
+						<img src="<%= request.getContextPath() %>/upload/${project.image}" onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
 						<div class="text3d">${project.userId}님</div>
@@ -580,14 +582,14 @@ text-shadow:   0 1px 0 #ccc,
 		<!-- 미술 부분  -->
 		<div class="suforme_top_1_text_div mainCategory">
 			<div>미술 프로젝트</div>
-			<div  style="text-align:right;"><a href="./support/getCategoryProjects?searchCondition=003">더보기 </a></div></div>	
+			<div  style="text-align:right;"><a href="<%= request.getContextPath() %>/support/getCategoryProjects?searchCondition=003">더보기 </a></div></div>	
 			<div class="category_project_div">
 				<c:forEach items="${Art}" var="project">
 					<div class="project_box" id="${project.projectNo}"
 					style="cursor: pointer;"
-					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
+					onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'">
 					<div class="main_project_image">
-						<img src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
+						<img src="<%= request.getContextPath() %>/upload/${project.image}" onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
 						<div class="text3d">${project.userId}님</div>
@@ -630,15 +632,15 @@ text-shadow:   0 1px 0 #ccc,
 		<!-- 도서 --> 
 		<div class="suforme_top_1_text_div mainCategory">
 			<div>도서 프로젝트</div>
-			<div  style="text-align:right;"><a href="./support/getCategoryProjects?searchCondition=004">더보기 </a></div>
+			<div  style="text-align:right;"><a href="<%= request.getContextPath() %>/support/getCategoryProjects?searchCondition=004">더보기 </a></div>
 		</div>	
 		<div class="category_project_div">
 			<c:forEach items="${Book}" var="project">
 				<div class="project_box" id="${project.projectNo}"
 					style="cursor: pointer;"
-					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
+					onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'">
 					<div class="main_project_image">
-						<img src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
+						<img src="<%= request.getContextPath() %>/upload/${project.image}" onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
 						<div class="text3d">${project.userId}님</div>
@@ -681,7 +683,7 @@ text-shadow:   0 1px 0 #ccc,
 		<!-- 영화 -->
 		<div class="suforme_top_1_text_div mainCategory">
 			<div>영화 프로젝트</div>
-			<div  style="text-align:right;"><a href="./support/getCategoryProjects?searchCondition=002">더보기 </a></div>
+			<div  style="text-align:right;"><a href="<%= request.getContextPath() %>/support/getCategoryProjects?searchCondition=002">더보기 </a></div>
 		</div>
 		<div class="category_project_div">
 			<c:forEach items="${Movie}" var="project">
@@ -689,7 +691,7 @@ text-shadow:   0 1px 0 #ccc,
 					style="cursor: pointer;"
 					onclick="location.href='support/getProjectDetailPage?projectNo=${project.projectNo}'">
 					<div class="main_project_image">
-						<img src="./upload/${project.image}" onerror="this.src='./images/대체이미지.jpg'">
+						<img src="<%= request.getContextPath() %>/upload/${project.image}" onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
 						<div class="text3d">${project.userId}님</div>
