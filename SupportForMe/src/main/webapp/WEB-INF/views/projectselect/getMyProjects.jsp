@@ -13,6 +13,7 @@
 <!--  부트스트랩 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/loading.css">
 <style>
 /*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
 .pjdtl_bodysize {
@@ -48,8 +49,7 @@
 	background-color: blue;
 	border: 1px red solid;
 }  */
-<!--
--->
+<!-- -->
 .project_box {
 	width: 100%;
 	height: 400px;
@@ -150,6 +150,9 @@
 	display:inline-block;
 	width:195px;
 }
+.loader {
+  margin: 50px 0px 0px 500px;
+}
 </style>
 <script>
 var contextPath = '<%= request.getContextPath() %>';
@@ -157,9 +160,9 @@ var contextPath = '<%= request.getContextPath() %>';
 	$(document).ready(function() {
 						var count = 0;
 						
-						if ($(".project_box").length == 0 ) {
-							$('.loader').addClass('display-none');
-						}
+						
+						$('.loader').addClass('display-none');
+						
 						
 			$(document).scroll(
 								function() {
@@ -232,7 +235,9 @@ var contextPath = '<%= request.getContextPath() %>';
 								
 												}
 											}
-										}
+										},beforeSend:function(){											
+									        $('.loader').removeClass('display-none');											
+									    },timeout :5000
 									});
 							lastno = $(".project_box").last().attr("id");
 						}
@@ -295,8 +300,10 @@ var contextPath = '<%= request.getContextPath() %>';
 						</div>
 					</div>
 				</c:forEach>
-			</div>
+			</div> 
 		</div>
-	</div>
+	</div> 
+	<p class="loader">Loading...</p>
+	
 </body>
 </html>
