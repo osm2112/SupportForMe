@@ -19,7 +19,7 @@
 
 .project_box {
    width: 255px;
-   height: 420px;
+   height: 440px;
    border: 1px solid lightgrey;
    display: inline-block;
    margin-top: 20px;
