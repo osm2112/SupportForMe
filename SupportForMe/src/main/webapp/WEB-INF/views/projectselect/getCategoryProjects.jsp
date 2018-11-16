@@ -233,9 +233,6 @@ var contextPath = '<%= request.getContextPath() %>';
 																	+ '<div style="height: 5px"></div>'
 																	+ '<div>'
 																	//<button class="btn btn-default _btn1" onclick="location.href=\''+contextPath+'/forme/make/'+data[i].projectNo+'\'">수정</button>
-																	+ updateBtn
-																	+ detailBtn
-																	+ deleteBtn
 																	+ '			</div>'
 																	+ '	</div>');
 											$("#" + select).addClass("progress"+data[i].progressCd)
