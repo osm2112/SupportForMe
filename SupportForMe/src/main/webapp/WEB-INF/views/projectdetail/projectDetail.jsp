@@ -508,7 +508,7 @@ function invest(){
 				<span style="font-weight:700;">${project.progress}</span>
 			</div>
 <!-- 진행상황 막대그래프 -->
-			<div class="progress" style="width:480px; height:30px; margin-bottom:10px;">
+			<div class="progress" style="width:450px; height:30px; margin-bottom:10px;">
 				<div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${project.projectProgressRate}%; height:30px;padding-top:5px;font-size:17px">${project.projectProgressRate}%</div>
 			</div>
 			
@@ -526,7 +526,7 @@ function invest(){
             <!--<img src="../images/share-button.png" class="pjdtl-share-btn">-->
             </div>
  			<div style="height:15px"></div>
-            <table style="width:480px;border:1px solid #A6A6A6;">
+            <table style="width:450px;border:1px solid #A6A6A6;">
             	<tr style="text-align: center;">
             		<td style="height:100px;"><img src="../images/calendar.png" style="width:90px; height:82px;"></td>
     				<td><img src="../images/right-arrow.png" class="pjdtl-right-arrow"></td>
