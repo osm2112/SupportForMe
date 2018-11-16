@@ -170,7 +170,7 @@
 							<div style="display: inline-block;">&nbsp;${project.percent}%</div>
 						</div>
 						<!-- D-day 구하는 자바스크립트 -->
-						<script>
+ 						<script>
 							var seq = '${project.projectNo}';
 							var rd = '${project.projectDeadline}';
 							if(rd != ''){
@@ -359,8 +359,8 @@
 							<div class="remainDay" id="${project.projectNo}mv"></div>
 							<div style="display: inline-block;">&nbsp;${project.percent}%</div>
 						</div>
-						<!-- D-day 구하는 자바스크립트 -->
-						<script>
+						<!-- D-day 구하는 자바스크립트 -->			 
+ 						<script>
 						var seq = '${project.projectNo}';
 						var rd = '${project.projectDeadline}';
 						if(rd != ''){
@@ -371,7 +371,7 @@
 								$("#"+seq+"mv").text("D-"+remain);	
 							}
 						}
-						</script>
+						</script> 
 					</div>
 				</div>
 			</c:forEach>
