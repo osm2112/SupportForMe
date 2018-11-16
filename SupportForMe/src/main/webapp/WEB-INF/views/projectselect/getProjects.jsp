@@ -118,6 +118,7 @@ text-shadow:1px 1px white, -1px -1px #666;
  }
 </style>
 <script>
+var contextPath = '<%= request.getContextPath() %>';
 	$(document)
 			.ready(
 					function() {
@@ -129,15 +130,11 @@ text-shadow:1px 1px white, -1px -1px #666;
 						
 						$(document).scroll(function() {
 									var lastno = $(".project_box").last().attr("id");
-		
-									
-
-		
 									var maxHeight = $(document).height();
 									var currentScroll = $(window).scrollTop()+ $(window).height();
 
 									console.log("documentHeight:" + maxHeight + " | scrollTop +windowHeight: " + currentScroll );
-									if (maxHeight <= currentScroll + 10 ) {
+									if (maxHeight <= currentScroll + 5 ) {
 											loadArticle(lastno);
 											}				
 								});
@@ -145,7 +142,7 @@ text-shadow:1px 1px white, -1px -1px #666;
 
 							$.ajax({
 										type : "post",
-										url : "./getProjects",
+										url : contextPath+"/support/getProjects",
 										data : {
 											"projectNo" : lastno,
 											"searchKeyword" : '${searchDTO.searchKeyword}'
@@ -163,10 +160,10 @@ text-shadow:1px 1px white, -1px -1px #666;
 															.append(
 																	'<div class="project_box" id='
 																			+ data[i].projectNo
-																			+ ' style="cursor:pointer;" onclick="location.href=\'./getProjectDetailPage?projectNo='
+																			+ ' style="cursor:pointer;" onclick="location.href=\''+contextPath+'/support/getProjectDetailPage?projectNo='
 																			+ data[i].projectNo
 																			+ '\'\">'
-																			+ '		<div class="mypage_project_image"><img src="../upload/'+data[i].image +'" onerror="this.src=\'../images/대체이미지.jpg\'"></div>'
+																			+ '		<div class="mypage_project_image"><img src="'+contextPath+'/upload/'+data[i].image +'" onerror="this.src=\'' +contextPath+'/images/대체이미지.jpg\'"></div>'
 																			+ '			<div class="mypage_project_content">'
 																			+ '				<div class="state" id="project_state'+count+'">'
 																			+ data[i].progress
@@ -230,10 +227,10 @@ text-shadow:1px 1px white, -1px -1px #666;
 				<c:forEach items="${list}" var="project">
 					<div class="project_box" id="${project.projectNo}"
 						style="cursor: pointer;"
-						onclick="location.href='./getProjectDetailPage?projectNo=${project.projectNo}'">
+						onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'">
 						<div class="mypage_project_image">
-							<img src="../upload/${project.image}"
-								onerror="this.src='../images/대체이미지.jpg'">
+							<img src="<%= request.getContextPath() %>/upload/${project.image}"
+								onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 						</div>
 						<div class="mypage_project_content">
 							<div class="project_state progress${project.progressCd}">${project.progress}</div>

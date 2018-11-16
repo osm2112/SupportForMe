@@ -34,15 +34,16 @@ public class HomeController {
 	public String home(Model model, HttpSession session, HttpServletRequest request) {
 		String userId = null;
 		String contextPath = request.getContextPath();
+		
 		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");
 		
-		if ( /*session.getAttribute("LoginInfo")*/dto == null ) {
+		if ( dto == null ) {
 			model.addAttribute("member", null);
 		}
 		else {
 		/*MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");*/
-		userId = dto.getUserId();
-		model.addAttribute("member", dto);
+			userId = dto.getUserId();
+			model.addAttribute("member", dto);
 		}
 	
 		//최신 프로젝트조회

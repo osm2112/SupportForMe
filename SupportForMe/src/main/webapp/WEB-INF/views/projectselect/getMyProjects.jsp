@@ -181,7 +181,7 @@ var contextPath = '<%= request.getContextPath() %>';
 							console.log($(".project_box").length);
 							$.ajax({
 										type : "post",
-										url : "./getMyProjects",
+										url : contextPath+"/forme/getMyProjects",
 										data : {
 											"projectNo" : lastno,
 											"userId" : '${member.userId}'
@@ -201,7 +201,7 @@ var contextPath = '<%= request.getContextPath() %>';
 															.append('<div class="project_box" id='
 																			+ data[i].projectNo
 																			+ '>'
-																			+ '		<div class="mypage_project_image"><img src="../upload/'+data[i].image +'" onerror="this.src=\'../images/대체이미지.jpg\'"></div>'
+																			+ '		<div class="mypage_project_image"><img src="'+contextPath+'/upload/'+data[i].image +'" onerror="this.src=\''+contextPath+'/images/대체이미지.jpg\'"></div>'
 																			+ '			<div class="mypage_project_content">'
 																			+ '				<div class="project_state progress'+data[i].progressCd+'">'
 																			+ data[i].progress
@@ -274,8 +274,8 @@ var contextPath = '<%= request.getContextPath() %>';
 						<%-- style="cursor: pointer;"
 						onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'" --%>>
 						<div class="mypage_project_image">
-							<img src="../upload/${project.image}"
-								onerror="this.src='../images/대체이미지.jpg'">
+							<img src="<%= request.getContextPath() %>/upload/${project.image}"
+								onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 						</div>
 						<div class="mypage_project_content">
 							<div class="project_state progress${project.progressCd}">${project.progress}</div>

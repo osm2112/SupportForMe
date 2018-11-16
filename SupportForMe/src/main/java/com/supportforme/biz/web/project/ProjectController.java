@@ -75,8 +75,19 @@ public class ProjectController {
 	
 	//분야별 조회
 	@RequestMapping(value="/support/getCategoryProjects", method=RequestMethod.GET) 
-	public String getCategoryProjects(Model model,
-							ProjectSearchDTO searchDto ) {
+	public String getCategoryProjects(Model model
+							,ProjectSearchDTO searchDto
+							,HttpSession session) {
+		
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("LoginInfo");	
+		if ( dto == null ) {
+			model.addAttribute("member", null);
+		}
+		else {
+			model.addAttribute("member", dto);
+		}
+		
 		// 시작/마지막 레코드 번호
 		searchDto.setStart(1);
 		searchDto.setEnd(8);
