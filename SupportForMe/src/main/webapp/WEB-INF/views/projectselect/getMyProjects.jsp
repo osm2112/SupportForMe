@@ -65,7 +65,8 @@
 .project_state, .state {
 	width: 100px;
 	height: 30px;
-	font-weight:700
+	font-weight:700;
+	font-family:'';
 }
 
 .mypage_project_content {
@@ -114,13 +115,13 @@
 }
 /* 무산 */
 .progress003 {
-	border:1px solid #4C4C4C;
-	color:#4C4C4C;
+	border:1px solid #a6a6a6;
+	color:#a6a6a6;
 }
 /* 제작중 */
 .progress004 {
-	border:1px solid #FF5E00;
-	color: #FF5E00;
+	border:1px solid #CC3D3D;
+	color: #CC3D3D;
 }
 /* 보류 */
 .progress005 {
@@ -129,8 +130,8 @@
 }
 /* 완료 */
 .progress006 {
-	border:1px solid #41AF39;
-	color:#41AF39;
+	border:1px solid #D9418C;
+	color:#D9418C;
 }
 
 .btn {
