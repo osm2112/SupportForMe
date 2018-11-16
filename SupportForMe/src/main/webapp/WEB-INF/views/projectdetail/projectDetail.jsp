@@ -521,7 +521,7 @@ function outFunc() {
         </c:otherwise>
     </c:choose>
     </div>
-    <br>${project.introductionVideo}
+    <br>
     <div class="pjdtl-flex-container">
         <!-- 사진/이미지/영상/비디오 슬라이드/슬라이더-->
         <div class="demo">
