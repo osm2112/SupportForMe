@@ -17,7 +17,7 @@ public class CommentsDAO {
 	public CommentsDTO getComments(CommentsDTO dto) {
 		return mybatis.selectOne("comments.getComments", dto);
 	}
-	
+	 
 	//댓글 조회
 	public List<CommentsDTO> getCommentsList(CommentsDTO dto) {
 		return mybatis.selectList("comments.getCommentsList", dto);
