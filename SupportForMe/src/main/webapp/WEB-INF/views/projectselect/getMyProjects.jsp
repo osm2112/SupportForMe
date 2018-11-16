@@ -190,6 +190,7 @@ var contextPath = '<%= request.getContextPath() %>';
 												for (i = 0; i < data.length; i++) {
 													count = ++count;
 													var select = "project_state"+ count;
+													var updateBtn = (data[i].progressCd !='002' && data[i].progressCd !='003' && data[i].progressCd !='006') ? '<button class="btn btn-default _btn1" onclick="location.href=\''+contextPath+'/forme/make/'+data[i].projectNo+'\'">수정</button>' : '';
 												 	var detailBtn = (data[i].progressCd !='004') ? '<button class="btn btn-default _btn2" onclick="location.href=\''+contextPath+ '/support/getProjectDetailPage?projectNo='+ data[i].projectNo+'\'">상세화면</button>' : ''; 
 													var deleteBtn = (data[i].progressCd =='004') ? '<button class="btn btn-default _btn2" onclick="projectdelete(\''+data[i].projectNo+'\');">삭제</button></div>' : '';
 													
@@ -220,7 +221,9 @@ var contextPath = '<%= request.getContextPath() %>';
 																			+ data[i].targetAmount
 																			+ '원</div>'
 																			+ '<div style="height: 5px"></div>'
-																			+ '<div><button class="btn btn-default _btn1" onclick="location.href=\''+contextPath+'/forme/make/'+data[i].projectNo+'\'">수정</button>'
+																			+ '<div>'
+																			//<button class="btn btn-default _btn1" onclick="location.href=\''+contextPath+'/forme/make/'+data[i].projectNo+'\'">수정</button>
+																			+ updateBtn
 																			+ detailBtn
 																			+ deleteBtn
 																			+ '			</div>'
@@ -284,7 +287,8 @@ var contextPath = '<%= request.getContextPath() %>';
 							<div class="text3d">목표금액  ${project.targetAmount}원</div>
 							<div style="height: 5px"></div>
 							<div>
-								<button class="btn btn-default _btn1" onclick="location.href='<%= request.getContextPath() %>/forme/make/${project.projectNo}'">수정</button>
+								<%-- <button class="btn btn-default _btn1" onclick="location.href='<%= request.getContextPath() %>/forme/make/${project.projectNo}'">수정</button> --%>
+							    <c:if test="${project.progressCd ne 002 && project.progressCd ne 003 && project.progressCd ne 006 }"> <button class="btn btn-default _btn1" onclick="location.href='<%= request.getContextPath() %>/forme/make/${project.projectNo}'">수정</button></c:if>
 							    <c:if test="${project.progressCd eq 004 }"><button class="btn btn-default _btn2" onclick="projectdelete('${project.projectNo}');">삭제</button></c:if>
 							    <c:if test="${project.progressCd ne 004 }"><button class="btn btn-default _btn2" onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'">상세화면</button></c:if>
 							</div>
