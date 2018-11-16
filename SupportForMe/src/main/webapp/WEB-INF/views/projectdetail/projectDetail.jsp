@@ -11,12 +11,12 @@
 
 <title></title>
 
-<link rel="stylesheet" href="../css/projectDetail.css?ver=1">
+<link rel="stylesheet" href="/SupportForMe/css/projectDetail.css?ver=1">
 
 <!-- 슬라이드 -->
-<link type="text/css" rel="stylesheet" href="../css/lightslider.css" />                  
+<link type="text/css" rel="stylesheet" href="/SupportForMe/css/lightslider.css" />                  
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="../js/lightslider.js"></script> 
+<script src="/SupportForMe/js/lightslider.js"></script> 
 
 <!-- 진행률 상태바 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -185,8 +185,8 @@ $(function(){
 		var str = "<div class='updComment' style='background-color: #F6F6F6; border-bottom:3px solid white;'>"
 				+ "<div style='display:flex;'>"
 				+ "		<div style='width:60px; margin-right:10px;'>"
-				+ "			<img src='../images/user-icon.png' style='width:60px; height:60px; margin:auto;'><br>"
-				+ "			<img name='rcBtn' id='rcBtn' src='../images/comments.png' style='width:35px; height:35px; margin-top:60px;'>"
+				+ "			<img src='/SupportForMe/images/user-icon.png' style='width:60px; height:60px; margin:auto;'><br>"
+				+ "			<img name='rcBtn' id='rcBtn' src='/SupportForMe/images/comments.png' style='width:35px; height:35px; margin-top:60px;'>"
 				+ "		</div>"
 				+ "		<div>"
 				+ "			<span class='userId' name='userId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
@@ -210,7 +210,7 @@ $(function(){
 				+ "			<input type='hidden' name='userId' value='${member.userId}'>"
 				+ "			<input type='hidden' name='topCommentNo' value='"+comments.commentNo+"'>"
 				+ "			<div style='display:flex;'>"
-   				+ "				<img src='../images/turn-right.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
+   				+ "				<img src='/SupportForMe/images/turn-right.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
     			+ "				<textarea name='commentContent' cols='77' rows='5' placeholder='내용을 입력해주세요.' style='resize:none;'></textarea>&nbsp;"
     			+ "				<button type='button' id='replyBtnAdd' style='width:50px; height:30px; margin:auto;'>등록</button>"
 				+ "			</div>"
@@ -265,7 +265,7 @@ $(function(){
 		var str = "<div class='replyComment' style='background-color: #F6F6F6; border-bottom:1px dotted #BDBDBD;'>"
 				+ "<div style='display:flex; padding:10px;'>"
 				+ "	<div style='width:60px; margin-right:10px;'>"
-				+ "		<img src='../images/arrow2.png' style='width:50px; height:50px; margin:auto;'><br>"
+				+ "		<img src='/SupportForMe/images/arrow2.png' style='width:50px; height:50px; margin:auto;'><br>"
 				+ "	</div>"
 				+ "		<div>"
 				+ "			<span class='rcUserId' style='font-size:22px; color:#4C4C4C'>"+ comments.userId + "</span>&nbsp;&nbsp;"
@@ -523,7 +523,7 @@ function outFunc() {
     </div>
     <br>
     <div class="pjdtl-flex-container">
-        <!-- 사진/이미지/영상/비디오 -->
+        <!-- 사진/이미지/영상/비디오 슬라이드/슬라이더-->
         <div class="demo">
         <div class="item">
         	<div class="clearfix">
@@ -576,7 +576,7 @@ function outFunc() {
                 	<button class="pjdtl-invest-btn" onclick="invest()">투자하기</button>
                 </c:otherwise>
             </c:choose>
-            <img src="../images/share-button.png" onclick="url()" class="pjdtl-share-btn" data-toggle="modal" data-target="#myModal">
+            <img src="/SupportForMe/images/share-button.png" onclick="url()" class="pjdtl-share-btn" data-toggle="modal" data-target="#myModal">
             	<!-- Modal -->
 				<div class="modal fade" id="myModal" role="dialog">
 				    <div class="modal-dialog" style="margin-top:15em; width:50em;">
@@ -607,10 +607,10 @@ function outFunc() {
             <table style="width:450px;border:1px solid #A6A6A6;">
             	<tr style="text-align: center;">
             		<td style="height:100px;"><img src="../images/calendar.png" style="width:90px; height:82px;"></td>
-    				<td><img src="../images/right-arrow.png" class="pjdtl-right-arrow"></td>
-    				<td><img src="../images/credit-card.png" class="pjdtl-status-img"></td>
-    				<td><img src="../images/right-arrow.png" class="pjdtl-right-arrow"></td>
-    				<td><img src="../images/delivery-truck.png" class="pjdtl-status-img"></td>
+    				<td><img src="/SupportForMe/images/right-arrow.png" class="pjdtl-right-arrow"></td>
+    				<td><img src="/SupportForMe/images/credit-card.png" class="pjdtl-status-img"></td>
+    				<td><img src="/SupportForMe/images/right-arrow.png" class="pjdtl-right-arrow"></td>
+    				<td><img src="/SupportForMe/images/delivery-truck.png" class="pjdtl-status-img"></td>
             	</tr>
             	<tr>
             		<td class="pjdtl-status-font">종료일</td>
@@ -660,7 +660,7 @@ function outFunc() {
 					<input type="hidden" name="projectNo" value="${project.projectNo}">
 					<input type="hidden" name="userId" value="${member.userId}">
                        <div style="display: flex;">
-				           <img src="../images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
+				           <img src="/SupportForMe/images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
                            <textarea name="commentContent" cols="77" rows="5" placeholder="내용을 입력해주세요." style="resize:none;"></textarea>&nbsp;
                            <button type="button" id="btnAdd" style="width:50px; height:30px; margin:auto;">등록</button>
 				       </div>
@@ -673,7 +673,7 @@ function outFunc() {
 					<input type="hidden" name="commentNo" value="${comments.commentNo}">
 					<input type="hidden" name="userId" value="${member.userId}">
 					<div style="display: flex;">
-						<img src="../images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
+						<img src="/SupportForMe/images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
 						<textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
 						<div style="margin:auto;">
 							<button type="button" id="btnUpd" style="width:50px; height:30px;">수정</button><br>
@@ -688,7 +688,7 @@ function outFunc() {
 					<input type="hidden" name="commentNo" value="${comments.commentNo}">
 					<input type="hidden" name="userId" value="${member.userId}">
 					<div style="display: flex;">
-						<img src="../images/arrow2.png" style="width:50px; height:50px; margin:auto;">&nbsp;
+						<img src="/SupportForMe/images/arrow2.png" style="width:50px; height:50px; margin:auto;">&nbsp;
 						<textarea name="commentContent" cols="75" rows="5" style="resize:none;"></textarea>&nbsp;
 						<div style="margin:auto; margin-bottom:5px;">
 							<button type="button" class="rcBtnUpd" style="width:50px; height:30px; margin-bottom:5px;">수정</button><br>
@@ -710,7 +710,7 @@ function outFunc() {
             <c:forEach var="i" begin="0" end="${present.size()-1}" varStatus="status">
             <div class="pjdtl-each-reward">
             	<div style="display:flex;">
-            		<img src="../images/checkmark.png" style="width:27px; height:27px">
+            		<img src="/SupportForMe/images/checkmark.png" style="width:27px; height:27px">
             		<c:choose>
             		<c:when test="${presentCount[status.index].rewardSelectCount == null}">
             			<span style="font-size:27px; color:#FF007F;">0명</span>
