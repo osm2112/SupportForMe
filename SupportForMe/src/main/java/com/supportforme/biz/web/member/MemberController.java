@@ -204,6 +204,7 @@ public class MemberController {
 	@RequestMapping("/forme/MemberDeletePassWordCheck")
 	public String memberDeletePassWordCheck(Model model, MemberDTO dto, HttpSession session,
 			HttpServletRequest request) {
+		String contextPath=request.getContextPath();
 		String pw = null;
 		String ref = null;
 		if (request.getHeader("referer") != null) {
@@ -215,36 +216,36 @@ public class MemberController {
 			pw = memberService.passwordCheck(memberDTO).getPassword();
 		}
 		if (ref != null) {
-			if (ref.equals("http://localhost:8181/SupportForMe/forme/MemberDeleteConfirmForm")) {
+			if (ref.contains("/forme/MemberDeleteConfirmForm")) {
 				if (pw != null) {
 					if (pw.equals(dto.getPassword())) {
 						memberService.deleteMember(memberDTO);
 						session.invalidate();
 						model.addAttribute("msg", "정상 탈퇴 되었습니다.");
-						model.addAttribute("url", "../support/login");
+						model.addAttribute("url", contextPath+"/support/login");
 						return "commons/alertRedirect";
 					} else {
 						model.addAttribute("msg", "비밀번호가 틀렸습니다.");
-						model.addAttribute("url", "../forme/MemberDeleteConfirmForm");
+						model.addAttribute("url", contextPath+"/forme/MemberDeleteConfirmForm");
 						return "commons/alertRedirect";
 					}
 				} else {
-					model.addAttribute("url", "../forme/MemberDeleteConfirmForm");
+					model.addAttribute("url", contextPath+"/forme/MemberDeleteConfirmForm");
 					return "commons/alertRedirect";
 				}
 			} else {
-				model.addAttribute("url", "../forme/MemberDeleteConfirmForm");
+				model.addAttribute("url", contextPath+"/forme/MemberDeleteConfirmForm");
 				return "commons/alertRedirect";
 			}
 		} else {
-			model.addAttribute("url", "../forme/MemberDeleteConfirmForm");
+			model.addAttribute("url", contextPath+"/forme/MemberDeleteConfirmForm");
 			return "commons/alertRedirect";
 		}
 	}
 
 	@RequestMapping("/support/FindId")
 	public String findId(HttpServletRequest request, Model model, MemberDTO dto) {
-
+		String contextPath = request.getContextPath();
 		MemberDTO dto2 = new MemberDTO();
 		dto2 = memberService.findId(dto);
 
@@ -261,25 +262,25 @@ public class MemberController {
 				messageHelper.setText("현재 사용중이신 ID는 "+userId+" 입니다."); // 메일 내용
 				mailSender.send(message);
 				model.addAttribute("msg", "메일이 정상적으로 발송되었습니다. 메일을 확인해 주세요 ");
-				model.addAttribute("url", "../support/MemberLoginForm");
+				model.addAttribute("url", contextPath+"/support/MemberLoginForm");
 				return "commons/alertRedirect";
 				
 			} catch (Exception e) {
 				System.out.println(e);
 				model.addAttribute("msg", "메일 전송에 실패 하였습니다. 관리자에게 문의해 주세요.");
-				model.addAttribute("url", "../support/MemberFindIdForm");
+				model.addAttribute("url", contextPath+"/support/MemberFindIdForm");
 				return "commons/alertRedirect";
 			}
 		} else {
 			model.addAttribute("msg", "입력하신 정보가 잘못되었습니다..");
-			model.addAttribute("url", "../support/MemberFindIdForm");
+			model.addAttribute("url", contextPath+"/support/MemberFindIdForm");
 			return "commons/alertRedirect";
 		}
 	}
 	
 	@RequestMapping("/support/FindPassword")
 	public String findPassword(HttpServletRequest request, Model model, MemberDTO dto) {
-
+		String contextPath = request.getContextPath();
 		MemberDTO dto2 = new MemberDTO();
 		System.out.println(dto.getUserId()+dto.getEmail()+dto.getName());
 		dto2 = memberService.findPassword(dto);
@@ -318,18 +319,18 @@ public class MemberController {
 				messageHelper.setText("비밀번호가 " + pw + "로 초기화되었습니다."); // 메일 내용
 				mailSender.send(message);
 				model.addAttribute("msg", "메일이 정상적으로 발송되었습니다. 메일을 확인해 주세요 ");
-				model.addAttribute("url", "../support/MemberLoginForm");
+				model.addAttribute("url", contextPath+"/support/MemberLoginForm");
 				return "commons/alertRedirect";
 				
 			} catch (Exception e) {
 				System.out.println(e);
 				model.addAttribute("msg", "메일 전송에 실패 하였습니다. 관리자에게 문의해 주세요.");
-				model.addAttribute("url", "../support/MemberFindIdForm");
+				model.addAttribute("url", contextPath+"/support/MemberFindIdForm");
 				return "commons/alertRedirect";
 			}
 		} else {
 			model.addAttribute("msg", "입력하신 정보가 잘못되었습니다..");
-			model.addAttribute("url", "../support/MemberFindIdForm");
+			model.addAttribute("url", contextPath+"/support/MemberFindIdForm");
 			return "commons/alertRedirect";
 		}
 	}
