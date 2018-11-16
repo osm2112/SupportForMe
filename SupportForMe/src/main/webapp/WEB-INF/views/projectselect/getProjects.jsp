@@ -134,7 +134,7 @@ var contextPath = '<%= request.getContextPath() %>';
 									var currentScroll = $(window).scrollTop()+ $(window).height();
 
 									console.log("documentHeight:" + maxHeight + " | scrollTop +windowHeight: " + currentScroll );
-									if (maxHeight <= currentScroll + 5 ) {
+									if (maxHeight <= currentScroll +1) {
 											loadArticle(lastno);
 											}				
 								});
@@ -274,7 +274,7 @@ var contextPath = '<%= request.getContextPath() %>';
 		</div>
 	</div>
 	<div class="loader">Loading...</div>
-	<div style="height: 300px"></div>
+	<div style="height: 100px"></div>
 	
 </body>
 </html>
