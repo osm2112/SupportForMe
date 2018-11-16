@@ -1,11 +1,11 @@
 /**
  * 프로젝트 기본정보 등록 자바스크립트
  */
-
+var path = "<c:url value='/'/>";
 $(function() {
 	//저장하기
 	$(".save_button").click(function(){
-		url = "../saveProject/basic";
+		url = path + "forme/saveProject/basic";
 		params = $("#registerBasicFrm").serialize();
 		$.ajax({
 			url : url,
@@ -20,7 +20,7 @@ $(function() {
 	//다음단계
 	$(".next_button").click(function(){
 		$.ajax({
-			url : "../updateProject/story",
+			url : path + "forme/updateProject/story",
 			data : $("#registerBasicFrm").serialize(),
 			type : "post",
 			success : function(result) {
@@ -64,7 +64,7 @@ $("#fileUploadImage").on("change",function() {
 	if($(this).val() != "") {
 		$("#fileUploadFrm").ajaxForm({
 			dataType:"json",
-			url:'../fileUpload',
+			url:path + 'forme/fileUpload',
 			success: 
 				function(result, textStatus){
 					if(result.code = 'success') {
@@ -88,7 +88,7 @@ $("#fileUploadImage").on("change",function() {
 var projectNo = $("input[name=projectNo]").val();
 function loadHashtagList() {
 	$.ajax({
-		url : '../hashtags/'+projectNo,
+		url : path + 'forme/hashtags/'+projectNo,
 		type:'GET',
 		dataType : 'json',
 		success : function(datas){
@@ -114,7 +114,7 @@ $("input[name='keyword']").keydown(function(e){
 			var key = $(this).val();
 			
 			$.ajax({
-				url : '../hashtags',
+				url : path + 'forme/hashtags',
 				type:'POST',
 				dataType : 'json',
 				data : JSON.stringify({projectNo:projectNo,hashtagName:key}),
@@ -139,7 +139,7 @@ $("input[name='keyword']").keydown(function(e){
 $(document).on("click",".remove",function(){
 	var removeKey = $(this).parent().attr("id"); 
 	 $.ajax({
-		url : "../hashtags/"+removeKey,
+		url : path + "forme/hashtags/"+removeKey,
 		type: 'DELETE',
 		contentType:'application/json;charset=utf-8',
 		dataType : "JSON",

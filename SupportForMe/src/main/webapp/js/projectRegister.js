@@ -1,7 +1,7 @@
 /**
  * 	프로젝트 등록 페이지 자바스크립트 
  */
-
+var path = "<c:url value='/'/>";
 $(function() {
 		var projectNo = $("#hiddenProjectNo").text();
 		onLoadBasic();
@@ -18,7 +18,7 @@ $(function() {
 		$("#confirmModalOk").click(function(e){
 				e.preventDefault();
 				$("#result").empty();
-				var url = "../pageMove/"+projectNo+"/"+navClick;
+				var url = path + "forme/pageMove/"+projectNo+"/"+navClick;
 				$.ajax({
 					url : url,
 					type : "post",
@@ -55,7 +55,7 @@ $(function() {
 		//////기본정보 js ------------------
 		function onLoadBasic(){
 			$.ajax({
-				url : '../updateProject/basic',
+				url : path + 'forme/updateProject/basic',
 				type: 'post',
 				data : JSON.stringify({projectNo:projectNo}),
 				/*dataType : 'json',*/
@@ -106,7 +106,7 @@ $(function() {
 			if($(this).val() != "") {
 				$("#fileUploadStoryFrm").ajaxForm({
 					dataType:"json",
-					url:'../fileUpload',
+					url: path + 'forme/fileUpload',
 					success: 
 						function(result, textStatus){
 							if(result.code = 'success') {
@@ -153,7 +153,7 @@ $(function() {
 			var projectNo = $("input[name=projectNo]").val();
 			var introImg = removeImg[3];
 			$.ajax({
-				url : '../deleteIntroductionImg',
+				url :  path + 'forme/deleteIntroductionImg',
 				dataType : "JSON",
 				data : {"removeIntroductionImg":introImg},
 				type : "post",
