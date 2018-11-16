@@ -89,13 +89,7 @@
     display:grid;
     grid-template-columns: 80px 80px;
 } 
-
-@media (min-width : 851px){
-	#site_name {
-	display: block;
-	}
-	
-}          
+          
 @media(max-width:850px){
     .bodysize {
         display:grid;
@@ -250,6 +244,41 @@ function view2() {
     }
 }
 </script>
+<c:choose>
+<c:when test="${preview == 'p'}">
+	<div id="headDiv">
+		<div class="headBodysize">
+	    	<div></div>
+	    	<div id="head">
+		    	<!--  화면줄였을때 보이는 영역 -->
+	    	    <div id="search_div1">
+		        	<a><img src="<%= request.getContextPath() %>/images/search.png" class="searchImg"></a>
+		        	<form>
+	        			<input type="text" name="searchKeyword" id="searchKeyword" class="search_keyword" placeholder="찾으시는 프로젝트가 있으신가요?">
+					</form> 	    
+	        	</div>
+				
+	        	<div id="site_name" class="block" style="cursor:pointer;">
+	            	SupportForME
+	        	</div>
+	        
+	        	<div>
+	        	<input type="button"id="make_project" value="프로젝트 만들기">
+	        	</div>
+	        
+	        	<!-- 전체화면일때 보이는 영역 -->
+	        	<div id="search_div2">
+				<img src="<%= request.getContextPath() %>/images/search.png" class="searchImg">
+	        	</div>
+	        	<div id="logout_head_menu">
+		        	<div id="head_font_size" style="cursor:pointer;">로그인</div>
+		        	<div id="head_font_size" style="cursor:pointer;">회원가입</div>
+	        	</div>
+	        </div>
+	      </div>
+	   </div>
+</c:when>
+<c:otherwise>
 	<div id="headDiv">
 		<div class="headBodysize">
 	    	<div></div>
@@ -262,7 +291,7 @@ function view2() {
 					</form> 	    
 	        	</div>
 				
-	        	<div id="site_name" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>'">
+	        	<div id="site_name" class="block" style="cursor:pointer;" onclick="location.href='<%= request.getContextPath() %>'">
 	            	SupportForME
 	        	</div>
 	        
@@ -336,5 +365,7 @@ $("#close-sidenav").click(function() {
 </div>
 </div>
 </div>
+</c:otherwise>
+</c:choose>
 </body>
 </html>
