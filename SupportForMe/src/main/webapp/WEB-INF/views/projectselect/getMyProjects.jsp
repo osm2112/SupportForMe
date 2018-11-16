@@ -153,7 +153,7 @@
 ._btn2:hover {
 	color: #008299;
 	background-color:white;
-}    
+}
 .tI {
 	display:inline-block;
 	width:195px;
