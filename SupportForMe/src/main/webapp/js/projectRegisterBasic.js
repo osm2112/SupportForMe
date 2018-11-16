@@ -1,8 +1,9 @@
 /**
  * 프로젝트 기본정보 등록 자바스크립트
  */
-var path = "<c:url value='/'/>";
+
 $(function() {
+	var path = $("#path").text();
 	//저장하기
 	$(".save_button").click(function(){
 		url = path + "forme/saveProject/basic";

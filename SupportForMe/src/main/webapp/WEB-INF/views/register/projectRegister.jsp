@@ -34,6 +34,7 @@ function addComma(num) {
 
 </head>
 <body>
+<div id="path" style="display:none"><c:url value='/'/></div>
  <!-- The Modal -->
  <div id="alertModal" class="modal">
    <!-- Modal content -->
