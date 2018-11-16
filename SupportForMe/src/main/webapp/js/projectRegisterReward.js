@@ -1,6 +1,8 @@
 /**
  * 프로젝트 선물 등록 자바스크립트 
+
  */
+var path = "<c:url value='/'/>";
 $(function() {
 	$("#result").off("click");
 	var projectNo = $("#projectNo").val();
@@ -9,7 +11,7 @@ $(function() {
 	
 	$(".next_button").click(function(){
 		$.ajax({
-			url : "../updateProject/account",  
+			url :path + "forme/updateProject/account",  
 			data : $("#rewardRegisterFrm").serialize(),
 			type : "post",
 			success : function(result) {
@@ -21,8 +23,8 @@ $(function() {
 	});
 	
 	$(".save_button").click(function(){
-		url = "../saveProject/ex";
-		params = $("#registerRewardFrm").serialize();
+		url = path + "forme/saveProject/ex";
+		params = $("#rewardRegisterFrm").serialize();
 		
 		$.ajax({
 			url : url,
@@ -39,7 +41,7 @@ $(function() {
 		var seq = $("#registerRewardFrm [name=presentNo]").val();
 		var params =  $("#registerRewardFrm").serialize();
 		if(seq != ''){
-			var url = "../updateReward";
+			var url = path + "forme/updateReward";
 			$.getJSON(url, params, function(datas){
 				var newDiv = makeRewardBox(datas);
 				var oldDiv = $("#rw"+datas.presentNo);
@@ -52,7 +54,7 @@ $(function() {
 			});
 		}else {
 			if(checkReward()){
-				var url = "../insertReward";
+				var url = path + "forme/insertReward";
 				$.getJSON(url, params, function(datas){
 					$("#reward_preview").append( makeRewardBox(datas));
 					$("[name=registerRewardFrm]")[0].reset();
@@ -118,7 +120,7 @@ $(function() {
 		console.log(seq);
 		$("#confirmModalOk").click(function(){
 			var params = "presentNo=" + seq;
-			var url = "../deleteReward";
+			var url = path + "forme/deleteReward";
 			$.getJSON(url,params,function(datas){
 				$('#rw'+seq).remove();
 				$("#confirmModal").hide();	
@@ -144,7 +146,7 @@ $(function() {
 	//선물 목록 조회 요청
 	function loadRewardList() {
 		var params = {projectNo : projectNo};
-		$.getJSON("../getRewards",params,function(datas){
+		$.getJSON(path + "forme/getRewards",params,function(datas){
 			$("#reward_preview").empty();
 			for(i = 0; i<datas.length; i++){
 				$("#reward_preview").append(makeRewardBox(datas[i]));	

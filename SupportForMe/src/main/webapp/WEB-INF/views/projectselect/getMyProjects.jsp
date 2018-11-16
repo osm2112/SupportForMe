@@ -146,6 +146,14 @@
 ._btn2{
 	color: #FF007F;
 }
+._btn1:hover {
+	color: #008299;
+	background-color:white;
+}
+._btn2:hover {
+	color: #008299;
+	background-color:white;
+}    
 .tI {
 	display:inline-block;
 	width:195px;

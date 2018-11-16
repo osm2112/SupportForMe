@@ -1,3 +1,5 @@
+var path = "<c:url value='/'/>";
+	
 (function ($, undefined) {
     'use strict';
     var defaults = {

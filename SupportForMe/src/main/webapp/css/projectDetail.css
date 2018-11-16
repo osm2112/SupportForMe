@@ -91,16 +91,7 @@
 .pjdtl-share-btn:hover {
 	cursor:pointer;
 }
-/*
-.pjdtl-status-box {
-	display: flex;
-	justify-content: space-between;
-	width: 479px;
-	height: 170px;
-	border: 1px solid lightgray;
-	padding: 0px 20px;
-}
-*/
+
 .pjdtl-status-img {
 	width: 90px;
 	height: 90px;
