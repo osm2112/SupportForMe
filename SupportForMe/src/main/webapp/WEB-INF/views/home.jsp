@@ -396,7 +396,7 @@ text-shadow:   0 1px 0 #ccc,
 												.addClass("ranktext");
 											}
 										});
-
+  
 						Rank();
 						setInterval("Rank()", 8000);
 
