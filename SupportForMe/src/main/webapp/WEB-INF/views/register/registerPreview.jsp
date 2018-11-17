@@ -16,7 +16,7 @@ body {
 	border-radius:15px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 1220px;
+	width: 1300px;
 	text-align:center;
 }
 #preview_box {
@@ -36,16 +36,16 @@ body {
 }  
 .previewImg {
 	position: fixed; 
-	width:130px;
-	height:130px;
-	bottom: 30px; 
+	width:160px;
+	height:160px;
+	bottom: 20px; 
 }
 </style>
 </head>
 <body>
 	<div id="preview_subject"> <img src="/SupportForMe/images/heart.gif" style="width:80px;height:50px;vertical-align:bottom">PREVIEW<img src="/SupportForMe/images/heart.gif" style="width:80px;height:50px;vertical-align:bottom"></div>
 	<div id="preview_body">
-	<iframe name="test1" id="preview_box" width='1220px' height='600px'></iframe>
+	<iframe name="test1" id="preview_box" width='1300px' height='700px'></iframe>
 	<script>
 		 var src="/SupportForMe/support/getProjectDetailPage?projectNo=${projectNo}";
 		/* var src="/SupportForMe/forme/make/${projectNo}"; */

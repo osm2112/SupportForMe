@@ -593,7 +593,15 @@ function invest(){
 		<div class="container">
 		  <ul class="nav nav-tabs" style="width:750px;">
 		    <li class="active"><a data-toggle="tab" href="#home">스토리</a></li>
-		    <li><a data-toggle="tab" href="#menu1">댓글</a></li>
+		    <c:choose>
+		    	<c:when test="${preview == 'p'}">
+		    		<li><a data-toggle="tab">댓글</a></li>
+		    	</c:when>
+		    	<c:otherwise>
+		    		<li><a data-toggle="tab" href="#menu1">댓글</a></li>
+		    	</c:otherwise>
+		    </c:choose>
+		    
 		  </ul>
 		
 		  <div class="tab-content">
