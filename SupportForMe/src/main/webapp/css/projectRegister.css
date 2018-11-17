@@ -22,7 +22,7 @@
    margin: 20% auto; /* 15% from the top and centered */
    padding: 5px 10px 10px 10px;
    border: 1px solid #888;
-   width: 25%; /* Could be more or less, depending on screen size */                      
+   width: 25%; /* Could be more or less, depending on screen size */                    
 }
 
 #alertMessage,#confirmMessage,#confirmRCMessage {

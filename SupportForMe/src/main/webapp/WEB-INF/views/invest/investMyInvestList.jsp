@@ -22,12 +22,19 @@
 	display: inline-block;
 	margin-right: 10px;
 	margin-bottom: 10px;
+	/* -webkit-transition: all 0.3s; */
+ 	transition: all 0.3s;
+ 	overflow: hidden;
 }
 
 .project_box:hover {
 	box-shadow: 5px 5px 3px lightgrey;
+	margin-top:-5px;
 }
-
+.project_box:hover .mypage_project_image img{
+  /* -webkit-transform: scale(1.05); */
+  transform: scale(1.05);
+}
 .project_state {
 	width: 100px;
 	height: 30px;
@@ -52,6 +59,7 @@
 	width: 100%;
 	height: 100%;
 	object-fit: .mypage_project_image;
+	transition: all 0.5s;
 }
 
 .mypage_project_content {

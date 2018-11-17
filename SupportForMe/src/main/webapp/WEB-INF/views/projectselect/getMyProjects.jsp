@@ -55,10 +55,17 @@
 	height: 400px;
 	border: 1px solid #EEEEEE;
 	padding:0;
+	transition: all 0.3s;
+ 	overflow: hidden;
 }
 
 .project_box:hover {
 	box-shadow: 5px 5px 2px lightgrey;
+	box-shadow: 5px 5px 3px lightgrey;
+	margin-top:-5px;
+}
+.project_box:hover .mypage_project_image img{
+  transform: scale(1.05);
 }
 
 .project_state, .state {
@@ -86,6 +93,7 @@
 	width: 100%;
 	height: 100%;
 	object-fit: .mypage_project_image;
+	transition: all 0.5s;
 }
 .text3d {
 	/* text-shadow:1px 1px white, -1px -1px #666; */
