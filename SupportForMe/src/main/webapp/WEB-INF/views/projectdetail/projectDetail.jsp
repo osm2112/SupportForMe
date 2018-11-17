@@ -506,8 +506,10 @@ function pick() {
 	$.getJSON(url, params, function(data){
 		if(data.supportPickYn == 'Y'){
 			alert('PICK :^)');
+			$('#pickBtn').attr('class', 'pjdtl-pick-btn pickBtn-yes').text('PICKED');
 		} else {
 			alert('PICK 취소!');
+			$('#pickBtn').attr('class', 'pjdtl-pick-btn pickBtn-no').text('PICK');
 		}
 	});
 	
@@ -556,7 +558,14 @@ function outFunc() {
     <div class="pjdtl-flex-container">
         <div class="pjdtl-project-name">${project.projectName}</div>
         <c:if test="${member.userId == 'Admin'}">
-        	<button class="pjdtl-pick-btn" onclick="pick()">PICK</button>
+        	<c:choose>
+        	<c:when test="${project.supportPickYn == 'Y'}">
+        		<button id="pickBtn" class="pjdtl-pick-btn pickBtn-yes" onclick="pick()">PICKED</button>
+        	</c:when>
+        	<c:otherwise>
+        		<button id="pickBtn" class="pjdtl-pick-btn pickBtn-no" onclick="pick()">PICK</button>
+        	</c:otherwise>
+        	</c:choose>
     	</c:if>
     </div>
     <div class="pjdtl-center"><!-- 해시태그 -->
