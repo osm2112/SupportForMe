@@ -12,6 +12,7 @@
 <title></title>
 
 <link rel="stylesheet" href="/SupportForMe/css/projectDetail.css?ver=1">
+<script src="/SupportForMe/js/projectDetail.js"></script>
 
 <!-- 슬라이드 -->
 <link type="text/css" rel="stylesheet" href="/SupportForMe/css/lightslider.css" />                  
@@ -41,99 +42,10 @@
 	font-size:20px;
 	cursor:pointer;
 }
-.btnUpdFrm, .btnDel, .rcBtnUpdFrm, .rcBtnDel, .rcBtnUpd, .rcBtnCancel {
-   border:1px solid #747474;
-   background:white;
-   color: #747474;
-   border-radius: 5px;
-}
-.btnUpdFrm:hover, .btnDel:hover, .rcBtnUpdFrm:hover, .rcBtnUpdFrm:hover, .rcBtnDel:hover, .rcBtnUpd:hover, .rcBtnCancel:hover {
-   border:1px solid rgb(26, 188, 156);
-   background:white;
-   color:rgb(26, 188, 156);
-   border-radius: 5px;
-}
-#replyBtnAdd, #btnAdd, #btnUpd, #btnCancel {
-   border:1px solid #747474;
-   background:white;
-   color: #747474;
-   border-radius: 5px;
-}
-#replyBtnAdd:hover, #btnAdd:hover, #btnUpd:hover, #btnCancel:hover {
-   border:1px solid rgb(26, 188, 156);
-   background:white;
-   color:rgb(26, 188, 156);
-   border-radius: 5px;
-}
-
-/*url 복사하기*/
-._tooltip {
-    position: relative;
-	display: inline-block;
-}
-._tooltip ._tooltiptext {
-    visibility: hidden;
-    width: 140px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 150%;
-    left: 50%;
-    margin-left: -75px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-._tooltip ._tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-._tooltip:hover ._tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
 </style>
-
 
 <script>
 var path = "<c:url value='/'/>";
-
-//금액 세자리마다 ","표시하기
-function addComma(num) {
-    var regexp = /\B(?=(\d{3})+(?!\d))/g;
-    return num.toString().replace(regexp, ',');
-}
-
-	
-/*----------------------------------------슬라이드---------------------------------------------------------*/
-$(document).ready(function() {
-	$("#content-slider").lightSlider({
-        loop:true,
-      	auto:true,
-        keyPress:true
-    });
-    $('#image-gallery').lightSlider({
-        gallery:true,
-        item:1,
-        thumbItem:6,
-        slideMargin: 0,
-        speed:500,
-        auto:true,
-        loop:true,
-        onSliderLoad: function() {
-            $('#image-gallery').removeClass('cS-hidden');
-        }  
-    });
-});
 
 /*-----------------------------------------댓글-----------------------------------------------------------*/
 $(function(){
@@ -167,11 +79,11 @@ $(function(){
 			
 		var $items = comments.slice(startView,endView);
 
- 		$.each($items, function(i, comments) {
+		$.each($items, function(i, comments) {
 			i += startView;
 			$("#commentList").append(makeCommentView(comments));
- 		});
- 		setView(comments.length);
+		});
+		setView(comments.length);
 		}
 	}
 	
@@ -225,9 +137,9 @@ $(function(){
 				+ "			<input type='hidden' name='userId' value='${member.userId}'>"
 				+ "			<input type='hidden' name='topCommentNo' value='"+comments.commentNo+"'>"
 				+ "			<div style='display:flex;'>"
-   				+ "				<img src='/SupportForMe/images/turn-right.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
-    			+ "				<textarea name='commentContent' cols='77' rows='5' placeholder='내용을 입력해주세요.' style='resize:none;'></textarea>&nbsp;"
-    			+ "				<button type='button' id='replyBtnAdd' style='width:50px; height:30px; margin:auto;'>등록</button>"
+ 				+ "				<img src='/SupportForMe/images/turn-right.png' style='width:60px; height:60px; margin:auto;'>&nbsp"
+  			+ "				<textarea name='commentContent' cols='77' rows='5' placeholder='내용을 입력해주세요.' style='resize:none;'></textarea>&nbsp;"
+  			+ "				<button type='button' id='replyBtnAdd' style='width:50px; height:30px; margin:auto;'>등록</button>"
 				+ "			</div>"
 				+ "		</form>"
 				+ "</div>"
@@ -362,7 +274,7 @@ $(function(){
 			}
 	});
 /*답글 카운트 함수*/
- 	function cntComments(commentNo){	
+	function cntComments(commentNo){	
 	
 		$.ajax({
 				url: path+"support/getReplyCommentCnt",
@@ -391,8 +303,8 @@ $(function(){
 		});
 	});
 	//답글 수정
- 	$("#commentList").on("click", ".rcBtnUpd", function(){
- 		var params = $("[name=rcUpdateForm]").serialize();
+	$("#commentList").on("click", ".rcBtnUpd", function(){
+		var params = $("[name=rcUpdateForm]").serialize();
 		var url = path+"forme/updateReplyComments";
 		$.getJSON(url, params, function(data){
 			var newDiv = makeReplyCommentView(data);
@@ -419,7 +331,7 @@ $(function(){
 		$('#commentUpdate').show();   
 	});
 	//답글 수정 폼
-  	$("#commentList").on("click", ".rcBtnUpdFrm", function(){
+	$("#commentList").on("click", ".rcBtnUpdFrm", function(){
 		var seq = $(this).parent().parent().parent().parent().attr("id").substring(2);
 		var temp_seq = $("#rc"+seq);
 		var comments = temp_seq[0].comments;
@@ -441,7 +353,7 @@ $(function(){
 		$("#c"+seq).find(".updComment").show();
 	});
 	//답글 수정취소
- 	$("#commentList").on("click", ".rcBtnCancel", function(){
+	$("#commentList").on("click", ".rcBtnCancel", function(){
 		var seq = $(this).closest(".comments").attr("id").substring(2);
 		$("[name=rcUpdateForm]")[0].reset(); 
 		$(".tabcontent").append( $("#replyCommentUpdate") );
@@ -490,11 +402,6 @@ $(function(){
 	
 	
 	loadCommentsList();
-/*--------------preview header--------------------------------------------------------------------------------------*/
-	var preview = '${preview}';
-	if(preview == 'p'){
-		$("#headDiv").hide();
-	}
 })
 
 /*----------------관리자 pick-----------------------------------------------------------------------------------------*/
@@ -515,7 +422,6 @@ function pick() {
 	
 }
 
-
 /*-------------투자하기 버튼 제어-------------------------------------------------------------------------------------*/
 function invest(){
 	var invest = '${project.progress}';
@@ -528,26 +434,11 @@ function invest(){
 	}
 }
 
-/*--------------url링크 가져오기/공유하기-------------------------------------------------------------------------------*/
-function url() {
-	var link = location.href;
-	$('.pjdtl-share-btn').next().children().find('.modal-body input').val(link);
-}
-
-function copyUrl() {
-	var copyText = document.getElementById("myInput");
-		copyText.select();
-	document.execCommand("copy");
-
-	var tooltip = document.getElementById("myTooltip");
-	tooltip.innerHTML = "복사되었습니다.";
-}
-function outFunc() {
-	  var tooltip = document.getElementById("myTooltip");
-	  tooltip.innerHTML = "복사하기";
-}
-
 </script>
+
+
+
+
 </head> 
     
 <body>
@@ -736,9 +627,9 @@ function outFunc() {
 					<input type="hidden" name="userId" value="${member.userId}">
 					<div style="display: flex;">
 						<img src="/SupportForMe/images/user-icon.png" style="width:60px; height:60px; margin:auto;">&nbsp;
-						<textarea name="commentContent" cols="70" rows="5"></textarea>&nbsp;
+						<textarea name="commentContent" cols="70" rows="5" style="resize:none;"></textarea>&nbsp;
 						<div style="margin:auto;">
-							<button type="button" id="btnUpd" style="width:50px; height:30px;">수정</button><br>
+							<button type="button" id="btnUpd" style="width:50px; height:30px; margin-bottom:5px;">수정</button><br>
 							<button type="button" id="btnCancel" style="width:50px; height:30px;">취소</button>
 						</div>
 					</div>	
