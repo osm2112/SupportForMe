@@ -186,7 +186,7 @@
 	100% { opacity: 1; }
 }
 .ranktext {
-	-webkit-animation: topToBottom 10s infinite;
+	-webkit-animation: topToBottom 3s infinite;
 }
 
 #rank ol {

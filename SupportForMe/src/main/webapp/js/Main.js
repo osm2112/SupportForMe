@@ -23,7 +23,7 @@ var contextPath = '<c:url value='/'/>';
 						$('.flexslider3')
 								.flexslider(
 										{
-											slideshowSpeed : 2000,
+											slideshowSpeed : 5000,
 											animation : "slide",
 											controlNav : false,
 											directionNav : false,
@@ -50,7 +50,7 @@ var contextPath = '<c:url value='/'/>';
 										});
   
 						Rank();
-						setInterval("Rank()", 8000);
+						setInterval("Rank()", 5000);
 
 					});
 	function Rank() {

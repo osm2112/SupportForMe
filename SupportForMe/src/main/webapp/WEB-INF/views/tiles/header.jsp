@@ -13,15 +13,22 @@
 
 
 <style>
+input[type=text]:focus {
+	outline: none;
+}
+
+input[type=text]:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 1000px white inset;
+}
 #headDiv {
 	margin:0px;
-    border-bottom:1px solid lightgrey;
+    border-bottom:1px solid #EEEEEE;
     background-color:white;
     z-index:5;
 }
 .headBodysize {
   display:grid;
-  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-columns: 1fr 8fr 1fr;
 }
 #head{
   padding : 10px 20px;
@@ -76,6 +83,9 @@
         font-size : 18px;
         color:rgb(127, 127, 127);
         padding-left:10px;
+}
+.search_keyword:focus {
+	border:none;
 }
 #head_font_size {
     font-size:18px;
