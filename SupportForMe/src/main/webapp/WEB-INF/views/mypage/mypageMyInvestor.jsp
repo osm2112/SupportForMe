@@ -86,8 +86,9 @@ $(function(){
 	});
 	
 	$("#excelDown").click(function(){
-		if($("#subject :selected").length > 0){
-			document.excelFrm.submit();
+		if($("#subject option").length > 0){
+			$("#subject option").prop('selected', true);
+			document.excelFrm.submit(); 
 		}else {
 			alert("속성을 선택해주세요.");
 		}
@@ -120,34 +121,36 @@ $(function(){
 		</div>
 	</div>
 	</form>
-	<table class="table table-hover" style="width:1100px;height:300px;">
-		<thead>
-		<tr>
-			<th class="text-center">투자번호</th>
-			<th class="text-center">이름</th>
-			<th class="text-center">선물명</th>
-			<th class="text-center">우편번호</th>
-			<th class="text-center">주소</th>
-			<th>이메일</th>
-			<th>휴대폰번호</th>
-			<th>프로젝트 이름</th>
-		</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${investor}" var="investor">
+	<div style="height:300px">
+		<table class="table table-hover" style="width:1100px;">
+			<thead>
 			<tr>
-				<td class="text-center">${investor.investNo}</td>
-				<td class="text-center">${investor.name}</td>
-				<td class="text-center">${investor.presentName}</td>
-				<td class="text-center">${investor.postcode}</td>
-				<td class="text-center">${investor.address}</td>
-				<td>${investor.email}</td>
-				<td>${investor.phoneNum}</td>
-				<td>${investor.projectName}</td>
+				<th class="text-center">투자번호</th>
+				<th class="text-center">이름</th>
+				<th class="text-center">선물명</th>
+				<th class="text-center">우편번호</th>
+				<th class="text-center">주소</th>
+				<th>이메일</th>
+				<th>휴대폰번호</th>
+				<th>프로젝트 이름</th>
 			</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<c:forEach items="${investor}" var="investor">
+				<tr>
+					<td class="text-center">${investor.investNo}</td>
+					<td class="text-center">${investor.name}</td>
+					<td class="text-center">${investor.presentName}</td>
+					<td class="text-center">${investor.postcode}</td>
+					<td class="text-center">${investor.address}</td>
+					<td>${investor.email}</td>
+					<td>${investor.phoneNum}</td>
+					<td>${investor.projectName}</td>
+				</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 	<div style="text-align:right;width:1100px">
 		<button type="button" id="excel" class="_btn3" data-toggle="modal" data-target="#excelModal">Excel</button>
 	</div>
