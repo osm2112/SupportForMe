@@ -316,7 +316,9 @@ $(function(){
 			$.getJSON(url, params, function(data){
 				$("#commentList").prepend( makeCommentView(data) );
 				$("[name=addForm]")[0].reset();
-				window.location.hash = "#here";
+				cntComments(data.commentNo);
+				var offset = $("#here").offset();
+		        $('html, body').animate({scrollTop : offset.top-50}, 300);
 			});
 			}
 		}
@@ -334,9 +336,8 @@ $(function(){
 					alert("내용을 입력해주세요.");
 					return false;
 				} else{
-					console.log($(this).closest('#replyCommentAdd').prev().parent());
-					console.log($(this).closest('#replyCommentAdd').prev().parent().find('.userId').text());
-					if($(this).closest('#replyCommentAdd').prev().parent().find('.userId').text() == ' ' ) {
+					var checkUserId = $(this).closest('#replyCommentAdd').prev().parent().find('.userId').text();
+					if(checkUserId == ' ' || checkUserId == '') {
 						alert("삭제된 댓글에는 답글을 등록할 수 없습니다.");
 						$(this).closest("[name=replyAddForm]")[0].reset();
 						return false;
@@ -351,7 +352,6 @@ $(function(){
 							success: function(data) {
 								check_this.parent().prev().prepend( makeReplyCommentView(data) );
 								check_this.closest("[name=replyAddForm]")[0].reset();
-								console.log(data);
 								
 								cntComments(data.topCommentNo);
 							}
@@ -361,7 +361,7 @@ $(function(){
 				}
 			}
 	});
-/*함수함수함수*/
+/*답글 카운트 함수*/
  	function cntComments(commentNo){	
 	
 		$.ajax({
@@ -386,6 +386,8 @@ $(function(){
 			$("[name=updateForm]")[0].reset(); 
 			$('#commentUpdate').hide(); 
 			$(newDiv).replaceAll(oldDiv);
+			
+			cntComments(data.commentNo);
 		});
 	});
 	//답글 수정
@@ -515,7 +517,6 @@ function pick() {
 /*-------------투자하기 버튼 제어-------------------------------------------------------------------------------------*/
 function invest(){
 	var invest = '${project.progress}';
-	console.log(invest);
 	
 	if('${project.progress}' != '진행중') {
 		alert('종료된 프로젝트 입니다.');
