@@ -495,6 +495,7 @@ input[type=text]:-webkit-autofill {
 	outline: none;
 }
 #reward_preview{
+	min-height:200px;
 	width: 1000px;
 	position: relative;
 	display: grid;

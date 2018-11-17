@@ -215,7 +215,7 @@ var contextPath = '<%= request.getContextPath() %>';
 																	+ '</div>'
 																	+ '  				<div class="text3d" style="font-size: 16px;">'
 																	+ data[i].userId
-																	+ '님</div>'
+																	+ '</div>'
 																	+ ' 				<div style="height: 5px"></div>'
 																	+ '   				<div class="text3dPn"><strong>'
 																	+ data[i].projectName
@@ -275,7 +275,7 @@ var contextPath = '<%= request.getContextPath() %>';
 						</div>
 						<div class="mypage_project_content">
 							<div class="project_state progress${project.progressCd}">${project.progress}</div>
-							<div class="text3d" style="font-size: 16px;">${project.userId}님</div>
+							<div class="text3d" style="font-size: 16px;">${project.userId}</div>
 							<div style="height: 5px"></div>
 							<div class="text3dPn"><strong>${project.projectName}</strong></div>
 							<div style="height: 5px"></div>

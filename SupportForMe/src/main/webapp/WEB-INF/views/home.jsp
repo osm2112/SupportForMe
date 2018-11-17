@@ -143,7 +143,7 @@
 							onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
-						<div class="text3d">${project.userId}님</div>
+						<div class="text3d">${project.userId}</div>
 						<div style="height: 5px"></div>
 						<div class="text3dPn" style="">
 							<strong>${project.projectName}</strong>
@@ -207,7 +207,7 @@
 							onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
-						<div class="text3d">${project.userId}님</div>
+						<div class="text3d">${project.userId}</div>
 						<div style="height: 5px"></div>
 						<div class="text3dPn" style="">
 							<strong>${project.projectName}</strong>
@@ -270,7 +270,7 @@
 							onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
-						<div class="text3d">${project.userId}님</div>
+						<div class="text3d">${project.userId}</div>
 						<div style="height: 5px"></div>
 						<div class="text3dPn" style="">
 							<strong>${project.projectName}</strong>
@@ -333,7 +333,7 @@
 							onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
-						<div class="text3d">${project.userId}님</div>
+						<div class="text3d">${project.userId}</div>
 						<div style="height: 5px"></div>
 						<div class="text3dPn" style="">
 							<strong>${project.projectName}</strong>
