@@ -301,7 +301,7 @@ text-shadow:   0 1px 0 #ccc,
 .remainDay {
 	padding-right:20px;
 	display:inline-block;
-	width:190px;
+	width:140px;
 }
 .rdPercent {
 	color:#5e5e5e;
@@ -334,4 +334,7 @@ text-shadow:   0 1px 0 #ccc,
 }
 .block {
 	display:block;
+}
+.progress-bar {
+	background-color: rgb(26, 188, 156);
 }

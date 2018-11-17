@@ -159,7 +159,7 @@
 							 --%>
 							<div class="progress" style="height: 10px; width: 230px">
 								<div
-									class="progress-bar progress-bar-info progress-bar-striped active"
+									class="progress-bar"
 									role="progressbar" aria-valuenow="40" aria-valuemin="0"
 									aria-valuemax="100"
 									style="width:${project.percent}%;height:10px"></div>
@@ -167,7 +167,7 @@
 						</div>
 						<div class="rdPercent">
 							<div class="remainDay" id="${project.projectNo}pf"></div>
-							<div style="display: inline-block;">&nbsp;${project.percent}%</div>
+							<div style="display:inline-block;width:85px;text-align:right">&nbsp;${project.percent}%</div>
 						</div>
 						<!-- D-day 구하는 자바스크립트 -->
  						<script>
@@ -223,7 +223,7 @@
 							 --%>
 							<div class="progress" style="height: 10px; width: 230px">
 								<div
-									class="progress-bar progress-bar-info progress-bar-striped active"
+									class="progress-bar"
 									role="progressbar" aria-valuenow="40" aria-valuemin="0"
 									aria-valuemax="100"
 									style="width:${project.percent}%;height:10px"></div>
@@ -231,7 +231,7 @@
 						</div>
 						<div class="rdPercent">
 							<div class="remainDay" id="${project.projectNo}art"></div>
-							<div style="display: inline-block;">&nbsp;${project.percent}%</div>
+							<div style="display:inline-block;width:85px;text-align:right">&nbsp;${project.percent}%</div>
 						</div>					
 						<!-- D-day 구하는 자바스크립트 -->
 						<script>
@@ -286,7 +286,7 @@
 							 --%>
 							<div class="progress" style="height: 10px; width: 230px">
 								<div
-									class="progress-bar progress-bar-info progress-bar-striped active"
+									class="progress-bar"
 									role="progressbar" aria-valuenow="40" aria-valuemin="0"
 									aria-valuemax="100"
 									style="width:${project.percent}%;height:10px"></div>
@@ -294,7 +294,7 @@
 						</div>
 						<div class="rdPercent">
 							<div class="remainDay" id="${project.projectNo}book"></div>
-							<div style="display: inline-block;">&nbsp;${project.percent}%</div>
+							<div style="display:inline-block;width:85px;text-align:right">&nbsp;${project.percent}%</div>
 						</div>
 						<!-- D-day 구하는 자바스크립트 -->
 						<script>
@@ -349,7 +349,7 @@
 							 --%>
 							<div class="progress" style="height: 10px; width: 230px">
 								<div
-									class="progress-bar progress-bar-info progress-bar-striped active"
+									class="progress-bar"
 									role="progressbar" aria-valuenow="40" aria-valuemin="0"
 									aria-valuemax="100"
 									style="width:${project.percent}%;height:10px"></div>
@@ -357,7 +357,7 @@
 						</div>
 						<div class="rdPercent">
 							<div class="remainDay" id="${project.projectNo}mv"></div>
-							<div style="display: inline-block;">&nbsp;${project.percent}%</div>
+							<div style="display:inline-block;width:85px;text-align:right">&nbsp;${project.percent}%</div>
 						</div>
 						<!-- D-day 구하는 자바스크립트 -->			 
  						<script>
