@@ -6,13 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/SupportForMe/css/projectRegister.css">
+<link rel="stylesheet" href="<c:url value='/'/>css/projectRegister.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="http://malsup.github.com/jquery.form.js"></script> 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script src="/SupportForMe/smarteditor/js/HuskyEZCreator.js?ver=1"></script>
-<script src="/SupportForMe/js/projectRegister.js?ver=1.5"></script>
+<script src="<c:url value='/'/>smarteditor/js/HuskyEZCreator.js?ver=1"></script>
+<script src="<c:url value='/'/>js/projectRegister.js?ver=1.5"></script>
 <title>프로젝트 등록</title>
 <style>
 </style>
