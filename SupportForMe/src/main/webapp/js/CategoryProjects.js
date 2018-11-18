@@ -41,9 +41,7 @@
 															+ count;
 
 													$('.div2')
-													.append('<div class="project_box" id='
-																	+ data[i].projectNo
-																	+ '>'
+													.append('<div class="project_box" style="cursor: pointer;" id='+ data[i].projectNo + ' onclick="location.href=\''+contextPath + '/support/getProjectDetailPage?projectNo='+data[i].projectNo+'\'">'
 																	+ '		<div class="mypage_project_image"><img src="'+contextPath+'/upload/'+data[i].image +'" onerror="this.src=\''+contextPath+'/images/대체이미지.jpg\'"></div>'
 																	+ '			<div class="mypage_project_content">'
 																	+ '				<div class="project_state progress'+data[i].progressCd+'">'
