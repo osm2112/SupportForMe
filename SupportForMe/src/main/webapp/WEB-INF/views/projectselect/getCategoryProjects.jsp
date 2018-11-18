@@ -15,13 +15,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/loading.css">
 
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/getCategoryProjects.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/CategoryProjects.css">
 <script>
 var contextPath = '<%= request.getContextPath() %>';
 var searchCondition = '${searchCondition}';
 var Pcount =  '${count}';
 </script>
-<script src="<%=request.getContextPath()%>/js/getCategoryProjects.js"></script>
+<script src="<%=request.getContextPath()%>/js/CategoryProjects.js"></script>
 </head>
 <body>
 
