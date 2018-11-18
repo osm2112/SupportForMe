@@ -36,6 +36,7 @@ function addComma(num) {
 
 </head>
 <body>
+<div id="progress" style="display:none">${project.progress}</div>
 <div id="path" style="display:none"><c:url value='/'/></div>
  <!-- The Modal -->
  <div id="alertModal" class="modal">
