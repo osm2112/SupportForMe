@@ -49,7 +49,6 @@
 					서포미 PICKS
 				</div>
 				<br>
-
 				<div class="flexslider">
 					<ul class="slides">
 						<c:forEach items="${Pick}" var="pick">

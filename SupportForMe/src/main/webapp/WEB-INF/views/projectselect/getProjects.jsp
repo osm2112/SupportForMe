@@ -28,12 +28,23 @@ var Pcount =  '${count}';
 	<div class="pjdtl_bodysize">
 		<div class="wrapper">
 			<div class="div1">
+				<c:if test="${count eq 0}">
+				<h1 class="text3dss" style="text-align: left;  color: black;">${count}개의검색결과</h1>
+				<p class="text3dss" style="text-align: left; font-size: 25px;">"${searchDTO.searchKeyword}"에 대한 검색결과가 없습니다.</p>
+				<ul style="font-size:20px;">
+				<li>단어의 철자가 정확한지 확인해 보세요.</li>
+				<li>한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.</li>
+				<li>검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.</li>
+				</ul>
+				</c:if>
+				
+				<c:if test="${count ne 0}">
 				<h1 class="text3dss" style="text-align: left;  color: black;">${count}개의검색결과</h1>
 				<p class="text3dss" style="text-align: left; font-size: 25px;">검색어 "${searchDTO.searchKeyword}"</p>
+				</c:if>
 				<br> <br>
 			</div>
 			<div class="div2">
-
 				<c:forEach items="${list}" var="project">
 					<div class="project_box" id="${project.projectNo}"
 						style="cursor: pointer;"
@@ -59,7 +70,7 @@ var Pcount =  '${count}';
 					</div>
 				</c:forEach>
 
-				<!--  참고
+			<!--  참고
 			<div class="card" style="width: 20rem;">
 				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
 				<div class="card-body">
@@ -70,7 +81,7 @@ var Pcount =  '${count}';
 					<a href="#" class="btn btn-primary">Go somewhere</a>
 				</div>
 			</div>
- 				-->
+ 			-->
 			</div>
 		</div>
 	</div>
