@@ -128,22 +128,30 @@ $(function() {
 			$("#alertModal").show();
 		}else {
 			delSeq = $(this).closest(".reward_preview_box").attr("id").substring(2);
-			$("#confirmMessage").text("해당 선물을 삭제하시겠습니까?");
-			$("#confirmModal").show();  
+			console.log(delSeq);
+			$("#confirmRDMessage").text("해당 선물을 삭제하시겠습니까?");
+			$("#confirmRD").show();  
 		}
 	});
 	
 	
-	$("#confirmModalOk").click(function(){
-		console.log(delSeq);
+	$("#confirmRDOk").click(function(){
 		var params = "presentNo=" + delSeq;
 		var url = path + "forme/deleteReward";
 			$.getJSON(url,params,function(datas){
 				$('#rw'+delSeq).remove();
-				$("#confirmModal").hide();	
-			});
+				$("#confirmRD").hide();	
+				delSeq = '';
+		});
 	});
-	
+	$("#confirmRDCel").click(function(){
+		$("#confirmRD").hide()
+		$("#confirmRDMessage").text('');
+	});
+	$(".close").click(function(){
+		$(this).closest(".modal").hide();
+		$(this).next().text('');
+	});
 	
 	function deliveryDateInput(date) {
 		var dateList = $(".rw_preview_delivery");

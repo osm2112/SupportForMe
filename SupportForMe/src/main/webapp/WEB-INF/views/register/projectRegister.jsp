@@ -13,7 +13,7 @@
 
 <script src="<c:url value='/'/>smarteditor/js/HuskyEZCreator.js?ver=1"></script>
 <script src="<c:url value='/'/>js/projectRegister.js?ver=1.5"></script>
-<title>프로젝트 등록</title>
+<title>프로젝트 등록</title>  
 <style>
 </style>
 <script>
@@ -55,16 +55,6 @@ function addComma(num) {
   	<div id="confirmMessage">
   	</div>
   	<button type="button" id="confirmModalOk">확인</button> <button id="confirmModalCel">취소</button>
-   </div>
- </div>
- <!-- 등록 완료 모달 -->
-<div id="confirmRC" class="modal">
-   <!-- Modal content -->
-   <div class="modal-content">                                                                   
-    <div class="close">&times;</div>
-  	<div id="confirmRCMessage">
-  	</div>
-  	<button type="button" id="confirmRCOk">확인</button> <button id="confirmRCCel">취소</button>
    </div>
  </div>
 <div id="hiddenProjectNo" style="display:none">${project.projectNo}</div>

@@ -17,19 +17,23 @@ $(function() {
 			}
 		});
 		$("#confirmModalOk").click(function(e){
-				e.preventDefault();
-				$("#result").empty();
-				var url = path + "forme/pageMove/"+projectNo+"/"+navClick;
-				$.ajax({
-					url : url,
-					type : "post",
-					success : function(result) {
-						$("."+$("._active").attr("class").substr(0,4)).removeClass("_active");
-						$(".rn"+navClick).addClass("_active");
-						$("#result").html(result);
-						$("#confirmModal").hide();
-				}
-			}); 
+				if(navClick != ''){
+					e.preventDefault();
+					$("#result").empty();
+					var url = path + "forme/pageMove/"+projectNo+"/"+navClick;
+					$.ajax({
+						url : url,
+						type : "post",
+						success : function(result) {
+							$("."+$("._active").attr("class").substr(0,4)).removeClass("_active");
+							$(".rn"+navClick).addClass("_active");
+							$("#result").html(result);
+							$("#confirmModal").hide();
+							navClick = '';
+					}
+				}); 
+			}
+				
 		});
 
 		
