@@ -86,7 +86,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
         </div>
     </nav>
     <session style="float: left">
+    
     <div style="width: 1000px">
+    <div><h3>프로젝트명 : ${presentList[0].projectName}</h3></div>
         <h3>리워드 선택</h3>
         <hr>
     <c:forEach items="${presentList}" var="presentList">

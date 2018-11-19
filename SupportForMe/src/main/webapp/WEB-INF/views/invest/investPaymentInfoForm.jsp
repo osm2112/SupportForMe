@@ -43,6 +43,7 @@ var path = "<c:url value='/'/>";
 					url : path+"forme/AddrInput",
 					method : "post",
 					type : "json",
+					async:false,
 					success : function(data) {
 							document.querySelector("#name").value = data.name;
 							document.querySelector("#postcode").value = data.postcode;
@@ -238,7 +239,7 @@ var path = "<c:url value='/'/>";
 			<div class="form-group">
 				<label style="width: 150px;" class="col-lg-1 control-label">＊전화번호</label>
 				<div class="col-lg-2" style="padding-left: 3px;">
-					<select class="form-control" id="tel1" style="width: 150px;">
+					<select class="form-control" id="tel1" name="tel1" style="width: 150px;">
 						<option value="010">010</option>
 						<option value="011">011</option>
 						<option value="016">016</option>

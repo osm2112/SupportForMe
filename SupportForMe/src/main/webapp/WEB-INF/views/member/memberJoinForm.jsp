@@ -328,9 +328,8 @@ caption {
 			<div class="form-group">
 				<label for="inputEmail" class="col-lg-2 control-label">*이메일</label>
 				<div class="col-lg-5">
-					<input class="form-control" id="email" type="email" size="20"
-						onkeyup="CheckEmail()"> <span id="checkEmailResult"
-						style="display: table-cell; vertical-align: middle;"></span>
+					<input class="form-control" id="email" type="email" size="20"onkeyup="CheckEmail()"> 
+					<span id="checkEmailResult"	style="display: table-cell; vertical-align: middle;"></span>
 
 				</div>
 
