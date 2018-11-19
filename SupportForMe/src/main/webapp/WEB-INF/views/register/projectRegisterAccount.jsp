@@ -111,5 +111,15 @@ $(function(){
 	<c:if test="${project.progress == '004'}">
 		<input type="button" name="complete" class="register_button" value="등록완료">
 	</c:if>
+	 <!-- 등록 완료 모달 -->
+	<div id="confirmRC" class="modal">
+	   <!-- Modal content -->
+	   <div class="modal-content">                                                                   
+	    <div class="close">&times;</div>
+	  	<div id="confirmRCMessage">
+	  	</div>
+	  	<button type="button" id="confirmRCOk">확인</button> <button id="confirmRCCel">취소</button>
+	   </div>
+	 </div>
 </body>
 </html>

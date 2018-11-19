@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="<%=request.getContextPath()%>/js/projectRegisterReward.js?ver=1.2"></script>
+<script src="<%=request.getContextPath()%>/js/projectRegisterReward.js?ver=1.3"></script>
 </head>
 <body>
 <div style="height: 50px"></div>
@@ -36,7 +36,9 @@
 		    <div class="rg_delivery"> 
 		    	<input type="text" name="presentDeliveryDate" id="presentDeliveryDate">
 		    </div>
+		    <c:if test="${project.projectDeadline ne null}">
 		    <span style="display:inline-block;padding-top:15px;"> 마감일 ${project.projectDeadline}</span>
+		    </c:if>
 	    </div>
 	    <script>
 	    var deadline = '${project.projectDeadline}';
@@ -87,5 +89,15 @@
 <div style="height:50px"></div>
 <input type="button" name="save" class="save_button reward" value="저장하기">
 <input type="button" name="next" class="next_button reward" value="다음 단계">
+ <!-- 리워드 삭제  모달 -->
+	<div id="confirmRD" class="modal">
+	   <!-- Modal content -->
+	   <div class="modal-content">                                                                   
+	    <div class="close">&times;</div>
+	  	<div id="confirmRDMessage">
+	  	</div>
+	  	<button type="button" id="confirmRDOk">확인</button> <button id="confirmRDCel">취소</button>
+	   </div>
+	 </div>
 </body>
 </html>
