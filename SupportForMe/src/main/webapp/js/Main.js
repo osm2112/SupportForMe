@@ -35,17 +35,13 @@
 												/* .css({"font-weight" : "700"}); */
 											},
 											after : function(slider) {
-												$('.real_time_rank_projects li')
-												.eq(slider.currentSlide - 1)
-												.removeClass("ranktext");
+												$('.real_time_rank_projects li').eq(slider.currentSlide - 1).removeClass("ranktext");
 												/* 		$('.real_time_rank_projects li').eq(
 																slider.currentSlide - 1).attr("class","ranktext");										
 														$('.real_time_rank_projects li').eq(
 																slider.currentSlide).attr("class","no");
 												 */
-												$('.real_time_rank_projects li')
-												.eq(slider.currentSlide)
-												.addClass("ranktext");
+												$('.real_time_rank_projects li').eq(slider.currentSlide).addClass("ranktext");
 											}
 										});
   

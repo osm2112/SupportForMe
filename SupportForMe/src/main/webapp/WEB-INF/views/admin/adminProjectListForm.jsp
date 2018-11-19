@@ -158,12 +158,12 @@
 		<c:forEach items="${list}" var="list">
 			<tr>
 				<td><input type="checkbox" name="ids" value="${list.projectNo}"></td>
-				<td>${list.projectName}</td>
-				<td>${list.name}</td>
-				<td>${list.userId}</td>
-				<td>${list.projectDeadline}</td>
-				<td>${list.targetAmount}</td>
-				<td>${list.codeName}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.projectName}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.name}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.userId}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.projectDeadline}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.targetAmount}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.codeName}</td>
 			</tr>
 		</c:forEach>
 		
