@@ -111,7 +111,7 @@
 <form action="<c:url value='/'/>forme/AdminProjectProgressList" id="searchForm" name="searchForm">
 <div class="input-group" style="width:1200px;">
 	<input type="hidden" name="page" value="1">
-	<select name="searchCondition" class="form-control" style="width:200px;">
+	<select name="searchCondition" class="form-control" style="width:150px;">
 		<option value="">전체</option>
 		<option value="projectName">프로젝트명</option>
 		<option value="name">프로젝트작성자</option>
@@ -126,7 +126,7 @@
 		<option value="005">보류</option>
 		<option value="006">완료</option>
 	</select>
-	<input type="text" name="searchKeyword" value="" class="form-control" style="width:600px;">
+	<input type="text" name="searchKeyword" value="" class="form-control" style="width:550px;">
 	<input type="submit" class="btn _btn2" value="검색" style="width:200px;"><br>
 	<select id="pageUnit" name="pageUnit" class="form-control" onchange="veiwNumber()" style="width:200px;">
 		<option value="10">10개씩 보기</option>
@@ -158,12 +158,12 @@
 		<c:forEach items="${list}" var="list">
 			<tr>
 				<td><input type="checkbox" name="ids" value="${list.projectNo}"></td>
-				<td>${list.projectName}</td>
-				<td>${list.name}</td>
-				<td>${list.userId}</td>
-				<td>${list.projectDeadline}</td>
-				<td>${list.targetAmount}</td>
-				<td>${list.codeName}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.projectName}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.name}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.userId}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.projectDeadline}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.targetAmount}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.codeName}</td>
 			</tr>
 		</c:forEach>
 		
