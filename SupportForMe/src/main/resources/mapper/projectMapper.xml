@@ -159,7 +159,7 @@
     	  	      	from invest i JOIN project p on( i.PROJECT_NO = p.project_no)
     	  	      	where p.progress ='001' 
      		      	group by i.project_no, p.project_name, p.image
-	      	    	order by count desc)
+	      	    	order by count desc, project_no desc)
 		 		WHERE rownum <=5 
 		 		]]>
 	</select>
