@@ -9,6 +9,7 @@
 		<result column="PRESENT_NAME" property="presentName" />
 		<result column="PROJECT_NO" property="projectNo" />
 		<result column="DELIVERY_DATE" property="deliveryDate" />
+		<result column="PROJECT_NAME" property="projectName" />
 	</resultMap>
 
 	<select id="getPresentList" parameterType="invest"
@@ -17,7 +18,8 @@
 		PRESENT.PRESENT_PRICE PRESENT_PRICE,
 		PRESENT.PRESENT_NAME PRESENT_NAME,
 		PRESENT.PROJECT_NO PROJECT_NO,
-		PROJECT.DELIVERY_DATE DELIVERY_DATE
+		PROJECT.DELIVERY_DATE DELIVERY_DATE,
+		PROJECT.PROJECT_NAME
 		FROM PRESENT JOIN PROJECT
 		ON PRESENT.PROJECT_NO = PROJECT.PROJECT_NO
 		WHERE

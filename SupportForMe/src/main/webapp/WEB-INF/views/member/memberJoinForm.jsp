@@ -205,8 +205,8 @@ caption {
 			return false;
 		} else {
 			var regexp = /[0-9]{4}/;
-			console.log(tel2 + '_' + tel3)
-			if (!regexp.test(Number(tel2)) || !regexp.test(Number(tel3))) {
+			console.log(typeof tel2 + '_' + typeof tel3)
+			if (!regexp.test(tel2) || !regexp.test(tel3)) {
 				alert('전화번호는 숫자이여야 합니다.');
 				return false;
 			}
@@ -256,121 +256,43 @@ caption {
 	<div class="wrapper">
 		<div class="div1">
 			<h1 style="text-align: left;">&nbsp&nbsp&nbsp&nbsp&nbsp회원가입</h1>
-			<br> <img src="<c:url value='/'/>images/회원이미지2.png" width="1200px"
-				height="170px">
+			<br> <img src="<c:url value='/'/>images/회원이미지2.png" width="1200px"	height="170px">
 		</div>
 		<div class="div2 form-horizontal" style="margin-left: 23%;">
-
-			<!-- <table class="table1">
-				<caption>
-					<span>*</span> 
-					<span class="p1">표시는 필수 입력사항 입니다.</span>
-				</caption>
-				<tbody>
-
-
-					<tr>
-						<td><span>＊</span>아이디</td>
-						<td><input id="userId" type="text" size="10" onkeyup="CheckId()"><span id="checkIdResult"></span></td>
-					</tr>
-					
-					<tr>
-						<td width="150"><span>＊</span>이름</td>
-						<td><input id="name" type="text" size="10"></td>
-					</tr>
-
-					<tr>
-						<td><span>＊</span>비밀번호</td>
-						<td><input id="password" type="password" size="10" maxlength="15" onkeyup="PasswordRegexCheck()"><span id="PasswordRegexCheck"><font color="red">비밀번호는 특수문자 /문자/ 숫자를 한자 이상  포함 형태의 8~15자리 이내여야 합니다.</font></span></td>
-					</tr>
-
-					<tr>
-						<td><span>＊</span>비밀번호확인</td>
-						<td><input id="password2" type="password" size="10"></td>
-					</tr>
-
-					<tr>
-						<td><span>＊</span>E-mail&nbsp;주소</td>
-						<td><input id="email" type="email" size="20" onkeyup="CheckEmail()"><span id="checkEmailResult"></span></td>
-					</tr>
-					<tr>
-						<td><span>＊</span>전화번호</td>
-						<td><select id="tel1">
-								<option value="010">010</option>
-								<option value="011">011</option>
-								<option value="016">016</option>
-								<option value="017">017</option>
-								<option value="018">018</option>
-								<option value="019">019</option>
-						</select> - <input type="text" id="tel2" size="10" maxlength="4"> - <input type="text" id="tel3" size="10" maxlength="4"></td>
-					</tr>
-
-					<tr>
-						<td><span>＊</span>주소</td>
-						<td>
-							<input type="text" size="10" id="postcode" id="postcode"value="" readonly="readonly"> 
-							<input type="button" onclick="SearchPostcode()" value="우편번호검색" class=""><br>
-							<div id="layer"	style="display: none; position: fixed; overflow: hidden; z-index: 1; -webkit-overflow-scrolling: touch;">
-							<img src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"	id="btnCloseLayer"	style="cursor: pointer; position: absolute; right: -3px; top: -3px; z-index: 1"	onclick="closeDaumPostcode()" alt="닫기 버튼">
-							</div>
-							<script src="../js/SearchAddr.js"></script>
-							<input type="text" id="address" size="60" id="address"value="" readonly="readonly"> 
-							<input type="text" size="60" id="addrDetail"value="" >
-						</td>
-					</tr>
-					<tr>
-						<td>자기소개</td>
-						<td><textarea id="introduction"class="textarea1"> </textarea></td>
-					</tr>
-					<tr style="text-align: right;">
-						<td colspan="2">
-							<input type="button" onclick="InsertMember()" value="회원가입하기"> 
-							<input type="button" value="취소">
-						</td>
-					</tr>
-				</tbody>
-			</table> -->
 			<br>
 			<br>
 			<br>
 			<br>
-
-
+			
 			<!-- 아이디 -->
 			<div class="form-group">
-				<label for="inputId" class="col-lg-2 control-label">아이디</label>
+				
+				<label for="inputId" class="col-lg-2 control-label">*아이디</label>
 				<div class="col-lg-5">
-					<input class="form-control" id="userId" type="text" size="10"
-						onkeyup="CheckId()"> <span id="checkIdResult"
-						style="display: table-cell; vertical-align: middle; text-align: left;"></span>
-
+					<input class="form-control" id="userId" type="text" size="10" onkeyup="CheckId()"> 
+					<span id="checkIdResult"	style="display: table-cell; vertical-align: middle; text-align: left;"></span>
 				</div>
-
 			</div>
 			<!-- 비밀번호 -->
 			<div class="form-group">
-				<label for="inputPassword" class="col-lg-2 control-label">비밀번호</label>
+				<label for="inputPassword" class="col-lg-2 control-label">*비밀번호</label>
 				<div class="col-lg-5">
-					<input class="form-control" id="password" type="password" size="10"
-						maxlength="15" onkeyup="PasswordRegexCheck()"> <span
-						id="PasswordRegexCheck"
-						style="display: table-cell; vertical-align: middle;"><font
-						color="red">비밀번호는 특수문자 /문자/ 숫자를 한자 이상 포함 형태의 8~15자리 이내여야
-							합니다.</font></span>
+					<input class="form-control" id="password" type="password" size="10"	maxlength="15" onkeyup="PasswordRegexCheck()"> 
+					<span id="PasswordRegexCheck" style="display: table-cell; vertical-align: middle;">
+						<font color="red">비밀번호는 특수문자 /문자/ 숫자를 한자 이상 포함 형태의 8~15자리 이내여야 	합니다.</font>
+					</span>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label for="inputPasswordCheck" class="col-lg-2 control-label">비밀번호
-					확인</label>
+				<label for="inputPasswordCheck" class="col-lg-2 control-label">비밀번호 확인</label>
 				<div class="col-lg-5">
-					<input class="form-control" id="password2" type="password"
-						size="10" maxlength="15">
+					<input class="form-control" id="password2" type="password" size="10" maxlength="15">
 				</div>
 			</div>
 			<!-- 이름 -->
 			<div class="form-group">
-				<label for="inputName" class="col-lg-2 control-label">이름</label>
+				<label for="inputName" class="col-lg-2 control-label">*이름</label>
 				<div class="col-lg-5">
 					<input class="form-control" id="name" type="text" size="10">
 
@@ -378,8 +300,7 @@ caption {
 			</div>
 			<!-- 휴대폰 -->
 			<div class="form-group">
-				<label for="inputPhoneNumber" class="col-lg-2 control-label">휴대폰
-					번호</label>
+				<label for="inputPhoneNumber" class="col-lg-2 control-label">*휴대폰번호</label>
 				<div class="col-lg-1" style="width: 150px;">
 					<select class="form-control" id="tel1">
 						<option value="010">010</option>
@@ -390,30 +311,25 @@ caption {
 						<option value="019">019</option>
 					</select>
 				</div>
-				<div class="col-lg-1"
-					style="display: table; width: 1px; height: 34px; padding-left: 0px; padding-right: 0px;">
+				<div class="col-lg-1" style="display: table; width: 1px; height: 34px; padding-left: 0px; padding-right: 0px;">
 					<span style="display: table-cell; vertical-align: middle;">-</span>
 				</div>
 				<div class="col-lg-2" style="width: 135px;">
-					<input class="form-control" type="text" id="tel2" size="10"
-						maxlength="4">
+					<input class="form-control" type="text" id="tel2" size="10"	maxlength="4">
 				</div>
-				<div class="col-lg-1"
-					style="display: table; width: 1px; height: 34px; padding-left: 0px; padding-right: 0px;">
+				<div class="col-lg-1" style="display: table; width: 1px; height: 34px; padding-left: 0px; padding-right: 0px;">
 					<span style="display: table-cell; vertical-align: middle;">-</span>
 				</div>
 				<div class="col-lg-2" style="width: 135px;">
-					<input class="form-control" type="text" id="tel3" size="10"
-						maxlength="4">
+					<input class="form-control" type="text" id="tel3" size="10"		maxlength="4">
 				</div>
 			</div>
 			<!-- 이메일 -->
 			<div class="form-group">
-				<label for="inputEmail" class="col-lg-2 control-label">이메일</label>
+				<label for="inputEmail" class="col-lg-2 control-label">*이메일</label>
 				<div class="col-lg-5">
-					<input class="form-control" id="email" type="email" size="20"
-						onkeyup="CheckEmail()"> <span id="checkEmailResult"
-						style="display: table-cell; vertical-align: middle;"></span>
+					<input class="form-control" id="email" type="email" size="20"onkeyup="CheckEmail()"> 
+					<span id="checkEmailResult"	style="display: table-cell; vertical-align: middle;"></span>
 
 				</div>
 
@@ -421,17 +337,15 @@ caption {
 			</div>
 			<!-- 주소 -->
 			<div class="form-group" style="margin-bottom: 5px;">
-				<label class="col-lg-2 control-label">주소</label>
+				<label class="col-lg-2 control-label">*주소</label>
 				<div class="col-lg-3">
-					<input class="form-control" type="text" size="10" id="postcode"
-						id="postcode" value="" readonly="readonly">
+					<input class="form-control" type="text" size="10" id="postcode"	id="postcode" value="" readonly="readonly">
 				</div>
 				<div class="col-lg-2" style="padding-left: 0px;">
 					<input class="form-control" type="button"
 						onclick="SearchPostcode()" value="우편번호검색" class="">
 				</div>
-				<div id="layer"
-					style="display: none; position: fixed; overflow: hidden; z-index: 1; -webkit-overflow-scrolling: touch;">
+				<div id="layer"	style="display: none; position: fixed; overflow: hidden; z-index: 1; -webkit-overflow-scrolling: touch;">
 					<img
 						src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"
 						id="btnCloseLayer"
@@ -466,7 +380,9 @@ caption {
 
 			<!-- 회원가입버튼 -->
 			<div class="form-group">
+				
 				<div class="col-lg-offset-2 col-lg-5" style="text-align: right;">
+					<font style="color:red; font-size: 15px;font-weight: bold;">*는 필수 입력 사항 입니다.</font><br><br>
 					<input class="btn btn-default _btn" type="button"
 						onclick="InsertMember()" value="회원가입하기"> <input
 						class="btn btn-default _btn" type="button"

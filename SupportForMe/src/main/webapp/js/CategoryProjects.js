@@ -64,7 +64,7 @@
 																	+ ' 				<div class="text3d">목표금액 '
 																	+ data[i].targetAmount
 																	+ '원</div>'
-																	+ '<div style="height: 5px"></div>'
+																	+ '<div class="remainDay">D-'+data[i].remaindate+'</div>'
 																	+ '<div>'
 																	//<button class="btn btn-default _btn1" onclick="location.href=\''+contextPath+'/forme/make/'+data[i].projectNo+'\'">수정</button>
 																	+ '			</div>'

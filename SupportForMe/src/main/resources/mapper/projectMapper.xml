@@ -14,6 +14,7 @@
          	SELECT DISTINCT p.project_no, p.support_pick_yn , p.delivery_date , p.category_code, p.project_name , p.image, TO_CHAR( p.target_amount , '999,999,999,999,999') "target_amount", p.project_deadline , p.user_id,  p.progress "progress_cd", c.code_name "progress"  
          	,PROJECT_PROGRESS_RATE(p.project_no) "percent"
          	,TO_CHAR( FUNC_TOTAL_INVEST_AMOUNT(p.project_no) , '999,999,999,999,999') "totalInvest"
+         	, CEIL(to_date(p.project_deadline,'yyyy.MM.dd') -  sysdate ) "remaindate"
          	FROM project p JOIN common_code c ON (p.progress = c.code) 
 		<if test="searchKeyword != null and searchKeyword != '' ">
 			LEFT OUTER JOIN hashtag h
@@ -159,7 +160,7 @@
     	  	      	from invest i JOIN project p on( i.PROJECT_NO = p.project_no)
     	  	      	where p.progress ='001' 
      		      	group by i.project_no, p.project_name, p.image
-	      	    	order by count desc)
+	      	    	order by count desc, project_no desc)
 		 		WHERE rownum <=5 
 		 		]]>
 	</select>

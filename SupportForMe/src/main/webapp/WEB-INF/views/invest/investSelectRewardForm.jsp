@@ -69,6 +69,13 @@
 				form.submit();
 	}
 	</script>
+	
+<style>
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
+	-webkit-appearance: none;
+	margin: 0;
+}
+</style>
 <body>
     
     <div style="width: 1200px" class="bodysize">
@@ -79,7 +86,9 @@
         </div>
     </nav>
     <session style="float: left">
+    
     <div style="width: 1000px">
+    <div><h3>프로젝트명 : ${presentList[0].projectName}</h3></div>
         <h3>리워드 선택</h3>
         <hr>
     <c:forEach items="${presentList}" var="presentList">

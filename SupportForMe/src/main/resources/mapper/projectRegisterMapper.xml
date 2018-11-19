@@ -61,7 +61,16 @@
 	
 	<!-- 프로젝트 등록 완료  -->
 	<update id="completeProject" parameterType="project">
-		UPDATE PROJECT SET progress = '001'
+		UPDATE PROJECT
+		SET 
+			progress = '001'
+			<if test="depositAccount != null and depositAccount != ''">  
+		 	,DEPOSIT_ACCOUNT = #{depositAccount}
+		 	</if>
+		 	<if test="bankCode != null and bankCode != ''"> 
+		 	,BANK_CODE = #{bankCode}
+		 	</if>
+			
 		WHERE PROJECT_NO = #{projectNo}
 	</update>
 	

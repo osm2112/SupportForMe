@@ -27,10 +27,17 @@ public class ProjectDTO {
 	private String[] arrVideo;
 	private String[] arrImage;
 	
+	private String remaindate;
 	private String percent;
 	private String totalInvest;
 	
 	
+	public String getRemaindate() {
+		return remaindate;
+	}
+	public void setRemaindate(String remaindate) {
+		this.remaindate = remaindate;
+	}
 	public String getProgressCd() {
 		return progressCd;
 	}

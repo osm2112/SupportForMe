@@ -14,12 +14,12 @@ input[type=text]:-webkit-autofill {
 #headDiv {
 	margin:0px;
     border-bottom:1px solid #EEEEEE;
-    background-color:white;
     z-index:5;
 }
 .headBodysize {
   display:grid;
   grid-template-columns: 1fr 8fr 1fr;
+  background-color:white;
 }
 #head{
   padding : 10px 20px;

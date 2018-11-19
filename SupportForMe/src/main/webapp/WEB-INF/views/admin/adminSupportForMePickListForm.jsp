@@ -148,6 +148,7 @@
 			<th>프로젝트작성자</th>
 			<th>프로젝트작성ID</th>
 			<th>서포미 픽 여부</th>
+			<th>프로젝트 진행 상태</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -159,6 +160,7 @@
 				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.name}</td>
 				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.userId}</td>
 				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.supportPickYn}</td>
+				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.projectStatus}</td>
 			</tr>
 		</c:forEach>
 	</tbody>
