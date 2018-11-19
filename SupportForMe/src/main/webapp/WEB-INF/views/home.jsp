@@ -23,10 +23,14 @@
 <!--  메인화면 디자인 CSS -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/Main.css">
+	
+<!-- 메인화면 자바스크립트 -->
+<script>var contextPath = "<%=request.getContextPath()%>";</script>
+<script src="<%=request.getContextPath()%>/js/Main.js"></script>
 </head>
 <body>
-	<!-- 메인화면 자바스크립트 -->
-	<script src="<%=request.getContextPath()%>/js/Main.js"></script>
+
+
 
 	<!-- <span class="text3dss" style="font-size: 35px;"><i class="fa fa-paint-brush" style="color: rgb(6, 135, 133);"></i></span> -->
 	<div class="flexslider2">

@@ -1,6 +1,6 @@
 
 
-var contextPath = '<c:url value='/'/>';
+
 	$(document)
 			.ready(
 					function() {
@@ -66,8 +66,8 @@ var contextPath = '<c:url value='/'/>';
 										"src", contextPath+"/upload/" + data[i].image);
 								$('.real_time_image ul li img').eq(i + 1).attr(
 										"onclick",
-										"location.href='"+contextPath+"/support/getProjectDetailPage?projectNo="
-												+ data[i].projectNo + "'");
+										"location.href=\'"+contextPath+"/support/getProjectDetailPage?projectNo="
+												+ data[i].projectNo + "\'");
 								$('.real_time_rank_projects nav ol li')
 										.eq(i)
 										.html(
