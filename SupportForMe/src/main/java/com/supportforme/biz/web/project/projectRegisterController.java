@@ -167,7 +167,7 @@ public class projectRegisterController {
 		String s = currentRelativePath.toAbsolutePath().toString();
 		System.out.println("Current relative path is: " + s);
         
-		File file = new File(folder);
+		File file = new File(folder);  
         //디렉토리 존재하지 않을경우 디렉토리 생성
         if(!file.exists()) {
         	file.mkdirs();
