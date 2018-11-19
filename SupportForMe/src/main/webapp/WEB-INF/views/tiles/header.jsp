@@ -153,9 +153,9 @@ function view2() {
   <ul>
     <li><a href="<%= request.getContextPath() %>/forme/MemberUpdateConfirmForm">프로필 설정</a></li>
     <li><a href="<%= request.getContextPath() %>/forme/getMyProjects">나의 프로젝트</a></li>
-    <li><a href="<%= request.getContextPath() %>/forme/MyInvestList">나의 투자 현황</a></li>
-    <li><a href="<%= request.getContextPath() %>/forme/MyInvestors">나의 투자자</a></li>
+    <li><a href="<%= request.getContextPath() %>/forme/MyInvestList">나의 투자 현황</a></li> 
     <li><a href="<%= request.getContextPath() %>/forme/InvestList">나의 결재 내역</a></li>
+    <li><a href="<%= request.getContextPath() %>/forme/MyInvestors">나의 투자자</a></li>
     <c:set var ="id" value="${member.userId}"/>
     <c:if test="${fn:contains(id,'Admin' )}">
     <li><a href="<%= request.getContextPath() %>/forme/AdminProjectProgressList">프로젝트 관리</a></li>
