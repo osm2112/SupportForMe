@@ -2,6 +2,8 @@ package com.supportforme.biz.web.project;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -159,7 +163,9 @@ public class projectRegisterController {
 	@ResponseBody
 	public Map<String,String> fileUpload(@ModelAttribute("project") ProjectDTO dto, HttpServletRequest request) throws IllegalStateException, IOException {
 		String folder = request.getSession().getServletContext().getRealPath("/upload");
-//		String folder2 = "C:\\Users\\hyeon\\git\\SupportForMe\\SupportForMe\\src\\main\\webapp\\upload";
+		Path currentRelativePath = Paths.get("");
+		String s = currentRelativePath.toAbsolutePath().toString();
+		System.out.println("Current relative path is: " + s);
         
 		File file = new File(folder);
         //디렉토리 존재하지 않을경우 디렉토리 생성
