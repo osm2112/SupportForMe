@@ -32,18 +32,36 @@
     </div>
     <div class="reward_grid">
 	    <label>예상 배송일 </label>
-	    <span class="rg_delivery"> 
-	    	<input type="text" name="presentDeliveryDate" id="presentDeliveryDate">
-	    </span>
+	    <div style="display:grid; grid-template-columns: 1fr 1fr;margin:0">
+		    <div class="rg_delivery"> 
+		    	<input type="text" name="presentDeliveryDate" id="presentDeliveryDate">
+		    </div>
+		    <span style="display:inline-block;padding-top:15px;"> 마감일 ${project.projectDeadline}</span>
+	    </div>
 	    <script>
+	    var deadline = '${project.projectDeadline}';
+	    var minDate,maxDate;
+	    console.log(deadline);
+	    if(deadline != ''){
+	    	minDate = new Date(deadline);
+	    	maxDate = new Date(deadline);
+	    	maxDate.setDate(maxDate.getDate()+13);
+	    }else {
+	    	minDate = '+1w';
+	    	maxDate = "+1m +19d";
+	    }
 		$("#presentDeliveryDate").datepicker(
 				{
 					dateFormat : "yy-mm-dd",
-					maxDate : "+2m", //7 // new Data(2018,11,20)
-					minDate : "1w",
+					maxDate : maxDate,
+					minDate : minDate,
 					dayNamesMin : [ "일", "월", "화", "수", "목", "금", "토" ],
 					onSelect : function(strDate, obj) {
-						
+						if(deadline == ''){
+							$("#alertMessage").text("프로젝트 마감일을 먼저 선택해주세요.");
+							$("#alertModal").show();
+							$("#presentDeliveryDate").val('');
+						}
 					},
 					showOn : "both",
 					buttonImage : "/SupportForMe/images/calendar.png",
