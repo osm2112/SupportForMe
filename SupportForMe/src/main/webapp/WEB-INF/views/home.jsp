@@ -184,7 +184,7 @@
 						</script>
 					</div>
 				</div>
-			</c:forEach>
+			</c:forEach>  
 		</div>
 		
 		<div style="height: 70px"></div>
