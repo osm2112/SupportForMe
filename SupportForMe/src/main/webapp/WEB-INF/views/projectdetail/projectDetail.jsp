@@ -665,8 +665,17 @@ function invest(){
         </div>
 
         <div class="pjdtl-empty-content"></div>
+<!-- 알림 -->
+        
 <!-- 리워드 -->
         <div class="pjdtl-reward">
+        	<br><br>
+        	<div style="padding:10px 0px; background-color:#F0FFF0;">
+        	<span style="color:#5D5D5D; font-size:15px; font-weight:bold;">&nbsp;100% 이상 모이면 펀딩이 성공되는 프로젝트</span><br>
+        		<div style="color:#747474; padding:0px 5px;">
+        		이 프로젝트는 펀딩 마감일까지 목표 금액이<br>100% 모이지 않으면 결제가 진행되지 않습니다.
+        		</div>
+        	</div><br>
             <div style="font-size:30px;">리워드 목록</div>
             <c:if test="${present.size()>0}">
             <c:forEach var="i" begin="0" end="${present.size()-1}" varStatus="status">
