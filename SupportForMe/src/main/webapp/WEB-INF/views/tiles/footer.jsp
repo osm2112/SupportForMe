@@ -31,7 +31,7 @@ body {
 <script>
 setInterval(function() {
     var timer = new Date();
-    var h = timer.getHours();
+    var h = timer.getHours();  
     var m = timer.getMinutes();
     var s = timer.getSeconds();
 	$(".clock").html(h + ":" + m + ":" + s);
