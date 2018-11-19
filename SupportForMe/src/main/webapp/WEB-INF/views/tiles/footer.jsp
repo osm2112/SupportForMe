@@ -25,13 +25,13 @@ body {
 	font-size:20px;	
 	text-align: center;
 	padding-top: 5px ;
-	background-color:#F5FFFA	;
+	background-color:white;  
 }
 </style>
 <script>
 setInterval(function() {
     var timer = new Date();
-    var h = timer.getHours();
+    var h = timer.getHours();  
     var m = timer.getMinutes();
     var s = timer.getSeconds();
 	$(".clock").html(h + ":" + m + ":" + s);

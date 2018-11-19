@@ -29,6 +29,15 @@
     padding-bottom: 0.5em;
 }
 </style>
+<script>
+ 	function OnSubmitCheck(){
+ 		alert('메일 발송까지  최대 2분 걸립니다.\n메일이 정상 발송되면 메시지가 출력됩니다.\n잠시만 기다려 주세요. ');
+ 	}
+
+
+
+</script>
+
 </head>
 <body>  
 	<div> 
@@ -47,7 +56,7 @@
 							<span class="input-group-addon">EMAIL</span> 
 							<input name="email" type="text" placeholder="EMAIL를 입력하세요" class="form-control">
 						</div>
-						<input class="btn btn-default btn-block _btn" type="submit" value="ID 찾기">
+						<input class="btn btn-default btn-block _btn" type="submit" onclick="OnSubmitCheck()" value="ID 찾기">
 					</form>
 				</div>
 			</div>

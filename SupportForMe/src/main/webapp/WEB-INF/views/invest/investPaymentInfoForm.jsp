@@ -43,6 +43,7 @@ var path = "<c:url value='/'/>";
 					url : path+"forme/AddrInput",
 					method : "post",
 					type : "json",
+					async:false,
 					success : function(data) {
 							document.querySelector("#name").value = data.name;
 							document.querySelector("#postcode").value = data.postcode;
@@ -107,6 +108,47 @@ var path = "<c:url value='/'/>";
 		});
 		
 		$("#payment").click( function() {
+			
+			var name = document.getElementById("name").value;
+			var email = document.getElementById("email").value;
+			var tel1 = document.getElementById("tel1").value;
+			var tel2 = document.getElementById("tel2").value;
+			var tel3 = document.getElementById("tel3").value;
+			var postcode = document.getElementById("postcode").value;
+			var address = document.getElementById("address").value;
+			var addrDetail = document.getElementById("addrDetail").value;
+			if (!name) {
+				alert('이름이 입력되지 않았습니다.');
+				return false;
+			}
+			if (!email) {
+				alert('이메일주소가 입력되지 않았습니다.');
+				return false;
+			} else {
+				var emailRegexp = /[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/;
+				if (!emailRegexp.test(email)) {
+					alert('이메일 주소 형식은 OOO@OOO.OOO 입니다.');
+					return false;
+				}
+
+			}
+			if (!postcode || !address || !addrDetail) {
+				alert('주소가 입력되지 않았습니다.');
+				return false;
+			}
+			if (!tel1 || !tel2 || !tel3) {
+				alert('전화번호가 입력 되지 않았습니다.');
+				return false;
+			} else {
+				var regexp = /[0-9]{4}/;
+				console.log(tel2 + '_' + tel3)
+				if (!regexp.test(tel2) || !regexp.test(tel3)) {
+					alert('전화번호는 숫자이여야 합니다.');
+					return false;
+				}
+			}
+			
+			
 					IMP.request_pay({
 									pg : 'html5_inicis',
 									pay_method : 'card',
@@ -197,7 +239,7 @@ var path = "<c:url value='/'/>";
 			<div class="form-group">
 				<label style="width: 150px;" class="col-lg-1 control-label">＊전화번호</label>
 				<div class="col-lg-2" style="padding-left: 3px;">
-					<select class="form-control" id="tel1" style="width: 150px;">
+					<select class="form-control" id="tel1" name="tel1" style="width: 150px;">
 						<option value="010">010</option>
 						<option value="011">011</option>
 						<option value="016">016</option>
