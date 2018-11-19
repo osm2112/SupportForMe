@@ -51,7 +51,7 @@ $(function(){
 	$("#confirmRCOk").click(function(){ 
 		$("#confirmRC").hide();
 		var url = path + "forme/registerComplete";
-		var params = {projectNo : '${project.projectNo}'};
+		var params = $("#registerAccountFrm").serialize();
 		$.getJSON(url,params,function(result){
 			if(result.code=="success"){
 				$("#alertMessage").text('정상적으로 등록되었습니다.');

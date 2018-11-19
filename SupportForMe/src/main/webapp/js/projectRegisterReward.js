@@ -120,31 +120,29 @@ $(function() {
 			$("#registerRewardFrm [name=presentDeliveryDate]").val(reward.presentDeliveryDate);
 		}
 	});
-	
+	var delSeq;
 	//선물 삭제 
 	$("#reward_preview").on("click",".rewardDel",function(){
 		if(progress != '004'){
 			$("#alertMessage").text("진행중인 프로젝트는 리워드를 삭제할 수 없습니다.");
 			$("#alertModal").show();
 		}else {
-			var seq = $(this).closest(".reward_preview_box").attr("id").substring(2);
+			delSeq = $(this).closest(".reward_preview_box").attr("id").substring(2);
 			$("#confirmMessage").text("해당 선물을 삭제하시겠습니까?");
 			$("#confirmModal").show();  
-			rewardDel(seq);
 		}
 	});
 	
-	function rewardDel (seq){
-		console.log(seq);
-		$("#confirmModalOk").click(function(){
-			var params = "presentNo=" + seq;
-			var url = path + "forme/deleteReward";
+	
+	$("#confirmModalOk").click(function(){
+		console.log(delSeq);
+		var params = "presentNo=" + delSeq;
+		var url = path + "forme/deleteReward";
 			$.getJSON(url,params,function(datas){
-				$('#rw'+seq).remove();
+				$('#rw'+delSeq).remove();
 				$("#confirmModal").hide();	
 			});
-		});
-	}
+	});
 	
 	
 	function deliveryDateInput(date) {

@@ -21,10 +21,11 @@ body {
 }
 .clock {
 	height:35px;
-	border-top:1px solid rgba(0, 0, 0, 0.2);
+	border-top:1px solid #EEEEEE;
 	font-size:20px;	
 	text-align: center;
 	padding-top: 5px ;
+	background-color:#F5FFFA	;
 }
 </style>
 <script>

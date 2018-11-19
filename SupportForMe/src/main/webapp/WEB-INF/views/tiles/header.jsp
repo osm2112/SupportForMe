@@ -10,7 +10,7 @@
 
 <title>SupportForMe</title>
 <link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico" />
-<link rel="stylesheet" href="<c:url value='/'/>css/header.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css">
 
 
 <style>
