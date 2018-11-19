@@ -77,7 +77,9 @@
 	<update id="updateMember" parameterType="member">
 	UPDATE MEMBER
 	SET 
-	PASSWORD = #{password},
+	<if test="password != null and password !='' ">
+		PASSWORD = #{password},
+	</if>
 	NAME = #{name}, 
 	ADDRESS = #{address}, 
 	PHONE_NUM = #{phoneNum}, 

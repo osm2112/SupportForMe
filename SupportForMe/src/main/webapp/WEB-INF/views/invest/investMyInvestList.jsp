@@ -17,7 +17,7 @@
 
 .project_box {
 	width: 260px;
-	height: 425px;
+	height: 470px;
 	border: 1px solid #EEEEEE;
 	display: inline-block;
 	margin-right: 10px;
@@ -192,7 +192,7 @@ $(document).ready(function() {
 					<div style="font-size: 18px;margin-bottom:5px"><strong>${list.projectName}</strong></div>
 				</div>
 				<div style="font-size: 16px;color: #5e5e5e;">리워드</div>
-				<div style="font-size: 18px;color: #211f1f;margin-bottom:10px;height:50px">${list.presentName}</div>
+				<div style="font-size: 18px;color: #211f1f;margin-bottom:10px;height:75px;">${list.presentName}</div>
 				<div><div class="content_name">총 투자 금액</div><div class="content_value">${list.invenstAmount}원</div></div>
 				<div><div class="content_name">투자일</div><div class="content_value">${list.investDate}</div></div>
 				<div class="content_name">배송예정일</div><div class="content_value">${list.deliveryDate}</div>

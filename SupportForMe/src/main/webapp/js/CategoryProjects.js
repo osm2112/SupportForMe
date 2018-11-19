@@ -18,7 +18,7 @@
 									
 									console.log($(".project_box").length);
 
-									if (maxHeight <= currentScroll) {
+									if (maxHeight <= currentScroll+5) {
 											loadArticle(lastno);
 									}
 						});

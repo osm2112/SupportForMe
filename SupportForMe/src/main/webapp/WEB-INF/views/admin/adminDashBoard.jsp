@@ -76,10 +76,15 @@
 
 				      var options = {
 				        title: "월별 회원 가입 현황",
+				        titleTextStyle:{
+				        	fontSize : 25,
+				        	bold:true
+				        },
 				        width: 1000,
-				        height: 200,
+				        height: 300,
 				        bar: {groupWidth: "85%"},
 				        legend: { position: "none" },
+				       	vAxis: {viewWindowMode:'explicit', viewWindow: { min: 0}}
 				      };
 				      var chart = new google.visualization.ColumnChart(document.getElementById("chart1"));
 				      chart.draw(view, options);
@@ -145,10 +150,15 @@
 
 				      var options = {
 				        title: "프로젝트 생성 현황",
+				        titleTextStyle:{
+				        	fontSize : 25,
+				        	bold:true
+				        },
 				        width: 1000,
-				        height: 200,
+				        height: 300,
 				        bar: {groupWidth: "85%"},
 				        legend: { position: "none" },
+				        vAxis: {viewWindowMode:'explicit', viewWindow: { min: 0}}
 				      };
 				      var chart = new google.visualization.ColumnChart(document.getElementById("chart2"));
 				      chart.draw(view, options);
@@ -215,10 +225,15 @@
 
 				      var options = {
 				        title: "결제 금액 합계",
+				        titleTextStyle:{
+				        	fontSize : 25,
+				        	bold:true
+				        },
 				        width: 1000,
-				        height: 200,
+				        height: 300,
 				        bar: {groupWidth: "85%"},
 				        legend: { position: "none" },
+				        vAxis: {viewWindowMode:'explicit', viewWindow: { min: 0}}
 				      };
 				      var chart = new google.visualization.ColumnChart(document.getElementById("chart3"));
 				      chart.draw(view, options);
@@ -341,10 +356,16 @@
 
 				      var options = {
 				        title: "프로젝트 보류 건수",
+				        titleTextStyle:{
+				        	fontSize : 25,
+				        	bold:true
+				        },
 				        width: 1000,
-				        height: 200,
+				        height: 300,
 				        bar: {groupWidth: "85%"},
 				        legend: { position: "none" },
+				        vAxis: {viewWindowMode:'explicit', viewWindow: { min: 0}}
+				   
 				      };
 				      var chart = new google.visualization.ColumnChart(document.getElementById("chart4"));
 				      chart.draw(view, options);
@@ -467,24 +488,22 @@
 
 				      var options = {
 				        title: "프로젝트 등록 건수",
+				        titleTextStyle:{
+				        	fontSize : 25,
+				        	bold:true
+				        },
 				        width: 1000,
-				        height: 200,
+				        height: 300,
 				        bar: {groupWidth: "85%"},
 				        legend: { position: "none" },
+				        vAxis: {viewWindowMode:'explicit', viewWindow: { min: 0}}
 				      };
 				      var chart = new google.visualization.ColumnChart(document.getElementById("chart5"));
 				      chart.draw(view, options);
 				}
 			});
 	  }  
-	    
-	
-	
-	
 
-    
-    
-    
 </script>
 <style>
   /* 사이드바 래퍼 스타일 */
@@ -569,11 +588,11 @@
 			<h5>DashBoard</h5>
 			<hr>
 			<div class="container-fluid">
-				<div id="chart5" style="width: 1000px; height: 200px;"></div>
-				<div id="chart4" style="width: 1000px; height: 200px;"></div>
-				<div id="chart1" style="width: 1000px; height: 200px;"></div>
-				<div id="chart2" style="width: 1000px; height: 200px;"></div>
-				<div id="chart3" style="width: 1000px; height: 200px;"></div>
+				<div id="chart5" style="width: 1000px; "></div>
+				<div id="chart4" style="width: 1000px; "></div>
+				<div id="chart1" style="width: 1000px; "></div>
+				<div id="chart2" style="width: 1000px; "></div>
+				<div id="chart3" style="width: 1000px; "></div>
 				
 			</div>
 		</div>

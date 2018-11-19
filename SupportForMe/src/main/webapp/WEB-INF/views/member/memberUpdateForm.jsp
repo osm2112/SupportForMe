@@ -49,19 +49,15 @@ textarea.textarea1 {
 		var addrDetail = document.getElementById("addrDetail").value;
 		var introduction = document.getElementById("introduction").value;
 
-		if (!password || !password2) {
-			alert('비밀번호가 입력되지 않았습니다.');
-			return false;
-		}
-
-		if (password != password2) {
-			alert('비밀번호가 일치하지 않습니다.');
-			return false;
-		}
-
-		if (passwordRegexCheck == false) {
-			alert('비밀번호는 특수문자 /문자/ 숫자를 한자 이상  포함 형태의 8~15자리 이내여야 합니다.');
-			return false;
+		if (password || password2) {
+			if (passwordRegexCheck == false) {
+				alert('비밀번호는 특수문자 /문자/ 숫자를 한자 이상  포함 형태의 8~15자리 이내여야 합니다.');
+				return false;
+			}
+			if (password != password2) {
+				alert('비밀번호가 일치하지 않습니다.');
+				return false;
+			}
 		}
 
 		if (!email) {
@@ -156,9 +152,8 @@ textarea.textarea1 {
 	<div class="form-group">
 		<label class="col-lg-1 control-label" style="width:150px;">＊새 비밀번호</label>
 		<div class="col-lg-6" style="padding-left: 3px;">
-			<input class="form-control" id="password" type="password" size="10"
-					maxlength="15" onkeyup="PasswordRegexCheck()"><span id="PasswordRegexCheck"><font color="red">비밀번호는 특수문자
-							/문자/ 숫자를 한자 이상 포함 형태의 8~15자리 이내여야 합니다.</font></span>
+			<input class="form-control" id="password" type="password" size="10"	maxlength="15" onkeyup="PasswordRegexCheck()">
+			<span id="PasswordRegexCheck"><font color="red">비밀번호는 특수문자/문자/ 숫자를 한자 이상 포함 형태의 8~15자리 이내여야 합니다.</font></span>
 		</div>
 		<br>
 		<br>
@@ -278,87 +273,5 @@ textarea.textarea1 {
 					<input class="btn btn-default" type="button" value="취소">	
 				</div>
 			</div>
-			
-	
-	<%-- <table class="table" border="1">
-		<tbody>
-			<tr style="color: lightgrey">
-				<th><span>＊</span>아이디</th>
-				<td><input id="userId" type="text" size="10"
-					readonly="readonly" value="${member.userId}"
-					style="color: lightgrey"></td>
-			</tr>
-			<tr style="color: lightgrey">
-				<th width="150"><span>＊</span>이름</th>
-				<td><input id="name" type="text" size="10" readonly="readonly"
-					value="${member.name}" style="color: lightgrey"></td>
-			</tr>
-			<tr>
-				<th><span>＊</span>새 비밀번호</th>
-				<td><input id="password" type="password" size="10"
-					maxlength="15" onkeyup="PasswordRegexCheck()"><br> <span
-					id="PasswordRegexCheck"><font color="red">비밀번호는 특수문자
-							/문자/ 숫자를 한자 이상 포함 형태의 8~15자리 이내여야 합니다.</font></span></td>
-			</tr>
-
-			<tr>
-				<th><span>＊</span>비밀번호확인</th>
-				<td><input id="password2" type="password" size="10"></td>
-			</tr>
-
-			<tr style="color: lightgrey">
-				<th><span>＊</span>E-mail&nbsp;주소</th>
-				<td><input id="email" type="email" size="20"
-					value="${member.email}" readonly="readonly"
-					style="color: lightgrey"><br></td>
-			</tr>
-			<tr>
-				<th><span>＊</span>전화번호</th>
-				<td><select id="tel1">
-						<option value="010">010</option>
-						<option value="011">011</option>
-						<option value="016">016</option>
-						<option value="017">017</option>
-						<option value="018">018</option>
-						<option value="019">019</option>
-				</select> - <input type="text" id="tel2" size="10" maxlength="4"> - <input
-					type="text" id="tel3" size="10" maxlength="4"></td>
-			</tr>
-			<script>
-				var phoneNum = '${member.phoneNum}';
-				var telArray = phoneNum.split('-');
-				document.getElementById("tel1").value = telArray[0];
-				document.getElementById("tel2").value = telArray[1];
-				document.getElementById("tel3").value = telArray[2];
-			</script>
-			<tr>
-				<th><span>＊</span>주소</th>
-				<td><input type="text" size="10" id="postcode" id="postcode"
-					value="${member.postcode}" readonly="readonly"> <input
-					type="button" onclick="SearchPostcode()" value="우편번호검색" class=""><br>
-					<div id="layer"
-						style="display: none; position: fixed; overflow: hidden; z-index: 1; -webkit-overflow-scrolling: touch;">
-						<img
-							src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"
-							id="btnCloseLayer"
-							style="cursor: pointer; position: absolute; right: -3px; top: -3px; z-index: 1"
-							onclick="closeDaumPostcode()" alt="닫기 버튼">
-					</div> <script src="../js/SearchAddr.js"></script> <input type="text"
-					id="address" size="60" id="address" value="${member.address}"
-					readonly="readonly"><br> <input type="text" size="60"
-					id="addrDetail" value="${member.addrDetail}"></td>
-			</tr>
-			<tr>
-				<th>자기소개</th>
-				<td><textarea id="introduction" class="textarea1">${member.introduction}</textarea></td>
-			</tr>
-			<tr style="text-align: right;">
-				<td colspan="2"><input type="button" onclick="UpdateMember()"
-					value="정보수정하기"> <input type="button"
-					onclick="location.href='../forme/MemberDeleteConfirmForm'"
-					value="회원탈퇴하기"> <input type="button" value="취소"></td>
-			</tr>
-		</tbody>
-	</table> --%>
 </body>
 </html>
