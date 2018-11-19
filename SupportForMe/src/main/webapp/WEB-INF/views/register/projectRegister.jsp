@@ -13,7 +13,7 @@
 
 <script src="<c:url value='/'/>smarteditor/js/HuskyEZCreator.js?ver=1"></script>
 <script src="<c:url value='/'/>js/projectRegister.js?ver=1.5"></script>
-<title>프로젝트 등록</title>
+<title>프로젝트 등록</title>  
 <style>
 </style>
 <script>
