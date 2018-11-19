@@ -13,258 +13,38 @@
 <!--  부트스트랩 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/loading.css">
-<style>
-/*↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓*/
-.pjdtl_bodysize {
-	margin-left: auto;
-	margin-right: auto;
-	width: 1100px;
-}
-/*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑*/
-.wrapper {
-	display: grid;
-	grid-template-columns: 25% 25% 25% 25%;
-	grid-auto-rows: minmax(100px, auto);
-}
 
-/* .wrapper>div {
-	background-color: orange;
-	border: 1px black solid;
-} */
-.div1 {
-	grid-column: 1/5;
-}
-
-.div2 {
-	display: grid;
-	grid-column: 1/5;
-	grid-column-gap: 20px;
-	grid-row-gap: 2em;
-	grid-template-columns: repeat(4, 1fr);
-	/*grid-template-columns: 25% 25% 25% 25%;*/
-	grid-auto-rows: minmax(300px, auto);
-	/* text-align: center; */
-}
-
-/* .div2>div {
-	background-color: blue;
-	border: 1px red solid;
-}  */
-<!--
--->
-.project_box {
-	width: 100%;
-	height: 350px;
-	border: 1px solid #EEEEEE;
-	padding:0;
-}
-
-.project_box:hover {
-	/* 	border: 4px solid rgb(26, 188, 156); */
-	box-shadow: 5px 5px 3px lightgrey;
-}
-
-.project_state,.state {
-	width: 100px;
-	height: 30px;
-	font-weight:700;
-	font-family:'';
-	border-radius:5px;
-	text-align:center;
-	padding-top:2px;
-	margin-bottom:5px;
-}
-.mypage_project_content {
-	margin-left: 15px;
-	width: 100%;
-	height: 180px;
-}
-
-.mypage_project_image {
-	width: 100%;
-	height: 170px;
-	margin: -2px -5px 0 0;
-	padding:0 ;
-}
-
-.mypage_project_image img {
-	margin:0;
-	width: 100%;
-	height: 100%;
-	object-fit: .mypage_project_image;
-}
-.mypage_project_content ul {
-	list-style-type: none;
-}
-<!-- -->
-/* .text3dss{
-text-shadow:   0 1px 0 #ccc,
-               0 2px 0 #c9c9c9,
-               0 3px 0 #bbb,
-               0 4px 0 #b9b9b9,
-               0 5px 0 #aaa,
-               0 6px 1px rgba(0,0,0,.1),
-               0 0 5px rgba(0,0,0,.1),
-               0 1px 3px rgba(0,0,0,.3),
-               0 3px 5px rgba(0,0,0,.2),
-               0 5px 10px rgba(0,0,0,.25),
-               0 10px 10px rgba(0,0,0,.2),
-               0 20px 20px rgba(0,0,0,.15);
-      font:Arial, Helvetica, sans-serif;
-      color:grey; 
- } */
-.text3d {
-	/* text-shadow:1px 1px white, -1px -1px #666; */
-	font-size:17px;
-}
-
-.text3dPn {
-	/*  text-shadow:-1px -1px white, 1px 1px #666; */
-	font-size: 18px;
-	display: block;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	width: 200px;
-	height:30px;
-}
- .tI {
-	display:inline-block;
-	width:195px;
-}
-/*진행중 */
-.progress001 {
-	border:1px solid #FF007F;
-	color: #FF007F;
-}
-/* 마감 */
-.progress002 {
-	border:1px solid #8041D9;
-	color:#8041D9;
-}
-/* 무산 */
-.progress003 {
-	border:1px solid #a6a6a6;
-	color:#a6a6a6;
-}
-/* 제작중 */
-.progress004 {
-	border:1px solid #CC3D3D;
-	color: #CC3D3D;
-}
-/* 보류 */
-.progress005 {
-	border:1px solid #008299;
-	color:#008299;
-}
-/* 완료 */
-.progress006 {
-	border:1px solid #D9418C;
-	color:#D9418C;
-}
-</style>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/Projects.css">
 <script>
 var contextPath = '<%= request.getContextPath() %>';
-	$(document)
-			.ready(
-					function() {
-						var count = 0;
-						
-						if ($(".project_box").length <= '${count}' ) {
-							$('.loader').addClass('display-none');
-						}
-						
-						$(document).scroll(function() {
-									var lastno = $(".project_box").last().attr("id");
-									var maxHeight = $(document).height();
-									var currentScroll = $(window).scrollTop()+ $(window).height();
-
-									console.log("documentHeight:" + maxHeight + " | scrollTop +windowHeight: " + currentScroll );
-									if (maxHeight <= currentScroll +1) {
-											loadArticle(lastno);
-											}				
-								});
-						function loadArticle(lastno) {
-
-							$.ajax({
-										type : "post",
-										url : contextPath+"/support/getProjects",
-										data : {
-											"projectNo" : lastno,
-											"searchKeyword" : '${searchDTO.searchKeyword}'
-										},
-										dataType : "json",
-										success : function(data) {
-											 $('.loader').addClass('display-none');
-											
-											if (data.length > 0) {
-												for (i = 0; i < data.length; i++) {
-													count = ++count;
-													var select = "project_state"+ count;
-
-													$('.div2')
-													.append('<div class="project_box" id='
-																	+ data[i].projectNo
-																	+ '>'
-																	+ '		<div class="mypage_project_image"><img src="'+contextPath+'/upload/'+data[i].image +'" onerror="this.src=\''+contextPath+'/images/대체이미지.jpg\'"></div>'
-																	+ '			<div class="mypage_project_content">'
-																	+ '				<div class="project_state progress'+data[i].progressCd+'">'
-																	+ data[i].progress
-																	+ '</div>'
-																	+ '  				<div class="text3d" style="font-size: 16px;">'
-																	+ data[i].userId
-																	+ '님</div>'
-																	+ ' 				<div style="height: 5px"></div>'
-																	+ '   				<div class="text3dPn"><strong>'
-																	+ data[i].projectName
-																	+ '</strong></div>'
-																	+ ' 				<div style="height: 5px"></div>'
-																	+ '   				<div><span class="tI">'
-																	+ data[i].totalInvest
-																	+ '원</span><span class="text3d">&nbsp;'+ data[i].percent+ '%</span></div>'
-																	+ ' 				<div style="height: 5px"></div>'
-																	+ ' 	<div class="progress" style="height:15px;width:225px;margin-bottom:5px"><div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"'
-																	+ ' style="width:${project.percent}%;height:15px;background-color:rgb(26, 188, 156);"></div></div>'
-																	+ ' 				<div class="text3d">목표금액 '
-																	+ data[i].targetAmount
-																	+ '원</div>'
-																	+ '<div style="height: 5px"></div>'
-																	+ '<div>'
-																	//<button class="btn btn-default _btn1" onclick="location.href=\''+contextPath+'/forme/make/'+data[i].projectNo+'\'">수정</button>
-																	+ '			</div>'
-																	+ '	</div>');
-											$("#" + select).addClass("progress"+data[i].progressCd);
-													/* if (data[i].progress == '진행중') {
-														$("#" + select)
-																.css(
-																		{
-																			"border" : "1.5px solid rgb(211, 84, 0)",
-																			"color" : "rgb(211, 84, 0)"
-																		});
-													}  */
-												}
-											}
-										
-										},beforeSend:function(){											
-									        $('.loader').removeClass('display-none');											
-									    },timeout :5000
-									});
-							lastno = $(".project_box").last().attr("id");
-						}
-					});
+var searchKeyword = '${searchDTO.searchKeyword}';
+var Pcount =  '${count}';
 </script>
+<script src="<%=request.getContextPath()%>/js/Projects.js"></script>
 </head>
 <body>
 	<div class="pjdtl_bodysize">
 		<div class="wrapper">
 			<div class="div1">
+				<c:if test="${count eq 0}">
+				<h1 class="text3dss" style="text-align: left;  color: black;">${count}개의검색결과</h1>
+				<p class="text3dss" style="text-align: left; font-size: 25px;">"${searchDTO.searchKeyword}"에 대한 검색결과가 없습니다.</p>
+				<ul style="font-size:20px;">
+				<li>단어의 철자가 정확한지 확인해 보세요.</li>
+				<li>한글을 영어로 혹은 영어를 한글로 입력했는지 확인해 보세요.</li>
+				<li>검색어의 단어 수를 줄이거나, 보다 일반적인 검색어로 다시 검색해 보세요.</li>
+				</ul>
+				</c:if>
+				
+				<c:if test="${count ne 0}">
 				<h1 class="text3dss" style="text-align: left;  color: black;">${count}개의검색결과</h1>
 				<p class="text3dss" style="text-align: left; font-size: 25px;">검색어 "${searchDTO.searchKeyword}"</p>
+				</c:if>
 				<br> <br>
 			</div>
 			<div class="div2">
-
 				<c:forEach items="${list}" var="project">
 					<div class="project_box" id="${project.projectNo}"
 						style="cursor: pointer;"
@@ -275,7 +55,7 @@ var contextPath = '<%= request.getContextPath() %>';
 						</div>
 						<div class="mypage_project_content">
 							<div class="project_state progress${project.progressCd}">${project.progress}</div>
-							<div class="text3d" style="font-size: 16px;">${project.userId}님</div>
+							<div class="text3d" style="font-size: 16px;">${project.userId}</div>
 							<div style="height: 5px"></div>
 							<div class="text3dPn"><strong>${project.projectName}</strong></div>
 							<div style="height: 5px"></div>
@@ -290,7 +70,7 @@ var contextPath = '<%= request.getContextPath() %>';
 					</div>
 				</c:forEach>
 
-				<!--  참고
+			<!--  참고
 			<div class="card" style="width: 20rem;">
 				<img class="card-img-top" src="(db에서 받아온 이미지경로)" alt="Card image cap">
 				<div class="card-body">
@@ -301,7 +81,7 @@ var contextPath = '<%= request.getContextPath() %>';
 					<a href="#" class="btn btn-primary">Go somewhere</a>
 				</div>
 			</div>
- 				-->
+ 			-->
 			</div>
 		</div>
 	</div>

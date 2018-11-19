@@ -1,6 +1,6 @@
 
 
-var contextPath = '<c:url value='/'/>';
+
 	$(document)
 			.ready(
 					function() {
@@ -23,7 +23,7 @@ var contextPath = '<c:url value='/'/>';
 						$('.flexslider3')
 								.flexslider(
 										{
-											slideshowSpeed : 2000,
+											slideshowSpeed : 5000,
 											animation : "slide",
 											controlNav : false,
 											directionNav : false,
@@ -50,7 +50,7 @@ var contextPath = '<c:url value='/'/>';
 										});
   
 						Rank();
-						setInterval("Rank()", 8000);
+						setInterval("Rank()", 5000);
 
 					});
 	function Rank() {
@@ -66,8 +66,8 @@ var contextPath = '<c:url value='/'/>';
 										"src", contextPath+"/upload/" + data[i].image);
 								$('.real_time_image ul li img').eq(i + 1).attr(
 										"onclick",
-										"location.href='"+contextPath+"/support/getProjectDetailPage?projectNo="
-												+ data[i].projectNo + "'");
+										"location.href=\'"+contextPath+"/support/getProjectDetailPage?projectNo="
+												+ data[i].projectNo + "\'");
 								$('.real_time_rank_projects nav ol li')
 										.eq(i)
 										.html(

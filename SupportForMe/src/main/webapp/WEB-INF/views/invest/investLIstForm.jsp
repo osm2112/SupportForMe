@@ -72,13 +72,14 @@
 	</script>
 </div>
 </form>
-
-	<table class="table table-hover" style="width:1100px">
-		<tr><th>결제번호</th><th>프로젝트명</th><th>결제금액</th><th>결제방법</th><th>결제상태</th><th>결제일</th></tr>
-		<c:forEach items="${list}" var="list">
-			<tr onclick="location.href='<c:url value='/'/>forme/InvestDetail?investNo=${list.investNo}'"><td>${list.investNo }</td><td>${list.projectName }</td><td>${list.invenstAmount }</td><td>${list.payType}</td><td>${list.paymentState }</td><td>${list.investDate }</td></tr>
-		</c:forEach>
-	</table>
+	<div style="min-height:300px;">
+		<table class="table table-hover" style="width:1100px;">
+			<tr><th>결제번호</th><th>프로젝트명</th><th>결제금액</th><th>결제방법</th><th>결제상태</th><th>결제일</th></tr>
+			<c:forEach items="${list}" var="list">
+				<tr onclick="location.href='<c:url value='/'/>forme/InvestDetail?investNo=${list.investNo}'"><td>${list.investNo }</td><td>${list.projectName }</td><td>${list.invenstAmount }</td><td>${list.payType}</td><td>${list.paymentState }</td><td>${list.investDate }</td></tr>
+			</c:forEach>
+		</table>
+	</div>
 	<div style="width:1100px;text-align:center">
 		<my:paging paging="${paging}"/>
 	</div>

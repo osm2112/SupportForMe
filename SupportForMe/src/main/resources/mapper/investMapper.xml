@@ -203,6 +203,7 @@
 		<result column="PAY_TYPE" property="payType" />
 		<result column="PAYMENT_STATE" property="paymentState" />
 		<result column="INVEST_DATE" property="investDate" />
+		<result column="DELIVERY_DATE" property="deliveryDate" />
 		<result column="PRESENT_NAME" property="presentName" />
 		<result column="PRESENT_PRICE" property="presentPrice" />
 		<result column="PROJECT_PROGRESS" property="projectProgress" />
@@ -220,7 +221,8 @@
 				INVEST.INVESTMENT_AMOUNT 							INVESTMENT_AMOUNT,
 				COMMON_CODE.CODE_NAME								PAY_TYPE,
 				COMMON_CODE2.CODE_NAME								PAYMENT_STATE,
-				TO_CHAR(TO_DATE(SUBSTR(INVEST.INVEST_NO,0,8),'rrrrmmdd'), 'rrrr/mm/dd')	INVEST_DATE,
+				TO_CHAR(TO_DATE(SUBSTR(INVEST.INVEST_NO,0,8),'rrrrmmdd'), 'rrrr.mm.dd')	INVEST_DATE,
+				TO_CHAR(TO_DATE(PRESENT.PRESENT_DELIVERY_DATE,'rrrr-mm-dd'), 'rrrr.mm.dd')	DELIVERY_DATE,
 				PRESENT.PRESENT_NAME								PRESENT_NAME,
 				PRESENT.PRESENT_PRICE 								PRESENT_PRICE,
 				COMMON_CODE3.CODE_NAME 								PROJECT_PROGRESS,

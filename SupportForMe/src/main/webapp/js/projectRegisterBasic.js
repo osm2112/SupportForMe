@@ -4,6 +4,7 @@
 
 $(function() {
 	var path = $("#path").text();
+	var progress = $("#progress").text();
 	//저장하기
 	$(".save_button").click(function(){
 		url = path + "forme/saveProject/basic";
@@ -35,7 +36,8 @@ $(function() {
 
 //프로젝트 마감일 
 $("#projectDeadline").datepicker(
-		{
+		{	
+			
 			dateFormat : "yy-mm-dd",
 			maxDate : "+1m +19d", //7 // new Data(2018,11,20)
 			minDate : "1w",
@@ -53,8 +55,8 @@ $("#projectDeadline").datepicker(
 			buttonImage : "/SupportForMe/images/calendar.png",
 			buttonImageOnly : true,
 			buttonText : "Select date"
+			
 });
-
 //대표 이미지 
 $(".thumbnailImg").click(function(){
 	$("#fileUploadImage").click();
@@ -156,5 +158,11 @@ $(document).on("click",".remove",function(){
 })
 
 loadHashtagList();
-//hashtag 끝-----------------------------	
+//hashtag 끝-----------------------------
+
+if(progress != '004'){
+	$("input[name=targetAmount]").attr("readonly", true);
+	$("#projectDeadline").datepicker("destroy");
+	$("#projectDeadline").attr("readonly",true);
+}
 });

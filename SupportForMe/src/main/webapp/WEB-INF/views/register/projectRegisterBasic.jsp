@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="<%=request.getContextPath()%>/js/projectRegisterBasic.js"></script>
+<script src="<%=request.getContextPath()%>/js/projectRegisterBasic.js?ver=1"></script>
 <title>프로젝트 등록</title>
 </head>
 <body>
@@ -63,24 +63,26 @@
 				</c:if>
 				<script>
 				$("input[name=targetAmount]").on("focusout",function(){
-					var num = $("input[name=targetAmount]").val(); 
-					var regexp = /^[0-9]+$/;
-					if(regexp.test(num) || num == ''){
-						if(num != ''){
-							num = addComma(num);
-							$("input[name=targetAmount]").val(num);
-						}
-					}else {
-						$("#alertMessage").text("목표금액은 숫자만 가능합니다.");
-						$("#alertModal").show();
-						var targetAmount = '${project.targetAmount}';
-						if(targetAmount == ''){
-							$("input[name=targetAmount]").val('');
+					if("${project.progress}" == '004'){
+						var num = $("input[name=targetAmount]").val(); 
+						var regexp = /^[0-9]+$/;
+						if(regexp.test(num) || num == ''){
+							if(num != ''){
+								num = addComma(num);
+								$("input[name=targetAmount]").val(num);
+							}
 						}else {
-							$("input[name=targetAmount]").val(addComma('${project.targetAmount}'));
+							$("#alertMessage").text("목표금액은 숫자만 가능합니다.");
+							$("#alertModal").show();
+							var targetAmount = '${project.targetAmount}';
+							if(targetAmount == ''){
+								$("input[name=targetAmount]").val('');
+							}else {
+								$("input[name=targetAmount]").val(addComma('${project.targetAmount}'));
+							}
+							
 						}
-						
-					}
+					}	
 				});
 				 
 				 </script>

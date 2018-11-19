@@ -28,13 +28,21 @@
 	height: 40px;
 	font-size: 15px;
 	font-weight: 700;
-	color: rgb(26, 188, 156);
-	background-color: white;
 	border: 1px solid rgb(26, 188, 156);
 	border-radius: 7px;
 	padding: 5px;
 	margin-top:auto;
 	margin-bottom:auto;
+}
+.pickBtn-no {
+	background-color: white;
+	color: rgb(26, 188, 156);
+	padding-left: 30px;
+}
+.pickBtn-yes {
+	background-color: rgb(26, 188, 156);
+	color: white;
+	padding-left: 21px;
 }
 
 .pjdtl-hashtag {
@@ -172,4 +180,63 @@ ul {
 	cursor:pointer;
 }
 
+.btnUpdFrm, .btnDel, .rcBtnUpdFrm, .rcBtnDel, .rcBtnUpd, .rcBtnCancel {
+   border:1px solid #747474;
+   background:white;
+   color: #747474;
+   border-radius: 5px;
+}
+.btnUpdFrm:hover, .btnDel:hover, .rcBtnUpdFrm:hover, .rcBtnUpdFrm:hover, .rcBtnDel:hover, .rcBtnUpd:hover, .rcBtnCancel:hover {
+   border:1px solid rgb(26, 188, 156);
+   background:white;
+   color:rgb(26, 188, 156);
+   border-radius: 5px;
+}
+#replyBtnAdd, #btnAdd, #btnUpd, #btnCancel {
+   border:1px solid #747474;
+   background:white;
+   color: #747474;
+   border-radius: 5px;
+}
+#replyBtnAdd:hover, #btnAdd:hover, #btnUpd:hover, #btnCancel:hover {
+   border:1px solid rgb(26, 188, 156);
+   background:white;
+   color:rgb(26, 188, 156);
+   border-radius: 5px;
+}
 
+/*url 복사하기*/
+._tooltip {
+    position: relative;
+	display: inline-block;
+}
+._tooltip ._tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+._tooltip ._tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+._tooltip:hover ._tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

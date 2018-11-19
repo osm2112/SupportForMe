@@ -23,10 +23,13 @@
 <!--  메인화면 디자인 CSS -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/Main.css">
+	
+<!-- 메인화면 자바스크립트 -->
+<script>var contextPath = "<%=request.getContextPath()%>";</script>
+<script src="<%=request.getContextPath()%>/js/Main.js"></script>
 </head>
 <body>
-	<!-- 메인화면 자바스크립트 -->
-	<script src="<%=request.getContextPath()%>/js/Main.js"></script>
+
 
 
 	<!-- <span class="text3dss" style="font-size: 35px;"><i class="fa fa-paint-brush" style="color: rgb(6, 135, 133);"></i></span> -->
@@ -49,7 +52,6 @@
 					서포미 PICKS
 				</div>
 				<br>
-
 				<div class="flexslider">
 					<ul class="slides">
 						<c:forEach items="${Pick}" var="pick">
@@ -143,7 +145,7 @@
 							onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
-						<div class="text3d">${project.userId}님</div>
+						<div class="text3d">${project.userId}</div>
 						<div style="height: 5px"></div>
 						<div class="text3dPn" style="">
 							<strong>${project.projectName}</strong>
@@ -159,7 +161,7 @@
 							 --%>
 							<div class="progress" style="height: 10px; width: 230px">
 								<div
-									class="progress-bar progress-bar-info progress-bar-striped active"
+									class="progress-bar"
 									role="progressbar" aria-valuenow="40" aria-valuemin="0"
 									aria-valuemax="100"
 									style="width:${project.percent}%;height:10px"></div>
@@ -167,7 +169,7 @@
 						</div>
 						<div class="rdPercent">
 							<div class="remainDay" id="${project.projectNo}pf"></div>
-							<div style="display: inline-block;">&nbsp;${project.percent}%</div>
+							<div style="display:inline-block;width:85px;text-align:right">&nbsp;${project.percent}%</div>
 						</div>
 						<!-- D-day 구하는 자바스크립트 -->
  						<script>
@@ -207,7 +209,7 @@
 							onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
-						<div class="text3d">${project.userId}님</div>
+						<div class="text3d">${project.userId}</div>
 						<div style="height: 5px"></div>
 						<div class="text3dPn" style="">
 							<strong>${project.projectName}</strong>
@@ -223,7 +225,7 @@
 							 --%>
 							<div class="progress" style="height: 10px; width: 230px">
 								<div
-									class="progress-bar progress-bar-info progress-bar-striped active"
+									class="progress-bar"
 									role="progressbar" aria-valuenow="40" aria-valuemin="0"
 									aria-valuemax="100"
 									style="width:${project.percent}%;height:10px"></div>
@@ -231,7 +233,7 @@
 						</div>
 						<div class="rdPercent">
 							<div class="remainDay" id="${project.projectNo}art"></div>
-							<div style="display: inline-block;">&nbsp;${project.percent}%</div>
+							<div style="display:inline-block;width:85px;text-align:right">&nbsp;${project.percent}%</div>
 						</div>					
 						<!-- D-day 구하는 자바스크립트 -->
 						<script>
@@ -270,7 +272,7 @@
 							onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
-						<div class="text3d">${project.userId}님</div>
+						<div class="text3d">${project.userId}</div>
 						<div style="height: 5px"></div>
 						<div class="text3dPn" style="">
 							<strong>${project.projectName}</strong>
@@ -286,7 +288,7 @@
 							 --%>
 							<div class="progress" style="height: 10px; width: 230px">
 								<div
-									class="progress-bar progress-bar-info progress-bar-striped active"
+									class="progress-bar"
 									role="progressbar" aria-valuenow="40" aria-valuemin="0"
 									aria-valuemax="100"
 									style="width:${project.percent}%;height:10px"></div>
@@ -294,7 +296,7 @@
 						</div>
 						<div class="rdPercent">
 							<div class="remainDay" id="${project.projectNo}book"></div>
-							<div style="display: inline-block;">&nbsp;${project.percent}%</div>
+							<div style="display:inline-block;width:85px;text-align:right">&nbsp;${project.percent}%</div>
 						</div>
 						<!-- D-day 구하는 자바스크립트 -->
 						<script>
@@ -333,7 +335,7 @@
 							onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
 					</div>
 					<div class="main_project_content">
-						<div class="text3d">${project.userId}님</div>
+						<div class="text3d">${project.userId}</div>
 						<div style="height: 5px"></div>
 						<div class="text3dPn" style="">
 							<strong>${project.projectName}</strong>
@@ -349,7 +351,7 @@
 							 --%>
 							<div class="progress" style="height: 10px; width: 230px">
 								<div
-									class="progress-bar progress-bar-info progress-bar-striped active"
+									class="progress-bar"
 									role="progressbar" aria-valuenow="40" aria-valuemin="0"
 									aria-valuemax="100"
 									style="width:${project.percent}%;height:10px"></div>
@@ -357,7 +359,7 @@
 						</div>
 						<div class="rdPercent">
 							<div class="remainDay" id="${project.projectNo}mv"></div>
-							<div style="display: inline-block;">&nbsp;${project.percent}%</div>
+							<div style="display:inline-block;width:85px;text-align:right">&nbsp;${project.percent}%</div>
 						</div>
 						<!-- D-day 구하는 자바스크립트 -->			 
  						<script>

@@ -10,176 +10,11 @@
 
 <title>SupportForMe</title>
 <link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico" />
+<link rel="stylesheet" href="<c:url value='/'/>css/header.css">
 
 
 <style>
-#headDiv {
-	margin:0px;
-    border-bottom:1px solid lightgrey;
-    background-color:white;
-    z-index:5;
-}
-.headBodysize {
-  display:grid;
-  grid-template-columns: 1fr 10fr 1fr;
-}
-#head{
-  padding : 10px 20px;
-  display : grid;
-  grid-template-columns: 1.5fr 1fr 6fr 1.5fr; 
- /*  grid-template-columns: 2fr 1fr 6fr 1fr 1fr; */
-  grid-template-rows: 50px;    
-  grid-gap: 20px;  
-   
-}
-#head > #site_name {
-  color : rgb(26, 188, 156);
-  font-size : 30px; 
-}
 
-#make_project {
-   font-size : 16px;
-   font-weight : 800;
-   color: white;
-   background-color : rgb(26, 188, 156);
-   border-radius: 5px;
-   border : none;
-   padding : 5px 40px; 
-   margin-top : 7px;
-   margin-left : 50px;
-}
-#make_project:hover {
-	cursor:pointer;
-}
-#search_div1 {
-    display:none;
-}
-#search_div2 {
-    text-align : right; 
-    height : 45px;
-    padding-right : 10px;
-    padding-top : 15px;
-    display : flex;
-    justify-content : flex-end;
-}
-.searchImg {
-    height : 25px;
-    width : 25px;
-    vertical-align: top;
-}
-.search_keyword {
-        width :350px;
-        height : 25px;
-        margin: 0px 10px;
-        border : none;
-        border-bottom: 1px solid rgb(127, 127, 127);
-        font-size : 18px;
-        color:rgb(127, 127, 127);
-        padding-left:10px;
-}
-#head_font_size {
-    font-size:18px;
-    padding-top:15px;
-    text-align:center;
-    width : 100px;
-    color:#474747;
-    font-weight:550;
-}
-#logout_head_menu {
-    display:grid;
-    grid-template-columns: 80px 80px;
-} 
-          
-@media(max-width:850px){
-    .bodysize {
-        display:grid;
-        grid-template-columns: 0fr 1fr 0fr;
-        grid-template-rows:80px;
-    }
-    #head {
-        display:grid;
-   /*      grid-template-columns : 1fr 3fr ; */
-        
-    }
-    #head > #site_name {
-     color : rgb(26, 188, 156);
-     font-size : 30px; 
-    }
-    #make_project {
-        display:none;
-    }
-    #head > #search_div1 {
-        height : 45px;
-        padding-right : 10px;
-        padding-top : 15px;
-        display:flex;
-    }
-    #search_div1 > .search_keyword {
-        display:none;
-    }
-    #head > #search_div2 {
-        display:none;
-    }
-    
-    #search_div2 > input {
-        display:none;
-    }
-    #logout_head_menu{
-        display:none;
-    }
-    
-    #head_font_size {
-   		display:none;
-    }
-}   
-
-
-<!-- 사이드바 -->
-/* body { margin: 0; padding: 0; }
-body.dark { background: rgba(0,0,0,.4); z-index: 30; }
- */
-.hamburger-wrapper {
-  float: right;
-
-}
-.hamburger {
-  cursor: pointer;
-}
-#close-sidenav {
-  cursor: pointer;
-  font-size: 3em;
-  margin-top: -10px;
-  margin-right:5px;
-  float: right;
-}
-#sidenav {
-
-  z-index : 50;
-  height: 100%; width: 260px;
-  top: 70.5px; right: -260px;
-  background: white;
-  border : 1px solid #EEEEEE;
-  position: fixed;
-  transition: 0.4s;
-}
-#sidenav ul { margin: 0; padding: 0; list-style-type: none;}
-
-#sidenav header {
-	border : 0px;
-	height: 180px;
-	text-align: center;
-	font-size: 1em;
-}
-#sidenav a {
-  color: #474747;
-  display: block;
-  text-decoration: none;
-  padding: 1em;
-  font-weight:600;
-  border-bottom:1px solid #EEEEEE;
-}
-#sidenav header { background: rgb(26, 188, 156); }
-#sidenav a:hover { background: lightgrey; }
 </style>
 <script>
 function go_register() {
@@ -203,31 +38,17 @@ function go_register() {
 <body>
 <script>
 function view() {
-	/* var mql = window.matchMedia("screen and (max-width: 850px)"); */
 
-	
 	var objDiv = document.getElementById("site_name");
 	var objDiv2 = document.getElementById("searchKeyword");
-	
-    if(/* objDiv.style.display=="block" */
-    	objDiv.classList.contains( 'block' )  ){ 
-    	
-    	objDiv.classList.add( 'none' );
-    	objDiv.classList.remove( 'block' );
-    	objDiv2.classList.add( 'block' );
-    	objDiv2.classList.remove( 'none' );
-    /* 	
-    	objDiv.style.display = "none";
-    	objDiv2.style.display = "block"; */
+	var mypageIcon = document.getElementById("userIcon");
+    if(objDiv2.style.display=="block"){ 
+		objDiv.style.display = "block";
+    	objDiv2.style.display = "none"; 
     }
      else{ 
-    	objDiv.classList.add( 'block' );
-    	objDiv.classList.remove( 'none' );
-        objDiv2.classList.add( 'none' );
-        objDiv2.classList.remove( 'block' );
-    	
-       /*  objDiv.style.display = "block";
-    	objDiv2.style.display = "none"; */  
+    	objDiv.style.display = "none";
+     	objDiv2.style.display = "block";
      }
 }
 
@@ -262,7 +83,7 @@ function view2() {
 	            	SupportForME
 	        	</div>
 	        
-	        	<div>
+	        	<div id="make_project_div">
 	        	<input type="button"id="make_project" value="프로젝트 만들기">
 	        	</div>
 	        
@@ -295,7 +116,7 @@ function view2() {
 	            	SupportForME
 	        	</div>
 	        
-	        	<div>
+	        	<div id="make_project_div">
 	        	<input type="button" onclick="go_register()" id="make_project" value="프로젝트 만들기">
 	        	</div>
 	        
@@ -316,8 +137,10 @@ function view2() {
 	        	</div>
 	        	</c:if>
 	        	<c:if test="${member.userId ne null}">
+	        	<div id="userIcon"><img src="<%=request.getContextPath()%>/images/user.png" class="hamburger"></div>
 	        	<div id="head_font_size" class="hamburger-wrapper"><span class="hamburger">마이 페이지</span></div>
 	        	</c:if>
+	        	
  <!--  사이드바 -->
  <nav id="sidenav">
   <span id="close-sidenav">&times;</span>

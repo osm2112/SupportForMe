@@ -5,6 +5,7 @@
 
 $(function() {
 	var path = $("#path").text();
+	var progress = $("#progress").text();
 	$("#result").off("click");
 	var projectNo = $("#projectNo").val();
 	/* var context = '${pageContext.request.contextPath}';	//절대 경로
@@ -39,36 +40,42 @@ $(function() {
 	});
 	//선물 등록, 선물 수정 
 	$("#registerRewardFrm").on("click",".add_button",function(){
-		var seq = $("#registerRewardFrm [name=presentNo]").val();
-		var params =  $("#registerRewardFrm").serialize();
-		if(seq != ''){
-			var url = path + "forme/updateReward";
-			$.getJSON(url, params, function(datas){
-				var newDiv = makeRewardBox(datas);
-				var oldDiv = $("#rw"+datas.presentNo);
-				$(newDiv).replaceAll(oldDiv);
-				$("[name=registerRewardFrm]")[0].reset();
-				$("#registerRewardFrm [name=presentNo]").val('');
-				deliveryDateInput(datas.presentDeliveryDate);
-				$("#alertMessage").text("정상적으로 수정되었습니다.");
-				$("#alertModal").show();
-			});
-		}else {
-			if(checkReward()){
-				var url = path + "forme/insertReward";
+			var seq = $("#registerRewardFrm [name=presentNo]").val();
+			var params =  $("#registerRewardFrm").serialize();
+			if(seq != ''){
+				var url = path + "forme/updateReward";
 				$.getJSON(url, params, function(datas){
-					$("#reward_preview").append( makeRewardBox(datas));
+					var newDiv = makeRewardBox(datas);
+					var oldDiv = $("#rw"+datas.presentNo);
+					$(newDiv).replaceAll(oldDiv);
 					$("[name=registerRewardFrm]")[0].reset();
+					$("#registerRewardFrm [name=presentNo]").val('');
 					deliveryDateInput(datas.presentDeliveryDate);
-					$("#alertMessage").text("정상적으로 등록되었습니다.");
+					$("#alertMessage").text("정상적으로 수정되었습니다.");
 					$("#alertModal").show();
 				});
-			}	
-		} 		
+			}else {
+				if(checkReward()){
+					var url = path + "forme/insertReward";
+					$.getJSON(url, params, function(datas){
+						$("#reward_preview").append( makeRewardBox(datas));
+						$("[name=registerRewardFrm]")[0].reset();
+						deliveryDateInput(datas.presentDeliveryDate);
+						$("#alertMessage").text("정상적으로 등록되었습니다.");
+						$("#alertModal").show();
+					});
+				}	
+			} 		
 	});
 	
 	//선물입력 폼 값 체크
 	function checkReward(){
+		
+		if(progress != '004'){
+			$("#alertMessage").text("진행중인 프로젝트는 리워드를 등록할 수 없습니다.");
+			$("#alertModal").show();
+			return false;
+		}
 		var msg="";
 		var regexp = /^([1-9])([0-9])+$/;
 		if(!$("#registerRewardFrm [name=presentPrice]").val()){
@@ -102,19 +109,29 @@ $(function() {
 	
 	//수정폼 이벤트(수정할 선물을 다시 등록 폼으로 옮김 )
 	$("#reward_preview_div").on("click",".rewardEdit",function(){
-		var reward = $(this).closest(".reward_preview_box").get(0).reward;
-		$("#registerRewardFrm [name=presentNo]").val(reward.presentNo);  
-		$("#registerRewardFrm [name=presentPrice]").val(reward.presentPrice);
-		$("#registerRewardFrm [name=presentName]").val(reward.presentName);
-		$("#registerRewardFrm [name=presentDeliveryDate]").val(reward.presentDeliveryDate);
+		if(progress != '004'){
+			$("#alertMessage").text("진행중인 프로젝트는 리워드를 수정 할 수 없습니다.");
+			$("#alertModal").show();
+		}else {
+			var reward = $(this).closest(".reward_preview_box").get(0).reward;
+			$("#registerRewardFrm [name=presentNo]").val(reward.presentNo);  
+			$("#registerRewardFrm [name=presentPrice]").val(reward.presentPrice);
+			$("#registerRewardFrm [name=presentName]").val(reward.presentName);
+			$("#registerRewardFrm [name=presentDeliveryDate]").val(reward.presentDeliveryDate);
+		}
 	});
 	
 	//선물 삭제 
 	$("#reward_preview").on("click",".rewardDel",function(){
-		var seq = $(this).closest(".reward_preview_box").attr("id").substring(2);
-		$("#confirmMessage").text("해당 선물을 삭제하시겠습니까?");
-		$("#confirmModal").show();  
-		rewardDel(seq);
+		if(progress != '004'){
+			$("#alertMessage").text("진행중인 프로젝트는 리워드를 삭제할 수 없습니다.");
+			$("#alertModal").show();
+		}else {
+			var seq = $(this).closest(".reward_preview_box").attr("id").substring(2);
+			$("#confirmMessage").text("해당 선물을 삭제하시겠습니까?");
+			$("#confirmModal").show();  
+			rewardDel(seq);
+		}
 	});
 	
 	function rewardDel (seq){

@@ -142,7 +142,7 @@
 </div>
 </form>
 
-	<table class="table table-hover" style="width:1200px">
+	<table class="table table-hover" style="width:1100px">
 		<thead>
 		<tr>
 			<th><input type="checkbox" id="allCheck" onclick="AllCheck()">선택</th>

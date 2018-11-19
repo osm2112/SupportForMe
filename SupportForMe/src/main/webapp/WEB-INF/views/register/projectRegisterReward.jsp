@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="<%=request.getContextPath()%>/js/projectRegisterReward.js?ver=1.1"></script>
+<script src="<%=request.getContextPath()%>/js/projectRegisterReward.js?ver=1.2"></script>
 </head>
 <body>
 <div style="height: 50px"></div>

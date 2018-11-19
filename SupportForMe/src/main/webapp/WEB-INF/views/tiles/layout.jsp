@@ -19,9 +19,6 @@ article {
   top: 0;
   width: 100%;
 } 
-.sticky + article {
-	padding-top:102px;
-}  
 </style>
 
 </head>

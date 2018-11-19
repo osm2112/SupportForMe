@@ -19,10 +19,10 @@
 .modal-content {
    text-align:center;
    background-color: #fefefe;
-   margin: 20% auto; /* 15% from the top and centered */
+   margin: 18% auto; /* 15% from the top and centered */
    padding: 5px 10px 10px 10px;
    border: 1px solid #888;
-   width: 25%; /* Could be more or less, depending on screen size */                      
+   width: 25%; /* Could be more or less, depending on screen size */                    
 }
 
 #alertMessage,#confirmMessage,#confirmRCMessage {
@@ -495,6 +495,7 @@ input[type=text]:-webkit-autofill {
 	outline: none;
 }
 #reward_preview{
+	min-height:200px;
 	width: 1000px;
 	position: relative;
 	display: grid;

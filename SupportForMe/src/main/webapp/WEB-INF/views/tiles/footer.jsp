@@ -38,7 +38,7 @@ setInterval(function() {
 </script>
 </head>
 <body>
-	<div style="height:420px"></div>
+	<div style="height:300px"></div>
 	<div class="clock"></div> <!-- 현재시간 clock.js 파일 -->
 	<div class="footer" onclick="location.href='<%= request.getContextPath()%>'"> ⓒSupportForMe </div>
 </body>
