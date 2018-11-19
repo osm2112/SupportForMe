@@ -156,8 +156,7 @@
 			<mapping path="/forme/*"/>
 			<mapping path="/forme/*/*"/>
 			<mapping path="/support/*"/>
-			<mapping path="/support/*/*"/>
-			<!-- <mapping path="/support/*"/> -->	
+			<mapping path="/support/*/*"/>	
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>	
