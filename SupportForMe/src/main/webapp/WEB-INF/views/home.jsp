@@ -124,6 +124,70 @@
 		</div>
 		<div style="height: 50px"></div>
 
+		<!-- 미술 부분  -->
+		<div class="suforme_top_1_text_div mainCategory">
+			<div>미술 프로젝트</div>
+			<div style="text-align: right;">
+				<a
+					href="<%= request.getContextPath() %>/support/getCategoryProjects?searchCondition=003">더보기
+				</a>
+			</div>
+		</div>
+		<div class="category_project_div">
+			<c:forEach items="${Art}" var="project">
+				<div class="project_box" id="${project.projectNo}"
+					style="cursor: pointer;"
+					onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'">
+					<div class="main_project_image">
+						<img src="<%= request.getContextPath() %>/upload/${project.image}"
+							onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
+					</div>
+					<div class="main_project_content">
+						<div class="text3d">${project.userId}</div>
+						<div style="height: 5px"></div>
+						<div class="text3dPn" style="">
+							<strong>${project.projectName}</strong>
+						</div>
+						<div style="height: 15px"></div>
+						<div style="display: grid; grid-template-columns: 100%">
+							<span class="text3d">모금액 ${project.totalInvest}원</span>
+						</div>
+						<div style="height: 5px"></div>
+						<div
+							style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
+							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
+							 --%>
+							<div class="progress" style="height: 10px; width: 230px">
+								<div
+									class="progress-bar"
+									role="progressbar" aria-valuenow="40" aria-valuemin="0"
+									aria-valuemax="100"
+									style="width:${project.percent}%;height:10px"></div>
+							</div>
+						</div>
+						<div class="rdPercent">
+							<div class="remainDay" id="${project.projectNo}art"></div>
+							<div style="display:inline-block;width:85px;text-align:right">&nbsp;${project.percent}%</div>
+						</div>					
+						<!-- D-day 구하는 자바스크립트 -->
+						<script>
+							var seq = '${project.projectNo}';
+							var rd = '${project.projectDeadline}';
+							if(rd != ''){
+								var remain = remainDay(rd);
+								if(remain < 0){
+									$("#"+seq).remove();
+								}else {
+									$("#"+seq+"art").text("D-"+remain);	
+								}
+							}
+						</script>
+					</div>
+				</div>
+			</c:forEach>  
+		</div>
+		
+		<div style="height: 70px"></div>
 		<div class="suforme_top_1_text_div mainCategory">
 			<div>공연 프로젝트</div>
 			<div style="text-align: right;">
@@ -185,70 +249,7 @@
 				</div>
 			</c:forEach>
 		</div>
-
-		<div style="height: 70px"></div>
-		<!-- 미술 부분  -->
-		<div class="suforme_top_1_text_div mainCategory">
-			<div>미술 프로젝트</div>
-			<div style="text-align: right;">
-				<a
-					href="<%= request.getContextPath() %>/support/getCategoryProjects?searchCondition=003">더보기
-				</a>
-			</div>
-		</div>
-		<div class="category_project_div">
-			<c:forEach items="${Art}" var="project">
-				<div class="project_box" id="${project.projectNo}"
-					style="cursor: pointer;"
-					onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'">
-					<div class="main_project_image">
-						<img src="<%= request.getContextPath() %>/upload/${project.image}"
-							onerror="this.src='<%= request.getContextPath() %>/images/대체이미지.jpg'">
-					</div>
-					<div class="main_project_content">
-						<div class="text3d">${project.userId}</div>
-						<div style="height: 5px"></div>
-						<div class="text3dPn" style="">
-							<strong>${project.projectName}</strong>
-						</div>
-						<div style="height: 15px"></div>
-						<div style="display: grid; grid-template-columns: 100%">
-							<span class="text3d">모금액 ${project.totalInvest}원</span>
-						</div>
-						<div style="height: 5px"></div>
-						<div
-							style="color: rgb(26, 188, 156); height: 20px; display: grid; grid-template-columns: 78% 22%">
-							<%-- <progress style="width: 95%; height:21px;" value="${project.percent}" max="100"></progress>
-							 --%>
-							<div class="progress" style="height: 10px; width: 230px">
-								<div
-									class="progress-bar"
-									role="progressbar" aria-valuenow="40" aria-valuemin="0"
-									aria-valuemax="100"
-									style="width:${project.percent}%;height:10px"></div>
-							</div>
-						</div>
-						<div class="rdPercent">
-							<div class="remainDay" id="${project.projectNo}art"></div>
-							<div style="display:inline-block;width:85px;text-align:right">&nbsp;${project.percent}%</div>
-						</div>					
-						<!-- D-day 구하는 자바스크립트 -->
-						<script>
-							var seq = '${project.projectNo}';
-							var rd = '${project.projectDeadline}';
-							if(rd != ''){
-								var remain = remainDay(rd);
-								if(remain < 0){
-									$("#"+seq).remove();
-								}else {
-									$("#"+seq+"art").text("D-"+remain);	
-								}
-							}
-						</script>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
+		
 		<div style="height: 70px"></div>
 		<!-- 도서 -->
 		<div class="suforme_top_1_text_div mainCategory">

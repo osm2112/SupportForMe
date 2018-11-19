@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="<c:url value='/'/>js/projectRegisterStory.js"></script>
 <title>프로젝트 등록</title>
 <style>
 </style>
@@ -30,7 +31,22 @@ $(function() {
 	        bUseModeChanger : true, 
 	    }
 	});
-	
+	$(".save_button").click(function(){
+		
+		editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
+		url = path + "forme/saveProject/story";
+		params = $("#registerStoryFrm").serialize();
+		
+		$.ajax({
+			url : url,
+			data : params,
+			type : "post",
+			success : function(result) {
+				$("#alertMessage").text('저장되었습니다.');
+				$("#alertModal").show();
+			}
+		}); 
+	});
 	$(".next_button").click(function(){
 		
 		//id가 smarteditor인 textarea에 에디터에서 대입
@@ -48,24 +64,6 @@ $(function() {
 			}
 		}); 
 	});
-	
-	$(".save_button").click(function(){
-	
-		editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
-		url = path + "forme/saveProject/story";
-		params = $("#registerStoryFrm").serialize();
-		
-		$.ajax({
-			url : url,
-			data : params,
-			type : "post",
-			success : function(result) {
-				$("#alertMessage").text('저장되었습니다.');
-				$("#alertModal").show();
-			}
-		}); 
-	});
-	
 });
 </script>
 <div id="storyPage">

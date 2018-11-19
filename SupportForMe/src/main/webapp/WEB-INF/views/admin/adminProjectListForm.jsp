@@ -173,7 +173,7 @@
 				<my:paging paging="${paging}"/>
 				<input type="button" value="프로젝트 보류" class="btn _btn _btn2 pull-right" onclick="ProjectProgres('005')">
 				<input type="button" value="프로젝트 취소" class="btn _btn _btn2 pull-right" onclick="ProjectProgres('003')">
-				<input type="button" value="프로젝트 보류 및 취소 해제" class="btn _btn _btn2 pull-right" onclick="ProjectProgres('001')">
+				<input type="button" value="프로젝트 보류 취소" class="btn _btn _btn2 pull-right" onclick="ProjectProgres('001')">
 			</td>
 		</tr>
 		</tbody>

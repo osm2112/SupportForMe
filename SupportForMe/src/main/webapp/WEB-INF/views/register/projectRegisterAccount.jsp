@@ -33,19 +33,10 @@ $(function(){
 		}
 	});
 	$(".register_button").click(function(){
-		var regexp = /^[0-9]+$/;
-		var deposit = $("[name=depositAccount]").val()
-		if(regexp.test(deposit)){
+		var check = registerCheck();
+		if(check){
 			$("#confirmRCMessage").html('정말 등록하시겠습니까?<br>등록완료 후 메인 화면에 프로젝트가 나타나게 됩니다.<br>적절하지 않을 경우 관리자에 의해 보류되어질 수 있음<br>양해부탁드립니다.');
 			$("#confirmRC").show();
-		}else {
-			if(deposit == ''){
-				$("#alertMessage").text("계좌번호를 입력해주세요.");
-				$("#alertModal").show();
-			}else{
-				$("#alertMessage").text("계좌번호 입력란은 숫자만 가능합니다.");
-				$("#alertModal").show();
-			}
 		}
 	});
 	$("#confirmRCOk").click(function(){ 
@@ -121,5 +112,58 @@ $(function(){
 	  	<button type="button" id="confirmRCOk">확인</button> <button id="confirmRCCel">취소</button>
 	   </div>
 	 </div>
+	 <script>
+	 	function registerCheck() {
+	 		if('${project.projectName}' == ''){
+				$("#alertMessage").text("프로젝트 제목을 작성해주세요.");
+				$("#alertModal").show();
+				return false;
+			}
+	 		if('${project.categoryCode}'==''){
+	 			$("#alertMessage").text("프로젝트 카테고리를 선택해주세요.");
+				$("#alertModal").show();
+				return false;
+	 		}
+	 		if('${project.targetAmount}'==''){
+	 			$("#alertMessage").text("목표금액을 적어주세요.");
+				$("#alertModal").show();
+				return false;
+	 		}
+	 		if('${project.projectDeadline}'==''){
+	 			$("#alertMessage").text("프로젝트 마감일을 선택해주세요.");
+				$("#alertModal").show();
+				return false;
+	 		}
+	 		if('${project.image}'==''){
+	 			$("#alertMessage").text("프로젝트 대표이미지를 선택해주세요.");
+				$("#alertModal").show();
+				return false;
+	 		}
+	 		if('${project.introductionVideo}' == '' && '${project.introductionImage}' == ''){
+	 			$("#alertMessage").text("프로젝트 소개이미지/동영상을 등록해주세요");
+				$("#alertModal").show();
+				return false;
+	 		}
+	 		if('${project.story}'=='<p>&nbsp;</p>'){
+	 			$("#alertMessage").text("프로젝트 스토리를 작성해주세요.");
+				$("#alertModal").show();
+				return false;
+	 		}
+	 		var regexp = /^[0-9]+$/;
+			var deposit = $("[name=depositAccount]").val();
+			if(deposit == ''){
+				$("#alertMessage").text("계좌번호를 입력해주세요.");
+				$("#alertModal").show();
+				return false;
+			}
+			if(!regexp.test(deposit)){
+				$("#alertMessage").text("계좌번호 입력란은 숫자만 가능합니다.");
+				$("#alertModal").show();
+				return false;
+			}
+			return true;
+			
+	 	}
+	 </script>
 </body>
 </html>
