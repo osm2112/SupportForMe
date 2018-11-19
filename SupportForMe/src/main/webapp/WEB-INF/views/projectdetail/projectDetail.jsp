@@ -663,7 +663,7 @@ function invest(){
 		</div>
 		</div>
         </div>
-
+ 
         <div class="pjdtl-empty-content"></div>
 <!-- 알림 -->
         
