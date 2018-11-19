@@ -25,7 +25,7 @@ body {
 	font-size:20px;	
 	text-align: center;
 	padding-top: 5px ;
-	background-color:#F5FFFA	;
+	background-color:white;
 }
 </style>
 <script>

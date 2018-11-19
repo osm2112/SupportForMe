@@ -19,7 +19,7 @@ input[type=text]:-webkit-autofill {
 .headBodysize {
   display:grid;
   grid-template-columns: 1fr 8fr 1fr;
-  background-color:#F5FFFA	;
+  background-color:white;
 }
 #head{
   padding : 10px 20px;

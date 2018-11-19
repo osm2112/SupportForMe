@@ -18,8 +18,8 @@
 <input type="hidden" name="projectNo" value="${project.projectNo}" id="projectNo">
 <input type="hidden" name="presentNo" value="">
 <div class="bold">프로젝트 리워드를 구성해주세요</div>
-	<div class="lg">
-	프로젝트 시작을 위해서는 <span style="color:#FF007F" class="bold">최소 1개 이상의 리워드</span>가 있어야 합니다. 
+<div class="lg">
+	프로젝트 시작을 위해서는 <span style="color:#FF007F" class="bold">최소 1개 이상의 리워드</span>가 있어야 합니다. <br>
 	배송이 필요한 리워드는 배송비가 포함된 가격을 적어주세요.
 </div>
 <div id="reward_box">
