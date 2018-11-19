@@ -510,7 +510,7 @@ function invest(){
             <script>
             	$(".pjdtl-target-price").text("목표금액 "+addComma('${project.targetAmount}')+"원");
             </script>
-			<div style="width:100px; color:#FF007F; text-align:center; margin:10px 0px 5px -15px;font-size:23px;">
+			<div style="width:100%; color:#FF007F; margin:5px 0px 10px 0px; font-size:23px;">
 				<span style="font-weight:700;">${project.progress}</span>
 			</div>
 <!-- 진행상황 막대그래프 -->
