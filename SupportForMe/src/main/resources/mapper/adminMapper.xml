@@ -253,10 +253,21 @@
 		</if>
 		<where>
 			PROJECT_NO IN
-			<foreach collection="ids" open="(" close=")" separator=","
-				item="item">
+			<foreach collection="ids" open="(" close=")" separator="," item="item">
 				#{item}
 			</foreach>
+			<if test=" flag == '001'">
+				AND PROGRESS NOT IN('003','004','006')
+				AND TO_CHAR(TO_DATE(PROJECT_DEADLINE,'yyyy.mm.dd'),'yyyymmdd') <![CDATA[ < ]]> TO_CAHR(SYSDATE,'yyyymmdd')
+			</if>
+			<if test=" flag == '003'">
+				AND PROGRESS NOT IN('006')
+			</if>
+			<if test=" flag == '005'">
+				AND PROGRESS NOT IN('006')
+			</if>
+			
+			
 		</where>
 	</update>
 	
