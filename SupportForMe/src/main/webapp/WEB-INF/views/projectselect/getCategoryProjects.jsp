@@ -58,7 +58,9 @@ var Pcount =  '${count}';
     							<div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:15px;background-color:rgb(26, 188, 156);">
    							 	</div>
   							</div>
-							<div class="text3d">목표금액  ${project.targetAmount}원</div>						
+							<div class="text3d">목표금액  ${project.targetAmount}원</div>	
+							<div class="remainDay">D-${project.remaindate}</div>
+									
 						</div>
 					</div>
 				</c:forEach>
