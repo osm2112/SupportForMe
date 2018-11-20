@@ -56,7 +56,7 @@
 	height: 170px;
 	margin: -2px -5px 0 0;
 }
-
+ 
 .mypage_project_image img {
 	margin: 0;
 	width: 100%;
