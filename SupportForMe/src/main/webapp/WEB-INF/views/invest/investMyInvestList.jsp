@@ -14,6 +14,7 @@
 #myInvestList {
 	min-height: 470px;
 }
+
 #mypage_list {
 	margin-left: 20px;
 }
@@ -26,19 +27,21 @@
 	margin-right: 10px;
 	margin-bottom: 10px;
 	/* -webkit-transition: all 0.3s; */
- 	transition: all 0.3s;
- 	overflow: hidden;
- 	padding-bottom:10px;
+	transition: all 0.3s;
+	overflow: hidden;
+	padding-bottom: 10px;
 }
 
 .project_box:hover {
 	box-shadow: 5px 5px 3px lightgrey;
-	margin-top:-5px;
+	margin-top: -5px;
 }
-.project_box:hover .mypage_project_image img{
-  /* -webkit-transform: scale(1.05); */
-  transform: scale(1.05);
+
+.project_box:hover .mypage_project_image img {
+	/* -webkit-transform: scale(1.05); */
+	transform: scale(1.05);
 }
+
 .project_state {
 	width: 100px;
 	height: 30px;
@@ -57,7 +60,7 @@
 	height: 170px;
 	margin: -2px -5px 0 0;
 }
- 
+
 .mypage_project_image img {
 	margin: 0;
 	width: 100%;
@@ -130,6 +133,23 @@
 	text-align: right;
 	width: 130px
 }
+
+.rewardName {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 18px;
+	color: #211f1f;
+	margin-bottom: 5px;
+	white-space: normal;
+	line-height: 1.3;
+	height: 75px;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
 </style>
 <script>
 var path = "<c:url value='/'/>";
@@ -161,7 +181,7 @@ $(document).ready(function() {
 										+'		<div style="margin-bottom:10px;margin-top:10px;height:50px">													'
 										+'		<div style="font-size: 18px;margin-bottom:5px"><strong>'+data[i].projectName+'</strong></div></div>				'
 										+'		<div style="font-size: 16px;color: #5e5e5e;">리워드</div>															'
-										+'		<div style="font-size: 18px;color: #211f1f;margin-bottom:10px;height:75px">'+data[i].presentName+'</div>					'
+										+'		<div class="rewardName">'+data[i].presentName+'</div>		'
 										+'		<div><div class="content_name">총 투자 금액</div><div class="content_value">'+data[i].invenstAmount+'원</div></div>	'
 										+'		<div><div class="content_name">투자일</div><div class="content_value">'+data[i].investDate+'</div></div>			'
 										+'		<div class="content_name">배송예정일</div><div class="content_value">'+data[i].deliveryDate+'</div>				'
@@ -196,7 +216,7 @@ $(document).ready(function() {
 					<div style="font-size: 18px;margin-bottom:5px"><strong>${list.projectName}</strong></div>
 				</div>
 				<div style="font-size: 16px;color: #5e5e5e;">리워드</div>
-				<div style="font-size: 18px;color: #211f1f;margin-bottom:5px;height:75px;">${list.presentName}</div>
+				<div class="rewardName">${list.presentName}</div>
 				<div><div class="content_name">총 투자 금액</div><div class="content_value">${list.invenstAmount}원</div></div>
 				<div><div class="content_name">투자일</div><div class="content_value">${list.investDate}</div></div>
 				<div class="content_name">배송예정일</div><div class="content_value">${list.deliveryDate}</div>

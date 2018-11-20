@@ -163,10 +163,7 @@ public class projectRegisterController {
 	@ResponseBody
 	public Map<String,String> fileUpload(@ModelAttribute("project") ProjectDTO dto, HttpServletRequest request) throws IllegalStateException, IOException {
 		String folder = request.getSession().getServletContext().getRealPath("/upload");
-		Path currentRelativePath = Paths.get("");
-		String s = currentRelativePath.toAbsolutePath().toString();
-		System.out.println("Current relative path is: " + s);
-        
+	
 		File file = new File(folder);  
         //디렉토리 존재하지 않을경우 디렉토리 생성
         if(!file.exists()) {

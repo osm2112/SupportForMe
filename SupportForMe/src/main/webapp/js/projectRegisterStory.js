@@ -49,7 +49,7 @@ $(function(){
 								var RemoveNo = sogeRemoveNo();
 								$("#storyDefault").remove();
 								var img = "<div class='introductionImg rg_img soge'>"
-										+ "<img src='/SupportForMe/upload/"+fileName+"' id='soge'>"
+										+ "<img src='"+path+"upload/"+fileName+"' id='soge'>"
 										+ "<img src='/SupportForMe/images/slimcancel.png' class='sogeRemove "+RemoveNo+"'>"
 										+ "<input type='hidden' name='arrImage' value='"+fileName+"'>"
 										+ "</div>";	
