@@ -4,7 +4,7 @@
 $(function(){
 		var path = $("#path").text();
 		//story page video url----------------
-		$(".videoPlus").click(function(){
+		$("#result").on("click",".videoPlus",function(){
 			if($(this).parent().prev().val() != '' && !$(this).parent().parent().next().is(":visible")){
 				var videoDiv = "<div class='videoUrl'>"
        			 + "<input type='text' placeholder='  YouTube URL을 입력해주세요.' class='videoInput' name='arrVideo'>"
@@ -82,7 +82,7 @@ $(function(){
 		})
 		
 		
-		$(".sogeRemove").on("click",function(){
+		$("#result").on("click",".sogeRemove",function(){
 			var cnt = $(this).attr("class").substr(11);
 			var removeImg = $(this).prev().attr("src").split('/');
 			var projectNo = $("input[name=projectNo]").val();

@@ -12,7 +12,7 @@
 var path = "<c:url value='/'/>";
 $(function(){
 	$(".save_button").click(function(){
-		var regexp = /^[0-9]+$/;
+		var regexp = /^([1-9])([0-9])+$/;
 		var deposit = $("[name=depositAccount]").val()
 		if(regexp.test(deposit) || deposit == ''){
 			url = path + "forme/saveProject/ex";
@@ -28,7 +28,7 @@ $(function(){
 				}
 			}); 
 		}else {
-			$("#alertMessage").text("계좌번호 입력란은 숫자만 가능합니다.");
+			$("#alertMessage").text("계좌번호 입력란은 첫글자가 0이 아닌 숫자만 가능합니다.");
 			$("#alertModal").show();
 		}
 	});

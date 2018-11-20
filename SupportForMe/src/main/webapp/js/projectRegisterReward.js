@@ -84,14 +84,8 @@ $(function() {
 			return false;
 		}
 		if(!regexp.test($("#registerRewardFrm [name=presentPrice]").val())){
-			var regexp2 = /^[1-9]/;
-			if(regexp2.test($("#registerRewardFrm [name=presentPrice]").val())){
-				$("#alertMessage").text("리워드 금액은 숫자만 가능합니다.");
+				$("#alertMessage").text("리워드 금액은 첫 글자가 0이 아닌 숫자만 가능합니다.");
 				$("#alertModal").show();
-			}else{
-				$("#alertMessage").text("리워드 금액 첫 숫자는 1이상 가능합니다.");
-				$("#alertModal").show();
-			}
 			return false;
 		}
 		if(!$("#registerRewardFrm [name=presentName]").val()){

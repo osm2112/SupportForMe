@@ -65,14 +65,14 @@
 				$("input[name=targetAmount]").on("focusout",function(){
 					if("${project.progress}" == '004'){
 						var num = $("input[name=targetAmount]").val(); 
-						var regexp = /^[0-9]+$/;
+						var regexp = /^([1-9])([0-9])+$/;
 						if(regexp.test(num) || num == ''){
 							if(num != ''){
 								num = addComma(num);
 								$("input[name=targetAmount]").val(num);
 							}
 						}else {
-							$("#alertMessage").text("목표금액은 숫자만 가능합니다.");
+							$("#alertMessage").text("목표금액은 첫글자가 0이 아닌 숫자만 가능합니다.");
 							$("#alertModal").show();
 							var targetAmount = '${project.targetAmount}';
 							if(targetAmount == ''){
