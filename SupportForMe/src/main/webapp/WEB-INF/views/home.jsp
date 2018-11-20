@@ -110,11 +110,11 @@
 							<div style="height: 20px;"></div>
 							<!-- <marquee behavior=slide loop=30> -->
 							<ol>
-								<li class="" style="height: 25px; font-size: 17px;" onclick="1"></li>
-								<li class="" style="height: 25px; font-size: 17px;" onclick="2"></li>
-								<li class="" style="height: 25px; font-size: 17px;" onclick="3"></li>
-								<li class="" style="height: 25px; font-size: 17px;" onclick="4"></li>
-								<li class="" style="height: 25px; font-size: 17px;" onclick="5"></li>
+								<li class="" style="height: 25px;" onclick="1"></li>
+								<li class="" style="height: 25px;" onclick="2"></li>
+								<li class="" style="height: 25px;" onclick="3"></li>
+								<li class="" style="height: 25px;" onclick="4"></li>
+								<li class="" style="height: 25px;" onclick="5"></li>
 							</ol>
 							<!-- </marquee> -->
 
