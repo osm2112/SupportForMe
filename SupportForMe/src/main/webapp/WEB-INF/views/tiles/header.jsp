@@ -21,17 +21,25 @@
 </style>
 <script>
 function go_register() {
-	var url = window.location.pathname.toString().split('/');
-	console.log(url);
-	var cpath = url[3];
-	if(cpath != 'make'){
-		 var $form = $('<form></form>');
-	     $form.attr('action', '/SupportForMe/forme/registerProject');
-	     $form.attr('method', 'post');
-	     $form.appendTo('body');
-		
-	     $form.submit();
-	} 
+	if('${member.userId}' != ''){
+		var url = window.location.pathname.toString().split('/');
+		console.log(url);
+		var cpath = url[3];
+		if(cpath != 'make'){
+			 var $form = $('<form></form>');
+		     $form.attr('action', '/SupportForMe/forme/registerProject');
+		     $form.attr('method', 'post');
+		     $form.appendTo('body');
+			
+		     $form.submit();
+		} 
+	}else {
+		if(confirm("로그인 후 이용가능합니다. 로그인 하시겠습니까?")){
+			location.href="<%= request.getContextPath() %>/support/MemberLoginForm";
+		}else {
+			return false;
+		}
+	}
 	
 }
 
