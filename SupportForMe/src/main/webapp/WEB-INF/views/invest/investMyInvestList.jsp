@@ -11,6 +11,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <style>
+#myInvestList {
+	min-height: 470px;
+}
 #mypage_list {
 	margin-left: 20px;
 }
@@ -25,6 +28,7 @@
 	/* -webkit-transition: all 0.3s; */
  	transition: all 0.3s;
  	overflow: hidden;
+ 	padding-bottom:10px;
 }
 
 .project_box:hover {
@@ -53,7 +57,7 @@
 	height: 170px;
 	margin: -2px -5px 0 0;
 }
-
+ 
 .mypage_project_image img {
 	margin: 0;
 	width: 100%;
@@ -192,7 +196,7 @@ $(document).ready(function() {
 					<div style="font-size: 18px;margin-bottom:5px"><strong>${list.projectName}</strong></div>
 				</div>
 				<div style="font-size: 16px;color: #5e5e5e;">리워드</div>
-				<div style="font-size: 18px;color: #211f1f;margin-bottom:10px;height:75px;">${list.presentName}</div>
+				<div style="font-size: 18px;color: #211f1f;margin-bottom:5px;height:75px;">${list.presentName}</div>
 				<div><div class="content_name">총 투자 금액</div><div class="content_value">${list.invenstAmount}원</div></div>
 				<div><div class="content_name">투자일</div><div class="content_value">${list.investDate}</div></div>
 				<div class="content_name">배송예정일</div><div class="content_value">${list.deliveryDate}</div>

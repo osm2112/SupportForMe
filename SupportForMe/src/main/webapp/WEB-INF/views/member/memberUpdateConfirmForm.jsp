@@ -36,7 +36,7 @@
 <div style="height:50px"></div>
 <h3>프로필 설정</h3>
 <hr>
-<div style="margin-left:auto;margin-right:auto;width:1100px;margin-top:50px;height:300px">
+<div style="margin-left:auto;margin-right:auto;width:1100px;margin-top:100px;height:300px">
 <h3>비밀번호를 입력하여 주세요.</h3>
 
 <form action="<c:url value='/'/>forme/MemberUpdatePassWordCheck" method="post" class="_form">
