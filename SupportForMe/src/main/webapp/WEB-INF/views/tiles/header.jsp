@@ -9,7 +9,10 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <title>SupportForMe</title>
-<link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico" />
+
+
+
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/header.css">
 
 
