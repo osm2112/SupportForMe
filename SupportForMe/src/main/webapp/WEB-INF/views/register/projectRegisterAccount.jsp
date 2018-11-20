@@ -17,7 +17,7 @@
 	 	<div class="bold">거래 은행을 선택해주세요</div>
 	 	<select name="bankCode" id="bankCode">
 	 		<option value="002" >산업은행</option>
-			<option value="003" >기업은행</option>
+			<option value="003" >기업은행</option>  
 			<option value="004" >국민은행</option>
 			<option value="007" >수협</option>
 			<option value="011" >농협</option>
