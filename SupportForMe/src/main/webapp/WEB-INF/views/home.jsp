@@ -40,6 +40,7 @@
 			</c:forEach>
 		</ol>
 	</div>
+	<hr>
 	<div style="height: 100px"></div>
 	<div class="bodysize">
 		<div class="suforme">
