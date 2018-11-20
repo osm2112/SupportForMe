@@ -39,7 +39,11 @@
 					onclick="location.href='<%= request.getContextPath() %>/support/getProjectDetailPage?projectNo=${project.projectNo}'"></li>
 			</c:forEach>
 		</ol>
+			<div class="text">
+				<h1>최신프로젝트</h1>
+			</div>
 	</div>
+	<hr>
 	<div style="height: 100px"></div>
 	<div class="bodysize">
 		<div class="suforme">
