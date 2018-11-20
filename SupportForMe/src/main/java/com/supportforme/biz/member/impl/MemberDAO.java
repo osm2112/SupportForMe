@@ -70,4 +70,7 @@ public class MemberDAO {
 	}
 	
 	
+	public int deleteMemberCheck(MemberDTO dto) {
+		return mybatis.selectOne("member.deleteMemberCheck",dto);
+	}
 }

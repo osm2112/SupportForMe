@@ -30,4 +30,6 @@ public interface MemberService {
 	public MemberDTO findPassword(MemberDTO dto);
 	
 	public int updateRandomPassword(MemberDTO dto);
+	
+	public int deleteMemberCheck(MemberDTO dto);
 }

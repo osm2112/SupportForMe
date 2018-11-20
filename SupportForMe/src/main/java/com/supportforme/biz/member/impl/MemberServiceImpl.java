@@ -74,5 +74,10 @@ public class MemberServiceImpl implements MemberService {
 	public int updateRandomPassword(MemberDTO dto) {
 		return dao.updateRandomPassword(dto);
 	}
+
+	@Override
+	public int deleteMemberCheck(MemberDTO dto) {
+		return dao.deleteMemberCheck(dto);
+	}
 	
 }

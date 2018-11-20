@@ -148,4 +148,9 @@
 	
 	
 	
+	<select id="deleteMemberCheck" parameterType="member" resultType="int">
+		SELECT COUNT(*) FROM PROJECT
+		WHERE  USER_ID = #{userId}
+		AND PROGRESS ='001'
+	</select>
 </mapper> 

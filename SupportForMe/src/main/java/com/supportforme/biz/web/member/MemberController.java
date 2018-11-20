@@ -207,6 +207,7 @@ public class MemberController {
 		String contextPath=request.getContextPath();
 		String pw = null;
 		String ref = null;
+		int memberDeleteCheck = 0;
 		if (request.getHeader("referer") != null) {
 			ref = request.getHeader("referer");
 		}
@@ -215,31 +216,39 @@ public class MemberController {
 		if (memberDTO != null) {
 			pw = memberService.passwordCheck(memberDTO).getPassword();
 		}
-		if (ref != null) {
-			if (ref.contains("/forme/MemberDeleteConfirmForm")) {
-				if (pw != null) {
-					if (pw.equals(dto.getPassword())) {
-						memberService.deleteMember(memberDTO);
-						session.invalidate();
-						model.addAttribute("msg", "정상 탈퇴 되었습니다.");
-						model.addAttribute("url", contextPath+"/support/login");
-						return "commons/alertRedirect";
+		memberDeleteCheck = memberService.deleteMemberCheck(memberDTO);
+		if (memberDeleteCheck > 0) {
+			model.addAttribute("msg", "현재 진행중인 프로젝트가 있어 회원 탈퇴를 할수 없습니다.");
+			model.addAttribute("url", contextPath + "/forme/MemberDeleteConfirmForm");
+			return "commons/alertRedirect";
+		} else {
+
+			if (ref != null) {
+				if (ref.contains("/forme/MemberDeleteConfirmForm")) {
+					if (pw != null) {
+						if (pw.equals(dto.getPassword())) {
+							memberService.deleteMember(memberDTO);
+							session.invalidate();
+							model.addAttribute("msg", "정상 탈퇴 되었습니다.");
+							model.addAttribute("url", contextPath + "/support/login");
+							return "commons/alertRedirect";
+						} else {
+							model.addAttribute("msg", "비밀번호가 틀렸습니다.");
+							model.addAttribute("url", contextPath + "/forme/MemberDeleteConfirmForm");
+							return "commons/alertRedirect";
+						}
 					} else {
-						model.addAttribute("msg", "비밀번호가 틀렸습니다.");
-						model.addAttribute("url", contextPath+"/forme/MemberDeleteConfirmForm");
+						model.addAttribute("url", contextPath + "/forme/MemberDeleteConfirmForm");
 						return "commons/alertRedirect";
 					}
 				} else {
-					model.addAttribute("url", contextPath+"/forme/MemberDeleteConfirmForm");
+					model.addAttribute("url", contextPath + "/forme/MemberDeleteConfirmForm");
 					return "commons/alertRedirect";
 				}
 			} else {
-				model.addAttribute("url", contextPath+"/forme/MemberDeleteConfirmForm");
+				model.addAttribute("url", contextPath + "/forme/MemberDeleteConfirmForm");
 				return "commons/alertRedirect";
 			}
-		} else {
-			model.addAttribute("url", contextPath+"/forme/MemberDeleteConfirmForm");
-			return "commons/alertRedirect";
 		}
 	}
 
