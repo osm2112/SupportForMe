@@ -180,7 +180,7 @@ $(document).ready(function() {
 <body>
 <div style="height:70px"></div>  
 	<div id="myInvestList" >
-		<h3>나의	투자 현황</h3>
+		<h3>나의	투자 현황</h3>  
 		<div style="height:20px"></div>
 		<c:forEach items="${list}" var="list">
 		<div class="project_box" style="" id="${list.investNo}" onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">
