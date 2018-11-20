@@ -32,7 +32,7 @@
 					<input type="radio" id="category2" name="categoryCode" value="002" >
 					<label for="category2">영화</label>
 				</div>
-				<div class="checks small">
+				<div class="checks small">  
 					<input type="radio" id="category3" name="categoryCode" value="003" >
 					<label for="category3">미술</label>
 				</div>
