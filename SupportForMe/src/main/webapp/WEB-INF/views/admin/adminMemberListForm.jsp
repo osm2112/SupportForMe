@@ -94,7 +94,7 @@
 <h3>회원관리</h3>
 <hr>
 <form action="<c:url value='/'/>forme/AdminMemberList" name="searchForm" id = "searchForm">
-<div class="input-group" style="width:1200px;">
+<div class="input-group" style="width:1250px;">
 	<input type="hidden" name="page" value="1">
 	<select name="searchCondition" class="form-control" style="width:150px;">
 		<option value="">전체</option>
@@ -118,7 +118,7 @@
 </div>
 </form>
 
-	<table class="table table-hover" style="width:1100px">
+	<table class="table table-hover" style="width:1250px">
 		<thead>
 		<tr>
 			<th><input type="checkbox" id="allCheck" onclick="AllCheck()">선택</th>

@@ -29,7 +29,7 @@
 #project_admin_subject {
 	height: 80px;
 	font-size: 30px;
-	font-weight: 800;
+	font-weight: 700;
 	padding: 25px;
 	color: grey
 }

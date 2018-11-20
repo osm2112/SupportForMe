@@ -12,7 +12,7 @@ body {
 }
 ._container > nav {
 	float: left;
-	margin: 0px 45px 0px 160px; 
+	margin: 0px 60px 0px 210px; 
 }
 
 ._container > nav > ul {

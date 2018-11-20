@@ -37,7 +37,7 @@ $(document).ready(function() {
 												for (i = 0; i < data.length; i++) {
 													count = ++count;
 													var select = "project_state"+ count;
-													var updateBtn = (data[i].progressCd !='002' && data[i].progressCd !='003' && data[i].progressCd !='006') ? '<button class="btn btn-default _btn1" onclick="location.href=\''+contextPath+'/forme/make/'+data[i].projectNo+'\'">수정</button>' : '';
+													var updateBtn = (data[i].progressCd !='002' && data[i].progressCd !='003' && data[i].progressCd !='006') ? '<button class="btn btn-default _btn1" onclick="location.href=\''+contextPath+'/forme/make/'+data[i].projectNo+'\'">수정</button>' : '<button style="border:none;background-color:white;width:120px;margin-right:10px;"></button>';
 												 	var detailBtn = (data[i].progressCd !='004') ? '<button class="btn btn-default _btn2" onclick="location.href=\''+contextPath+ '/support/getProjectDetailPage?projectNo='+ data[i].projectNo+'\'">상세화면</button>' : ''; 
 													var deleteBtn = (data[i].progressCd =='004') ? '<button class="btn btn-default _btn2" onclick="projectdelete(\''+data[i].projectNo+'\');">삭제</button></div>' : '';
 													
@@ -62,7 +62,7 @@ $(document).ready(function() {
 																			+ data[i].totalInvest
 																			+ '원</span><span class="text3d">&nbsp;'+ data[i].percent+ '%</span></div>'
 																			+ ' 				<div style="height: 5px"></div>'
-																			+ ' 	<div class="progress" style="height:15px;width:225px;margin-bottom:5px"><div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"'
+																			+ ' 	<div class="progress" style="height:15px;width:250px;margin-bottom:5px"><div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"'
 																			+ ' style="width:${project.percent}%;height:15px;background-color:rgb(26, 188, 156);"></div></div>'
 																			+ ' 				<div class="text3d">목표금액 '
 																			+ data[i].targetAmount

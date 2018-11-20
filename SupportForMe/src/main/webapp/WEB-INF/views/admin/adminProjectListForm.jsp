@@ -106,10 +106,11 @@
 </script>
 </head>
 <body>
+<div style="height:50px"></div>
 <h3>프로젝트 관리</h3>
-<hr>
+<div style="height:20px"></div>
 <form action="<c:url value='/'/>forme/AdminProjectProgressList" id="searchForm" name="searchForm">
-<div class="input-group" style="width:1200px;">
+<div class="input-group" style="width:1250px;">
 	<input type="hidden" name="page" value="1">
 
 	<select name="progress" class="form-control" style="width:200px;">
@@ -143,7 +144,7 @@
 </div>
 </form>
 
-	<table class="table table-hover" style="width:1100px">
+	<table class="table table-hover" style="width:1250px">
 		<thead>
 		<tr>
 			<th><input type="checkbox" id="allCheck" onclick="AllCheck()">선택</th>

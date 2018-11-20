@@ -93,7 +93,7 @@
 </style>
 </head>
 <body>
-	<div style="height: 30px"></div>
+	<div style="height: 50px"></div>
 	<div class="bodysize">
 		<div id="project_subject" >나의 페이지</div>
 		<div id="project_mypage_menu">

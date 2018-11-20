@@ -20,7 +20,7 @@
 			<input type="hidden" name="userId" value="${project.userId}">
 			<div id="basic_subject">
 				<div class="bold">프로젝트의 제목을 적어주세요</div>
-				<input type="text" name="projectName" id="r_projectName" class="inputStyle" maxlength="24"  value="${project.projectName}">
+				<input type="text" name="projectName" id="r_projectName" class="inputStyle" maxlength="50"  value="${project.projectName}">
 			</div>
 			<div id="basic_category">
 				<div class="bold">프로젝트 분야를 선택해주세요</div>

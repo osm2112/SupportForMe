@@ -61,7 +61,9 @@
 	color:#FF007F;
 	background-color:white;
 }
-
+#result {
+	margin-left:60px;
+}
 input[type=text]:focus {
 	outline: none;
 }

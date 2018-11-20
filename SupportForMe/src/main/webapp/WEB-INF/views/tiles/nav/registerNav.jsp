@@ -12,7 +12,7 @@
 #project_register_subject {
 	margin-left: 70px;
 	height: 45px;
-	font-size: 25px;
+	font-size: 27px;
 	font-weight: 800;
 	padding: 25px;
 	color: grey;
@@ -23,7 +23,7 @@
 }
 
 #project_register_menu>div {
-	font-size: 18px;
+	font-size: 20px;
 }
 
 #preview {
@@ -38,7 +38,7 @@
 	height: 25px;
 	padding: 5px 0px 5px 15px;
 	margin: 10px 0px 10px -30px;
-	font-size: 18px;
+	font-size: 20px;
 	list-style-position: inside;
 	list-style-type: none;
 }

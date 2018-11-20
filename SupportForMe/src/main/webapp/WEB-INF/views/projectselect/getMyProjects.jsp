@@ -20,7 +20,7 @@ var contextPath = '<%= request.getContextPath() %>';
 var userId = '${member.userId}';
 /* var path = "<c:url value='/'/>"; */
 </script>
-<script src="<%=request.getContextPath()%>/js/MyProjects.js"></script>
+<script src="<%=request.getContextPath()%>/js/MyProjects.js?ver=1"></script>
 </head>
 <body>
 <div style="height:50px"></div>
@@ -45,7 +45,7 @@ var userId = '${member.userId}';
 							<div style="height: 5px"></div>
 							<div ><span class="tI">${project.totalInvest}원</span><span class="text3d">&nbsp;${project.percent}%</span></div>
 							<div style="height: 5px"></div>
-							<div class="progress" style="height:15px;width:225px;margin-bottom:5px">
+							<div class="progress" style="height:15px;width:250px;margin-bottom:5px">
     							<div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:${project.percent}%;height:15px;background-color:rgb(26, 188, 156);">
    							 	</div>
   							</div>
@@ -58,7 +58,7 @@ var userId = '${member.userId}';
 										<button class="btn btn-default _btn1" onclick="location.href='<%= request.getContextPath() %>/forme/make/${project.projectNo}'">수정</button>
 									</c:when>
 									<c:otherwise>
-										<button style="border:none;background-color:white;width:110px;margin-right:5px;"></button>
+										<button style="border:none;background-color:white;width:120px;margin-right:10px;"></button>
 									</c:otherwise>
 								</c:choose>
 							    <c:if test="${project.progressCd eq 004 }"><button class="btn btn-default _btn2" onclick="projectdelete('${project.projectNo}');">삭제</button></c:if>

@@ -153,6 +153,7 @@ $(function() {
 		$(this).next().text('');
 	});
 	
+	//프로젝트 예상배송일 함수 
 	function deliveryDateInput(date) {
 		var dateList = $(".rw_preview_delivery");
 		var tempDate = date;
