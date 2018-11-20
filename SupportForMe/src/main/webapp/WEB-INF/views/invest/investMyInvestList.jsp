@@ -157,7 +157,7 @@ $(document).ready(function() {
 										+'	</div>																												'
 										+'	<div class="mypage_project_content"><div>																			'
 										+'		<div class="project_state progress'+data[i].projectProgress+'">'+data[i].projectProgress+'</div>				'
-										+'		<div class="progressRate">'+data[i].projectProgressRate+'</div>													'	
+										+'		<div class="progressRate">'+data[i].projectProgressRate+'%</div>													'	
 										+'		<div style="font-size: 16px;color: #5e5e5e;">'+data[i].userId+'</div>											'
 										+'		<div style="font-size: 18px;margin-bottom:5px"><strong>'+data[i].projectName+'</strong></div>					'
 										+'		<div style="font-size: 16px;color: #5e5e5e;">리워드</div>															'
@@ -192,7 +192,7 @@ $(document).ready(function() {
 					<div class="project_state progress${list.projectProgress}">${list.projectProgress}</div>
 					<div class="progressRate">${list.projectProgressRate}%</div>
 				</div>
-				<div style="margin-bottom:10px;margin-top:10px;">
+				<div style="margin-bottom:10px;margin-top:10px;height:50px">
 					<div style="font-size: 18px;margin-bottom:5px"><strong>${list.projectName}</strong></div>
 				</div>
 				<div style="font-size: 16px;color: #5e5e5e;">리워드</div>
