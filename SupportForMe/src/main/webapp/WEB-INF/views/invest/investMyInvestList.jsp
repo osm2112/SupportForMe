@@ -130,7 +130,7 @@
 	font-size: 17px;
 	color: #FF007F;
 	display: inline-block;
-	text-align: right;
+	text-align: right;  
 	width: 130px
 }
 
