@@ -11,6 +11,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <style>
+#myInvestList {
+	min-height: 470px;
+}
 #mypage_list {
 	margin-left: 20px;
 }
