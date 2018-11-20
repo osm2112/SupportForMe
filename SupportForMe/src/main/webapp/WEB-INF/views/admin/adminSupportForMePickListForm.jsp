@@ -103,10 +103,17 @@
 </style>
 </head>
 <body>
+<div style="height:70px"></div>
 	<h3>서포미 픽 관리</h3>
 	<hr>
-<form action="<c:url value='/'/>forme/AdminSupportForMePickList" name="searchForm" id="searchForm">
+<form action="<c:url value='/'/>forme/AdminSupportForMePicList" name="searchForm" id="searchForm">
+<div style="width:1250px;margin-bottom:10px" align=right >
 <div class="input-group">
+	<select id="pageUnit" name="pageUnit" class="form-control" onchange="veiwNumber()" style="width:180px;margin-right:150px">
+		<option value="10" selected>10개씩 보기</option>
+		<option value="25">25개씩 보기</option>	
+		<option value="50">50개씩 보기</option>
+	</select>
 	<input type="hidden" name="page" value="1">
 	<select name="searchCondition" class="form-control" style="width: 150px">
 	<option value="">전체</option>
@@ -123,26 +130,23 @@
 	
 	
 	<input type="text" class="form-control" name="searchKeyword" value="" style="width: 500px">
-	<input type="submit" class="btn _btn2" value="검색" style="width: 80px"><br>
-	<select id="pageUnit" name="pageUnit" class="form-control" onchange="veiwNumber()" style="width:200px;">
-		<option value="10">10개씩 보기</option>
-		<option value="25">25개씩 보기</option>	
-		<option value="50">50개씩 보기</option>
-	</select>
+	<input type="submit" class="btn _btn2" value="검색" style="width: 120px"><br>
+	
 	
 	<script>
 		document.searchForm.searchCondition.value ='${searchCondition}';
 		document.searchForm.searchKeyword.value ='${searchKeyword}';
 		document.searchForm.supportForMePickUp.value ='${supportForMePickUp}';
-		document.searchForm.pageUnit.value ='${pageUnit}';
+		if('${pageUnit}' != ''){ document.searchForm.pageUnit.value ='${pageUnit}';	}
 	</script>
+</div>
 </div>
 </form>
 
-	<table class="table table-hover" style="width: 880px;">
+	<table class="table table-hover" style="width: 1250px;">
 	<thead>
 		<tr>
-			<th><input type="checkbox" id="allCheck" onclick="AllCheck()">선택</th>
+			<th><input type="checkbox" id="allCheck" onclick="AllCheck()"> &nbsp;선택</th>
 			<th>프로젝트번호</th>
 			<th>프로젝트명</th>
 			<th>프로젝트작성자</th>
@@ -163,15 +167,14 @@
 				<td onclick="location.href='<c:url value='/'/>support/getProjectDetailPage?projectNo=${list.projectNo}'">${list.projectStatus}</td>
 			</tr>
 		</c:forEach>
-	</tbody>
 		<tr>
-			<td colspan="6">
+			<td colspan="7">
 				<my:paging paging="${paging}"/>
 				<input type="button" class="btn _btn _btn2 pull-right" value="서포미픽 해제" onclick="SupportForMePickUp('no')">
 				<input type="button" class="btn _btn _btn2 pull-right" value="서포미픽  선택" onclick="SupportForMePickUp('yes')">
 			</td>
 		</tr>
-	
+	</tbody>
 	</table>
 </body>
 </html>

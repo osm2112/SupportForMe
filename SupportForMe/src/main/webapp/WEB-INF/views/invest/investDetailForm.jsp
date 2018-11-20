@@ -28,9 +28,11 @@
 
 </style>
 <body>
+<div style="margin-left:50px;">
+<div style="height:70px"></div>
 <h3>결제  내역 상세 보기</h3>
-<hr>
-	<table class="table table-hover" style="width:600px">
+<div style="height:20px"></div>
+	<table class="table table-hover" style="width:600px;">
 	<tbody>	
 		<tr>
 			<th scope="row">결제번호</th>
@@ -82,5 +84,6 @@
 		</tr>
 	</tbody>
 	</table>
+</div>
 </body>
 </html>

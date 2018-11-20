@@ -5,20 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
-#project_admin {
-	display: grid;
-	grid-template-columns: 280px 1fr;
-}
-
 #project_admin_menu {
 	margin-left: 25px;
 }
 
 #project_admin_menu>nav>div {
 	height: 35px;
-	padding-top: 10px;
-	padding-left: 5px;
+	padding: 6px 10px;
 	font-size: 18px;
+	margin:10px 0px;
 }
 
 #project_admin_menu>nav>div:hover {

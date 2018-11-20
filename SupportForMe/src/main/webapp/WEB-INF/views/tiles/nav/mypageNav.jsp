@@ -120,13 +120,13 @@
  		myInvestList.setAttribute("class","_active");
  		
  	}
- 	if(uri.match('MyInvestList')){
+ 	if(uri.match('MyInvestList') ){
  		var myInvestList = document.getElementById('_myInvestList');
  		myInvestList.setAttribute("class","_active");
  		
  	}
  	
- 	if(uri.match('/InvestList')){
+ 	if(uri.match('/InvestList') || uri.match('InvestDetail')){
  		var investList = document.getElementById('investList');
  		investList.setAttribute("class","_active");
  		

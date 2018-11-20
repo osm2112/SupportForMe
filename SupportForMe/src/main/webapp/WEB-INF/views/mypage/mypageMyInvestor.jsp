@@ -98,7 +98,7 @@ $(function(){
 </script>
 </head>
 <body>	
-	<div style="height:50px"></div>
+	<div style="height:70px"></div>
 	<h3>나의 투자자 보기</h3>
 	<div style="height:20px"></div>
 	<form action="<c:url value='/'/>forme/MyInvestors" name="searchForm" >

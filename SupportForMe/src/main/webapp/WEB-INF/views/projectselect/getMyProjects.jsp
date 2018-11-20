@@ -23,7 +23,7 @@ var userId = '${member.userId}';
 <script src="<%=request.getContextPath()%>/js/MyProjects.js?ver=1"></script>
 </head>
 <body>
-<div style="height:50px"></div>
+<div style="height:70px"></div>
 	<div class="pjdtl_bodysize">
 		<h3>나의 프로젝트</h3>
 		<div style="height:20px"></div>

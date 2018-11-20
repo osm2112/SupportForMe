@@ -33,7 +33,7 @@
 </head>
 
 <body>
-<div style="height:50px"></div>
+<div style="height:70px"></div>
 <h3>프로필 설정</h3>
 <hr>
 <div style="margin-left:auto;margin-right:auto;width:1100px;margin-top:100px;height:300px">

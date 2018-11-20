@@ -178,7 +178,7 @@ $(document).ready(function() {
 
 </script>
 <body>
-<div style="height:50px"></div>  
+<div style="height:70px"></div>  
 	<div id="myInvestList" >
 		<h3>나의	투자 현황</h3>
 		<div style="height:20px"></div>

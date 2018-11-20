@@ -91,10 +91,17 @@
 </style>
 </head>
 <body>
+<div style="height:70px"></div>
 <h3>회원관리</h3>
 <hr>
 <form action="<c:url value='/'/>forme/AdminMemberList" name="searchForm" id = "searchForm">
-<div class="input-group" style="width:1250px;">
+<div style="width:1250px;margin-bottom:10px" align=right>
+<div class="input-group">
+	<select id="pageUnit" name="pageUnit" class="form-control" onchange="veiwNumber()" style="width:180px;margin-right:200px">
+		<option value="10" selected>10개씩 보기</option>
+		<option value="25">25개씩 보기</option>	
+		<option value="50">50개씩 보기</option>
+	</select>
 	<input type="hidden" name="page" value="1">
 	<select name="searchCondition" class="form-control" style="width:150px;">
 		<option value="">전체</option>
@@ -103,25 +110,21 @@
 		<option value="email">Email</option>
 		<option value="phoneNum">전화번호</option>
 	</select>
-	<input type="text" name="searchKeyword" value="" class="form-control" style="width:750px;">
-	<input type="submit" class="btn _btn2" value="검색" style="width:200px;"><br>
-	<select id="pageUnit" name="pageUnit" class="form-control" onchange="veiwNumber()" style="width:200px;">
-		<option value="10">10개씩 보기</option>
-		<option value="25">25개씩 보기</option>	
-		<option value="50">50개씩 보기</option>
-	</select>
+	<input type="text" name="searchKeyword" value="" class="form-control" style="width:600px;">
+	<input type="submit" class="btn _btn2" value="검색" style="width:120px;"><br>
 	<script>
 		document.searchForm.searchCondition.value ='${searchCondition}';
 		document.searchForm.searchKeyword.value ='${searchKeyword}';
-		document.searchForm.pageUnit.value ='${pageUnit}';
+		if('${pageUnit}' != ''){ document.searchForm.pageUnit.value ='${pageUnit}';	}
 	</script>
+</div>
 </div>
 </form>
 
-	<table class="table table-hover" style="width:1250px">
+	<table class="table table-hover" style="width:1250px;">
 		<thead>
 		<tr>
-			<th><input type="checkbox" id="allCheck" onclick="AllCheck()">선택</th>
+			<th><input type="checkbox" id="allCheck" onclick="AllCheck()"> &nbsp;선택</th>
 			<th>ID</th>
 			<th>이름</th>
 			<th>Email</th>
@@ -145,7 +148,7 @@
 			</tr>
 		</c:forEach>
 		
-		<tr>
+		<tr style="padding-top:10px;">
 			<td colspan="8">
 				<my:paging paging="${paging}"/>
 				<input type="button" value="회원 탈퇴 처리" class="btn _btn _btn2 pull-right" onclick="DeleteMembers()">

@@ -106,11 +106,17 @@
 </script>
 </head>
 <body>
-<div style="height:50px"></div>
+<div style="height:70px"></div>
 <h3>프로젝트 관리</h3>
-<div style="height:20px"></div>
+<hr>
 <form action="<c:url value='/'/>forme/AdminProjectProgressList" id="searchForm" name="searchForm">
-<div class="input-group" style="width:1250px;">
+<div style="width:1250px;margin-bottom:10px" align=right >
+<div class="input-group" >
+	<select id="pageUnit" name="pageUnit" class="form-control" onchange="veiwNumber()" style="width:180px;margin-right:100px">
+		<option value="10" selected>10개씩 보기</option>
+		<option value="25">25개씩 보기</option>	
+		<option value="50">50개씩 보기</option>
+	</select>
 	<input type="hidden" name="page" value="1">
 
 	<select name="progress" class="form-control" style="width:200px;">
@@ -128,26 +134,23 @@
 		<option value="name">프로젝트작성자</option>
 		<option value="userId">프로젝트작성자ID</option>
 	</select>
-	<input type="text" name="searchKeyword" value="" class="form-control" style="width:550px;">
-	<input type="submit" class="btn _btn2" value="검색" style="width:200px;"><br>
-	<select id="pageUnit" name="pageUnit" class="form-control" onchange="veiwNumber()" style="width:200px;">
-		<option value="10">10개씩 보기</option>
-		<option value="25">25개씩 보기</option>	
-		<option value="50">50개씩 보기</option>
-	</select>
+	<input type="text" name="searchKeyword" value="" class="form-control" style="width:500px;">
+	<input type="submit" class="btn _btn2" value="검색" style="width:120px;"><br>
+	
 	<script>
 		document.searchForm.searchCondition.value ='${searchCondition}';
 		document.searchForm.searchKeyword.value ='${searchKeyword}';
 		document.searchForm.progress.value ='${progress}';
-		document.searchForm.pageUnit.value ='${pageUnit}';
+		if('${pageUnit}' != ''){ document.searchForm.pageUnit.value ='${pageUnit}';	}
 	</script>
+</div>
 </div>
 </form>
 
-	<table class="table table-hover" style="width:1250px">
+	<table class="table table-hover" style="width:1250px;">
 		<thead>
 		<tr>
-			<th><input type="checkbox" id="allCheck" onclick="AllCheck()">선택</th>
+			<th><input type="checkbox" id="allCheck" onclick="AllCheck()"> &nbsp;선택</th>
 			<th>프로젝트명</th>
 			<th>프로젝트작성자</th>
 			<th>프로젝트작성자ID</th>
@@ -169,7 +172,7 @@
 			</tr>
 		</c:forEach>
 		
-		<tr>
+		<tr style="margin-top:20px">
 			<td colspan="7">
 				<my:paging paging="${paging}"/>
 				<input type="button" value="프로젝트 보류" class="btn _btn _btn2 pull-right" onclick="ProjectProgres('005')">

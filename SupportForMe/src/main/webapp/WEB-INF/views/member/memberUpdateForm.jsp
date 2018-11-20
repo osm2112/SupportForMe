@@ -125,6 +125,7 @@ textarea.textarea1 {
 	}
 </script>
 <body>
+<div style="height:70px"></div>
 	<h3>프로필 설정</h3>
 	<hr>
 	<!-- 아이디 -->
