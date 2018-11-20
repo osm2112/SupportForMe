@@ -96,7 +96,7 @@
 
 .real_time_rank_projects nav ol li {
 	margin-top: 5px;
-	font-size: 18px;
+/* 	font-size: 18px; */
 	text-align: left;
 }
 
@@ -207,6 +207,8 @@
 }
 .ranktext {
 	-webkit-animation: topToBottom 10s infinite;
+	font-size: 17px;
+	font-weight:bold;
 }
 
 #rank ol {
