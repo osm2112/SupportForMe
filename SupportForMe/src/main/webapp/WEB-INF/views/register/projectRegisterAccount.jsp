@@ -65,7 +65,52 @@
 	   </div>
 	 </div>
 	 <script>
-	 	
+	 function registerCheck() {
+	 		if('${project.projectName}' == ''){
+				$("#alertMessage").text("프로젝트 제목을 작성해주세요.");
+				$("#alertModal").show();
+				return false;
+			}
+	 		if('${project.categoryCode}'==''){
+	 			$("#alertMessage").text("프로젝트 카테고리를 선택해주세요.");
+				$("#alertModal").show();
+				return false;
+	 		}
+	 		if('${project.targetAmount}'==''){
+	 			$("#alertMessage").text("목표금액을 적어주세요.");
+				$("#alertModal").show();
+				return false;
+	 		}
+	 		if('${project.projectDeadline}'==''){
+	 			$("#alertMessage").text("프로젝트 마감일을 선택해주세요.");
+				$("#alertModal").show();
+				return false;
+	 		}
+	 		if('${project.image}'==''){
+	 			$("#alertMessage").text("프로젝트 대표이미지를 선택해주세요.");
+				$("#alertModal").show();
+				return false;
+	 		}
+	 		if('${project.introductionVideo}' == '' && '${project.introductionImage}' == ''){
+	 			$("#alertMessage").text("프로젝트 소개이미지/동영상을 등록해주세요");
+				$("#alertModal").show();
+				return false;
+	 		}
+	 		var regexp = /^[0-9]+$/;
+			var deposit = $("[name=depositAccount]").val();
+			if(deposit == ''){
+				$("#alertMessage").text("계좌번호를 입력해주세요.");
+				$("#alertModal").show();
+				return false;
+			}
+			if(!regexp.test(deposit)){
+				$("#alertMessage").text("계좌번호 입력란은 숫자만 가능합니다.");
+				$("#alertModal").show();
+				return false;
+			}
+			return true;
+			
+	 	}
 	 </script>
 </body>
 </html>

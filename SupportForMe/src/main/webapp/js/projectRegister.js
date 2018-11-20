@@ -25,7 +25,8 @@ $(function() {
 						url : url,
 						type : "post",
 						success : function(result) {
-							$("."+$("._active").attr("class").substr(0,4)).removeClass("_active");
+							var ActiveNv = $("._active").attr("class").substr(0,4);
+							$("."+ActiveNv).removeClass("_active");
 							$(".rn"+navClick).addClass("_active");
 							$("#result").html(result);
 							$("#confirmModal").hide();
