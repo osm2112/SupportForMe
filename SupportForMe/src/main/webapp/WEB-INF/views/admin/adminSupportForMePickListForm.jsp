@@ -106,7 +106,7 @@
 <div style="height:70px"></div>
 	<h3>서포미 픽 관리</h3>
 	<hr>
-<form action="<c:url value='/'/>forme/AdminSupportForMePicList" name="searchForm" id="searchForm">
+<form action="<c:url value='/'/>forme/AdminSupportForMePickList" name="searchForm" id="searchForm">
 <div style="width:1250px;margin-bottom:10px" align=right >
 <div class="input-group">
 	<select id="pageUnit" name="pageUnit" class="form-control" onchange="veiwNumber()" style="width:180px;margin-right:150px">
