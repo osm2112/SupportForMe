@@ -3,7 +3,7 @@
  */
 $(document).ready(function() {
 						var count = 0;
-						
+						var isEnd = false;
 						
 						$('.loader').addClass('display-none');
 						
@@ -22,6 +22,11 @@ $(document).ready(function() {
 								});
 						
 						function loadArticle(lastno) {
+							 if(isEnd == true){
+								  $('.loader').addClass('display-none');
+		                          return;
+							 }
+							 
 							console.log($(".project_box").length);
 							$.ajax({
 										type : "post",
@@ -32,7 +37,10 @@ $(document).ready(function() {
 										},dataType : "json",
 										
 										success : function(data) {
-											$('.loader').addClass('display-none');
+											if (data.length < 4) {
+												isEnd = true;;
+											}
+							
 											if (data.length > 0) {
 												for (i = 0; i < data.length; i++) {
 													count = ++count;
@@ -81,6 +89,8 @@ $(document).ready(function() {
 											}
 										},beforeSend:function(){											
 									        $('.loader').removeClass('display-none');											
+									    },complete:function(){
+									        $('.loader').addClass('display-none');
 									    },timeout :5000
 									});
 							lastno = $(".project_box").last().attr("id");

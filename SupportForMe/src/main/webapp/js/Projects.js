@@ -5,6 +5,7 @@
 			.ready(
 					function() {
 						var count = 0;
+						var isEnd = false;
 						
 						if ($(".project_box").length <= Pcount ) {
 							$('.loader').addClass('display-none');
@@ -21,7 +22,11 @@
 											}				
 								});
 						function loadArticle(lastno) {
-
+							 if(isEnd == true){
+								  $('.loader').addClass('display-none');
+		                          return;
+							 }
+							 
 							$.ajax({
 										type : "post",
 										url : contextPath+"/support/getProjects",
@@ -31,8 +36,10 @@
 										},
 										dataType : "json",
 										success : function(data) {
-											 $('.loader').addClass('display-none');
 											
+											if (data.length < 4) {
+													isEnd = true;;
+											}
 											if (data.length > 0) {
 												for (i = 0; i < data.length; i++) {
 													count = ++count;
@@ -81,6 +88,8 @@
 										
 										},beforeSend:function(){											
 									        $('.loader').removeClass('display-none');											
+									    },complete:function(){
+									        $('.loader').addClass('display-none');
 									    },timeout :5000
 									});
 							lastno = $(".project_box").last().attr("id");

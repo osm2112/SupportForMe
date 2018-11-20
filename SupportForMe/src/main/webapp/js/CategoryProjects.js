@@ -4,7 +4,7 @@
 
 	$(document).ready(	function() {
 						var count = 0;
-
+						var isEnd = false;
 						if ($(".project_box").length <= Pcount ) {
 							$('.loader').addClass('display-none');
 						}
@@ -12,19 +12,22 @@
 						$(document).scroll(
 								function() {
 									var lastno = $(".project_box").last().attr("id");
-									console.log(lastno);
 									var maxHeight = $(document).height();
 									var currentScroll = $(window).scrollTop()+ $(window).height();
 									
-									console.log($(".project_box").length);
-
-									if (maxHeight <= currentScroll+5) {
+									
+									if (maxHeight <= currentScroll +5 ) {
 											loadArticle(lastno);
 									}
 						});
 						
 						function loadArticle(lastno) {
 							
+							 if(isEnd == true){
+								  $('.loader').addClass('display-none');
+		                          return;
+							 }
+							console.log("33333333333"); 
 							$.ajax({
 										type : "post",
 										url : contextPath+"/support/getCategoryProjects",
@@ -34,6 +37,9 @@
 										},
 										dataType : "json",			
 										success : function(data) {
+											if (data.length < 4) {
+												isEnd = true;;
+											}
 											if (data.length > 0) {
 												for (i = 0; i < data.length; i++) {
 													count = ++count;
@@ -78,7 +84,7 @@
 									    },complete:function(){
 									        $('.loader').addClass('display-none');
 									    },timeout: 5000
-
+										
 									});
 							lastno = $(".project_box").last().attr("id");
 						}
