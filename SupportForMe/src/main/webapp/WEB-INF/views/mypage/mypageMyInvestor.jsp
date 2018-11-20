@@ -102,7 +102,7 @@ $(function(){
 	<h3>나의 투자자 보기</h3>
 	<div style="height:20px"></div>
 	<form action="<c:url value='/'/>forme/MyInvestors" name="searchForm" >
-	<div style="width:1250px;margin-bottom:10px" align=right>
+	<div style="width:1500px;margin-bottom:10px" align=right>
 		<div class="input-group" >
 			<input type="hidden" name="page" value="1">
 			<select name="searchCondition" class="form-control" style="width:120px;">
@@ -121,14 +121,14 @@ $(function(){
 		</div>
 	</div>
 	</form>
-	<div style="height:300px">
-		<table class="table table-hover" style="width:1250px;">
+	<div style="min-height:300px">
+		<table class="table table-hover" style="width:1500px;">
 			<thead>
 			<tr>
 				<th class="text-center">투자번호</th>
-				<th class="text-center">이름</th>
-				<th class="text-center">선물명</th>
-				<th class="text-center">우편번호</th>
+				<th class="text-center" style="width:80px;">이름</th>
+				<th class="text-center" >선물명</th>
+				<th class="text-center" style="width:80px;" >우편번호</th>
 				<th class="text-center">주소</th>
 				<th>이메일</th>
 				<th>휴대폰번호</th>
@@ -151,10 +151,10 @@ $(function(){
 			</tbody>
 		</table>
 	</div>
-	<div style="text-align:right;width:1250px">
+	<div style="text-align:right;width:1500px">
 		<button type="button" id="excel" class="_btn3" data-toggle="modal" data-target="#excelModal">Excel</button>
 	</div>
-	<div style="width:1250px;text-align:center" id="page">
+	<div style="width:1500px;text-align:center" id="page">
 		<my:paging paging="${paging}"/>
 	</div>
 	
