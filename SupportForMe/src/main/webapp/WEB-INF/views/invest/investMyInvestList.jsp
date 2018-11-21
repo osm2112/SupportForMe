@@ -171,7 +171,7 @@ $(document).ready(function() {
 						if (data.length > 0) {
 							for (i = 0; i < data.length; i++) {
 								$('#myInvestList').append(
-										 '<div class="project_box" style="" id="'+data[i].investNo+'">															'
+										 '<div class="project_box"  id="'+data[i].investNo+'" onclick="location.href=\'' +path+ 'support/getProjectDetailPage?projectNo='+data[i].projectNo+'\'">'														
 									   	+'	<div class="mypage_project_image">																					'
 									   	+'		<img class="mypage_project_image"src="../upload/'+data[i].image+'">												'
 										+'	</div>																												'
