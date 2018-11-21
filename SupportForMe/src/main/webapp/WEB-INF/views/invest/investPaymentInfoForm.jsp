@@ -15,19 +15,25 @@
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
-.bodysize {
-	margin-left: auto;
-	margin-right: auto;
-	width: 1200px;
-}
-
-session {
-	margin-left: 50px;
-}
-
-nav {
-	padding-top: 50px
-}
+ .bodysize {
+        margin-left: auto;
+        margin-right: auto;
+    }
+        session{
+            margin-left: 50px;
+        }
+        nav{
+            padding-top:10px;
+        }
+    	 input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		.side div {
+			padding:10px 5px;
+			font-size:18px;
+			
+		}
 textarea.textarea1 {
 	resize: none;
 	width: 100%;
@@ -195,17 +201,17 @@ var path = "<c:url value='/'/>";
 	});
 </script>
 <body>
-	<div class="bodysize">
-		<nav style="float: left">
-			<div style="width: 150px">
-				<div>리워드 선택</div>
-				<div style="background: rgb(26, 188, 156)">결제</div>
-			</div>
-		</nav>
+	<div style="width:1250px;margin-top:40px;" class="bodysize">
+	    <nav style="float: left">
+	        <div class="side" style="width:200px">
+	            <div>리워드 선택</div>
+	            <div style="background: rgb(26, 188, 156);color:white">결제</div>
+	        </div>
+	    </nav>
 		<session style="float: left">
 
-		<div style="width: 1000px">
-			<h3>결제방식 선택</h3>
+		<div style="width: 950px">
+			<h2>결제방식 선택</h2>
 			<hr>
 			<input type="radio" name="" checked> 카드결제
 			<hr>

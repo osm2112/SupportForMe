@@ -9,14 +9,22 @@
     .bodysize {
         margin-left: auto;
         margin-right: auto;
-        width: 1200px;
     }
         session{
             margin-left: 50px;
         }
         nav{
-            padding-top: 50px
+            padding-top: 25px
         }
+    	 input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
+			-webkit-appearance: none;
+			margin: 0;
+		}
+		.side div {
+			padding:10px 5px;
+			font-size:18px;
+			
+		}
     </style>
     <script>
     var path = "<c:url value='/'/>";
@@ -69,27 +77,20 @@
 				form.submit();
 	}
 	</script>
-	
-<style>
-input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
-	-webkit-appearance: none;
-	margin: 0;
-}
-</style>
 <body>
     
-    <div style="width: 1200px" class="bodysize">
+    <div style="width:1250px;margin-top:40px;" class="bodysize">
     <nav style="float: left">
-        <div calss="side" style="width:150px">
-            <div style="background: rgb(26, 188, 156)">리워드 선택</div>
+        <div class="side" style="width:200px">
+            <div style="background: rgb(26, 188, 156);color:white">리워드 선택</div>
             <div>결제</div>
         </div>
     </nav>
     <session style="float: left">
     
-    <div style="width: 1000px">
-    <div><h3>프로젝트명 : ${presentList[0].projectName}</h3></div>
-        <h3>리워드 선택</h3>
+    <div style="width: 950px;">
+    <div><h2>프로젝트명 : ${presentList[0].projectName}</h2></div>
+        <h2>리워드 선택</h2>
         <hr>
     <c:forEach items="${presentList}" var="presentList">
        <div style="background: lightgrey; width: 350px">
