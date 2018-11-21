@@ -194,7 +194,15 @@
 	</select>
 	<!-- 프로젝트 삭제 -->
 	<delete id="deleteProject" parameterType="project">
-		DELETE FROM PROJECT
-		WHERE  project_no = #{projectNo}
-	</delete>
+		<!-- DELETE FROM PROJECT
+		WHERE  project_no = #{projectNo} -->
+	{call 
+     declare 
+     begin 
+      DELETE FROM HASHTAG WHERE project_no = #{projectNo}; 
+      DELETE FROM PRESENT WHERE project_no = #{projectNo}; 
+      DELETE FROM PROJECT WHERE project_no = #{projectNo}; 
+     end 
+    } 
+ 	</delete>
 </mapper> 
