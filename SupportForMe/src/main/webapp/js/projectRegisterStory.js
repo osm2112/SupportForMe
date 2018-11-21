@@ -3,8 +3,22 @@
  */
 $(function(){
 		var path = $("#path").text();
+		
+		
+		//story page img upload---------------
+		function sogeRemoveNo() {
+			var removeCount = $(".sogeRemove").length;
+			
+			if(removeCount > 0){
+				var removeEnd = $(".sogeRemove").eq(removeCount-1).attr("class").substr(11);
+				return parseInt(removeEnd) + 1;	
+			}
+			else { return removeCount+1; }
+		}
+		$("#result").off("click change");		//on은 이벤트가 추가되는 것, result 안에 있는 이벤트를 삭제해줌
+		
 		//story page video url----------------
-		$("#result").on("click",".videoPlus",function(){
+		$("#result").on("click",".videoSpan",function(){
 			if($(this).parent().prev().val() != '' && !$(this).parent().parent().next().is(":visible")){
 				var videoDiv = "<div class='videoUrl'>"
        			 + "<input type='text' placeholder='  YouTube URL을 입력해주세요.' class='videoInput' name='arrVideo'>"
@@ -19,18 +33,6 @@ $(function(){
 		
 		
 		//story page video url end------------
-		
-		//story page img upload---------------
-		function sogeRemoveNo() {
-			var removeCount = $(".sogeRemove").length;
-			
-			if(removeCount > 0){
-				var removeEnd = $(".sogeRemove").eq(removeCount-1).attr("class").substr(11);
-				return parseInt(removeEnd) + 1;	
-			}
-			else { return removeCount+1; }
-		}
-		$("#result").off("click change");		//on은 이벤트가 추가되는 것, result 안에 있는 이벤트를 삭제해줌
 		
 		$("#result").on("click","#storyDefault",function(){
 			$("#fileUploadStory").click();

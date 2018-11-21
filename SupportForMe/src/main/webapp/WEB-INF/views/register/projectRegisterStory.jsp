@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="<c:url value='/'/>js/projectRegisterStory.js"></script>
+<script src="<c:url value='/'/>js/projectRegisterStory.js?ver=2"></script>
 <title>프로젝트 등록</title>
 <style>
 </style>
