@@ -22,6 +22,8 @@ $(document).ready(function() {
 								});
 						
 						function loadArticle(lastno) {
+							window.scrollBy(0, -100);
+							
 							 if(isEnd == true){
 								  $('.loader').addClass('display-none');
 		                          return;
@@ -38,7 +40,7 @@ $(document).ready(function() {
 										
 										success : function(data) {
 											if (data.length < 4) {
-												isEnd = true;;
+												isEnd = true;
 											}
 							
 											if (data.length > 0) {

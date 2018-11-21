@@ -22,6 +22,7 @@
 											}				
 								});
 						function loadArticle(lastno) {
+							 window.scrollBy(0, -100);
 							 if(isEnd == true){
 								  $('.loader').addClass('display-none');
 		                          return;
@@ -38,7 +39,7 @@
 										success : function(data) {
 											
 											if (data.length < 4) {
-													isEnd = true;;
+													isEnd = true;
 											}
 											if (data.length > 0) {
 												for (i = 0; i < data.length; i++) {
