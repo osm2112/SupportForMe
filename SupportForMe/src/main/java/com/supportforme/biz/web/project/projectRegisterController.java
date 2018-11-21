@@ -2,8 +2,6 @@ package com.supportforme.biz.web.project;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.DefaultResourceLoader;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -225,9 +221,9 @@ public class projectRegisterController {
 		dto.setIntroductionImage(introductionImg);
 
 		String introductionVideo = "";
-		if(dto.getArrVideo() != null && dto.getArrVideo().length>0) {
+		if(dto.getArrVideo().length>0) {
 			for(String video : dto.getArrVideo()) {
-				if(video != null && video != "") {
+				if(video != "") {
 					int index = video.lastIndexOf("/");
 					introductionVideo += (video.substring(index+1) + "||");	
 				}
