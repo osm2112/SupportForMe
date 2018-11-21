@@ -108,7 +108,7 @@
 			<if test="supportForMePickUp != '' and supportForMePickUp != null ">
 				AND PROJECT.SUPPORT_PICK_YN = #{supportForMePickUp}
 			</if>
-			
+			AND  PROJECT.PROGRESS ='001'
 		</where>
 	) A )WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
