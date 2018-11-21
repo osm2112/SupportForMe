@@ -158,7 +158,7 @@
 				        height: 300,
 				        bar: {groupWidth: "85%"},
 				        legend: { position: "none" },
-				        vAxis: {viewWindowMode:'explicit', viewWindow: { min: 0}}
+				        vAxis: {viewWindowMode:'explicit', viewWindow: { min: 0,}}
 				      };
 				      var chart = new google.visualization.ColumnChart(document.getElementById("chart2"));
 				      chart.draw(view, options);
@@ -364,7 +364,7 @@
 				        height: 300,
 				        bar: {groupWidth: "85%"},
 				        legend: { position: "none" },
-				        vAxis: {viewWindowMode:'explicit', viewWindow: { min: 0}}
+				        vAxis: {viewWindowMode:'explicit', viewWindow: { min: 0,max:4}}
 				   
 				      };
 				      var chart = new google.visualization.ColumnChart(document.getElementById("chart4"));
@@ -577,7 +577,9 @@
       			<li><a href="#">프로젝트 관련 통계정보</a></li>
       			<li><a href="#">결제관련 통계정보</a></li> 
       			-->
-				<li><a href="<c:url value='/'/>forme/AdminProjectProgressList">관리자  메뉴로 가기</a></li>
+				<li><a href="<c:url value='/'/>forme/AdminProjectProgressList">프로젝트 관리</a></li>
+				<li><a href="<c:url value='/'/>forme/AdminMemberList">회원 관리</a></li>
+				<li><a href="<c:url value='/'/>forme/AdminSupportForMePickList">서포미픽 관리</a></li>
 				<li><a href="<c:url value='/'/>support/logout">로그아웃</a></li>
 			</ul>
 		</div>

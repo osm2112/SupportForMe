@@ -7,9 +7,9 @@
 		SELECT * FROM ( SELECT ROWNUM AS RNUM, A.* FROM (
 		SELECT * FROM MEMBER
 		<where>
-			PASSWORD IS NOT NULL
+			PASSWORD IS NOT NULL AND USER_ID != 'Admin'
 			<if test="searchCondition == 'userId'">
-				AND USER_ID LIKE '%' || #{searchKeyword} || '%'
+				AND USER_ID = #{searchKeyword}
 			</if>
 			<if test="searchCondition == 'name'">
 				AND NAME LIKE '%' || #{searchKeyword} || '%'
@@ -27,9 +27,9 @@
 		resultType="int">
 		SELECT COUNT(*) FROM MEMBER
 		<where>
-			PASSWORD IS NOT NULL
+			PASSWORD IS NOT NULL AND USER_ID != 'Admin'
 			<if test="searchCondition == 'userId'">
-				AND USER_ID LIKE '%' || #{searchKeyword} || '%'
+				AND USER_ID = #{searchKeyword}
 			</if>
 			<if test="searchCondition == 'name'">
 				AND NAME LIKE '%' || #{searchKeyword} || '%'
@@ -88,7 +88,7 @@
 	
 		<where>
 		
-			PASSWORD IS NOT NULL
+			PASSWORD IS NOT NULL 
 			<if test="searchCondition == 'projectNo'">
 				AND PROJECT.PROJECT_NO LIKE '%' || #{searchKeyword} || '%'
 			</if>
@@ -187,7 +187,7 @@
 		JOIN MEMBER ON PROJECT.USER_ID = MEMBER.USER_ID
 		JOIN COMMON_CODE ON COMMON_CODE.CODE =PROJECT.PROGRESS  AND COMMON_CODE.CODE_GROUP ='C03'
 		<where>
-			MEMBER.PASSWORD IS NOT NULL
+			MEMBER.PASSWORD IS NOT NULL AND PROJECT.PROGRESS != '004' 
 			<if test="searchCondition == 'projectNo'">
 				AND PROJECT.PROJECT_NO LIKE '%' || #{searchKeyword} || '%'
 			</if>
@@ -208,7 +208,8 @@
 			</if>
 		
 		</where>
-	) A )WHERE RNUM BETWEEN #{start} AND #{end}	
+		ORDER BY PROJECT.PROJECT_NO DESC 
+	) A )WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
 	
 	
@@ -219,7 +220,7 @@
 		JOIN MEMBER ON PROJECT.USER_ID = MEMBER.USER_ID
 		JOIN COMMON_CODE ON COMMON_CODE.CODE =PROJECT.PROGRESS AND COMMON_CODE.CODE_GROUP ='C03'
 		<where>
-			MEMBER.PASSWORD IS NOT NULL
+			MEMBER.PASSWORD IS NOT NULL AND PROJECT.PROGRESS != '004'
 
 			<if test="searchCondition == 'projectName'">
 				AND PROJECT.PROJECT_NAME LIKE '%' || #{searchKeyword} || '%'
