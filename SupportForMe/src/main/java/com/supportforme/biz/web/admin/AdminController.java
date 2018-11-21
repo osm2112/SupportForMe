@@ -60,7 +60,7 @@ public class AdminController {
 		model.addAttribute("pageUnit",request.getParameter("pageUnit"));	
 		model.addAttribute("list", adminService.getAdminMembers(adminSearchDTO));
 		
-		return "adminNav/admin/adminMemberListForm";
+		return "noNav/admin/adminMemberListForm";
 	}
 	
 
@@ -124,7 +124,7 @@ public class AdminController {
 		model.addAttribute("pageUnit",request.getParameter("pageUnit"));
 		model.addAttribute("list", adminService.getAdminSupportForMePickUpList(adminSearchDTO));
 		
-		return "adminNav/admin/adminSupportForMePickListForm";
+		return "noNav/admin/adminSupportForMePickListForm";
 	}
 	
 	@RequestMapping("/forme/AdminSupportForMePick")
@@ -197,7 +197,7 @@ public class AdminController {
 		model.addAttribute("pageUnit",request.getParameter("pageUnit"));
 		model.addAttribute("list", adminService.getProjectProgressList(adminSearchDTO));
 		
-		return "adminNav/admin/adminProjectListForm";
+		return "noNav/admin/adminProjectListForm";
 	}
 	
 	@RequestMapping("/forme/AdminProjectProgress")

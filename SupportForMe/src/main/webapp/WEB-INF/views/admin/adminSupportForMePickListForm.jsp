@@ -100,16 +100,22 @@
 .pagination{
 	text-align: center;
 }
+#bodySize{
+	width:1300px;
+	margin-left:auto;
+	margin-right:auto;
+}
 </style>
 </head>
 <body>
+<div id="bodySize">
 <div style="height:70px"></div>
 	<h3>서포미 픽 관리</h3>
 	<hr>
 <form action="<c:url value='/'/>forme/AdminSupportForMePickList" name="searchForm" id="searchForm">
 <div style="width:1250px;margin-bottom:10px" align=right >
 <div class="input-group">
-	<select id="pageUnit" name="pageUnit" class="form-control" onchange="veiwNumber()" style="width:180px;margin-right:150px">
+	<select id="pageUnit" name="pageUnit" class="form-control" onchange="veiwNumber()" style="width:180px;margin-right:130px">
 		<option value="10" selected>10개씩 보기</option>
 		<option value="25">25개씩 보기</option>	
 		<option value="50">50개씩 보기</option>
@@ -176,5 +182,6 @@
 		</tr>
 	</tbody>
 	</table>
+</div>
 </body>
 </html>
